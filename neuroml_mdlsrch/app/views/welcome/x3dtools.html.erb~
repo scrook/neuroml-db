@@ -1,0 +1,66 @@
+
+			
+
+			
+			<!-- MAIN -->
+			<div id="main">
+				<!-- wrapper-main -->
+				<div class="wrapper">
+					
+					<!-- content -->
+					<div id="content">
+						
+						<!-- title -->
+						<div id="page-title">
+							<span class="title">Conversion of NeuroML Files in to X3D Files</span>
+						</div>
+						<!-- ENDS title -->
+						
+						
+<br>
+In NeuroML version 1.7, a simple mapping from MorphML and NetworkML to X3D was introduced.
+<a href="http://en.wikipedia.org/wiki/X3D">X3D</a> is a standardised language for 3D graphics
+providing a XML-based follow up to VRML (Virtual Reality Modeling Language).
+The mapping uses an XSL file to map the XML of a MorphML or NetworkML file to XML in X3D format.
+To view the X3D, you will need a browser plugin, such as
+<a href="http://www.octaga.com">Octaga</a> or <a href="http://www.mediamachines.com/downloads.php">Flux Player</a>.<br>
+<br>        
+For examples click the X3D link at the bottom of each of these pages: <br>
+<ul>
+<li><a href="http://spike.la.asu.edu/NeuroMLValidator/ValidationResults.jsp?localFile=NeuroMLFiles/Examples/MorphML/L23PyrFRB.morph.xml&onlyUseSchema=v1.8.1">MorphML: Layer 2/3 Pyramidal cell (Traub et al 2005)</a><br></li>
+<li><a href="http://spike.la.asu.edu/NeuroMLValidator/ValidationResults.jsp?localFile=NeuroMLFiles/Examples/ChannelML/PyramidalCell.xml&onlyUseSchema=v1.8.1">MorphML: Detailed Layer 5 Pyramidal Cell (from NEURON demo)</a><br></li>
+<li><a href="http://spike.la.asu.edu/NeuroMLValidator/ValidationResults.jsp?localFile=NeuroMLFiles/Examples/NetworkML/Spiral.xml&onlyUseSchema=v1.8.1">NetworkML: Spiral network</a><br></li>
+<li><a href="http://spike.la.asu.edu/NeuroMLValidator/ValidationResults.jsp?localFile=NeuroMLFiles/Examples/NetworkML/Cerebellum.xml&onlyUseSchema=v1.8.1">Cerebellum: Abstract cerenellar network with Mossy Fibers, granule cells and Purkinje cells</a><br></li>
+</ul>
+<br>
+<br>
+<p>Nov 2010: An update to the X3D mapping (contributed by Aditya Gilra in NCBS, Bangalore) allows visualisation of the full morphology of each cell in the network
+    when the cell morphology and network positions are present for a NeuroML Level 3 file. </p>
+
+    <p>The images below show a Layer 5 Pyramidal morphology, and an abstract cerebellar network exported to X3D and visualised using Octaga Player.</p>
+<br>
+
+<p align="centre"><img src="images/PyrX3D.png" alt="X3D Pyramidal cell" />&nbsp;&nbsp;<img src="images/CerebX3D_2.png" alt="X3D Pyramidal cell" /><br><br></p>
+
+<br>
+Current limitations:<br>
+<ul>
+    <li>MorphML files are visualised "lines only"; i.e., diameters of sections or segments are not shown.</li>
+<li>For NetworkML, only instance-based files can be mapped (lists of cells and connections), so no template based representations.</li>
+</ul>
+
+
+<br>
+						
+								<div class="clear"></div>
+						<!-- ENDS project column (right) -->
+						
+						
+					</div>
+					<!-- ENDS content -->
+
+				</div>
+				<!-- ENDS wrapper-main -->
+			</div>
+			<!-- ENDS MAIN -->
+			

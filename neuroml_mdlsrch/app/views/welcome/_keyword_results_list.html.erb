@@ -1,0 +1,13 @@
+<div id="key_results">
+<% count=0 %>
+<% model_ids.each do |model_id| %>
+<br />
+<b>Model Id:</b>&nbsp;&nbsp;<a title="Model Information for <%=model_id%>" href="/model_info?model_id=<%=model_id%>" class="fancybox"><%= model_id %></a>&nbsp;&nbsp;&nbsp;&nbsp;<b>Type:</b>&nbsp;&nbsp;<%= model_types[count] %>
+<br />
+<b>Model Name:</b>&nbsp;&nbsp;<%= model_names[count] %>
+<br />
+<% count = count + 1 %>
+<% end %>
+</div>
+<!-- modelinfo(this;returl false; -->
+

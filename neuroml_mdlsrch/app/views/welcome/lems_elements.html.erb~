@@ -1,0 +1,899 @@
+<div class="overflowcontent">
+<div id='cssmenu'>
+<ul>
+   <li><a href='/lems'><span>About</span></a></li>
+   <li><a href='/lems_intro'><span>Introduction</span></a></li>
+   <li class='active'><a><span>Elements</span></a></li>
+   <li><a href='/lems_download'><span>Download</span></a></li>
+   <li><a href='/lems_example1'><span>Example 1</span></a></li>
+   <li><a href='/lems_example2'><span>Example 2</span></a></li>
+   <li><a href='/lems_example3'><span>Example 3</span></a></li>
+   <li><a href='/lems_example4'><span>Example 4</span></a></li>
+   <li><a href='/lems_example5'><span>Example 5</span></a></li>
+   <li><a href='/lems_example6'><span>Example 6</span></a></li>
+   <li><a href='/lems_example7'><span>Example 7</span></a></li>
+   <li><a href='/lems_example_regimes'><span>Regimes Example</span></a></li>
+   <li><a href='/lems_example_n'><span>Example n</span></a></li>
+   <li><a href='/lems_canonical'><span>Canonical Form</span></a></li>
+   <li><a href='/lems_discussion'><span>Discussion</span></a></li>
+</ul>
+</div>
+<h1>All elements</h1>
+
+
+<p>
+This page summarizes all the element types currently supported by the proof-of-concept interpreter. The explanations are 
+somewhat cursory so it is probably better to look at the examples to work out what is going on.
+</p>
+
+<p>
+There is one block for each element type. All element names are in <span class="eltname">fixed width bold</span>. Attribute 
+names are in <span class="attname">normal fixed width</span>.
+Each block shows the attributes supported by an element and then the types of children allowed.
+</p>
+
+
+<h2>Model structure</h2>
+
+<p>
+Models can be spread over multiple files. The root element in each file is <span class="xelt">Lems</span>.
+</p>
+
+<div class="eltdef">
+<h3>Lems</h3>
+    
+<div class="chlddef">Include<span class="attmeta"> &nbsp;&nbsp;(any)</span>
+</div>
+    
+<div class="chlddef">Dimension<span class="attmeta"> &nbsp;&nbsp;(any)</span>
+</div>
+    
+<div class="chlddef">Unit<span class="attmeta"> &nbsp;&nbsp;(any)</span>
+</div>
+    
+<div class="chlddef">ComponentType<span class="attmeta"> &nbsp;&nbsp;(any)</span>
+</div>
+    
+<div class="chlddef">Component<span class="attmeta"> &nbsp;&nbsp;(any)</span>
+</div>
+    
+<div class="info">For the purposes of the early examples, a couple of other, deprecated 
+    elements are also allowed: XSimulation and XNetwork  </div>
+
+</div>
+
+
+<div class="eltdef">
+<h3>Include</h3>
+    
+<div class="attdef">
+<div class="attdefname">file<span class="attmeta"> &nbsp;&nbsp;(string)</span>
+</div>the name or relative path of a file to be included</div>
+    
+<div class="info">
+        Files are included where the <span class="xelt">Include</span> declaration occurs. The enclosing <span class="xelt">Lems</span> block is stripped
+        off and the rest of the content included as is.
+    </div>
+
+</div>
+
+
+
+<h2>Units and dimensions</h2>
+
+
+<div class="eltdef">
+<h3>Dimension</h3>
+    
+<div class="attdef">
+<div class="attdefname">name<span class="attmeta"> &nbsp;&nbsp;(string)</span>
+</div>the name of the dimension. Other items refer to it by this name.</div>
+     
+<div class="attdef">
+<div class="attdefname">m<span class="attmeta"> &nbsp;&nbsp;(int)</span>
+</div>exponent for Mass</div>
+     
+<div class="attdef">
+<div class="attdefname">l<span class="attmeta"> &nbsp;&nbsp;(int)</span>
+</div>exponent for Length</div>
+     
+<div class="attdef">
+<div class="attdefname">t<span class="attmeta"> &nbsp;&nbsp;(int)</span>
+</div>exponent for Time</div>
+     
+<div class="attdef">
+<div class="attdefname">i<span class="attmeta"> &nbsp;&nbsp;(int)</span>
+</div>exponent for Current</div>
+     
+<div class="info">
+        The name attribute is required. The others default to zero if not present.
+     </div>
+
+</div>
+
+
+
+<div class="eltdef">
+<h3>Unit</h3>
+    
+<div class="attdef">
+<div class="attdefname">symbol<span class="attmeta"> &nbsp;&nbsp;(string)</span>
+</div>the symbol is used in the value of a dimensional quantity</div>
+    
+<div class="attdef">
+<div class="attdefname">dimension</div>
+            Reference to a component of type <span class="eltname">Dimension. </span>
+</div>
+    
+<div class="attdef">
+<div class="attdefname">powTen<span class="attmeta"> &nbsp;&nbsp;(int)</span>
+</div>The power of ten that scales this unit from the SI unit of the same dimension</div>
+    
+<div class="info">
+        The symbol and dimension attributes are required. powTen defaults to zero if not present.
+    </div>
+
+</div>
+
+
+<h2>Defining ComponentType and Component elements</h2>
+
+
+
+    
+<div class="eltdef">
+<h3>ComponentType</h3>
+<div class="info">Root element for defining component types. Note that ComponentClass is used for this element in the NeuroML Component definitions. LEMS will handle ComponentClass elements in the same way as ComponentType elements.</div>
+<div class="attdef">
+<div class="attdefname">name<span class="attmeta">()</span>
+</div>
+The name of the component type. This can be uses as an XML element name in the shorthand form whendefining components.         &nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">eXtends<span class="attmeta">()</span>
+</div>
+The component type that this type inherits field definitions for, if any        &nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">abouts<span class="attmeta">()</span>
+</div>
+Metadata about a component type can be included anywhere by wrapping it in an About element, though this is not necessary: LEMS does not use the body text of XML elements itself, so this is free for the modeler to include descriptive text or other markup of thier own.        &nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">metas<span class="attmeta">()</span>
+</div>
+Structured metadata can be put in Meta elements. The content is read into a generic xml data structure. Other tools can then do their own thing with it. Each Meta element should set the context attribute, so tools can use the getMeta(context) method to retrieve elements that match a particular context.        &nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Can contain:</span>
+</div>Parameter<br>DerivedParameter<br>PathParameter<br>Requirement<br>Exposure<br>Child<br>Children<br>ComponentRef<br>ComponentTypeRef<br>Link<br>Property<br>DefaultBehavior<br>Behavior<br>Fixed<br>Constant<br>Attachments<br>EventPort<br>Path<br>Text<br>Collection<br>PairCollection<br>AnalogPort<br>About<br>Meta<br>
+</div>
+</div>
+    
+<div class="eltdef">
+<h3>Parameter</h3>
+<div class="info">Sets the name an dimensionality of a parameter that must be supplied when a component is defined curresponding to the enclosing ComponentType</div>
+<div class="attdef">
+<div class="attdefname">name<span class="attmeta">()</span>
+</div>
+The name of the parameter. This isthe attibute name when the parameter is supplied in a component definition        &nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">dimension<span class="attmeta">()</span>
+</div>
+The dimension, or 'none'. This should be the ID of a deminsion element defined elsewhere        &nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>ComponentType</div>
+</div>
+    
+<div class="eltdef">
+<h3>DerivedParameter</h3>
+<div class="info">A parameter that comes from other parameter values in the model rather than being set explicitly. Its value can be supplied either with the 'value' attribute that evaluates within the scope of the definition, or with the 'select' attribute which gives a path to 'primary' version of the parameter. For example,  setting select='//MembranePotential[species=channel/species]/reversal' within the appropriate context allows  a channel's reversal potential to taken from a single global setting according to its permeant ion, rather than explicitly supplied locally.</div>
+<div class="attdef">
+<div class="attdefname">select<span class="attmeta">()</span>
+</div>
+Path to the parameter that supplies the value. Exactly one of 'select' and 'value' is required.        &nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">value<span class="attmeta">()</span>
+</div>
+Expression that supplies the value. Exactly one of 'select' and 'value' is required.        &nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>ComponentType</div>
+</div>
+    
+<div class="eltdef">
+<h3>PathParameter</h3>
+<div class="info">A parameter of which the value is a path expression. When a ComponentType declares a PathParameter, a corresponding Component definition should have an attibute with that name whose value is a path expression that evaluates within the instance tree of the built model. This is used, for example, in the definition of a group component class, where the coresponding component specifies a path over the instance tree which selectesthe items that should go in the group.</div>
+<div class="attdef">
+<div class="attdefname">name<span class="attmeta">()</span>
+</div>
+Name of the parameter        &nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>ComponentType</div>
+</div>
+    
+<div class="eltdef">
+<h3>Requirement</h3>
+<div class="info">A Requirement gives the name and dimension of a quantity (parameter or variable) that should be accessible within the scope of a model component. This is only applicable for elements that can be included as children of other elements, where the scope comprises its own parameters and those in the scope of its enclosing element. Once a requirement has been declared, then the quantity can be used within the Behavior definition of the component. It is the responsibility of an implementation to check that the component is only used in a context in which the requirement is met. A typical example is in defining membrand bound components which require access to the membrane potential  but where the variable that holds the potential itself is defined in the top level component.</div>
+<div class="attdef">
+<div class="attdefname">name<span class="attmeta">()</span>
+</div>
+name        &nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">dimension<span class="attmeta">()</span>
+</div>
+reference to a dimension        &nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>ComponentType</div>
+</div>
+    
+<div class="eltdef">
+<h3>Exposure</h3>
+<div class="info">A quantity that is made available to other component in the simulation. All variables in a Behavior definition are private. If other components need access to them then the definition has to explicitly link them to an exposure defined in the component class</div>
+<div class="attdef">
+<div class="attdefname">name<span class="attmeta">()</span>
+</div>
+name        &nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">dimension<span class="attmeta">()</span>
+</div>
+Reference to a dimension        &nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>ComponentType</div>
+</div>
+    
+<div class="eltdef">
+<h3>Child</h3>
+<div class="info">Specifies that a component can have a child of a particular type. The name supplied here can be used in path expressions to access the component. This is useful, for example, where a component can have multiple children of the same type but with different roles, such as the forward and reverse transition rates in a channel.</div>
+<div class="attdef">
+<div class="attdefname">name<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">type<span class="attmeta">()</span>
+</div>
+Reference to a component class, the value should be the name of the target class.        &nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>ComponentType</div>
+</div>
+    
+<div class="eltdef">
+<h3>Children</h3>
+<div class="info">Specifies that a component can have children of a particular class. The class may refer to an extendedtype, in which case components of any class that extends the specified target class should be valid as child components</div>
+<div class="attdef">
+<div class="attdefname">name<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">type<span class="attmeta">()</span>
+</div>
+The class of component allowed as children.        &nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>ComponentType</div>
+</div>
+    
+<div class="eltdef">
+<h3>ComponentRef</h3>
+<div class="info">A reference to another component. The target component can be accessed with path expressions in the same way as a child component, but can be defined independently</div>
+<div class="attdef">
+<div class="attdefname">name<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">type<span class="attmeta">()</span>
+</div>
+Target type        &nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>ComponentType</div>
+</div>
+    
+<div class="eltdef">
+<h3>ComponentTypeRef</h3>
+<div class="info">This is used in conjunction with PathParameter elements to specify the target class of selections defined within components operating over the instance tree.</div>
+<div class="attdef">
+<div class="attdefname">name<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>ComponentType</div>
+</div>
+    
+<div class="eltdef">
+<h3>Link</h3>
+<div class="info">Like a ComponentRef, but resolved relative to the enclosing object so the target must already be in the model. One or the other should be deprecated. The Link element has the same properties as ComponentRef. The Link element just establishes a connection with the target component, but leaves it in its existing place in the hierarchy. Variables in the target component can be accessed via the name of the link element.  </div>
+<div class="attdef">
+<div class="attdefname">name<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">type<span class="attmeta">()</span>
+</div>
+Target type        &nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>ComponentType</div>
+</div>
+    
+<div class="eltdef">
+<h3>Property</h3>
+<div class="info">An property on an instance of a component. Unlike a Parameter, a Property can very from instance to instance. It should be set with an Assign element within the build specification.</div>
+<div class="attdef">
+<div class="attdefname">name<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">dimension<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>ComponentType</div>
+</div>
+    
+<div class="eltdef">
+<h3>DefaultBehavior</h3>
+<div class="info">If more than one Behavior definition is supplied, a DefaultBehavior element can be added to point to the one that should be used by default in the absence of other criteria.</div>
+<div class="attdef">
+<div class="attdefname">behavior<span class="attmeta">()</span>
+</div>
+The id of the Behavior element to be used as the default. The target element should be a child of the enclosing component class.         &nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>ComponentType</div>
+</div>
+    
+<div class="eltdef">
+<h3>Behavior</h3>
+<div class="info">Contains the description of the dynamical behavior of the ComponentType. Can also contain instructions on other elements to create when a component of this type is created. Note that Dynamics is used for this element in the NeuroML Component definitions. LEMS will handle Dynamics elements in the same way as Behavior elements.</div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Can contain:</span>
+</div>DerivedVariable<br>StateVariable<br>TimeDerivative<br>KineticScheme<br>OnStart<br>OnEvent<br>OnCondition<br>Show<br>Record<br>Run<br>Build<br>Regime<br>
+</div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>ComponentType</div>
+</div>
+    
+<div class="eltdef">
+<h3>DerivedVariable</h3>
+<div class="info">A quantity that depends algebraically on other quantities in the model. The 'value' field can be set to a mathematical expression, or the select field to a path expression. If the path expression produces multiple matches, then the 'reduce' field says how these are reduced to a single value by taking the sum or product. </div>
+<div class="attdef">
+<div class="attdefname">name<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">valueCondition<span class="attmeta">()</span>
+</div>
+An optional boolean condition. If true, variable is set to "value", otherwise "valueIfFalse"        &nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">valueIfFalse<span class="attmeta">()</span>
+</div>
+A fallback value for the variable if "valueCondition" is false, otherwise "value"        &nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">select<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">onAbsent<span class="attmeta">()</span>
+</div>
+A value to be used if the path at select is not found        &nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">dimension<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">reduce<span class="attmeta">()</span>
+</div>
+Either 'add' or 'multiply'        &nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">exposure<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>BehaviorRegime</div>
+</div>
+    
+<div class="eltdef">
+<h3>StateVariable</h3>
+<div class="attdef">
+<div class="attdefname">name<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">dimension<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">exposure<span class="attmeta">()</span>
+</div>
+If this variable is to be accessed from outside, it should be linked to an Exposure that is defined in the ComponentType.        &nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>BehaviorRegime</div>
+</div>
+    
+<div class="eltdef">
+<h3>TimeDerivative</h3>
+<div class="info">Has a variable and a value. The value is the rate of change of the variable.</div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>BehaviorRegime</div>
+</div>
+    
+<div class="eltdef">
+<h3>KineticScheme</h3>
+<div class="info">A kinetic scheme does not itself introduce any new elements or state variables. It is rather a way of connecting quantities in existing components by saying that quantities in the edge elements should be interpreted as transition rates among quantities in the node elements. </div>
+<div class="attdef">
+<div class="attdefname">name<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">nodes<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">edges<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Can contain:</span>
+</div>Nodes<br>Edges<br>
+</div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>Behavior</div>
+</div>
+    
+<div class="eltdef">
+<h3>Nodes</h3>
+<div class="info">The children attribute should point to a children declaration in the parent element. The variable field specifies the variable in the state elements that is governed by the scheme.</div>
+<div class="attdef">
+<div class="attdefname">children<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">variable<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>KineticScheme</div>
+</div>
+    
+<div class="eltdef">
+<h3>Edges</h3>
+<div class="attdef">
+<div class="attdefname">children<span class="attmeta">()</span>
+</div>
+The element that provides the transitions for the scheme        &nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">sourceNodeName<span class="attmeta">()</span>
+</div>
+The name of the attribute in the rate element that defines the source of the transition        &nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">targetNodeName<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">forwardRate<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">reverseRate<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>KineticScheme</div>
+</div>
+    
+<div class="eltdef">
+<h3>OnStart</h3>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Can contain:</span>
+</div>StateAssignment<br>EventOut<br>Transition<br>
+</div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>BehaviorRegime</div>
+</div>
+    
+<div class="eltdef">
+<h3>StateAssignment</h3>
+<div class="info">Has 'variable' and 'value' fields</div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>OnStartOnEventOnConditionOnEntry</div>
+</div>
+    
+<div class="eltdef">
+<h3>EventOut</h3>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>OnStartOnEventOnConditionOnEntry</div>
+</div>
+    
+<div class="eltdef">
+<h3>Transition</h3>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>OnStartOnEventOnConditionOnEntry</div>
+</div>
+    
+<div class="eltdef">
+<h3>OnEvent</h3>
+<div class="info">Event handler block</div>
+<div class="attdef">
+<div class="attdefname">port<span class="attmeta">()</span>
+</div>
+the port to lesten on        &nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Can contain:</span>
+</div>StateAssignment<br>EventOut<br>Transition<br>
+</div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>BehaviorRegime</div>
+</div>
+    
+<div class="eltdef">
+<h3>OnCondition</h3>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Can contain:</span>
+</div>StateAssignment<br>EventOut<br>Transition<br>
+</div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>BehaviorRegime</div>
+</div>
+    
+<div class="eltdef">
+<h3>Show</h3>
+<div class="info">These two attributes are paths to parameters. Values are only supplied for the parameters when a component is built using the containing type. The 'src' attribute should point to another element that contains Show or Record definitions. The 'timeScale' attribute is optional, and will be superseded if this element points to a Show element that sets a new time scale, but before pointing to a Record element at least one element in the display chain must have set the time scale. </div>
+<div class="attdef">
+<div class="attdefname">scale<span class="attmeta">()</span>
+</div>
+path to the parameter that sets the scale for rendering times non-dimensional        &nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">src<span class="attmeta">()</span>
+</div>
+path to the element that defines what should be shown        &nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>Behavior</div>
+</div>
+    
+<div class="eltdef">
+<h3>Record</h3>
+<div class="attdef">
+<div class="attdefname">quantity<span class="attmeta">()</span>
+</div>
+path to the parameter that will contain the path to the quantity to be recorded        &nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">scale<span class="attmeta">()</span>
+</div>
+path to the element that defines the scale for rendering the quantity dimensionless        &nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">color<span class="attmeta">()</span>
+</div>
+hex format color suggestion for how the data should be displayed        &nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">save<span class="attmeta">()</span>
+</div>
+Optional name of file to save recorded data in        &nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>Behavior</div>
+</div>
+    
+<div class="eltdef">
+<h3>Run</h3>
+<div class="info">The run element provides a way to make a model runnable. It should point to the parameters that set the step size etc. The target parameters have to be dimensionally consistent. </div>
+<div class="attdef">
+<div class="attdefname">component<span class="attmeta">()</span>
+</div>
+name of the component reference that will set the component to be run        &nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">variable<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">increment<span class="attmeta">()</span>
+</div>
+path to the parameter that sets the step size        &nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">total<span class="attmeta">()</span>
+</div>
+path to the parameter that sets the total span of the independent variable to be run        &nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>Behavior</div>
+</div>
+    
+<div class="eltdef">
+<h3>Build</h3>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Can contain:</span>
+</div>BuildElement<br>
+</div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>Behavior</div>
+</div>
+    
+<div class="eltdef">
+<h3>BuildElement</h3>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Can contain:</span>
+</div>BuildElement<br>
+</div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>BuildElementBuild</div>
+</div>
+    
+<div class="eltdef">
+<h3>Regime</h3>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Can contain:</span>
+</div>DerivedVariable<br>StateVariable<br>TimeDerivative<br>OnStart<br>OnEntry<br>OnEvent<br>OnCondition<br>RequiredVar<br>
+</div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>Behavior</div>
+</div>
+    
+<div class="eltdef">
+<h3>OnEntry</h3>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Can contain:</span>
+</div>StateAssignment<br>EventOut<br>Transition<br>
+</div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>Regime</div>
+</div>
+    
+<div class="eltdef">
+<h3>RequiredVar</h3>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>Regime</div>
+</div>
+    
+<div class="eltdef">
+<h3>Fixed</h3>
+<div class="info">Fixes the value of a parameter in the parent class, so that it does not have to be supplied separately in component definitions.</div>
+<div class="attdef">
+<div class="attdefname">parameter<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">value<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>ComponentType</div>
+</div>
+    
+<div class="eltdef">
+<h3>Constant</h3>
+<div class="info">A constant quantity: like a parameter for which the value is supplied in the class definition itself rather than when a component is defined.</div>
+<div class="attdef">
+<div class="attdefname">name<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">value<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">dimension<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>ComponentType</div>
+</div>
+    
+<div class="eltdef">
+<h3>Attachments</h3>
+<div class="info">Specifies that a component can accept attached components of a particular class. Attached components can be added at build time dependent on other events. For scoping and access purposes they are like child components. The cannonical use of attachments is in adding synapses to a cell when a network connection is made.</div>
+<div class="attdef">
+<div class="attdefname">name<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">type<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>ComponentType</div>
+</div>
+    
+<div class="eltdef">
+<h3>EventPort</h3>
+<div class="info">A port on a component that can send or receive events, depending on the direction speicfied.</div>
+<div class="attdef">
+<div class="attdefname">name<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef">
+<div class="attdefname">direction<span class="attmeta">()</span>
+</div>
+'IN' or 'OUT'        &nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>ComponentType</div>
+</div>
+    
+<div class="eltdef">
+<h3>Path</h3>
+<div class="info">Duplicates some functionality of PathParameter - the two should be merged.</div>
+<div class="attdef">
+<div class="attdefname">name<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>ComponentType</div>
+</div>
+    
+<div class="eltdef">
+<h3>Text</h3>
+<div class="info">Holds textual information that does not change the model but is needed for other purposes such as labelling graphs.</div>
+<div class="attdef">
+<div class="attdefname">name<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>ComponentType</div>
+</div>
+    
+<div class="eltdef">
+<h3>Collection</h3>
+<div class="info">Specifies that instances of components based on this class can containe a named collection of other instances. This provides for containers for oprating on groups of instances with path and filter expressions defined in components to operate over the instance tree.</div>
+<div class="attdef">
+<div class="attdefname">name<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>ComponentType</div>
+</div>
+    
+<div class="eltdef">
+<h3>PairCollection</h3>
+<div class="info">Defines a named collection of paris of instances, similar to the Collection element.</div>
+<div class="attdef">
+<div class="attdefname">name<span class="attmeta">()</span>
+</div>&nbsp;
+        </div>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>ComponentType</div>
+</div>
+    
+<div class="eltdef">
+<h3>AnalogPort</h3>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>ComponentType</div>
+</div>
+    
+<div class="eltdef">
+<h3>About</h3>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>ComponentType</div>
+</div>
+    
+<div class="eltdef">
+<h3>Meta</h3>
+<div class="attdef childof">
+<div class="childofname">
+<span class="attmeta">Child of:</span>
+</div>ComponentType</div>
+</div>
+    
+<div class="eltdef">
+<h3>Component</h3>
+</div>
+</div>

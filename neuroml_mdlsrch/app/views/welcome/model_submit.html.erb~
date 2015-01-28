@@ -1,0 +1,95 @@
+
+			
+
+			
+			<!-- MAIN -->
+			<div id="main">
+				<!-- wrapper-main -->
+				<div class="wrapper">
+					
+					<!-- content -->
+					<div id="content">
+						
+						<!-- title -->
+						<div id="page-title">
+							<span class="title">Submit a New Model here</span>
+						</div>
+						<!-- ENDS title -->
+						
+						<script type="text/javascript" src="javascripts/js/form-validation.js"></script>
+							<form id="contactForm" action="#" method="post">
+								<fieldset>
+									<div>
+										<label>First Name*</label>
+										<input name="name"  id="name" type="text" class="form-poshytip" title="Enter your first name" />
+									</div>
+<div>
+										<label>Middle Name</label>
+										<input name="name"  id="name" type="text" class="form-poshytip" title="Enter your middle name" />
+									</div>
+<div>
+										<label>Last Name*</label>
+										<input name="name"  id="name" type="text" class="form-poshytip" title="Enter your last name" />
+									</div>
+<div>
+										<label>Name</label>
+										<input name="name"  id="name" type="text" class="form-poshytip" title="Enter your model name" />
+									</div>
+									<div>
+										<label>Email</label>
+										<input name="email"  id="email" type="text" class="form-poshytip" title="Enter your email address" />
+									</div>
+<div>
+										<label>Institution</label>
+										<input name="name"  id="name" type="text" class="form-poshytip" title="Enter your Institution name" />
+									</div>
+<div>
+										<label>Model Publication(s) or Citations</label>
+										<input name="name"  id="name" type="text" class="form-poshytip" title="Enter Model Publication(s) or Citations" />
+									</div>
+<div>
+										<label>References to the Model</label>
+										<input name="name"  id="name" type="text" class="form-poshytip" title="Enter Model References" />
+									</div>
+<div>
+										<label>Upload your Model file(s) here</label>
+										<input name="name"  id="name" type="file" class="form-poshytip" title="Upload your model files" />
+									</div>
+<div>
+										<label>Please choose Keywords from the following list of avaliable keywords</label><select name="keywords" size="6"><option value="k1">Neuron</option><option value="k2">Axon</option><option value="k3">Synapse</option><option value="k4">Dendritic</option><option value="k5">Granule</option><option value="k6">Pyramidal</option><option value="k6">Purkinje</option><option value="k7">Golgi Cell</option></select>&nbsp;&nbsp;
+<input type="button" value="ADD &gt;" name="submit" id="submit" />
+										<textarea  name="keywords_added"  id="keywords_added" rows="5" cols="20" class="form-poshytip" title="Keywords Added"></textarea>
+									</div>
+									<div>
+										<label>Please select the checkbox and fill in the custom keywords with a comma separated list</label><input name="okeys" type="checkbox" />&nbsp;&nbsp;Other Keywords:&nbsp;&nbsp;
+										<input name="web"  id="web" type="text" class="form-poshytip" title="Enter other keywords" />
+									</div>
+									<div>
+										<label>Comments</label>
+										<textarea  name="comments"  id="comments" rows="5" cols="20" class="form-poshytip" title="Enter your comments"></textarea>
+									</div>
+									
+									<!-- send mail configuration -->
+									<input type="hidden" value="youremail@yourserver.com" name="to" id="to" />
+									<input type="hidden" value="youremail@yourserver.com" name="from" id="from" />
+									<input type="hidden" value="From torn wordpress online" name="subject" id="subject" />
+									<input type="hidden" value="send-mail.php" name="sendMailUrl" id="sendMailUrl" />
+									<!-- ENDS send mail configuration -->
+									
+									<p><input type="button" value="SEND" name="submit" id="submit" /></p>
+								</fieldset>
+								<p id="error" class="warning">Message</p>
+							</form>
+						
+								<div class="clear"></div>
+						<!-- ENDS project column (right) -->
+						
+						
+					</div>
+					<!-- ENDS content -->
+
+				</div>
+				<!-- ENDS wrapper-main -->
+			</div>
+			<!-- ENDS MAIN -->
+			

@@ -1,0 +1,59 @@
+<div class="overflowcontent">
+<div id='cssmenu'>
+<ul>
+   <li><a href='/lems'><span>About</span></a></li>
+   <li><a href='/lems_intro'><span>Introduction</span></a></li>
+   <li><a href='/lems_elements'><span>Elements</span></a></li>
+   <li><a href='/lems_download'><span>Download</span></a></li>
+   <li><a href='/lems_example1'><span>Example 1</span></a></li>
+   <li><a href='/lems_example2'><span>Example 2</span></a></li>
+   <li class='active'><a><span>Example 3</span></a></li>
+   <li><a href='/lems_example4'><span>Example 4</span></a></li>
+   <li><a href='/lems_example5'><span>Example 5</span></a></li>
+   <li><a href='/lems_example6'><span>Example 6</span></a></li>
+   <li><a href='/lems_example7'><span>Example 7</span></a></li>
+   <li><a href='/lems_example_regimes'><span>Regimes Example</span></a></li>
+   <li><a href='/lems_example_n'><span>Example n</span></a></li>
+   <li><a href='/lems_neuroml2'><span>NeuroML2.0 Example</span></a></li>
+   <li><a href='/lems_canonical'><span>Canonical Form</span></a></li>
+   <li><a href='/lems_discussion'><span>Discussion</span></a></li>
+</ul>
+</div>
+<div class="lems_content">
+
+<h1>Example 3: Connection dependent synaptic components</h1>
+
+
+<p>
+    In many models, a synapse is only created where a connection exists. This means that the model of the receiving 
+    cell should only declare that particular types of synapse can be added to it, not the actual synapse sub-components
+    themselves.
+</p>
+
+
+<p>
+Not much is needed beyond the elements described in example 1 except for some extensions to 
+the component that declares the connectivity and a new child element in the component that 
+the synapses are attached to. The full example is shown below. The synapse type includes an 
+<span class="xelt">EventPort</span> just like the previously defined cell type. The cell type however includes a new child element: 
+<span class="xelt">Attachments</span> defined as:
+<div class="xcode">
+  
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">Attachments</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">synapses</span>" <span class="xmlverb-attr-name">type</span>="<span class="xmlverb-attr-content">synapse</span>" /&gt;</div>
+
+</div>
+
+This operates rather like the <span class="xelt">Children</span> element except that when a component is defined using this type the
+sub-elements are not included in the component definition. Instead it indicates that instances of components of the 
+particular type may be attached later when the model is actually run.
+</p>
+  
+ 
+
+<p>
+    TODO - replacement of the hard-coded Receiver element with something generic that is 
+    accessible from a component type definition.
+</p> 
+ 
+</div>
+</div>

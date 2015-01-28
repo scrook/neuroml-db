@@ -1,0 +1,89 @@
+
+			
+
+			
+			<!-- MAIN -->
+			<div id="main">
+				<!-- wrapper-main -->
+				<div class="wrapper">
+					
+					<!-- content -->
+					<div id="content">
+						
+						<!-- title -->
+						<div id="page-title">
+							<span class="title">Neuron Tools And Utilities For NeuroML</span>
+						</div>
+						<!-- ENDS title -->
+						
+						
+<p class="toolsupportbox rightfloat"><img src="images/cerebellum.png" style="float:right;" alt="Neuron" width="280"/>
+<br />
+Cerebellum model generated using 
+<a href="http://www.neuroconstruct.org">neuroConstruct</a>.
+</p>
+
+
+
+<h3> Tools for Using NeuroML with <a href="http://www.neuron.yale.edu/neuron">NEURON</a> </h3>
+
+ The links below can be used to view latest versions of the associated code as well as the revision 
+history, or all of the code (including the <a href="http://www.netbeans.org">NetBeans</a> project containing the specification
+tree and validation application) can be checked out of the Subversion
+repository as outlined <a href="http://sourceforge.net/svn/?group_id=136437">here</a>.<p>
+
+<ul>
+<li><strong>Export of NeuroML cells from NEURON's ModelView<sup>*</sup></strong><br>
+Files to allow export of NeuroML Level 1 & 2 compliant cell morphologies 
+from ModelView in NEURON are available 
+<a href="http://neuroml.svn.sourceforge.net/viewvc/neuroml/nrn2NeuroML">here</a> (<a href="http://neuroml.svn.sourceforge.net/viewvc/neuroml/nrn2NeuroML/README?view=markup">README</a>).
+    <br>
+<br>    
+<li><strong>Import of NeuroML morphologies into NEURON<sup>*</sup></strong><br>
+Files to allow import of NeuroML Level 1 & 2 compliant cell morphologies into 
+NEURON are available <a href="http://neuroml.svn.sourceforge.net/viewvc/neuroml/NeuroML2nrn">here</a>  (<a href="http://neuroml.svn.sourceforge.net/viewvc/neuroml/NeuroML2nrn/README?view=markup">README</a>).
+    <br>
+<br>
+
+<li><strong>Conversion of ChannelML at the command line</strong><br>
+A Python based utility
+<a href="http://neuroml.svn.sourceforge.net/viewvc/neuroml/CommandLineUtils/ChannelMLConverter">here</a>
+can be used to convert ChannelML files to NEURON mod files at the command line.
+(Note that this can easily be altered to convert ChannelML to GENESIS or PSICS scripts.)
+An optional flag -modc will also compile the generated mod files in one command.
+    <br>
+<br>
+
+<li><strong>Conversion of SBML files for use in NEURON</strong><br>
+A **PROVISIONAL** implementation of an <a href="http://www.sbml.org">SBML</a> to NEURON converter is available <a href="http://neuroml.svn.sourceforge.net/viewvc/neuroml/SBML2NEURON">here</a>
+(<a href="http://neuroml.svn.sourceforge.net/viewvc/neuroml/SBML2NEURON/README?view=markup">README</a>). This uses the Python bindings of <a href="http://sbml.org/Software/libSBML">libSBML</a>
+to generate a mod file containing the model represented in a simple SBML file, which can then be inserted onto a section in NEURON for simulation. Note that only a
+<a href="http://neuroml.svn.sourceforge.net/viewvc/neuroml/SBML2NEURON/SBML2NEURON.py?view=markup">restricted set</a> of SBML elements are supported, but it can be used to simulate some of the models
+in the <a href="http://www.ebi.ac.uk/biomodels-main/">BioModels</a> database, as illustrated below. This is a <b>work in progress</b> and will be developed further to allow closer
+integration between NeuroML & SBML in realistic neuronal models.
+
+</ul>
+
+<br>
+
+<p><a href="images/Bio67_CellDesigner_NEURON.png"><img alt="SBML and NEURON" src="images/Bio67_small.png"/></a></p>
+
+<br>
+        
+<sup>*</sup>Versions of these files have been present in NEURON from version 6.0, but the latest will continue
+be available from this site.
+
+<br>
+						
+								<div class="clear"></div>
+						<!-- ENDS project column (right) -->
+						
+						
+					</div>
+					<!-- ENDS content -->
+
+				</div>
+				<!-- ENDS wrapper-main -->
+			</div>
+			<!-- ENDS MAIN -->
+			

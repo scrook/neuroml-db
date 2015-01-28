@@ -1,0 +1,48 @@
+<html xmlns:nml="http://www.neuroml.org/schema/neuroml2"><title>NeuroML 2 file: NML2_NestedNetworks</title><h2>NeuroML 2 file: NML2_NestedNetworks</h2>
+
+
+
+    
+
+    
+
+       <table frame="box" rules="all" align="centre" cellpadding="4" width="100%"><tr><td>Network</td><td>population</td></tr><tr><td>id</td><td>Excitatory</td></tr><tr><td>cell</td><td>Cell_E</td></tr></table>
+
+       <table frame="box" rules="all" align="centre" cellpadding="4" width="100%"><tr><td>Network</td><td>population</td></tr><tr><td>id</td><td>Inhibitory</td></tr><tr><td>cell</td><td>Cell_I</td></tr></table>
+
+       
+
+       <table frame="box" rules="all" align="centre" cellpadding="4" width="100%"><tr><td>Network</td><td>projection</td></tr><tr><td>id</td><td>InternalRecurrentExc</td></tr><tr><td>presynapticPopulation</td><td>Excitatory</td></tr><tr><td>postsynapticPopulation</td><td>Excitatory</td></tr><tr><td>synapse</td><td>Syn1</td></tr></table>
+
+       <table frame="box" rules="all" align="centre" cellpadding="4" width="100%"><tr><td>Network</td><td>projection</td></tr><tr><td>id</td><td>InternalExcInh</td></tr><tr><td>presynapticPopulation</td><td>Excitatory</td></tr><tr><td>postsynapticPopulation</td><td>Inhibitory</td></tr><tr><td>synapse</td><td>Syn1</td></tr></table>
+
+        
+
+    
+
+        
+
+    
+
+        
+
+        <table frame="box" rules="all" align="centre" cellpadding="4" width="100%"><tr><td>Network</td><td>space</td></tr><tr><td>id</td><td>2D_discrete</td></tr><tr><td>basedOn</td><td>Grid_2D</td></tr></table>
+
+
+        <table frame="box" rules="all" align="centre" cellpadding="4" width="100%"><tr><td>Network</td><td>population</td></tr><tr><td>id</td><td>GridOfSubNets</td></tr><tr><td>network</td><td>BaseNetwork</td></tr></table>
+
+        
+
+        <table frame="box" rules="all" align="centre" cellpadding="4" width="100%"><tr><td>Network</td><td>cellSet</td></tr><tr><td>id</td><td>AllExcitatoryCells</td></tr><tr><td>select</td><td>GridOfSubNets/Excitatory</td></tr></table> 
+        <table frame="box" rules="all" align="centre" cellpadding="4" width="100%"><tr><td>Network</td><td>cellSet</td></tr><tr><td>id</td><td>AllInhibitoryCells</td></tr><tr><td>select</td><td>GridOfSubNets/Inhibitory</td></tr></table>
+
+        
+
+        <table frame="box" rules="all" align="centre" cellpadding="4" width="100%"><tr><td>Network</td><td>projection</td></tr><tr><td>id</td><td>RecurrentGlobalExc</td></tr><tr><td>presynapticPopulation</td><td>AllExcitatoryCells</td></tr><tr><td>postsynapticPopulation</td><td>AllExcitatoryCells</td></tr><tr><td>synapse</td><td>Syn1</td></tr></table>
+
+       
+
+    
+
+<br/></html>
+

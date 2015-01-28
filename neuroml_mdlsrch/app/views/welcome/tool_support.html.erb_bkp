@@ -1,0 +1,658 @@
+
+			
+
+			
+			<!-- MAIN -->
+			<div id="main">
+				<!-- wrapper-main -->
+				<div class="wrapper">
+					
+					<!-- content -->
+					<div id="content">
+						
+						<!-- title -->
+						<div id="page-title">
+							<span class="title">Current Application Support For NeuroML</span>
+						</div>
+						<!-- ENDS title -->
+						
+						
+
+<p>The following is a list of software applications which currently support NeuroML
+(last updated: June 2012). Note that not all tools support all parts of NeuroML. </p>
+
+<table id="highlighted" align="center" width="40%">
+<tr><td>Please <a href="scientific_committee">contact us</a> if you would like your application included on this list!
+</td></tr></table>
+<br/>
+
+<p>In many instances NeuroML import/export in these tools is an add-on to the core functionality of the package, and can sometimes be incomplete or not well documented.
+If you're interested in this feature in a specific application <i><b>let the developers know</b></i>! It's only through user feedback that features like
+this will make it further up long TODO lists.</p>
+
+<p>As a general guide to the features each application supports the following icons are used: </p>
+<table id="midlist" >
+
+    <tr> <td ><img alt=""  border="0" src="images/icon_morph.png"/></td><td >Supports morphologically detailed single cells</td> </tr>
+    <tr> <td ><img alt=""  border="0" src="images/icon_morphs.png"/></td><td >Supports networks of morphologically detailed cells</td> </tr>
+    <tr> <td ><img alt=""  border="0" src="images/icon_chan.png"/></td><td >Supports models containing active membrane conductances through ion channels</td> </tr>
+    <tr> <td ><img alt=""  border="0" src="images/icon_net.png"/></td><td >Supports (large scale) networks of single compartment neurons</td> </tr>
+    <tr> <td ><img alt=""  border="0" src="images/icon_nml2.png"/></td><td >Includes preliminary support for <a href="neuromlv2">NeuroML v2.0</a></td> </tr>
+
+</table>
+<br/>
+        <table id="longlist">
+
+
+
+        <tr>
+            <td valign="top" width="120"><a name="Validator" href="http://neuroml.org/NeuroMLValidator/Validation.jsp"><b>NeuroML Validator</b></a>
+            <br/><br/><br/>
+            <img alt=""  border="0" src="images/icon_morphs.png"/>
+            <img alt=""  border="0" src="images/icon_chan.png"/>
+            </td>
+            <td valign="top" class="middle_col">The NeuroML Validator on this website can be used to check the validity of a NeuroML file. The validator allows you
+to paste the text of the file into the browser window for validation. After validation, the NeuroML Validator allows translation of
+NeuroML documents into more readable HTML formats or into simulator scripts for use with GENESIS, MOOSE, NEURON and PSICS. <br/><br/>The website also facilitates
+visualisation of the contents of NeuroML files in 3D using <a href="x3dtools">X3D</a>.
+<br/><br/><a href="http://software.incf.org/software/neuroml" title="See the entry for this software on the INCF Software Center"><img src="images/incfsct.png" border="0" alt="" align="right"/></a></td>
+            <td valign="top" width="100"><a href="X3D_tools.php"><img alt="NeuroML Validator"  border="0" src="images/val.png"/></a></td>
+        </tr>
+
+
+        <tr   class="alt">
+            <td valign="top" ><a name="neuroConstruct"/><a href="http://www.neuroConstruct.org"><b>neuroConstruct</b></a>
+            <br/><br/><br/>
+            <img alt=""  border="0" src="images/icon_morphs.png"/>
+            <img alt=""  border="0" src="images/icon_chan.png"/>
+            <img alt=""  border="0" src="images/icon_nml2.png"/>
+            </td>
+            <td valign="top" class="middle_col" >neuroConstruct is a Java based application for constructing 3D networks of biologically realistic neurons.
+            The current version can generate code for the NEURON, GENESIS, PSICS and PyNN platforms and
+also provides import/export support for MorphML, ChannelML and NetworkML. A detailed description of the current support for NeuroML in neuroConstruct is
+avaliable <a href="http://www.neuroconstruct.org/docs/neuroml.html">here</a>.<br/><br/>
+
+            Integration with the <a href="http://neuroml.org/lems/interpreter.html">LEMS interpreter</a> and conversion of NeuroML v1.x based models to v2.0 is in development.
+            <br/><br/><a href="http://software.incf.org/software/neuroconstruct" title="See the entry for this software on the INCF Software Center"><img src="images/incfsct.png" border="0" alt="" align="right"/></a></td>
+            <td valign="top" width="100"><a href="http://neuroConstruct.org"><img alt="neuroConstruct"  border="0" src="images/neu.png"/></a></td>
+        </tr>
+
+
+
+        <tr>
+            <td valign="top"><a name="NEURON" href="http://www.neuron.yale.edu/neuron/"><b>NEURON</b></a>
+            <br/><br/><br/>
+            <img alt=""  border="0" src="images/icon_morphs.png"/>
+            <img alt=""  border="0" src="images/icon_chan.png"/>
+            </td>
+            <td valign="top" class="middle_col">The NEURON simulation environment is one of 
+the main target platforms for a standard facilitating exchange of neuronal models. 
+Version 6.1 of NEURON can import and export (from ModelView) cells in NeuroML (Level 1 or 2) format. For the latest files for
+importing/exporting NeuroML in NEURON see <a href="neuron_tools.php">here</a>.
+The <a href="http://neuroml.org/NeuroMLValidator/Validation.jsp">NeuroML Validator</a> can also be used to generate
+NEURON scripts (<a href="http:///NeuroMLValidator/Transform.jsp?localFile=NeuroMLFiles/Examples/ChannelML/NaChannel_HH.xml&xslFile=NeuroMLFiles/Schemata/v1.8.1/Level2/ChannelML_v1.8.1_NEURONmod.xsl">example</a>)
+and full NEURON simulations can be generated from NeuroML model components by <a href="#neuroConstruct">neuroConstruct</a>.
+
+<br/><br/><a href="http://software.incf.org/software/neuron" title="See the entry for this software on the INCF Software Center"><img src="images/incfsct.png" border="0" alt="" align="right"/></a></td>
+        <td valign="top" width="100"><a href="http://www.neuron.yale.edu/neuron/"><img alt="NEURON"  border="0" src="images/neur.png"/></a></td>
+        </tr>
+
+        <tr class="alt">
+            <td valign="top"><a name="GENESIS" href="http://genesis-sim.org/"><b>GENESIS</b></a>
+            <br/><br/><br/>
+            <img alt=""  border="0" src="images/icon_morphs.png"/>
+            <img alt=""  border="0" src="images/icon_chan.png"/>
+            </td>
+            <td valign="top" class="middle_col">GENESIS is a commonly used neuronal simulation environment and is also a main target platform 
+for the NeuroML specifications. 
+Cell morphologies and channel mechanisms in NeuroML format can be used to
+generate GENESIS scripts through the <a href="http://neuroml.org/NeuroMLValidator/Validation.jsp">NeuroML Validator</a> page here
+(<a href="http:///NeuroMLValidator/Transform.jsp?localFile=NeuroMLFiles/Examples/ChannelML/NaChannel_HH.xml&xslFile=NeuroMLFiles/Schemata/v1.8.1/Level2/ChannelML_v1.8.1_GENESIStab.xsl">example</a>).
+
+This conversion can be done with any XML tool for handling XSL file transformations, but a short script in Python to facilitate this is available
+<a href="http://neuroml.svn.sourceforge.net/viewvc/neuroml/CommandLineUtils/ChannelMLConverter/">here</a>. 
+
+Full GENESIS simulations can be generated from NeuroML model components by <a href="#neuroConstruct">neuroConstruct</a>.<br/><br/>
+            See also work on the next generation of the GENESIS platform as part of the <a href="#Neurospaces">Neurospaces/GENESIS 3</a> and <a href="#MOOSE" >MOOSE</a> projects.
+<br/><br/><a href="http://software.incf.org/software/genesis" title="See the entry for this software on the INCF Software Center"><img src="images/incfsct.png" border="0" alt="" align="right"/></a></td>
+            <td valign="top" width="100"><a href="http://genesis-sim.org/"><img alt="GENESIS"  border="0" src="images/gen.png"/></a></td>
+        </tr>
+        
+        
+
+        <tr>
+            <td valign="top"><a name="MOOSE" href="http://moose.sourceforge.net"><b>MOOSE</b></a>
+            <br/><br/><br/>
+            <img alt=""  border="0" src="images/icon_morphs.png"/>
+            <img alt=""  border="0" src="images/icon_chan.png"/>
+            </td>
+            <td valign="top" class="middle_col">MOOSE is the Multiscale Object-Oriented Simulation Environment. It is the base and numerical core for large, detailed 
+multi-scale simulations that span computational neuroscience and systems 
+biology. It is based on a complete reimplementation of the GENESIS 2 core, and scripts for that environment are largely compatible with MOOSE, e.g. those generated by the NeuroML Validator (<a href="http:///NeuroMLValidator/Transform.jsp?localFile=NeuroMLFiles/Examples/ChannelML/NaChannel_HH.xml&xslFile=NeuroMLFiles/Schemata/v1.8.1/Level2/ChannelML_v1.8.1_GENESIStab.xsl">example</a>).
+Native support for NeuroML in MOOSE is <a href="http://moose.svn.sourceforge.net/viewvc/moose/moose/trunk/neuroML_IO/">in development</a>. The latest version of <a href="#neuroConstruct">neuroConstruct</a> can
+be used to generate executable scripts for MOOSE based on NeuroML model components.
+<br/><br/>
+A standalone graphical interface for visualising and plotting simulation results saved by MOOSE (or any other multicompartmental simulator) has been developed, see <a href="#Moogli">Moogli</a>.
+<a href="http://software.incf.org/software/moose-2" title="See the entry for this software on the INCF Software Center"><img src="images/incfsct.png" border="0" alt="" align="right"/></a></td>
+
+            <td valign="top" ><a href="https://sourceforge.net/projects/moose/"><img alt="MOOSE"  border="0" src="images/moose.jpg"/></a></td>
+        </tr>
+
+
+        <tr class="alt">
+            <td valign="top"><a name="PSICS" href="http://www.psics.org"><b>PSICS</b></a>
+            <br/><br/><br/>
+            <img alt=""  border="0" src="images/icon_morph.png"/>
+            <img alt=""  border="0" src="images/icon_chan.png"/>
+            </td>
+            <td valign="top" class="middle_col">PSICS is the Parallel Stochastic Ion Channel Simulator. This <a href="http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1000886">recently developed simulator</a> has had an initial focus on single cell modeling, but support for networks of cells is in development.
+Level 1 morphologies are natively supported by PSICS for specifying cell structures. PSICS does not have an internal representation of cables, so MorphML cable elements are only used to assign labels to points, but these can then be used as targets for channel allocation much as cables are in NEURON.
+PSICS natively reads a large subset of channel specifications in ChannelML 1.8.1 but does not support ligand gated channels (e.g. for BK, SK channels), synapses or integrate-and-fire mechanisms.
+Supported ChannelML files can be converted to PSICS format using the latest XSL file for this mapping
+(<a href="http:///NeuroMLValidator/Transform.jsp?localFile=NeuroMLFiles/Examples/ChannelML/NaChannel_HH.xml&xslFile=NeuroMLFiles/Schemata/v1.8.1/Level2/ChannelML_v1.8.1_PSICS.xsl">example</a>).
+This converts the XML into a PSICS compatible XML file and reports the
+problem if the ChannelML file uses an unsupported construct. <br/><br/>
+The latest version of <a href="#neuroConstruct">neuroConstruct</a> can
+be used to generate executable scripts for PSICS based on NeuroML components. </td>
+
+            <td valign="top" ><a href="http://www.psics.org"><img alt="PSICS"  border="0" src="images/psics.png"/></a></td>
+
+        </tr>
+
+<tr>
+   <td valign="top"><a name="PyNN" href="http://neuralensemble.org/trac/PyNN"><b>PyNN</b></a>
+            <br/><br/><br/>
+            <img alt=""  border="0" src="images/icon_net.png"/>
+            <img alt=""  border="0" src="images/icon_nml2.png"/>
+            </td>
+   <td valign="top" class="middle_col">PyNN is a Python package for simulator independent
+specification of neuronal network models. Model code can be developed 
+using the PyNN API and then run using 
+<a href="#NEURON">NEURON</a>,
+<a href="http://www.nest-initiative.org/index.php/Main_Page">NEST</a>, 
+<a href="http://www.sourceforge.net/projects/pcsim">PCSIM</a>,
+ <a href="http://brian.di.ens.fr">Brian</a>
+ or <a href="#MOOSE">MOOSE</a>. The developed model
+also can be stored as a NeuroML document using code that is currently in
+the testing phase. The latest version of <a href="#neuroConstruct">neuroConstruct</a> can
+be used to generate executable scripts for PyNN based simulators based on NeuroML components,
+although the majority of multicompartmental conductance based models which are available in
+neuroConstruct are outside the current scope of the PyNN API.<br/><br/>
+   More details on the interaction between PyNN and NeuroML 2 can be found <a href="/pynn.php">here</a>.
+<br/><br/><a href="http://software.incf.org/software/pynn" title="See the entry for this software on the INCF Software Center"><img src="images/incfsct.png" border="0" alt="" align="right"/></a></td>
+
+            <td valign="top" ><a href="http://neuralensemble.org/trac/PyNN"><img alt="PyNN"  border="0" src="images/pynn.png"/></a></td>
+
+</tr>
+
+
+        <tr class="alt">
+            <td valign="top"><a name="WBC"  href="http://www.wholebraincatalog.org"><b>Whole Brain Catalog</b></a>
+            <br/><br/><br/>
+            <img alt=""  border="0" src="images/icon_morphs.png"/>
+            </td>
+            <td valign="top" class="middle_col">The Whole Brain Catalog is a graphical interface that allows multiscale neuroscience data to be visualised relative to a 3D brain atlas.
+                Data being visualised is annotated with links out to further information resources.<br/><br/>
+                
+                NeuroML is one of the data formats supported by this environment.
+            Further integration with tools such as <a href="#neuroConstruct">neuroConstruct</a> is currently being tested to facilitate large scale
+            network simulations through the interface.
+<br/><br/><a href="http://software.incf.org/software/whole-brain-catalog" title="See the entry for this software on the INCF Software Center"><img src="images/incfsct.png" border="0" alt="" align="right"/></a></td>
+            <td valign="top" ><a href="http://www.wholebraincatalog.org"><img alt="Whole Brain Catalog"  border="0" src="images/wbc.png"/></a></td>
+        </tr>
+        
+        <tr >
+            <td valign="top"><a name="NeuronLand" href="http://neuronland.org"><b>NeuronLand</b></a>
+            <br/><br/><br/>
+            <img alt=""  border="0" src="images/icon_morph.png"/>
+            </td>
+            <td valign="top" class="middle_col">NeuronLand provides NLMorphologyConverter, which is a command line
+program for converting between over 20 different 3D neuron morphology formats, and 
+NLMorphologyViewer, which provides a simple interface for viewing these data. <br/><br/>
+Both of these tools provide import and export of MorphML.</td>
+
+            <td valign="top" ><a href="http://neuronland.org"><img alt="NeuronLand"  border="0" src="images/neuronland.png"/></a></td>
+        </tr>
+
+        <tr class="alt">
+            <td valign="top"><a name="PCSIM" href="http://www.lsm.tugraz.at/pcsim/"><b>PCSIM</b></a>
+            <br/><br/><br/>
+            <img alt=""  border="0" src="images/icon_net.png"/>
+            </td>
+            <td valign="top" class="middle_col">PCSIM is a tool in C++ for simulating large scale networks of cells and synapses. Functionality for importing and
+            exporting generated networks in NetworkML is <a href="http://pcsim.svn.sourceforge.net/viewvc/pcsim/trunk/pcsim/neuroml/">in development</a>.<br/><br/>
+
+            This had primarily been developed as a network exchange mechanism with <a href="#CX3D">CX3D</a>.
+            <br/><br/><br/><br/><a href="http://software.incf.org/software/pcsim" title="See the entry for this software on the INCF Software Center"><img src="images/incfsct.png" border="0" alt="" align="right" /></a></td>
+            <td valign="top" ><a href="http://www.lsm.tugraz.at/pcsim/"><img alt="PCSIM"  border="0" src="images/pcsim.png"/></a></td>
+        </tr>
+
+
+        <tr >
+            <td valign="top"><a name="CX3D" href="http://www.ini.uzh.ch/~amw/seco/cx3d/"><b>CX3D</b></a>
+            <br/><br/><br/>
+            <img alt=""  border="0" src="images/icon_morphs.png"/>
+            </td>
+            <td valign="top" class="middle_col">CX3D is a tool for simulating the growth of cortex in 3D. Export of generated networks to NeuroML format
+            is included in the current version (see <a href="http://frontiersin.org/computationalneuroscience/paper/10.3389/neuro.10/025.2009/">Frederic Zubler and Rodney Douglas (2009). 
+                A framework for modeling the growth and development of neurons and networks. Front. Comput. Neurosci.</a>).<br/><br/>
+            A preliminary implementation of NeuroML export from CX3D which also includes neuronal morphologies is available
+            <a href="http://sourceforge.net/apps/trac/neuroml/browser/CX3D2NeuroML">here</a>.
+            </td>
+            <td valign="top" ><a href="http://www.ini.uzh.ch/~amw/seco/cx3d/"><img alt="CX3D"  border="0" src="images/cx3d.png"/></a></td>
+        </tr>
+
+
+
+
+        <tr class="alt">
+            <td valign="top"><a name="Neuromantic" href="http://www.rdg.ac.uk/neuromantic/"><b>Neuromantic</b></a>
+            <br/><br/><br/>
+            <img alt=""  border="0" src="images/icon_morph.png"/>
+            </td>
+            <td valign="top" class="middle_col">Neuromantic is a freeware tool for neuronal reconstruction (similar in some ways to part of Neurolucida's functionality). 
+            Neuromantic mainly uses SWC/Cvapp format, but the latest version can import and export MorphML.</td>
+            <td valign="top" ><a href="http://www.rdg.ac.uk/neuromantic/"><img alt="Neuromantic"  border="0" src="images/neuromantic.png"/></a></td>
+        </tr>
+
+        <tr>
+            <td valign="top" width="120"><a name ="Neurospaces" href="http://neurospaces.sourceforge.net/"><b>Neurospaces/ GENESIS 3</b></a>
+            <br/><br/><br/>
+            <img alt=""  border="0" src="images/icon_morphs.png"/>
+            <img alt=""  border="0" src="images/icon_chan.png"/>
+            </td>
+            <td valign="top" class="middle_col">The Neurospaces project is developing a modular reimplementation of the core of GENESIS 2 along with a number of other
+                components for computational neuroscience as part of the GENESIS 3 initiative. 
+            Neurospaces/GENESIS 3 currently supports reading of passive models in NeuroML format (morphology + passive parameters).</td>
+            <td valign="top" ><a href="http://neurospaces.sourceforge.net"><img alt="Neurospaces"  border="0" src="images/neurospaces.png"/></a></td>
+        </tr>
+
+        <tr  class="alt">
+            <td valign="top"><a name="NeuroML Java API" href="http://sourceforge.net/projects/neuroml-api/"><b>NeuroML Java API</b></a>
+            <br/><br/><br/>
+            <img alt=""  border="0" src="images/icon_morphs.png"/>
+            <img alt=""  border="0" src="images/icon_chan.png"/>
+            <img alt=""  border="0" src="images/icon_nml2.png"/>
+            </td>
+            <td valign="top" class="middle_col">A Java API generated from NeuroML Schema documents to be used for the development of new neural simulators and to connect with pre-existing simulators.
+            This application was originally based on the v1.x Schemas (supports NeuroML version 1.8.1).<br/><br/>
+
+            It has recently been updated with the developing v2.0 Schemas. It is expected that this will eventually be integrated with the developing
+            <a href="neuroml2.php#libNeuroML">Java implementation of libNeuroML</a></td>
+            <td valign="top" ><a href="http://sourceforge.net/projects/neuroml-api/"><img alt="NeuroML Java API"  border="0" src="images/nml-api.png"/></a></td>
+        </tr>
+
+        <tr >
+            <td valign="top"><a name ="SplitNeuron" href="http://www.mindupload.org/index.php?tab=0&sub=0"><b>SplitNeuron</b></a>
+            <br/><br/><br/>
+            <img alt=""  border="0" src="images/icon_net.png"/>
+            </td>
+            <td valign="top" class="middle_col">SplitNeuron is a library written in C for data structures and functions extending SQLite
+                to simulate large-scale networks of Izhikevich Simple Model compartments.
+SplitNeuron answers a fundamental issue in large-scale simulation, data transfer between storage and functional software:
+it uses database not only for data storage but also as simulation engine, moving computation to data rather than using storage systems only for data holding.
+This choice offers more features with less code to write and a unique way of accessing data for further analysis.<br/><br/>
+ Features under development include direct import and cell/network creation from NeuroML.
+
+<br/><br/><a href="http://software.incf.org/software/splitneuron" title="See the entry for this software on the INCF Software Center"><img src="images/incfsct.png" border="0" alt="" align="right"/></a></td>
+            
+            <td valign="top" ><a href="http://www.mindupload.org/index.php?tab=0&sub=0"><img alt="SplitNeuron"  border="0" src="images/splitneuron.png"/></a></td>
+        </tr>
+
+        <tr class="alt">
+            <td valign="top"><a name ="NeurAnim" href="https://sourceforge.net/projects/neuranim/"><b>NeurAnim</b></a>
+            <br/><br/><br/>
+            <img alt=""  border="0" src="images/icon_net.png"/>
+            </td>
+            <td valign="top" class="middle_col">NeurAnim is a research aid for computational neuroscience. It is used to visualise
+                and animate neural network simulations in 3D, and to render movies of these animations for use in presentations. Networks stored in
+                the instance based representation of NetworkML can be loaded and visualised.
+            </td>
+            <td valign="top" ><a href="https://sourceforge.net/projects/neuranim/"><img alt="NeurAnim"  border="0" src="images/neuranim.png"/></a></td>
+        </tr>
+
+
+        <tr >
+            <td valign="top"><a name="CNrun" href="http://johnhommer.com/academic/code/cnrun"><b>CNrun</b></a>
+            <br/><br/><br/>
+            <img alt=""  border="0" src="images/icon_net.png"/>
+            </td>
+            <td valign="top" class="middle_col">CNrun is a neuronal network model simulator, similar in purpose to NEURON except that
+                individual neurons are not compartmentalised. It was built from refactored code written by Thomas Nowotny. <br/><br/>
+                It reads in network topology description from a NeuroML file, where the <i>cell_type</i> attribute determines the unit class, one of the in-built
+                neuron types of CNrun (e.g. Hodgkin Huxley cell by Traub and Miles (1991), Poisson oscillator, van der Pol oscillator).
+            </td>
+            <td valign="top" ><a href="http://johnhommer.com/academic/code/cnrun/ratiocoding"><img alt="CNrun"  border="0" src="images/cnrun.png"/></a></td>
+        </tr>
+
+        <tr class="alt">
+            <td valign="top"><a name="TREES" href="http://www.treestoolbox.org/"><b>TREES toolbox</b></a>
+            <br/><br/><br/>
+            <img alt=""  border="0" src="images/icon_morphs.png"/>
+            <img alt=""  border="0" src="images/icon_nml2.png"/>
+            </td>
+            <td valign="top" class="middle_col">The TREES toolbox is an application in MATLAB which allows: automatic reconstruction of neuronal branching from
+                microscopy image stacks and generation of synthetic axonal and dendritic trees; visualisation, editing and analysis of neuronal
+                trees; comparison of branching patterns between neurons; and investigation of how dendritic and axonal branching depends on
+                local optimization of total wiring and conduction distance.<br/><br/>
+                This application was discussed in a recent publication: <a href="http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1000877">
+        Cuntz H, Forstner F, Borst A, H&auml;usser M,
+        One rule to grow them all: A general theory of neuronal branching
+        and its practical application. PLoS Comput Biol 6(8): e1000877 (2010).</a> <br/><br/>
+        The latest version of the TREES toolbox includes basic functionality for exporting cells in NeuroML v1.x Level 1 (MorphML) or as a NeuroML v2alpha morphology file.
+
+
+<br/><br/><a href="http://software.incf.org/software/the-trees-toolbox" title="See the entry for this software on the INCF Software Center"><img src="images/incfsct.png" border="0" alt="" align="right"/></a></td>
+            <td valign="top" ><a href="http://www.treestoolbox.org/"><img alt="TREES toolbox"  border="0" src="images/trees.png"/></a></td>
+        </tr>
+
+
+
+
+        <tr >
+            <td valign="top"><a name="TrakEM2" href="http://www.ini.uzh.ch/~acardona/trakem2.html"><b>TrakEM2</b></a>
+            <br/><br/><br/>
+            <img alt=""  border="0" src="images/icon_morphs.png"/>
+            </td>
+            <td valign="top" class="middle_col">TrakEM2 is an <a href="http://rsb.info.nih.gov/ij/">ImageJ</a> plugin for
+                morphological data mining, three-dimensional modelling and image stitching, registration, editing and annotation. <br/><br/>
+                It has been described in detail in a recent publication: <a href="http://www.plosbiology.org/article/info:doi/10.1371/journal.pbio.1000502">
+                    Albert Cardona, Stephan Saalfeld, Stephan Preibisch, Benjamin Schmid, Anchi Cheng, Jim Pulokas, Pavel Toman&#269&aacute;k, and Volker Hartenstein,
+                    An Integrated Micro- and Macroarchitectural Analysis of the Drosophila Brain by Computer-Assisted Serial Section Electron Microscopy, 
+                    PLoS Biology, 8(10), e1000502 (2010).</a><br/><br/>
+                    As of v0.8n, a menu item "Export - NeuroML..." gives an option to export to MorphML (the anatomy of the arbors only) or NeuroML (the whole network
+                    with anatomy and synapses), for the selected trees or all trees.
+
+<br/><br/><a href="http://software.incf.org/software/trakem2" title="See the entry for this software on the INCF Software Center"><img src="images/incfsct.png" border="0" alt="" align="right"/></a></td>
+            <td valign="top" ><a href="http://www.ini.uzh.ch/~acardona/trakem2.html"><img alt="TrakEM2"  border="0" src="images/trakem2.png"/></a></td>
+        </tr>
+
+        <tr  class="alt">
+            <td valign="top"><a name="neuromorpho" href="http://neuromorpho.org"><b>NeuroMorpho.Org</b></a>
+            <br/><br/><br/>
+            <img alt=""  border="0" src="images/icon_morph.png"/>
+            </td>
+            <td valign="top" class="middle_col">NeuroMorpho.Org is a database of digitally reconstructed neurons.
+This resource can be used to retrieve reconstructed neuronal morphologies of multiple cell types from a number of species. The database can be browsed by
+neuron type, brain area, species, contributing lab, or cells can be searched for according to various morphometric criteria or the associated metadata.<br/><br/>
+There is a utility present on the site to view the cells in 3D (based on Robert Cannon's <a href="http://www.compneuro.org/CDROM/nmorph/cellArchive.html">Cvapp</a>),
+which could be used to save the morphologies in
+NEURON or GENESIS format. It was agreed at the <a href="workshop2011.php">2011 NeuroML Development Workshop</a> that MorphML export would be a very useful
+addition to this functionality, and this has now been added to the viewer.</td>
+            <td valign="top" ><a href="http://neuromorpho.org"><img alt="NeuroMorpho.Org"  border="0" src="images/neuromorpho.png"/></a></td>
+        </tr>
+
+
+        <tr>
+            <td valign="top"><a name="neuronvisio" href="http://mattions.github.com/neuronvisio/"><b>Neuronvisio</b></a>
+                <br/><br/><br/>
+                <img alt=""  border="0" src="images/icon_morph.png"/>
+            </td>
+            <td valign="top" class="middle_col">Neuronvisio is a Graphical User Interface for <a href="#NEURON">NEURON</a> simulator
+                environment with 3D capabilities. Neuronvisio makes easy to select and
+                investigate sections' properties, it offers easy integration with
+                <a href="http://matplotlib.sourceforge.net/index.html">matplotlib</a> for the plotting the results. <br/><br/>
+                It can save the geometry
+                using NeuroML and the simulation results in a customised and
+                extensible HDF5 format; the results can then be reload in the software
+                and analysed at a later stage, without re-running the simulation.
+                <br/><br/><a href="http://software.incf.org/software/neuronvisio" title="See the entry for this software on the INCF Software Center"><img src="images/incfsct.png" border="0" alt="" align="right"/></a></td>
+            <td valign="top" ><a href="http://mattions.github.com/neuronvisio"><img alt="Neuronvisio"  border="0" src="images/neuronvisio.png"/></a></td>
+        </tr>
+
+
+        <tr  class="alt">
+            <td valign="top"><a name="lems" href="http:///neuroml2#libNeuroML"><b>LEMS Reference Implementation</b></a>
+                <br/><br/><br/>
+                <img alt=""  border="0" src="images/icon_net.png"/>
+                <img alt=""  border="0" src="images/icon_chan.png"/>
+                <img alt=""  border="0" src="images/icon_nml2.png"/>
+            </td>
+            <td valign="top" class="middle_col">The LEMS Reference Implementation (LRI) is a Java package which can process and run models defined using the
+                <a href="http:///lems">Low Entropy Model Specification</a>, which was
+                developed in the process of creating NeuroML version 2.0. <br/><br/>
+
+                The LRI can read in models specified in LEMS, check validity and unit consistency, simulate the models natively using a simple numerical integration scheme and plot the results.<br/><br/>
+
+                The dynamical behaviour of most NeuroML v2.0 model components are described in LEMS and <a href="http:///neuroml2#libNeuroML">libNeuroML</a>
+                is a combination of the LRI and NeuroML 2 ComponentClass definitions, allowing it to read & simulate a range of neuronal model types. It also includes import &amp;
+                export functionality for a number of simulator formats and other XML languages (e.g. <a name="lems" href="neuroml2.php#SBML">SBML</a>,
+                <a href="neuroml2.php#NineML">NineML</a>).</td>
+
+            <td valign="top" ><a href="http:///neuroml2#libNeuroML"><img alt="LEMS"  border="0" src="images/lems.png"/></a></td>
+        </tr>
+
+
+        <tr >
+            <td valign="top"><a name="channelpedia" href="http://channelpedia.epfl.ch"><b>Channelpedia @ Blue Brain Project</b></a>
+                <br/><br/><br/>
+                <img alt=""  border="0" src="images/icon_chan.png"/>
+            </td>
+            <td valign="top" class="middle_col">Channelpedia is a database of information on ion channels, developed as part of the <a href="http://bluebrain.epfl.ch/">Blue Brain Project</a>.
+                As well as information on genetic, structural and functional properties, many channel descriptions are accompanied by kinetic models
+                taken from the literature, or obtained from channel expression in Xenopus oocytes. The ion channel models can be downloaded from the site in ChannelML format.<br/><br/>
+
+            Note: many of the cell morphologies used by the Blue Brain Project have been deposited in the <a href="http://neuromorpho.org">NeuroMorpho.Org</a>
+            repository (<a href="http://neuromorpho.org/neuroMorpho/bylab.jsp">Markram lab</a>) and so are also available in NeuroML format.</td>
+
+            <td valign="top" ><a href="http://channelpedia.epfl.ch"><img alt="Channelpedia"  border="0" src="images/channelpedia.png"/></a></td>
+        </tr>
+
+        <tr   class="alt">
+            <td valign="top"><a name="OpenWorm" href="http://code.google.com/p/openworm/"><b>OpenWorm</b></a>
+                <br/><br/><br/>
+                <img alt=""  border="0" src="images/icon_morphs.png"/>
+                <img alt=""  border="0" src="images/icon_chan.png"/>
+            </td>
+            <td valign="top" class="middle_col">The OpenWorm project aims to create a simulation platform to build digital <i>in silico</i> living systems, starting with a
+                <a href="http://en.wikipedia.org/wiki/Caenorhabditis_elegans">C. elegans</a> virtual organism simulation. The simulations and associated tools are
+            being developed in a fully open source manner. <br/><br/>
+
+            NeuroML will be used for the description of the 302 neurons in the worm's nervous system, both for morphological description of the cells and their electrical properties.<br/><br/>
+
+            The OpenWorm project is also creating a general purpose neuronal simulator (for both electrical and physical simulations) which will have parallelism and
+            native support for NeuroML built in from the start.</td>
+
+            <td valign="top" ><a href="http://code.google.com/p/openworm/"><img alt="OpenWorm"  border="0" src="images/openworm.png"/></a></td>
+        </tr>
+
+        <tr >
+            <td valign="top"><a name="NeuGen" href="http://atlas.gcsc.uni-frankfurt.de/~neugen"><b>NeuGen</b></a>
+                <br/><br/><br/>
+                <img alt=""  border="0" src="images/icon_morphs.png"/>
+            </td>
+            <td valign="top" class="middle_col">NeuGen is an application in Java which is able to generate networks of synaptically connected morphologically detailed neurons, as in a cortical column.
+                NeuGen generates sets of neurons of the different morphological classes of the cortex, e.g. pyramidal cells and stellate neurons, and connects these networks in 3D.<br/><br/>
+
+            The latest version of NeuGen can export the generated networks to NeuroML. Some manual editing of the generated files is required to make them valid. The developers have been
+            informed of the required updates which will be incorporated soon.</td>
+
+            <td valign="top" ><a href="http://atlas.gcsc.uni-frankfurt.de/~neugen"><img alt="NeuGen"  border="0" src="images/neugen.png"/></a></td>
+        </tr>
+
+        <tr  class="alt">
+            <td valign="top"><a name="LFPy" href="http://compneuro.umb.no/LFPy/"><b>LFPy</b></a>
+                <br/><br/><br/>
+                <img alt=""  border="0" src="images/icon_morph.png"/>
+            </td>
+            <td valign="top" class="middle_col">LFPy is a Python package for calculation of extracellular potentials from multicompartment neuron models.
+                It relies on the <a href="#NEURON">NEURON simulator</a> and uses the Python interface it provides. LFPy provides a set of easy to use Python
+                classes for setting up the model, running simulations and calculating the extracellular potentials arising from
+                activity in the model neuron. <br/><br/>
+
+            Initial support for loading of NeuroML morphologies has been added.</td>
+
+            <td valign="top" ><a href="http://compneuro.umb.no/LFPy/"><img alt="LFPy"  border="0" src="images/lfpy.png"/></a></td>
+        </tr>
+
+        <tr >
+            <td valign="top"><a name="morphforge" href="https://github.com/mikehulluk/morphforge"><b>morphforge</b></a>
+                <br/><br/><br/>
+                <img alt=""  border="0" src="images/icon_morphs.png"/>
+                <img alt=""  border="0" src="images/icon_chan.png"/>
+            </td>
+            <td valign="top" class="middle_col">morphforge is a high level, simulator independent, Python library for building simulations of small populations of
+                multi-compartmental neurons.
+
+                It was built as part of the PhD thesis of Mike Hull (Uni. Edinburgh): Investigating the role of electrical coupling in small populations of
+            interneurons in Xenopus laevis tadpoles.<br/><br/>
+
+            Loading of morphologies in MorphML format is supported, and loading of channel descriptions from ChannelML is in progress. Future development of morphforge
+            will be closely aligned with the development of the multicompartmental modelling API in Python (<a href="#libNeuroML">libNeuroML</a>).</td>
+
+            <td valign="top" ><a href="https://github.com/mikehulluk/morphforge"><img alt="morphforge"  border="0" src="images/morphforge.png"/></a></td>
+        </tr>
+
+        <tr class="alt">
+            <td valign="top"><a name="NeuroTranslate" href="https://github.com/nathanjordan/NeuroTranslate"><b>NeuroTranslate</b></a>
+                <br/><br/><br/>
+                <img alt=""  border="0" src="images/icon_net.png"/>
+            </td>
+            <td valign="top" class="middle_col">NeuroTranslate is a tool that translates input files between two different languages, the 
+                <a href="http://www.cse.unr.edu/brain/ncs">NCS (Neo-Cortical Simulator)</a> input language and NeuroML format.
+                It provides a user-friendly interface, which can be used to both create and edit simulations.<br/><br/>
+
+            There is also a <a href="http://www.youtube.com/watch?v=R2gVOQLFX_A">YouTube video</a> describing the application.</td>
+
+            <td valign="top" ><a href="https://github.com/nathanjordan/NeuroTranslate"><img alt="NeuroTranslate"  border="0" src="images/neurotranslate.png"/></a></td>
+        </tr>
+
+
+        <tr>
+            <td valign="top"><a name="libNeuroML" href="https://github.com/NeuralEnsemble/libNeuroML"><b>libNeuroML for Python</b></a>
+                <br/><br/><br/>
+                <img alt=""  border="0" src="images/icon_morphs.png"/>
+                <img alt=""  border="0" src="images/icon_chan.png"/>
+                <img alt=""  border="0" src="images/icon_nml2.png"/>
+            </td>
+            <td valign="top" class="middle_col">A simulator-independent, NeuroML-compliant Python API for multi-compartmental models is being developed. This will be based
+                on experiences with a number of ongoing Python initiatives, including the existing <a href="neuroml2.php#pylibNeuroML">Python version of libNeuroML</a>
+                generated from the NeuroML 2 XML Schema document, <a href="#morphforge">morphforge</a>, <a href="#neuronvisio">Neuronvisio</a> and others.
+                Close integration with <a href="#PyNN">PyNN</a>, to enable models created through the API to be executed on multiple simulators, is also planned.
+
+                The project will initially target <a href="neuroml2.php">NeuroML v2.0</a>.<br/><br/>
+
+            The project is currently being coordinated by Mike Vella (Cambridge) as part of an <a href="http://www.incf.org/gsoc/2012/pynn">INCF Google Summer of Code</a> project.</td>
+
+            <td valign="top" ><a href="https://github.com/NeuralEnsemble/libNeuroML"><img alt="libNeuroML"  border="0" src="images/libneuromlPy.png"/></a></td>
+        </tr>
+
+        <tr class="alt">
+            <td valign="top"><a name="Moogli" href="http://moose.ncbs.res.in/moogli/"><b>Moogli</b></a>
+                <br/><br/><br/>
+                <img alt=""  border="0" src="images/icon_morph.png"/>
+            </td>
+            <td valign="top" class="middle_col">Moogli (a sister project of <a href="#MOOSE">MOOSE</a>) is a simulator independent OpenGL based visualization tool for neural simulations.
+                Moogli can visualize morphology of single/multiple neurons or network of neurons, and can also visualize activity in these cells.<br/><br/>
+
+            Loading of morphologies in MorphML and NeuroML formats is supported.</td>
+
+            <td valign="top" ><a href="http://moose.ncbs.res.in/moogli/"><img alt="Moogli"  border="0" src="images/moogli.png"/></a></td>
+        </tr>
+
+        <!--
+        <tr  class="alt">
+            <td valign="top"><a name="XXX" href="XXX"><b>PyLEMS</b></a>
+                <br/><br/><br/>
+                <img alt=""  border="0" src="images/XXX.png"/>
+            </td>
+            <td valign="top">XXX. <br/><br/>
+
+            Initial support for loading of NeuroML....</td>
+
+            <td valign="top" ><a href="XXX"><img alt="XXX"  border="0" src="images/XXX.png"/></a></td>
+        </tr>
+
+        
+        <tr  class="alt">
+            <td valign="top"><a name="XXX" href="XXX"><b>XXX</b></a>
+                <br/><br/><br/>
+                <img alt=""  border="0" src="images/XXX.png"/>
+            </td>
+            <td valign="top">XXX. <br/><br/>
+
+            Initial support for loading of NeuroML....</td>
+
+            <td valign="top" ><a href="XXX"><img alt="XXX"  border="0" src="images/XXX.png"/></a></td>
+        </tr>-->
+
+
+</table>
+
+
+
+
+<br>
+
+<h1>Planning support for NeuroML...</h1>
+
+<p>The following is a list of software applications which have included NeuroML support in their development roadmaps.</p>
+<p><u>Please contact the developers directly</u> to enquire about the latest status, or (better yet) with offers to help test or help
+implement NeuroML support.</p>
+
+
+        <table id="longlist">
+
+
+        
+        <tr>
+            <td valign="top"><a href="http://www.neurodynamics.nl/netmorph.html"><b>NETMORPH</b></a>
+            <br/><br/><br/>
+            <img alt=""  border="0" src="images/icon_morphs.png"/>
+            </td>
+            <td valign="top" class="middle_col">NETMORPH is a simulation environment for the developmental generation of 3D large-scale neuronal networks with realistic neuron morphologies.
+            Export of generated cells and networks into NeuroML formats is planned in future versions.</td>
+            <td valign="top" ><a href="http://www.neurodynamics.nl/netmorph.html"><img alt="NETMORPH"  border="0" src="images/netmorph.png"/></a></td>
+        </tr>
+
+        <tr class="alt">
+            <td valign="top"><a href="http://research.mssm.edu/cnic/tools-ns.html"><b>NeuronStudio</b></a>
+            <br/><br/><br/>
+            <img alt=""  border="0" src="images/icon_morph.png"/>
+            </td>
+            <td valign="top" class="middle_col">Free neuronal reconstruction software from the Computational Neurobiology and Imaging Center
+at Mount Sinai School of Medicine. Support for MorphML export is planned for future releases. </td>
+            <td valign="top" ><a href="http://research.mssm.edu/cnic/tools-ns.html"><img alt="NETMORPH"  border="0" src="images/neuronstudio.png"/></a></td>
+        </tr>
+
+        <tr>
+            <td valign="top"><a href="http://openwiki.janelia.org/wiki/display/neuroptikon/Home"><b>Neuroptikon</b></a>
+            <br/><br/><br/>
+            <img alt=""  border="0" src="images/icon_net.png"/>
+            <img alt=""  border="0" src="images/icon_morph.png"/>
+            </td>
+            <td valign="top" class="middle_col">Neuroptikon is a tool for visualizing and interacting with neural circuits and other types of networks, being developed at Janelia Farm.
+                Support for importing cells and networks expressed in NeuroML is planned for future releases. </td>
+            <td valign="top" ><a href="http://openwiki.janelia.org/wiki/display/neuroptikon/Home"><img alt="Neuroptikon"  border="0" src="images/neuroptikon.png"/></a></td>
+        </tr>
+
+
+        <tr class="alt" >
+            <td valign="top"><a href="http://krasnow1.gmu.edu/CENlab/software.html"><b>NeuroRD</b></a>
+            <br/><br/><br/>
+            <img alt=""  border="0" src="images/icon_morph.png"/>
+            <img alt=""  border="0" src="images/icon_chan.png"/>
+            </td>
+            <td valign="top" class="middle_col">NeuroRD is a computationally efficient, neuronal reaction-diffusion stochastic simulator being developed by Robert Cannon and Avrama Blackwell. 
+            Neuronal morphologies based on NeuroML will be used to provide the structure of the 3D elements of the models.</td>
+            <td valign="top" ><a href="http://krasnow1.gmu.edu/CENlab/software.html"><img alt="NeuroRD"  border="0" src="images/neurord.png"/></a></td>
+        </tr>
+
+
+
+
+        
+</table>
+						
+								<div class="clear"></div>
+						<!-- ENDS project column (right) -->
+						
+						
+					</div>
+					<!-- ENDS content -->
+
+				</div>
+				<!-- ENDS wrapper-main -->
+			</div>
+			<!-- ENDS MAIN -->
+			

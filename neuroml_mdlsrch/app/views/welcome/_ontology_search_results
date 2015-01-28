@@ -1,0 +1,22 @@
+<div id="ont_results">
+<% count=0 %>
+<% for key,value in result_hash %>
+<br />
+<b><span id="ont_header"><%= key.capitalize %></span></b>
+<% temparray=value.to_a 
+  
+%>
+
+ <% for eachid in temparray %>
+<br /><br />
+<b>Model Id:</b>&nbsp;&nbsp;<a href="/model_info?model_id=<%=ont_ids[count]%>" title="Model Information for <%=ont_ids[count]%>" class="fancybox" ><%= ont_ids[count] %></a>
+&nbsp;&nbsp;<b>Type:</b>&nbsp;&nbsp;<%= ont_types[count] %>
+<br />
+<b>Model Name:</b>&nbsp;&nbsp; <%= ont_names[count] %>
+ <% count=count + 1 %>
+
+<%  end %>
+<br />
+<hr />
+<% end %>
+</div>

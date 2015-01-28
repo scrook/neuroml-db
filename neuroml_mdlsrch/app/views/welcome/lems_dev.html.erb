@@ -1,0 +1,63 @@
+<div class="overflowcontent">
+
+<div id='cssmenu'>
+<ul>
+   <li><a href='/neuromlv2'><span>NML Alpha Schema</span></a></li>
+   <li class='active'><a><span>LEMS Mapping</span></a></li>
+   <li><a href='/libnml'><span>libNeuroML</span></a></li>
+   <li><a href='/compatibility'><span>Compatibility with Other Simulators</span></a></li>
+   <li><a href='/specifications'><span>NML Specifications</span></a></li>
+   <li><a href='/examples'><span>Examples</span></a></li>
+</ul>
+</div>
+<div class="lems_content">
+
+<h2>Development of LEMS & mapping to NeuroML 2</h2>
+
+    <p><a href="lems">LEMS (Low Entropy Model Specification)</a> is a new XML based language with interpreter developed by Robert Cannon for specifying 
+        generic models of dynamical systems. <b>ComponentType</b> (<b>ComponentClass</b> has also been used as a name for these, see <a href="compatibility#NineML">below</a>)
+        elements which specify <b>Parameter</b>s, <b>StateVariable</b>s and their dynamical <b>Behaviour</b>s can be defined as templates for model elements (e.g.
+        HH ion channels, abstract cells, etc.). <b>Components</b> are instances of these with specific values of <b>Parameters</b> (e.g. HH squid axon Na<sup>+</sup>
+        channel, I&amp;F cell with threshold -60mV, etc.). </p>
+
+    <p>A Java package, the LEMS Reference Implementation (LRI) which includes examples of LEMS files together with the interpreter for executing them is available
+        <a href="lems_download">here</a>.</p>
+
+    <p>A core set of <b>ComponentType</b>s describing the behaviour of dynamical elements in NeuroML 2 has been defined in LEMS:</p>
+    <ul>
+        <li>Cell models: <a href="http://spike.la.asu.edu/NeuroML2CoreTypes/Cells.html">Cells.xml</a> (<a href="http://sourceforge.net/apps/trac/neuroml/browser/NeuroML2/NeuroML2CoreTypes/Cells.xml?view=markup">source in LEMS</a>)</li>
+        <li>Network elements: <a href="http:///NeuroML2CoreTypes/Networks.html">Networks.xml</a> (<a href="http://sourceforge.net/apps/trac/neuroml/browser/NeuroML2/NeuroML2CoreTypes/Networks.xml?view=markup">source in LEMS</a>)</li>
+        <li>Ion channels: <a href="http:///NeuroML2CoreTypes/Channels.html">Channels.xml</a> (<a href="http://sourceforge.net/apps/trac/neuroml/browser/NeuroML2/NeuroML2CoreTypes/Channels.xml?view=markup">source in LEMS</a>)</li>
+        <li>Synapse models: <a href="http:///NeuroML2CoreTypes/Synapses.html">Synapses.xml</a> (<a href="http://sourceforge.net/apps/trac/neuroml/browser/NeuroML2/NeuroML2CoreTypes/Synapses.xml?view=markup">source in LEMS</a>)</li>
+        <li>Mapping of PyNN cells & synapses: <a href="http:///NeuroML2CoreTypes/PyNN.html">PyNN.xml</a> (<a href="http://sourceforge.net/apps/trac/neuroml/browser/NeuroML2/NeuroML2CoreTypes/PyNN.xml?view=markup">source in LEMS</a>)</li>
+        <li>Dimensions/units allowed: <a href="http:///NeuroML2CoreTypes/NeuroMLCoreDimensions.html">NeuroMLCoreDimensions.xml</a> (<a href="http://sourceforge.net/apps/trac/neuroml/browser/NeuroML2/NeuroML2CoreTypes/NeuroMLCoreDimensions.xml?view=markup">source in LEMS</a>)</li>
+    </ul>
+    <p>These serve as the basis for <b>Component</b> definitions in NeuroML 2 files, e.g. <a href="http:///NeuroML2CoreTypes/Cells.html#izhikevichCell">izhikevichCell</a>,
+            <a href="http:///NeuroML2CoreTypes/Cells.html#iafTauCell">iafTauCell</a>,
+            <a href="http:///NeuroML2CoreTypes/Channels.html#ionChannelHH">ionChannelHH</a>, etc. The behaviour of the model element (e.g. the behaviour of v in terms of threshold, reset, tau in a
+        simple I&amp;F cell) is specified in the <b>ComponentType</b>, and the user only has to supply the name of the <b>ComponentType</b> and give parameter values to create a <b>Component</b>
+        in their NeuroML file.</p><br/>
+
+    <p align="center"><img alt="ComponentTypes & Components" src="images/LEMS_NML2_Ex0_IaF.png"/></p>
+    <p align="center"><i>This image shows the usage of LEMS ComponentTypes & Components in NeuroML</i></p>
+
+
+    <p>Note that specifying a <b>Component</b> does not imply that an instance of the model is created. Instances will only be instantiated when the cells are created in a
+        <b>population</b> which is present in a <b>network</b>.</p>
+
+    <p>Using LEMS to specify the core of NeuroML version 2 has the following significant advantages:</p>
+    <table id="highlighted" align="center" >
+        <tr><td>
+                NeuroML 2 XML files can be used standalone by applications in the same way as NeuroML v1.x, without using LEMS, easing the transition for v1.x compliant applications
+                <br/><br/>Any NeuroML 2 <b>ComponentType</b> can be extended and will be usable by any application (e.g. the <a href="lems/interpreter.html">LEMS Reference Implementation</a>) which understands LEMS</td></tr>
+    </table>
+
+    <p>The first point above means that a parsing application does not have to natively read the LEMS type definition for, e.g. an <b>izhikevichCell</b> element, it just has to map the NeuroML element
+        parameters onto its own object implementing that entity. The behaviour should be the same and should be tested against the reference LEMS implementation.</p>
+
+    <p>The second point above means that if an application does support LEMS, it can automatically parse
+        (and generate code for) a wide range of NeuroML 2 cells, channels and synapses, including any
+        new <b>ComponentType</b> derived from these, without having to natively know anything about channels, cell models, etc.</p>
+
+</div>
+</div>
