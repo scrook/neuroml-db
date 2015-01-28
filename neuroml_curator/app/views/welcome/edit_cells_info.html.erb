@@ -1,0 +1,507 @@
+<style type="text/css">
+a.fancybox,a.channel_link {
+    background:#eee;
+    text-decoration:none;
+    color:#333;
+    font-family:Arial, sans-serif;
+    font-size:11px;
+    font-weight:bold;
+    padding:3px 5px;
+    border:1px solid #aaa;
+    border-radius:3px;
+    cursor:default;
+}
+
+a.fancybox:hover,a.channel_link:hover {
+    background-color:#f2f2f2;
+    border-color:#888;
+    box-shadow:0 0 2px #ccc;
+}
+
+a.fancybox:active,a.channel_link:active {
+    vertical-align:-1px;
+}
+</style>
+
+
+
+<% modelid = @model_id.Model_ID.to_s %>
+
+
+
+<script type="text/javascript" charset="utf-8">
+
+counterpub = 0;
+counterref=0;
+countercont=0;
+counter_fname = 1;
+counter_lname = 1;
+counter_mname = 1;
+counter_email = 1;
+counter_inst = 1;
+counter_dropdown = 1;
+function  add_metadata(value){
+//system.out.println("in jsp");
+var selectoption= value;
+var link=document.getElementById("aid");
+if(selectoption == "1")
+link.href="add_publication?modelid=<%= modelid %>";
+if(selectoption == "2")
+link.href="add_neurolex?modelid=<%= modelid %>";
+if(selectoption == "3")
+link.href="add_references?modelid=<%= modelid %>";
+if(selectoption == "4")
+link.href="add_author?modelid=<%= modelid %>";
+if(selectoption == "5")
+link.href="add_keywords?modelid=<%= modelid %>";
+link.style.visibility="visible";
+}
+
+        function addFields(id) {
+		  // Get the main Div in which all the other divs will be added
+            var mainContainer = document.getElementById(id);
+            // Create a new div for holding text and button input elements
+            var newDiv = document.createElement('div');
+            // Create a new text input
+		var newdropd = document.createElement('select');
+                newdropd.name = "cont_select" + counter_dropdown;
+newdropd.id="select_id_"+counter_dropdown;               
+ counter_dropdown++;
+                 var _opt = document.createElement('option');
+                _opt.text = "Select Metadata to Add";
+                _opt.value = "";
+                newdropd.add(_opt); 
+		 var _opt = document.createElement('option');
+                _opt.text = "Add new Publication";
+                _opt.value = "0";
+                newdropd.add(_opt); 
+                var _opt = document.createElement('option');
+                _opt.text = "Add new Neurolex IDs";
+                _opt.value = '1';
+                newdropd.add(_opt);
+                var _opt = document.createElement('option');
+                _opt.text = "Add new References";
+                _opt.value = '2';
+                newdropd.add(_opt);
+		var _opt = document.createElement('option');
+                _opt.text = "Add new Author";
+                _opt.value = '3';
+                newdropd.add(_opt);
+		var _opt = document.createElement('option');
+                _opt.text = "Add New Keywords";
+                _opt.value = '4';
+                newdropd.add(_opt);
+newdropd.onchange = function(){
+var selectid=newdropd.id;
+var selectoption=newdropd.options[newdropd.selectedIndex].text;
+var aid=selectid+"a";
+var link=document.getElementById(aid);
+//alert(aid);
+if(selectoption == "Add new Publication")
+link.href="add_publication";
+if(selectoption =="Add new Neurolex IDs")
+link.href="add_neurolex";
+if(selectoption =="Add new References")
+link.href="add_references";
+if(selectoption =="Add new Author")
+link.href="add_author";
+if(selectoption =="Add New Keywords")
+link.href="add_keywords";
+link.style.visibility="visible";
+}
+	
+
+            var newDelButton = document.createElement('input');
+            newDelButton.type = "button";
+            newDelButton.value = "Delete Entry";
+		 var newSubmitButton = document.createElement('input');
+            newSubmitButton.type = "button";
+            newSubmitButton.value = "Go";
+//	    newSubmitButton.onclick = test(id);
+
+
+// By Veer
+var newLink=document.createElement('a');
+newLink.className="fancybox";
+newLink.id=newdropd.id+"a";
+newLink.innerHTML="Add";
+//newLink.href="add_publication";
+//newDiv.appendChild(newLink);
+
+newLink.style.visibility="hidden";
+//End By Veer
+
+
+
+
+
+		newDiv.appendChild(newdropd);
+            // Append new text input to the newDiv
+            // Append new button input to the newDiv
+            newDiv.appendChild(newDelButton);
+//	    newDiv.appendChild(newSubmitButton);
+
+//document.write("&nbsp;&nbsp;");
+newDiv.appendChild(newLink);
+	    mainContainer.appendChild(newDiv);
+
+            // Add a handler to button for deleting the newDiv from the mainContainer
+            newDelButton.onclick = function() {
+                    mainContainer.removeChild(newDiv);
+            }
+        }
+</script>
+
+<!-- MAIN -->
+                        <div id="main">
+                                <!-- wrapper-main -->
+                                <div class="wrapper">
+
+                                        <!-- content -->
+                                        <div id="content">
+
+                                                <!-- title -->
+                                                <div id="page-title">
+                                                        <span class="title">Edit Cell Model Details</span>
+                                                </div>
+                                                <!-- ENDS title -->
+<% if !@model.blank? %> 
+<%= form_for @model,:url => {:action => 'edit_cells'}  do |f| %>
+  <p>
+ <table >
+   <tr>
+   <th><%= f.label(:Cell_ID,"Cell NeuroML ID") %></th>
+   <td><%= f.text_field(:Cell_ID,:readonly => true) %></td>
+  </tr>
+
+   <th><%= f.label(:Cell_Name,"Cell Name") %></th>
+   <td><%= f.text_field(:Cell_Name) %></td>
+  </tr>
+  <tr>
+   <th><%= f.label(:MorphML_File, "MorphML File") %></th>
+   <td><%= f.text_area(:MorphML_File, :size => '40x5') %></td>
+  </tr>
+  <tr>
+  <tr>
+   <th><%= f.label(:Upload_Time, "Submitted during") %></th>
+   <td><%= f.text_field(:Upload_Time,:readonly => true) %></td>
+  </tr>
+  <tr>
+   <th><%= f.label(:Comments, "Comments") %></th>
+   <td><%= f.text_field(:Comments) %></td>
+  </tr>
+ </table>
+  </p>
+ 
+ 
+  <p>
+    <%= f.submit "Update Cell Information"%>
+  </p>
+<% end %>
+<%end%>
+<% if !@pub_list.blank? %>
+<% @pub_list.each do |publication| %> 
+<%= form_for publication,:url => {:action => 'edit_publication'}   do |f1| %>
+  <p>
+ <table>
+<tr>
+   <td><%= f1.hidden_field(:Publication_ID,:readonly => true) %></td>
+</tr>
+<tr>
+   <th><%= f1.label(:Full_Title,"Publication Full Title") %></th>
+   <td><%= f1.text_field(:Full_Title) %></td>
+</tr>
+<tr>  
+   <th><%= f1.label(:Pubmed_Ref,"Pub reference") %></th>
+   <td><%= f1.text_field(:Pubmed_Ref) %></td>
+  <tr>
+<tr>
+   <th><%= f1.label(:Comments,"Comments") %></th>
+   <td><%= f1.text_field(:Comments) %></td>
+  <tr>
+ </table>
+  </p>
+ 
+ 
+  <p>
+  <%= f1.submit "Update Publication",name: 'update'%>
+    <%= f1.submit "Delete Publication", name: 'delete',:confirm => "Delete Publication: Are you sure to delete this publication?" %>
+
+  </p>
+<% end %>
+<%end%>
+<%end%>
+
+
+<% if !@ref_list.blank? %>
+<% @ref_list.each do |reference| %>
+<%= form_for reference ,:url => {:action => 'edit_references'}  do |f2| %>
+  <p>
+ <table>
+<tr>
+   <td><%= f2.hidden_field(:Reference_ID,:readonly => true) %></td>
+  </tr>
+<tr>
+   <th><%= f2.label(:Reference_Resource,"Reference Resource") %></th>
+   <td><%= f2.text_field(:Reference_Resource) %></td>
+  <tr>
+<tr>
+<tr>
+   <th><%= f2.label(:Reference_URI,"Reference URI") %></th>
+   <td><%= f2.text_field(:Reference_URI) %></td>
+  <tr>
+<tr>
+
+   <th><%= f2.label(:Comments,"Comments") %></th>
+   <td><%= f2.text_field(:Comments) %></td>
+  <tr>
+ </table>
+  </p>
+
+
+  <p>
+    <%= f2.submit "Update Reference" ,name: 'update'%>
+	<%= f2.submit "Delete Reference", name: 'delete' ,:confirm => "Delete Reference: Are you sure to delete this reference?"%>
+  </p>
+<% end %>
+<%end%>
+
+<%end%>
+<% if !@keyword_model.blank? %>
+<% @keyword_model.each do |keywords| %>
+<%= form_for keywords,:url => {:action => 'edit_keywords'}  do |fk| %>
+  <p>
+ <table>
+<tr>
+   <td><%= fk.hidden_field(:Other_Keyword_ID,:readonly => true) %></td>
+  <tr>
+<tr>
+<tr>
+   <th><%= fk.label(:Other_Keyword_term,"Other Keywords") %></th>
+   <td><%= fk.text_field(:Other_Keyword_term) %></td>
+  <tr>
+<tr>
+
+   <th><%= fk.label(:Comments,"Comments") %></th>
+   <td><%= fk.text_field(:Comments) %></td>
+  <tr>
+ </table>
+  </p>
+
+
+  <p>
+    <%= fk.submit "Update Keywords" ,name: 'update'%>
+    <%= fk.submit "Delete Keywords" ,name: 'delete',:confirm => "Delete Keyword: Are you sure to delete this keyword?"%>
+  </p>
+<% end %>
+<%end%>
+<%end%>
+<% if !@nlx.blank? %>
+<%= form_for @nlx,:url => {:action => 'edit_neurolex_terms'}  do |fnlx| %>
+  <p>
+<table>
+<tr>
+   <td><%= fnlx.hidden_field(:NeuroLex_ID,:readonly => true) %></td>
+  <tr>
+<tr>
+<tr>
+   <th><%= fnlx.label(:NeuroLex_URI,"NeuroLex URI") %></th>
+   <td><%= fnlx.text_field(:NeuroLex_URI) %></td>
+  <tr>
+<tr>
+<tr>
+   <th><%= fnlx.label(:NeuroLex_Term,"NeuroLex Terms") %></th>
+   <td><%= fnlx.text_field(:NeuroLex_Term) %></td>
+  <tr>
+<tr>
+
+
+   <th><%= fnlx.label(:Comments,"Comments") %></th>
+   <td><%= fnlx.text_field(:Comments) %></td>
+  <tr>
+  </p>
+</table>
+  <p>
+    <%= fnlx.submit "Update Neurolex Terms" ,name: 'update'%>
+    <%= fnlx.submit "Delete Neurolex Terms" ,name: 'delete',:confirm => "Delete Neurolexes: Are you sure to delete this neurolex ids?"%>
+  </p>
+<% end %>
+<%end%>
+
+
+<% if !@person.blank? %>
+<% @person.each do |author| %>
+<%= form_for author,:url => {:action => 'edit_author_details'}  do |fperson| %>
+  <p>
+<table>
+<tr>
+   <td><%= fperson.hidden_field(:Person_ID,:readonly => true) %></td>
+  <tr>
+<tr>
+<tr>
+   <th><%= fperson.label(:Person_First_Name,"First Name") %></th>
+   <td><%= fperson.text_field(:Person_First_Name) %></td>
+  <tr>
+<tr>
+<tr>
+   <th><%= fperson.label(:Person_Last_Name,"Last Name") %></th>
+   <td><%= fperson.text_field(:Person_Last_Name) %></td>
+  <tr>
+<tr>
+
+<tr>
+   <th><%= fperson.label(:Person_Middle_Name,"Middle Name") %></th>
+   <td><%= fperson.text_field(:Person_Middle_Name) %></td>
+  <tr>
+<tr>
+
+<tr>
+   <th><%= fperson.label(:Instituition,"Instituition") %></th>
+   <td><%= fperson.text_field(:Instituition) %></td>
+  <tr>
+<tr>
+
+<tr>
+   <th><%= fperson.label(:Email,"Authors Email ID") %></th>
+   <td><%= fperson.text_field(:Email) %></td>
+  <tr>
+<tr>
+
+<tr>
+   <th><%= fperson.label(:Comments,"Comments") %></th>
+   <td><%= fperson.text_field(:Comments) %></td>
+  <tr>
+<tr>
+<%= fields_for @model_id do |fassoc1| %>
+<%= fassoc1.hidden_field(:Model_ID,:readonly => true) %></td>
+  <% end %>
+
+</table>
+  <p>
+    <%= fperson.submit "Update Author Details" ,name: 'update'%>
+    <%= fperson.submit "Delete Author Details" ,name: 'delete',:confirm => "Delete Author: Are you sure to delete this author?"%>
+  </p>
+<% end %>
+<%end%>
+<%end%>
+
+<%if !@channel_list.blank? %>
+<b>List of Associated Channels</b>
+<p>
+<%= form_for @channel_list,:url => {:action => 'del_cell_channel_associations'}  do |fassoc| %>
+<%= select_tag "channels",options_from_collection_for_select(@channel_list.each.collect , "Channel_ID","Channel_Name"), :multiple => true%>
+<%= fields_for @model do |fassoc1| %>
+<%= fassoc1.hidden_field(:Cell_ID,:readonly => true) %></td>
+  <% end %>
+
+ <%= fassoc.submit "Delete existing channel associations",:confirm => "Delete Associations: Are you sure to delete these Channel Associations?" %>
+<% end %>
+<p>
+<p>
+<% if @channel_list.any? %>
+<% @channel_list.each do |channel|%>
+<a class="channel_link" href="edit_channels_info?models_list[model_id]=<%= channel.Channel_ID %>"><%=channel.Channel_Name%></a>
+<% end %>
+<%else%>
+None
+<%end %>
+
+<%end%>
+
+
+<%if !@synapse_list.blank? %>
+<p>
+<b>List of Associated Synapses</b>
+<p>
+<%= form_for @synapse_list,:url => {:action => 'del_cell_synapse_associations'}  do |fassoc| %>
+<%= select_tag "synapses",options_from_collection_for_select(@synapse_list.each.collect , "Synapse_ID","Synapse_Name"), :multiple => true%>
+<%= fields_for @model do |fassoc1| %>
+<%= fassoc1.hidden_field(:Cell_ID,:readonly => true) %></td>
+  <% end %>
+ <%= fassoc.submit "Delete existing synapse Associations",:confirm => "Delete Associations: Are you sure to delete these Synapse Associations?" %>
+<% end %>
+<p>
+<p>
+<% if @synapse_list.any? %>
+<% @synapse_list.each do |synapse|%>
+<a class="channel_link" href="edit_synapses_info?models_list[model_id]=<%= synapse.Synapse_ID %>"><%=synapse.Synapse_Name%></a>
+<% end %>
+<%else%>
+None
+<%end %>
+
+<%end%>
+
+<%if !@network_list.blank? %>
+<p>
+<b>List of Associated Networks</b>
+<p>
+<%= form_for @network_list,:url => {:action => 'del_cell_network_associations'}  do |fassoc| %>
+<%= select_tag "networks",options_from_collection_for_select(@network_list.each.collect , "Network_ID","Network_Name"), :multiple => true%>
+<%= fields_for @model do |fassoc1| %>
+<%= fassoc1.hidden_field(:Cell_ID,:readonly => true) %></td>
+  <% end %>
+ <%= fassoc.submit "Delete existing network associations",:confirm => "Delete Associations: Are you sure to delete these Network Associations?" %>
+<% end %>
+<p>
+<p>
+<% if @network_list.any? %>
+<% @network_list.each do |network|%>
+<a class="channel_link" href="edit_networks_info?models_list[model_id]=<%= network.Network_ID %>"><%=network.Network_Name%></a>
+<% end %>
+<%else%>
+None
+<%end %>
+
+<%end%>
+<p>
+<p>
+<% if !@model.blank? %>
+<b>Associate to other Channel(s) or Synapse(s) or Network(s)</b>
+<p>
+<p>
+<%= form_for @model,:url => {:action => 'add_cell_channel_associations'}  do |fassoc| %>
+<%= select_tag "add_channels",options_from_collection_for_select(Channel.all , "Channel_ID","Channel_Name"), :multiple => true%>
+<%= fields_for @model do |fassoc1| %>
+<%= fassoc1.hidden_field(:Cell_ID,:readonly => true) %></td>
+  <% end %>
+ <%= fassoc.submit "Add new channel associations",:confirm => "Add Associations: Are you sure to add these Channel Associations?" %>
+<% end %>
+<p>
+<p>
+<%= form_for @model,:url => {:action => 'add_cell_synapse_associations'}  do |fassoc| %>
+<%= select_tag "add_synapses",options_from_collection_for_select(Synapse.all , "Synapse_ID","Synapse_Name"), :multiple => true%>
+<%= fields_for @model do |fassoc1| %>
+<%= fassoc1.hidden_field(:Cell_ID,:readonly => true) %></td>
+  <% end %>
+ <%= fassoc.submit "Add new synapse associations",:confirm => "Add Associations: Are you sure to add these Synapse Associations?" %>
+<% end %>
+<p>
+<p>
+<%= form_for @model,:url => {:action => 'add_cell_network_associations'}  do |fassoc| %>
+<%= select_tag "add_networks",options_from_collection_for_select(Network.all , "Network_ID","Network_Name"), :multiple => true%>
+<%= fields_for @model do |fassoc1| %>
+<%= fassoc1.hidden_field(:Cell_ID,:readonly => true) %></td>
+  <% end %>
+ <%= fassoc.submit "Add new network Associations",:confirm => "Add Associations: Are you sure to add these Network Associations?" %>
+<% end %>
+<p>
+<p>
+<% end %>
+<b>Add more Metadata</b>
+<p>
+<div id = "add_meta_data">
+<%modelid = @model_id.Model_ID.to_s %>
+<select name="add_metadata" id="add_metadata_dd" onchange="add_metadata(this.value)" >
+  <option value="" selected="selected">Select Metadata to Add</option>
+  <option value="1">Add New Publication</option>
+  <option value="2">Add New Neurolex IDs</option>
+  <option value="3">Add New References</option>
+<option value="4">Add New Author</option>
+<option value="5">Add New Keywords</option>
+</select>
+<a href="" id="aid" class="fancybox">Go</a>
+<p>
+<p>
+</div>
+</div></div></div>

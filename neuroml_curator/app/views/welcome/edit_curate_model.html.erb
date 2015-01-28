@@ -1,0 +1,347 @@
+
+<!-- MAIN -->
+                        <div id="main">
+                                <!-- wrapper-main -->
+                                <div class="wrapper">
+
+                                        <!-- content -->
+                                        <div id="content">
+
+                                                <!-- title -->
+                                                <div id="page-title">
+                                                        <span class="title">Model Curation</span>
+                                                </div>
+                                                <!-- ENDS title -->
+
+<% if !@model.blank? %>
+<%=form_for @model,:url => {:action => 'add_curate_model'} do |f| %>
+  <p>
+ <table >
+   <tr>
+	 <%= f.hidden_field(:SubmissionID,:readonly => true) %>
+
+   <th><%= f.label(:FirstName,"Author First Name") %></th>
+   <td><%= f.text_field(:FirstName,:readonly => true) %></td>
+  </tr>
+
+   <th><%= f.label(:MiddleName,"MiddleName") %></th>
+   <td><%= f.text_field(:MiddleName,:readonly => true) %></td>
+  </tr>
+  <tr>
+   <th><%= f.label(:LastName, "LastName") %></th>
+   <td><%= f.text_area(:LastName, :size => '40x5',:readonly => true) %></td>
+  </tr>
+  <tr>
+  <tr>
+   <th><%= f.label(:ModelName, "ModelName") %></th>
+   <td><%= f.text_field(:ModelName,:readonly => true) %></td>
+  </tr>
+<tr>
+   <th><%= f.label(:Publication, "Publication") %></th>
+   <td><%= f.text_field(:Publication,:readonly => true) %></td>
+  </tr>
+<tr>
+   <th><%= f.label(:Institution, "Institution") %></th>
+   <td><%= f.text_field(:Institution,:readonly => true) %></td>
+  </tr>
+<tr>
+   <th><%= f.label(:Email, "Email") %></th>
+   <td><%= f.text_field(:Email,:readonly => true) %></td>
+  </tr>
+<tr>
+   <th><%= f.label(:Description, "Description") %></th>
+   <td><%= f.text_field(:Description,:readonly => true) %></td>
+  </tr>
+<tr>
+   <th><%= f.label(:Modelspath, "Modelspath") %></th>
+   <td><%= f.text_field(:Modelspath,:readonly => true) %></td>
+  </tr>
+<tr>
+   <th><%= f.label(:Keywords, "Keywords") %></th>
+   <td><%= f.text_field(:Keywords,:readonly => true) %></td>
+  </tr>
+<tr>
+   <th><%= f.label(:Contributor, "Contributor") %></th>
+   <td><%= f.text_field(:Contributor,:readonly => true) %></td>
+  </tr>
+<tr>
+   <th><%= f.label(:Modeltype, "Modeltype") %></th>
+   <td><%= f.text_field(:Modeltype,:readonly => true) %></td>
+  </tr>
+<tr>
+   <th><%= f.label(:Modelref, "Modelref") %></th>
+   <td><%= f.text_field(:Modelref,:readonly => true) %></td>
+  </tr>
+
+  <tr>
+   <th><%= f.label(:Comments, "Comments") %></th>
+   <td><%= f.text_field(:Comments,:readonly => true) %></td>
+  </tr>
+ </table>
+  </p>
+<select name="modeltype_select">
+  <option value="C" Selected="selected">Select Model Type</option>
+  <option value="S">Synapse</option>
+  <option value="C">Cell</option>
+  <option value="Ch">Channel</option>
+  <option value="N">Network</option>
+</select>
+
+<% if !@cell.blank? %>
+<%= fields_for @cell do |f| %>
+ <table >
+   <tr>
+   <th><%= f.label(:Cell_Name,"Cell Name") %></th>
+   <td><%= f.text_field(:Cell_Name) %></td>
+  </tr>
+  <tr>
+   <th><%= f.label(:MorphML_File, "MorphML File") %></th>
+   <td><%= f.text_area(:MorphML_File, :size => '40x5') %></td>
+  </tr>
+  <tr>
+   <th><%= f.label(:Upload_Time, "Submitted during") %></th>
+   <td><%= f.text_field(:Upload_Time) %></td>
+  </tr>
+  <tr>
+   <th><%= f.label(:Comments, "Comments") %></th>
+   <td><%= f.text_field(:Comments) %></td>
+  </tr>
+ </table>
+<% end %>
+<%end%>
+
+
+<% if !@network.blank? %>
+<%= fields_for @network  do |f| %>
+  <p>
+ <table>
+<tr>
+   <th><%= f.label(:Network_Name,"Network Name") %></th>
+   <td><%= f.text_field(:Network_Name) %></td>
+  </tr>
+  <tr>
+   <th><%= f.label(:NetworkML_File, "NetworkML File") %></th>
+   <td><%= f.text_area(:NetworkML_File, :size => '40x5') %></td>
+  </tr>
+  <tr>
+   <th><%= f.label(:Upload_Time, "Submitted during") %></th>
+   <td><%= f.text_field(:Upload_Time) %></td>
+  </tr>
+  <tr>
+   <th><%= f.label(:Comments, "Comments") %></th>
+   <td><%= f.text_field(:Comments) %></td>
+  </tr>
+ </table>
+<%end%>
+<%end%>
+
+<% if !@channel.blank? %>
+<%= fields_for @channel  do |f| %>
+  <p>
+ <table>
+<tr>
+   <th><%= f.label(:Channel_Name,"Channel Name") %></th>
+   <td><%= f.text_field(:Channel_Name) %></td>
+  </tr>
+  <tr>
+   <th><%= f.label(:ChannelML_File, "ChannelML File") %></th>
+   <td><%= f.text_area(:ChannelML_File, :size => '40x5') %></td>
+  </tr>
+  <tr>
+   <th><%= f.label(:Upload_Time, "Submitted during") %></th>
+   <td><%= f.text_field(:Upload_Time) %></td>
+  </tr>
+  <tr>
+   <th><%= f.label(:Comments, "Comments") %></th>
+   <td><%= f.text_field(:Comments) %></td>
+  </tr>
+ </table>
+<% end %>
+<%end%>
+
+<% if !@synapse.blank? %>
+<%= fields_for @synapse  do |f| %>
+  <p>
+ <table >
+   <tr>
+   <th><%= f.label(:Synapse_Name,"Cell Name") %></th>
+   <td><%= f.text_field(:Synapse_Name) %></td>
+  </tr>
+  <tr>
+   <th><%= f.label(:Synapse_File, "MorphML File") %></th>
+   <td><%= f.text_area(:Synapse_File, :size => '40x5') %></td>
+  </tr>
+  <tr>
+   <th><%= f.label(:Upload_Time, "Submitted during") %></th>
+   <td><%= f.text_field(:Upload_Time) %></td>
+  </tr>
+  <tr>
+   <th><%= f.label(:Comments, "Comments") %></th>
+   <td><%= f.text_field(:Comments) %></td>
+  </tr>
+ </table>
+  </p>
+<% end %>
+<%end%>
+
+
+<% if !@pub.blank? %>
+<%= fields_for @pub do |f1| %>
+  <p>
+ <table>
+<tr>
+   <th><%= f1.label(:Full_Title,"Publication Full Title") %></th>
+   <td><%= f1.text_field(:Full_Title) %></td>
+  </tr>
+<tr>
+   <th><%= f1.label(:Pubmed_Ref,"Pub reference") %></th>
+   <td><%= f1.text_field(:Pubmed_Ref) %></td>
+  <tr>
+<tr>
+   <th><%= f1.label(:Comments,"Comments") %></th>
+   <td><%= f1.text_field(:Comments) %></td>
+  <tr>
+ </table>
+  </p>
+<% end %>
+<%end%>
+<% if !@ref.blank? %>
+<%= fields_for @ref do |f2| %>
+  <p>
+ <table>
+<tr>
+   <th><%= f2.label(:Reference_Resource,"Reference Resource") %></th>
+   <td><%= f2.text_field(:Reference_Resource) %></td>
+  </tr>
+<tr>
+   <th><%= f2.label(:Reference_URI,"Reference URI") %></th>
+   <td><%= f2.text_field(:Reference_URI) %></td>
+  </tr>
+<tr>
+   <th><%= f2.label(:Comments,"Comments") %></th>
+   <td><%= f2.text_field(:Comments) %></td>
+  </tr>
+ </table>
+  </p>
+<% end %>
+<%end%>
+<% if !@nlx.blank? %>
+<%= fields_for @nlx  do |fnlx| %>
+  <p>
+<table>
+<tr>
+   <th><%= fnlx.label(:NeuroLex_URI,"NeuroLex URI") %></th>
+   <td><%= fnlx.text_field(:NeuroLex_URI) %></td>
+  </tr>
+<tr>
+<tr>
+   <th><%= fnlx.label(:NeuroLex_Term,"NeuroLex Terms") %></th>
+   <td><%= fnlx.text_field(:NeuroLex_Term) %></td>
+  <tr>
+<tr>
+   <th><%= fnlx.label(:Comments,"Comments") %></th>
+   <td><%= fnlx.text_field(:Comments) %></td>
+  <tr>
+  </p>
+</table>
+<% end %>
+<%end%>
+<%= fields_for @ccha  do |fccha| %>
+<table>
+<tr>
+   <th><%= fccha.label(:assoc_chnl_term,"Associated Channels") %></th>
+   <td><%= fccha.text_field(:Channel_ID) %></td>
+  </tr>
+<tr>
+<% end %>
+<%= fields_for @nca  do |fnca| %>
+   <th><%= fnca.label(:assoc_cell_term,"Associated Cells") %></th>
+   <td><%= fnca.text_field(:Cell_ID) %></td>
+  </tr>
+<tr>
+<%end%>
+<%= fields_for @csa  do |fcsa| %>
+   <th><%= fcsa.label(:assoc_syn_term,"Associated Synapses") %></th>
+   <td><%= fcsa.text_field(:Synapse_ID) %></td>
+  </tr>
+<%end%>
+<%= fields_for @cna  do |fcna| %>
+<tr>
+
+   <th><%= fcna.label(:assoc_nw,"Associated Networks") %></th>
+   <td><%= fcna.text_field(:Network_ID) %></td>
+  </tr>
+</table>
+<%end%>
+  <% if !@keywords.blank? %>
+<%= fields_for @keywords  do |fk| %>
+  <p>
+ <table>
+<tr>
+   <th><%= fk.label(:Other_Keyword_term,"Other Keywords") %></th>
+   <td><%= fk.text_field(:Other_Keyword_term) %></td>
+  <tr>
+<tr>
+
+   <th><%= fk.label(:Comments,"Comments") %></th>
+   <td><%= fk.text_field(:Comments) %></td>
+  <tr>
+ </table>
+  </p>
+
+<% end %>
+<%end%>
+
+<% if !@author.blank? %>
+<%= fields_for @author  do |fperson| %>
+<table>
+<tr>
+   <th><%= fperson.label(:Person_ID,"Author ID") %></th>
+   <td><%= fperson.text_field(:Person_ID,:readonly => true) %></td>
+  <tr>
+<tr>
+<tr>
+   <th><%= fperson.label(:Person_First_Name,"First Name") %></th>
+   <td><%= fperson.text_field(:Person_First_Name) %></td>
+  <tr>
+<tr>
+<tr>
+   <th><%= fperson.label(:Person_Last_Name,"Last Name") %></th>
+   <td><%= fperson.text_field(:Person_Last_Name) %></td>
+  <tr>
+<tr>
+
+<tr>
+   <th><%= fperson.label(:Person_Middle_Name,"Middle Name") %></th>
+   <td><%= fperson.text_field(:Person_Middle_Name) %></td>
+  <tr>
+<tr>
+
+<tr>
+   <th><%= fperson.label(:Instituition,"Instituition") %></th>
+   <td><%= fperson.text_field(:Instituition) %></td>
+  <tr>
+<tr>
+
+<tr>
+   <th><%= fperson.label(:Email,"Authors Email ID") %></th>
+   <td><%= fperson.text_field(:Email) %></td>
+  <tr>
+<tr>
+
+<tr>
+   <th><%= fperson.label(:Comments,"Comments") %></th>
+   <td><%= fperson.text_field(:Comments) %></td>
+  <tr>
+<tr>
+
+</table>
+<%end%>
+<%end%>
+<p>
+    <%= f.submit "Curate to Database" %>
+  </p>
+
+<%end%>
+<%end%>
+</div></div></div>

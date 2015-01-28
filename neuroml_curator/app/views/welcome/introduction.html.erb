@@ -1,0 +1,124 @@
+
+			
+
+			
+			<!-- MAIN -->
+			<div id="main">
+				<!-- wrapper-main -->
+				<div class="wrapper">
+					
+					<!-- content -->
+					<div id="content">
+						
+						<!-- title -->
+						<div id="page-title">
+							<span class="title">Introduction to NeuroML</span>
+						</div>
+						<!-- ENDS title -->
+						
+						
+<p>
+The NeuroML project focuses on the development of an <a href="http://www.w3schools.com/xml/default.asp">XML (eXtensible Markup Language)</a> based description language
+that provides a common data format for defining and exchanging descriptions of neuronal cell and network models.
+The current approach in the project uses <a href="http://www.w3schools.com/schema/default.asp">XML schemas</a> to define the model specifications.
+</p>
+<p>
+The current scope of NeuroML focuses on models which are based on the biophysical and anatomical properties of real neurons, i.e. which include
+details of the detailed neuronal morphologies, the membrane conductances which underly action potential generation
+(<a href="http://www.scholarpedia.org/article/Conductance-based_models">conductance based models</a>), and which are based on known
+anatomical connectivity.
+</p>
+<p>
+For this reason, the NeuroML model description language is being developed in Levels, where each Level concentrates on a particular biophysical scale. <p>
+
+<table>
+    <tr>
+        <td width="50%">
+
+<table id="longlist" style="border:1px solid black;">
+    <tr>
+        <td style="border-bottom:1px solid black;"><a href ="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Level1">Level 1</a> focuses on the anatomical aspects of cells and consists of a schema for
+            <a href ="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Metadata">Metadata</a> and the main
+<a href ="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML">MorphML</a> schema.
+<br/>
+<br/>
+This Level is most suitable for tools (such as <a href="tool_support#NeuronLand">NeuronLand</a>) which focus solely on detailed neuronal morphologies.
+Note that the <a href ="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Metadata">Metadata</a> elements are used at this and higher Levels.
+        </td>
+    </tr>
+    <tr>
+        <td style="border-bottom:1px solid black;"><a href ="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Level2">Level 2</a> adds the ability to include information about the biophysical properties
+of cells using the <a href ="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics">Biophysics</a> schema and also includes the properties of channel and
+synaptic mechanisms using <a href ="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=ChannelML">ChannelML</a>.
+<br/>
+<br/>
+This Level of model description is useful for applications (such as <a href="tool_support#NEURON">NEURON</a> and <a href="tool_support#MOOSE">MOOSE</a>) which
+can be used to simulate neuronal spiking behaviour.
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href ="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Level3">Level 3</a> adds the ability to specify cell placement and network connectivity 
+            using <a href ="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=NetworkML">NetworkML</a>.
+            <br/>
+            <br/>
+            Files containing positions and synaptic connections in <a href ="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=NetworkML">NetworkML</a> can be used
+            by applications (such as <a href="tool_support#CX3D">CX3D</a> and <a href="tool_support#PCSIM">PCSIM</a>) to exchange details on (generated) network structure. Full
+            <a href ="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Level3">Level 3</a> files containing cell structure and 3D connectivity can be used by applications such as
+            <a href="tool_support#neuroConstruct">neuroConstruct</a> for building and analysing complex network of biophysically detailed neurons.
+        </td>
+    </tr>
+</table>
+            </td>
+            <td align="center"> <img src="../images/intro.png" alt="Levels"/></td>
+    </tr>
+</table>
+
+<p>
+The modular nature of the specifications makes them easier to develop, understand, and use
+since one can focus on one module at a time; however, the modules are designed to fit together
+seamlessly.</p>
+
+<p>
+Current schemas and more readable formats for the schemas are available
+on the <a href="/specifications">specifications</a> page. 
+One of the best ways to gain a better understanding of the structure of the standards is to view
+the XML source for <a href="http://spike.la.asu.edu/NeuroMLValidator/Samples.jsp">examples</a> of 
+specific models.</p>
+
+<p>A paper describing the latest stable version of NeuroML has recently been
+published in PLoS Computational Biology: <b>NeuroML: A Language for Describing Data Driven Models of Neurons and
+Networks with a High Degree of Biological Detail, P Gleeson, S Crook, RC Cannon, ML Hines, GO Billings, M Farinella, TM Morse, AP Davison,
+S Ray, US Bhalla, SR Barnes, YD Dimitrova,
+RA Silver</b>. It can be downloaded <a
+ href="http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1000815">here</a> and it describes in detail the structure of version 1.x (Levels 1-3,
+MorphML, ChannelML, NetworkML), includes a detailed discussion of the elements
+present at each level along with example NeuroML code (see the <a href="http://www.ploscompbiol.org/article/fetchSingleRepresentation.action?uri=info:doi/10.1371/journal.pcbi.1000815.s001">supporting text</a>
+of the paper), outlines current simulator support,
+and presents a number of new cell and network models which have recently been
+converted to the format.</p>
+
+<p>If you are interested in creating NeuroML documents or generating code 
+to simulate models from NeuroML documents, visit our 
+<a href="tool_support">tools</a> page and 
+view <a href="projects">related projects</a> to see how NeuroML can be
+used with existing simulation platforms.</p>
+
+
+<p>NeuroML version 2.0 is in active development.
+See <a href="neuromlv2">here</a> for details on the ongoing work towards this new version of the language.</p>
+</pre>
+						
+								<div class="clear"></div>
+						<!-- ENDS project column (right) -->
+						
+						
+					</div>
+					<!-- ENDS content -->
+
+				</div>
+				<!-- ENDS wrapper-main -->
+			</div>
+			<!-- ENDS MAIN -->
+			

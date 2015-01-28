@@ -1,0 +1,53 @@
+
+			
+
+			
+			<!-- MAIN -->
+			<div id="main">
+				<!-- wrapper-main -->
+				<div class="wrapper">
+					
+					<!-- content -->
+					<div id="content">
+						
+						<!-- title -->
+						<div id="page-title">
+							<span class="title">Validate NeuroML Files</span>
+						</div>
+						<!-- ENDS title -->
+						<p>This page allows you to validate files against the NeuroML <a href="http:///specifications.php">specifications</a>.
+        Examples of valid NeuroML files can be found <a href="http://spike.la.asu.edu/NeuroMLValidator/Samples.jsp">here</a>.</p>
+        
+        <p><b>The current version of the specification is: v1.8.1 
+        (<a href="http://spike.la.asu.edu/NeuroMLValidator/ViewNeuroMLFile.jsp?localFile=NeuroMLFiles/Schemata/v1.8.1/RELEASE_NOTES&amp;viewFormat=plaintext">Release notes</a>)</b></p>
+        
+        
+<div id="validate">      
+        <form name ="myform" action="http://spike.la.asu.edu/NeuroMLValidator/ValidationResults.jsp" method="post">  <!--enctype='multipart/form-data'-->
+            <textarea name ="pastedFile" rows="30" cols="140" onclick="if (document.myform.pastedFile.value.indexOf('Paste the XML file contents here') >= 0) {document.myform.pastedFile.value=''};">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;info&gt;Paste the XML file contents here&lt;/info&gt</textarea>
+            <br />
+          <!--  <br />
+            <u>or</u> upload a file: <input type="file" name="xmlfile" size="70"> http://forums.codecharge.com/posts.php?post_id=44078
+            <br />-->
+            <br />
+            <!-- Bit of a hack...-->
+            <input type="submit" value="Validate against current (v1.8.1) schemas" name="onlyUseSchema=v1.8.1
+"/>
+            
+            <input type="submit" value="Validate against all NeuroML Schemas"  />
+        </form>
+						
+						
+								<div class="clear"></div>
+						<!-- ENDS project column (right) -->
+						
+						
+					</div>
+					<!-- ENDS content -->
+
+				</div>
+				<!-- ENDS wrapper-main -->
+			</div>
+			<!-- ENDS MAIN -->
+			

@@ -1,0 +1,454 @@
+
+			
+
+			
+			<!-- MAIN -->
+			<div id="main">
+				<!-- wrapper-main -->
+				<div class="wrapper">
+					
+					<!-- content -->
+					<div id="content">
+						
+						<!-- title -->
+						<div id="page-title">
+							<span class="title">Extending NeuroML</span>
+						</div>
+						<!-- ENDS title -->
+						<script language="JavaScript" type="text/javascript">
+<!--
+function Tog(x) {
+var expandable = document.getElementById('expandable');
+expandable.style.display = x;
+}
+function Tog2(x) {
+var expandable = document.getElementById('expandable2');
+expandable.style.display = x;
+}
+
+// -->
+</script>
+<h1>Extending NeuroML</h1>
+
+<p>One of the most frequently asked questions we get is: How can I extend NeuroML to support my model?</p>
+        <p>The following information is intended to clarify the various options which are available at present
+            and outline the procedures for incorporating native support for new model features into NeuroML.</p>
+
+        <h2>Clarifying the question</h2>
+
+        <p>NeuroML is intended to be an open and evolving language which will increase in scope with time. It is however a model description language which is built on
+        a number of key concepts commonly used in biophysically detailed computational neuroscience modelling (neuronal morphologies, ion channels, synaptic connections)
+        and provides a way to represent these entities in a structured language which can be used by applications which also deal with these physiological entities.</p>
+
+        <p>This has the advantage of providing an efficient way to represent the key elements of models which can be exchanged between applications and researchers
+            (e.g. without needing the Hodgkin Huxley model to be redefined in full for every channel). This approach is different to that of languages like <a href="http://www.sbml.org">SBML</a> and <a href="http://www.cellml.org">CellML</a> where more generic
+            dynamical (biological) model systems can be described in terms of interacting entities and rates of change of variables. While a multicompartment cell with 
+            multiple ion channels can be expressed in one of these languages, it would be difficult to extract the key neuroscience elements out of them in a
+            standardised way, or to simulate the models as efficiently as a dedicated compartmental modelling simulator could.</p>
+             
+        <p>While the approach of SBML and CellML has some clear advantages, in particular the flexibility afforded for developing custom models, the benefits of the current approach with NeuroML
+            (ease of portability and efficiency of simulations) have driven the developments in the initiative to date. It does mean however that if a concept is not present in NeuroML
+            (e.g. a firing rate model of a neuron; a voltage dependent gap junction) it is more difficult to express that type of model in "pure" NeuroML</p>
+
+        <p>The list below gives a number of options for those who wish to use NeuroML but find that some features of their models are not currently natively supported in the language.</p>
+
+
+        <ul>
+            <li><a href="#annotate">Annotate NeuroML files with model/application specific data</a></li>
+            <li><a href="#subset">Create models with a subset of components in NeuroML</a></li>
+            <li><a href="#domain_schema">Create a domain specific schema</a></li>
+            <li><a href="#extend_v1.0">Propose extensions to current version of NeuroML</a></li>
+            <li><a href="#extend_v2.0">Propose major changes for NeuroML v2.0</a></li>
+        </ul>
+
+
+
+        <p>If there are additional scenarios which also need to be included/discussed please get in touch via the <a href="http://sourceforge.net/mail/?group_id=136437">mailing lists</a>. </p>
+        
+
+
+        <br/>
+        <a name="annotate"></a>
+        <h2>Annotate files with model/application specific data</h2>
+
+        <p>There are multiple ways to add metadata to a NeuroML file. While much of the metadata that can be added is in the form of text strings to explain
+            the contents to humans, it is also possible to add more structured data which can give the model developer's own tools (or a subset of similar tools)
+            extra information about how to visualise/simulate the model.</p>
+
+        <p>This has the advantage that the files remain "pure" NeuroML, and another application can simply ignore the metadata and only use the core NeuroML infomation
+            contained in the file. This is the case with a number of SBML compliant applications, e.g. <a href="http://www.celldesigner.org">CellDesigner</a>
+            which uses annotation blocks in the SBML file to add application specific data on its graphical layout of species, compartments, etc.</p>
+        
+        <p>If a number of applications start using structured metadata for the same types of data, the core language could be updated to support those concepts
+            (or a new separate language created, as in the case of <a href="http://sbgn.org">SBGN</a>).</p>
+
+        <p>An example of using metadata in a NeuroML file is the annotation of <a href="http://www.neuroconstruct.org/docs/neuroml.html#Level+3+NeuroML">
+                Level 3 NeuroML files exported by neuroConstruct</a>. Information is included in a <b>&lt;meta:annotation&gt;</b> tag which will
+                contains all of the information needed to create a new neuroConstruct project from the NeuroML file, includign non core NeuroML information
+                such as the colours of cell populations, <a href="http://www.neuroconstruct.org/docs/Glossary_gen.html#Simulation%20Configuration">simulation configurations</a> etc.
+        This information can be ignored by other applications which just use the cell and network information.</p>
+
+
+        <p>The <a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Metadata#metadata">metadata group of elements</a> in the
+            <a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Metadata">Metadata schema</a> provides a useful set of base elements for this type of extra data. 
+            The following <a href="javascript:Tog('block')">examples</a> present some options for adding custom metadata to a NeuroML file:</p>
+<div id = "expandable" style="overflow:hidden;display:none">
+        <a name="ExtendNetSpec.xml"/>
+        <table border =0 bgcolor="#F3F3F3" width ="70%" cellpadding=5 style="font-family: system">
+            <tr><td><p> <p style="font-size: 90%">&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Level3#cells" style="text-decoration:none" >cells</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Level3#cell" style="text-decoration:none" >cell name=<span style="color:blue">"CellA"</span></a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Metadata#notes" style="text-decoration:none" >meta:notes</a>&gt;</b></span><span style="color:green">Simple test cell, just 2 segments</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Metadata#notes" style="text-decoration:none" >/meta:notes</a>&gt;</b></span><span style="color:green">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color:#777777">&lt;!-- Human readable comment --&gt;</span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Metadata#properties" style="text-decoration:none" >meta:properties</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Metadata#property" style="text-decoration:none" >meta:property tag=<span style="color:blue">"Abstraction level"</span> value=<span style="color:blue">"Reduced cell model"</span>/</a>&gt;</b></span><span style="color:green">&nbsp;&nbsp;</span><span style="color:#777777">&lt;!-- Property of the cell. Meaningful to some applications --&gt;</span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Metadata#properties" style="text-decoration:none" >/meta:properties</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#segments" style="text-decoration:none" >segments xmlns=<span style="color:blue">"http://morphml.org/morphml/schema"</span></a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#segment" style="text-decoration:none" >segment id =<span style="color:blue">"0"</span> name=<span style="color:blue">"Soma"</span>&nbsp;&nbsp;cable=<span style="color:blue">"0"</span></a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#proximal" style="text-decoration:none" >proximal x=<span style="color:blue">"0"</span> y=<span style="color:blue">"0"</span> z=<span style="color:blue">"0"</span> diameter=<span style="color:blue">"10"</span>/</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#distal" style="text-decoration:none" >distal x=<span style="color:blue">"10"</span> y=<span style="color:blue">"0"</span> z=<span style="color:blue">"0"</span> diameter=<span style="color:blue">"10"</span>/</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#segment" style="text-decoration:none" >/segment</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#segment" style="text-decoration:none" >segment id =<span style="color:blue">"1"</span> name=<span style="color:blue">"Dendrite"</span> parent=<span style="color:blue">"0"</span> cable=<span style="color:blue">"1"</span></a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#proximal" style="text-decoration:none" >proximal x=<span style="color:blue">"10"</span> y=<span style="color:blue">"0"</span> z=<span style="color:blue">"0"</span> diameter=<span style="color:blue">"3"</span>/</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#distal" style="text-decoration:none" >distal x=<span style="color:blue">"100"</span> y=<span style="color:blue">"0"</span> z=<span style="color:blue">"0"</span> diameter=<span style="color:blue">"3"</span>/</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#properties" style="text-decoration:none" >properties</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Metadata#property" style="text-decoration:none" >meta:property tag=<span style="color:blue">"display:transparency"</span> value=<span style="color:blue">"50%"</span>/</a>&gt;</b></span><span style="color:green">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#777777">&lt;!-- Show this segment as 50% transparent --&gt;</span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#properties" style="text-decoration:none" >/properties</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#segment" style="text-decoration:none" >/segment</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#segments" style="text-decoration:none" >/segments</a>&gt;</b></span><span style="color:green"><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#cables" style="text-decoration:none" >cables xmlns=<span style="color:blue">"http://morphml.org/morphml/schema"</span></a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#cable" style="text-decoration:none" >cable id=<span style="color:blue">"0"</span> name=<span style="color:blue">"SomaCable"</span></a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Metadata#properties" style="text-decoration:none" >meta:properties</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Metadata#property" style="text-decoration:none" >meta:property tag=<span style="color:blue">"display:colour"</span> value=<span style="color:blue">"red"</span>/</a>&gt;</b></span><span style="color:green">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#777777">&lt;!-- Colour for displaying the soma --&gt;</span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Metadata#properties" style="text-decoration:none" >/meta:properties</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Metadata#group" style="text-decoration:none" >meta:group</a>&gt;</b></span><span style="color:green">soma_group</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Metadata#group" style="text-decoration:none" >/meta:group</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#cable" style="text-decoration:none" >/cable</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#cable" style="text-decoration:none" >cable id=<span style="color:blue">"1"</span> name=<span style="color:blue">"DendriteCable"</span></a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Metadata#properties" style="text-decoration:none" >meta:properties</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Metadata#property" style="text-decoration:none" >meta:property tag=<span style="color:blue">"display:colour"</span> value=<span style="color:blue">"green"</span>/</a>&gt;</b></span><span style="color:green">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#777777">&lt;!-- Colour for displaying the dendrite --&gt;</span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Metadata#properties" style="text-decoration:none" >/meta:properties</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Metadata#group" style="text-decoration:none" >meta:group</a>&gt;</b></span><span style="color:green">dendrite_group</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Metadata#group" style="text-decoration:none" >/meta:group</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#cable" style="text-decoration:none" >/cable</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#cables" style="text-decoration:none" >/cables</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#biophysics" style="text-decoration:none" >biophysics&nbsp;&nbsp;units=<span style="color:blue">"Physiological Units"</span> </a>&gt;</b></span><span style="color:green"><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#mechanism" style="text-decoration:none" >bio:mechanism name=<span style="color:blue">"pas"</span>&nbsp;&nbsp;type=<span style="color:blue">"Channel Mechanism"</span></a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#parameter" style="text-decoration:none" >bio:parameter name=<span style="color:blue">"gmax"</span> value=<span style="color:blue">"0.033"</span></a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#group" style="text-decoration:none" >bio:group</a>&gt;</b></span><span style="color:green">all</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#group" style="text-decoration:none" >/bio:group</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#parameter" style="text-decoration:none" >/bio:parameter</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#777777">&lt;!-- Only gmax is a standardised parameter name, but the extra values below could be used --&gt;</span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#777777">&lt;!--&nbsp;&nbsp;by an application which wishes to vary the properties of a cell between instances. --&gt;</span><span style="color:green"><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#parameter" style="text-decoration:none" >bio:parameter name=<span style="color:blue">"gmax_max"</span> value=<span style="color:blue">"0.011"</span></a>&gt;</b></span><span style="color:green">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#group" style="text-decoration:none" >bio:group</a>&gt;</b></span><span style="color:green">all</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#group" style="text-decoration:none" >/bio:group</a>&gt;</b></span><span style="color:green">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#parameter" style="text-decoration:none" >/bio:parameter</a>&gt;</b></span><span style="color:green">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#parameter" style="text-decoration:none" >bio:parameter name=<span style="color:blue">"gmax_min"</span> value=<span style="color:blue">"0.055"</span></a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#group" style="text-decoration:none" >bio:group</a>&gt;</b></span><span style="color:green">all</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#group" style="text-decoration:none" >/bio:group</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#parameter" style="text-decoration:none" >/bio:parameter</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="Latest.jsp?spec=Biophysics#mechanism" style="text-decoration:none" >/bio:mechanism</a>&gt;</b></span><span style="color:green"><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#777777">&lt;!-- The channel mechanism here is only available in a NEURON NMODL file --&gt;</span><span style="color:green"><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#mechanism" style="text-decoration:none" >bio:mechanism name=<span style="color:blue">"Na_Channel_NMODL"</span> type=<span style="color:blue">"Channel Mechanism"</span></a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#parameter" style="text-decoration:none" >bio:parameter name=<span style="color:blue">"gmax"</span> value=<span style="color:blue">"0.8"</span></a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#group" style="text-decoration:none" >bio:group</a>&gt;</b></span><span style="color:green">all</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#group" style="text-decoration:none" >/bio:group</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#parameter" style="text-decoration:none" >/bio:parameter</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#mechanism" style="text-decoration:none" >/bio:mechanism</a>&gt;</b></span><span style="color:green"><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="Latest.jsp?spec=Biophysics#spec_capacitance" style="text-decoration:none" >bio:spec_capacitance</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#parameter" style="text-decoration:none" >bio:parameter value=<span style="color:blue">"1.0"</span></a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#group" style="text-decoration:none" >bio:group</a>&gt;</b></span><span style="color:green">all</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#group" style="text-decoration:none" >/bio:group</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#parameter" style="text-decoration:none" >/bio:parameter</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#spec_capacitance" style="text-decoration:none" >/bio:spec_capacitance</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="Latest.jsp?spec=Biophysics#spec_axial_resistance" style="text-decoration:none" >bio:spec_axial_resistance</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#parameter" style="text-decoration:none" >bio:parameter value=<span style="color:blue">"0.1"</span></a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#group" style="text-decoration:none" >bio:group</a>&gt;</b></span><span style="color:green">all</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#group" style="text-decoration:none" >/bio:group</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#parameter" style="text-decoration:none" >/bio:parameter</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Biophysics#spec_axial_resistance" style="text-decoration:none" >/bio:spec_axial_resistance</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#biophysics" style="text-decoration:none" >/biophysics</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#cell" style="text-decoration:none" >/cell</a>&gt;</b></span><span style="color:green"><br/>
+</p>
+</p>
+                </td>
+            </tr>
+        </table>
+
+        <p>The example below shows how to embed a custom model into an existing element in NeuroML. This allows a modeller to encode a
+        new model in valid NeuroML. Note that if a simulator which doesn't support the extension it will produce different results. If multiple
+        users require the same types of custom extensions they can be incorporated into the core language.</p>
+
+        <table border =0 bgcolor="#F3F3F3" width ="70%" cellpadding=5 style="font-family: system">
+            <tr><td><p> <p style="font-size: 90%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=ChannelML#synapse_type" style="text-decoration:none" >synapse_type name=<span style="color:blue">"VoltDepGapJunc"</span>&nbsp;&nbsp;xmlns=<span style="color:blue">"http://morphml.org/channelml/schema"</span></a>&gt;</b></span><span style="color:green"><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=ChannelML#electrical_syn" style="text-decoration:none" >electrical_syn&nbsp;&nbsp;conductance=<span style="color:blue">"1.0E-9"</span></a>&gt;</b></span><span style="color:green"><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#777777">&lt;!--<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Note: this is a CUSTOM EXTENSION. The parsing application which generates the NMODL<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; file for NEURON should replace the standard Ohmic current at a gap junction:<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i = weight * g * (v - vgap)<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; with the voltage dependent one below. The file remains valid NeuroML. Only<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; simulators which support this custom extension will model the synpase correctly.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Note: not a physiological voltage dependence.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --&gt;</span><span style="color:green"><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Metadata#properties" style="text-decoration:none" >meta:properties</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Metadata#property" style="text-decoration:none" >meta:property tag=<span style="color:blue">"NMODL current expression"</span> value=<span style="color:blue">"i = weight * g * (v - vgap) * (v - vgap)"</span>/</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Metadata#properties" style="text-decoration:none" >/meta:properties</a>&gt;</b></span><span style="color:green"><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=ChannelML#electrical_syn" style="text-decoration:none" >/electrical_syn</a>&gt;</b></span><span style="color:green"><br/>
+</p>
+</p>
+                </td>
+            </tr>
+        </table>
+
+        <p>The full NeuroML file can be viewed <a href="http://spike.la.asu.edu/NeuroMLValidator/ViewNeuroMLFile.jsp?localFile=NeuroMLFiles/Examples/NetworkML/ExtendNetSpec.xml">here</a>.</p>
+
+<a href="javascript:Tog('none')">Close Example</a>
+</div>
+
+
+
+
+        <br/>
+        <a name="subset"></a>
+        <h2>Create models with a subset of components in NeuroML</h2>
+
+        <p>While there are a number of model types which are currently supported in NeuroML, and while a number of
+            cell and network models can be fully expressed in NeuroML (see <a href="http:///models.php">here</a>) some
+            components of a cell model might not be supported in the current version of the language (e.g. a custom channel type created with NMODL for NEURON).
+        </p>
+        <p>If these types of models are sufficiently widely used they can be incorporated into the language (see <a href="#extend_v1.0">below</a>),
+            but it can take some time for the updates to be made. </p>
+
+        <p>NeuroML is intended to be just one of many tools used in the computational modelling pipeline of data acquisition/model creation/simulation/analysis/publication/reuse.
+            It won't be the case that full specification in NeuroML will be possible (or desirable) for every model, and the choice of model
+            specification language will be a trade off between the amount of flexibility required and how much the various model elements fit into
+            NeuroML's data model of common neurophysiolgical entities (or another standardised representation):
+        </p>
+        
+        <p align="center"><img alt="Flexibility vs. standardisation" src="../images/simopts2.png" align="middle"/></p>
+
+        <p> Some of the options for model specification which mix NeuroML and native scripts include:  </p>
+            <ul>
+                <li>The native NeuroML import function (e.g. <a href="tool_support#NEURON">NEURON</a>, <a href="tool_support#PSICS">PSICS</a>) of 
+                    the application can be used for the NeuroML based model components and the "traditional" script format for the rest of the model. 
+                    The example file presented <a href="#ExtendNetSpec.xml">in the previous section</a> shows how a channel in a native simulator script
+                    (Na_Channel_NMODL) could be referenced in a valid Level 2 cell description.</li><br>
+
+                <li>A number of channels can be expressed in ChannelML and (Python) scripts used to convert these to native simulator format
+                    (e.g. see <a href="../neuron_tools.php">"Conversion of ChannelML at the command line"</a>) before including them as normal in a native simulation script</li><br>
+
+                <li>Cell models developed in neuroConstruct can transparently mix ChannelML and native <a href="../neuron_tools.php">File based Cell Mechanisms</a></li><br>
+            </ul>
+
+        <p>These options have the advantage that the components of the model which are in NeuroML can be readily reused by other researchers.</p>
+
+
+
+        <br/>
+
+        <a name="domain_schema"></a>
+        <h2>Create a domain specific schema</h2>
+
+        <p>This method is appropriate if you have a new class of data structures for which you need a defined specification, but want to reuse a number of
+        NeuroML elements. An example would be if you want to define models which have neuronal elements but also concepts outside of the current scope of NeuroML,
+        e.g. the 3D shape of blood vessels and blood flow; detailed electrical probes with 3D extent; interaction of neuropil with external electrical fields.</p>
+
+        <p>This can be accomplished by defining a new schema and including the existing NeuroML <a href="../specifications.php">schemas</a> as appropriate.</p>
+
+        <p>In the example below <a href="javascript:Tog2('block')"><i>"VasculatureML"</i></a> is defined. This new dummy language is intended to incorporate models of both neurons and vasculature.</p>
+       <div id = "expandable2" style="overflow:hidden;display:none"> 
+        <p>Schema of the new language: </p>
+
+        <table border =0 bgcolor="#F3F3F3" width ="70%" cellpadding=5 style="font-family: system">
+            <tr><td><p> <p style="font-size: 90%"></span><b>&lt;?xml version=<span style="color:blue">"1.0"</span> encoding=<span style="color:blue">"UTF-8"</span>?</a>&gt;</b></span><span style="color:green"><br/>
+<br/>
+</span><b>&lt;xs:schema targetNamespace=<span style="color:blue">"http://vasculatureml.org"</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xmlns:xs=<span style="color:blue">"http://www.w3.org/2001/XMLSchema"</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xmlns:meta=<span style="color:blue">"http://morphml.org/metadata/schema"</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xmlns:mml=<span style="color:blue">"http://morphml.org/morphml/schema"</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xmlns:neuroml=<span style="color:blue">"http://morphml.org/neuroml/schema"</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xmlns=<span style="color:blue">"http://vasculatureml.org"</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; elementFormDefault=<span style="color:blue">"qualified"</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; attributeFormDefault=<span style="color:blue">"unqualified"</span></a>&gt;</b></span><span style="color:green"><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;xs:import namespace=<span style="color:blue">"http://morphml.org/metadata/schema"</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;schemaLocation=<span style="color:blue">"http:///NeuroMLValidator/NeuroMLFiles/Schemata/v1.8.1/Level1/Metadata_v1.8.1.xsd"</span>/</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;xs:import namespace=<span style="color:blue">"http://morphml.org/morphml/schema"</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;schemaLocation=<span style="color:blue">"http:///NeuroMLValidator/NeuroMLFiles/Schemata/v1.8.1/Level1/MorphML_v1.8.1.xsd"</span>/</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;xs:import namespace=<span style="color:blue">"http://morphml.org/neuroml/schema"</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;schemaLocation=<span style="color:blue">"http:///NeuroMLValidator/NeuroMLFiles/Schemata/v1.8.1/Level3/NeuroML_Level3_v1.8.1.xsd"</span>/</a>&gt;</b></span><span style="color:green"><br/>
+<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;xs:element name=<span style="color:blue">"vasculatureml"</span> type=<a href =#VascML><span style="color:blue">"VascML"</span></a>/</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+<a name =VascML></a>&nbsp;&nbsp;&nbsp;&nbsp; </span><b>&lt;xs:complexType name=<span style="color:blue">"VascML"</span></a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;xs:sequence</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;xs:group ref=<span style="color:blue">"meta:metadata"</span>/</a>&gt;</b></span><span style="color:green"><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;xs:element name=<span style="color:blue">"cells"</span> type=<a href =#neuroml:Level3Cells><span style="color:blue">"neuroml:Level3Cells"</span></a> minOccurs=<span style="color:blue">"0"</span>/</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;xs:element name=<span style="color:blue">"vasculature"</span></a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;xs:complexType</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;xs:sequence</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;xs:element name= <span style="color:blue">"vessel"</span> maxOccurs=<span style="color:blue">"unbounded"</span></a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;xs:complexType</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;xs:sequence</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;xs:element name= <span style="color:blue">"segment"</span> type=<a href =#mml:Segment><span style="color:blue">"mml:Segment"</span></a>/</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;/xs:sequence</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;xs:attribute name=<span style="color:blue">"name"</span> type=<span style="color:blue">"xs:string"</span>/</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;/xs:complexType</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;/xs:element</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;/xs:sequence</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;/xs:complexType</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;/xs:element</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;/xs:sequence</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;/xs:complexType</a>&gt;</b></span><span style="color:green"><br/>
+<br/>
+</span><b>&lt;/xs:schema</a>&gt;</b></span><span style="color:green"><br/>
+<br/>
+</p>
+</p>
+                </td>
+            </tr>
+        </table>
+        
+        <p>Example of typical <i>"VasculatureML"</i> file: </p>
+
+        <table border =0 bgcolor="#F3F3F3" width ="70%" cellpadding=5 style="font-family: system">
+            <tr><td><p> <p style="font-size: 90%"></span><b>&lt;?xml version=<span style="color:blue">"1.0"</span> encoding=<span style="color:blue">"UTF-8"</span>?</a>&gt;</b></span><span style="color:green"><br/>
+<br/>
+</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Level3#vasculatureml" style="text-decoration:none" >vasculatureml xmlns=<span style="color:blue">"http://vasculatureml.org"</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xmlns:xsi=<span style="color:blue">"http://www.w3.org/2001/XMLSchema-instance"</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xmlns:meta=<span style="color:blue">"http://morphml.org/metadata/schema"</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xmlns:mml=<span style="color:blue">"http://morphml.org/morphml/schema"</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xsi:schemaLocation=<span style="color:blue">"http://vasculatureml.org&nbsp;&nbsp;VasculatureML.xsd"</span></a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Metadata#notes" style="text-decoration:none" >meta:notes</a>&gt;</b></span><span style="color:green">Simple example of a 'VasculatureML' file...</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Metadata#notes" style="text-decoration:none" >/meta:notes</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=Level3#cells" style="text-decoration:none" >cells</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#cell" style="text-decoration:none" >cell name=<span style="color:blue">"CellA"</span> xmlns=<span style="color:blue">"http://morphml.org/neuroml/schema"</span></a>&gt;</b></span><span style="color:green">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#777777">&lt;!-- A simple cell --&gt;</span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#segments" style="text-decoration:none" >segments xmlns=<span style="color:blue">"http://morphml.org/morphml/schema"</span></a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#segment" style="text-decoration:none" >segment id =<span style="color:blue">"0"</span> name=<span style="color:blue">"Soma"</span>&nbsp;&nbsp;cable=<span style="color:blue">"0"</span></a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#proximal" style="text-decoration:none" >proximal x=<span style="color:blue">"0"</span> y=<span style="color:blue">"0"</span> z=<span style="color:blue">"0"</span> diameter=<span style="color:blue">"10"</span>/</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#distal" style="text-decoration:none" >distal x=<span style="color:blue">"10"</span> y=<span style="color:blue">"0"</span> z=<span style="color:blue">"0"</span> diameter=<span style="color:blue">"10"</span>/</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#segment" style="text-decoration:none" >/segment</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#segment" style="text-decoration:none" >segment id =<span style="color:blue">"1"</span> name=<span style="color:blue">"Dendrite"</span> parent=<span style="color:blue">"0"</span> cable=<span style="color:blue">"1"</span></a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#proximal" style="text-decoration:none" >proximal x=<span style="color:blue">"10"</span> y=<span style="color:blue">"0"</span> z=<span style="color:blue">"0"</span> diameter=<span style="color:blue">"3"</span>/</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#distal" style="text-decoration:none" >distal x=<span style="color:blue">"20"</span> y=<span style="color:blue">"0"</span> z=<span style="color:blue">"0"</span> diameter=<span style="color:blue">"3"</span>/</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#segment" style="text-decoration:none" >/segment</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#segments" style="text-decoration:none" >/segments</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#cell" style="text-decoration:none" >/cell</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#cells" style="text-decoration:none" >/cells</a>&gt;</b></span><span style="color:green"> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#vasculature" style="text-decoration:none" >vasculature</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#vessel" style="text-decoration:none" >vessel name=<span style="color:blue">"v1"</span></a>&gt;</b></span><span style="color:green">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#777777">&lt;!-- A simple blood vessel --&gt;</span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#segment" style="text-decoration:none" >segment id =<span style="color:blue">"0"</span></a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#proximal" style="text-decoration:none" >mml:proximal x=<span style="color:blue">"100"</span> y=<span style="color:blue">"0"</span> z=<span style="color:blue">"0"</span> diameter=<span style="color:blue">"0.5"</span>/</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#distal" style="text-decoration:none" >mml:distal x=<span style="color:blue">"100"</span> y=<span style="color:blue">"200"</span> z=<span style="color:blue">"0"</span> diameter=<span style="color:blue">"0.6"</span>/</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#segment" style="text-decoration:none" >/segment</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#vessel" style="text-decoration:none" >/vessel</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#vessel" style="text-decoration:none" >vessel name=<span style="color:blue">"v2"</span></a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#segment" style="text-decoration:none" >segment id =<span style="color:blue">"2"</span></a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#proximal" style="text-decoration:none" >mml:proximal x=<span style="color:blue">"200"</span> y=<span style="color:blue">"0"</span> z=<span style="color:blue">"100"</span> diameter=<span style="color:blue">"0.4"</span>/</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#distal" style="text-decoration:none" >mml:distal x=<span style="color:blue">"200"</span> y=<span style="color:blue">"0"</span> z=<span style="color:blue">"100"</span> diameter=<span style="color:blue">"0.3"</span>/</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#segment" style="text-decoration:none" >/segment</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#vessel" style="text-decoration:none" >/vessel</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#vasculature" style="text-decoration:none" >/vasculature</a>&gt;</b></span><span style="color:green"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+</span><b>&lt;<a href="http://spike.la.asu.edu/NeuroMLValidator/Latest.jsp?spec=MorphML#vasculatureml" style="text-decoration:none" >/vasculatureml</a>&gt;</b></span><span style="color:green"><br/>
+<br/>
+</p>
+</p>
+                </td>
+            </tr>
+        </table>
+<a href="javascript:Tog2('none')">Close Example</a>
+</div>
+
+        <p>This approach has the advantage that communities focusing on a specific domain can define and update their schemas independent of
+            the NeuroML initiative and reuse only the elements of this language that are appropriate.<p>
+
+        <p>It also means that the neuronal elements of this new language can be easily extracted and used in a NeuroML only application.<p>
+
+        <p>If there are any communities taking this approach (or planning to) we'd love to <a href="../contacts.php">hear about it</a>.<p>
+
+
+
+
+            
+        <br/>
+        <a name="extend_v1.0"></a>
+
+        <h2>Propose extensions to current version of NeuroML</h2>
+
+        <p>While work is already started defining the scope of <a href="../roadmap.php">NeuroML version 2.0</a>, it it still possible that
+            some minor extensions could be incorporated into the existing version v1.x schemas. General requirements for making additions to the language
+            this at this stage would include:
+            <ul>
+                <li>The model element can be expressed relatively easily in one (ideally two or more) simulators which already support NeuroML</li>
+                <li>Executable examples of the model elements are available</li>
+                <li>Published models exist using the model element in the simulator(s)</li>
+                <li>The extension would not require restructuring to any of the existing elements (i.e. making present NeuroML files invalid)</li>
+            </ul>
+        <p>
+
+        <p>Most of these types of extensions would involve minor alterations to existing elements for subcases which weren't built in initially, e.g.
+            allowing the <a href="http:///NeuroMLValidator/ViewNeuroMLFile.jsp?localFile=NeuroMLFiles/Examples/ChannelML/GateDepQ10.xml">q10 factor to be expressed independently per gate</a>.</p>
+
+        <p>Other adjustments which are currently planned include allowing a table of experimental data to be used for gating variables
+            (see <a href="http://sourceforge.net/mailarchive/message.php?msg_name=4B4DFC72.8010607%40ucl.ac.uk">here</a>, planned for v1.8.2).</p>
+
+        <p>Anyone who identifies such an extension should get in contact via the <a href="http://sourceforge.net/mailarchive/forum.php?forum_name=neuroml-technology">neuroml-technology</a>
+       mailing list. While it has mainly been members of the NeuroML Team who have been active in implementing changes, proposers of new features are encouraged to supply
+        example simulator code and even suggest a new form of the appropriate NeuroML schema incorporating the change.</p>
+
+
+
+        
+
+        <br/>
+        <a name="extend_v2.0"></a>
+        <h2>Propose major changes for NeuroML v2.0</h2>
+
+        <p>New types of model which require major changes to the language (or restructuring of the existing elements)
+            will have to wait for NeuroML version 2.0.</p>
+
+        <p>The scope of version 2.0 will encompass all models currently supported in the language and allow new and more complex
+            models to be produced with greater detail on subcellular signalling pathways and more complex network creation algorithms.
+            The changes which are planned to date were discussed at the
+            <a href="http://math.la.asu.edu/~cans/workshop.html">second NeuroML Development Workshop</a>.
+            The minutes for that meeting and information on future plans will be posted on the page for the
+
+            <a href="../roadmap.php">roadmap to NeuroML version 2.0</a>.
+
+        <p>Once concrete proposals for the new form of NeuroML are created, we will be seeking feedback from the wider
+            computational neuroscience community on the proposed extensions, so join the <a href="../mailing_list.php">mailing list</a>!</p>
+
+						
+						
+								<div class="clear"></div>
+						<!-- ENDS project column (right) -->
+						
+						
+					</div>
+					<!-- ENDS content -->
+
+				</div>
+				<!-- ENDS wrapper-main -->
+			</div>
+			<!-- ENDS MAIN -->
+			

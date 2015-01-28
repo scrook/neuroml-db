@@ -1,0 +1,396 @@
+
+			
+
+			
+			<!-- MAIN -->
+			<div id="main">
+				<!-- wrapper-main -->
+				<div class="wrapper">
+					
+					<!-- content -->
+					<div id="content">
+						
+						<!-- title -->
+						<div id="page-title">
+							<span class="title">Third NeuroML Development Workshop</span>
+						</div>
+
+
+<p>This workshop was organised to finalise plans for the next major release of NeuroML: <a href="alpha_schema">version 2.0</a>.
+    It was held on Thus 31st Mar & Fri 1st Apr 2011 at UCL's <a href="http://www.ucl.ac.uk/efd/roombooking/building-location/?id=126">SSEES Building</a> and the
+<a href="http://www.londonhouse.org.uk/functionrooms/churchillroom/">Churchill Room</a> at Goodenough College in London. Local Organisers were Angus Silver and Padraig Gleeson.</p>
+
+<p>This workshop was made possible with funding from: </p>
+<p align="center"><a href="http://www.nimh.nih.gov"><img alt="NIH" height="50"  border="0" src="images/nih.png" /></a>&nbsp;&nbsp;
+    &nbsp;<a href="http://www.wellcome.ac.uk"><img alt="Wellcome Trust" border="0" src="images/wtlogo.gif"  /></a></p>
+
+<p align="center"><a href="http://www.neuroinformatics.org.uk"><img alt="UK INCF Node" border="0" src="images/ukincf.png" ></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UK National Node of the:
+    &nbsp;<a href="http://incf.org"><img alt="INCF" border="0" src="images/incf.png"  /></a></p>
+<br>
+<b>Background</b>
+
+<p>Developments towards <a href="/alpha_schema">NeuroML version 2.0</a> have been ongoing since the NeuroML workshop at <a href="http://math.la.asu.edu/~cans/workshop.html">Arizona State University
+    in March 2010</a>. This meeting was an opportunity to discuss
+    these developments, decide what is else is required, and lay plans for a formal v2.0 specification document.
+    Topics for discussion at the workshop included:</p>
+
+<ul>
+<li>Representations of morphologies in NeuroML v2.0</li>
+
+<li>Use of LEMS for defining spiking nodes, channels & synapses</li>
+
+<li>Compatibility with SBML/CellML</li>
+
+<li>Hierarchical network descriptions</li>
+
+<li>Annotations and metadata </li>
+
+<li>Movement to formalised standardisation process</li>
+
+</ul>
+
+<p>The agenda circulated prior to the meeting is available here: <a href="files/NeuroMLWorkshop2011.pdf">Agenda for 31st March & 1st April</a></p>
+
+<b>Minutes</b>
+
+<h3>Morning Session: Thursday 31st March</h3>
+
+<table id="longlist" width="70%"><tr><td>
+<h4>Welcome: Angus Silver</h4>
+Angus Silver welcomed participants and thanked the sponsors of the meeting: the <a href="http://www.nimh.nih.gov">NIH</a>, the
+<a href="http://www.wellcome.ac.uk">Wellcome Trust</a> and the <a href="http://www.neuroinformatics.org.uk">UK Neuroinformatics Node</a>.
+<p>The goals of the meeting were also outlined, including: giving the latest details on developments towards NeuroML 2 and the relationship with LEMS (Low Entropy Model Specification);
+the relationship of NeuroML to other standardisation and model specification initiatives (the *MLs and Py*s); specific discussions on the representations of morphologies, synapses,
+channel and network structure in NeuroML; and a formalisation of the NeuroML specification process.</p>
+
+<p>&nbsp;&nbsp;<b><i><a href="files/NeuroML_intro_AS.pdf">Welcome & outline of meeting</a></i></b>.</p>
+</td></tr>
+<tr><td>
+
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NeuroML and LEMS</b></p>
+
+<h4>Review of status of NeuroML v1.x: Padraig Gleeson</h4>
+
+A brief overview of NeuroML v1.x was presented. Some of the tools which currently have support for this version of the language were highlighted.
+The latest details on software with NeuroML support is available <a href="current_app_support">here</a>.
+
+<p>&nbsp;&nbsp;<b><i><a href="files/NML2011_NeuroMLTools_PG.pdf">NeuroML v1.x tools</a></i></b></p>
+
+
+<h4>Brief introduction to LEMS: Robert Cannon</h4>
+
+Robert presented the motivation for the LEMS (Low Entropy Model Specification) language which forms the basis
+for model specification in NeuroML v2.0. For the latest information on LEMS see <a href="lems">here</a>.
+
+<p>&nbsp;&nbsp;<b><i><a href="files/neuroml-lems.pdf">Overview of LEMS</a></i></b></p>
+
+<h4>Mapping LEMS to & from other formats: Padraig Gleeson</h4>
+
+The ability to specify model definitions in a machine readable language like LEMS is key to converting NeuroML v2.0 models to other formats.
+Examples were shown of a number of simple neuron models specified in LEMS, executed with the <a href="lems_download">LEMS interpreter</a> & mapped to a number of different formats including NEURON, Brian and SBML and graphical representations of the model definition.
+Also illustrated was the simple Python API for LEMS.
+
+<br/>
+<br/>
+Most of the <a href="/lems_neuroml2">examples</a> shown can be run by installing
+the Java based <a href="/lems_interpreter">LEMS interpreter with sample models</a>.
+
+<p>&nbsp;&nbsp;<b><i><a href="files/NML2011_LEMSMappings_PG.pdf">LEMS mappings</a></i></b></p>
+</td></tr>
+<tr><td>
+
+<h4>Introduction to NineML: Andrew Davison</h4>
+
+An introduction was given to the emerging <a href="http://www.nineml.org">NineML</a> language for describing large scale networks of spiking neurons.
+This is being developed by the
+<a href="http://www.incf.org/core/programs/modeling">Multiscale Modelling Program</a> of the <a href="http://www.incf.org">International Neuroinformatics Coordinating Facility (INCF)</a>.
+
+<p>The <a href="http://software.incf.org/software/csa">Connection Set Algebra</a> of Mikael Djurfeldt was also discussed. A Python library is available to define complex connections
+    in terms of the elementary connection operators defined in this language. PyNN will be introducing support for the CSA and it will also be one of the options for creating connections in NineML.
+    There was discussion about the similarities and differences between the NeuroML 2 approach to defining connections and that of the CSA and it was suggested that this might be an area for further
+    investigation regarding low level compatability between network representations in the various formats.</p>
+
+<p>See <a href="#roundtable">below</a> for discussions in the workshop on the relationship between NeuroML and NineML.</p>
+
+
+<p>&nbsp;&nbsp;<b><i><a href="http://nineml.org/">More on NineML</a></i></b></p>
+</td></tr>
+<tr><td>
+
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Metadata and annotations in v2.0 & linking to remote databases</b></p>
+
+<h4>MIRIAM Resources: Mike Hucka</h4>
+
+A presentation was given on the <a href="http://biomodels.net/miriam">MIRIAM (Minimal Information Required In the Annotation of Models)</a> Standard
+for annotating and curating models in the biosciences, and the various <a href="http://www.ebi.ac.uk/miriam/main/">resources</a>
+available to researchers who use the standard.
+
+<p>The MIRIAM Standards are widely used in the Systems Biology community and can provide useful guidelines for improving model annotation for NeuroML.</p>
+
+<p>&nbsp;&nbsp;<b><i><a href="files/miriam-resources-2011-03-30.pdf">MIRIAM Resources</a></i></b></p>
+
+<h4>Brief introduction to NeuroLex: Stephen Larson</h4>
+
+Stephen gave a presentation outlining the value to neuroscience of structured, domain specific ontologies, discussed their usage in the
+<a href="http://www.neuinfo.org">NIF (Neuroscience Information Framework)</a> inventory for linking to distributed data resources and presented
+<a href="http://www.NeuroLex.org">NeuroLex.org</a> for collaborative online management of neuroscience ontologies.
+
+<p>&nbsp;&nbsp;<b><i><a href="files/IntrotoNeuroLexNeuroMLWorkshop3-31-11.pdf">Introduction to NIF and NeuroLex</a></i></b></p>
+</table>
+
+<h3>Afternoon Session: Thursday 31st March</h3>
+
+<table id="longlist" width="70%"><tr><td>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Representations of detailed neuronal morphologies in v2.0</b></p>
+
+<h4>Proposed NeuroML v2.0 representations of neurons: Sharon Crook</h4>
+
+Sharon presented the elements for describing morphologies in NeuroML version 2.0. These are based on proposals agreed at the
+<a href="files/NeuroMLWorkshop2010.pdf">2010 NeuroML Development Workshop</a>. The examples presented can be
+<a href="http://sourceforge.net/apps/trac/neuroml/browser/DemoVer2.0/NMLVer2_Test/web/NeuroMLFiles">viewed online</a>
+(e.g. a <a href="http://sourceforge.net/apps/trac/neuroml/browser/DemoVer2.0/NMLVer2_Test/web/NeuroMLFiles/SimpleMorphology.xml">simple morphology</a>) and the
+<a href="http://sourceforge.net/apps/trac/neuroml/browser/DemoVer2.0/lems/Schemas/NeuroML2/NeuroML_v2alpha.xsd">XML Schema
+for NeuroML v2alpha</a> is used to define the structure.
+
+<p>An <a href="http://sourceforge.net/apps/trac/neuroml/browser/DemoVer2.0/NMLVer2_Test/web/NeuroMLFiles/FullCell.xml">example</a>
+    was shown using a <a href="http://www.NeuroLex.org">NeuroLex</a> ID to define the type of cell represented.</p>
+
+<p>&nbsp;&nbsp;<b><i><a href="files/NeuroML_morphology.pdf">Morphologies in NeuroML v2.0</a></i></b></p>
+
+<h4>Requirements for a language for describing detailed neuronal morphologies: Giorgio Ascoli</h4>
+
+Giorgio discussed his experiences with the development of <a href="http://neuromorpho.org/neuroMorpho/index.jsp">NeuroMorpho.org</a>, a database of digitally reconstructed neurons.
+This resource can be used to retrieve reconstructed neuronal morphologies of multiple cell types from a number of species. The database can be browsed by
+neuron type, brain area, species, contributing lab, or cells can be searched for according to various morphometric criteria or the associated metadata.
+<p>The difficult process of curating such a resource was also discussed. Giorgio discussed the process of finding literature which use reconstructed neurons (anyone can
+    <a href="http://neuromorpho.org/neuroMorpho/CFD.jsp">highlight a
+    paper</a> with such data),
+    the process by which the authors are contacted and the tracking of publications to reconstructions on the site.</p>
+
+
+<p>There is a utility present on the site to view the cells in 3D (based on Robert Cannon's <a href="http://www.compneuro.org/CDROM/docs/cvapp.html">Cvapp</a>), which
+    can also be used to save the morphologies in NEURON or GENESIS format. It was agreed that MorphML (and the updated version for NeuroML version 2) export would be a very
+    useful addition to this functionality, and Giorgio will put Padraig in contact with the developer of this code to this end.</p>
+
+<p>&nbsp;&nbsp;<b><i><a href="http://neuromorpho.org/neuroMorpho/index.jsp">Go to NeuroMorpho.org</a></i></b></p>
+
+<h4>The TREES Toolbox: Hermann Cuntz</h4>
+
+Hermann presented the <a href="http://www.treestoolbox.org/">TREES Toolbox</a>, a tool in MATLAB for automatic reconstruction of
+neuronal branching from microscopy image stacks and generation of synthetic axonal and dendritic trees; visualisation, editing
+and analysis of neuronal trees; comparison of branching patterns between neurons; and investigation of how dendritic and axonal
+branching depends on local optimization of total wiring and conduction distance.
+
+<p>The latest version of the TREES toolbox includes basic functionality for exporting cells in NeuroML v1.x Level 1 (MorphML) or as a NeuroML v2alpha morphology file. </p>
+
+<p>&nbsp;&nbsp;<b><i><a href="http://www.treestoolbox.org/">Get the TREES Toolbox</a></i></b></p>
+</td></tr>
+<tr><td>
+
+<a name="roundtable"></a><h4>Roundtable discussion: Vision for the NeuroML Initiative. Chair: Sharon Crook</h4>
+
+<p>This session was dedicated to an open discussion on the future direction of NeuroML, and the relationship with the other initiatives in the field of
+    computational neuroscience and systems biology.</p>
+
+<p>First discussed was the potential overlap between NineML and NeuroML. The INCF has been actively promoting NineML somewhat to the exclusion of other initiatives.
+    The question was raised whether we should ask the INCF to formally recognise NeuroML as a viable standardisation initiative. Upi Bhalla said that it was brought up at
+    the Multiscale Modelling Oversight Committee meeting in Kobe that the efforts should cooperate.</p>
+
+<p>There was discussion of the standardisation process in general. It was asked whether there is an organisation that will sponsor/validate NeuroML as a standard.
+
+Mike Hucka commented that early on SBML considered approaching some of the more general standardisation bodies in computer science (IEEE etc.) for approval for a standard
+but there were many reasons why this didn't go forward. Instead they proceeded successfully in writing up their own process for making decisions, etc. and they refer to SBML as a "de facto"
+standard. Although there is significant overlap between SBML and CellML, they have been different enough to remain separate. The COmputational Modeling in BIology NEtwork
+(COMBINE) initiative was
+pointed out as a possible organisation to give an "official" <a href="http://co.mbine.org/standards">seal of approval</a> to NeuroML.</p>
+
+<p>Upi suggested it was a good time to make a formal request to the INCF and to make a suggestion of a meeting to talk about harmonising efforts since the
+    projects could come together at this stage without having to throw too many things out. The differences in development processes between the 
+    languages was discussed. Whereas NeuroML is fully open and the community are invited to the workshops, NineML is developed by a small Task Force with an 
+    Oversight Committee which does not meet or communicate regularly. The organisation of the Task Force is set to change post CNS2011. It was pointed out though that
+    de facto standards are often adopted within the WWW etc.</p>
+
+<p>Robert Cannon said that he doesn't like the word standard, since we are constructing a new model description language. NineML (and the new core of NeuroML) is more of a
+    research effort than a standardisation
+    effort. Others think however it may be premature but still valuable to be standardised. It is conceivable that both can carry on making false starts. Does this mean that
+    there's no urgency for convergence? Would be nice for NeuroML nonetheless to have
+    INCF approval/recognition.</p>
+
+<p>Mike Hucka suggested that formal standards approval requires procedures and time scales that are quite restrictive that made SBML not want to follow it.
+    It depends on the standards body. Perhaps COMBINE could be a community organisation to define standards and perhaps stamp them.
+
+Upi said that we don't have lots of time because once there are implementations using the languages, it becomes more difficult to change. This should be a driving force
+as the developer barrier becomes steeper.
+Mike: early on we developed a translator for CellML to SBML that could do 90% of translation but didn't solve the problem or change a developers mind. No one used both languages.
+Robert: People generally stick to one thing they are familiar with.
+Michele Mattioni: if there are two formats then people have to choose. The point is to make standard to help people: one standard for exchanging. Two options are not good.
+Stephen Larson: The question is about how to approach INCF to find ways to compromise. It is good to find ways to benefit the community. We should remind the community about what we are doing. </p>
+
+<p>
+
+There was some discussion about asking the INCF to bring NeuroML and the Oversight Committee together to discuss this during CNS 2011. Maybe have some discussions on possible technical
+convergence of the languages before that.
+
+Mike agrees with Stephen and Robert that we should converge now rather than later. Approach Oversight Committee with a possible approach for convergence.
+
+Dieter Jaeger pointed out that competition between NEURON and GENESIS was good for the community. Two search paths may be better than one.
+
+The final consensus was that we should try to set up a meeting to discuss convergence in the future. Attendees were asked whether they would be willing to sign a letter to the INCF
+about improving the profile of NeuroML and requesting a meeting between NeuroML and Oversight Committee. Many indicated their willingness to support this.
+</p>
+
+<p>
+The discussion on the formal structure for NeuroML was deferred until the following day.
+
+Malin Sandstr&#246;m commented on the divergence in computational neuroscience between detailed modelling community and
+connectionist modelling community. Malin would be happy to try to help with a meeting between the groups, but she will need a mandate to do so from INCF. 
+</p>
+
+</td></tr>
+<tr><td>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Breakout sessions</b></p>
+
+A number of separate groups were formed to assess the present NeuroML 2 support for, or to gather new
+requirements for language features in a number of different areas.
+
+<h4>Attempt at implementing GHK channel in LEMS</h4>
+
+There was an effort to implement a channel with a Goldman Hodgkin Katz current in LEMS. This was led by Robert Cannon working on a laptop with the results on the digital projector. The outcome of this
+effort still needs some work but can be seen <a href="http://sourceforge.net/apps/trac/neuroml/browser/DemoVer2.0/lems/examples/ghkcell.xml">here</a>. This work raised issues about
+    global constants (e.g. Faraday's constant, pi). It also encouraged discussion on how the LEMS definition would actually be used by the simulators. Michael Hines asked whether
+    there should be a LEMS library to parse and give NEURON the needed parameters. Much of this new channel type would be supported in the generic LEMS to NEURON export already implemented, where
+    LEMS ComponentTypes which are known to be channels (i.e. extend ionChannel ComponentType) are mapped to individual mod files.
+    There was a comment that <a href="http://www.jmodelica.org">Modelica</a> does something like this: the model description is mapped into a pile of differential equations; i.e. creates a "flattened version".
+    From a user perspective all users wish to have is that logical structure.
+This could also be done with NEURON, full model mapped to a large mod file and deal with everything there. The description must be flattened anyway for SBML, Matlab and XPP.
+So both approaches should be options: flattened and structured.
+<h4>Morphology Breakout</h4>
+
+Discussed the need to supply more information than the cable structure for reaction-diffusion type models which more structural information.
+For this approach, we need to define how to interpret junctions as well. Perhaps too premature for a standard for junctions, but we decided that we need rule sets
+for how simulator would fill in information about details at junctions. Upi Bhalla: Rather than add information, in some cases we could just have rules, for example
+assume that ends are hemispheres. Each type of junction must have an interpretation for your reaction-diffusion simulator. Work through the implementations to see which
+set of rules works well.
+Also discussed use of polygons for surfaces. Thought we should keep them in 2.0. Is it currently possible to add a reference to an image stack? Also some discussion of a
+hybrid cell with cables and then for certain parts there is a more detailed structural representation.
+
+</table>
+
+<h3>Morning Session: Friday 1st April</h3>
+
+<table id="longlist" width="70%"><tr><td>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ion channels & synapses in NeuroML v2.0</b></p>
+<h4>Overview of what's possible so far in LEMS: Robert Cannon</h4>
+Robert gave a quick introduction to the support for creating new channel and synapse models in LEMS. The presentation was mainly focused on
+illustrating LEMS by showing some of the existing examples implemented. A simple example of a Hodgkin Huxley channel is illustrated
+<a href="lems_example1">here</a>.
+
+
+<h4>Modelling the role of spatial localisation in synaptic plasticity using NeuroRD: Avrama Blackwell</h4>
+
+Avrama presented some of the problems associated with creating models of realistic subcellular diffusion of proteins associated with synaptic plasticity. She
+discussed a new tool NeuroRD for simulating such systems. This was presented as a test case for the types of models that NeuroML should be
+able to describe when it expands to support reaction-diffusion simulators. It was noted that various parts of the model (e.g. morphologies, chemical interactions)
+can already be described in NeuroML v2/LEMS. 
+
+<p>&nbsp;&nbsp;<b><i><a href="http://krasnow.gmu.edu/CENlab/software.html">Modelling with NeuroRD</a></i></b></p>
+
+<h4>Requirements for a language for multiscale cell model development: Upinder Bhalla</h4>
+Upi presented a list of requirements for a multiscale model description language. These concerned the ability to create composite models from submodels in different formats;
+the ability for model elements at different scales to interface to one another; requirements on specifying neuronal geometry at different levels; specification of the
+mechanical properties of the system and the ability to control how simulations are executed.
+
+<p>A pragmatic combination of NeuroML, SBML and SED-ML with Python helping manage the simulations was suggested as a possible solution, at least for MOOSE.</p>
+
+<p>&nbsp;&nbsp;<b><i><a href="files/upi_neuroml2.pdf">Requirements for multiscale modelling</a></i></b></p>
+
+<h4>Channel distributions on neuronal morphologies: Padraig Gleeson</h4>
+A brief presentation on representing channel densities in NeuroML version 2. The key differences between the version2 format for specifying &lt;channelDensities&gt;
+elements as compared to NeuroML v1.x were discussed using an example based on <a href="http://sourceforge.net/apps/trac/neuroml/browser/DemoVer2.0/NMLVer2_Test/web/NeuroMLFiles/FullCell.xml">this</a>.
+<p>Also discussed was a suggested method for specifying parameters which varied with position along the cell (e.g. length from soma), and specifying
+    varying biophysical parameters in terms of these (e.g. non uniform channel densities), see example
+    <a href="http://sourceforge.net/apps/trac/neuroml/browser/DemoVer2.0/NMLVer2_Test/web/NeuroMLFiles/CellVariableParams.xml">here</a>.
+    The key issue brought up was whether parameters such as p = "Path Length from root" should be implicit in NeuroML, or whether they should be defined explicitly.
+
+<p>&nbsp;&nbsp;<b><i><a href="files/NML2011_ChannelDistributions.pdf">Channel distributions</a></i></b></p>
+</td></tr>
+<tr><td>
+
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Interaction with Systems Biology languages: SBML, CellML</b></p>
+<h4>libSBML and the benefits SBML has had as a result of it: Sarah Keating</h4>
+Sarah presented <a href="http://sbml.org/Software/libSBML">libSBML</a>, the library used by many applications with SBML support. It closely follows the structure of SBML and offers APIs in
+a number of languages for reading & writing valid SBML. Such a versatile library was highly recommended as means of easing developers adding support for NeuroML to their applications.
+<p>&nbsp;&nbsp;<b><i><a href="files/libsbml-and-sbml.pdf">libSBML</a></i></b></p>
+</td></tr>
+<tr><td>
+<h4>The Open Worm project:  Stephen Larson</h4>
+Stephen gave the meeting a quick introduction to the Open Worm Project which he is working on together with Matteo Cantarelli and Giovanni Idili who were also at the meeting.
+This ambitious project aims to create a fully open source <i>in silico</i> model of the much studied model organism, C. elegans. 
+<p>&nbsp;&nbsp;<b><i><a href="files/OpenWormLondon.pdf">Open Worm project</a></i></b></p>
+</table>
+
+<h3>Afternoon Session: Friday 1st April</h3>
+
+
+<table id="longlist" width="70%"><tr><td>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Network representations</b></p>
+<h4>Work to date for network representations in NeuroML 2: Robert Cannon/Padraig Gleeson</h4>
+Robert gave a brief introduction to the current support in LEMS for specifying networks of cells. There has been support for some time for simple networks containing explicit connections
+between spiking cells (e.g. <a href="http://sourceforge.net/apps/trac/neuroml/browser/DemoVer2.0/lems/nml2-examples/NeuroML2_Ex6_NMDA.xml">NMDA</a>,
+<a href="http://sourceforge.net/apps/trac/neuroml/browser/DemoVer2.0/lems/nml2-examples/NeuroML2_Ex7_STP.xml">STP</a>), and recently new functionality has been added to 
+facilitate creation of 
+populations of cells, selecting subsets of those cells and creating connectivity patterns across them. An example
+<a href="http://sourceforge.net/apps/trac/neuroml/browser/DemoVer2.0/lems/examples/net1.xml">here</a> illustrates many of these concepts.
+
+
+<h4>Procedural & declarative network descriptions: experiences
+    from developing PyNN: Andrew Davison</h4>
+Andrew gave an overview of <a href="http://neuralensemble.org/PyNN">PyNN</a>, a Python API for creating large scale networks of simplified neuron models on multiple simulators.
+This currently allows the same script in Python (with one line changed) to be used to create network simulations on NEURON, Brian, NEST and PCSIM. MOOSE support is also in development.
+There has been some interaction between NeuroML v1.x and PyNN, but much closer compatibility is planned for version 2.0.
+
+
+<p>&nbsp;&nbsp;<b><i><a href="http://neuralensemble.org/PyNN">PyNN</a></i></b></p>
+
+<h4>SpiNNaker & BIMPA Project: Biologically inspired massively
+    parallel architectures: Dave Lester</h4>
+Dave presented the plans of the BIMPA (Biologically-Inspired Massively-Parallel Architectures) Project to create a hardware platform for simulating
+biologically inspired neural networks. The SpiNNaker system aims to have one million processing units and simulate large scale networks of integrate and fire neurons.
+
+<p>&nbsp;&nbsp;<b><i><a href="files/APToct10.pdf">SpiNNaker & BIMPA Project</a></i></b></p>
+</td></tr>
+<tr><td>
+
+<h4>Discussion on formalising the structure of the NeuroML initiative</h4>
+The final part of the meeting was dedicated to discussions on the structure of the NeuroML initiative. It was proposed to expand the current NeuroML Team (consisting of Sharon Crook,
+Robert Cannon, Angus Silver and Padraig Gleeson) to get a larger cross section of the community involved in setting the direction of the NeuroML initiative.
+<p>A proposal was made to form a Scientific Committee which would oversee the scientific focus and technical implementation of NeuroML, set the scope of the language and promote NeuroML.
+    Nominations were requested for members of this committee and the following were nominated and agreed to be part of the committee:</p>
+
+Upi Bhalla<br>
+Avrama Blackwell<br>
+Robert Cannon<br>
+Hugo Cornelis<br>
+Sharon Crook<br>
+Andrew Davison<br>
+Padraig Gleeson<br>
+Lyle Graham<br>
+Michael Hines<br>
+Angus Silver<br>
+
+<p>Note that Michael Hines provisionally accepted during the meeting but agreed to full membership afterwards. One of the key roles of the Scientific Committee will be to define the process for
+creating the formal NeuroML v2.0 specifications with dedicated, community elected editors. It was agreed at the meeting that members of the main <a href="http://sourceforge.net/mailarchive/forum.php?forum_name=neuroml-technology">neuroml-technology</a>
+mailing list will be the voting body. 
+</p>
+
+
+</table>
+								
+					</div>
+					<!-- ENDS content -->
+
+				</div>
+				<!-- ENDS wrapper-main -->
+			</div>
+			<!-- ENDS MAIN -->
+			

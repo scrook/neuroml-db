@@ -1,0 +1,29 @@
+<h3 style="text-align:center;">Add New Keywords</h3>
+<%= form_for @keywords,:url => {:action => 'new_keywords'},:html => {:id => "anID"}  do |fk| %>
+  <p>
+ <table>
+<tr>
+   <td><%= fk.hidden_field(:Other_Keyword_ID,:readonly => true) %></td>
+  <tr>
+<tr>
+<tr>
+   <th><%= fk.label(:Other_Keyword_term,"Other Keywords") %></th>
+   <td><%= fk.text_field(:Other_Keyword_term) %></td>
+  <tr>
+<tr>
+
+   <th><%= fk.label(:Comments,"Comments") %></th>
+   <td><%= fk.text_field(:Comments) %></td>
+  <tr>
+ </table>
+  </p>
+<%= fields_for @model_id do |fassoc1| %>
+<%= fassoc1.hidden_field(:Model_ID,:readonly => true) %></td>
+  <% end %>
+
+
+  <p>
+    <%= fk.submit "Add Keywords" %>
+    <%= button_tag "Reset", type: :reset %>	
+  </p>
+<% end %>

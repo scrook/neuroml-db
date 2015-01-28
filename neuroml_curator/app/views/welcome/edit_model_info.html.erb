@@ -1,0 +1,152 @@
+<h1>Editing post</h1>
+<% if !@model.blank? %> 
+<%= form_for @model,:url => {:action => 'edit_cells'}  do |f| %>
+  <p>
+ <table class="news_table">
+   <tr>
+   <th><%= f.label(:Cell_ID,"Cell NeuroML ID") %></th>
+   <td><%= f.text_field(:Cell_ID,:readonly => true) %></td>
+  </tr>
+
+   <th><%= f.label(:Cell_Name,"Cell Name") %></th>
+   <td><%= f.text_field(:Cell_Name) %></td>
+  </tr>
+  <tr>
+   <th><%= f.label(:MorphML_File, "MorphML File") %></th>
+   <td><%= f.text_area(:MorphML_File, :size => '40x5') %></td>
+  </tr>
+  <tr>
+  <tr>
+   <th><%= f.label(:Upload_Time, "Submitted during") %></th>
+   <td><%= f.text_field(:Upload_Time) %></td>
+  </tr>
+  <tr>
+   <th><%= f.label(:Comments, "Comments") %></th>
+   <td><%= f.text_field(:Comments) %></td>
+  </tr>
+ </table>
+  </p>
+ 
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+<%end%>
+<% if !@publication.blank? %>
+<%= form_for @publication,:url => {:action => 'edit_publication'}  do |f1| %>
+  <p>
+ <table>
+<tr>
+   <th><%= f1.label(:Publication_ID,"Publication ID") %></th>
+   <td><%= f1.text_field(:Publication_ID,:readonly => true) %></td>
+  </tr>
+<tr>  
+   <th><%= f1.label(:Pubmed_Ref,"Pub reference") %></th>
+   <td><%= f1.text_field(:Pubmed_Ref) %></td>
+  <tr>
+<tr>
+   <th><%= f1.label(:Comments,"Comments") %></th>
+   <td><%= f1.text_field(:Comments) %></td>
+  <tr>
+ </table>
+  </p>
+ 
+ 
+  <p>
+    <%= f1.submit %>
+  </p>
+<% end %>
+<%end%>
+<% if !@ref.blank? %>
+<%= form_for @ref,:url => {:action => 'edit_references'}  do |f2| %>
+  <p>
+ <table>
+<tr>
+   <th><%= f2.label(:Reference_ID,"Reference ID") %></th>
+   <td><%= f2.text_field(:Reference_ID,:readonly => true) %></td>
+  </tr>
+<tr>
+   <th><%= f2.label(:Reference_Resource,"Reference Resource") %></th>
+   <td><%= f2.text_field(:Reference_Resource) %></td>
+  <tr>
+<tr>
+<tr>
+   <th><%= f2.label(:Reference_URI,"Reference URI") %></th>
+   <td><%= f2.text_field(:Reference_URI) %></td>
+  <tr>
+<tr>
+
+   <th><%= f2.label(:Comments,"Comments") %></th>
+   <td><%= f2.text_field(:Comments) %></td>
+  <tr>
+ </table>
+  </p>
+
+
+  <p>
+    <%= f2.submit %>
+  </p>
+<% end %>
+<%end%>
+<% if !@keyword_model.blank? %>
+<%= form_for @keyword_model,:url => {:action => 'edit_keywords'}  do |fk| %>
+  <p>
+ <table>
+<tr>
+   <th><%= fk.label(:Other_Keyword_ID,"Keywords ID") %></th>
+   <td><%= fk.text_field(:Other_Keyword_ID,:readonly => true) %></td>
+  <tr>
+<tr>
+<tr>
+   <th><%= fk.label(:Other_Keyword_term,"Other Keywords") %></th>
+   <td><%= fk.text_field(:Other_Keyword_term) %></td>
+  <tr>
+<tr>
+
+   <th><%= fk.label(:Comments,"Comments") %></th>
+   <td><%= fk.text_field(:Comments) %></td>
+  <tr>
+ </table>
+  </p>
+
+
+  <p>
+    <%= fk.submit %>
+  </p>
+<% end %>
+<%end%>
+<% if !@nlx.blank? %>
+<%= form_for @nlx,:url => {:action => 'edit_neurolex_terms'}  do |fnlx| %>
+  <p>
+ <table>
+<tr>
+   <th><%= fnlx.label(:NeuroLex_ID,"NeuroLex ID") %></th>
+   <td><%= fnlx.text_field(:NeuroLex_ID,:readonly => true) %></td>
+  <tr>
+<tr>
+<tr>
+   <th><%= fnlx.label(:NeuroLex_URI,"NeuroLex URI") %></th>
+   <td><%= fnlx.text_field(:NeuroLex_URI) %></td>
+  <tr>
+<tr>
+<tr>
+   <th><%= fnlx.label(:NeuroLex_Term,"NeuroLex Terms") %></th>
+   <td><%= fnlx.text_field(:NeuroLex_Term) %></td>
+  <tr>
+<tr>
+
+
+   <th><%= fnlx.label(:Comments,"Comments") %></th>
+   <td><%= fnlx.text_field(:Comments) %></td>
+  <tr>
+ </table>
+  </p>
+
+
+  <p>
+    <%= fnlx.submit %>
+  </p>
+<% end %>
+<%end%>
+

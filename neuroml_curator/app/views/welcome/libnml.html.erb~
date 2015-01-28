@@ -1,0 +1,210 @@
+
+			
+
+			
+			<!-- MAIN -->
+			<div id="main">
+				<!-- wrapper-main -->
+				<div class="wrapper">
+					
+					<!-- content -->
+					<div id="content">
+						
+						<!-- title -->
+						<div id="page-title">
+							<span class="title">NeuroML Version 2.0</span>
+						</div>
+						<!-- ENDS title -->
+						
+						<!-- filter -->
+						<ul class="filter">
+                                                <li></li>
+				    		<li ><a href="/neuromlv2" > NML Alpha Schema </a></li>
+				    		<li><a href="/lems_dev" > LEMS Mapping </a></li>
+				    		<li class="active"><a href="/libnml" > libNeuroML </a></li>
+				    		<li><a href="/compatibility" > Compatibility With Others </a></li>
+				    		<li><a href="/specifications" > NML Specifications  </a></li>
+				    		<li><a href="#" > Examples </a></li>
+				    		
+				    	</ul>
+						<!-- ENDS filter -->
+<img src="../images/tabs-divider.png" height="2" width="100%" />
+		
+<h1>libNeuroML<a name="libNeuroML"></a></h1>
+    <h2>Java implementation of libNeuroML </h2>
+
+    <table id="highlighted" align="center" >
+        <tr><td>
+                libNeuroML (Java implementation) = LEMS Reference Implementation + NeuroML 2 ComponentType definitions + Import & export functionality.<br/><br/>
+            NOTE: libNeuroML is not a good name for this, given that packages such as libSBML and the developing Python based
+            <a href="http://libneuroml.readthedocs.org/en/latest/">libNeuroML</a> concentrate on providing an API for reading, writing and validating files.<br/><br/>
+            A standalone Java package with the features below will be maintained, but will probably be renamed in future.</td></tr>
+    </table>
+
+    <p>libNeuroML is a package in Java which extends the basic LEMS Reference Implementation with a number of neuroscience specific features, most notably, it includes the
+        core <a href="http://sourceforge.net/apps/trac/neuroml/browser/NeuroML2/NeuroML2CoreTypes/">NeuroML 2 ComponentType definitions</a>. libNeuroML also features pluggable
+        extensions for importing various model description formats into equivalent LEMS descriptions, and export modules for generating native scripts in various formats
+        which can be used for more efficient simulations than the LRI. </p>
+
+
+    <!--<p>Note: libNeuroML in Java is currently different in scope to other libraries for programmatic access to modelling languages (e.g.
+        <a href="http://sbml.org/Software/libSBML">libSBML</a>, <a href="http://www.cellml.org/tools/api">CellML API</a>) as it is not <b>yet</b> an API to facilitate
+        reading, validating, editing and writing NeuroML models. Integrated ability to execute LEMS based the models is a key feature of libNeuroML, and the API for editing is
+    currently aimed at manipulating LEMS entities (e.g. creating/modifying ComponentTypes/Component instances) rather than NeuroML entities (such as <b>izhikevichCell</b>). </p>
+
+    <p>An integrated package for building, testing and executing NeuroML v2.0 models is essential at this stage of its development. Over time, as the core class names become
+    stabilised, libNeuroML will develop into a true multi language API for manipulating the model classes (most likely using code developed for the 
+    <a href="tool_support#NeuroML Java API">NeuroML Java API</a>), while also allowing access to the underlying definitions in LEMS.</p>-->
+
+    <p align="center"><img alt="libNeuroML" src="images/libNeuroML.png"/></p>
+    <p align="center"><i>Java implementation of libNeuroML and its relationship to the <a href="lems/interpreter.html">LEMS Reference Implementation</a>, the 
+            <a href="http://sourceforge.net/apps/trac/neuroml/browser/NeuroML2/NeuroML2CoreTypes?view=markup">NeuroML 2 ComponentType definitions</a> and the various import & export formats.
+        Dashed line represent features in early stages of development.</i></p>
+
+    <h3>Installing Java libNeuroML</h3>
+
+    <p>The latest version of libNeuroML for Java can be obtained from the <a href="http://subversion.tigris.org/">Subversion</a> repository:</p>
+
+    <p class="code">svn co https://neuroml.svn.sourceforge.net/svnroot/neuroml/NeuroML2
+    <br/>cd NeuroML2</p>
+
+    <p>This can be compiled/executed (assuming you have <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java</a> installed) using the included <b>make</b> and <b>nml2</b> utilities, e.g. (on Windows):</p>
+
+    <p class="code">make.bat<br/>nml2.bat examples\LEMS_NML2_Ex0_IaF.xml</p>
+
+    <p>Similarly on Mac/Linux:</p>
+
+    <p class="code">./make.sh<br/>./nml2 examples/LEMS_NML2_Ex0_IaF.xml</p>
+
+
+    <p>To allow the <b>nml2</b> utility to be used from any directory, add an environment variable <b>NML2_HOME</b>, set to the install directory, and add this value also to your <b>PATH</b>.</p>
+
+
+    <p>If <a href="http://ant.apache.org/">Apache Ant</a> is installed, the options for compiling/running examples with this include:
+        <p class="code">
+          ant               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                  <i>(build the main jar file)</i><br/>
+          ant nml2_0, ant nml2_1, ...          &nbsp;                <i>(run the main NeuroML 2/LEMS examples)</i><br/>
+          ant test           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      <i>(perform a number of tests including running all examples)</i><br/><br/>
+          ant -p             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                 <i>(list all ant options)</i>
+        </p>
+
+
+
+    <p>A number of  <a href="lems/neuroml2.html">examples</a> are available showing the usage of NeuroML 2 elements, and these can all be loaded and executed by libNeuroML.
+        Most of these examples mix LEMS elements and NeuroML 2 elements in a single file, but there is also <a href="lems/neuroml2.html#Ex5">an example</a> of a LEMS simulation where a "pure" NeuroML 2 file is included for simulation by the LEMS interpreter.
+
+    <p align="center"><img src="lems/Izh.png" alt="Izhikevich"/></p>
+
+    <p align="center"><i>This shows the behaviour of 2 instances of <a href="http://www.izhikevich.org/publications/whichmod.htm">Izhikevich simple spiking neurons</a> which were
+            specified as <b>Component</b>s in NeuroML v2alpha. The behaviour of the <b>ComponentType</b> for the cell model is described in LEMS.
+            See <a href="lems/neuroml2.html#Izhikevich">here</a> for more details.</i></p>
+
+    <h3>Python implementation of libNeuroML<a name="pylibNeuroML"></a></h3>
+
+
+<table id="highlighted" align="center" width="40%">
+<tr><td>Note: a new implementation of a Python API for NeuroML is being created <a href="http://libneuroml.readthedocs.org/en/latest/">here</a>.
+</td></tr></table>
+<br/>
+<!--
+    <p>In addition to the Java package described above, an initial version of libNeuroML in Python for creating models in LEMS/NeuroML 2 has been developed. 
+        This is integrated to a certain extent with the Java implementation, allowing scripts to be written in Python to create a model, saved in 
+        XML and ran with the libNeuroML jar file.</p>
+
+    <p>To install libNeuroML for Python, install libNeuroML for Java as outlined above, followed by:</p>
+
+    <p class="code">cd python<br/>python setup.py install</p>
+
+    <p>On Linux/Mac the second command might need to be run as root. Scripts such as the example below can then be executed:</p>
+
+
+    <p class="code">
+
+from libneuroml.lems import *<br/>
+from libneuroml.lems.util import *<br/>
+<br/>
+
+lemsDocument = Lems()<br/>
+<br/>
+comp = Component(<b>"adExIaFCell"</b>, <b>"burster"</b>)<br/>
+<br/>
+comp.setAnyAttributes_({<b>"C"</b>:<b>"281pF"</b>, <b>"gL"</b>:<b>"30nS"</b>, <b>"EL"</b>:<b>"-70.6mV"</b>, <b>"reset"</b>:<b>"-47.2mV"</b>,\<br/>
+                        <b>"VT"</b> : <b>"-50.4mV"</b>, <b>"thresh"</b>:  <b>"-20.4mV"</b>, <b>"delT"</b>:<b>"2mV"</b>, <b>"tauw"</b>:<b>"40ms"</b>, <b>"a"</b> :<b>"4nS"</b>,   <b>"b"</b>: <b>"0.08nA"</b>, \<br/>
+                        <b>"refract"</b> : <b>"0ms"</b>, <b>"Iamp"</b>:<b>"0.8nA"</b>, <b>"Idel"</b>:<b>"0ms"</b>, <b>"Idur"</b>:<b>"2000ms"</b>})<br/>
+                        <br/>
+
+lemsDocument.addComponent(comp)<br/>
+<br/>
+net = Component(type_=<b>"network"</b>,id=<b>"Network1"</b>)<br/>
+<br/>
+pop = Component(<b>"population"</b>, id=<b>"pop1"</b>)<br/>
+pop.setAnyAttributes_({<b>"component"</b>:comp.id, <b>"size"</b>:1})<br/>
+<br/>
+net.addComponent(pop)<br/>
+<br/>
+lemsDocument.addComponent(net)<br/>
+<br/>
+genSimWithDefaultPlots(lemsDocument, net.id, 250, 0.01)<br/>
+<br/>
+writeLemsAndRun(lemsDocument, <b>"AdEx.xml"</b>)<br/>
+
+
+    </p>
+
+
+    <p>This example is included (along with a <a href="http://sourceforge.net/apps/trac/neuroml/browser/NeuroML2/python/examples">number of others</a>)
+        and can be run (assuming the <b>NML2_HOME</b> environment variable pointing to the location of <b>nml2</b> is set, and is added to <b>PATH</b>) using:</p>
+
+    <p class="code">cd examples<br/>python run_adex.py</p>
+
+    <p>to produce:</p>
+
+    <p align="center"><img alt="AdEx Python" src="images/adex_py.png"/></p>
+
+
+
+    <p>There is clearly a great deal of overlap with <a href="tool_support/#PyNN">PyNN</a> and this Python package will be updated for greater compatibility with that initiative.
+    A Python API for handling v1.x NeuroML will also be produced, to facilitate interaction with that version, and to enable automatic conversion between versions.</p>
+
+
+    <h3>Comparing Java and Python implementations of libNeuroML</h3>
+
+    <p>The table below summarises the different capabilities of the Java and Python versions of libNeuroML. </p>
+
+    <table  id="longlist"  align="center"  width="500"><tr><th width="200">&nbsp;</th><th width="100">Java</th><th width="100">Python</th></tr>
+        <tr><td>Read LEMS XML files</td><td>Yes</td><td>Yes</td></tr>
+        <tr><td>Write LEMS XML files</td><td>Yes</td><td>Yes</td></tr>
+        <tr><td>Execute models specified in LEMS*</td><td>Yes</td><td>Not planned. Converting models to Brian (or NEST) and executing there is more likely</td></tr>
+        <tr><td>Read NeuroML v1.x files</td><td>Not yet. Will be possible on integration of <a href="tool_support#NeuroML Java API">NeuroML Java API</a></td><td>Yes, though
+                <a href="http://sourceforge.net/apps/trac/neuroml/browser/NeuroML2/python/libneuroml/neuroml1x">current implementation</a> is complicated by multiple namespaces in NeuroML v1.x schemas. Needs work.</td></tr>
+        <tr><td>Write NeuroML v1.x files</td><td>Not yet. Will be possible on integration of <a href="tool_support#NeuroML Java API">NeuroML Java API</a>. May also support export of NeuroML v2.0 channels, synapses to ChannelML</td><td>Yes, though
+                <a href="http://sourceforge.net/apps/trac/neuroml/browser/NeuroML2/python/libneuroml/neuroml1x">current implementation</a> is complicated by multiple namespaces in NeuroML v1.x schemas. Needs work.</td></tr>
+        <tr><td>Read NeuroML v2.0 files</td><td>Not yet. Will be possible on integration of <a href="tool_support#NeuroML Java API">NeuroML Java API</a></td><td>Yes</td></tr>
+        <tr><td>Write NeuroML v2.0 files</td><td>Not yet. Will be possible on integration of <a href="tool_support#NeuroML Java API">NeuroML Java API</a></td><td>Yes</td></tr>
+        <tr><td>Import of other formats to NeuroML v2.0*</td><td>Some support for SBML import. CellML import planned.</td><td>Partial support for import of NineML</td></tr>
+        <tr><td>Export of LEMS/NeuroML v2.0 models to other formats*</td><td>Conversion of channel models to NEURON mod files. Some support for SBML export, NineML export. CellML export planned.</td><td>Initial work started for automated conversion of LEMS models to Brian</td></tr>
+    </table>
+
+    <p>* These features may need to be changed to <b>language specific plugins</b> of each implementation so that the core libNeuroML functionaliy is common across languages. </p>
+-->
+
+    <h3>Interaction with neuroConstruct</h3>
+
+    <p>Java libNeuroML is incorporated into the latest version of <a href="http://www.neuroConstruct.org">neuroConstruct</a>, allowing cell model in NeuroML v2alpha to be used in 3D network simulations.
+    Get the <a href="http://www.neuroconstruct.org/download/index.html">latest version of the application</a> from its Subversion repository, run the <b>nCupdate</b> script to pull the latest code from
+    the NeuroML repository and open the project <b>nCexamples/Ex10_NeuroML2/Ex10_NeuroML2.ncx</b>
+    for some working NeuroML v2.0 examples.</p>
+	
+			
+								<div class="clear"></div>
+						<!-- ENDS project column (right) -->
+						
+						
+					</div>
+					<!-- ENDS content -->
+
+				</div>
+				<!-- ENDS wrapper-main -->
+			</div>
+			<!-- ENDS MAIN -->
+			

@@ -1,0 +1,42 @@
+
+			
+
+			
+			<!-- MAIN -->
+			<div id="main">
+				<!-- wrapper-main -->
+				<div class="wrapper">
+					
+					<!-- content -->
+					<div id="content">
+						
+						<!-- title -->
+						<div id="page-title">
+							<span class="title">Browse Models</span>
+						</div>
+						<!-- ENDS title -->
+						
+						
+						
+								<div class="clear"></div>
+						<!-- ENDS project column (right) -->
+<%= form_tag("list_models",:id => "anID", :multipart => "true" , :method => "post") do %>
+<select name="select_models">
+  <option value="" selected="selected">Select Model type to browse</option>
+  <option value="0">All Models</option>
+  <option value="1">Networks</option>
+  <option value="2">Cells</option>
+  <option value="3">Synapses</option>
+  <option value="4">Channels</option>
+</select>&nbsp;&nbsp;<input name="Submit" type="submit" value="Browse" />&nbsp;&nbsp; &nbsp;
+<input name="reset" type="reset"/></p>
+<% end%>
+						
+					</div>
+					<!-- ENDS content -->
+
+				</div>
+				<!-- ENDS wrapper-main -->
+			</div>
+			<!-- ENDS MAIN -->
+			

@@ -1,0 +1,43 @@
+                        <!-- MAIN -->
+                        <div id="main">
+                                <!-- wrapper-main -->
+                                <div class="wrapper">
+
+                                        <!-- content -->
+                                        <div id="content">
+
+                                                <!-- title -->
+                                                <div id="page-title">
+                                                        <span class="title">Sign In</span>
+                                                </div>
+                                                <!-- ENDS title -->
+<% provide(:title, "Sign in") %>
+
+<!--
+<div class="row">
+  <div class="span6 offset3">-->
+   <%= form_for(:session, url: sessions_path,:html => {:id => "anID"}) do |f| %>
+<table style="width:80%;margin-left:auto;">
+<tr>
+<td><%= f.label :userid %></td>
+<td><div id="fname_addn"><%= f.text_field :userid, size:30, class: "poshytip", title: "Enter your login id" %></div></td>
+</tr>
+<tr>
+    <td><%= f.label :password %></td>
+     <td><%= f.password_field :password,:class =>'poshytip', :title => "Enter your password:" %></td>
+</tr>
+<tr>
+<td></td>
+<td>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<%= f.submit "Sign In" %></td>
+</tr>
+</table>
+      <% end %>
+<!--
+  </div>
+</div>
+-->
+</div>
+</div>
+</div>

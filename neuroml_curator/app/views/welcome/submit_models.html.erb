@@ -1,0 +1,46 @@
+<!-- MAIN -->
+                        <div id="main">
+                                <!-- wrapper-main -->
+                                <div class="wrapper">
+
+                                        <!-- content -->
+                                        <div id="content">
+
+                                                <!-- title -->
+                                                <div id="page-title">
+                                                        <span class="title">Editing Channel models</span>
+                                                </div>
+                                                <!-- ENDS title -->
+<%= form_for @model,:url => {:action => 'edit_channel'}  do |f| %>
+  <p>
+ <table class="news_table">
+   <tr>
+   <th><%= f.label(:Channel_ID,"Channel NeuroML ID") %></th>
+   <td><%= f.text_field(:Channel_ID,:readonly => true) %></td>
+  </tr>
+
+   <th><%= f.label(:Channel_Name,"Channel Name") %></th>
+   <td><%= f.text_field(:Channel_Name) %></td>
+  </tr>
+  <tr>
+   <th><%= f.label(:ChannelML_File, "ChannelML File") %></th>
+   <td><%= f.text_area(:ChannelML_File, :size => '40x5') %></td>
+  </tr>
+  <tr>
+  <tr>
+   <th><%= f.label(:Upload_Time, "Submitted during") %></th>
+   <td><%= f.text_field(:Upload_Time) %></td>
+  </tr>
+  <tr>
+   <th><%= f.label(:Comments, "Comments") %></th>
+   <td><%= f.text_field(:Comments) %></td>
+  </tr>
+ </table>
+  </p>
+
+    <%= f.submit "Update Channel Information"%>
+  </p>
+<% end %>
+</div>
+</div>
+</div>
