@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T09:58:55-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ARetrohippocampal_region_of_ABA_2009">
+		<rdfs:label>Retrohippocampal region of ABA 2009</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retrohippocampal_region_of_ABA_2009"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retrohippocampal_region_of_ABA_2009"/>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Super=parcellation of ABA Mouse Brain atlas 2009 comprising the entorhinal area, parasubiculum, pre-subiculum, post-subiculum and subiculum</property:Definition>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nlx_151332</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AHippocampal_formation_of_ABA_2009"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Retrohippocampal region of ABA 2009</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-09-04T00:00:00</property:ModifiedDate>
+		<property:ParcellationScheme rdf:resource="&wiki;Category-3AABA_mouse_brain_parcellation_scheme"/>
+		<property:Species rdf:resource="&wiki;Category-3AMouse"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional part of brain</property:SuperCategory>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ARegional_part_of_brain"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AEntorhinal_area_of_ABA_2009">
+		<rdfs:label>Entorhinal area of ABA 2009</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Entorhinal_area_of_ABA_2009"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Entorhinal_area_of_ABA_2009"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ARetrohippocampal_region_of_ABA_2009"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AParasubiculum_of_ABA_2009">
+		<rdfs:label>Parasubiculum of ABA 2009</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Parasubiculum_of_ABA_2009"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Parasubiculum_of_ABA_2009"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ARetrohippocampal_region_of_ABA_2009"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APostsubiculum_of_ABA_2009">
+		<rdfs:label>Postsubiculum of ABA 2009</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Postsubiculum_of_ABA_2009"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Postsubiculum_of_ABA_2009"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ARetrohippocampal_region_of_ABA_2009"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASubiculum_of_ABA_2009">
+		<rdfs:label>Subiculum of ABA 2009</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Subiculum_of_ABA_2009"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Subiculum_of_ABA_2009"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ARetrohippocampal_region_of_ABA_2009"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APresubiculum_of_ABA_2009">
+		<rdfs:label>Presubiculum of ABA 2009</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Presubiculum_of_ABA_2009"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Presubiculum_of_ABA_2009"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ARetrohippocampal_region_of_ABA_2009"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:Class rdf:about="&wiki;Category-3ARegional_part_of_brain">
+		<rdfs:label>Regional part of brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Regional_part_of_brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Regional_part_of_brain"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMouse">
+		<rdfs:label>Mouse</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Mouse"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Mouse"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AABA_mouse_brain_parcellation_scheme">
+		<rdfs:label>ABA mouse brain parcellation scheme</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:ABA_mouse_brain_parcellation_scheme"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:ABA_mouse_brain_parcellation_scheme"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;ParcellationScheme">
+		<rdfs:label>ParcellationScheme</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ParcellationScheme"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ParcellationScheme"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampal_formation_of_ABA_2009">
+		<rdfs:label>Hippocampal formation of ABA 2009</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampal_formation_of_ABA_2009"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampal_formation_of_ABA_2009"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

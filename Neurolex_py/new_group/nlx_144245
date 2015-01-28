@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T23:07:57-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3APostsubiculum">
+		<rdfs:label>Postsubiculum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Postsubiculum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Postsubiculum"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3ACA1"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3ASubiculum"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3APresubiculum"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3AParasubiculum"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3AEntorhinal_cortex"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3APerirhinal_cortex"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3ARetrosplenial_cortex"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3AInfraradiata_cortex"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3AHorizontal_limb_of_the_diagonal_band"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3AVertical_limb_of_the_diagonal_band"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3AMedial_septal_nucleus"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3AClaustrum"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3AAnterodorsal_nucleus"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3AAnteroventral_nucleus"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3ALateral_dorsal_nucleus"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3AReuniens_nucleus"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3ASupramammillary_nucleus"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3ADorsal_raphe_nucleus"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3AVentral_raphe_nucleus"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3ALocus_ceruleus"/>
+		<property:ChemoDefiningCriteria rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell islands in layer 2 do not stain for AChE, in contrast to the area surrounding the islands tha is densely stained.  In Vogt silver stained material, the post subiculum is characterized by a dense fiber plexus in layer 1a and extremely few fibers in layer II in corast to the even distribution of stained fibers in layer 1-III in the presubiculum.  Layer 1 is evenly stained compared to a patches of light and dark staining in the retrosplenial granular a cortex. Layer III is stained in postsubiculum but not in the retrosplenial granular a cortex.</property:ChemoDefiningCriteria>
+		<property:ConnDefiningCriteria rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Very weak projection to the anteroventral nucleus, compared to the presubiculum.  A strong projection to the lateral dorsal nucleus of the thalamus, compared to the parasubiculum which does not project to this nucleus.  Postsubiculum projects to retrosplenial cortex, primarily Rgb, while presubiculum has only a light projection to Rga and none to Rgb.  All 3 subdivisions of subicular complex project to entorhinal cortex, but postsubiculum fibers terminate in layers IV-VI.</property:ConnDefiningCriteria>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">graph position temporary</property:CurationStatus>
+		<property:Curator rdf:resource="&wiki;Maryann_Martone"/>
+		<property:CytoDefiningCriteria rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Characterized by two broad cellular layers separated by a clear lamina dissecans;  each cellular layer is divided into 3 layers.  The outer layer is characterized by small layer III cells orgnized in rose parallel to the pial surface, covered by a thin layer or larger, darkly stained layer II neurons grouped into clusters or island.  The layer II clusters are not found in the presubiculum.  At the border with the retrosplenial granular a cortex, the lamina dissecans disappears.</property:CytoDefiningCriteria>
+		<property:DefiningCriteria rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cyto-architecture, myelo-architecture, connectivity</property:DefiningCriteria>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Division of subicular cortex characterized by projections from the anterodorsal thalamic nucleus and to a lesser extent the anteroventral nucleus, bordered ventrally and laterally by the presubiculum and dorsally and medially by the retrosplenial granular a cortex..  The border is characterized by an abrupt change in the cyto- and chemoarchitecture</property:Definition>
+		<property:EditorialNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The post subiculum is not recognized by all anatomists.</property:EditorialNote>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3ARetrosplenial_granular_cortex_a"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3ARetrosplenial_granular_cortex_b"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3APresubiculum"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3AParasubiculum"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3AEntorhinal_cortex"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3APerirhinal_cortex"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3AAnterodorsal_nucleus"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3ALateral_dorsal_nucleus"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3AReuniens_nucleus"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3AThalamic_reticular_nucleus"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3ALateral_mammillary_nucleus"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nlx_144245</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ASubicular_complex"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Postsubiculum</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-03-16T00:00:00</property:ModifiedDate>
+		<property:PMID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1704281</property:PMID>
+		<property:Species rdf:resource="&wiki;Category-3ARat"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional part of brain</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Postsubicular cortex</property:Synonym>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ARegional_part_of_brain"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMammillary_body">
+		<rdfs:label>Mammillary body</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Mammillary_body"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Mammillary_body"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3APostsubiculum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ALateral_mammillary_nucleus">
+		<rdfs:label>Lateral mammillary nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Lateral_mammillary_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Lateral_mammillary_nucleus"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3APostsubiculum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHead_direction_cell">
+		<rdfs:label>Head direction cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Head_direction_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Head_direction_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3APostsubiculum"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ARegional_part_of_brain">
+		<rdfs:label>Regional part of brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Regional_part_of_brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Regional_part_of_brain"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ARat">
+		<rdfs:label>Rat</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Rat"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Rat"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;PMID">
+		<rdfs:label>PMID</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PMID"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PMID"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ASubicular_complex">
+		<rdfs:label>Subicular complex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Subicular_complex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Subicular_complex"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ALateral_mammillary_nucleus">
+		<rdfs:label>Lateral mammillary nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Lateral_mammillary_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Lateral_mammillary_nucleus"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3APostsubiculum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AThalamic_reticular_nucleus">
+		<rdfs:label>Thalamic reticular nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Thalamic_reticular_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Thalamic_reticular_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetrosplenial_granular_cortex_b">
+		<rdfs:label>Retrosplenial granular cortex b</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retrosplenial_granular_cortex_b"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retrosplenial_granular_cortex_b"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetrosplenial_granular_cortex_a">
+		<rdfs:label>Retrosplenial granular cortex a</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retrosplenial_granular_cortex_a"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retrosplenial_granular_cortex_a"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;EfferentProjections">
+		<rdfs:label>EfferentProjections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:EfferentProjections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:EfferentProjections"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;EditorialNote">
+		<rdfs:label>EditorialNote</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:EditorialNote"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:EditorialNote"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;DefiningCriteria">
+		<rdfs:label>DefiningCriteria</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefiningCriteria"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefiningCriteria"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CytoDefiningCriteria">
+		<rdfs:label>CytoDefiningCriteria</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CytoDefiningCriteria"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CytoDefiningCriteria"/>
+	</owl:DatatypeProperty>
+	<swivt:Subject rdf:about="&wiki;Maryann_Martone">
+		<rdfs:label>Maryann Martone</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Maryann_Martone"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Maryann_Martone"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;Curator">
+		<rdfs:label>Curator</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Curator"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Curator"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;ConnDefiningCriteria">
+		<rdfs:label>ConnDefiningCriteria</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ConnDefiningCriteria"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ConnDefiningCriteria"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;ChemoDefiningCriteria">
+		<rdfs:label>ChemoDefiningCriteria</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ChemoDefiningCriteria"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ChemoDefiningCriteria"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ALocus_ceruleus">
+		<rdfs:label>Locus ceruleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Locus_ceruleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Locus_ceruleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AVentral_raphe_nucleus">
+		<rdfs:label>Ventral raphe nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Ventral_raphe_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Ventral_raphe_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADorsal_raphe_nucleus">
+		<rdfs:label>Dorsal raphe nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dorsal_raphe_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dorsal_raphe_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASupramammillary_nucleus">
+		<rdfs:label>Supramammillary nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Supramammillary_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Supramammillary_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AReuniens_nucleus">
+		<rdfs:label>Reuniens nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Reuniens_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Reuniens_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ALateral_dorsal_nucleus">
+		<rdfs:label>Lateral dorsal nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Lateral_dorsal_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Lateral_dorsal_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAnteroventral_nucleus">
+		<rdfs:label>Anteroventral nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Anteroventral_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Anteroventral_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAnterodorsal_nucleus">
+		<rdfs:label>Anterodorsal nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Anterodorsal_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Anterodorsal_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AClaustrum">
+		<rdfs:label>Claustrum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Claustrum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Claustrum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMedial_septal_nucleus">
+		<rdfs:label>Medial septal nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Medial_septal_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Medial_septal_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AVertical_limb_of_the_diagonal_band">
+		<rdfs:label>Vertical limb of the diagonal band</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Vertical_limb_of_the_diagonal_band"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Vertical_limb_of_the_diagonal_band"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHorizontal_limb_of_the_diagonal_band">
+		<rdfs:label>Horizontal limb of the diagonal band</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Horizontal_limb_of_the_diagonal_band"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Horizontal_limb_of_the_diagonal_band"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AInfraradiata_cortex">
+		<rdfs:label>Infraradiata cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Infraradiata_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Infraradiata_cortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetrosplenial_cortex">
+		<rdfs:label>Retrosplenial cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retrosplenial_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retrosplenial_cortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APerirhinal_cortex">
+		<rdfs:label>Perirhinal cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Perirhinal_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Perirhinal_cortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AEntorhinal_cortex">
+		<rdfs:label>Entorhinal cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Entorhinal_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Entorhinal_cortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AParasubiculum">
+		<rdfs:label>Parasubiculum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Parasubiculum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Parasubiculum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APresubiculum">
+		<rdfs:label>Presubiculum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Presubiculum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Presubiculum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASubiculum">
+		<rdfs:label>Subiculum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Subiculum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Subiculum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACA1">
+		<rdfs:label>CA1</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:CA1"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:CA1"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;AfferentProjections">
+		<rdfs:label>AfferentProjections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AfferentProjections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AfferentProjections"/>
+	</owl:ObjectProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

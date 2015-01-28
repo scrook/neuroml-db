@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T22:45:23-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ACerebellum_granule_cell">
+		<rdfs:label>Cerebellum granule cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellum_granule_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellum_granule_cell"/>
+		<property:AxonLength rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mouse: up to 4 mm.  Rat: up to 5 mm.</property:AxonLength>
+		<property:CellularSynapticTarget rdf:resource="&wiki;Category-3ACerebellum_Purkinje_cell"/>
+		<property:CellularSynapticTarget rdf:resource="&wiki;Category-3ACerebellum_stellate_cell"/>
+		<property:CellularSynapticTarget rdf:resource="&wiki;Category-3ACerebellum_basket_cell"/>
+		<property:Comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">This is a duplicate with ID: sao1736323572</property:Comment>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2007-09-05T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:DefiningCriteria rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Small soma with short claw-like dendrites</property:DefiningCriteria>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Small, numerous neuron in the granule cell layer of the vertebrate cerebellar cortex, characterized by a very small soma and several short dendrites which terminate with claw-shaped endings.  In the transmission electron microscope, these cells are characterized by a darkly stained nucleus surrounded by a thin rim of cytoplasm.  The axon ascends into the molecular layer where it bifurcates to form parallel fibers which run parallel to the long axis of the folium.  Llinas, Walton and Lang. Cerebellum. In The Synaptic Organization of the Brain. 5th ed. 2004.</property:Definition>
+		<property:DendriteThickness rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mouse: 1-2 um.  Rat: 1-2 um.</property:DendriteThickness>
+		<property:EditorialNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://senselab.med.yale.edu/neurondb/NeuronProp.aspx?id=7346</property:EditorialNote>
+		<property:ExampleImage rdf:resource="&wiki;File-3ACerebellar_granule_cell.gif"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nifext_128</property:Id>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cerebellum granule cell</property:Label>
+		<property:Located_in rdf:resource="&wiki;Category-3AGranular_layer_of_cerebellar_cortex"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3AMolecular_layer_of_cerebellar_cortex"/>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-10-10T00:00:00</property:ModifiedDate>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGlutamate"/>
+		<property:NeurotransmitterReceptors rdf:resource="&wiki;Category-3AGlutamate-2Dgated_cationic_channel"/>
+		<property:NumberOfPrimaryDendrites rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3-5</property:NumberOfPrimaryDendrites>
+		<property:OriginOfAxon rdf:datatype="http://www.w3.org/2001/XMLSchema#string">soma</property:OriginOfAxon>
+		<property:Species rdf:resource="&wiki;Category-3AVertebrata"/>
+		<property:SubcellularSynapticTarget rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dendritic spine</property:SubcellularSynapticTarget>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neuron</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cerebellar granule neuron</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cerebellar granule cell</property:Synonym>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ANeuron"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A101960">
+		<rdfs:label>TermImport:101960</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:101960"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:101960"/>
+		<property:About rdf:resource="&wiki;Category-3ACerebellum_granule_cell"/>
+	</swivt:Subject>
+	<owl:Class rdf:about="&wiki;Category-3AParallel_fiber">
+		<rdfs:label>Parallel fiber</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Parallel_fiber"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Parallel_fiber"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACerebellum_granule_cell"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebellum_unipolar_brush_cell">
+		<rdfs:label>Cerebellum unipolar brush cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellum_unipolar_brush_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellum_unipolar_brush_cell"/>
+		<property:CellularSynapticTarget rdf:resource="&wiki;Category-3ACerebellum_granule_cell"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebellum_Golgi_cell">
+		<rdfs:label>Cerebellum Golgi cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellum_Golgi_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellum_Golgi_cell"/>
+		<property:CellularSynapticTarget rdf:resource="&wiki;Category-3ACerebellum_granule_cell"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebellar_Noradrenergic_Afferents">
+		<rdfs:label>Cerebellar Noradrenergic Afferents</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellar_Noradrenergic_Afferents"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellar_Noradrenergic_Afferents"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3ACerebellum_granule_cell"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;AfferentProjections">
+		<rdfs:label>AfferentProjections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AfferentProjections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AfferentProjections"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ANeuron">
+		<rdfs:label>Neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neuron"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SubcellularSynapticTarget">
+		<rdfs:label>SubcellularSynapticTarget</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SubcellularSynapticTarget"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SubcellularSynapticTarget"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AVertebrata">
+		<rdfs:label>Vertebrata</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Vertebrata"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Vertebrata"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;OriginOfAxon">
+		<rdfs:label>OriginOfAxon</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:OriginOfAxon"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:OriginOfAxon"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;NumberOfPrimaryDendrites">
+		<rdfs:label>NumberOfPrimaryDendrites</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NumberOfPrimaryDendrites"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NumberOfPrimaryDendrites"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AGlutamate-2Dgated_cationic_channel">
+		<rdfs:label>Glutamate-gated cationic channel</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Glutamate-gated_cationic_channel"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Glutamate-gated_cationic_channel"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;NeurotransmitterReceptors">
+		<rdfs:label>NeurotransmitterReceptors</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NeurotransmitterReceptors"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NeurotransmitterReceptors"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AGlutamate">
+		<rdfs:label>Glutamate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Glutamate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Glutamate"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Neurotransmitter">
+		<rdfs:label>Neurotransmitter</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Neurotransmitter"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Neurotransmitter"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMolecular_layer_of_cerebellar_cortex">
+		<rdfs:label>Molecular layer of cerebellar cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Molecular_layer_of_cerebellar_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Molecular_layer_of_cerebellar_cortex"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;LocationOfAxonArborization">
+		<rdfs:label>LocationOfAxonArborization</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:LocationOfAxonArborization"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:LocationOfAxonArborization"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AGranular_layer_of_cerebellar_cortex">
+		<rdfs:label>Granular layer of cerebellar cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Granular_layer_of_cerebellar_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Granular_layer_of_cerebellar_cortex"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<swivt:Subject rdf:about="&wiki;File-3ACerebellar_granule_cell.gif">
+		<rdfs:label>File:Cerebellar granule cell.gif</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;File:Cerebellar_granule_cell.gif"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/File:Cerebellar_granule_cell.gif"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;ExampleImage">
+		<rdfs:label>ExampleImage</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ExampleImage"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ExampleImage"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;EditorialNote">
+		<rdfs:label>EditorialNote</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:EditorialNote"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:EditorialNote"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;DendriteThickness">
+		<rdfs:label>DendriteThickness</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DendriteThickness"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DendriteThickness"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;DefiningCriteria">
+		<rdfs:label>DefiningCriteria</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefiningCriteria"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefiningCriteria"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Comment">
+		<rdfs:label>Comment</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Comment"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Comment"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ACerebellum_basket_cell">
+		<rdfs:label>Cerebellum basket cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellum_basket_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellum_basket_cell"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebellum_stellate_cell">
+		<rdfs:label>Cerebellum stellate cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellum_stellate_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellum_stellate_cell"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebellum_Purkinje_cell">
+		<rdfs:label>Cerebellum Purkinje cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellum_Purkinje_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellum_Purkinje_cell"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;CellularSynapticTarget">
+		<rdfs:label>CellularSynapticTarget</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CellularSynapticTarget"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CellularSynapticTarget"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;AxonLength">
+		<rdfs:label>AxonLength</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AxonLength"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AxonLength"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

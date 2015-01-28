@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T23:06:03-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ACA1_stratum_oriens">
+		<rdfs:label>CA1 stratum oriens</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:CA1_stratum_oriens"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:CA1_stratum_oriens"/>
+		<property:BamsID rdf:datatype="http://www.w3.org/2001/XMLSchema#double">11721</property:BamsID>
+		<property:BamsLink rdf:resource="http://brancusi.usc.edu/bkms/brain/show-braing2.php?aidi=11721"/>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2008-03-24T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Part of stratum oriens lying in area CA1, superficial to the alveus of CA1 and deep to the pyramidal cell layer of CA1.  It is continuous with the stratum oriens of CA2 and bounded by the subiculum</property:Definition>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">birnlex_4116</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACA1"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AStratum_oriens"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CA1 stratum oriens</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-03-26T00:00:00</property:ModifiedDate>
+		<property:Species rdf:resource="&wiki;Category-3AMammal"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional part of stratum oriens</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CA1 s. oriens</property:Synonym>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ARegional_part_of_stratum_oriens"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A101459">
+		<rdfs:label>TermImport:101459</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:101459"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:101459"/>
+		<property:About rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+	</swivt:Subject>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA3_pyramidal_cell">
+		<rdfs:label>Hippocampus CA3 pyramidal cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA3_pyramidal_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA3_pyramidal_cell"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA2_pyramidal_neuron">
+		<rdfs:label>Hippocampus CA2 pyramidal neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA2_pyramidal_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA2_pyramidal_neuron"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA2_bistratified_cell_broad">
+		<rdfs:label>Hippocampus CA2 bistratified cell broad</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA2_bistratified_cell_broad"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA2_bistratified_cell_broad"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA2_bistratified_cell_narrow">
+		<rdfs:label>Hippocampus CA2 bistratified cell narrow</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA2_bistratified_cell_narrow"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA2_bistratified_cell_narrow"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA1_stratum_oriens_neuron">
+		<rdfs:label>Hippocampus CA1 stratum oriens neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA1_stratum_oriens_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA1_stratum_oriens_neuron"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA1_lacunosum_moleculare_neuron">
+		<rdfs:label>Hippocampus CA1 lacunosum moleculare neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA1_lacunosum_moleculare_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA1_lacunosum_moleculare_neuron"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA1_ivy_neuron">
+		<rdfs:label>Hippocampus CA1 ivy neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA1_ivy_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA1_ivy_neuron"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA1_trilaminar_neuron">
+		<rdfs:label>Hippocampus CA1 trilaminar neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA1_trilaminar_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA1_trilaminar_neuron"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA1_IS-2DI_neuron">
+		<rdfs:label>Hippocampus CA1 IS-I neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA1_IS-I_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA1_IS-I_neuron"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA1_IS-2DIII_neuron">
+		<rdfs:label>Hippocampus CA1 IS-III neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA1_IS-III_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA1_IS-III_neuron"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA1_oriens_lacunosum_moleculare_neuron">
+		<rdfs:label>Hippocampus CA1 oriens lacunosum moleculare neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA1_oriens_lacunosum_moleculare_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA1_oriens_lacunosum_moleculare_neuron"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA1_basket_cell">
+		<rdfs:label>Hippocampus CA1 basket cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA1_basket_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA1_basket_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA1_stratum_oriens_neuron">
+		<rdfs:label>Hippocampus CA1 stratum oriens neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA1_stratum_oriens_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA1_stratum_oriens_neuron"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA1_trilaminar_neuron">
+		<rdfs:label>Hippocampus CA1 trilaminar neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA1_trilaminar_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA1_trilaminar_neuron"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA1_stratum_oriens_neuron">
+		<rdfs:label>Hippocampus CA1 stratum oriens neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA1_stratum_oriens_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA1_stratum_oriens_neuron"/>
+		<property:DendriteLocation rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA1_LM(R)_PP_neuron">
+		<rdfs:label>Hippocampus CA1 LM(R) PP neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA1_LM(R)_PP_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA1_LM(R)_PP_neuron"/>
+		<property:DendriteLocation rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA1_lacunosum_moleculare_neuron">
+		<rdfs:label>Hippocampus CA1 lacunosum moleculare neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA1_lacunosum_moleculare_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA1_lacunosum_moleculare_neuron"/>
+		<property:DendriteLocation rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA1_ivy_neuron">
+		<rdfs:label>Hippocampus CA1 ivy neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA1_ivy_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA1_ivy_neuron"/>
+		<property:DendriteLocation rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA1_trilaminar_neuron">
+		<rdfs:label>Hippocampus CA1 trilaminar neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA1_trilaminar_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA1_trilaminar_neuron"/>
+		<property:DendriteLocation rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA1_IS-2DIII_neuron">
+		<rdfs:label>Hippocampus CA1 IS-III neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA1_IS-III_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA1_IS-III_neuron"/>
+		<property:DendriteLocation rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;DendriteLocation">
+		<rdfs:label>DendriteLocation</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DendriteLocation"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DendriteLocation"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;LocationOfAxonArborization">
+		<rdfs:label>LocationOfAxonArborization</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:LocationOfAxonArborization"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:LocationOfAxonArborization"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ARegional_part_of_stratum_oriens">
+		<rdfs:label>Regional part of stratum oriens</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Regional_part_of_stratum_oriens"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Regional_part_of_stratum_oriens"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMammal">
+		<rdfs:label>Mammal</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Mammal"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Mammal"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AStratum_oriens">
+		<rdfs:label>Stratum oriens</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Stratum_oriens"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Stratum_oriens"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACA1">
+		<rdfs:label>CA1</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:CA1"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:CA1"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<owl:ObjectProperty rdf:about="&property;BamsLink">
+		<rdfs:label>BamsLink</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:BamsLink"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:BamsLink"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;BamsID">
+		<rdfs:label>BamsID</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:BamsID"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:BamsID"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T09:57:44-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ACranial_nerve_nucleus">
+		<rdfs:label>Cranial nerve nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cranial_nerve_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cranial_nerve_nucleus"/>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nucleus that receives projections from or contains neurons that send projections through one of the cranial nerves</property:Definition>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nlx_28532</property:Id>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cranial nerve nucleus</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-03-09T00:00:00</property:ModifiedDate>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional part of brain</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cranial nerve nuclei</property:Synonym>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ARegional_part_of_brain"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ATrochlear_nucleus">
+		<rdfs:label>Trochlear nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Trochlear_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Trochlear_nucleus"/>
+		<property:Has_role rdf:resource="&wiki;Category-3ACranial_nerve_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMesencephalic_nucleus_of_trigeminal_nerve">
+		<rdfs:label>Mesencephalic nucleus of trigeminal nerve</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Mesencephalic_nucleus_of_trigeminal_nerve"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Mesencephalic_nucleus_of_trigeminal_nerve"/>
+		<property:Has_role rdf:resource="&wiki;Category-3ACranial_nerve_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOculomotor_nuclear_complex">
+		<rdfs:label>Oculomotor nuclear complex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Oculomotor_nuclear_complex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Oculomotor_nuclear_complex"/>
+		<property:Has_role rdf:resource="&wiki;Category-3ACranial_nerve_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASuperior_salivatory_nucleus">
+		<rdfs:label>Superior salivatory nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Superior_salivatory_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Superior_salivatory_nucleus"/>
+		<property:Has_role rdf:resource="&wiki;Category-3ACranial_nerve_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APrincipal_sensory_nucleus_of_trigeminal_nerve">
+		<rdfs:label>Principal sensory nucleus of trigeminal nerve</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Principal_sensory_nucleus_of_trigeminal_nerve"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Principal_sensory_nucleus_of_trigeminal_nerve"/>
+		<property:Has_role rdf:resource="&wiki;Category-3ACranial_nerve_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMotor_nucleus_of_trigeminal_nerve">
+		<rdfs:label>Motor nucleus of trigeminal nerve</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Motor_nucleus_of_trigeminal_nerve"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Motor_nucleus_of_trigeminal_nerve"/>
+		<property:Has_role rdf:resource="&wiki;Category-3ACranial_nerve_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAbducens_nucleus">
+		<rdfs:label>Abducens nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Abducens_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Abducens_nucleus"/>
+		<property:Has_role rdf:resource="&wiki;Category-3ACranial_nerve_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASolitary_nucleus">
+		<rdfs:label>Solitary nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Solitary_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Solitary_nucleus"/>
+		<property:Has_role rdf:resource="&wiki;Category-3ACranial_nerve_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANucleus_ambiguus">
+		<rdfs:label>Nucleus ambiguus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Nucleus_ambiguus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Nucleus_ambiguus"/>
+		<property:Has_role rdf:resource="&wiki;Category-3ACranial_nerve_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AInferior_salivatory_nucleus">
+		<rdfs:label>Inferior salivatory nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Inferior_salivatory_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Inferior_salivatory_nucleus"/>
+		<property:Has_role rdf:resource="&wiki;Category-3ACranial_nerve_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHypoglossal_nucleus">
+		<rdfs:label>Hypoglossal nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hypoglossal_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hypoglossal_nucleus"/>
+		<property:Has_role rdf:resource="&wiki;Category-3ACranial_nerve_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACochlear_nuclear_complex">
+		<rdfs:label>Cochlear nuclear complex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cochlear_nuclear_complex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cochlear_nuclear_complex"/>
+		<property:Has_role rdf:resource="&wiki;Category-3ACranial_nerve_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_trigeminal_nucleus">
+		<rdfs:label>Spinal trigeminal nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_trigeminal_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_trigeminal_nucleus"/>
+		<property:Has_role rdf:resource="&wiki;Category-3ACranial_nerve_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAccessory_nucleus">
+		<rdfs:label>Accessory nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Accessory_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Accessory_nucleus"/>
+		<property:Has_role rdf:resource="&wiki;Category-3ACranial_nerve_nucleus"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;Has_role">
+		<rdfs:label>Has role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_role"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ARegional_part_of_brain">
+		<rdfs:label>Regional part of brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Regional_part_of_brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Regional_part_of_brain"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

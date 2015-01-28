@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T23:58:17-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ARetina">
+		<rdfs:label>Retina</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina"/>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2006-07-15T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The region of the eye consisting of ten-layered nervous tissue. It is continuous with the OPTIC NERVE and receives images of external objects and transmits visual impulses to the brain. Its outer surface is in contact with the CHOROID and the inner surface with the VITREOUS BODY. The outer-most layer is pigmented, whereas the inner nine layers are transparent.
+
+* Definition Source: MeSH</property:Definition>
+		<property:DefinitionSource rdf:resource="&wiki;MeSH"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3ALateral_geniculate_body"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3ASuperior_colliculus"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3ASuprachiasmatic_nucleus"/>
+		<property:ExternallySourcedDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The region of the eye consisting of ten-layered nervous tissue. It is continuous with the OPTIC NERVE and receives images of external objects and transmits visual impulses to the brain. Its outer surface is in contact with the CHOROID and the inner surface with the VITREOUS BODY. The outer-most layer is pigmented, whereas the inner nine layers are transparent.</property:ExternallySourcedDefinition>
+		<property:Has_role rdf:resource="&wiki;Category-3AEarly_visual_processing"/>
+		<property:Has_role rdf:resource="&wiki;Category-3AOptical_detection"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">birnlex_1153</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AEye"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AVisual_system"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Retina</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-03-20T00:00:00</property:ModifiedDate>
+		<property:Species rdf:resource="&wiki;Category-3AMammal"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional part of nervous system</property:SuperCategory>
+		<property:Umlscui rdf:datatype="http://www.w3.org/2001/XMLSchema#string">C1278894, C0035298</property:Umlscui>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ARegional_part_of_nervous_system"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMacula_of_eye">
+		<rdfs:label>Macula of eye</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Macula_of_eye"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Macula_of_eye"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_inner_nuclear_layer">
+		<rdfs:label>Retina inner nuclear layer</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_inner_nuclear_layer"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_inner_nuclear_layer"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_ganglion_cell_layer">
+		<rdfs:label>Retina ganglion cell layer</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_ganglion_cell_layer"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_ganglion_cell_layer"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_inner_plexiform_layer">
+		<rdfs:label>Retina inner plexiform layer</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_inner_plexiform_layer"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_inner_plexiform_layer"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACentral_retina">
+		<rdfs:label>Central retina</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Central_retina"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Central_retina"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AInferior_retina">
+		<rdfs:label>Inferior retina</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Inferior_retina"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Inferior_retina"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASuperior_retina">
+		<rdfs:label>Superior retina</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Superior_retina"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Superior_retina"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AUpper_retina">
+		<rdfs:label>Upper retina</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Upper_retina"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Upper_retina"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ABrachium_of_superior_colliculus">
+		<rdfs:label>Brachium of superior colliculus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Brachium_of_superior_colliculus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Brachium_of_superior_colliculus"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlivary_pretectal_nucleus">
+		<rdfs:label>Olivary pretectal nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olivary_pretectal_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olivary_pretectal_nucleus"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANucleus_of_optic_tract">
+		<rdfs:label>Nucleus of optic tract</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Nucleus_of_optic_tract"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Nucleus_of_optic_tract"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADorsal_nucleus_of_lateral_geniculate_body">
+		<rdfs:label>Dorsal nucleus of lateral geniculate body</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dorsal_nucleus_of_lateral_geniculate_body"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dorsal_nucleus_of_lateral_geniculate_body"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_ganglion_cell">
+		<rdfs:label>Retina ganglion cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_ganglion_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_ganglion_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_medium_complex_ganglion_cell">
+		<rdfs:label>Retina medium complex ganglion cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_medium_complex_ganglion_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_medium_complex_ganglion_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_medium_simple_ganglion_cell">
+		<rdfs:label>Retina medium simple ganglion cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_medium_simple_ganglion_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_medium_simple_ganglion_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_small_complex_ganglion_cell">
+		<rdfs:label>Retina small complex ganglion cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_small_complex_ganglion_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_small_complex_ganglion_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_small_simple_ganglion_cell">
+		<rdfs:label>Retina small simple ganglion cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_small_simple_ganglion_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_small_simple_ganglion_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_ganglion_cell_A1">
+		<rdfs:label>Retina ganglion cell A1</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_ganglion_cell_A1"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_ganglion_cell_A1"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_ganglion_cell_B1">
+		<rdfs:label>Retina ganglion cell B1</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_ganglion_cell_B1"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_ganglion_cell_B1"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_ganglion_cell_B2">
+		<rdfs:label>Retina ganglion cell B2</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_ganglion_cell_B2"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_ganglion_cell_B2"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_ganglion_cell_B3">
+		<rdfs:label>Retina ganglion cell B3</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_ganglion_cell_B3"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_ganglion_cell_B3"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_ganglion_cell_C1">
+		<rdfs:label>Retina ganglion cell C1</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_ganglion_cell_C1"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_ganglion_cell_C1"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_ganglion_cell_C_others">
+		<rdfs:label>Retina ganglion cell C others</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_ganglion_cell_C_others"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_ganglion_cell_C_others"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_type_(a)_narrow-2Dfield_unistratified_amacrine_cell">
+		<rdfs:label>Retina type (a) narrow-field unistratified amacrine cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_type_(a)_narrow-field_unistratified_amacrine_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_type_(a)_narrow-field_unistratified_amacrine_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_type_(b)_narrow-2Dfield_unistratified_amacrine_cell">
+		<rdfs:label>Retina type (b) narrow-field unistratified amacrine cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_type_(b)_narrow-field_unistratified_amacrine_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_type_(b)_narrow-field_unistratified_amacrine_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_stratified_diffuse_amacrine_cell">
+		<rdfs:label>Retina stratified diffuse amacrine cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_stratified_diffuse_amacrine_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_stratified_diffuse_amacrine_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_ganglion_cell_A2_inner">
+		<rdfs:label>Retina ganglion cell A2 inner</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_ganglion_cell_A2_inner"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_ganglion_cell_A2_inner"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_ganglion_cell_A2_outer">
+		<rdfs:label>Retina ganglion cell A2 outer</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_ganglion_cell_A2_outer"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_ganglion_cell_A2_outer"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_ganglion_cell_C2_inner">
+		<rdfs:label>Retina ganglion cell C2 inner</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_ganglion_cell_C2_inner"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_ganglion_cell_C2_inner"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_ganglion_cell_C2_outer">
+		<rdfs:label>Retina ganglion cell C2 outer</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_ganglion_cell_C2_outer"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_ganglion_cell_C2_outer"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_type_(a)_wide-2Dfield_unistratified_amacrine_cell">
+		<rdfs:label>Retina type (a) wide-field unistratified amacrine cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_type_(a)_wide-field_unistratified_amacrine_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_type_(a)_wide-field_unistratified_amacrine_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_type_(b)_wide-2Dfield_unistratified_amacrine_cell">
+		<rdfs:label>Retina type (b) wide-field unistratified amacrine cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_type_(b)_wide-field_unistratified_amacrine_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_type_(b)_wide-field_unistratified_amacrine_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_narrow-2Dfield_bistratified_amacrine_cell">
+		<rdfs:label>Retina narrow-field bistratified amacrine cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_narrow-field_bistratified_amacrine_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_narrow-field_bistratified_amacrine_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_wide-2Dfield_bistratified_amacrine_cell">
+		<rdfs:label>Retina wide-field bistratified amacrine cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_wide-field_bistratified_amacrine_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_wide-field_bistratified_amacrine_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_type_(c)_wide-2Dfield_unistratified_amacrine_cell">
+		<rdfs:label>Retina type (c) wide-field unistratified amacrine cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_type_(c)_wide-field_unistratified_amacrine_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_type_(c)_wide-field_unistratified_amacrine_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_photoreceptor_cone_cell">
+		<rdfs:label>Retina photoreceptor cone cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_photoreceptor_cone_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_photoreceptor_cone_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_type_3_cone_bipolar_cell">
+		<rdfs:label>Retina type 3 cone bipolar cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_type_3_cone_bipolar_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_type_3_cone_bipolar_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_type_4_cone_bipolar_cell">
+		<rdfs:label>Retina type 4 cone bipolar cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_type_4_cone_bipolar_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_type_4_cone_bipolar_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_type_5_cone_bipolar_cell">
+		<rdfs:label>Retina type 5 cone bipolar cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_type_5_cone_bipolar_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_type_5_cone_bipolar_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_type_6_cone_bipolar_cell">
+		<rdfs:label>Retina type 6 cone bipolar cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_type_6_cone_bipolar_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_type_6_cone_bipolar_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_type_7_cone_bipolar_cell">
+		<rdfs:label>Retina type 7 cone bipolar cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_type_7_cone_bipolar_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_type_7_cone_bipolar_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AAmbystoma_Resources_for_Model_Amphibians_Database">
+		<rdfs:label>Resource:Ambystoma Resources for Model Amphibians Database</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Ambystoma_Resources_for_Model_Amphibians_Database"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Ambystoma_Resources_for_Model_Amphibians_Database"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AEyeBrowse">
+		<rdfs:label>Resource:EyeBrowse</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:EyeBrowse"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:EyeBrowse"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ADatabase_of_expressed_sequences_or_mRNA">
+		<rdfs:label>Resource:Database of expressed sequences or mRNA</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Database_of_expressed_sequences_or_mRNA"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Database_of_expressed_sequences_or_mRNA"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ANEIBank">
+		<rdfs:label>Resource:NEIBank</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:NEIBank"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:NEIBank"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ARetinal_Degeneration_Rat_Model_Resource">
+		<rdfs:label>Resource:Retinal Degeneration Rat Model Resource</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Retinal_Degeneration_Rat_Model_Resource"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Retinal_Degeneration_Rat_Model_Resource"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AVisiome_Platform">
+		<rdfs:label>Resource:Visiome Platform</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Visiome_Platform"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Visiome_Platform"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ABMAP_cDNA_Resources">
+		<rdfs:label>Resource:BMAP cDNA Resources</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:BMAP_cDNA_Resources"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:BMAP_cDNA_Resources"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AWebvision_-2D_The_Organization_of_the_Retina_and_Visual_System">
+		<rdfs:label>Resource:Webvision - The Organization of the Retina and Visual System</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Webvision_-_The_Organization_of_the_Retina_and_Visual_System"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Webvision_-_The_Organization_of_the_Retina_and_Visual_System"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AWerblin_Lab">
+		<rdfs:label>Resource:Werblin Lab</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Werblin_Lab"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Werblin_Lab"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AEyeWire">
+		<rdfs:label>Resource:EyeWire</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:EyeWire"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:EyeWire"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ANeuronDB">
+		<rdfs:label>Resource:NeuronDB</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:NeuronDB"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:NeuronDB"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ARetina_Project">
+		<rdfs:label>Resource:Retina Project</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Retina_Project"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Retina_Project"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ABisque_database">
+		<rdfs:label>Resource:Bisque database</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Bisque_database"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Bisque_database"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ARetina"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;Keywords">
+		<rdfs:label>Keywords</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Keywords"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Keywords"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;AfferentProjections">
+		<rdfs:label>AfferentProjections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AfferentProjections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AfferentProjections"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ARegional_part_of_nervous_system">
+		<rdfs:label>Regional part of nervous system</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Regional_part_of_nervous_system"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Regional_part_of_nervous_system"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Umlscui">
+		<rdfs:label>Umlscui</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Umlscui"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Umlscui"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMammal">
+		<rdfs:label>Mammal</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Mammal"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Mammal"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AVisual_system">
+		<rdfs:label>Visual system</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Visual_system"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Visual_system"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AEye">
+		<rdfs:label>Eye</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Eye"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Eye"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AOptical_detection">
+		<rdfs:label>Optical detection</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Optical_detection"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Optical_detection"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AEarly_visual_processing">
+		<rdfs:label>Early visual processing</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Early_visual_processing"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Early_visual_processing"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Has_role">
+		<rdfs:label>Has role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_role"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ExternallySourcedDefinition">
+		<rdfs:label>ExternallySourcedDefinition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ExternallySourcedDefinition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ExternallySourcedDefinition"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ASuprachiasmatic_nucleus">
+		<rdfs:label>Suprachiasmatic nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Suprachiasmatic_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Suprachiasmatic_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASuperior_colliculus">
+		<rdfs:label>Superior colliculus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Superior_colliculus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Superior_colliculus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ALateral_geniculate_body">
+		<rdfs:label>Lateral geniculate body</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Lateral_geniculate_body"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Lateral_geniculate_body"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;EfferentProjections">
+		<rdfs:label>EfferentProjections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:EfferentProjections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:EfferentProjections"/>
+	</owl:ObjectProperty>
+	<swivt:Subject rdf:about="&wiki;MeSH">
+		<rdfs:label>MeSH</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;MeSH"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/MeSH"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;DefinitionSource">
+		<rdfs:label>DefinitionSource</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefinitionSource"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefinitionSource"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

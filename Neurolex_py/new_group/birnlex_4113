@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T09:59:02-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3AStratum_oriens">
+		<rdfs:label>Stratum oriens</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Stratum_oriens"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Stratum_oriens"/>
+		<property:BamsID rdf:datatype="http://www.w3.org/2001/XMLSchema#double">7619</property:BamsID>
+		<property:BamsLink rdf:resource="http://brancusi.usc.edu/bkms/brain/show-braing2.php?aidi=7619"/>
+		<property:Comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Need to look whether it is also in the subiculum</property:Comment>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2008-03-24T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Layer that is part of the CA fields of the hippocampus consisting of a narrow relatively cell free layer located deep to the pyramidal cell layer extending through areas CA1, CA2 and CA3. (adapted from Paxinos The rat central nervous system, 2nd ed, Academic Press, San Diego, 1995)</property:Definition>
+		<property:DefinitionSource rdf:resource="&wiki;NeuroNames"/>
+		<property:ExternallySourcedDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The term Stratum oriens is a cytoarchitectural term denoting the layer of the hippocampus that is deep to the Stratum pyramidale and superficial to the alveus (Stephan-75).</property:ExternallySourcedDefinition>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">birnlex_4113</property:Id>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stratum oriens</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-03-09T00:00:00</property:ModifiedDate>
+		<property:NeuronamesLink rdf:resource="http://braininfo.rprc.washington.edu/Scripts/hiercentraldirectory.aspx?ID=139"/>
+		<property:Species rdf:resource="&wiki;Category-3AMammal"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cytoarchitectural fields of hippocampal formation</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">polymorphic layer of the hippocampus</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">oriens layer of the hippocampus</property:Synonym>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ACytoarchitectural_fields_of_hippocampal_formation"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A105556">
+		<rdfs:label>TermImport:105556</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:105556"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:105556"/>
+		<property:About rdf:resource="&wiki;Category-3AStratum_oriens"/>
+	</swivt:Subject>
+	<owl:Class rdf:about="&wiki;Category-3ACA2_stratum_oriens">
+		<rdfs:label>CA2 stratum oriens</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:CA2_stratum_oriens"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:CA2_stratum_oriens"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AStratum_oriens"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACA3_stratum_oriens">
+		<rdfs:label>CA3 stratum oriens</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:CA3_stratum_oriens"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:CA3_stratum_oriens"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AStratum_oriens"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACA1_stratum_oriens">
+		<rdfs:label>CA1 stratum oriens</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:CA1_stratum_oriens"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:CA1_stratum_oriens"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AStratum_oriens"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ACytoarchitectural_fields_of_hippocampal_formation">
+		<rdfs:label>Cytoarchitectural fields of hippocampal formation</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cytoarchitectural_fields_of_hippocampal_formation"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cytoarchitectural_fields_of_hippocampal_formation"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMammal">
+		<rdfs:label>Mammal</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Mammal"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Mammal"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;NeuronamesLink">
+		<rdfs:label>NeuronamesLink</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NeuronamesLink"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NeuronamesLink"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;ExternallySourcedDefinition">
+		<rdfs:label>ExternallySourcedDefinition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ExternallySourcedDefinition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ExternallySourcedDefinition"/>
+	</owl:DatatypeProperty>
+	<swivt:Subject rdf:about="&wiki;NeuroNames">
+		<rdfs:label>NeuroNames</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;NeuroNames"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/NeuroNames"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;DefinitionSource">
+		<rdfs:label>DefinitionSource</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefinitionSource"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefinitionSource"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Comment">
+		<rdfs:label>Comment</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Comment"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Comment"/>
+	</owl:DatatypeProperty>
+	<owl:ObjectProperty rdf:about="&property;BamsLink">
+		<rdfs:label>BamsLink</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:BamsLink"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:BamsLink"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;BamsID">
+		<rdfs:label>BamsID</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:BamsID"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:BamsID"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

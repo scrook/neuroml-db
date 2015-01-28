@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T22:40:38-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3APb-2Deb-2Dno_neuron">
+		<rdfs:label>Pb-eb-no neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Pb-eb-no_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Pb-eb-no_neuron"/>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A small field neuron of the adult central complex that innervates only the protocerebral bridge, the ellipsoid body and the ipsilateral nodulus.</property:Definition>
+		<property:FBBT_Link rdf:resource="http://www.virtualflybrain.org/site/tools/anatomy_finder/index.htm?id=FBbt:00003646"/>
+		<property:FBbt_Id rdf:resource="&wiki;Category-3APb-2Deb-2Dno_neuron"/>
+		<property:Has_role rdf:resource="&wiki;Fly_Anatomy_Ontology"/>
+		<property:Has_synaptic_terminal_in rdf:resource="&wiki;Ellipsoid_body"/>
+		<property:Has_synaptic_terminal_in rdf:resource="&wiki;Protocerebral_bridge"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nlx_147380</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AAdult_central_complex"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pb-eb-no neuron</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-07-31T00:00:00</property:ModifiedDate>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">small field neuron of the central complex</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CCI (pb-eb-no1)</property:Synonym>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ASmall_field_neuron_of_the_central_complex"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:Class rdf:about="&wiki;Category-3ASmall_field_neuron_of_the_central_complex">
+		<rdfs:label>Small field neuron of the central complex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Small_field_neuron_of_the_central_complex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Small_field_neuron_of_the_central_complex"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AAdult_central_complex">
+		<rdfs:label>Adult central complex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Adult_central_complex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Adult_central_complex"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<swivt:Subject rdf:about="&wiki;Protocerebral_bridge">
+		<rdfs:label>Protocerebral bridge</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Protocerebral_bridge"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Protocerebral_bridge"/>
+	</swivt:Subject>
+	<swivt:Subject rdf:about="&wiki;Ellipsoid_body">
+		<rdfs:label>Ellipsoid body</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Ellipsoid_body"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Ellipsoid_body"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;Has_synaptic_terminal_in">
+		<rdfs:label>Has synaptic terminal in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_synaptic_terminal_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_synaptic_terminal_in"/>
+	</owl:ObjectProperty>
+	<swivt:Subject rdf:about="&wiki;Fly_Anatomy_Ontology">
+		<rdfs:label>Fly Anatomy Ontology</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Fly_Anatomy_Ontology"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Fly_Anatomy_Ontology"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;Has_role">
+		<rdfs:label>Has role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_role"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;FBbt_Id">
+		<rdfs:label>FBbt Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:FBbt_Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:FBbt_Id"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;FBBT_Link">
+		<rdfs:label>FBBT Link</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:FBBT_Link"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:FBBT_Link"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

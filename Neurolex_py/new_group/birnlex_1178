@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T23:55:32-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus">
+		<rdfs:label>Dentate gyrus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus"/>
+		<property:Abbrev rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DG</property:Abbrev>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2006-07-15T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Part of the hippocampal formation forming a "V" or "U" shaped structure with the opening bounded by hippocampal area CA3.  It consists of 3 layers from superficial to deep:  molecular, granule cell and polymorphic or hilar layer.</property:Definition>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">birnlex_1178</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AHippocampal_formation"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dentate gyrus</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-03-09T00:00:00</property:ModifiedDate>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional part of brain</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fascia dentata</property:Synonym>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ARegional_part_of_brain"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A108462">
+		<rdfs:label>TermImport:108462</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:108462"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:108462"/>
+		<property:About rdf:resource="&wiki;Category-3ADentate_gyrus"/>
+	</swivt:Subject>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_granule_cell">
+		<rdfs:label>Dentate gyrus granule cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_granule_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_granule_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ADentate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_HICAP_cell">
+		<rdfs:label>Dentate gyrus HICAP cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_HICAP_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_HICAP_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ADentate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_HIPP_cell">
+		<rdfs:label>Dentate gyrus HIPP cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_HIPP_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_HIPP_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ADentate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_IS-2DI_cell">
+		<rdfs:label>Dentate gyrus IS-I cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_IS-I_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_IS-I_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ADentate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_IS-2DII_cell">
+		<rdfs:label>Dentate gyrus IS-II cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_IS-II_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_IS-II_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ADentate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_spiny_CR_cell">
+		<rdfs:label>Dentate gyrus spiny CR cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_spiny_CR_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_spiny_CR_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ADentate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_trilaminar_interneuron">
+		<rdfs:label>Dentate gyrus trilaminar interneuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_trilaminar_interneuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_trilaminar_interneuron"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ADentate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_MOPP_cell">
+		<rdfs:label>Dentate gyrus MOPP cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_MOPP_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_MOPP_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ADentate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_IS-2DIII_cell">
+		<rdfs:label>Dentate gyrus IS-III cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_IS-III_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_IS-III_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ADentate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_basket_cell">
+		<rdfs:label>Dentate gyrus basket cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_basket_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_basket_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ADentate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_hilar_cell">
+		<rdfs:label>Dentate gyrus hilar cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_hilar_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_hilar_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ADentate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_axo-2Daxonic_cell">
+		<rdfs:label>Dentate gyrus axo-axonic cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_axo-axonic_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_axo-axonic_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ADentate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_mossy_cell">
+		<rdfs:label>Dentate gyrus mossy cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_mossy_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_mossy_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ADentate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHilus_of_dentate_gyrus">
+		<rdfs:label>Hilus of dentate gyrus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hilus_of_dentate_gyrus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hilus_of_dentate_gyrus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ADentate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_molecular_layer">
+		<rdfs:label>Dentate gyrus molecular layer</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_molecular_layer"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_molecular_layer"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ADentate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_granule_cell_layer">
+		<rdfs:label>Dentate gyrus granule cell layer</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_granule_cell_layer"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_granule_cell_layer"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ADentate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_polymorphic_layer">
+		<rdfs:label>Dentate gyrus polymorphic layer</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_polymorphic_layer"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_polymorphic_layer"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ADentate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_of_PHT00">
+		<rdfs:label>Hippocampus of PHT00</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_of_PHT00"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_of_PHT00"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3ADentate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampal_formation_of_WHS11">
+		<rdfs:label>Hippocampal formation of WHS11</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampal_formation_of_WHS11"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampal_formation_of_WHS11"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3ADentate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampal_formation_of_GP94">
+		<rdfs:label>Hippocampal formation of GP94</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampal_formation_of_GP94"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampal_formation_of_GP94"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3ADentate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampal_region_of_ABA_2009">
+		<rdfs:label>Hippocampal region of ABA 2009</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampal_region_of_ABA_2009"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampal_region_of_ABA_2009"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3ADentate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampal_formation_of_ABA_2009">
+		<rdfs:label>Hippocampal formation of ABA 2009</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampal_formation_of_ABA_2009"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampal_formation_of_ABA_2009"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3ADentate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_of_ABA_2009">
+		<rdfs:label>Dentate gyrus of ABA 2009</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_of_ABA_2009"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_of_ABA_2009"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3ADentate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_of_RHA11">
+		<rdfs:label>Dentate gyrus of RHA11</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_of_RHA11"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_of_RHA11"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3ADentate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AFunctional_Neurogenesis">
+		<rdfs:label>Resource:Functional Neurogenesis</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Functional_Neurogenesis"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Functional_Neurogenesis"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ADentate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AConfocal_Microscopy_Image_Gallery_-2D_Rat_Brain_Tissue_Sections">
+		<rdfs:label>Resource:Confocal Microscopy Image Gallery - Rat Brain Tissue Sections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Confocal_Microscopy_Image_Gallery_-_Rat_Brain_Tissue_Sections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Confocal_Microscopy_Image_Gallery_-_Rat_Brain_Tissue_Sections"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ADentate_gyrus"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;Keywords">
+		<rdfs:label>Keywords</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Keywords"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Keywords"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;PartiallyOverlapsWith">
+		<rdfs:label>PartiallyOverlapsWith</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PartiallyOverlapsWith"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PartiallyOverlapsWith"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ARegional_part_of_brain">
+		<rdfs:label>Regional part of brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Regional_part_of_brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Regional_part_of_brain"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampal_formation">
+		<rdfs:label>Hippocampal formation</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampal_formation"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampal_formation"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Abbrev">
+		<rdfs:label>Abbrev</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Abbrev"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Abbrev"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T23:05:53-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_cortex">
+		<rdfs:label>Olfactory cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_cortex"/>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2007-08-28T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Aggregate brain region defined as those areas of cerebral cortex receiving direct synaptic input from the olfactory bulb (Price, 1973).  It usually includes the piriform cortex and sometimes other areas.</property:Definition>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">birnlex_2707</property:Id>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Olfactory cortex</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-03-09T00:00:00</property:ModifiedDate>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Aggregate regional part of brain</property:SuperCategory>
+		<property:Umlscui rdf:datatype="http://www.w3.org/2001/XMLSchema#string">C0162434</property:Umlscui>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3AAggregate_regional_part_of_brain"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A110265">
+		<rdfs:label>TermImport:110265</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:110265"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:110265"/>
+		<property:About rdf:resource="&wiki;Category-3AOlfactory_cortex"/>
+	</swivt:Subject>
+	<owl:Class rdf:about="&wiki;Category-3APrepyriform_area">
+		<rdfs:label>Prepyriform area</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Prepyriform_area"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Prepyriform_area"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3AOlfactory_cortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_bulb">
+		<rdfs:label>Olfactory bulb</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_bulb"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_bulb"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3AOlfactory_cortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_bulb">
+		<rdfs:label>Olfactory bulb</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_bulb"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_bulb"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3AOlfactory_cortex"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3AOlfactory_cortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APrimary_olfactory_cortex">
+		<rdfs:label>Primary olfactory cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Primary_olfactory_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Primary_olfactory_cortex"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AOlfactory_cortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_bulb_(main)_tufted_cell_(middle)">
+		<rdfs:label>Olfactory bulb (main) tufted cell (middle)</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_bulb_(main)_tufted_cell_(middle)"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_bulb_(main)_tufted_cell_(middle)"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3AOlfactory_cortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_bulb_(main)_mitral_cell">
+		<rdfs:label>Olfactory bulb (main) mitral cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_bulb_(main)_mitral_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_bulb_(main)_mitral_cell"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3AOlfactory_cortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_cortex_horizontal_cell">
+		<rdfs:label>Olfactory cortex horizontal cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_cortex_horizontal_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_cortex_horizontal_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3AOlfactory_cortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_cortex_superficial_pyramidal_cell">
+		<rdfs:label>Olfactory cortex superficial pyramidal cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_cortex_superficial_pyramidal_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_cortex_superficial_pyramidal_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3AOlfactory_cortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_cortex_multipolar_cell">
+		<rdfs:label>Olfactory cortex multipolar cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_cortex_multipolar_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_cortex_multipolar_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3AOlfactory_cortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_cortex_small_globular_cell">
+		<rdfs:label>Olfactory cortex small globular cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_cortex_small_globular_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_cortex_small_globular_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3AOlfactory_cortex"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;LocationOfAxonArborization">
+		<rdfs:label>LocationOfAxonArborization</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:LocationOfAxonArborization"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:LocationOfAxonArborization"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;EfferentProjections">
+		<rdfs:label>EfferentProjections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:EfferentProjections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:EfferentProjections"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;AfferentProjections">
+		<rdfs:label>AfferentProjections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AfferentProjections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AfferentProjections"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;PartiallyOverlapsWith">
+		<rdfs:label>PartiallyOverlapsWith</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PartiallyOverlapsWith"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PartiallyOverlapsWith"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AAggregate_regional_part_of_brain">
+		<rdfs:label>Aggregate regional part of brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Aggregate_regional_part_of_brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Aggregate_regional_part_of_brain"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Umlscui">
+		<rdfs:label>Umlscui</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Umlscui"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Umlscui"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T08:15:31-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3AGABA">
+		<rdfs:label>GABA</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:GABA"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:GABA"/>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:DefiningCitation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CHEBI_16865</property:DefiningCitation>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An amino fatty acid composed of butanoic acid with the amino substituent at C-4; the chief inhibitory neurotransmitter in the mammalian central nervous system (CHEBI)</property:Definition>
+		<property:Has_role rdf:resource="&wiki;Category-3AInhibitory_neurotransmitter"/>
+		<property:Has_role rdf:resource="&wiki;Category-3ANeurotransmitter"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">sao229636300</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AGABAergic_system"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GABA</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2010-11-09T00:00:00</property:ModifiedDate>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Amino Acid</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gamma-Aminobutyric acid</property:Synonym>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3AAmino_Acid"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASubstantia_nigra_pars_reticulata_principal_cell">
+		<rdfs:label>Substantia nigra pars reticulata principal cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Substantia_nigra_pars_reticulata_principal_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Substantia_nigra_pars_reticulata_principal_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_bulb_(main)_periglomerular_cell">
+		<rdfs:label>Olfactory bulb (main) periglomerular cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_bulb_(main)_periglomerular_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_bulb_(main)_periglomerular_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebellum_Lugaro_cell">
+		<rdfs:label>Cerebellum Lugaro cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellum_Lugaro_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellum_Lugaro_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebellum_Purkinje_cell">
+		<rdfs:label>Cerebellum Purkinje cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellum_Purkinje_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellum_Purkinje_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_amacrine_cell">
+		<rdfs:label>Retina amacrine cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_amacrine_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_amacrine_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeocortex_basket_cell">
+		<rdfs:label>Neocortex basket cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neocortex_basket_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neocortex_basket_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebellum_stellate_cell">
+		<rdfs:label>Cerebellum stellate cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellum_stellate_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellum_stellate_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AGracilis_nucleus_intrinsic_cell">
+		<rdfs:label>Gracilis nucleus intrinsic cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Gracilis_nucleus_intrinsic_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Gracilis_nucleus_intrinsic_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_cortex_horizontal_cell">
+		<rdfs:label>Olfactory cortex horizontal cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_cortex_horizontal_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_cortex_horizontal_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_horizontal_cell">
+		<rdfs:label>Retina horizontal cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_horizontal_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_horizontal_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_tubercle_Islets_of_Calleja_GABA_cell">
+		<rdfs:label>Olfactory tubercle Islets of Calleja GABA cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_tubercle_Islets_of_Calleja_GABA_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_tubercle_Islets_of_Calleja_GABA_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeocortex_Martinotti_cell">
+		<rdfs:label>Neocortex Martinotti cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neocortex_Martinotti_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neocortex_Martinotti_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeostriatum_SOM/NOS_cell">
+		<rdfs:label>Neostriatum SOM/NOS cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neostriatum_SOM/NOS_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neostriatum_SOM/NOS_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AThalamus_geniculate_nucleus_(lateral)_interneuron">
+		<rdfs:label>Thalamus geniculate nucleus (lateral) interneuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Thalamus_geniculate_nucleus_(lateral)_interneuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Thalamus_geniculate_nucleus_(lateral)_interneuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AThalamus_reticular_nucleus_cell">
+		<rdfs:label>Thalamus reticular nucleus cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Thalamus_reticular_nucleus_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Thalamus_reticular_nucleus_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AGlobus_pallidus_principal_cell">
+		<rdfs:label>Globus pallidus principal cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Globus_pallidus_principal_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Globus_pallidus_principal_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_HICAP_cell">
+		<rdfs:label>Dentate gyrus HICAP cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_HICAP_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_HICAP_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_HIPP_cell">
+		<rdfs:label>Dentate gyrus HIPP cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_HIPP_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_HIPP_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_IS-2DI_cell">
+		<rdfs:label>Dentate gyrus IS-I cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_IS-I_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_IS-I_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_IS-2DII_cell">
+		<rdfs:label>Dentate gyrus IS-II cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_IS-II_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_IS-II_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA3_IS-2DI_cell">
+		<rdfs:label>Hippocampus CA3 IS-I cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA3_IS-I_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA3_IS-I_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA3_IS-2DII_cell">
+		<rdfs:label>Hippocampus CA3 IS-II cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA3_IS-II_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA3_IS-II_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA3_basket_cell">
+		<rdfs:label>Hippocampus CA3 basket cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA3_basket_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA3_basket_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_spiny_CR_cell">
+		<rdfs:label>Dentate gyrus spiny CR cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_spiny_CR_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_spiny_CR_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA3_axo-2Daxonic_cell">
+		<rdfs:label>Hippocampus CA3 axo-axonic cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA3_axo-axonic_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA3_axo-axonic_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_cortex_small_globular_cell">
+		<rdfs:label>Olfactory cortex small globular cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_cortex_small_globular_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_cortex_small_globular_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA3_lacunosum_moleculare_neuron">
+		<rdfs:label>Hippocampus CA3 lacunosum moleculare neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA3_lacunosum_moleculare_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA3_lacunosum_moleculare_neuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA3_radiatum_neuron">
+		<rdfs:label>Hippocampus CA3 radiatum neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA3_radiatum_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA3_radiatum_neuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA1_oriens_lacunosum_moleculare_neuron">
+		<rdfs:label>Hippocampus CA1 oriens lacunosum moleculare neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA1_oriens_lacunosum_moleculare_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA1_oriens_lacunosum_moleculare_neuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA2_basket_cell_broad">
+		<rdfs:label>Hippocampus CA2 basket cell broad</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA2_basket_cell_broad"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA2_basket_cell_broad"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA2_basket_cell_narrow">
+		<rdfs:label>Hippocampus CA2 basket cell narrow</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA2_basket_cell_narrow"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA2_basket_cell_narrow"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA2_bistratified_cell_broad">
+		<rdfs:label>Hippocampus CA2 bistratified cell broad</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA2_bistratified_cell_broad"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA2_bistratified_cell_broad"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA2_bistratified_cell_narrow">
+		<rdfs:label>Hippocampus CA2 bistratified cell narrow</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA2_bistratified_cell_narrow"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA2_bistratified_cell_narrow"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_trilaminar_interneuron">
+		<rdfs:label>Dentate gyrus trilaminar interneuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_trilaminar_interneuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_trilaminar_interneuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_MOPP_cell">
+		<rdfs:label>Dentate gyrus MOPP cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_MOPP_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_MOPP_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_IS-2DIII_cell">
+		<rdfs:label>Dentate gyrus IS-III cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_IS-III_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_IS-III_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA3_spiny_CR_cell">
+		<rdfs:label>Hippocampus CA3 spiny CR cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA3_spiny_CR_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA3_spiny_CR_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA3_oriens_lacunosum_moleculare_neuron">
+		<rdfs:label>Hippocampus CA3 oriens lacunosum moleculare neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA3_oriens_lacunosum_moleculare_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA3_oriens_lacunosum_moleculare_neuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA3_oriens_interneuron">
+		<rdfs:label>Hippocampus CA3 oriens interneuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA3_oriens_interneuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA3_oriens_interneuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeostriatum_GABA_interneuron">
+		<rdfs:label>Neostriatum GABA interneuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neostriatum_GABA_interneuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neostriatum_GABA_interneuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA1_basket_cell">
+		<rdfs:label>Hippocampus CA1 basket cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA1_basket_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA1_basket_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASubstantia_nigra_pars_reticulata_interneuron_GABA">
+		<rdfs:label>Substantia nigra pars reticulata interneuron GABA</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Substantia_nigra_pars_reticulata_interneuron_GABA"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Substantia_nigra_pars_reticulata_interneuron_GABA"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACochlear_nucleus_(dorsal)_gabaergic_cell">
+		<rdfs:label>Cochlear nucleus (dorsal) gabaergic cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cochlear_nucleus_(dorsal)_gabaergic_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cochlear_nucleus_(dorsal)_gabaergic_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeostriatum_gaba/parvalbumin_interneuron">
+		<rdfs:label>Neostriatum gaba/parvalbumin interneuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neostriatum_gaba/parvalbumin_interneuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neostriatum_gaba/parvalbumin_interneuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_hilar_cell">
+		<rdfs:label>Dentate gyrus hilar cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_hilar_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_hilar_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_bulb_(accessory)_granule_cell">
+		<rdfs:label>Olfactory bulb (accessory) granule cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_bulb_(accessory)_granule_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_bulb_(accessory)_granule_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_bulb_(accessory)_glomerular_layer_cell">
+		<rdfs:label>Olfactory bulb (accessory) glomerular layer cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_bulb_(accessory)_glomerular_layer_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_bulb_(accessory)_glomerular_layer_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_bulb_(main)_granule_cell">
+		<rdfs:label>Olfactory bulb (main) granule cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_bulb_(main)_granule_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_bulb_(main)_granule_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA1_ivy_neuron">
+		<rdfs:label>Hippocampus CA1 ivy neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA1_ivy_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA1_ivy_neuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_bulb_(main)_Blanes_cell">
+		<rdfs:label>Olfactory bulb (main) Blanes cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_bulb_(main)_Blanes_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_bulb_(main)_Blanes_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHypoglossal_nucleus_GABA_neuron">
+		<rdfs:label>Hypoglossal nucleus GABA neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hypoglossal_nucleus_GABA_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hypoglossal_nucleus_GABA_neuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AThalamus_medial_geniculate_nucleus_interneuron_small">
+		<rdfs:label>Thalamus medial geniculate nucleus interneuron small</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Thalamus_medial_geniculate_nucleus_interneuron_small"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Thalamus_medial_geniculate_nucleus_interneuron_small"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AColliculus_Inferior_GABAergic_Principal_Cell">
+		<rdfs:label>Colliculus Inferior GABAergic Principal Cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Colliculus_Inferior_GABAergic_Principal_Cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Colliculus_Inferior_GABAergic_Principal_Cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_axo-2Daxonic_cell">
+		<rdfs:label>Dentate gyrus axo-axonic cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_axo-axonic_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_axo-axonic_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ATuberomammillary_nucleus_large_histamine_neuron">
+		<rdfs:label>Tuberomammillary nucleus large histamine neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Tuberomammillary_nucleus_large_histamine_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Tuberomammillary_nucleus_large_histamine_neuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_bulb_(main)_adult-2Dborn_granule_cell">
+		<rdfs:label>Olfactory bulb (main) adult-born granule cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_bulb_(main)_adult-born_granule_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_bulb_(main)_adult-born_granule_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeostriatum_direct_pathway_spiny_neuron">
+		<rdfs:label>Neostriatum direct pathway spiny neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neostriatum_direct_pathway_spiny_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neostriatum_direct_pathway_spiny_neuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeostriatum_indirect_pathway_spiny_neuron">
+		<rdfs:label>Neostriatum indirect pathway spiny neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neostriatum_indirect_pathway_spiny_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neostriatum_indirect_pathway_spiny_neuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAntennal_lobe_(Honey_bee)_interneuron">
+		<rdfs:label>Antennal lobe (Honey bee) interneuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Antennal_lobe_(Honey_bee)_interneuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Antennal_lobe_(Honey_bee)_interneuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ATaste_bud_type_3_cell">
+		<rdfs:label>Taste bud type 3 cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Taste_bud_type_3_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Taste_bud_type_3_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAntennal_lobe_(Manduca)_interneuron">
+		<rdfs:label>Antennal lobe (Manduca) interneuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Antennal_lobe_(Manduca)_interneuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Antennal_lobe_(Manduca)_interneuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAmygdala_lateral_central_nucleus_medium_spiny_neuron">
+		<rdfs:label>Amygdala lateral central nucleus medium spiny neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Amygdala_lateral_central_nucleus_medium_spiny_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Amygdala_lateral_central_nucleus_medium_spiny_neuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebellum_basket_cell">
+		<rdfs:label>Cerebellum basket cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellum_basket_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellum_basket_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebellum_Golgi_cell">
+		<rdfs:label>Cerebellum Golgi cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellum_Golgi_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellum_Golgi_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAmygdala_basolateral_nuclear_complex_nonpyramidal_PV_basket_cell">
+		<rdfs:label>Amygdala basolateral nuclear complex nonpyramidal PV basket cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Amygdala_basolateral_nuclear_complex_nonpyramidal_PV_basket_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Amygdala_basolateral_nuclear_complex_nonpyramidal_PV_basket_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAmygdala_basolateral_nuclear_complex_nonpyramidal_PV_chandelier_cell">
+		<rdfs:label>Amygdala basolateral nuclear complex nonpyramidal PV chandelier cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Amygdala_basolateral_nuclear_complex_nonpyramidal_PV_chandelier_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Amygdala_basolateral_nuclear_complex_nonpyramidal_PV_chandelier_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAmygdala_basolateral_nuclear_complex_nonpyramidal_SOM_neuron">
+		<rdfs:label>Amygdala basolateral nuclear complex nonpyramidal SOM neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Amygdala_basolateral_nuclear_complex_nonpyramidal_SOM_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Amygdala_basolateral_nuclear_complex_nonpyramidal_SOM_neuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAmygdala_intercalated_nuclei_small_spiny_neuron">
+		<rdfs:label>Amygdala intercalated nuclei small spiny neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Amygdala_intercalated_nuclei_small_spiny_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Amygdala_intercalated_nuclei_small_spiny_neuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebellum_Lugaro_cell">
+		<rdfs:label>Cerebellum Lugaro cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellum_Lugaro_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellum_Lugaro_cell"/>
+		<property:MolecularConstituents rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_amacrine_cell">
+		<rdfs:label>Retina amacrine cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_amacrine_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_amacrine_cell"/>
+		<property:NeurotransmitterReceptors rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeocortex_Martinotti_cell">
+		<rdfs:label>Neocortex Martinotti cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neocortex_Martinotti_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neocortex_Martinotti_cell"/>
+		<property:NeurotransmitterReceptors rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_bulb_(accessory)_mitral_cell">
+		<rdfs:label>Olfactory bulb (accessory) mitral cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_bulb_(accessory)_mitral_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_bulb_(accessory)_mitral_cell"/>
+		<property:NeurotransmitterReceptors rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AGABA_Receptor">
+		<rdfs:label>GABA Receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:GABA_Receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:GABA_Receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AGABRA2">
+		<rdfs:label>GABRA2</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:GABRA2"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:GABRA2"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AGABRA1">
+		<rdfs:label>GABRA1</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:GABRA1"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:GABRA1"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AGABRA3">
+		<rdfs:label>GABRA3</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:GABRA3"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:GABRA3"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AGABRA4">
+		<rdfs:label>GABRA4</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:GABRA4"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:GABRA4"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AGABRA5">
+		<rdfs:label>GABRA5</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:GABRA5"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:GABRA5"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AGABRA6">
+		<rdfs:label>GABRA6</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:GABRA6"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:GABRA6"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AGABRB1">
+		<rdfs:label>GABRB1</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:GABRB1"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:GABRB1"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AGABRB2">
+		<rdfs:label>GABRB2</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:GABRB2"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:GABRB2"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AGABRB3">
+		<rdfs:label>GABRB3</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:GABRB3"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:GABRB3"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AGABBR1">
+		<rdfs:label>GABBR1</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:GABBR1"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:GABBR1"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AUniversity_of_Pittsburgh_Conte_Center_for_the_Neuroscience_of_Mental_Disorders">
+		<rdfs:label>Resource:University of Pittsburgh Conte Center for the Neuroscience of Mental Disorders</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:University_of_Pittsburgh_Conte_Center_for_the_Neuroscience_of_Mental_Disorders"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:University_of_Pittsburgh_Conte_Center_for_the_Neuroscience_of_Mental_Disorders"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AGABA"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;Keywords">
+		<rdfs:label>Keywords</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Keywords"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Keywords"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;RelatedTo">
+		<rdfs:label>RelatedTo</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:RelatedTo"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:RelatedTo"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;NeurotransmitterReceptors">
+		<rdfs:label>NeurotransmitterReceptors</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NeurotransmitterReceptors"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NeurotransmitterReceptors"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;MolecularConstituents">
+		<rdfs:label>MolecularConstituents</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:MolecularConstituents"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:MolecularConstituents"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;Neurotransmitter">
+		<rdfs:label>Neurotransmitter</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Neurotransmitter"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Neurotransmitter"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AAmino_Acid">
+		<rdfs:label>Amino Acid</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Amino_Acid"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Amino_Acid"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AGABAergic_system">
+		<rdfs:label>GABAergic system</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:GABAergic_system"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:GABAergic_system"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ANeurotransmitter">
+		<rdfs:label>Neurotransmitter</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neurotransmitter"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neurotransmitter"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AInhibitory_neurotransmitter">
+		<rdfs:label>Inhibitory neurotransmitter</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Inhibitory_neurotransmitter"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Inhibitory_neurotransmitter"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Has_role">
+		<rdfs:label>Has role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_role"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;DefiningCitation">
+		<rdfs:label>DefiningCitation</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefiningCitation"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefiningCitation"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

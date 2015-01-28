@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T09:58:12-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3AIslands_of_Calleja_of_olfactory_tubercle">
+		<rdfs:label>Islands of Calleja of olfactory tubercle</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Islands_of_Calleja_of_olfactory_tubercle"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Islands_of_Calleja_of_olfactory_tubercle"/>
+		<property:Authors rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Meyer G</property:Authors>
+		<property:Authors rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gonzalez-Hernandez T</property:Authors>
+		<property:Authors rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Carrillo-Padilla F</property:Authors>
+		<property:Authors rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ferres-Torres R.</property:Authors>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2006-10-05T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">graph position temporary</property:CurationStatus>
+		<property:CytoDefiningCriteria rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Aggregations of granule cells in the olfactory tubercle.</property:CytoDefiningCriteria>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Part of olfactory tubercle defined by dense aggregations of granule cells</property:Definition>
+		<property:EditorialNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string">According to Millhouse (1987), the term "Islands of Calleja" has not been applied consistently and there is confusion about the features to which Calleja was referring in his 1893 paper.  The term has come to be identified with the clusters of granule cells found in the olfactory tubercle but the original paper may have been pointing to the dense cell layer. He recommended that it be dropped (Millhouse, J Comp Neurol., 265: 1-24, 1987).
+
+Meyer et al. prefer that only those aggregates within the olfactory tubercle be called Islands of Calleja and that the term "clusters of granule cells" be adopted elsewhere.</property:EditorialNote>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nlx_50741</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AOlfactory_tubercle"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AIslands_of_Calleja"/>
+		<property:JournalNumber rdf:resource="&wiki;3"/>
+		<property:JournalVolume rdf:resource="&wiki;284"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Islands of Calleja of olfactory tubercle</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-04-27T00:00:00</property:ModifiedDate>
+		<property:NeuronamesLink rdf:resource="http://braininfo.rprc.washington.edu/Scripts/hiercentraldirectory.aspx?ID=258"/>
+		<property:PMID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2474005</property:PMID>
+		<property:Pages rdf:datatype="http://www.w3.org/2001/XMLSchema#string">405-428</property:Pages>
+		<property:ParcellationScheme rdf:resource="&wiki;Category-3AMeyer_et_al_1989"/>
+		<property:PublicationDate rdf:resource="&wiki;1989"/>
+		<property:PublicationLink rdf:resource="http://www.ncbi.nlm.nih.gov/pubmed/2474005"/>
+		<property:PublicationName rdf:resource="&wiki;Journal_of_Comparative_Neurology"/>
+		<property:RetrievedOn rdf:resource="&wiki;Pub_Med"/>
+		<property:Species rdf:resource="&wiki;Category-3AMammal"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional part of brain</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Islets of Calleja</property:Synonym>
+		<property:Title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Aggregations of granule cells in the basal forebrain (islands of Calleja): Golgi and cytoarchitectonic study in different mammals</property:Title>
+		<property:Title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">including man.</property:Title>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ARegional_part_of_brain"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A109416">
+		<rdfs:label>TermImport:109416</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:109416"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:109416"/>
+		<property:About rdf:resource="&wiki;Category-3AIslands_of_Calleja_of_olfactory_tubercle"/>
+	</swivt:Subject>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ARegional_part_of_brain">
+		<rdfs:label>Regional part of brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Regional_part_of_brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Regional_part_of_brain"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Title">
+		<rdfs:label>Title</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Title"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Title"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMammal">
+		<rdfs:label>Mammal</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Mammal"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Mammal"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<swivt:Subject rdf:about="&wiki;Pub_Med">
+		<rdfs:label>Pub Med</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Pub_Med"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Pub_Med"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;RetrievedOn">
+		<rdfs:label>RetrievedOn</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:RetrievedOn"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:RetrievedOn"/>
+	</owl:ObjectProperty>
+	<swivt:Subject rdf:about="&wiki;Journal_of_Comparative_Neurology">
+		<rdfs:label>Journal of Comparative Neurology</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Journal_of_Comparative_Neurology"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Journal_of_Comparative_Neurology"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;PublicationName">
+		<rdfs:label>PublicationName</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PublicationName"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PublicationName"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;PublicationLink">
+		<rdfs:label>PublicationLink</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PublicationLink"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PublicationLink"/>
+	</owl:ObjectProperty>
+	<swivt:Subject rdf:about="&wiki;1989">
+		<rdfs:label>1989</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;1989"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/1989"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;PublicationDate">
+		<rdfs:label>PublicationDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PublicationDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PublicationDate"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMeyer_et_al_1989">
+		<rdfs:label>Meyer et al 1989</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Meyer_et_al_1989"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Meyer_et_al_1989"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;ParcellationScheme">
+		<rdfs:label>ParcellationScheme</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ParcellationScheme"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ParcellationScheme"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Pages">
+		<rdfs:label>Pages</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Pages"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Pages"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;PMID">
+		<rdfs:label>PMID</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PMID"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PMID"/>
+	</owl:DatatypeProperty>
+	<owl:ObjectProperty rdf:about="&property;NeuronamesLink">
+		<rdfs:label>NeuronamesLink</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NeuronamesLink"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NeuronamesLink"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<swivt:Subject rdf:about="&wiki;284">
+		<rdfs:label>284</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;284"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/284"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;JournalVolume">
+		<rdfs:label>JournalVolume</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:JournalVolume"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:JournalVolume"/>
+	</owl:ObjectProperty>
+	<swivt:Subject rdf:about="&wiki;3">
+		<rdfs:label>3</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;3"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/3"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;JournalNumber">
+		<rdfs:label>JournalNumber</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:JournalNumber"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:JournalNumber"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AIslands_of_Calleja">
+		<rdfs:label>Islands of Calleja</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Islands_of_Calleja"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Islands_of_Calleja"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_tubercle">
+		<rdfs:label>Olfactory tubercle</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_tubercle"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_tubercle"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;EditorialNote">
+		<rdfs:label>EditorialNote</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:EditorialNote"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:EditorialNote"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CytoDefiningCriteria">
+		<rdfs:label>CytoDefiningCriteria</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CytoDefiningCriteria"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CytoDefiningCriteria"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Authors">
+		<rdfs:label>Authors</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Authors"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Authors"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T22:44:20-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3AHypoglossal_nucleus_GABA_neuron">
+		<rdfs:label>Hypoglossal nucleus GABA neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hypoglossal_nucleus_GABA_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hypoglossal_nucleus_GABA_neuron"/>
+		<property:Authors rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Takasu N</property:Authors>
+		<property:Authors rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nakatani T</property:Authors>
+		<property:Authors rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Arikuni T</property:Authors>
+		<property:Authors rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kimura H.</property:Authors>
+		<property:CellSomaShape rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Category:Fusiform Soma Quality </property:CellSomaShape>
+		<property:CellSomaSize rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Macaque: 14.6 +/- 2.5 um and minor diameter 8.9 +/- 1.4 um (n= 150)</property:CellSomaSize>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:DefiningCitation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Takasu et al. J Comp Neurol. 1987 Sep 1;263(1):42-53.</property:DefiningCitation>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neuron in hypoglossal nucleus characterized by a small spindle shaped or fusiform soma</property:Definition>
+		<property:Has_role rdf:resource="&wiki;Category-3AIntrinsic_neuron_role"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nlx_90278</property:Id>
+		<property:JournalNumber rdf:resource="&wiki;1"/>
+		<property:JournalVolume rdf:resource="&wiki;263"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hypoglossal nucleus GABA neuron</property:Label>
+		<property:Located_in rdf:resource="&wiki;Category-3AHypoglossal_nucleus"/>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-03-09T00:00:00</property:ModifiedDate>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+		<property:PMID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3667970</property:PMID>
+		<property:Pages rdf:datatype="http://www.w3.org/2001/XMLSchema#string">42-53</property:Pages>
+		<property:PublicationDate rdf:resource="&wiki;1987"/>
+		<property:PublicationName rdf:resource="&wiki;Journal_of_Comparative_Neurology"/>
+		<property:RetrievedOn rdf:resource="&wiki;Pub_Med"/>
+		<property:Species rdf:resource="&wiki;Category-3AMacaca_fuscata_fuscata"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neuron</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hypoglossal GABA neuron</property:Synonym>
+		<property:Title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Immunocytochemical localization of gamma-aminobutyric acid in the hypoglossal nucleus of the macaque monkey</property:Title>
+		<property:Title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Macaca fuscata: a light and electron microscopic study.</property:Title>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ANeuron"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A104239">
+		<rdfs:label>TermImport:104239</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:104239"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:104239"/>
+		<property:About rdf:resource="&wiki;Category-3AHypoglossal_nucleus_GABA_neuron"/>
+	</swivt:Subject>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ANeuron">
+		<rdfs:label>Neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neuron"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Title">
+		<rdfs:label>Title</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Title"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Title"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMacaca_fuscata_fuscata">
+		<rdfs:label>Macaca fuscata fuscata</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Macaca_fuscata_fuscata"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Macaca_fuscata_fuscata"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<swivt:Subject rdf:about="&wiki;Pub_Med">
+		<rdfs:label>Pub Med</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Pub_Med"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Pub_Med"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;RetrievedOn">
+		<rdfs:label>RetrievedOn</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:RetrievedOn"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:RetrievedOn"/>
+	</owl:ObjectProperty>
+	<swivt:Subject rdf:about="&wiki;Journal_of_Comparative_Neurology">
+		<rdfs:label>Journal of Comparative Neurology</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Journal_of_Comparative_Neurology"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Journal_of_Comparative_Neurology"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;PublicationName">
+		<rdfs:label>PublicationName</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PublicationName"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PublicationName"/>
+	</owl:ObjectProperty>
+	<swivt:Subject rdf:about="&wiki;1987">
+		<rdfs:label>1987</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;1987"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/1987"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;PublicationDate">
+		<rdfs:label>PublicationDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PublicationDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PublicationDate"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Pages">
+		<rdfs:label>Pages</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Pages"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Pages"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;PMID">
+		<rdfs:label>PMID</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PMID"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PMID"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AGABA">
+		<rdfs:label>GABA</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:GABA"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:GABA"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Neurotransmitter">
+		<rdfs:label>Neurotransmitter</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Neurotransmitter"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Neurotransmitter"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AHypoglossal_nucleus">
+		<rdfs:label>Hypoglossal nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hypoglossal_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hypoglossal_nucleus"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<swivt:Subject rdf:about="&wiki;263">
+		<rdfs:label>263</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;263"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/263"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;JournalVolume">
+		<rdfs:label>JournalVolume</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:JournalVolume"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:JournalVolume"/>
+	</owl:ObjectProperty>
+	<swivt:Subject rdf:about="&wiki;1">
+		<rdfs:label>1</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;1"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/1"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;JournalNumber">
+		<rdfs:label>JournalNumber</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:JournalNumber"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:JournalNumber"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AIntrinsic_neuron_role">
+		<rdfs:label>Intrinsic neuron role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Intrinsic_neuron_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Intrinsic_neuron_role"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Has_role">
+		<rdfs:label>Has role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_role"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;DefiningCitation">
+		<rdfs:label>DefiningCitation</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefiningCitation"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefiningCitation"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CellSomaSize">
+		<rdfs:label>CellSomaSize</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CellSomaSize"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CellSomaSize"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CellSomaShape">
+		<rdfs:label>CellSomaShape</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CellSomaShape"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CellSomaShape"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Authors">
+		<rdfs:label>Authors</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Authors"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Authors"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T23:55:59-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ASubiculum">
+		<rdfs:label>Subiculum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Subiculum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Subiculum"/>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2006-07-15T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Part of the hippocampal formation that is bounded by the entorhinal cortex and area CA1.  It is characterized on the CA1 border by an abrupt widening of the pyramidal cell layer. A molecular layer is present that is continuous with that of CA1, although the stratum radiatum is no longer present. The stratum oriens is also not present.  adapted from Paxinos, G. The rat central nervous system, 2nd ed, Academic Press, San Diego, 1995, pg. 468)</property:Definition>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">birnlex_1305</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ASubicular_complex"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subiculum</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-03-23T00:00:00</property:ModifiedDate>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional part of brain</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subicular cortex</property:Synonym>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ARegional_part_of_brain"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A111667">
+		<rdfs:label>TermImport:111667</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:111667"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:111667"/>
+		<property:About rdf:resource="&wiki;Category-3ASubiculum"/>
+	</swivt:Subject>
+	<owl:Class rdf:about="&wiki;Category-3ASubiculum_pyramidal_cell">
+		<rdfs:label>Subiculum pyramidal cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Subiculum_pyramidal_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Subiculum_pyramidal_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ASubiculum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMedial_mammillary_nucleus">
+		<rdfs:label>Medial mammillary nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Medial_mammillary_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Medial_mammillary_nucleus"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3ASubiculum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APostsubiculum">
+		<rdfs:label>Postsubiculum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Postsubiculum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Postsubiculum"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3ASubiculum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_trilaminar_interneuron">
+		<rdfs:label>Dentate gyrus trilaminar interneuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_trilaminar_interneuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_trilaminar_interneuron"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ASubiculum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASubiculum_molecular_layer">
+		<rdfs:label>Subiculum molecular layer</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Subiculum_molecular_layer"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Subiculum_molecular_layer"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ASubiculum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASubiculum_pyramidal_cell_layer">
+		<rdfs:label>Subiculum pyramidal cell layer</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Subiculum_pyramidal_cell_layer"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Subiculum_pyramidal_cell_layer"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ASubiculum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASubiculum_alveus">
+		<rdfs:label>Subiculum alveus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Subiculum_alveus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Subiculum_alveus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ASubiculum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AVentral_subiculum">
+		<rdfs:label>Ventral subiculum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Ventral_subiculum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Ventral_subiculum"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ASubiculum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_of_PHT00">
+		<rdfs:label>Hippocampus of PHT00</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_of_PHT00"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_of_PHT00"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3ASubiculum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASubiculum_of_ABA_2009">
+		<rdfs:label>Subiculum of ABA 2009</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Subiculum_of_ABA_2009"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Subiculum_of_ABA_2009"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3ASubiculum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASubiculum_of_RHA11">
+		<rdfs:label>Subiculum of RHA11</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Subiculum_of_RHA11"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Subiculum_of_RHA11"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3ASubiculum"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;PartiallyOverlapsWith">
+		<rdfs:label>PartiallyOverlapsWith</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PartiallyOverlapsWith"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PartiallyOverlapsWith"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;LocationOfAxonArborization">
+		<rdfs:label>LocationOfAxonArborization</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:LocationOfAxonArborization"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:LocationOfAxonArborization"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;AfferentProjections">
+		<rdfs:label>AfferentProjections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AfferentProjections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AfferentProjections"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ARegional_part_of_brain">
+		<rdfs:label>Regional part of brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Regional_part_of_brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Regional_part_of_brain"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ASubicular_complex">
+		<rdfs:label>Subicular complex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Subicular_complex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Subicular_complex"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

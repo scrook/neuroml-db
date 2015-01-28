@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T23:05:25-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ADorsal_root_ganglion">
+		<rdfs:label>Dorsal root ganglion</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dorsal_root_ganglion"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dorsal_root_ganglion"/>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2007-08-28T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">* Sensory ganglia located on the dorsal spinal roots within the vertebral column. The spinal ganglion cells are pseudounipolar. The single primary branch bifurcates sending a peripheral process to carry sensory information from the periphery and a central branch which relays that information to the spinal cord or brain. (MSH) * ganglion found on the posterior root of each spinal nerve, composed of the unipolar nerve cell bodies of the sensory neurons of the nerve. (CSP)</property:Definition>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">birnlex_2596</property:Id>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dorsal root ganglion</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-02-25T00:00:00</property:ModifiedDate>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Spinal ganglion part of peripheral nervous system</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DRG</property:Synonym>
+		<property:Umlscui rdf:datatype="http://www.w3.org/2001/XMLSchema#string">C0017070</property:Umlscui>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ASpinal_ganglion_part_of_peripheral_nervous_system"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADRG_pain_cell">
+		<rdfs:label>DRG pain cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:DRG_pain_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:DRG_pain_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ADorsal_root_ganglion"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADRG_hair_follicle_cell">
+		<rdfs:label>DRG hair follicle cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:DRG_hair_follicle_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:DRG_hair_follicle_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ADorsal_root_ganglion"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADRG_IA_cell">
+		<rdfs:label>DRG IA cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:DRG_IA_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:DRG_IA_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ADorsal_root_ganglion"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADRG_II_cell">
+		<rdfs:label>DRG II cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:DRG_II_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:DRG_II_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ADorsal_root_ganglion"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADorsal_root_ganglion_cell">
+		<rdfs:label>Dorsal root ganglion cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dorsal_root_ganglion_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dorsal_root_ganglion_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ADorsal_root_ganglion"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADRG_Meissner-27s_corpuscle_cell">
+		<rdfs:label>DRG Meissner's corpuscle cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:DRG_Meissner%27s_corpuscle_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:DRG_Meissner%27s_corpuscle_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ADorsal_root_ganglion"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADRG_Merckel_disc_cell">
+		<rdfs:label>DRG Merckel disc cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:DRG_Merckel_disc_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:DRG_Merckel_disc_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ADorsal_root_ganglion"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADRG_Pacinian_corpuscle_cell">
+		<rdfs:label>DRG Pacinian corpuscle cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:DRG_Pacinian_corpuscle_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:DRG_Pacinian_corpuscle_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ADorsal_root_ganglion"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADRG_temperature_cell">
+		<rdfs:label>DRG temperature cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:DRG_temperature_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:DRG_temperature_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ADorsal_root_ganglion"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADRG_IB_cell">
+		<rdfs:label>DRG IB cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:DRG_IB_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:DRG_IB_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ADorsal_root_ganglion"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ANervous_Tissue_Color_Images">
+		<rdfs:label>Resource:Nervous Tissue Color Images</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Nervous_Tissue_Color_Images"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Nervous_Tissue_Color_Images"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ADorsal_root_ganglion"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ANDRI_Dorsal_Root_Ganglia_Program">
+		<rdfs:label>Resource:NDRI Dorsal Root Ganglia Program</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:NDRI_Dorsal_Root_Ganglia_Program"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:NDRI_Dorsal_Root_Ganglia_Program"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ADorsal_root_ganglion"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANucleus_centrobasalis">
+		<rdfs:label>Nucleus centrobasalis</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Nucleus_centrobasalis"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Nucleus_centrobasalis"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3ADorsal_root_ganglion"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;AfferentProjections">
+		<rdfs:label>AfferentProjections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AfferentProjections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AfferentProjections"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;Keywords">
+		<rdfs:label>Keywords</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Keywords"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Keywords"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_ganglion_part_of_peripheral_nervous_system">
+		<rdfs:label>Spinal ganglion part of peripheral nervous system</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_ganglion_part_of_peripheral_nervous_system"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_ganglion_part_of_peripheral_nervous_system"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Umlscui">
+		<rdfs:label>Umlscui</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Umlscui"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Umlscui"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

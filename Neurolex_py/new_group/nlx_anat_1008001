@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T09:57:32-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ACA2_alveus">
+		<rdfs:label>CA2 alveus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:CA2_alveus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:CA2_alveus"/>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Part of alveus lying in area CA2 deep to CA2 stratum oriens continuous with the alveus of CA1</property:Definition>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nlx_anat_1008001</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AAlveus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACA2"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CA2 alveus</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-03-09T00:00:00</property:ModifiedDate>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cytoarchitectural fields of hippocampal formation</property:SuperCategory>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ACytoarchitectural_fields_of_hippocampal_formation"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA2_pyramidal_neuron">
+		<rdfs:label>Hippocampus CA2 pyramidal neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA2_pyramidal_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA2_pyramidal_neuron"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA2_alveus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA2_basket_cell_broad">
+		<rdfs:label>Hippocampus CA2 basket cell broad</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA2_basket_cell_broad"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA2_basket_cell_broad"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA2_alveus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA2_basket_cell_narrow">
+		<rdfs:label>Hippocampus CA2 basket cell narrow</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA2_basket_cell_narrow"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA2_basket_cell_narrow"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA2_alveus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA2_bistratified_cell_broad">
+		<rdfs:label>Hippocampus CA2 bistratified cell broad</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA2_bistratified_cell_broad"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA2_bistratified_cell_broad"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA2_alveus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA2_bistratified_cell_narrow">
+		<rdfs:label>Hippocampus CA2 bistratified cell narrow</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA2_bistratified_cell_narrow"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA2_bistratified_cell_narrow"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA2_alveus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA2_basket_cell_narrow">
+		<rdfs:label>Hippocampus CA2 basket cell narrow</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA2_basket_cell_narrow"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA2_basket_cell_narrow"/>
+		<property:DendriteLocation rdf:resource="&wiki;Category-3ACA2_alveus"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA2_alveus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA2_bistratified_cell_broad">
+		<rdfs:label>Hippocampus CA2 bistratified cell broad</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA2_bistratified_cell_broad"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA2_bistratified_cell_broad"/>
+		<property:DendriteLocation rdf:resource="&wiki;Category-3ACA2_alveus"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA2_alveus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA2_bistratified_cell_narrow">
+		<rdfs:label>Hippocampus CA2 bistratified cell narrow</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA2_bistratified_cell_narrow"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA2_bistratified_cell_narrow"/>
+		<property:DendriteLocation rdf:resource="&wiki;Category-3ACA2_alveus"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA2_alveus"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;DendriteLocation">
+		<rdfs:label>DendriteLocation</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DendriteLocation"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DendriteLocation"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;LocationOfAxonArborization">
+		<rdfs:label>LocationOfAxonArborization</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:LocationOfAxonArborization"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:LocationOfAxonArborization"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ACytoarchitectural_fields_of_hippocampal_formation">
+		<rdfs:label>Cytoarchitectural fields of hippocampal formation</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cytoarchitectural_fields_of_hippocampal_formation"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cytoarchitectural_fields_of_hippocampal_formation"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ACA2">
+		<rdfs:label>CA2</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:CA2"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:CA2"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAlveus">
+		<rdfs:label>Alveus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Alveus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Alveus"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

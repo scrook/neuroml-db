@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T23:06:28-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3AHypothalamus">
+		<rdfs:label>Hypothalamus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hypothalamus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hypothalamus"/>
+		<property:Abbrev rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hy</property:Abbrev>
+		<property:AbbrevSource rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NeuroNames_abbrevSource</property:AbbrevSource>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2006-07-15T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ventral part of the diencephalon extending from the region of the optic chiasm to the caudal border of the mammillary bodies and forming the inferior and lateral walls of the third ventricle.</property:Definition>
+		<property:DefinitionSource rdf:resource="&wiki;MeSH"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">birnlex_734</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ADiencephalon"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hypothalamus</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-03-13T00:00:00</property:ModifiedDate>
+		<property:NeuronamesLink rdf:resource="http://braininfo.rprc.washington.edu/Scripts/hiercentraldirectory.aspx?ID=275"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional part of brain</property:SuperCategory>
+		<property:Umlscui rdf:datatype="http://www.w3.org/2001/XMLSchema#string">C0020663</property:Umlscui>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ARegional_part_of_brain"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A104644">
+		<rdfs:label>TermImport:104644</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:104644"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:104644"/>
+		<property:About rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</swivt:Subject>
+	<owl:Class rdf:about="&wiki;Category-3AVentral_tegmental_area">
+		<rdfs:label>Ventral tegmental area</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Ventral_tegmental_area"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Ventral_tegmental_area"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARexed_lamina_X">
+		<rdfs:label>Rexed lamina X</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Rexed_lamina_X"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Rexed_lamina_X"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APostcommissural_fornix">
+		<rdfs:label>Postcommissural fornix</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Postcommissural_fornix"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Postcommissural_fornix"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMedial_forebrain_bundle">
+		<rdfs:label>Medial forebrain bundle</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Medial_forebrain_bundle"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Medial_forebrain_bundle"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADorsal_longitudinal_fasciculus_of_hypothalamus">
+		<rdfs:label>Dorsal longitudinal fasciculus of hypothalamus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dorsal_longitudinal_fasciculus_of_hypothalamus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dorsal_longitudinal_fasciculus_of_hypothalamus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADorsal_hypothalamic_area">
+		<rdfs:label>Dorsal hypothalamic area</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dorsal_hypothalamic_area"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dorsal_hypothalamic_area"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APosterior_hypothalamic_region">
+		<rdfs:label>Posterior hypothalamic region</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Posterior_hypothalamic_region"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Posterior_hypothalamic_region"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ALateral_hypothalamic_area">
+		<rdfs:label>Lateral hypothalamic area</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Lateral_hypothalamic_area"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Lateral_hypothalamic_area"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AIntermediate_hypothalamic_region">
+		<rdfs:label>Intermediate hypothalamic region</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Intermediate_hypothalamic_region"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Intermediate_hypothalamic_region"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AParaventricular_hypothalamic_region">
+		<rdfs:label>Paraventricular hypothalamic region</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Paraventricular_hypothalamic_region"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Paraventricular_hypothalamic_region"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AVentromedial_hypothalamic_region">
+		<rdfs:label>Ventromedial hypothalamic region</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Ventromedial_hypothalamic_region"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Ventromedial_hypothalamic_region"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAnterior_hypothalamus">
+		<rdfs:label>Anterior hypothalamus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Anterior_hypothalamus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Anterior_hypothalamus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ABasal_hypothalamus">
+		<rdfs:label>Basal hypothalamus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Basal_hypothalamus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Basal_hypothalamus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACaudal_hypothalamus">
+		<rdfs:label>Caudal hypothalamus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Caudal_hypothalamus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Caudal_hypothalamus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADorsal_hypothalamus">
+		<rdfs:label>Dorsal hypothalamus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dorsal_hypothalamus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dorsal_hypothalamus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ALateral_hypothalamic_region">
+		<rdfs:label>Lateral hypothalamic region</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Lateral_hypothalamic_region"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Lateral_hypothalamic_region"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMedial_basal_hypothalamus">
+		<rdfs:label>Medial basal hypothalamus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Medial_basal_hypothalamus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Medial_basal_hypothalamus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMediobasal_hypothalamus">
+		<rdfs:label>Mediobasal hypothalamus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Mediobasal_hypothalamus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Mediobasal_hypothalamus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARostral_hypothalamus">
+		<rdfs:label>Rostral hypothalamus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Rostral_hypothalamus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Rostral_hypothalamus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AVentral_hypothalamus">
+		<rdfs:label>Ventral hypothalamus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Ventral_hypothalamus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Ventral_hypothalamus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AVentromedial_hypothalamus">
+		<rdfs:label>Ventromedial hypothalamus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Ventromedial_hypothalamus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Ventromedial_hypothalamus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeuroendocrine_motor_magnocellular_neurosecretory_cell">
+		<rdfs:label>Neuroendocrine motor magnocellular neurosecretory cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neuroendocrine_motor_magnocellular_neurosecretory_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neuroendocrine_motor_magnocellular_neurosecretory_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHypothalamus_oxytocin_neuroendocrine_magnocellular_cell">
+		<rdfs:label>Hypothalamus oxytocin neuroendocrine magnocellular cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hypothalamus_oxytocin_neuroendocrine_magnocellular_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hypothalamus_oxytocin_neuroendocrine_magnocellular_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHypothalamus_vasopressin_neuroendocrine_magnocellular_neuron">
+		<rdfs:label>Hypothalamus vasopressin neuroendocrine magnocellular neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hypothalamus_vasopressin_neuroendocrine_magnocellular_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hypothalamus_vasopressin_neuroendocrine_magnocellular_neuron"/>
+		<property:Located_in rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHypothalamus_oxytocin_releasing_neuroendocrine_magnocellular_neuron">
+		<rdfs:label>Hypothalamus oxytocin releasing neuroendocrine magnocellular neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hypothalamus_oxytocin_releasing_neuroendocrine_magnocellular_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hypothalamus_oxytocin_releasing_neuroendocrine_magnocellular_neuron"/>
+		<property:Located_in rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAnterior_lobe_of_pituitary_of_PHT00">
+		<rdfs:label>Anterior lobe of pituitary of PHT00</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Anterior_lobe_of_pituitary_of_PHT00"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Anterior_lobe_of_pituitary_of_PHT00"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AMichigan_State_University_Brain_Biodiversity_Bank">
+		<rdfs:label>Resource:Michigan State University Brain Biodiversity Bank</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Michigan_State_University_Brain_Biodiversity_Bank"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Michigan_State_University_Brain_Biodiversity_Bank"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AHuman_Brain_Atlas">
+		<rdfs:label>Resource:Human Brain Atlas</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Human_Brain_Atlas"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Human_Brain_Atlas"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AConfocal_Microscopy_Image_Gallery_-2D_Rat_Brain_Tissue_Sections">
+		<rdfs:label>Resource:Confocal Microscopy Image Gallery - Rat Brain Tissue Sections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Confocal_Microscopy_Image_Gallery_-_Rat_Brain_Tissue_Sections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Confocal_Microscopy_Image_Gallery_-_Rat_Brain_Tissue_Sections"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHypothalamus_of_WHS11">
+		<rdfs:label>Hypothalamus of WHS11</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hypothalamus_of_WHS11"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hypothalamus_of_WHS11"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADiencephalon_of_WHS11">
+		<rdfs:label>Diencephalon of WHS11</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Diencephalon_of_WHS11"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Diencephalon_of_WHS11"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3AHypothalamus"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;PartiallyOverlapsWith">
+		<rdfs:label>PartiallyOverlapsWith</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PartiallyOverlapsWith"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PartiallyOverlapsWith"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;Keywords">
+		<rdfs:label>Keywords</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Keywords"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Keywords"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;AfferentProjections">
+		<rdfs:label>AfferentProjections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AfferentProjections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AfferentProjections"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;EfferentProjections">
+		<rdfs:label>EfferentProjections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:EfferentProjections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:EfferentProjections"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ARegional_part_of_brain">
+		<rdfs:label>Regional part of brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Regional_part_of_brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Regional_part_of_brain"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Umlscui">
+		<rdfs:label>Umlscui</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Umlscui"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Umlscui"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:ObjectProperty rdf:about="&property;NeuronamesLink">
+		<rdfs:label>NeuronamesLink</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NeuronamesLink"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NeuronamesLink"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ADiencephalon">
+		<rdfs:label>Diencephalon</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Diencephalon"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Diencephalon"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<swivt:Subject rdf:about="&wiki;MeSH">
+		<rdfs:label>MeSH</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;MeSH"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/MeSH"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;DefinitionSource">
+		<rdfs:label>DefinitionSource</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefinitionSource"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefinitionSource"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;AbbrevSource">
+		<rdfs:label>AbbrevSource</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AbbrevSource"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AbbrevSource"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Abbrev">
+		<rdfs:label>Abbrev</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Abbrev"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Abbrev"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

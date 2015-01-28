@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T09:58:28-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3AMidbrain_tectum">
+		<rdfs:label>Midbrain tectum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Midbrain_tectum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Midbrain_tectum"/>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2006-07-15T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dorsal part of the midbrain, consisting of the superior and inferior colliculi and the pretectal nuclei (MM).</property:Definition>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">birnlex_1032</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMidbrain"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Midbrain tectum</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-03-09T00:00:00</property:ModifiedDate>
+		<property:NeuronamesLink rdf:resource="http://braininfo.rprc.washington.edu/Scripts/hiercentraldirectory.aspx?ID=448"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional part of brain</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tectum</property:Synonym>
+		<property:Umlscui rdf:datatype="http://www.w3.org/2001/XMLSchema#string">C0039433</property:Umlscui>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ARegional_part_of_brain"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A104941">
+		<rdfs:label>TermImport:104941</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:104941"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:104941"/>
+		<property:About rdf:resource="&wiki;Category-3AMidbrain_tectum"/>
+	</swivt:Subject>
+	<owl:Class rdf:about="&wiki;Category-3ASuperior_colliculus">
+		<rdfs:label>Superior colliculus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Superior_colliculus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Superior_colliculus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMidbrain_tectum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASubcommissural_organ">
+		<rdfs:label>Subcommissural organ</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Subcommissural_organ"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Subcommissural_organ"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMidbrain_tectum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACommissure_of_superior_colliculus">
+		<rdfs:label>Commissure of superior colliculus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Commissure_of_superior_colliculus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Commissure_of_superior_colliculus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMidbrain_tectum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ABrachium_of_superior_colliculus">
+		<rdfs:label>Brachium of superior colliculus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Brachium_of_superior_colliculus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Brachium_of_superior_colliculus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMidbrain_tectum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ABrachium_of_inferior_colliculus">
+		<rdfs:label>Brachium of inferior colliculus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Brachium_of_inferior_colliculus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Brachium_of_inferior_colliculus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMidbrain_tectum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APosterior_commissure">
+		<rdfs:label>Posterior commissure</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Posterior_commissure"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Posterior_commissure"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMidbrain_tectum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACorticotectal_tract">
+		<rdfs:label>Corticotectal tract</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Corticotectal_tract"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Corticotectal_tract"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMidbrain_tectum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AParabigeminal_nucleus">
+		<rdfs:label>Parabigeminal nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Parabigeminal_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Parabigeminal_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMidbrain_tectum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AInferior_colliculus">
+		<rdfs:label>Inferior colliculus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Inferior_colliculus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Inferior_colliculus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMidbrain_tectum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APretectum">
+		<rdfs:label>Pretectum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Pretectum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Pretectum"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMidbrain_tectum"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ARegional_part_of_brain">
+		<rdfs:label>Regional part of brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Regional_part_of_brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Regional_part_of_brain"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Umlscui">
+		<rdfs:label>Umlscui</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Umlscui"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Umlscui"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:ObjectProperty rdf:about="&property;NeuronamesLink">
+		<rdfs:label>NeuronamesLink</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NeuronamesLink"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NeuronamesLink"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMidbrain">
+		<rdfs:label>Midbrain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Midbrain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Midbrain"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

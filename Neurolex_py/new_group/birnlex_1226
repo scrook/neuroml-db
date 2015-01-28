@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T09:57:22-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3AAnterior_nucleus_of_hypothalamus">
+		<rdfs:label>Anterior nucleus of hypothalamus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Anterior_nucleus_of_hypothalamus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Anterior_nucleus_of_hypothalamus"/>
+		<property:Abbrev rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AH, AHi</property:Abbrev>
+		<property:AbbrevSource rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NeuroNames_abbrevSource</property:AbbrevSource>
+		<property:BamsID rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1995</property:BamsID>
+		<property:BamsID rdf:datatype="http://www.w3.org/2001/XMLSchema#double">12284</property:BamsID>
+		<property:BamsID rdf:datatype="http://www.w3.org/2001/XMLSchema#double">12285</property:BamsID>
+		<property:BamsID rdf:datatype="http://www.w3.org/2001/XMLSchema#double">289</property:BamsID>
+		<property:BamsID rdf:datatype="http://www.w3.org/2001/XMLSchema#double">290</property:BamsID>
+		<property:BamsID rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1994</property:BamsID>
+		<property:BamsLink rdf:resource="http://brancusi.usc.edu/bkms/brain/show-braing2.php?aidi=1995"/>
+		<property:BamsLink rdf:resource="http://brancusi.usc.edu/bkms/brain/show-braing2.php?aidi=12284"/>
+		<property:BamsLink rdf:resource="http://brancusi.usc.edu/bkms/brain/show-braing2.php?aidi=12285"/>
+		<property:BamsLink rdf:resource="http://brancusi.usc.edu/bkms/brain/show-braing2.php?aidi=289"/>
+		<property:BamsLink rdf:resource="http://brancusi.usc.edu/bkms/brain/show-braing2.php?aidi=290"/>
+		<property:BamsLink rdf:resource="http://brancusi.usc.edu/bkms/brain/show-braing2.php?aidi=1994"/>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2007-08-19T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:DefinitionSource rdf:resource="&wiki;UMLS"/>
+		<property:ExternallySourcedDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Loose heterogeneous collection of cells in the anterior hypothalamus, continuous rostrally with the medial and lateral preoptic areas and caudally with the tuber cinereum. (MSH)</property:ExternallySourcedDefinition>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">birnlex_1226</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AAnterior_hypothalamic_region"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Anterior nucleus of hypothalamus</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-03-09T00:00:00</property:ModifiedDate>
+		<property:NeuronamesLink rdf:resource="http://braininfo.rprc.washington.edu/Scripts/hiercentraldirectory.aspx?ID=369"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional part of brain</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Anterior hypothalamic area</property:Synonym>
+		<property:Umlscui rdf:datatype="http://www.w3.org/2001/XMLSchema#string">C0020653</property:Umlscui>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ARegional_part_of_brain"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A101067">
+		<rdfs:label>TermImport:101067</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:101067"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:101067"/>
+		<property:About rdf:resource="&wiki;Category-3AAnterior_nucleus_of_hypothalamus"/>
+	</swivt:Subject>
+	<owl:Class rdf:about="&wiki;Category-3AAnterior_nucleus_of_hypothalamus_posterior_part">
+		<rdfs:label>Anterior nucleus of hypothalamus posterior part</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Anterior_nucleus_of_hypothalamus_posterior_part"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Anterior_nucleus_of_hypothalamus_posterior_part"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AAnterior_nucleus_of_hypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAnterior_nucleus_of_hypothalamus_dorsal_part">
+		<rdfs:label>Anterior nucleus of hypothalamus dorsal part</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Anterior_nucleus_of_hypothalamus_dorsal_part"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Anterior_nucleus_of_hypothalamus_dorsal_part"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AAnterior_nucleus_of_hypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAnterior_nucleus_of_hypothalamus_central_part">
+		<rdfs:label>Anterior nucleus of hypothalamus central part</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Anterior_nucleus_of_hypothalamus_central_part"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Anterior_nucleus_of_hypothalamus_central_part"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AAnterior_nucleus_of_hypothalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAnterior_nucleus_of_hypothalamus_anterior_part">
+		<rdfs:label>Anterior nucleus of hypothalamus anterior part</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Anterior_nucleus_of_hypothalamus_anterior_part"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Anterior_nucleus_of_hypothalamus_anterior_part"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AAnterior_nucleus_of_hypothalamus"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ARegional_part_of_brain">
+		<rdfs:label>Regional part of brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Regional_part_of_brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Regional_part_of_brain"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Umlscui">
+		<rdfs:label>Umlscui</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Umlscui"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Umlscui"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:ObjectProperty rdf:about="&property;NeuronamesLink">
+		<rdfs:label>NeuronamesLink</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NeuronamesLink"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NeuronamesLink"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AAnterior_hypothalamic_region">
+		<rdfs:label>Anterior hypothalamic region</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Anterior_hypothalamic_region"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Anterior_hypothalamic_region"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;ExternallySourcedDefinition">
+		<rdfs:label>ExternallySourcedDefinition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ExternallySourcedDefinition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ExternallySourcedDefinition"/>
+	</owl:DatatypeProperty>
+	<swivt:Subject rdf:about="&wiki;UMLS">
+		<rdfs:label>UMLS</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;UMLS"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/UMLS"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;DefinitionSource">
+		<rdfs:label>DefinitionSource</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefinitionSource"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefinitionSource"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<owl:ObjectProperty rdf:about="&property;BamsLink">
+		<rdfs:label>BamsLink</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:BamsLink"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:BamsLink"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;BamsID">
+		<rdfs:label>BamsID</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:BamsID"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:BamsID"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;AbbrevSource">
+		<rdfs:label>AbbrevSource</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AbbrevSource"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AbbrevSource"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Abbrev">
+		<rdfs:label>Abbrev</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Abbrev"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Abbrev"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

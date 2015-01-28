@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T22:46:52-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3AVestibular_type_1_hair_cell">
+		<rdfs:label>Vestibular type 1 hair cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Vestibular_type_1_hair_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Vestibular_type_1_hair_cell"/>
+		<property:BranchingMetrics rdf:datatype="http://www.w3.org/2001/XMLSchema#string">unipolar</property:BranchingMetrics>
+		<property:CellSomaShape rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Category:Pear-shaped </property:CellSomaShape>
+		<property:CellSomaSize rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Small soma</property:CellSomaSize>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A mechanoreceptor hair cell located in the acoustic maculae and the semicircular canals that mediates the sense of balance, movement, and head position. The vestibular hair cells are connected to accessory structures in such a way that movements of the head displace their stereocilia. This influences the membrane potential of the cells which relay information about movements via the vestibular part of the vestibulocochlear nerve to the brain stem.</property:Definition>
+		<property:DendriteLocation rdf:resource="&wiki;Category-3AApical_surface"/>
+		<property:EditorialNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://senselab.med.yale.edu/neurondb/NeuronProp.aspx?id=272</property:EditorialNote>
+		<property:ExampleImage rdf:resource="&wiki;File-3AVestibular_hair_cell.gif"/>
+		<property:Has_functional_role rdf:resource="&wiki;Category-3ASensory_reception_role"/>
+		<property:Has_role rdf:resource="&wiki;Category-3APrincipal_neuron_role"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">sao709770772</property:Id>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vestibular type 1 hair cell</property:Label>
+		<property:Located_in rdf:resource="&wiki;Category-3AOtolith_organs"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ASemicircular_canals"/>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-12-20T00:00:00</property:ModifiedDate>
+		<property:MolecularConstituents rdf:resource="&wiki;Category-3ACalretinin"/>
+		<property:MolecularConstituents rdf:resource="&wiki;Category-3AParvalbumin"/>
+		<property:MolecularConstituents rdf:resource="&wiki;Category-3AOncomodulin"/>
+		<property:MolecularConstituents rdf:resource="&wiki;Category-3AMyosin_VI"/>
+		<property:MolecularConstituents rdf:resource="&wiki;Category-3AMyosin_VII"/>
+		<property:MolecularConstituents rdf:resource="&wiki;Category-3AMyosin_1c"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGlutamate"/>
+		<property:NeurotransmitterReceptors rdf:resource="&wiki;Category-3AAcetylcholine-2Dgated_channel_(nicotinic)"/>
+		<property:NeurotransmitterReceptors rdf:resource="&wiki;Category-3AATP-2Dgated_ion_channel"/>
+		<property:Species rdf:resource="&wiki;Category-3AVertebrata"/>
+		<property:SpineDensityOnDendrites rdf:resource="&wiki;Category-3ASmooth"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neuron</property:SuperCategory>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ANeuron"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A104594">
+		<rdfs:label>TermImport:104594</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:104594"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:104594"/>
+		<property:About rdf:resource="&wiki;Category-3AVestibular_type_1_hair_cell"/>
+	</swivt:Subject>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ANeuron">
+		<rdfs:label>Neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neuron"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ASmooth">
+		<rdfs:label>Smooth</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Smooth"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Smooth"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;SpineDensityOnDendrites">
+		<rdfs:label>SpineDensityOnDendrites</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SpineDensityOnDendrites"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SpineDensityOnDendrites"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AVertebrata">
+		<rdfs:label>Vertebrata</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Vertebrata"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Vertebrata"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AATP-2Dgated_ion_channel">
+		<rdfs:label>ATP-gated ion channel</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:ATP-gated_ion_channel"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:ATP-gated_ion_channel"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAcetylcholine-2Dgated_channel_(nicotinic)">
+		<rdfs:label>Acetylcholine-gated channel (nicotinic)</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Acetylcholine-gated_channel_(nicotinic)"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Acetylcholine-gated_channel_(nicotinic)"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;NeurotransmitterReceptors">
+		<rdfs:label>NeurotransmitterReceptors</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NeurotransmitterReceptors"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NeurotransmitterReceptors"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AGlutamate">
+		<rdfs:label>Glutamate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Glutamate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Glutamate"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Neurotransmitter">
+		<rdfs:label>Neurotransmitter</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Neurotransmitter"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Neurotransmitter"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMyosin_1c">
+		<rdfs:label>Myosin 1c</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Myosin_1c"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Myosin_1c"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMyosin_VII">
+		<rdfs:label>Myosin VII</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Myosin_VII"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Myosin_VII"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMyosin_VI">
+		<rdfs:label>Myosin VI</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Myosin_VI"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Myosin_VI"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOncomodulin">
+		<rdfs:label>Oncomodulin</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Oncomodulin"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Oncomodulin"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AParvalbumin">
+		<rdfs:label>Parvalbumin</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Parvalbumin"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Parvalbumin"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACalretinin">
+		<rdfs:label>Calretinin</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Calretinin"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Calretinin"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;MolecularConstituents">
+		<rdfs:label>MolecularConstituents</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:MolecularConstituents"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:MolecularConstituents"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ASemicircular_canals">
+		<rdfs:label>Semicircular canals</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Semicircular_canals"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Semicircular_canals"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOtolith_organs">
+		<rdfs:label>Otolith organs</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Otolith_organs"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Otolith_organs"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3APrincipal_neuron_role">
+		<rdfs:label>Principal neuron role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Principal_neuron_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Principal_neuron_role"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Has_role">
+		<rdfs:label>Has role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_role"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ASensory_reception_role">
+		<rdfs:label>Sensory reception role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Sensory_reception_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Sensory_reception_role"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Has_functional_role">
+		<rdfs:label>Has functional role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_functional_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_functional_role"/>
+	</owl:ObjectProperty>
+	<swivt:Subject rdf:about="&wiki;File-3AVestibular_hair_cell.gif">
+		<rdfs:label>File:Vestibular hair cell.gif</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;File:Vestibular_hair_cell.gif"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/File:Vestibular_hair_cell.gif"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;ExampleImage">
+		<rdfs:label>ExampleImage</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ExampleImage"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ExampleImage"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;EditorialNote">
+		<rdfs:label>EditorialNote</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:EditorialNote"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:EditorialNote"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AApical_surface">
+		<rdfs:label>Apical surface</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Apical_surface"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Apical_surface"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;DendriteLocation">
+		<rdfs:label>DendriteLocation</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DendriteLocation"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DendriteLocation"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CellSomaSize">
+		<rdfs:label>CellSomaSize</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CellSomaSize"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CellSomaSize"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CellSomaShape">
+		<rdfs:label>CellSomaShape</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CellSomaShape"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CellSomaShape"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;BranchingMetrics">
+		<rdfs:label>BranchingMetrics</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:BranchingMetrics"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:BranchingMetrics"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

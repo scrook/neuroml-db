@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T22:42:46-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord_ventral_horn_interneuron_V0C">
+		<rdfs:label>Spinal cord ventral horn interneuron V0C</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord_ventral_horn_interneuron_V0C"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord_ventral_horn_interneuron_V0C"/>
+		<property:Authors rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zagoraiou L</property:Authors>
+		<property:Authors rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Akay T</property:Authors>
+		<property:Authors rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Martin JF</property:Authors>
+		<property:Authors rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Brownstone RM</property:Authors>
+		<property:Authors rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jessell TM</property:Authors>
+		<property:Authors rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Miles GB</property:Authors>
+		<property:CellularSynapticTarget rdf:resource="&wiki;Category-3ASpinal_cord_ventral_horn_motor_neuron"/>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:DefiningCitation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zagaraiou et al., Neuron 64: 645, 2009</property:DefiningCitation>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Spinal cord ventral horn V0 interneuron that expresses Pitx2 and use acetylcholine as a neurotransmitter</property:Definition>
+		<property:Has_role rdf:resource="&wiki;Category-3AIntrinsic_neuron_role"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nlx_cell_1006021</property:Id>
+		<property:JournalNumber rdf:resource="&wiki;5"/>
+		<property:JournalVolume rdf:resource="&wiki;64"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Spinal cord ventral horn interneuron V0C</property:Label>
+		<property:Located_in rdf:resource="&wiki;Category-3ASpinal_cord"/>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-03-09T00:00:00</property:ModifiedDate>
+		<property:MolecularConstituents rdf:resource="&wiki;Category-3APitx2"/>
+		<property:MolecularConstituents rdf:resource="&wiki;Category-3ACholine_Acetyltransferase"/>
+		<property:MolecularConstituents rdf:resource="&wiki;Category-3AVesicular_acetylcholine_transporter"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AAcetylcholine"/>
+		<property:PMID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">20005822</property:PMID>
+		<property:Pages rdf:datatype="http://www.w3.org/2001/XMLSchema#string">645-662</property:Pages>
+		<property:PublicationDate rdf:resource="&wiki;2009"/>
+		<property:PublicationName rdf:resource="&wiki;Neuron"/>
+		<property:RetrievedOn rdf:resource="&wiki;Pub_Med"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Spinal cord ventral horn interneuron V0</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">V0c interneuron</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">spinal cord V0c interneuron</property:Synonym>
+		<property:Title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A cluster of cholinergic premotor interneurons modulates mouse locomotor activity</property:Title>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ASpinal_cord_ventral_horn_interneuron_V0"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A104460">
+		<rdfs:label>TermImport:104460</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:104460"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:104460"/>
+		<property:About rdf:resource="&wiki;Category-3ASpinal_cord_ventral_horn_interneuron_V0C"/>
+	</swivt:Subject>
+	<owl:Class rdf:about="&wiki;Category-3AC_bouton">
+		<rdfs:label>C bouton</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:C_bouton"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:C_bouton"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ASpinal_cord_ventral_horn_interneuron_V0C"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord_ventral_horn_interneuron_V0">
+		<rdfs:label>Spinal cord ventral horn interneuron V0</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord_ventral_horn_interneuron_V0"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord_ventral_horn_interneuron_V0"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Title">
+		<rdfs:label>Title</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Title"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Title"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<swivt:Subject rdf:about="&wiki;Pub_Med">
+		<rdfs:label>Pub Med</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Pub_Med"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Pub_Med"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;RetrievedOn">
+		<rdfs:label>RetrievedOn</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:RetrievedOn"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:RetrievedOn"/>
+	</owl:ObjectProperty>
+	<swivt:Subject rdf:about="&wiki;Neuron">
+		<rdfs:label>Neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Neuron"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;PublicationName">
+		<rdfs:label>PublicationName</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PublicationName"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PublicationName"/>
+	</owl:ObjectProperty>
+	<swivt:Subject rdf:about="&wiki;2009">
+		<rdfs:label>2009</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;2009"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/2009"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;PublicationDate">
+		<rdfs:label>PublicationDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PublicationDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PublicationDate"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Pages">
+		<rdfs:label>Pages</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Pages"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Pages"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;PMID">
+		<rdfs:label>PMID</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PMID"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PMID"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AAcetylcholine">
+		<rdfs:label>Acetylcholine</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Acetylcholine"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Acetylcholine"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Neurotransmitter">
+		<rdfs:label>Neurotransmitter</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Neurotransmitter"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Neurotransmitter"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AVesicular_acetylcholine_transporter">
+		<rdfs:label>Vesicular acetylcholine transporter</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Vesicular_acetylcholine_transporter"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Vesicular_acetylcholine_transporter"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACholine_Acetyltransferase">
+		<rdfs:label>Choline Acetyltransferase</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Choline_Acetyltransferase"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Choline_Acetyltransferase"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APitx2">
+		<rdfs:label>Pitx2</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Pitx2"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Pitx2"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;MolecularConstituents">
+		<rdfs:label>MolecularConstituents</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:MolecularConstituents"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:MolecularConstituents"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord">
+		<rdfs:label>Spinal cord</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<swivt:Subject rdf:about="&wiki;64">
+		<rdfs:label>64</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;64"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/64"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;JournalVolume">
+		<rdfs:label>JournalVolume</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:JournalVolume"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:JournalVolume"/>
+	</owl:ObjectProperty>
+	<swivt:Subject rdf:about="&wiki;5">
+		<rdfs:label>5</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;5"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/5"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;JournalNumber">
+		<rdfs:label>JournalNumber</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:JournalNumber"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:JournalNumber"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AIntrinsic_neuron_role">
+		<rdfs:label>Intrinsic neuron role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Intrinsic_neuron_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Intrinsic_neuron_role"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Has_role">
+		<rdfs:label>Has role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_role"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;DefiningCitation">
+		<rdfs:label>DefiningCitation</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefiningCitation"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefiningCitation"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord_ventral_horn_motor_neuron">
+		<rdfs:label>Spinal cord ventral horn motor neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord_ventral_horn_motor_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord_ventral_horn_motor_neuron"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;CellularSynapticTarget">
+		<rdfs:label>CellularSynapticTarget</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CellularSynapticTarget"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CellularSynapticTarget"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Authors">
+		<rdfs:label>Authors</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Authors"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Authors"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T09:58:32-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ANucleus_paramedianus_dorsalis">
+		<rdfs:label>Nucleus paramedianus dorsalis</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Nucleus_paramedianus_dorsalis"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Nucleus_paramedianus_dorsalis"/>
+		<property:Abbrev rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PMD</property:Abbrev>
+		<property:AtlasImage rdf:resource="&wiki;File-3AHttp-3A//www.ncbi.nlm.nih.gov/pmc/articles/PMC2078602/figure/F1/"/>
+		<property:ChemoDefiningCriteria rdf:datatype="http://www.w3.org/2001/XMLSchema#string">It contains calretinin immunoreactive large cells with oval or polygonal cell bodies. Cells are not immunoreactive for either calbindin or parvalbumin, but a few fibers immunoreactive to each protein are found within its central region. Cells in PMD are also immunoreactive to nNOS, and immunoreactivity to a neurofilament protein shows many labeled cells and fibers.  The nucleus is much more prominent in sections processed for calretinin immunoreactivity compared to Nissl-stained sections.</property:ChemoDefiningCriteria>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:CytoDefiningCriteria rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cells in this region have large oval or polygonal cell bodies that stain darkly with a Nissl stain.</property:CytoDefiningCriteria>
+		<property:DefiningCitation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Olszewski J, Baxter D. Cytoarchitecture of the human brain stem. Karger; Basel: 1954.</property:DefiningCitation>
+		<property:DefiningCriteria rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cyto-architecture, chemoarchitecture</property:DefiningCriteria>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Small nucleus in the brainstem of human, located adjacent and medial to the nucleus prepositus in the dorsal medulla, described in several atlases of human brain stem.  In transverse sections, it is oval with its long axis aligned with the dorsal border of the brainstem.  It begins at about the same A-P level as the nucleus prepositus, just rostral to the hypoglossal nucleus.  It includes calretinin immunoreactive large cells with oval or polygonal cell bodies. Cells are not immunoreactive for either calbindin or parvalbumin, but a few fibers immunoreactive to each protein are found within its central region. Cells in PMD are also immunoreactive to nNOS, and immunoreactivity to a neurofilament protein shows many labeled cells and fibers.  According to Baizer et al., no equivalent structure was observed in the cat, rat, mouse or monkey atlas although they did not look at the brains of the great apes.</property:Definition>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nlx_143549</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata_of_human"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nucleus paramedianus dorsalis</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-03-09T00:00:00</property:ModifiedDate>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3ANucleus_paramedianus_dorsalis_of_Olszewski_and_Baxter"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3A1954;_Sadjadpour_and_Brodal"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3A1968;_Paxinos_and_Huang"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3A1995)"/>
+		<property:PublicationLink rdf:resource="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2078602/figure/F2/"/>
+		<property:Species rdf:resource="&wiki;Category-3AHuman"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional part of brain</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nucleus paramedianus dorsalis</property:Synonym>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ARegional_part_of_brain"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:Class rdf:about="&wiki;Category-3ARegional_part_of_brain">
+		<rdfs:label>Regional part of brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Regional_part_of_brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Regional_part_of_brain"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AHuman">
+		<rdfs:label>Human</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Human"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Human"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;PublicationLink">
+		<rdfs:label>PublicationLink</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PublicationLink"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PublicationLink"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3A1995)">
+		<rdfs:label>1995)</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:1995)"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:1995)"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3A1968;_Paxinos_and_Huang">
+		<rdfs:label>1968; Paxinos and Huang</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:1968;_Paxinos_and_Huang"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:1968;_Paxinos_and_Huang"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3A1954;_Sadjadpour_and_Brodal">
+		<rdfs:label>1954; Sadjadpour and Brodal</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:1954;_Sadjadpour_and_Brodal"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:1954;_Sadjadpour_and_Brodal"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANucleus_paramedianus_dorsalis_of_Olszewski_and_Baxter">
+		<rdfs:label>Nucleus paramedianus dorsalis of Olszewski and Baxter</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Nucleus_paramedianus_dorsalis_of_Olszewski_and_Baxter"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Nucleus_paramedianus_dorsalis_of_Olszewski_and_Baxter"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;PartiallyOverlapsWith">
+		<rdfs:label>PartiallyOverlapsWith</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PartiallyOverlapsWith"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PartiallyOverlapsWith"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMedulla_oblongata_of_human">
+		<rdfs:label>Medulla oblongata of human</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Medulla_oblongata_of_human"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Medulla_oblongata_of_human"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;DefiningCriteria">
+		<rdfs:label>DefiningCriteria</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefiningCriteria"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefiningCriteria"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;DefiningCitation">
+		<rdfs:label>DefiningCitation</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefiningCitation"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefiningCitation"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CytoDefiningCriteria">
+		<rdfs:label>CytoDefiningCriteria</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CytoDefiningCriteria"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CytoDefiningCriteria"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;ChemoDefiningCriteria">
+		<rdfs:label>ChemoDefiningCriteria</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ChemoDefiningCriteria"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ChemoDefiningCriteria"/>
+	</owl:DatatypeProperty>
+	<swivt:Subject rdf:about="&wiki;File-3AHttp-3A//www.ncbi.nlm.nih.gov/pmc/articles/PMC2078602/figure/F1/">
+		<rdfs:label>File:Http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2078602/figure/F1/</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;File:Http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2078602/figure/F1/"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/File:Http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2078602/figure/F1/"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;AtlasImage">
+		<rdfs:label>AtlasImage</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AtlasImage"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AtlasImage"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Abbrev">
+		<rdfs:label>Abbrev</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Abbrev"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Abbrev"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

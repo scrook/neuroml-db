@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T09:57:42-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ACingulate_gyrus">
+		<rdfs:label>Cingulate gyrus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cingulate_gyrus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cingulate_gyrus"/>
+		<property:Abbrev rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CG</property:Abbrev>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2006-10-05T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">One of the convolutions on the medial surface of the cerebral hemisphere. It surrounds the rostral part of the brain and interhemispheric commissure and forms part of the limbic system. (MSH)  One of three essential structures comprising the limbic lobe, the other two being the hippocampus and parahippocampal gyrus. (CSP)</property:Definition>
+		<property:EditorialNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Will keep the NN "gyri" distinct from the BIRN "cortex" regions.  Should we later decide the intended meanings are the same, we can set the corresponding classes to be equivalent.  In the end, any such correspondence really would depend on how the various cortical areas defined by Brodmann or some other parcellation scheme as defined for the NN gyri relate to those cortical areas assigned to the BIRN coritical regions (BB)., UMLS includes a CUI for "Cingulate cortex" (C0598179) separate from this other for "Cingulate gyrus"., Note that in BrainMap.org, they mere list LimbicLobe.AnteriorCingulate.GrayMatter under which they included Brodmann areas 10, 24, 25, 32, &amp; 33 and LimbicLobe.CingulateGyrus.GrayMatter under which they include Brodmann areas 23, 24, 31, and 32.  This indicates not all gray matter contained within the cingulate cortex lies within the cingulate gyrus - at least it doesn't according to BrainMap.org's parcellation., Now I see where my confusion derives from.  It relates to the fact this distinction between surface and volumetric, parenchymal structures is a bit unclear in NeuroNames.  There sulci are clearly listed as "superficial" (i.e., defining surfaces), whereas gyri as listed as "volumetric structures".  The organization of the parenchyma within the lobes of the cerebral cortex are largely given according to complex structures lumped into the "ancillary terms" - e.g., all of the Brodmann areas.  The implication for listing "gyri" as volumetric is that the cortical parenchyma lying underneath the gyral surface are also included in these gyral regions.  Therefore, it may in fact be correct to set the BIRN "cingulate cortex" == NN "cingulate gyrus".  It should also be possible to declare which of the various Brodmann areas are associated with the BIRN defined cortical regions such as "caudal anterior cingulate cortex" (BB)., Was going to assume cingulate cortex for BIRN is equivalent to what is listed as cingulate gyrus in NeuroNames, but clearly that assumption is invalid.  In the strictest since, "gyrus" is a description of the surface protuberance between invaginated sulci, while "cortex" typically refers to brain parenchyma with defined cytoarchitectural layers.  This is the gross anatomical description of brain tissue.  Given this representation is intended to follow the anatomical bases for describing brain structure, it is best we keep cortex and gyri distinct (BB).</property:EditorialNote>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">birnlex_798</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ALimbic_lobe"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cingulate gyrus</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-04-27T00:00:00</property:ModifiedDate>
+		<property:NeuronamesLink rdf:resource="http://braininfo.rprc.washington.edu/Scripts/hiercentraldirectory.aspx?ID=141"/>
+		<property:Species rdf:resource="&wiki;Category-3AHuman"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional part of brain</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cingulate region</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cingulate area</property:Synonym>
+		<property:Umlscui rdf:datatype="http://www.w3.org/2001/XMLSchema#string">C0018427</property:Umlscui>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ARegional_part_of_brain"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A102106">
+		<rdfs:label>TermImport:102106</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:102106"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:102106"/>
+		<property:About rdf:resource="&wiki;Category-3ACingulate_gyrus"/>
+	</swivt:Subject>
+	<owl:Class rdf:about="&wiki;Category-3APosterior_cingulate_gyrus">
+		<rdfs:label>Posterior cingulate gyrus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Posterior_cingulate_gyrus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Posterior_cingulate_gyrus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACingulate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AIsthmus_of_cingulate_gyrus">
+		<rdfs:label>Isthmus of cingulate gyrus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Isthmus_of_cingulate_gyrus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Isthmus_of_cingulate_gyrus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACingulate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAnterior_cingulate_gyrus">
+		<rdfs:label>Anterior cingulate gyrus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Anterior_cingulate_gyrus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Anterior_cingulate_gyrus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACingulate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACingulate_cortex">
+		<rdfs:label>Cingulate cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cingulate_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cingulate_cortex"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACingulate_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ARoadmap_Epigenomics_Project">
+		<rdfs:label>Resource:Roadmap Epigenomics Project</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Roadmap_Epigenomics_Project"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Roadmap_Epigenomics_Project"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACingulate_gyrus"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;Keywords">
+		<rdfs:label>Keywords</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Keywords"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Keywords"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ARegional_part_of_brain">
+		<rdfs:label>Regional part of brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Regional_part_of_brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Regional_part_of_brain"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Umlscui">
+		<rdfs:label>Umlscui</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Umlscui"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Umlscui"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AHuman">
+		<rdfs:label>Human</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Human"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Human"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;NeuronamesLink">
+		<rdfs:label>NeuronamesLink</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NeuronamesLink"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NeuronamesLink"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ALimbic_lobe">
+		<rdfs:label>Limbic lobe</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Limbic_lobe"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Limbic_lobe"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;EditorialNote">
+		<rdfs:label>EditorialNote</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:EditorialNote"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:EditorialNote"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Abbrev">
+		<rdfs:label>Abbrev</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Abbrev"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Abbrev"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

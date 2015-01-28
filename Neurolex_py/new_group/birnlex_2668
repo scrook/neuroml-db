@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T23:05:38-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord_ventral_horn">
+		<rdfs:label>Spinal cord ventral horn</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord_ventral_horn"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord_ventral_horn"/>
+		<property:Abbrev rdf:datatype="http://www.w3.org/2001/XMLSchema#string">VH</property:Abbrev>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2007-08-28T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">birnlex_2668</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ASpinal_cord_grey_matter"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ASpinal_cord"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Spinal cord ventral horn</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-10-18T00:00:00</property:ModifiedDate>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional part of spinal cord</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">spinal cord anterior horn</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">anterior horn</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ventral grey horn</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ventral horn</property:Synonym>
+		<property:Umlscui rdf:datatype="http://www.w3.org/2001/XMLSchema#string">C0228569</property:Umlscui>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ARegional_part_of_spinal_cord"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord_ventral_horn_interneuron_IA">
+		<rdfs:label>Spinal cord ventral horn interneuron IA</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord_ventral_horn_interneuron_IA"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord_ventral_horn_interneuron_IA"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ASpinal_cord_ventral_horn"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord_ventral_horn_interneuron_FRA">
+		<rdfs:label>Spinal cord ventral horn interneuron FRA</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord_ventral_horn_interneuron_FRA"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord_ventral_horn_interneuron_FRA"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ASpinal_cord_ventral_horn"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord_ventral_horn_interneuron_IB">
+		<rdfs:label>Spinal cord ventral horn interneuron IB</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord_ventral_horn_interneuron_IB"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord_ventral_horn_interneuron_IB"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ASpinal_cord_ventral_horn"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord_ventral_horn_interneuron_II">
+		<rdfs:label>Spinal cord ventral horn interneuron II</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord_ventral_horn_interneuron_II"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord_ventral_horn_interneuron_II"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ASpinal_cord_ventral_horn"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord_ventral_horn_motor_neuron_alpha">
+		<rdfs:label>Spinal cord ventral horn motor neuron alpha</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord_ventral_horn_motor_neuron_alpha"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord_ventral_horn_motor_neuron_alpha"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ASpinal_cord_ventral_horn"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord_ventral_horn_motor_neuron_beta">
+		<rdfs:label>Spinal cord ventral horn motor neuron beta</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord_ventral_horn_motor_neuron_beta"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord_ventral_horn_motor_neuron_beta"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ASpinal_cord_ventral_horn"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord_ventral_horn_motor_neuron_gamma">
+		<rdfs:label>Spinal cord ventral horn motor neuron gamma</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord_ventral_horn_motor_neuron_gamma"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord_ventral_horn_motor_neuron_gamma"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ASpinal_cord_ventral_horn"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord_ventral_horn_interneuron_Renshaw">
+		<rdfs:label>Spinal cord ventral horn interneuron Renshaw</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord_ventral_horn_interneuron_Renshaw"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord_ventral_horn_interneuron_Renshaw"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ASpinal_cord_ventral_horn"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord_ventral_horn_interneuron_V2">
+		<rdfs:label>Spinal cord ventral horn interneuron V2</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord_ventral_horn_interneuron_V2"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord_ventral_horn_interneuron_V2"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ASpinal_cord_ventral_horn"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord_ventral_horn_interneuron_V3">
+		<rdfs:label>Spinal cord ventral horn interneuron V3</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord_ventral_horn_interneuron_V3"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord_ventral_horn_interneuron_V3"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ASpinal_cord_ventral_horn"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord_ventral_horn_interneuron_V2b">
+		<rdfs:label>Spinal cord ventral horn interneuron V2b</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord_ventral_horn_interneuron_V2b"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord_ventral_horn_interneuron_V2b"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ASpinal_cord_ventral_horn"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord_ventral_horn_motor_neuron_alpha">
+		<rdfs:label>Spinal cord ventral horn motor neuron alpha</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord_ventral_horn_motor_neuron_alpha"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord_ventral_horn_motor_neuron_alpha"/>
+		<property:LocationOfLocalAxonArborization rdf:resource="&wiki;Category-3ASpinal_cord_ventral_horn"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APrimary_motor_cortex">
+		<rdfs:label>Primary motor cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Primary_motor_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Primary_motor_cortex"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3ASpinal_cord_ventral_horn"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;EfferentProjections">
+		<rdfs:label>EfferentProjections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:EfferentProjections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:EfferentProjections"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;LocationOfLocalAxonArborization">
+		<rdfs:label>LocationOfLocalAxonArborization</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:LocationOfLocalAxonArborization"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:LocationOfLocalAxonArborization"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ARegional_part_of_spinal_cord">
+		<rdfs:label>Regional part of spinal cord</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Regional_part_of_spinal_cord"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Regional_part_of_spinal_cord"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Umlscui">
+		<rdfs:label>Umlscui</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Umlscui"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Umlscui"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord">
+		<rdfs:label>Spinal cord</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord_grey_matter">
+		<rdfs:label>Spinal cord grey matter</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord_grey_matter"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord_grey_matter"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Abbrev">
+		<rdfs:label>Abbrev</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Abbrev"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Abbrev"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

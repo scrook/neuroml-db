@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T22:46:02-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ANeocortex_pyramidal_cell_layer_5-2D6">
+		<rdfs:label>Neocortex pyramidal cell layer 5-6</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neocortex_pyramidal_cell_layer_5-6"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neocortex_pyramidal_cell_layer_5-6"/>
+		<property:Abbrev rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TL5</property:Abbrev>
+		<property:AxonLength rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pyramidal tract axon: 15-20 mm</property:AxonLength>
+		<property:AxonMyelination rdf:datatype="http://www.w3.org/2001/XMLSchema#string">myelinated</property:AxonMyelination>
+		<property:AxonProjectionLaterality rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ipsilateral</property:AxonProjectionLaterality>
+		<property:BranchingMetrics rdf:datatype="http://www.w3.org/2001/XMLSchema#string">apical/basal</property:BranchingMetrics>
+		<property:CellSomaShape rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Category:Pyramidal </property:CellSomaShape>
+		<property:CellSomaSize rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Large soma</property:CellSomaSize>
+		<property:CellularSynapticTarget rdf:resource="&wiki;Category-3ARat-3A_Spinal_cord_interneurons"/>
+		<property:CellularSynapticTarget rdf:resource="&wiki;Category-3APresynaptic_to_spinal_motoneurons."/>
+		<property:Comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The data are for a pyramidal tract neuron in layer 5 of the motor strip of the neocortex of the rat (GS)</property:Comment>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2007-09-05T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:DefiningCriteria rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Basal and apical dendrites; soma in neocortical layer 5</property:DefiningCriteria>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The pyramidal cell of layer 5 of the neocortex has a pyramidal-shaped cell body which gives off a number of laterally-directed basal dendrites and usually a single apical dendrite which ascends to branch and terminate in layer 1; these dendrites are covered in dendritic spines.  The axon descends through the internal capsule, giving off collaterals to the thalamus, to the medullary pyramids, where most of the axons cross controlaterally to descend and innervate the ventral horn of the spinal cord.</property:Definition>
+		<property:DendriteThickness rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rat: Basal trunks: 3-5 um; Apical trunk: 4-7 um</property:DendriteThickness>
+		<property:FiringPatterns rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regular firing and bursting</property:FiringPatterns>
+		<property:Has_role rdf:resource="&wiki;Category-3APrincipal_neuron"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nifext_50</property:Id>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neocortex pyramidal cell layer 5-6</property:Label>
+		<property:Located_in rdf:resource="&wiki;Category-3ANeocortex_layer_5"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ANeocortex_layer_6"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3AContralateral"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3AIpsilateral_spinal_cord_ventral_horn"/>
+		<property:LocationOfLocalAxonArborization rdf:resource="&wiki;Category-3ANeocortex_layer_6"/>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-03-09T00:00:00</property:ModifiedDate>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGlutamate"/>
+		<property:NeurotransmitterReceptors rdf:resource="&wiki;Category-3AGABA-2Dgated_anionic_channel"/>
+		<property:NeurotransmitterReceptors rdf:resource="&wiki;Category-3AAMPA-2Dtype_glutamate-2Dgated_cationic_channel"/>
+		<property:NeurotransmitterReceptors rdf:resource="&wiki;Category-3ANMDA-2Dtype_glutamate-2Dgated_cationic_channel"/>
+		<property:NumberOfPrimaryDendrites rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1-2, plus basal  (lateral) dendrites</property:NumberOfPrimaryDendrites>
+		<property:OriginOfAxon rdf:datatype="http://www.w3.org/2001/XMLSchema#string">soma</property:OriginOfAxon>
+		<property:Species rdf:resource="&wiki;Category-3AMammal"/>
+		<property:SpineDensityOnDendrites rdf:resource="&wiki;Category-3ASpiny_high_density"/>
+		<property:SpontaneousFiringPatterns rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regular firing and bursting</property:SpontaneousFiringPatterns>
+		<property:SpontaneousFiringRate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">medium firing</property:SpontaneousFiringRate>
+		<property:SubcellularSynapticTarget rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dendrites of spinal cord interneurons</property:SubcellularSynapticTarget>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neuron</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">deep pyramidal cell</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neocortex pyramidal neuron layer 5-6</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Layer 5-6 pyramidal cell</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">layer 5 pyramidal neuron</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">layer 5 pyramidal cell</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tufted layer 5 (TL5) pyramidal neurons</property:Synonym>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ANeuron"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A104284">
+		<rdfs:label>TermImport:104284</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:104284"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:104284"/>
+		<property:About rdf:resource="&wiki;Category-3ANeocortex_pyramidal_cell_layer_5-2D6"/>
+	</swivt:Subject>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ANeuron">
+		<rdfs:label>Neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neuron"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SubcellularSynapticTarget">
+		<rdfs:label>SubcellularSynapticTarget</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SubcellularSynapticTarget"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SubcellularSynapticTarget"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SpontaneousFiringRate">
+		<rdfs:label>SpontaneousFiringRate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SpontaneousFiringRate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SpontaneousFiringRate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SpontaneousFiringPatterns">
+		<rdfs:label>SpontaneousFiringPatterns</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SpontaneousFiringPatterns"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SpontaneousFiringPatterns"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ASpiny_high_density">
+		<rdfs:label>Spiny high density</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spiny_high_density"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spiny_high_density"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;SpineDensityOnDendrites">
+		<rdfs:label>SpineDensityOnDendrites</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SpineDensityOnDendrites"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SpineDensityOnDendrites"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMammal">
+		<rdfs:label>Mammal</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Mammal"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Mammal"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;OriginOfAxon">
+		<rdfs:label>OriginOfAxon</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:OriginOfAxon"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:OriginOfAxon"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;NumberOfPrimaryDendrites">
+		<rdfs:label>NumberOfPrimaryDendrites</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NumberOfPrimaryDendrites"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NumberOfPrimaryDendrites"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ANMDA-2Dtype_glutamate-2Dgated_cationic_channel">
+		<rdfs:label>NMDA-type glutamate-gated cationic channel</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:NMDA-type_glutamate-gated_cationic_channel"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:NMDA-type_glutamate-gated_cationic_channel"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAMPA-2Dtype_glutamate-2Dgated_cationic_channel">
+		<rdfs:label>AMPA-type glutamate-gated cationic channel</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:AMPA-type_glutamate-gated_cationic_channel"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:AMPA-type_glutamate-gated_cationic_channel"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AGABA-2Dgated_anionic_channel">
+		<rdfs:label>GABA-gated anionic channel</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:GABA-gated_anionic_channel"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:GABA-gated_anionic_channel"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;NeurotransmitterReceptors">
+		<rdfs:label>NeurotransmitterReceptors</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NeurotransmitterReceptors"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NeurotransmitterReceptors"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AGlutamate">
+		<rdfs:label>Glutamate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Glutamate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Glutamate"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Neurotransmitter">
+		<rdfs:label>Neurotransmitter</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Neurotransmitter"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Neurotransmitter"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:ObjectProperty rdf:about="&property;LocationOfLocalAxonArborization">
+		<rdfs:label>LocationOfLocalAxonArborization</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:LocationOfLocalAxonArborization"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:LocationOfLocalAxonArborization"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AIpsilateral_spinal_cord_ventral_horn">
+		<rdfs:label>Ipsilateral spinal cord ventral horn</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Ipsilateral_spinal_cord_ventral_horn"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Ipsilateral_spinal_cord_ventral_horn"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AContralateral">
+		<rdfs:label>Contralateral</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Contralateral"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Contralateral"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;LocationOfAxonArborization">
+		<rdfs:label>LocationOfAxonArborization</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:LocationOfAxonArborization"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:LocationOfAxonArborization"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ANeocortex_layer_6">
+		<rdfs:label>Neocortex layer 6</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neocortex_layer_6"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neocortex_layer_6"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeocortex_layer_5">
+		<rdfs:label>Neocortex layer 5</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neocortex_layer_5"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neocortex_layer_5"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3APrincipal_neuron">
+		<rdfs:label>Principal neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Principal_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Principal_neuron"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Has_role">
+		<rdfs:label>Has role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_role"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;FiringPatterns">
+		<rdfs:label>FiringPatterns</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:FiringPatterns"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:FiringPatterns"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;DendriteThickness">
+		<rdfs:label>DendriteThickness</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DendriteThickness"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DendriteThickness"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;DefiningCriteria">
+		<rdfs:label>DefiningCriteria</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefiningCriteria"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefiningCriteria"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Comment">
+		<rdfs:label>Comment</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Comment"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Comment"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3APresynaptic_to_spinal_motoneurons.">
+		<rdfs:label>Presynaptic to spinal motoneurons.</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Presynaptic_to_spinal_motoneurons."/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Presynaptic_to_spinal_motoneurons."/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARat-3A_Spinal_cord_interneurons">
+		<rdfs:label>Rat: Spinal cord interneurons</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Rat:_Spinal_cord_interneurons"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Rat:_Spinal_cord_interneurons"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;CellularSynapticTarget">
+		<rdfs:label>CellularSynapticTarget</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CellularSynapticTarget"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CellularSynapticTarget"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;CellSomaSize">
+		<rdfs:label>CellSomaSize</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CellSomaSize"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CellSomaSize"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CellSomaShape">
+		<rdfs:label>CellSomaShape</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CellSomaShape"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CellSomaShape"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;BranchingMetrics">
+		<rdfs:label>BranchingMetrics</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:BranchingMetrics"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:BranchingMetrics"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;AxonProjectionLaterality">
+		<rdfs:label>AxonProjectionLaterality</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AxonProjectionLaterality"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AxonProjectionLaterality"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;AxonMyelination">
+		<rdfs:label>AxonMyelination</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AxonMyelination"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AxonMyelination"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;AxonLength">
+		<rdfs:label>AxonLength</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AxonLength"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AxonLength"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Abbrev">
+		<rdfs:label>Abbrev</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Abbrev"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Abbrev"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

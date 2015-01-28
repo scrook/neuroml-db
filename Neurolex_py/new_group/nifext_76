@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T22:46:58-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ACochlear_nucleus_(dorsal)_cartwheel_cell">
+		<rdfs:label>Cochlear nucleus (dorsal) cartwheel cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cochlear_nucleus_(dorsal)_cartwheel_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cochlear_nucleus_(dorsal)_cartwheel_cell"/>
+		<property:AxonProjectionLaterality rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ipsilateral</property:AxonProjectionLaterality>
+		<property:BranchingMetrics rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stellate</property:BranchingMetrics>
+		<property:CellSomaShape rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Category:Spherical </property:CellSomaShape>
+		<property:CellSomaSize rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Small soma</property:CellSomaSize>
+		<property:CellularSynapticTarget rdf:resource="&wiki;Category-3ACochlear_nucleus_(dorsal)_pyramidal_neuron"/>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2007-09-05T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:DefiningCitation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Definition Source: Young and Oertel (2004). In Shepherd (ed.) The Synaptic Organization of the Brain, 5th ed, New York: Oxford University Press</property:DefiningCitation>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The cell body lies in the pyramidal cell layer, and the dendrites span the molecular layer and are densely covered with spines, which are contacted by parallel fibers of the granule cells.  Many features are shared with cerebellar Purkinje neurons.  Cartwheel cells stain for GABA and glycine markers, and contact pyramidal, giant and other cartwheel cells through glycinergic synapses.</property:Definition>
+		<property:FiringPatterns rdf:datatype="http://www.w3.org/2001/XMLSchema#string">bursting</property:FiringPatterns>
+		<property:Has_role rdf:resource="&wiki;Category-3AIntrinsic_neuron_role"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nifext_76</property:Id>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cochlear nucleus (dorsal) cartwheel cell</property:Label>
+		<property:Located_in rdf:resource="&wiki;Category-3APyramidal_cell_layer_of_the_dorsal_cochlear_nucles"/>
+		<property:LocationOfLocalAxonArborization rdf:resource="&wiki;Category-3APyramidal_cells"/>
+		<property:LocationOfLocalAxonArborization rdf:resource="&wiki;Category-3AGiant_cells"/>
+		<property:LocationOfLocalAxonArborization rdf:resource="&wiki;Category-3ACartwheel_cells"/>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-03-09T00:00:00</property:ModifiedDate>
+		<property:MolecularConstituents rdf:resource="&wiki;Category-3APEP19"/>
+		<property:MolecularConstituents rdf:resource="&wiki;Category-3ACerebellin"/>
+		<property:MolecularConstituents rdf:resource="&wiki;Category-3AGAD"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGlycine"/>
+		<property:NeurotransmitterReceptors rdf:resource="&wiki;Category-3AMGluR1alpha"/>
+		<property:OriginOfAxon rdf:datatype="http://www.w3.org/2001/XMLSchema#string">soma</property:OriginOfAxon>
+		<property:Species rdf:resource="&wiki;Category-3AMammal"/>
+		<property:SpineDensityOnDendrites rdf:resource="&wiki;Category-3ASpiny_high_density"/>
+		<property:SpontaneousFiringPatterns rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bursting</property:SpontaneousFiringPatterns>
+		<property:SpontaneousFiringRate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rapid firing</property:SpontaneousFiringRate>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neuron</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cartwheel neuron</property:Synonym>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ANeuron"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A100387">
+		<rdfs:label>TermImport:100387</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:100387"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:100387"/>
+		<property:About rdf:resource="&wiki;Category-3ACochlear_nucleus_(dorsal)_cartwheel_cell"/>
+	</swivt:Subject>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A100412">
+		<rdfs:label>TermImport:100412</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:100412"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:100412"/>
+		<property:About rdf:resource="&wiki;Category-3ACochlear_nucleus_(dorsal)_cartwheel_cell"/>
+	</swivt:Subject>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ANeuron">
+		<rdfs:label>Neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neuron"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SpontaneousFiringRate">
+		<rdfs:label>SpontaneousFiringRate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SpontaneousFiringRate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SpontaneousFiringRate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SpontaneousFiringPatterns">
+		<rdfs:label>SpontaneousFiringPatterns</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SpontaneousFiringPatterns"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SpontaneousFiringPatterns"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ASpiny_high_density">
+		<rdfs:label>Spiny high density</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spiny_high_density"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spiny_high_density"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;SpineDensityOnDendrites">
+		<rdfs:label>SpineDensityOnDendrites</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SpineDensityOnDendrites"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SpineDensityOnDendrites"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMammal">
+		<rdfs:label>Mammal</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Mammal"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Mammal"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;OriginOfAxon">
+		<rdfs:label>OriginOfAxon</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:OriginOfAxon"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:OriginOfAxon"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMGluR1alpha">
+		<rdfs:label>MGluR1alpha</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:MGluR1alpha"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:MGluR1alpha"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;NeurotransmitterReceptors">
+		<rdfs:label>NeurotransmitterReceptors</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NeurotransmitterReceptors"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NeurotransmitterReceptors"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AGlycine">
+		<rdfs:label>Glycine</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Glycine"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Glycine"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Neurotransmitter">
+		<rdfs:label>Neurotransmitter</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Neurotransmitter"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Neurotransmitter"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AGAD">
+		<rdfs:label>GAD</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:GAD"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:GAD"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebellin">
+		<rdfs:label>Cerebellin</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellin"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellin"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APEP19">
+		<rdfs:label>PEP19</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:PEP19"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:PEP19"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;MolecularConstituents">
+		<rdfs:label>MolecularConstituents</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:MolecularConstituents"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:MolecularConstituents"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ACartwheel_cells">
+		<rdfs:label>Cartwheel cells</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cartwheel_cells"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cartwheel_cells"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AGiant_cells">
+		<rdfs:label>Giant cells</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Giant_cells"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Giant_cells"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APyramidal_cells">
+		<rdfs:label>Pyramidal cells</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Pyramidal_cells"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Pyramidal_cells"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;LocationOfLocalAxonArborization">
+		<rdfs:label>LocationOfLocalAxonArborization</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:LocationOfLocalAxonArborization"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:LocationOfLocalAxonArborization"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3APyramidal_cell_layer_of_the_dorsal_cochlear_nucles">
+		<rdfs:label>Pyramidal cell layer of the dorsal cochlear nucles</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Pyramidal_cell_layer_of_the_dorsal_cochlear_nucles"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Pyramidal_cell_layer_of_the_dorsal_cochlear_nucles"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AIntrinsic_neuron_role">
+		<rdfs:label>Intrinsic neuron role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Intrinsic_neuron_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Intrinsic_neuron_role"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Has_role">
+		<rdfs:label>Has role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_role"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;FiringPatterns">
+		<rdfs:label>FiringPatterns</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:FiringPatterns"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:FiringPatterns"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;DefiningCitation">
+		<rdfs:label>DefiningCitation</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefiningCitation"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefiningCitation"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ACochlear_nucleus_(dorsal)_pyramidal_neuron">
+		<rdfs:label>Cochlear nucleus (dorsal) pyramidal neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cochlear_nucleus_(dorsal)_pyramidal_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cochlear_nucleus_(dorsal)_pyramidal_neuron"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;CellularSynapticTarget">
+		<rdfs:label>CellularSynapticTarget</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CellularSynapticTarget"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CellularSynapticTarget"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;CellSomaSize">
+		<rdfs:label>CellSomaSize</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CellSomaSize"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CellSomaSize"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CellSomaShape">
+		<rdfs:label>CellSomaShape</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CellSomaShape"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CellSomaShape"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;BranchingMetrics">
+		<rdfs:label>BranchingMetrics</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:BranchingMetrics"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:BranchingMetrics"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;AxonProjectionLaterality">
+		<rdfs:label>AxonProjectionLaterality</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AxonProjectionLaterality"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AxonProjectionLaterality"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

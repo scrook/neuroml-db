@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T22:47:16-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_bulb_(accessory)_glomerular_layer_cell">
+		<rdfs:label>Olfactory bulb (accessory) glomerular layer cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_bulb_(accessory)_glomerular_layer_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_bulb_(accessory)_glomerular_layer_cell"/>
+		<property:AxonLength rdf:datatype="http://www.w3.org/2001/XMLSchema#string">? 100-200 um</property:AxonLength>
+		<property:AxonMyelination rdf:datatype="http://www.w3.org/2001/XMLSchema#string">unmyelinated</property:AxonMyelination>
+		<property:AxonProjectionLaterality rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ipsilateral</property:AxonProjectionLaterality>
+		<property:CellSomaSize rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Small soma</property:CellSomaSize>
+		<property:CellularSynapticTarget rdf:resource="&wiki;Category-3AOther_PG_cells-3F_initial_trunks_of_mitral/tufted_cell_apical_dendrites-3F"/>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2007-09-05T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:DefiningCriteria rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Morphology; Connectivity</property:DefiningCriteria>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Small intrinsic neuron in the glomerular layer of the accessory olfactory bulb, with cell bodies surrounding the olfactory glomerulus. Equivalent to the periglomerular cell of the main olfactory bulb, but the glomeruli are less clearly differentiated.  The cell body is 6-8 um in diameter, from which arises a short bushy dendrite that arborizes within a glomerulus, where it receives synaptic input from olfactory receptor cell axon terminals, and engages in dendrodendritic interactions with mitral/tufted cell dendrites. The axon distributes laterally within the extraglomerular region. Shepherd, Chen, Greer. Olfactory bulb. In The synaptic organization of the brain, ed 5 New York: Oxford University Press, 2004.</property:Definition>
+		<property:DendriteThickness rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.5-2 um at origin</property:DendriteThickness>
+		<property:EditorialNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://www.ricercaitaliana.it/prin/unita_op_en-2004057720_003.htm</property:EditorialNote>
+		<property:ExampleImage rdf:resource="&wiki;File-3AGlomerular_layer_cell.jpg"/>
+		<property:FiringPatterns rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regular firing and bursting</property:FiringPatterns>
+		<property:Has_role rdf:resource="&wiki;Category-3AIntrinsic_neuron_role"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nifext_122</property:Id>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Olfactory bulb (accessory) glomerular layer cell</property:Label>
+		<property:Located_in rdf:resource="&wiki;Category-3AOlfactory_bulb"/>
+		<property:Located_in rdf:resource="&wiki;Category-3AOlfactory_bulb_accessory_nucleus"/>
+		<property:Located_in rdf:resource="&wiki;Category-3AGlomerular_layer"/>
+		<property:LocationOfLocalAxonArborization rdf:resource="&wiki;Category-3AWithin_extraglomerular_regions"/>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-06-11T00:00:00</property:ModifiedDate>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3ADopamine"/>
+		<property:NeurotransmitterReceptors rdf:resource="&wiki;Category-3AAMPA-2Dtype_glutamate-2Dgated_cationic_channel"/>
+		<property:NeurotransmitterReceptors rdf:resource="&wiki;Category-3ANMDA-2Dtype_glutamate-2Dgated_cationic_channel"/>
+		<property:NumberOfPrimaryDendrites rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1</property:NumberOfPrimaryDendrites>
+		<property:OriginOfAxon rdf:datatype="http://www.w3.org/2001/XMLSchema#string">soma and sometimes dendrite</property:OriginOfAxon>
+		<property:Species rdf:resource="&wiki;Category-3ARat_(applies_generally_to_all_mammals)"/>
+		<property:SpineDensityOnDendrites rdf:resource="&wiki;Category-3ASpiny_low_density"/>
+		<property:SpontaneousFiringPatterns rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regular firing and bursting</property:SpontaneousFiringPatterns>
+		<property:SpontaneousFiringRate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rapid firing</property:SpontaneousFiringRate>
+		<property:SubcellularSynapticTarget rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell bodies of other PG cells; initial trunks of primary apical dendrites of mitral/tufted cells</property:SubcellularSynapticTarget>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neuron</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Glomerular layer cell</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">periglomerular cell</property:Synonym>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ANeuron"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A104314">
+		<rdfs:label>TermImport:104314</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:104314"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:104314"/>
+		<property:About rdf:resource="&wiki;Category-3AOlfactory_bulb_(accessory)_glomerular_layer_cell"/>
+	</swivt:Subject>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ANeuron">
+		<rdfs:label>Neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neuron"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SubcellularSynapticTarget">
+		<rdfs:label>SubcellularSynapticTarget</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SubcellularSynapticTarget"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SubcellularSynapticTarget"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SpontaneousFiringRate">
+		<rdfs:label>SpontaneousFiringRate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SpontaneousFiringRate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SpontaneousFiringRate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SpontaneousFiringPatterns">
+		<rdfs:label>SpontaneousFiringPatterns</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SpontaneousFiringPatterns"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SpontaneousFiringPatterns"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ASpiny_low_density">
+		<rdfs:label>Spiny low density</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spiny_low_density"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spiny_low_density"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;SpineDensityOnDendrites">
+		<rdfs:label>SpineDensityOnDendrites</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SpineDensityOnDendrites"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SpineDensityOnDendrites"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ARat_(applies_generally_to_all_mammals)">
+		<rdfs:label>Rat (applies generally to all mammals)</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Rat_(applies_generally_to_all_mammals)"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Rat_(applies_generally_to_all_mammals)"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;OriginOfAxon">
+		<rdfs:label>OriginOfAxon</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:OriginOfAxon"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:OriginOfAxon"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;NumberOfPrimaryDendrites">
+		<rdfs:label>NumberOfPrimaryDendrites</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NumberOfPrimaryDendrites"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NumberOfPrimaryDendrites"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ANMDA-2Dtype_glutamate-2Dgated_cationic_channel">
+		<rdfs:label>NMDA-type glutamate-gated cationic channel</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:NMDA-type_glutamate-gated_cationic_channel"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:NMDA-type_glutamate-gated_cationic_channel"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAMPA-2Dtype_glutamate-2Dgated_cationic_channel">
+		<rdfs:label>AMPA-type glutamate-gated cationic channel</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:AMPA-type_glutamate-gated_cationic_channel"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:AMPA-type_glutamate-gated_cationic_channel"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;NeurotransmitterReceptors">
+		<rdfs:label>NeurotransmitterReceptors</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NeurotransmitterReceptors"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NeurotransmitterReceptors"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ADopamine">
+		<rdfs:label>Dopamine</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dopamine"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dopamine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AGABA">
+		<rdfs:label>GABA</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:GABA"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:GABA"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Neurotransmitter">
+		<rdfs:label>Neurotransmitter</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Neurotransmitter"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Neurotransmitter"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AWithin_extraglomerular_regions">
+		<rdfs:label>Within extraglomerular regions</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Within_extraglomerular_regions"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Within_extraglomerular_regions"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;LocationOfLocalAxonArborization">
+		<rdfs:label>LocationOfLocalAxonArborization</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:LocationOfLocalAxonArborization"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:LocationOfLocalAxonArborization"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AGlomerular_layer">
+		<rdfs:label>Glomerular layer</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Glomerular_layer"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Glomerular_layer"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_bulb_accessory_nucleus">
+		<rdfs:label>Olfactory bulb accessory nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_bulb_accessory_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_bulb_accessory_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_bulb">
+		<rdfs:label>Olfactory bulb</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_bulb"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_bulb"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AIntrinsic_neuron_role">
+		<rdfs:label>Intrinsic neuron role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Intrinsic_neuron_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Intrinsic_neuron_role"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Has_role">
+		<rdfs:label>Has role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_role"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;FiringPatterns">
+		<rdfs:label>FiringPatterns</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:FiringPatterns"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:FiringPatterns"/>
+	</owl:DatatypeProperty>
+	<swivt:Subject rdf:about="&wiki;File-3AGlomerular_layer_cell.jpg">
+		<rdfs:label>File:Glomerular layer cell.jpg</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;File:Glomerular_layer_cell.jpg"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/File:Glomerular_layer_cell.jpg"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;ExampleImage">
+		<rdfs:label>ExampleImage</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ExampleImage"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ExampleImage"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;EditorialNote">
+		<rdfs:label>EditorialNote</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:EditorialNote"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:EditorialNote"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;DendriteThickness">
+		<rdfs:label>DendriteThickness</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DendriteThickness"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DendriteThickness"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;DefiningCriteria">
+		<rdfs:label>DefiningCriteria</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefiningCriteria"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefiningCriteria"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AOther_PG_cells-3F_initial_trunks_of_mitral/tufted_cell_apical_dendrites-3F">
+		<rdfs:label>Other PG cells? initial trunks of mitral/tufted cell apical dendrites?</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Other_PG_cells%3F_initial_trunks_of_mitral/tufted_cell_apical_dendrites%3F"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Other_PG_cells%3F_initial_trunks_of_mitral/tufted_cell_apical_dendrites%3F"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;CellularSynapticTarget">
+		<rdfs:label>CellularSynapticTarget</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CellularSynapticTarget"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CellularSynapticTarget"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;CellSomaSize">
+		<rdfs:label>CellSomaSize</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CellSomaSize"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CellSomaSize"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;AxonProjectionLaterality">
+		<rdfs:label>AxonProjectionLaterality</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AxonProjectionLaterality"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AxonProjectionLaterality"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;AxonMyelination">
+		<rdfs:label>AxonMyelination</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AxonMyelination"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AxonMyelination"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;AxonLength">
+		<rdfs:label>AxonLength</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AxonLength"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AxonLength"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

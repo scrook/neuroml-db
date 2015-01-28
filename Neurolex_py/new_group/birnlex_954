@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T23:06:55-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3AThalamus">
+		<rdfs:label>Thalamus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Thalamus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Thalamus"/>
+		<property:Abbrev rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Th</property:Abbrev>
+		<property:AbbrevSource rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NeuroNames_abbrevSource</property:AbbrevSource>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2006-07-15T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subcortical brain region consisting of paired gray matter bodies in the dorsal diencephalon and forming part of the lateral wall of the third ventricle of the brain. The thalamus represents the major portion of the diencephalon and is commonly divided into cellular aggregates known as nuclear groups.(MeSH).</property:Definition>
+		<property:EditorialNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string">maybe propose nucleus (part of same functional system) vs region (= groups of nuclei like the thalamus)</property:EditorialNote>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">birnlex_954</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ADiencephalon"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Thalamus</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-04-27T00:00:00</property:ModifiedDate>
+		<property:NeuronamesLink rdf:resource="http://braininfo.rprc.washington.edu/Scripts/hiercentraldirectory.aspx?ID=283"/>
+		<property:Species rdf:resource="&wiki;Category-3AMammal"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional part of brain</property:SuperCategory>
+		<property:TomoDefiningCriteria rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lies between the interventricular foramen and th eposterior commissure and extends from the third ventricle to the medial border of the powterior limb of the internal capsule, dorsal to the hypothalamic sulcus (Carpenter, Core Text of Neuroanatomy, 3rd ed., 1985, pg. 44).</property:TomoDefiningCriteria>
+		<property:Umlscui rdf:datatype="http://www.w3.org/2001/XMLSchema#string">C0039729</property:Umlscui>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ARegional_part_of_brain"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A111901">
+		<rdfs:label>TermImport:111901</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:111901"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:111901"/>
+		<property:About rdf:resource="&wiki;Category-3AThalamus"/>
+	</swivt:Subject>
+	<owl:Class rdf:about="&wiki;Category-3APedunculopontine_tegmental_nucleus">
+		<rdfs:label>Pedunculopontine tegmental nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Pedunculopontine_tegmental_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Pedunculopontine_tegmental_nucleus"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AFastigial_nucleus">
+		<rdfs:label>Fastigial nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Fastigial_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Fastigial_nucleus"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeocortex">
+		<rdfs:label>Neocortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neocortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neocortex"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AGlobus_pallidus_internal_segment">
+		<rdfs:label>Globus pallidus internal segment</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Globus_pallidus_internal_segment"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Globus_pallidus_internal_segment"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APrimary_motor_cortex">
+		<rdfs:label>Primary motor cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Primary_motor_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Primary_motor_cortex"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARexed_lamina_V">
+		<rdfs:label>Rexed lamina V</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Rexed_lamina_V"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Rexed_lamina_V"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARexed_lamina_X">
+		<rdfs:label>Rexed lamina X</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Rexed_lamina_X"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Rexed_lamina_X"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AStratum_zonale_of_thalamus">
+		<rdfs:label>Stratum zonale of thalamus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Stratum_zonale_of_thalamus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Stratum_zonale_of_thalamus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AThalamic_reticular_nucleus">
+		<rdfs:label>Thalamic reticular nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Thalamic_reticular_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Thalamic_reticular_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AVentral_nuclear_group">
+		<rdfs:label>Ventral nuclear group</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Ventral_nuclear_group"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Ventral_nuclear_group"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASubmedial_nucleus">
+		<rdfs:label>Submedial nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Submedial_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Submedial_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APosterior_nuclear_complex">
+		<rdfs:label>Posterior nuclear complex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Posterior_nuclear_complex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Posterior_nuclear_complex"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMidline_nuclear_group">
+		<rdfs:label>Midline nuclear group</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Midline_nuclear_group"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Midline_nuclear_group"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMedial_dorsal_nucleus">
+		<rdfs:label>Medial dorsal nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Medial_dorsal_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Medial_dorsal_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ALateral_nuclear_group">
+		<rdfs:label>Lateral nuclear group</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Lateral_nuclear_group"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Lateral_nuclear_group"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AIntralaminar_nuclear_group">
+		<rdfs:label>Intralaminar nuclear group</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Intralaminar_nuclear_group"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Intralaminar_nuclear_group"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMetathalamus">
+		<rdfs:label>Metathalamus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Metathalamus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Metathalamus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAnterior_nuclear_group">
+		<rdfs:label>Anterior nuclear group</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Anterior_nuclear_group"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Anterior_nuclear_group"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AStria_medullaris">
+		<rdfs:label>Stria medullaris</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Stria_medullaris"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Stria_medullaris"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACaudal_thalamus">
+		<rdfs:label>Caudal thalamus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Caudal_thalamus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Caudal_thalamus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ALateral_thalamus">
+		<rdfs:label>Lateral thalamus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Lateral_thalamus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Lateral_thalamus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMedial_thalamus">
+		<rdfs:label>Medial thalamus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Medial_thalamus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Medial_thalamus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMediodorsal_thalamus">
+		<rdfs:label>Mediodorsal thalamus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Mediodorsal_thalamus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Mediodorsal_thalamus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANuclei_of_the_thalamus">
+		<rdfs:label>Nuclei of the thalamus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Nuclei_of_the_thalamus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Nuclei_of_the_thalamus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APosterior_thalamus">
+		<rdfs:label>Posterior thalamus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Posterior_thalamus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Posterior_thalamus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AVentral_thalamic">
+		<rdfs:label>Ventral thalamic</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Ventral_thalamic"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Ventral_thalamic"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AInterthalamic_adhesion">
+		<rdfs:label>Interthalamic adhesion</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Interthalamic_adhesion"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Interthalamic_adhesion"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AInteranterodorsal_nucleus_of_the_thalamus">
+		<rdfs:label>Interanterodorsal nucleus of the thalamus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Interanterodorsal_nucleus_of_the_thalamus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Interanterodorsal_nucleus_of_the_thalamus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AIntermediodorsal_nucleus_of_the_thalamus">
+		<rdfs:label>Intermediodorsal nucleus of the thalamus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Intermediodorsal_nucleus_of_the_thalamus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Intermediodorsal_nucleus_of_the_thalamus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AThalamus_geniculate_nucleus_(lateral)_principal_neuron">
+		<rdfs:label>Thalamus geniculate nucleus (lateral) principal neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Thalamus_geniculate_nucleus_(lateral)_principal_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Thalamus_geniculate_nucleus_(lateral)_principal_neuron"/>
+		<property:Located_in rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AThalamus_geniculate_nucleus_(lateral)_interneuron">
+		<rdfs:label>Thalamus geniculate nucleus (lateral) interneuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Thalamus_geniculate_nucleus_(lateral)_interneuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Thalamus_geniculate_nucleus_(lateral)_interneuron"/>
+		<property:Located_in rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AThalamus_geniculate_nucleus_(medial)_interneuron">
+		<rdfs:label>Thalamus geniculate nucleus (medial) interneuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Thalamus_geniculate_nucleus_(medial)_interneuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Thalamus_geniculate_nucleus_(medial)_interneuron"/>
+		<property:Located_in rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AThalamus_ventroposterior_nucleus_principal_neuron">
+		<rdfs:label>Thalamus ventroposterior nucleus principal neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Thalamus_ventroposterior_nucleus_principal_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Thalamus_ventroposterior_nucleus_principal_neuron"/>
+		<property:Located_in rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AThalamus_ventroposterior_nucleus_interneuron">
+		<rdfs:label>Thalamus ventroposterior nucleus interneuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Thalamus_ventroposterior_nucleus_interneuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Thalamus_ventroposterior_nucleus_interneuron"/>
+		<property:Located_in rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AThalamus_of_PHT00">
+		<rdfs:label>Thalamus of PHT00</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Thalamus_of_PHT00"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Thalamus_of_PHT00"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AThalamus_of_WHS11">
+		<rdfs:label>Thalamus of WHS11</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Thalamus_of_WHS11"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Thalamus_of_WHS11"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADiencephalon_of_WHS11">
+		<rdfs:label>Diencephalon of WHS11</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Diencephalon_of_WHS11"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Diencephalon_of_WHS11"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AGenePaint_E15_Atlas">
+		<rdfs:label>Resource:GenePaint E15 Atlas</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:GenePaint_E15_Atlas"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:GenePaint_E15_Atlas"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AGenePaint_P7_Atlas">
+		<rdfs:label>Resource:GenePaint P7 Atlas</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:GenePaint_P7_Atlas"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:GenePaint_P7_Atlas"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AGenePaint_P56_Mouse_Atlas">
+		<rdfs:label>Resource:GenePaint P56 Mouse Atlas</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:GenePaint_P56_Mouse_Atlas"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:GenePaint_P56_Mouse_Atlas"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AMouse_Neuronal_Expression_Database">
+		<rdfs:label>Resource:Mouse Neuronal Expression Database</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Mouse_Neuronal_Expression_Database"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Mouse_Neuronal_Expression_Database"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ASummary_of_recordings_of_spike_trains_available_for_analysis_and_guide_to_their_context_and_means_for_their_analysis">
+		<rdfs:label>Resource:Summary of recordings of spike trains available for analysis and guide to their context and means for their analysis</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Summary_of_recordings_of_spike_trains_available_for_analysis_and_guide_to_their_context_and_means_for_their_analysis"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Summary_of_recordings_of_spike_trains_available_for_analysis_and_guide_to_their_context_and_means_for_their_analysis"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AArizona_Biospecimen_Locator">
+		<rdfs:label>Resource:Arizona Biospecimen Locator</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Arizona_Biospecimen_Locator"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Arizona_Biospecimen_Locator"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ABrain_atlas_of_the_common_marmoset">
+		<rdfs:label>Resource:Brain atlas of the common marmoset</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Brain_atlas_of_the_common_marmoset"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Brain_atlas_of_the_common_marmoset"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AExpression_Atlas_of_the_Marmoset">
+		<rdfs:label>Resource:Expression Atlas of the Marmoset</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Expression_Atlas_of_the_Marmoset"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Expression_Atlas_of_the_Marmoset"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AConfocal_Microscopy_Image_Gallery_-2D_Rat_Brain_Tissue_Sections">
+		<rdfs:label>Resource:Confocal Microscopy Image Gallery - Rat Brain Tissue Sections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Confocal_Microscopy_Image_Gallery_-_Rat_Brain_Tissue_Sections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Confocal_Microscopy_Image_Gallery_-_Rat_Brain_Tissue_Sections"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ADIAN_-2D_Dominantly_Inherited_Alzheimer_Network">
+		<rdfs:label>Resource:DIAN - Dominantly Inherited Alzheimer Network</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:DIAN_-_Dominantly_Inherited_Alzheimer_Network"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:DIAN_-_Dominantly_Inherited_Alzheimer_Network"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AEVOLUTIONARY_FOUNDATIONS_FOR_THE_HUMAN_FOREBRAIN">
+		<rdfs:label>Resource:EVOLUTIONARY FOUNDATIONS FOR THE HUMAN FOREBRAIN</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:EVOLUTIONARY_FOUNDATIONS_FOR_THE_HUMAN_FOREBRAIN"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:EVOLUTIONARY_FOUNDATIONS_FOR_THE_HUMAN_FOREBRAIN"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeocortex_primary_motor_area_pyramidal_layer_5_corticospinal_cell">
+		<rdfs:label>Neocortex primary motor area pyramidal layer 5 corticospinal cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neocortex_primary_motor_area_pyramidal_layer_5_corticospinal_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neocortex_primary_motor_area_pyramidal_layer_5_corticospinal_cell"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AConsciousness">
+		<rdfs:label>Consciousness</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Consciousness"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Consciousness"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AThalamus"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;RelatedTo">
+		<rdfs:label>RelatedTo</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:RelatedTo"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:RelatedTo"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;LocationOfAxonArborization">
+		<rdfs:label>LocationOfAxonArborization</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:LocationOfAxonArborization"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:LocationOfAxonArborization"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;Keywords">
+		<rdfs:label>Keywords</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Keywords"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Keywords"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;PartiallyOverlapsWith">
+		<rdfs:label>PartiallyOverlapsWith</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PartiallyOverlapsWith"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PartiallyOverlapsWith"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;EfferentProjections">
+		<rdfs:label>EfferentProjections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:EfferentProjections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:EfferentProjections"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;AfferentProjections">
+		<rdfs:label>AfferentProjections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AfferentProjections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AfferentProjections"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ARegional_part_of_brain">
+		<rdfs:label>Regional part of brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Regional_part_of_brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Regional_part_of_brain"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Umlscui">
+		<rdfs:label>Umlscui</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Umlscui"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Umlscui"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;TomoDefiningCriteria">
+		<rdfs:label>TomoDefiningCriteria</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:TomoDefiningCriteria"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:TomoDefiningCriteria"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMammal">
+		<rdfs:label>Mammal</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Mammal"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Mammal"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;NeuronamesLink">
+		<rdfs:label>NeuronamesLink</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NeuronamesLink"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NeuronamesLink"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ADiencephalon">
+		<rdfs:label>Diencephalon</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Diencephalon"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Diencephalon"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;EditorialNote">
+		<rdfs:label>EditorialNote</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:EditorialNote"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:EditorialNote"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;AbbrevSource">
+		<rdfs:label>AbbrevSource</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AbbrevSource"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AbbrevSource"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Abbrev">
+		<rdfs:label>Abbrev</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Abbrev"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Abbrev"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>
