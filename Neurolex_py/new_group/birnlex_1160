@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T09:59:12-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ATemporal_lobe">
+		<rdfs:label>Temporal lobe</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Temporal_lobe"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Temporal_lobe"/>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2006-10-04T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lower lateral part of the cerebral hemisphere. (MSH)</property:Definition>
+		<property:ExternallySourcedDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lower lateral part of the cerebral hemisphere. (MSH)</property:ExternallySourcedDefinition>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">birnlex_1160</property:Id>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Temporal lobe</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-07-10T00:00:00</property:ModifiedDate>
+		<property:NeuronamesLink rdf:resource="http://braininfo.rprc.washington.edu/Scripts/hiercentraldirectory.aspx?ID=107"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3ATemporal_cortex"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lobe of cerebral cortex</property:SuperCategory>
+		<property:Umlscui rdf:datatype="http://www.w3.org/2001/XMLSchema#string">C0039485, C1268978</property:Umlscui>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ALobe_of_cerebral_cortex"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A105739">
+		<rdfs:label>TermImport:105739</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:105739"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:105739"/>
+		<property:About rdf:resource="&wiki;Category-3ATemporal_lobe"/>
+	</swivt:Subject>
+	<owl:Class rdf:about="&wiki;Category-3AInferior_horn_of_the_lateral_ventricle">
+		<rdfs:label>Inferior horn of the lateral ventricle</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Inferior_horn_of_the_lateral_ventricle"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Inferior_horn_of_the_lateral_ventricle"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATemporal_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ATransverse_temporal_sulcus">
+		<rdfs:label>Transverse temporal sulcus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Transverse_temporal_sulcus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Transverse_temporal_sulcus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATemporal_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ATemporal_operculum">
+		<rdfs:label>Temporal operculum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Temporal_operculum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Temporal_operculum"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATemporal_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASuperior_temporal_sulcus">
+		<rdfs:label>Superior temporal sulcus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Superior_temporal_sulcus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Superior_temporal_sulcus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATemporal_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APosterior_middle_temporal_sulcus">
+		<rdfs:label>Posterior middle temporal sulcus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Posterior_middle_temporal_sulcus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Posterior_middle_temporal_sulcus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATemporal_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMiddle_temporal_sulcus">
+		<rdfs:label>Middle temporal sulcus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Middle_temporal_sulcus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Middle_temporal_sulcus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATemporal_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ALateral_inferior_limiting_sulcus">
+		<rdfs:label>Lateral inferior limiting sulcus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Lateral_inferior_limiting_sulcus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Lateral_inferior_limiting_sulcus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATemporal_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AInferior_temporal_sulcus">
+		<rdfs:label>Inferior temporal sulcus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Inferior_temporal_sulcus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Inferior_temporal_sulcus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATemporal_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAnterior_middle_temporal_sulcus">
+		<rdfs:label>Anterior middle temporal sulcus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Anterior_middle_temporal_sulcus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Anterior_middle_temporal_sulcus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATemporal_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ATransverse_temporal_cortex">
+		<rdfs:label>Transverse temporal cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Transverse_temporal_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Transverse_temporal_cortex"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATemporal_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASuperior_temporal_gyrus">
+		<rdfs:label>Superior temporal gyrus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Superior_temporal_gyrus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Superior_temporal_gyrus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATemporal_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APosterior_transverse_temporal_gyrus">
+		<rdfs:label>Posterior transverse temporal gyrus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Posterior_transverse_temporal_gyrus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Posterior_transverse_temporal_gyrus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATemporal_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMiddle_temporal_gyrus">
+		<rdfs:label>Middle temporal gyrus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Middle_temporal_gyrus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Middle_temporal_gyrus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATemporal_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AInferior_temporal_gyrus">
+		<rdfs:label>Inferior temporal gyrus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Inferior_temporal_gyrus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Inferior_temporal_gyrus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATemporal_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AFusiform_gyrus">
+		<rdfs:label>Fusiform gyrus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Fusiform_gyrus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Fusiform_gyrus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATemporal_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAnterior_transverse_temporal_gyrus">
+		<rdfs:label>Anterior transverse temporal gyrus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Anterior_transverse_temporal_gyrus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Anterior_transverse_temporal_gyrus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATemporal_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ATemporal-2DLobe-3A_Hippocampal_-2D_Parahippocampal_Neuroanatomy_of_the_Rat">
+		<rdfs:label>Resource:Temporal-Lobe: Hippocampal - Parahippocampal Neuroanatomy of the Rat</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Temporal-Lobe:_Hippocampal_-_Parahippocampal_Neuroanatomy_of_the_Rat"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Temporal-Lobe:_Hippocampal_-_Parahippocampal_Neuroanatomy_of_the_Rat"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ATemporal_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ADIAN_-2D_Dominantly_Inherited_Alzheimer_Network">
+		<rdfs:label>Resource:DIAN - Dominantly Inherited Alzheimer Network</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:DIAN_-_Dominantly_Inherited_Alzheimer_Network"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:DIAN_-_Dominantly_Inherited_Alzheimer_Network"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ATemporal_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ATemporal_cortex">
+		<rdfs:label>Temporal cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Temporal_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Temporal_cortex"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3ATemporal_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASeparans_gyrus">
+		<rdfs:label>Separans gyrus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Separans_gyrus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Separans_gyrus"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3ATemporal_lobe"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;Keywords">
+		<rdfs:label>Keywords</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Keywords"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Keywords"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ALobe_of_cerebral_cortex">
+		<rdfs:label>Lobe of cerebral cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Lobe_of_cerebral_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Lobe_of_cerebral_cortex"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Umlscui">
+		<rdfs:label>Umlscui</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Umlscui"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Umlscui"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ATemporal_cortex">
+		<rdfs:label>Temporal cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Temporal_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Temporal_cortex"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;PartiallyOverlapsWith">
+		<rdfs:label>PartiallyOverlapsWith</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PartiallyOverlapsWith"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PartiallyOverlapsWith"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;NeuronamesLink">
+		<rdfs:label>NeuronamesLink</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NeuronamesLink"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NeuronamesLink"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;ExternallySourcedDefinition">
+		<rdfs:label>ExternallySourcedDefinition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ExternallySourcedDefinition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ExternallySourcedDefinition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

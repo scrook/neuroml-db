@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T22:45:19-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3AAntennal_lobe_(Honey_bee)_interneuron">
+		<rdfs:label>Antennal lobe (Honey bee) interneuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Antennal_lobe_(Honey_bee)_interneuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Antennal_lobe_(Honey_bee)_interneuron"/>
+		<property:Abbrev rdf:datatype="http://www.w3.org/2001/XMLSchema#string">LIN, LN</property:Abbrev>
+		<property:AxonMyelination rdf:datatype="http://www.w3.org/2001/XMLSchema#string">unmyelinated</property:AxonMyelination>
+		<property:AxonProjectionLaterality rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ipsilateral</property:AxonProjectionLaterality>
+		<property:BranchingMetrics rdf:datatype="http://www.w3.org/2001/XMLSchema#string">multipolar</property:BranchingMetrics>
+		<property:CellSomaShape rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Category:Spherical </property:CellSomaShape>
+		<property:CellSomaSize rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Medium soma</property:CellSomaSize>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Interglomerular local interneurons in the antennal lobe of the honey bee.Homoglomerular and heteroglomerular innervation patterns. Total of 4000 neurons, about two third GABA immunreactive. Other transmitters possibly histamine and glutamate.</property:Definition>
+		<property:DendriteLocation rdf:resource="&wiki;Category-3AAntennal_lobe_glomerulus"/>
+		<property:Has_role rdf:resource="&wiki;Category-3AIntrinsic_neuron_role"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nlx_151565</property:Id>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Antennal lobe (Honey bee) interneuron</property:Label>
+		<property:Located_in rdf:resource="&wiki;Category-3AAntennal_lobe"/>
+		<property:LocationOfLocalAxonArborization rdf:resource="&wiki;Category-3AGlomerulus"/>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-01-08T00:00:00</property:ModifiedDate>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AHistamine"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGlutamate"/>
+		<property:OriginOfAxon rdf:datatype="http://www.w3.org/2001/XMLSchema#string">dendrite</property:OriginOfAxon>
+		<property:Species rdf:resource="&wiki;Category-3AHoney_bee"/>
+		<property:Species rdf:resource="&wiki;Category-3AApis_mellifera_carnica"/>
+		<property:SpineDensityOnDendrites rdf:resource="&wiki;Category-3ASpiny_low_density"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neuron</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Antennal lobe local interneuron</property:Synonym>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ANeuron"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:Class rdf:about="&wiki;Category-3ANeuron">
+		<rdfs:label>Neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neuron"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ASpiny_low_density">
+		<rdfs:label>Spiny low density</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spiny_low_density"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spiny_low_density"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;SpineDensityOnDendrites">
+		<rdfs:label>SpineDensityOnDendrites</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SpineDensityOnDendrites"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SpineDensityOnDendrites"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AApis_mellifera_carnica">
+		<rdfs:label>Apis mellifera carnica</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Apis_mellifera_carnica"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Apis_mellifera_carnica"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHoney_bee">
+		<rdfs:label>Honey bee</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Honey_bee"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Honey_bee"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;OriginOfAxon">
+		<rdfs:label>OriginOfAxon</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:OriginOfAxon"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:OriginOfAxon"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AGlutamate">
+		<rdfs:label>Glutamate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Glutamate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Glutamate"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHistamine">
+		<rdfs:label>Histamine</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Histamine"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Histamine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AGABA">
+		<rdfs:label>GABA</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:GABA"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:GABA"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Neurotransmitter">
+		<rdfs:label>Neurotransmitter</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Neurotransmitter"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Neurotransmitter"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AGlomerulus">
+		<rdfs:label>Glomerulus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Glomerulus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Glomerulus"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;LocationOfLocalAxonArborization">
+		<rdfs:label>LocationOfLocalAxonArborization</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:LocationOfLocalAxonArborization"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:LocationOfLocalAxonArborization"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AAntennal_lobe">
+		<rdfs:label>Antennal lobe</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Antennal_lobe"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Antennal_lobe"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AIntrinsic_neuron_role">
+		<rdfs:label>Intrinsic neuron role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Intrinsic_neuron_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Intrinsic_neuron_role"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Has_role">
+		<rdfs:label>Has role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_role"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AAntennal_lobe_glomerulus">
+		<rdfs:label>Antennal lobe glomerulus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Antennal_lobe_glomerulus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Antennal_lobe_glomerulus"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;DendriteLocation">
+		<rdfs:label>DendriteLocation</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DendriteLocation"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DendriteLocation"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CellSomaSize">
+		<rdfs:label>CellSomaSize</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CellSomaSize"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CellSomaSize"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CellSomaShape">
+		<rdfs:label>CellSomaShape</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CellSomaShape"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CellSomaShape"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;BranchingMetrics">
+		<rdfs:label>BranchingMetrics</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:BranchingMetrics"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:BranchingMetrics"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;AxonProjectionLaterality">
+		<rdfs:label>AxonProjectionLaterality</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AxonProjectionLaterality"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AxonProjectionLaterality"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;AxonMyelination">
+		<rdfs:label>AxonMyelination</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AxonMyelination"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AxonMyelination"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Abbrev">
+		<rdfs:label>Abbrev</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Abbrev"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Abbrev"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

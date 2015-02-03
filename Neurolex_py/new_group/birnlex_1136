@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T09:58:33-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3AOccipital_lobe">
+		<rdfs:label>Occipital lobe</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Occipital_lobe"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Occipital_lobe"/>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2006-10-04T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Posterior part of the cerebral hemisphere (MSH)</property:Definition>
+		<property:DefinitionSource rdf:resource="&wiki;UMLS"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">birnlex_1136</property:Id>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Occipital lobe</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-03-09T00:00:00</property:ModifiedDate>
+		<property:NeuronamesLink rdf:resource="http://braininfo.rprc.washington.edu/Scripts/hiercentraldirectory.aspx?ID=122"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional part of brain</property:SuperCategory>
+		<property:Umlscui rdf:datatype="http://www.w3.org/2001/XMLSchema#string">C0028785</property:Umlscui>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ARegional_part_of_brain"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A105056">
+		<rdfs:label>TermImport:105056</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:105056"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:105056"/>
+		<property:About rdf:resource="&wiki;Category-3AOccipital_lobe"/>
+	</swivt:Subject>
+	<owl:Class rdf:about="&wiki;Category-3ACalcarine_sulcus">
+		<rdfs:label>Calcarine sulcus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Calcarine_sulcus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Calcarine_sulcus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AOccipital_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASuperior_occipital_gyrus">
+		<rdfs:label>Superior occipital gyrus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Superior_occipital_gyrus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Superior_occipital_gyrus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AOccipital_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOccipital_gyrus">
+		<rdfs:label>Occipital gyrus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Occipital_gyrus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Occipital_gyrus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AOccipital_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ALingual_gyrus">
+		<rdfs:label>Lingual gyrus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Lingual_gyrus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Lingual_gyrus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AOccipital_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ALateral_occipital_cortex">
+		<rdfs:label>Lateral occipital cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Lateral_occipital_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Lateral_occipital_cortex"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AOccipital_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AInferior_occipital_gyrus">
+		<rdfs:label>Inferior occipital gyrus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Inferior_occipital_gyrus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Inferior_occipital_gyrus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AOccipital_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACuneus_cortex">
+		<rdfs:label>Cuneus cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cuneus_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cuneus_cortex"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AOccipital_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAnnectant_gyrus">
+		<rdfs:label>Annectant gyrus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Annectant_gyrus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Annectant_gyrus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AOccipital_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAnterior_occipital_sulcus">
+		<rdfs:label>Anterior occipital sulcus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Anterior_occipital_sulcus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Anterior_occipital_sulcus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AOccipital_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ATransverse_occipital_sulcus">
+		<rdfs:label>Transverse occipital sulcus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Transverse_occipital_sulcus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Transverse_occipital_sulcus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AOccipital_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOccipital_cortex">
+		<rdfs:label>Occipital cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Occipital_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Occipital_cortex"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AOccipital_lobe"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ADIAN_-2D_Dominantly_Inherited_Alzheimer_Network">
+		<rdfs:label>Resource:DIAN - Dominantly Inherited Alzheimer Network</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:DIAN_-_Dominantly_Inherited_Alzheimer_Network"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:DIAN_-_Dominantly_Inherited_Alzheimer_Network"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AOccipital_lobe"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;Keywords">
+		<rdfs:label>Keywords</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Keywords"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Keywords"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ARegional_part_of_brain">
+		<rdfs:label>Regional part of brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Regional_part_of_brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Regional_part_of_brain"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Umlscui">
+		<rdfs:label>Umlscui</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Umlscui"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Umlscui"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:ObjectProperty rdf:about="&property;NeuronamesLink">
+		<rdfs:label>NeuronamesLink</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NeuronamesLink"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NeuronamesLink"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<swivt:Subject rdf:about="&wiki;UMLS">
+		<rdfs:label>UMLS</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;UMLS"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/UMLS"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;DefinitionSource">
+		<rdfs:label>DefinitionSource</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefinitionSource"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefinitionSource"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

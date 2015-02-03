@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T09:59:11-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ATelencephalon">
+		<rdfs:label>Telencephalon</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Telencephalon"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Telencephalon"/>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2006-07-15T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The telencephalon is the name for a large region within the brain that is attributed many functions. Many people refer to it as the cerebrum; however, it is technically referred to as the telencephalon. As a more technical definition, the telencephalon refers to the cerebral hemispheres and other, smaller structures within the brain, although the telencephalon is one of the larger divisions (in terms of number). It is the anterior-most embryological division of the brain that develops from the prosencephalon. The telencephalon is composed of the following sub-regions; Limbic system; Cerebral cortex or cortices of the cerebral hemispheres, Basal ganglia, Olfactory bulb.  The telencephalon comprises what most people think of as the "brain." It lies on top of the brainstem and is the largest and most well-developed of the five major divisions of the brain. The telencephalon is the newest structure in the phylogenetic sense, with mammals having the largest and most well-developed among all species. It emerges from the prosencephalon, the first of three vesicles that form from the embryonic neural tube (Christine Fennema-Notestine).</property:Definition>
+		<property:Has_role rdf:resource="&wiki;Category-3APONS_reference_structure"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">birnlex_1115</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AForebrain"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Telencephalon</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-07-13T00:00:00</property:ModifiedDate>
+		<property:NeuronamesLink rdf:resource="http://braininfo.rprc.washington.edu/Scripts/hiercentraldirectory.aspx?ID=12"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional part of brain</property:SuperCategory>
+		<property:Umlscui rdf:datatype="http://www.w3.org/2001/XMLSchema#string">C0039452</property:Umlscui>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ARegional_part_of_brain"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A111859">
+		<rdfs:label>TermImport:111859</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:111859"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:111859"/>
+		<property:About rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</swivt:Subject>
+	<owl:Class rdf:about="&wiki;Category-3ALateral_ventricle">
+		<rdfs:label>Lateral ventricle</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Lateral_ventricle"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Lateral_ventricle"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASeptum">
+		<rdfs:label>Septum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Septum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Septum"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARostral_migratory_stream">
+		<rdfs:label>Rostral migratory stream</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Rostral_migratory_stream"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Rostral_migratory_stream"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AInternal_capsule">
+		<rdfs:label>Internal capsule</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Internal_capsule"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Internal_capsule"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACorpus_callosum">
+		<rdfs:label>Corpus callosum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Corpus_callosum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Corpus_callosum"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APeriamygdaloid_area">
+		<rdfs:label>Periamygdaloid area</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Periamygdaloid_area"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Periamygdaloid_area"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ALimbic_lobe">
+		<rdfs:label>Limbic lobe</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Limbic_lobe"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Limbic_lobe"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANucleus_of_lateral_olfactory_tract">
+		<rdfs:label>Nucleus of lateral olfactory tract</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Nucleus_of_lateral_olfactory_tract"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Nucleus_of_lateral_olfactory_tract"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AClaustral_amygdaloid_area">
+		<rdfs:label>Claustral amygdaloid area</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Claustral_amygdaloid_area"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Claustral_amygdaloid_area"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AGlobus_pallidus">
+		<rdfs:label>Globus pallidus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Globus_pallidus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Globus_pallidus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAmygdala">
+		<rdfs:label>Amygdala</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Amygdala"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Amygdala"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AVentral_amygdalofugal_projection">
+		<rdfs:label>Ventral amygdalofugal projection</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Ventral_amygdalofugal_projection"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Ventral_amygdalofugal_projection"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AStria_terminalis">
+		<rdfs:label>Stria terminalis</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Stria_terminalis"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Stria_terminalis"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ALateral_olfactory_tract">
+		<rdfs:label>Lateral olfactory tract</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Lateral_olfactory_tract"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Lateral_olfactory_tract"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AVentral_pallidum">
+		<rdfs:label>Ventral pallidum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Ventral_pallidum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Ventral_pallidum"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASubstantia_innominata">
+		<rdfs:label>Substantia innominata</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Substantia_innominata"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Substantia_innominata"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASubcallosal_area">
+		<rdfs:label>Subcallosal area</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Subcallosal_area"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Subcallosal_area"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_bulb">
+		<rdfs:label>Olfactory bulb</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_bulb"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_bulb"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANucleus_accumbens">
+		<rdfs:label>Nucleus accumbens</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Nucleus_accumbens"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Nucleus_accumbens"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMedial_olfactory_gyrus">
+		<rdfs:label>Medial olfactory gyrus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Medial_olfactory_gyrus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Medial_olfactory_gyrus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AIslands_of_Calleja">
+		<rdfs:label>Islands of Calleja</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Islands_of_Calleja"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Islands_of_Calleja"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ABasal_forebrain">
+		<rdfs:label>Basal forebrain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Basal_forebrain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Basal_forebrain"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAnterior_olfactory_nucleus">
+		<rdfs:label>Anterior olfactory nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Anterior_olfactory_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Anterior_olfactory_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebral_cortex">
+		<rdfs:label>Cerebral cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebral_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebral_cortex"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AStriatum">
+		<rdfs:label>Striatum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Striatum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Striatum"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_trigone">
+		<rdfs:label>Olfactory trigone</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_trigone"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_trigone"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ALongitudinal_fissure">
+		<rdfs:label>Longitudinal fissure</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Longitudinal_fissure"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Longitudinal_fissure"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACallosal_sulcus">
+		<rdfs:label>Callosal sulcus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Callosal_sulcus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Callosal_sulcus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAnterior_parolfactory_sulcus">
+		<rdfs:label>Anterior parolfactory sulcus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Anterior_parolfactory_sulcus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Anterior_parolfactory_sulcus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACorona_radiata">
+		<rdfs:label>Corona radiata</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Corona_radiata"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Corona_radiata"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AExternal_capsule">
+		<rdfs:label>External capsule</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:External_capsule"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:External_capsule"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AInduseum_griseum">
+		<rdfs:label>Induseum griseum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Induseum_griseum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Induseum_griseum"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AExtreme_capsule">
+		<rdfs:label>Extreme capsule</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Extreme_capsule"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Extreme_capsule"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AInterstitial_nucleus_of_the_posterior_limb_of_the_anterior_commissure">
+		<rdfs:label>Interstitial nucleus of the posterior limb of the anterior commissure</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Interstitial_nucleus_of_the_posterior_limb_of_the_anterior_commissure"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Interstitial_nucleus_of_the_posterior_limb_of_the_anterior_commissure"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAnterior_commissure">
+		<rdfs:label>Anterior commissure</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Anterior_commissure"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Anterior_commissure"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_tubercle">
+		<rdfs:label>Olfactory tubercle</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_tubercle"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_tubercle"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAnsa_lenticularis">
+		<rdfs:label>Ansa lenticularis</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Ansa_lenticularis"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Ansa_lenticularis"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ABed_nucleus_of_stria_terminalis">
+		<rdfs:label>Bed nucleus of stria terminalis</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Bed_nucleus_of_stria_terminalis"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Bed_nucleus_of_stria_terminalis"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampal_rudiment">
+		<rdfs:label>Hippocampal rudiment</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampal_rudiment"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampal_rudiment"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ABasal_telencephalon">
+		<rdfs:label>Basal telencephalon</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Basal_telencephalon"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Basal_telencephalon"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AVentral_telencephalon">
+		<rdfs:label>Ventral telencephalon</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Ventral_telencephalon"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Ventral_telencephalon"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASubventricular_Zone">
+		<rdfs:label>Subventricular Zone</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Subventricular_Zone"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Subventricular_Zone"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AClaustrum">
+		<rdfs:label>Claustrum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Claustrum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Claustrum"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampal_commissure">
+		<rdfs:label>Hippocampal commissure</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampal_commissure"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampal_commissure"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AForebrain_of_WHS11">
+		<rdfs:label>Forebrain of WHS11</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Forebrain_of_WHS11"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Forebrain_of_WHS11"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AVISTA_Enhancer_Browser">
+		<rdfs:label>Resource:VISTA Enhancer Browser</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:VISTA_Enhancer_Browser"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:VISTA_Enhancer_Browser"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ATelencephalon"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;Keywords">
+		<rdfs:label>Keywords</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Keywords"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Keywords"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;PartiallyOverlapsWith">
+		<rdfs:label>PartiallyOverlapsWith</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PartiallyOverlapsWith"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PartiallyOverlapsWith"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ARegional_part_of_brain">
+		<rdfs:label>Regional part of brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Regional_part_of_brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Regional_part_of_brain"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Umlscui">
+		<rdfs:label>Umlscui</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Umlscui"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Umlscui"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:ObjectProperty rdf:about="&property;NeuronamesLink">
+		<rdfs:label>NeuronamesLink</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NeuronamesLink"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NeuronamesLink"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AForebrain">
+		<rdfs:label>Forebrain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Forebrain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Forebrain"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3APONS_reference_structure">
+		<rdfs:label>PONS reference structure</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:PONS_reference_structure"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:PONS_reference_structure"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Has_role">
+		<rdfs:label>Has role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_role"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

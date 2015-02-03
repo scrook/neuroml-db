@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T09:58:56-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ARostral_linear_nucleus">
+		<rdfs:label>Rostral linear nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Rostral_linear_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Rostral_linear_nucleus"/>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">graph position temporary</property:CurationStatus>
+		<property:Curator rdf:resource="&wiki;Maryann_Martone"/>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nucleus of the medial ventral tegmental area, originally identified in the rat but also in cat, monkey and human, comprising an average of 7% volume of the VTA across the different species, with the largest being present in the cat.</property:Definition>
+		<property:EditorialNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Brain Info does not list the linear nuclei as part of the ventral tegmental area but as a co-area of the midbrain tegmentum.  Am assuming the rostral linear nucleus of the raphe is synonymous, but needs further review.</property:EditorialNote>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nlx_144319</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AVentral_tegmental_area"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rostral linear nucleus</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-03-27T00:00:00</property:ModifiedDate>
+		<property:Species rdf:resource="&wiki;Category-3AMammal"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional part of brain</property:SuperCategory>
+		<property:TomoDefiningCriteria rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Joined at the midline in the dorsal portion but bifurcated ventrally, except in humans where it appears as a pair of separate nuclei</property:TomoDefiningCriteria>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ARegional_part_of_brain"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:Class rdf:about="&wiki;Category-3ARegional_part_of_brain">
+		<rdfs:label>Regional part of brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Regional_part_of_brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Regional_part_of_brain"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;TomoDefiningCriteria">
+		<rdfs:label>TomoDefiningCriteria</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:TomoDefiningCriteria"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:TomoDefiningCriteria"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMammal">
+		<rdfs:label>Mammal</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Mammal"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Mammal"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AVentral_tegmental_area">
+		<rdfs:label>Ventral tegmental area</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Ventral_tegmental_area"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Ventral_tegmental_area"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;EditorialNote">
+		<rdfs:label>EditorialNote</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:EditorialNote"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:EditorialNote"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<swivt:Subject rdf:about="&wiki;Maryann_Martone">
+		<rdfs:label>Maryann Martone</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Maryann_Martone"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Maryann_Martone"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;Curator">
+		<rdfs:label>Curator</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Curator"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Curator"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T09:58:25-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3AMedulla_oblongata">
+		<rdfs:label>Medulla oblongata</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Medulla_oblongata"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Medulla_oblongata"/>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2006-10-05T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The lower portion of the hindbrain and brainstem located between the pons and spinal cord. This structure contains several descending and ascending tracts, lower cranial nerve nuclei, a significant proportion of the reticular system of the brainstem and other structures (adapted from NCI Thesaurus).</property:Definition>
+		<property:DefinitionSource rdf:resource="&wiki;UMLS"/>
+		<property:ExternallySourcedDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">* The lower portion of the brainstem located between the pons and brainstem. This structure contains several descending and ascending tracts, lower cranial nerve nuclei, a significant proportion of the reticular system of the brainstem and other structures. (NCI) * caudal subdivision of the hindbrain interposed between the spinal cord and the pons; adult derivative of the myelencephalon, the most caudal subdivision of the developing brain; it has two subdivisions the open medulla bordering on the fourth ventricle and the closed medulla which surrounds the rostral part of the central canal. (CSP)</property:ExternallySourcedDefinition>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">birnlex_957</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AHindbrain"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ABrainstem"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Medulla oblongata</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-03-09T00:00:00</property:ModifiedDate>
+		<property:NeuronamesLink rdf:resource="http://braininfo.rprc.washington.edu/Scripts/hiercentraldirectory.aspx?ID=695"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional part of brain</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">myelencephalon</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">medulla</property:Synonym>
+		<property:Tracts rdf:datatype="http://www.w3.org/2001/XMLSchema#string">spinothalamic tract, medial lemniscus, lateral lemniscus, spinocerebellar tract</property:Tracts>
+		<property:Umlscui rdf:datatype="http://www.w3.org/2001/XMLSchema#string">C0025148, C1269575</property:Umlscui>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ARegional_part_of_brain"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A109898">
+		<rdfs:label>TermImport:109898</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:109898"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:109898"/>
+		<property:About rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</swivt:Subject>
+	<owl:Class rdf:about="&wiki;Category-3ASuperior_salivatory_nucleus">
+		<rdfs:label>Superior salivatory nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Superior_salivatory_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Superior_salivatory_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AVestibular_nuclear_complex">
+		<rdfs:label>Vestibular nuclear complex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Vestibular_nuclear_complex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Vestibular_nuclear_complex"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASolitary_nucleus">
+		<rdfs:label>Solitary nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Solitary_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Solitary_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AVestibulospinal_tract">
+		<rdfs:label>Vestibulospinal tract</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Vestibulospinal_tract"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Vestibulospinal_tract"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AVestibulocochlear_nerve_fiber_bundle">
+		<rdfs:label>Vestibulocochlear nerve fiber bundle</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Vestibulocochlear_nerve_fiber_bundle"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Vestibulocochlear_nerve_fiber_bundle"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AVentral_external_arcuate_fiber_bundle">
+		<rdfs:label>Ventral external arcuate fiber bundle</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Ventral_external_arcuate_fiber_bundle"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Ventral_external_arcuate_fiber_bundle"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AVagal_nerve_fiber_bundle">
+		<rdfs:label>Vagal nerve fiber bundle</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Vagal_nerve_fiber_bundle"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Vagal_nerve_fiber_bundle"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ATectobulbar_tract">
+		<rdfs:label>Tectobulbar tract</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Tectobulbar_tract"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Tectobulbar_tract"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASpinothalamic_tract_of_medulla">
+		<rdfs:label>Spinothalamic tract of medulla</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinothalamic_tract_of_medulla"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinothalamic_tract_of_medulla"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASpino-2Dolivary_tract">
+		<rdfs:label>Spino-olivary tract</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spino-olivary_tract"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spino-olivary_tract"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_trigeminal_tract_of_medulla">
+		<rdfs:label>Spinal trigeminal tract of medulla</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_trigeminal_tract_of_medulla"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_trigeminal_tract_of_medulla"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASolitary_tract">
+		<rdfs:label>Solitary tract</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Solitary_tract"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Solitary_tract"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APyramidal_decussation">
+		<rdfs:label>Pyramidal decussation</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Pyramidal_decussation"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Pyramidal_decussation"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlivocerebellar_tract">
+		<rdfs:label>Olivocerebellar tract</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olivocerebellar_tract"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olivocerebellar_tract"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMedial_lemniscus_of_medulla">
+		<rdfs:label>Medial lemniscus of medulla</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Medial_lemniscus_of_medulla"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Medial_lemniscus_of_medulla"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AJuxtarestiform_body">
+		<rdfs:label>Juxtarestiform body</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Juxtarestiform_body"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Juxtarestiform_body"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AInternal_arcuate_fiber_bundle">
+		<rdfs:label>Internal arcuate fiber bundle</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Internal_arcuate_fiber_bundle"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Internal_arcuate_fiber_bundle"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AInferior_cerebellar_peduncle">
+		<rdfs:label>Inferior cerebellar peduncle</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Inferior_cerebellar_peduncle"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Inferior_cerebellar_peduncle"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHypoglossal_nerve_fiber_bundle">
+		<rdfs:label>Hypoglossal nerve fiber bundle</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hypoglossal_nerve_fiber_bundle"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hypoglossal_nerve_fiber_bundle"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AGracile_fasciculus_of_medulla">
+		<rdfs:label>Gracile fasciculus of medulla</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Gracile_fasciculus_of_medulla"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Gracile_fasciculus_of_medulla"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AGlossopharyngeal_nerve_fiber_bundle">
+		<rdfs:label>Glossopharyngeal nerve fiber bundle</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Glossopharyngeal_nerve_fiber_bundle"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Glossopharyngeal_nerve_fiber_bundle"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ALissauer-27s_tract_of_medulla">
+		<rdfs:label>Lissauer's tract of medulla</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Lissauer%27s_tract_of_medulla"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Lissauer%27s_tract_of_medulla"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADorsal_longitudinal_fasciculus_of_medulla">
+		<rdfs:label>Dorsal longitudinal fasciculus of medulla</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dorsal_longitudinal_fasciculus_of_medulla"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dorsal_longitudinal_fasciculus_of_medulla"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADorsal_external_arcuate_fiber_bundle">
+		<rdfs:label>Dorsal external arcuate fiber bundle</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dorsal_external_arcuate_fiber_bundle"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dorsal_external_arcuate_fiber_bundle"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADecussation_of_medial_lemniscus">
+		<rdfs:label>Decussation of medial lemniscus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Decussation_of_medial_lemniscus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Decussation_of_medial_lemniscus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACuneocerebellar_tract">
+		<rdfs:label>Cuneocerebellar tract</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cuneocerebellar_tract"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cuneocerebellar_tract"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACuneate_fasciculus_of_medulla">
+		<rdfs:label>Cuneate fasciculus of medulla</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cuneate_fasciculus_of_medulla"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cuneate_fasciculus_of_medulla"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAccessory_nerve_fiber_bundle">
+		<rdfs:label>Accessory nerve fiber bundle</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Accessory_nerve_fiber_bundle"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Accessory_nerve_fiber_bundle"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASupraspinal_nucleus">
+		<rdfs:label>Supraspinal nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Supraspinal_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Supraspinal_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASublingual_nucleus">
+		<rdfs:label>Sublingual nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Sublingual_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Sublingual_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APontobulbar_nucleus">
+		<rdfs:label>Pontobulbar nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Pontobulbar_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Pontobulbar_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APeritrigeminal_nucleus">
+		<rdfs:label>Peritrigeminal nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Peritrigeminal_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Peritrigeminal_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AParasolitary_nucleus">
+		<rdfs:label>Parasolitary nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Parasolitary_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Parasolitary_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANucleus_prepositus">
+		<rdfs:label>Nucleus prepositus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Nucleus_prepositus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Nucleus_prepositus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANucleus_intercalatus">
+		<rdfs:label>Nucleus intercalatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Nucleus_intercalatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Nucleus_intercalatus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANucleus_ambiguus">
+		<rdfs:label>Nucleus ambiguus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Nucleus_ambiguus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Nucleus_ambiguus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMedial_pericuneate_nucleus">
+		<rdfs:label>Medial pericuneate nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Medial_pericuneate_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Medial_pericuneate_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ALateral_pericuneate_nucleus">
+		<rdfs:label>Lateral pericuneate nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Lateral_pericuneate_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Lateral_pericuneate_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AInferior_salivatory_nucleus">
+		<rdfs:label>Inferior salivatory nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Inferior_salivatory_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Inferior_salivatory_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHypoglossal_nucleus">
+		<rdfs:label>Hypoglossal nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hypoglossal_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hypoglossal_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AGracile_nucleus">
+		<rdfs:label>Gracile nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Gracile_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Gracile_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADorsal_motor_nucleus_of_vagus_nerve">
+		<rdfs:label>Dorsal motor nucleus of vagus nerve</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dorsal_motor_nucleus_of_vagus_nerve"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dorsal_motor_nucleus_of_vagus_nerve"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACuneate_nucleus">
+		<rdfs:label>Cuneate nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cuneate_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cuneate_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACommissural_nucleus_of_vagus_nerve">
+		<rdfs:label>Commissural nucleus of vagus nerve</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Commissural_nucleus_of_vagus_nerve"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Commissural_nucleus_of_vagus_nerve"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACaudal_part_of_spinal_trigeminal_nucleus">
+		<rdfs:label>Caudal part of spinal trigeminal nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Caudal_part_of_spinal_trigeminal_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Caudal_part_of_spinal_trigeminal_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AArea_postrema">
+		<rdfs:label>Area postrema</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Area_postrema"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Area_postrema"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAccessory_cuneate_nucleus">
+		<rdfs:label>Accessory cuneate nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Accessory_cuneate_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Accessory_cuneate_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMedullary_white_matter">
+		<rdfs:label>Medullary white matter</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Medullary_white_matter"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Medullary_white_matter"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMedullary_reticular_formation">
+		<rdfs:label>Medullary reticular formation</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Medullary_reticular_formation"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Medullary_reticular_formation"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMedullary_raphe_nuclear_complex">
+		<rdfs:label>Medullary raphe nuclear complex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Medullary_raphe_nuclear_complex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Medullary_raphe_nuclear_complex"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AInferior_olivary_complex">
+		<rdfs:label>Inferior olivary complex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Inferior_olivary_complex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Inferior_olivary_complex"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACochlear_nuclear_complex">
+		<rdfs:label>Cochlear nuclear complex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cochlear_nuclear_complex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cochlear_nuclear_complex"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANucleus_gigantocellularis">
+		<rdfs:label>Nucleus gigantocellularis</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Nucleus_gigantocellularis"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Nucleus_gigantocellularis"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_trigeminal_nucleus">
+		<rdfs:label>Spinal trigeminal nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_trigeminal_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_trigeminal_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APyramid">
+		<rdfs:label>Pyramid</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Pyramid"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Pyramid"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACaudal_medulla_oblongata">
+		<rdfs:label>Caudal medulla oblongata</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Caudal_medulla_oblongata"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Caudal_medulla_oblongata"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AVentrolateral_medulla_oblongata">
+		<rdfs:label>Ventrolateral medulla oblongata</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Ventrolateral_medulla_oblongata"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Ventrolateral_medulla_oblongata"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ALateral_paragigantocellular_nucleus">
+		<rdfs:label>Lateral paragigantocellular nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Lateral_paragigantocellular_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Lateral_paragigantocellular_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AObex">
+		<rdfs:label>Obex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Obex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Obex"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APyramidal_tract">
+		<rdfs:label>Pyramidal tract</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Pyramidal_tract"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Pyramidal_tract"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHindbrain_of_WHS11">
+		<rdfs:label>Hindbrain of WHS11</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hindbrain_of_WHS11"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hindbrain_of_WHS11"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMedulla_of_WHS11">
+		<rdfs:label>Medulla of WHS11</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Medulla_of_WHS11"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Medulla_of_WHS11"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ASectional_Atlas_of_Human_Brain_and_Spinal_Cord">
+		<rdfs:label>Resource:Sectional Atlas of Human Brain and Spinal Cord</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Sectional_Atlas_of_Human_Brain_and_Spinal_Cord"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Sectional_Atlas_of_Human_Brain_and_Spinal_Cord"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AConfocal_Microscopy_Image_Gallery_-2D_Rat_Brain_Tissue_Sections">
+		<rdfs:label>Resource:Confocal Microscopy Image Gallery - Rat Brain Tissue Sections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Confocal_Microscopy_Image_Gallery_-_Rat_Brain_Tissue_Sections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Confocal_Microscopy_Image_Gallery_-_Rat_Brain_Tissue_Sections"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ADIAN_-2D_Dominantly_Inherited_Alzheimer_Network">
+		<rdfs:label>Resource:DIAN - Dominantly Inherited Alzheimer Network</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:DIAN_-_Dominantly_Inherited_Alzheimer_Network"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:DIAN_-_Dominantly_Inherited_Alzheimer_Network"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AMedulla_oblongata"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;Keywords">
+		<rdfs:label>Keywords</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Keywords"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Keywords"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;PartiallyOverlapsWith">
+		<rdfs:label>PartiallyOverlapsWith</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PartiallyOverlapsWith"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PartiallyOverlapsWith"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ARegional_part_of_brain">
+		<rdfs:label>Regional part of brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Regional_part_of_brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Regional_part_of_brain"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Umlscui">
+		<rdfs:label>Umlscui</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Umlscui"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Umlscui"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Tracts">
+		<rdfs:label>Tracts</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Tracts"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Tracts"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:ObjectProperty rdf:about="&property;NeuronamesLink">
+		<rdfs:label>NeuronamesLink</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NeuronamesLink"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NeuronamesLink"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ABrainstem">
+		<rdfs:label>Brainstem</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Brainstem"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Brainstem"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHindbrain">
+		<rdfs:label>Hindbrain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hindbrain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hindbrain"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;ExternallySourcedDefinition">
+		<rdfs:label>ExternallySourcedDefinition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ExternallySourcedDefinition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ExternallySourcedDefinition"/>
+	</owl:DatatypeProperty>
+	<swivt:Subject rdf:about="&wiki;UMLS">
+		<rdfs:label>UMLS</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;UMLS"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/UMLS"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;DefinitionSource">
+		<rdfs:label>DefinitionSource</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefinitionSource"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefinitionSource"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

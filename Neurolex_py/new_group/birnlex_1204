@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T09:57:34-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ACA3">
+		<rdfs:label>CA3</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:CA3"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:CA3"/>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2006-07-15T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Part of hippocampus proper bounded by the hilus of the dentate gyrus and area CA2, characterized by large pyramidal cells and a dense projection from dentate gyrus granule cell mossy fibers</property:Definition>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">birnlex_1204</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AHippocampus"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CA3</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-10-03T00:00:00</property:ModifiedDate>
+		<property:NeuronamesLink rdf:resource="http://braininfo.rprc.washington.edu/Scripts/hiercentraldirectory.aspx?ID=167"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3AHippocampus_regio_inferior_of_Cajal"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cytoarchitectural fields of hippocampal formation</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CA3 field of hippocampus</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CA3 field</property:Synonym>
+		<property:Umlscui rdf:datatype="http://www.w3.org/2001/XMLSchema#string">C0694600</property:Umlscui>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ACytoarchitectural_fields_of_hippocampal_formation"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A107999">
+		<rdfs:label>TermImport:107999</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:107999"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:107999"/>
+		<property:About rdf:resource="&wiki;Category-3ACA3"/>
+	</swivt:Subject>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A111161">
+		<rdfs:label>TermImport:111161</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:111161"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:111161"/>
+		<property:About rdf:resource="&wiki;Category-3ACA3"/>
+	</swivt:Subject>
+	<owl:Class rdf:about="&wiki;Category-3ADentate_gyrus_granule_cell">
+		<rdfs:label>Dentate gyrus granule cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dentate_gyrus_granule_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dentate_gyrus_granule_cell"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA3"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACA3_stratum_oriens">
+		<rdfs:label>CA3 stratum oriens</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:CA3_stratum_oriens"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:CA3_stratum_oriens"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACA3"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACA3_stratum_lacunosum_moleculare">
+		<rdfs:label>CA3 stratum lacunosum moleculare</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:CA3_stratum_lacunosum_moleculare"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:CA3_stratum_lacunosum_moleculare"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACA3"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACA3_stratum_radiatum">
+		<rdfs:label>CA3 stratum radiatum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:CA3_stratum_radiatum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:CA3_stratum_radiatum"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACA3"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACA3_stratum_lucidum">
+		<rdfs:label>CA3 stratum lucidum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:CA3_stratum_lucidum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:CA3_stratum_lucidum"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACA3"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACA3_alveus">
+		<rdfs:label>CA3 alveus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:CA3_alveus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:CA3_alveus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACA3"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACA3_stratum_pyramidale">
+		<rdfs:label>CA3 stratum pyramidale</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:CA3_stratum_pyramidale"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:CA3_stratum_pyramidale"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACA3"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AComputational_Neuroanatomy_Group">
+		<rdfs:label>Resource:Computational Neuroanatomy Group</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Computational_Neuroanatomy_Group"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Computational_Neuroanatomy_Group"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACA3"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ASegmentation_of_Hippocampus_Subfields">
+		<rdfs:label>Resource:Segmentation of Hippocampus Subfields</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Segmentation_of_Hippocampus_Subfields"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Segmentation_of_Hippocampus_Subfields"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACA3"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACA3_of_RHA11">
+		<rdfs:label>CA3 of RHA11</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:CA3_of_RHA11"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:CA3_of_RHA11"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3ACA3"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;Keywords">
+		<rdfs:label>Keywords</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Keywords"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Keywords"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;LocationOfAxonArborization">
+		<rdfs:label>LocationOfAxonArborization</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:LocationOfAxonArborization"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:LocationOfAxonArborization"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ACytoarchitectural_fields_of_hippocampal_formation">
+		<rdfs:label>Cytoarchitectural fields of hippocampal formation</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cytoarchitectural_fields_of_hippocampal_formation"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cytoarchitectural_fields_of_hippocampal_formation"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Umlscui">
+		<rdfs:label>Umlscui</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Umlscui"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Umlscui"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_regio_inferior_of_Cajal">
+		<rdfs:label>Hippocampus regio inferior of Cajal</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_regio_inferior_of_Cajal"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_regio_inferior_of_Cajal"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;PartiallyOverlapsWith">
+		<rdfs:label>PartiallyOverlapsWith</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PartiallyOverlapsWith"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PartiallyOverlapsWith"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;NeuronamesLink">
+		<rdfs:label>NeuronamesLink</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NeuronamesLink"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NeuronamesLink"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus">
+		<rdfs:label>Hippocampus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

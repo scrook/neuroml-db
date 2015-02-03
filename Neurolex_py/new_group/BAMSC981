@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T22:25:41-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ACerebellum_candelabrum_cell">
+		<rdfs:label>Cerebellum candelabrum cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellum_candelabrum_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellum_candelabrum_cell"/>
+		<property:Authors rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Laine J</property:Authors>
+		<property:Authors rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Axelrad H.</property:Authors>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Curator rdf:resource="&wiki;Mihail_Bota"/>
+		<property:DefiningCitation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Laine and Axelrad</property:DefiningCitation>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neuron with perikaryon located inside the Purkinje cell layer. It is squeezed, either between the bulging parts of the PC somata or in the space left free between their upper poles, just at the level of the lower border of the molecular layer.</property:Definition>
+		<property:EditorialNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://onlinelibrary.wiley.com/doi/10.1002/cne.903390202/pdf</property:EditorialNote>
+		<property:ExampleImage rdf:resource="&wiki;File-3ACerebellum_candelabrum_cell.JPG"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">BAMSC981</property:Id>
+		<property:JournalNumber rdf:resource="&wiki;2"/>
+		<property:JournalVolume rdf:resource="&wiki;339"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cerebellum candelabrum cell</property:Label>
+		<property:Located_in rdf:resource="&wiki;Category-3ACerebellum"/>
+		<property:Located_in rdf:resource="&wiki;Category-3APurkinje_cell_layer_of_cerebellar_cortex"/>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-03-09T00:00:00</property:ModifiedDate>
+		<property:PMID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8300903</property:PMID>
+		<property:Pages rdf:datatype="http://www.w3.org/2001/XMLSchema#string">159-73</property:Pages>
+		<property:PublicationDate rdf:resource="&wiki;1994"/>
+		<property:PublicationName rdf:resource="&wiki;Journal_of_Comparative_Neurology"/>
+		<property:Species rdf:resource="&wiki;Category-3ARat"/>
+		<property:Species rdf:resource="&wiki;Category-3AMacaque"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neuron</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">candelabrum cell</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">candelabrum neuron</property:Synonym>
+		<property:Title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The candelabrum cell: a new interneuron in the cerebellar cortex.</property:Title>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ANeuron"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:Class rdf:about="&wiki;Category-3ANeuron">
+		<rdfs:label>Neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neuron"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Title">
+		<rdfs:label>Title</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Title"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Title"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMacaque">
+		<rdfs:label>Macaque</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Macaque"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Macaque"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARat">
+		<rdfs:label>Rat</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Rat"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Rat"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<swivt:Subject rdf:about="&wiki;Journal_of_Comparative_Neurology">
+		<rdfs:label>Journal of Comparative Neurology</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Journal_of_Comparative_Neurology"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Journal_of_Comparative_Neurology"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;PublicationName">
+		<rdfs:label>PublicationName</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PublicationName"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PublicationName"/>
+	</owl:ObjectProperty>
+	<swivt:Subject rdf:about="&wiki;1994">
+		<rdfs:label>1994</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;1994"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/1994"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;PublicationDate">
+		<rdfs:label>PublicationDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PublicationDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PublicationDate"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Pages">
+		<rdfs:label>Pages</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Pages"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Pages"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;PMID">
+		<rdfs:label>PMID</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PMID"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PMID"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3APurkinje_cell_layer_of_cerebellar_cortex">
+		<rdfs:label>Purkinje cell layer of cerebellar cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Purkinje_cell_layer_of_cerebellar_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Purkinje_cell_layer_of_cerebellar_cortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebellum">
+		<rdfs:label>Cerebellum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellum"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<swivt:Subject rdf:about="&wiki;339">
+		<rdfs:label>339</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;339"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/339"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;JournalVolume">
+		<rdfs:label>JournalVolume</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:JournalVolume"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:JournalVolume"/>
+	</owl:ObjectProperty>
+	<swivt:Subject rdf:about="&wiki;2">
+		<rdfs:label>2</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;2"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/2"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;JournalNumber">
+		<rdfs:label>JournalNumber</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:JournalNumber"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:JournalNumber"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<swivt:Subject rdf:about="&wiki;File-3ACerebellum_candelabrum_cell.JPG">
+		<rdfs:label>File:Cerebellum candelabrum cell.JPG</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;File:Cerebellum_candelabrum_cell.JPG"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/File:Cerebellum_candelabrum_cell.JPG"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;ExampleImage">
+		<rdfs:label>ExampleImage</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ExampleImage"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ExampleImage"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;EditorialNote">
+		<rdfs:label>EditorialNote</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:EditorialNote"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:EditorialNote"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;DefiningCitation">
+		<rdfs:label>DefiningCitation</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefiningCitation"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefiningCitation"/>
+	</owl:DatatypeProperty>
+	<swivt:Subject rdf:about="&wiki;Mihail_Bota">
+		<rdfs:label>Mihail Bota</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Mihail_Bota"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Mihail_Bota"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;Curator">
+		<rdfs:label>Curator</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Curator"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Curator"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Authors">
+		<rdfs:label>Authors</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Authors"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Authors"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

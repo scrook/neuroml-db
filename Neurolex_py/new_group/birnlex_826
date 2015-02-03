@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T09:57:25-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ABasal_ganglia">
+		<rdfs:label>Basal ganglia</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Basal_ganglia"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Basal_ganglia"/>
+		<property:Comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">This class should be a defined class through the part of relationship.  When someone searches NIF for Basal ganglia, it should automatically expand to all of its parts.</property:Comment>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2006-10-10T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pending final vetting</property:CurationStatus>
+		<property:Curator rdf:resource="&wiki;Maryann_Martone"/>
+		<property:Curator rdf:resource="&wiki;Bill_Bug"/>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subcortical masses of gray matter in the forebrain and midbrain that are richly interconnected and so viewed as a functional system.  The nuclei usually included are the caudate nucleus (caudoputamen in rodents), putamen, globus pallidus, substantia nigra (pars compacta and pars reticulata) and the subthalamic nucleus.  Some also include the nucleus accumbens and ventral pallidum.</property:Definition>
+		<property:EditorialNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Note that the term basal ganglia is also used to refer to subcortical nuclei of telencephalic origin. We have listed this definition under "Basal nuclear complex" and listed basal ganglia as a synonym.</property:EditorialNote>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">birnlex_826</property:Id>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Basal ganglia</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-07-10T00:00:00</property:ModifiedDate>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Aggregate regional part of brain</property:SuperCategory>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3AAggregate_regional_part_of_brain"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A106943">
+		<rdfs:label>TermImport:106943</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:106943"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:106943"/>
+		<property:About rdf:resource="&wiki;Category-3ABasal_ganglia"/>
+	</swivt:Subject>
+	<owl:Class rdf:about="&wiki;Category-3ASubstantia_nigra">
+		<rdfs:label>Substantia nigra</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Substantia_nigra"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Substantia_nigra"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ABasal_ganglia"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AGlobus_pallidus">
+		<rdfs:label>Globus pallidus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Globus_pallidus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Globus_pallidus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ABasal_ganglia"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AVentral_pallidum">
+		<rdfs:label>Ventral pallidum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Ventral_pallidum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Ventral_pallidum"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ABasal_ganglia"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANucleus_accumbens">
+		<rdfs:label>Nucleus accumbens</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Nucleus_accumbens"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Nucleus_accumbens"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ABasal_ganglia"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AStriatum">
+		<rdfs:label>Striatum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Striatum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Striatum"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ABasal_ganglia"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASubthalamic_nucleus">
+		<rdfs:label>Subthalamic nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Subthalamic_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Subthalamic_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ABasal_ganglia"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AEntopeduncular_nucleus">
+		<rdfs:label>Entopeduncular nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Entopeduncular_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Entopeduncular_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ABasal_ganglia"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ANational_Disease_Research_Interchange">
+		<rdfs:label>Resource:National Disease Research Interchange</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:National_Disease_Research_Interchange"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:National_Disease_Research_Interchange"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ABasal_ganglia"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ASectional_Atlas_of_Human_Brain_and_Spinal_Cord">
+		<rdfs:label>Resource:Sectional Atlas of Human Brain and Spinal Cord</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Sectional_Atlas_of_Human_Brain_and_Spinal_Cord"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Sectional_Atlas_of_Human_Brain_and_Spinal_Cord"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ABasal_ganglia"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;Keywords">
+		<rdfs:label>Keywords</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Keywords"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Keywords"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AAggregate_regional_part_of_brain">
+		<rdfs:label>Aggregate regional part of brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Aggregate_regional_part_of_brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Aggregate_regional_part_of_brain"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;EditorialNote">
+		<rdfs:label>EditorialNote</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:EditorialNote"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:EditorialNote"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<swivt:Subject rdf:about="&wiki;Bill_Bug">
+		<rdfs:label>Bill Bug</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Bill_Bug"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Bill_Bug"/>
+	</swivt:Subject>
+	<swivt:Subject rdf:about="&wiki;Maryann_Martone">
+		<rdfs:label>Maryann Martone</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Maryann_Martone"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Maryann_Martone"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;Curator">
+		<rdfs:label>Curator</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Curator"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Curator"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Comment">
+		<rdfs:label>Comment</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Comment"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Comment"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

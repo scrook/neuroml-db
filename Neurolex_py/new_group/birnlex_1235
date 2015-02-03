@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T09:58:27-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3AMidbrain_reticular_formation">
+		<rdfs:label>Midbrain reticular formation</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Midbrain_reticular_formation"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Midbrain_reticular_formation"/>
+		<property:Abbrev rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MBRF</property:Abbrev>
+		<property:AbbrevSource rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NeuroNames_abbrevSource</property:AbbrevSource>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2006-07-15T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Part of the reticular formation located in the midbrain tegmentum</property:Definition>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">birnlex_1235</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ASerotonergic_system"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMidbrain_tegmentum"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AReticular_formation"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Midbrain reticular formation</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-03-09T00:00:00</property:ModifiedDate>
+		<property:NeuronamesLink rdf:resource="http://braininfo.rprc.washington.edu/Scripts/hiercentraldirectory.aspx?ID=492"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional part of brain</property:SuperCategory>
+		<property:Umlscui rdf:datatype="http://www.w3.org/2001/XMLSchema#string">C0228394</property:Umlscui>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ARegional_part_of_brain"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A109995">
+		<rdfs:label>TermImport:109995</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:109995"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:109995"/>
+		<property:About rdf:resource="&wiki;Category-3AMidbrain_reticular_formation"/>
+	</swivt:Subject>
+	<owl:Class rdf:about="&wiki;Category-3ASubcuneiform_nucleus">
+		<rdfs:label>Subcuneiform nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Subcuneiform_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Subcuneiform_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMidbrain_reticular_formation"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APedunculopontine_tegmental_nucleus">
+		<rdfs:label>Pedunculopontine tegmental nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Pedunculopontine_tegmental_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Pedunculopontine_tegmental_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMidbrain_reticular_formation"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACuneiform_nucleus">
+		<rdfs:label>Cuneiform nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cuneiform_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cuneiform_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMidbrain_reticular_formation"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARetrorubral_area">
+		<rdfs:label>Retrorubral area</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retrorubral_area"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retrorubral_area"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMidbrain_reticular_formation"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AFastigial_nucleus">
+		<rdfs:label>Fastigial nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Fastigial_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Fastigial_nucleus"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3AMidbrain_reticular_formation"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AParafascicular_nucleus">
+		<rdfs:label>Parafascicular nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Parafascicular_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Parafascicular_nucleus"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3AMidbrain_reticular_formation"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebellar_Serotonergic_Afferents">
+		<rdfs:label>Cerebellar Serotonergic Afferents</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellar_Serotonergic_Afferents"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellar_Serotonergic_Afferents"/>
+		<property:SomaLocation rdf:resource="&wiki;Category-3AMidbrain_reticular_formation"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;SomaLocation">
+		<rdfs:label>SomaLocation</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SomaLocation"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SomaLocation"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;AfferentProjections">
+		<rdfs:label>AfferentProjections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AfferentProjections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AfferentProjections"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ARegional_part_of_brain">
+		<rdfs:label>Regional part of brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Regional_part_of_brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Regional_part_of_brain"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Umlscui">
+		<rdfs:label>Umlscui</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Umlscui"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Umlscui"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:ObjectProperty rdf:about="&property;NeuronamesLink">
+		<rdfs:label>NeuronamesLink</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NeuronamesLink"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NeuronamesLink"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AReticular_formation">
+		<rdfs:label>Reticular formation</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Reticular_formation"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Reticular_formation"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMidbrain_tegmentum">
+		<rdfs:label>Midbrain tegmentum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Midbrain_tegmentum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Midbrain_tegmentum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASerotonergic_system">
+		<rdfs:label>Serotonergic system</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Serotonergic_system"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Serotonergic_system"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;AbbrevSource">
+		<rdfs:label>AbbrevSource</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AbbrevSource"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AbbrevSource"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Abbrev">
+		<rdfs:label>Abbrev</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Abbrev"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Abbrev"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

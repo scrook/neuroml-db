@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T23:58:19-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ACerebellum">
+		<rdfs:label>Cerebellum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellum"/>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2006-07-15T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Part of the rhombencephalon that lies in the posterior cranial fossa behind the brain stem, consisting of the cerebellar cortex, deep cerebellar nuclei and cerebellar white matter.
+A portion of the brain that helps regulate posture, balance, and coordination. (NIDA Media Guide Glossary)</property:Definition>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">birnlex_1489</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AHindbrain"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cerebellum</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-01-28T00:00:00</property:ModifiedDate>
+		<property:NeuronamesLink rdf:resource="http://braininfo.rprc.washington.edu/Scripts/hiercentraldirectory.aspx?ID=640"/>
+		<property:Species rdf:resource="&wiki;Category-3AVertebrata"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional part of brain</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cerebellar</property:Synonym>
+		<property:Umlscui rdf:datatype="http://www.w3.org/2001/XMLSchema#string">C0007765, C1268981</property:Umlscui>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ARegional_part_of_brain"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A108300">
+		<rdfs:label>TermImport:108300</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:108300"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:108300"/>
+		<property:About rdf:resource="&wiki;Category-3ACerebellum"/>
+	</swivt:Subject>
+	<owl:Class rdf:about="&wiki;Category-3ARed_nucleus">
+		<rdfs:label>Red nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Red_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Red_nucleus"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APontine_nuclear_complex">
+		<rdfs:label>Pontine nuclear complex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Pontine_nuclear_complex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Pontine_nuclear_complex"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACentral_cervical_nucleus">
+		<rdfs:label>Central cervical nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Central_cervical_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Central_cervical_nucleus"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANucleus_centrobasalis">
+		<rdfs:label>Nucleus centrobasalis</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Nucleus_centrobasalis"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Nucleus_centrobasalis"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARexed_lamina_V">
+		<rdfs:label>Rexed lamina V</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Rexed_lamina_V"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Rexed_lamina_V"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARexed_lamina_VII">
+		<rdfs:label>Rexed lamina VII</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Rexed_lamina_VII"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Rexed_lamina_VII"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APosterior_lobe_of_the_cerebellum">
+		<rdfs:label>Posterior lobe of the cerebellum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Posterior_lobe_of_the_cerebellum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Posterior_lobe_of_the_cerebellum"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AFlocculonodular_lobe">
+		<rdfs:label>Flocculonodular lobe</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Flocculonodular_lobe"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Flocculonodular_lobe"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAnterior_lobe_of_the_cerebellum">
+		<rdfs:label>Anterior lobe of the cerebellum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Anterior_lobe_of_the_cerebellum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Anterior_lobe_of_the_cerebellum"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADeep_cerebellar_nuclear_complex">
+		<rdfs:label>Deep cerebellar nuclear complex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Deep_cerebellar_nuclear_complex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Deep_cerebellar_nuclear_complex"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebellar_cortex">
+		<rdfs:label>Cerebellar cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellar_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellar_cortex"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APrimary_fissure">
+		<rdfs:label>Primary fissure</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Primary_fissure"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Primary_fissure"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AWhite_matter_of_the_cerebellar_cortex">
+		<rdfs:label>White matter of the cerebellar cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:White_matter_of_the_cerebellar_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:White_matter_of_the_cerebellar_cortex"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebellar_Corticopontine_Projection">
+		<rdfs:label>Cerebellar Corticopontine Projection</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellar_Corticopontine_Projection"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellar_Corticopontine_Projection"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebellar_Pontocerebellar_Projection">
+		<rdfs:label>Cerebellar Pontocerebellar Projection</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellar_Pontocerebellar_Projection"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellar_Pontocerebellar_Projection"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebellar_Serotonergic_Afferents">
+		<rdfs:label>Cerebellar Serotonergic Afferents</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellar_Serotonergic_Afferents"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellar_Serotonergic_Afferents"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACaudal_cerebellum">
+		<rdfs:label>Caudal cerebellum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Caudal_cerebellum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Caudal_cerebellum"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AInfracerebellar_nucleus">
+		<rdfs:label>Infracerebellar nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Infracerebellar_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Infracerebellar_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebellum_Lugaro_cell">
+		<rdfs:label>Cerebellum Lugaro cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellum_Lugaro_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellum_Lugaro_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebellum_Purkinje_cell">
+		<rdfs:label>Cerebellum Purkinje cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellum_Purkinje_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellum_Purkinje_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebellum_stellate_cell">
+		<rdfs:label>Cerebellum stellate cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellum_stellate_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellum_stellate_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebellum_nucleus_reciprocal_projections_neuron">
+		<rdfs:label>Cerebellum nucleus reciprocal projections neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellum_nucleus_reciprocal_projections_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellum_nucleus_reciprocal_projections_neuron"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebellum_candelabrum_cell">
+		<rdfs:label>Cerebellum candelabrum cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellum_candelabrum_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellum_candelabrum_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ABrain_Gene_Expression_Database">
+		<rdfs:label>Resource:Brain Gene Expression Database</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Brain_Gene_Expression_Database"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Brain_Gene_Expression_Database"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ACerebellar_Development_Transcriptome_Database">
+		<rdfs:label>Resource:Cerebellar Development Transcriptome Database</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Cerebellar_Development_Transcriptome_Database"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Cerebellar_Development_Transcriptome_Database"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ACerebellar_Platform">
+		<rdfs:label>Resource:Cerebellar Platform</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Cerebellar_Platform"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Cerebellar_Platform"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AFunctional_Anatomy_of_the_Cerebro-2DCerebellar_System_(FACCS)">
+		<rdfs:label>Resource:Functional Anatomy of the Cerebro-Cerebellar System (FACCS)</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Functional_Anatomy_of_the_Cerebro-Cerebellar_System_(FACCS)"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Functional_Anatomy_of_the_Cerebro-Cerebellar_System_(FACCS)"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AHigh_Resolution_Mouse_Brain_Atlas">
+		<rdfs:label>Resource:High Resolution Mouse Brain Atlas</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:High_Resolution_Mouse_Brain_Atlas"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:High_Resolution_Mouse_Brain_Atlas"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AInternet_Brain_Segmentation_Repository">
+		<rdfs:label>Resource:Internet Brain Segmentation Repository</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Internet_Brain_Segmentation_Repository"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Internet_Brain_Segmentation_Repository"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AInternational_Consortium_for_Brain_Mapping">
+		<rdfs:label>Resource:International Consortium for Brain Mapping</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:International_Consortium_for_Brain_Mapping"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:International_Consortium_for_Brain_Mapping"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AGenePaint_E15_Atlas">
+		<rdfs:label>Resource:GenePaint E15 Atlas</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:GenePaint_E15_Atlas"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:GenePaint_E15_Atlas"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AGenePaint_P7_Atlas">
+		<rdfs:label>Resource:GenePaint P7 Atlas</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:GenePaint_P7_Atlas"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:GenePaint_P7_Atlas"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AGenePaint_P56_Mouse_Atlas">
+		<rdfs:label>Resource:GenePaint P56 Mouse Atlas</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:GenePaint_P56_Mouse_Atlas"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:GenePaint_P56_Mouse_Atlas"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AHistology_World-3A_Nervous_System_Histology">
+		<rdfs:label>Resource:Histology World: Nervous System Histology</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Histology_World:_Nervous_System_Histology"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Histology_World:_Nervous_System_Histology"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AMouse_Brain_Atlases">
+		<rdfs:label>Resource:Mouse Brain Atlases</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Mouse_Brain_Atlases"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Mouse_Brain_Atlases"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AMichigan_State_University_Brain_Biodiversity_Bank">
+		<rdfs:label>Resource:Michigan State University Brain Biodiversity Bank</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Michigan_State_University_Brain_Biodiversity_Bank"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Michigan_State_University_Brain_Biodiversity_Bank"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ANeuro_Systems_and_Graphics_Computing_Laboratory">
+		<rdfs:label>Resource:Neuro Systems and Graphics Computing Laboratory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Neuro_Systems_and_Graphics_Computing_Laboratory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Neuro_Systems_and_Graphics_Computing_Laboratory"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ANerve_Tissue">
+		<rdfs:label>Resource:Nerve Tissue</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Nerve_Tissue"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Nerve_Tissue"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ASummary_of_recordings_of_spike_trains_available_for_analysis_and_guide_to_their_context_and_means_for_their_analysis">
+		<rdfs:label>Resource:Summary of recordings of spike trains available for analysis and guide to their context and means for their analysis</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Summary_of_recordings_of_spike_trains_available_for_analysis_and_guide_to_their_context_and_means_for_their_analysis"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Summary_of_recordings_of_spike_trains_available_for_analysis_and_guide_to_their_context_and_means_for_their_analysis"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AAllen_Reference_Atlas">
+		<rdfs:label>Resource:Allen Reference Atlas</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Allen_Reference_Atlas"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Allen_Reference_Atlas"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AOregon_Brain_Bank">
+		<rdfs:label>Resource:Oregon Brain Bank</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Oregon_Brain_Bank"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Oregon_Brain_Bank"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AStanley_Medical_Research_Institute_Online_Genomics_Database">
+		<rdfs:label>Resource:Stanley Medical Research Institute Online Genomics Database</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Stanley_Medical_Research_Institute_Online_Genomics_Database"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Stanley_Medical_Research_Institute_Online_Genomics_Database"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AProbabilistic_atlas_of_the_human_cerebellum">
+		<rdfs:label>Resource:Probabilistic atlas of the human cerebellum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Probabilistic_atlas_of_the_human_cerebellum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Probabilistic_atlas_of_the_human_cerebellum"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ASpatially_unbiased_atlas_template_of_the_cerebellum_and_brainstem">
+		<rdfs:label>Resource:Spatially unbiased atlas template of the cerebellum and brainstem</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Spatially_unbiased_atlas_template_of_the_cerebellum_and_brainstem"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Spatially_unbiased_atlas_template_of_the_cerebellum_and_brainstem"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ANeuronDB">
+		<rdfs:label>Resource:NeuronDB</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:NeuronDB"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:NeuronDB"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ABrain_Atlas_Database_of_Japanese_Monkey_for_WWW">
+		<rdfs:label>Resource:Brain Atlas Database of Japanese Monkey for WWW</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Brain_Atlas_Database_of_Japanese_Monkey_for_WWW"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Brain_Atlas_Database_of_Japanese_Monkey_for_WWW"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ACell_Properties_Database">
+		<rdfs:label>Resource:Cell Properties Database</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Cell_Properties_Database"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Cell_Properties_Database"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AConfocal_Microscopy_Image_Gallery_-2D_Rat_Brain_Tissue_Sections">
+		<rdfs:label>Resource:Confocal Microscopy Image Gallery - Rat Brain Tissue Sections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Confocal_Microscopy_Image_Gallery_-_Rat_Brain_Tissue_Sections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Confocal_Microscopy_Image_Gallery_-_Rat_Brain_Tissue_Sections"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ADIAN_-2D_Dominantly_Inherited_Alzheimer_Network">
+		<rdfs:label>Resource:DIAN - Dominantly Inherited Alzheimer Network</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:DIAN_-_Dominantly_Inherited_Alzheimer_Network"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:DIAN_-_Dominantly_Inherited_Alzheimer_Network"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebellum_of_WHS11">
+		<rdfs:label>Cerebellum of WHS11</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellum_of_WHS11"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellum_of_WHS11"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHindbrain_of_WHS11">
+		<rdfs:label>Hindbrain of WHS11</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hindbrain_of_WHS11"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hindbrain_of_WHS11"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3ACerebellum"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;PartiallyOverlapsWith">
+		<rdfs:label>PartiallyOverlapsWith</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PartiallyOverlapsWith"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PartiallyOverlapsWith"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;Keywords">
+		<rdfs:label>Keywords</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Keywords"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Keywords"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;EfferentProjections">
+		<rdfs:label>EfferentProjections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:EfferentProjections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:EfferentProjections"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;AfferentProjections">
+		<rdfs:label>AfferentProjections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AfferentProjections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AfferentProjections"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ARegional_part_of_brain">
+		<rdfs:label>Regional part of brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Regional_part_of_brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Regional_part_of_brain"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Umlscui">
+		<rdfs:label>Umlscui</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Umlscui"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Umlscui"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AVertebrata">
+		<rdfs:label>Vertebrata</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Vertebrata"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Vertebrata"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;NeuronamesLink">
+		<rdfs:label>NeuronamesLink</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NeuronamesLink"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NeuronamesLink"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AHindbrain">
+		<rdfs:label>Hindbrain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hindbrain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hindbrain"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

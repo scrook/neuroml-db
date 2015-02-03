@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T08:15:21-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3AVasopressin">
+		<rdfs:label>Vasopressin</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Vasopressin"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Vasopressin"/>
+		<property:Comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">taken from DrugBank</property:Comment>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Curator rdf:resource="&wiki;Ab"/>
+		<property:DefiningCitation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://www.drugbank.ca/drugs/DB00067</property:DefiningCitation>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Antidiuretic hormone, also known as vasopressin, is a nine amino acid peptide secreted from the posterior pituitary. Antidiuretic hormone binds to receptors in the distal or collecting tubules of the kidney and promotes reabsorbtion of water back into the circulation Pharmacology: Vasopressin is an antidiuretic hormone indicated for the prevention and treatment of postoperative abdominal distention, in abdominal roentgenography to dispel interfering gas shadows, and in diabetes insipidus. Vasopressin can cause contraction of smooth muscle of the gastrointestinal tract and of all parts of the vascular bed, especially the capillaries, small arterioles and venules. It has less effect on the smooth musculature of the large veins. Vasopressin may also be used to control bleeding in some forms of von Willebrand disease and to treat extreme cases of bed wetting in children. It may also play a role in memory formation although the mechanism is unknown. Mechanism of action: Vasopressin acts on three different receptors, vasopressin receptor V1a (which initiates vasoconstriction, liver gluconeogenesis, platelet aggregation and release of factor VIII), vasopressin receptor V1b (which mediates corticotrophin secretion from the pituitary) and vasopressin receptor V2 which controls free water reabsorption in the renal medullar. The binding of vasopressin to the V2 receptor activates adenylate cyclase which causes the release of aquaporin 2 channels into the cells lining the renal medullar duct. This allows water to be reabsorbed down an osmotic gradient so the urine is more concentrated. Drug type: Approved. Biotech. Drug category: Antidiuretics. Oxytocics. Vasoconstrictor Agents</property:Definition>
+		<property:Has_role rdf:resource="&wiki;Category-3ADrug"/>
+		<property:Has_role rdf:resource="&wiki;Category-3ANeuropeptide"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DB00067</property:Id>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vasopressin</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2010-02-07T00:00:00</property:ModifiedDate>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AVasopressin_V1a_receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AVasopressin_V2_receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AVasopressin_V1b_receptor"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Peptide</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3-Isoleucyl vasopressin</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Arginine oxytocin</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Arginine vasotocin</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Argiprestocin</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pitressin tannate</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vasopressin</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">isoleucyl</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">non-mammalian</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vasotocin</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pitressin</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pressyn</property:Synonym>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3APeptide"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHypothalamus_vasopressin_neuroendocrine_magnocellular_neuron">
+		<rdfs:label>Hypothalamus vasopressin neuroendocrine magnocellular neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hypothalamus_vasopressin_neuroendocrine_magnocellular_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hypothalamus_vasopressin_neuroendocrine_magnocellular_neuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AVasopressin"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ACollecting_Duct_Database">
+		<rdfs:label>Resource:Collecting Duct Database</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Collecting_Duct_Database"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Collecting_Duct_Database"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AVasopressin"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;Keywords">
+		<rdfs:label>Keywords</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Keywords"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Keywords"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;Neurotransmitter">
+		<rdfs:label>Neurotransmitter</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Neurotransmitter"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Neurotransmitter"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3APeptide">
+		<rdfs:label>Peptide</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Peptide"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Peptide"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AVasopressin_V1b_receptor">
+		<rdfs:label>Vasopressin V1b receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Vasopressin_V1b_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Vasopressin_V1b_receptor"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AVasopressin_V2_receptor">
+		<rdfs:label>Vasopressin V2 receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Vasopressin_V2_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Vasopressin_V2_receptor"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AVasopressin_V1a_receptor">
+		<rdfs:label>Vasopressin V1a receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Vasopressin_V1a_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Vasopressin_V1a_receptor"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;RelatedTo">
+		<rdfs:label>RelatedTo</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:RelatedTo"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:RelatedTo"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ANeuropeptide">
+		<rdfs:label>Neuropeptide</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neuropeptide"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neuropeptide"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADrug">
+		<rdfs:label>Drug</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Drug"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Drug"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Has_role">
+		<rdfs:label>Has role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_role"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;DefiningCitation">
+		<rdfs:label>DefiningCitation</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefiningCitation"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefiningCitation"/>
+	</owl:DatatypeProperty>
+	<swivt:Subject rdf:about="&wiki;Ab">
+		<rdfs:label>Ab</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Ab"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Ab"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;Curator">
+		<rdfs:label>Curator</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Curator"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Curator"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Comment">
+		<rdfs:label>Comment</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Comment"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Comment"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

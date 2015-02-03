@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T23:07:46-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3APrimary_motor_cortex">
+		<rdfs:label>Primary motor cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Primary_motor_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Primary_motor_cortex"/>
+		<property:Abbrev rdf:datatype="http://www.w3.org/2001/XMLSchema#string">M1</property:Abbrev>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:CytoDefiningCriteria rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Like all parts of the neocortex, the primary motor cortex is made of six layers. Unlike primary sensory areas, primary motor cortex is agranular cortex; that is, it does not have a cell-packed granular layer (layer 4). Instead, the most distinctive layer of primary motor cortex is its descending output layer (Layer 5), which contains the giant Betz cells. These pyramidal cells and other projection neurons of the primary motor cortex make up ~30% of the fibers in the corticospinal tract. http://neuroscience.uth.tmc.edu/s3/chapter03.html</property:CytoDefiningCriteria>
+		<property:DefiningCriteria rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cyto-architecture, connectivity</property:DefiningCriteria>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The part of the cerebral cortex that receives projections from the motor thalamus and which projects to motor neurons in the brainstem and spinal cord.  The motor cortex corresponds to Brodmann's area 4 (MM).  The primary motor cortex, or M1, is located on the precentral gyrus and on the anterior paracentral lobule on the medial surface of the brain. Of the three motor cortex areas, stimulation of the primary motor cortex requires the least amount of electrical current to elicit a movement. http://neuroscience.uth.tmc.edu/s3/chapter03.html</property:Definition>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3ASpinal_cord_ventral_horn"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3AThalamus"/>
+		<property:Has_role rdf:resource="&wiki;Category-3AMotor_system_function"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nlx_143555</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AMotor_cortex"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AFrontal_cortex"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Primary motor cortex</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-05-07T00:00:00</property:ModifiedDate>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3ABrodmann_1909_area_4_human"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3APrecentral_gyrus"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3AArea_4_of_cortex_primary_motor_of_PHT00"/>
+		<property:Species rdf:resource="&wiki;Category-3AMammal"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional part of brain</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">primary motor area</property:Synonym>
+		<property:TomoDefiningCriteria rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Located anterior to the central sulcus, in the pre-central gyrus in humans.  The caudal border is sharp and apposed to primary somatosensory cortex in the depths of the central sulcus.</property:TomoDefiningCriteria>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ARegional_part_of_brain"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ARed_nucleus">
+		<rdfs:label>Red nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Red_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Red_nucleus"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3APrimary_motor_cortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AArea_4_of_cortex_primary_motor_of_PHT00">
+		<rdfs:label>Area 4 of cortex primary motor of PHT00</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Area_4_of_cortex_primary_motor_of_PHT00"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Area_4_of_cortex_primary_motor_of_PHT00"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3APrimary_motor_cortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ABrodmann_1909_area_4_human">
+		<rdfs:label>Brodmann 1909 area 4 human</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Brodmann_1909_area_4_human"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Brodmann_1909_area_4_human"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3APrimary_motor_cortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ALateral_agranular_field">
+		<rdfs:label>Lateral agranular field</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Lateral_agranular_field"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Lateral_agranular_field"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3APrimary_motor_cortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ADatabase_on_Brain_Map_Transformations_in_Cerebellar_Systems">
+		<rdfs:label>Resource:Database on Brain Map Transformations in Cerebellar Systems</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Database_on_Brain_Map_Transformations_in_Cerebellar_Systems"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Database_on_Brain_Map_Transformations_in_Cerebellar_Systems"/>
+		<property:Keywords rdf:resource="&wiki;Category-3APrimary_motor_cortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APrimary_Motor_Cortex_Lamina_V">
+		<rdfs:label>Primary Motor Cortex Lamina V</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Primary_Motor_Cortex_Lamina_V"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Primary_Motor_Cortex_Lamina_V"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3APrimary_motor_cortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APrimary_motor_cortex_lamina_VI">
+		<rdfs:label>Primary motor cortex lamina VI</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Primary_motor_cortex_lamina_VI"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Primary_motor_cortex_lamina_VI"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3APrimary_motor_cortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeocortex_primary_motor_area_stellate_layer_4_cell">
+		<rdfs:label>Neocortex primary motor area stellate layer 4 cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neocortex_primary_motor_area_stellate_layer_4_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neocortex_primary_motor_area_stellate_layer_4_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3APrimary_motor_cortex"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;Keywords">
+		<rdfs:label>Keywords</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Keywords"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Keywords"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;AfferentProjections">
+		<rdfs:label>AfferentProjections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AfferentProjections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AfferentProjections"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ARegional_part_of_brain">
+		<rdfs:label>Regional part of brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Regional_part_of_brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Regional_part_of_brain"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;TomoDefiningCriteria">
+		<rdfs:label>TomoDefiningCriteria</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:TomoDefiningCriteria"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:TomoDefiningCriteria"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMammal">
+		<rdfs:label>Mammal</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Mammal"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Mammal"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AArea_4_of_cortex_primary_motor_of_PHT00">
+		<rdfs:label>Area 4 of cortex primary motor of PHT00</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Area_4_of_cortex_primary_motor_of_PHT00"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Area_4_of_cortex_primary_motor_of_PHT00"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3APrimary_motor_cortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APrecentral_gyrus">
+		<rdfs:label>Precentral gyrus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Precentral_gyrus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Precentral_gyrus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ABrodmann_1909_area_4_human">
+		<rdfs:label>Brodmann 1909 area 4 human</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Brodmann_1909_area_4_human"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Brodmann_1909_area_4_human"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;PartiallyOverlapsWith">
+		<rdfs:label>PartiallyOverlapsWith</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PartiallyOverlapsWith"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PartiallyOverlapsWith"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AFrontal_cortex">
+		<rdfs:label>Frontal cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Frontal_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Frontal_cortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMotor_cortex">
+		<rdfs:label>Motor cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Motor_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Motor_cortex"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMotor_system_function">
+		<rdfs:label>Motor system function</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Motor_system_function"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Motor_system_function"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Has_role">
+		<rdfs:label>Has role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_role"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AThalamus">
+		<rdfs:label>Thalamus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Thalamus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Thalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord_ventral_horn">
+		<rdfs:label>Spinal cord ventral horn</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord_ventral_horn"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord_ventral_horn"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;EfferentProjections">
+		<rdfs:label>EfferentProjections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:EfferentProjections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:EfferentProjections"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;DefiningCriteria">
+		<rdfs:label>DefiningCriteria</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefiningCriteria"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefiningCriteria"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CytoDefiningCriteria">
+		<rdfs:label>CytoDefiningCriteria</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CytoDefiningCriteria"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CytoDefiningCriteria"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Abbrev">
+		<rdfs:label>Abbrev</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Abbrev"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Abbrev"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

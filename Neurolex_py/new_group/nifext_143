@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T22:44:32-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ANeostriatum_gaba/parvalbumin_interneuron">
+		<rdfs:label>Neostriatum gaba/parvalbumin interneuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neostriatum_gaba/parvalbumin_interneuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neostriatum_gaba/parvalbumin_interneuron"/>
+		<property:AxonMyelination rdf:datatype="http://www.w3.org/2001/XMLSchema#string">unmyelinated</property:AxonMyelination>
+		<property:AxonProjectionLaterality rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ipsilateral</property:AxonProjectionLaterality>
+		<property:CellSomaShape rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Category:Multipolar </property:CellSomaShape>
+		<property:CellSomaSize rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Medium soma</property:CellSomaSize>
+		<property:Comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Change name to "Neostriatum GABA/parvalbumin interneuron"</property:Comment>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2007-09-05T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:DefiningCitation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kawaguchi Y Physiological Morphological and histochemical characterization of three classes of interneurons in rat neostriatum.  J. Neurosci. 1983, 13:4908-4923</property:DefiningCitation>
+		<property:DefiningCriteria rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Morphology;  Biochemical</property:DefiningCriteria>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A type of interneuron located in the striatum that stain intensely for GABAergic markers and for parvalbumin.  The cells are medium sized with round somata and smooth, sometimes varicose dendrites.  THe axonal arborization banches extensively and often forms baskets on the somata of the spiny neurons.  Intracellular staining studies suggest that these cells may be divided into two subgroups epending on whether their dendrites and axons ramify within 100-150 um of the soma or are more extended (up to 300 um) Adapted from The Basal Ganglia, Chapter 9, Shepherd, G. M. The synaptic organization of the brain, 5th ed, New York: Oxford University Press.</property:Definition>
+		<property:FiringPatterns rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fast-spiking</property:FiringPatterns>
+		<property:Has_role rdf:resource="&wiki;Category-3AIntrinsic_neuron_role"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nifext_143</property:Id>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neostriatum gaba/parvalbumin interneuron</property:Label>
+		<property:Located_in rdf:resource="&wiki;Category-3AStriatum"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ANone"/>
+		<property:LocationOfLocalAxonArborization rdf:resource="&wiki;Category-3ANeostriatum"/>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-11-01T00:00:00</property:ModifiedDate>
+		<property:MolecularConstituents rdf:resource="&wiki;Category-3AParvalbumin"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+		<property:OriginOfAxon rdf:datatype="http://www.w3.org/2001/XMLSchema#string">soma</property:OriginOfAxon>
+		<property:Species rdf:resource="&wiki;Category-3AVertebrata"/>
+		<property:SpineDensityOnDendrites rdf:resource="&wiki;Category-3ASmooth"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neuron</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GABA/parvalbumin striatal interneuron</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fast-spiking interneuron</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FS Cell</property:Synonym>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ANeuron"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A105365">
+		<rdfs:label>TermImport:105365</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:105365"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:105365"/>
+		<property:About rdf:resource="&wiki;Category-3ANeostriatum_gaba/parvalbumin_interneuron"/>
+	</swivt:Subject>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ANeuron">
+		<rdfs:label>Neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neuron"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ASmooth">
+		<rdfs:label>Smooth</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Smooth"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Smooth"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;SpineDensityOnDendrites">
+		<rdfs:label>SpineDensityOnDendrites</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SpineDensityOnDendrites"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SpineDensityOnDendrites"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AVertebrata">
+		<rdfs:label>Vertebrata</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Vertebrata"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Vertebrata"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;OriginOfAxon">
+		<rdfs:label>OriginOfAxon</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:OriginOfAxon"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:OriginOfAxon"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AGABA">
+		<rdfs:label>GABA</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:GABA"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:GABA"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Neurotransmitter">
+		<rdfs:label>Neurotransmitter</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Neurotransmitter"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Neurotransmitter"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AParvalbumin">
+		<rdfs:label>Parvalbumin</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Parvalbumin"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Parvalbumin"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;MolecularConstituents">
+		<rdfs:label>MolecularConstituents</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:MolecularConstituents"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:MolecularConstituents"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ANeostriatum">
+		<rdfs:label>Neostriatum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neostriatum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neostriatum"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;LocationOfLocalAxonArborization">
+		<rdfs:label>LocationOfLocalAxonArborization</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:LocationOfLocalAxonArborization"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:LocationOfLocalAxonArborization"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ANone">
+		<rdfs:label>None</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:None"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:None"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;LocationOfAxonArborization">
+		<rdfs:label>LocationOfAxonArborization</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:LocationOfAxonArborization"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:LocationOfAxonArborization"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AStriatum">
+		<rdfs:label>Striatum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Striatum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Striatum"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AIntrinsic_neuron_role">
+		<rdfs:label>Intrinsic neuron role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Intrinsic_neuron_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Intrinsic_neuron_role"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Has_role">
+		<rdfs:label>Has role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_role"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;FiringPatterns">
+		<rdfs:label>FiringPatterns</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:FiringPatterns"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:FiringPatterns"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;DefiningCriteria">
+		<rdfs:label>DefiningCriteria</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefiningCriteria"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefiningCriteria"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;DefiningCitation">
+		<rdfs:label>DefiningCitation</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefiningCitation"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefiningCitation"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Comment">
+		<rdfs:label>Comment</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Comment"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Comment"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CellSomaSize">
+		<rdfs:label>CellSomaSize</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CellSomaSize"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CellSomaSize"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CellSomaShape">
+		<rdfs:label>CellSomaShape</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CellSomaShape"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CellSomaShape"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;AxonProjectionLaterality">
+		<rdfs:label>AxonProjectionLaterality</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AxonProjectionLaterality"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AxonProjectionLaterality"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;AxonMyelination">
+		<rdfs:label>AxonMyelination</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AxonMyelination"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AxonMyelination"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

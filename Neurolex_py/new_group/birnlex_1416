@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T09:58:37-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3AOptic_chiasm">
+		<rdfs:label>Optic chiasm</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Optic_chiasm"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Optic_chiasm"/>
+		<property:Abbrev rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ox</property:Abbrev>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3ARetina_ganglion_cell_layer"/>
+		<property:ConnDefiningCriteria rdf:datatype="http://www.w3.org/2001/XMLSchema#string">optic nerve, optic tract</property:ConnDefiningCriteria>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2007-03-03T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:DefiningCriteria rdf:datatype="http://www.w3.org/2001/XMLSchema#string">connectivity, topography</property:DefiningCriteria>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A location within the visual system of binocular animals where axons of retinal ganglion cells cross contralaterally or remain ipsilatterally towards termination zones in the lateral geniculate nucleus.</property:Definition>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3ALateral_geniculate_body"/>
+		<property:Has_role rdf:resource="&wiki;Category-3AVisual_system"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">birnlex_1416</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ADiencephalon"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AOptic_nerve"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optic chiasm</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-03-20T00:00:00</property:ModifiedDate>
+		<property:NeuronamesLink rdf:resource="http://braininfo.rprc.washington.edu/Scripts/hiercentraldirectory.aspx?ID=442"/>
+		<property:Species rdf:resource="&wiki;Category-3AHuman"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional part of brain</property:SuperCategory>
+		<property:TomoDefiningCriteria rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Located inferior to the thalamus.</property:TomoDefiningCriteria>
+		<property:Umlscui rdf:datatype="http://www.w3.org/2001/XMLSchema#string">C0029126</property:Umlscui>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ARegional_part_of_brain"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A105138">
+		<rdfs:label>TermImport:105138</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:105138"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:105138"/>
+		<property:About rdf:resource="&wiki;Category-3AOptic_chiasm"/>
+	</swivt:Subject>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ARegional_part_of_brain">
+		<rdfs:label>Regional part of brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Regional_part_of_brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Regional_part_of_brain"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Umlscui">
+		<rdfs:label>Umlscui</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Umlscui"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Umlscui"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;TomoDefiningCriteria">
+		<rdfs:label>TomoDefiningCriteria</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:TomoDefiningCriteria"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:TomoDefiningCriteria"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AHuman">
+		<rdfs:label>Human</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Human"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Human"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;NeuronamesLink">
+		<rdfs:label>NeuronamesLink</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NeuronamesLink"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NeuronamesLink"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AOptic_nerve">
+		<rdfs:label>Optic nerve</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Optic_nerve"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Optic_nerve"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADiencephalon">
+		<rdfs:label>Diencephalon</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Diencephalon"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Diencephalon"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AVisual_system">
+		<rdfs:label>Visual system</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Visual_system"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Visual_system"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Has_role">
+		<rdfs:label>Has role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_role"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ALateral_geniculate_body">
+		<rdfs:label>Lateral geniculate body</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Lateral_geniculate_body"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Lateral_geniculate_body"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;EfferentProjections">
+		<rdfs:label>EfferentProjections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:EfferentProjections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:EfferentProjections"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;DefiningCriteria">
+		<rdfs:label>DefiningCriteria</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefiningCriteria"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefiningCriteria"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;ConnDefiningCriteria">
+		<rdfs:label>ConnDefiningCriteria</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ConnDefiningCriteria"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ConnDefiningCriteria"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ARetina_ganglion_cell_layer">
+		<rdfs:label>Retina ganglion cell layer</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Retina_ganglion_cell_layer"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Retina_ganglion_cell_layer"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;AfferentProjections">
+		<rdfs:label>AfferentProjections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AfferentProjections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AfferentProjections"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Abbrev">
+		<rdfs:label>Abbrev</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Abbrev"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Abbrev"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

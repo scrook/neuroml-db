@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T08:15:23-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ANorepinephrine">
+		<rdfs:label>Norepinephrine</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Norepinephrine"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Norepinephrine"/>
+		<property:Abbrev rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NE</property:Abbrev>
+		<property:Comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">taken from DrugBank</property:Comment>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Curator rdf:resource="&wiki;Ab"/>
+		<property:DefiningCitation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://www.drugbank.ca/drugs/DB00368</property:DefiningCitation>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Precursor of epinephrine that is secreted by the adrenal medulla and is a widespread central and autonomic neurotransmitter. Norepinephrine is the principal transmitter of most postganglionic sympathetic fibers and of the diffuse projection system in the brain arising from the locus ceruleus. It is also found in plants and is used pharmacologically as a sympathomimetic. (PubChem) Pharmacology: Noradrenaline acts on both alpha-1 and alpha-2 adrenergic receptors to cause vasoconstriction. Its effect in-vitro is often limited to the increasing of blood pressure through antagonising alpha-1 and alpha-2 receptors and causing a resultant increase in systemic vascular resistance. Mechanism of action: Norepinephrine functions as a peripheral vasoconstrictor (alpha-adrenergic action) and as an inotropic stimulator of the heart and dilator of coronary arteries (beta-adrenergic action). Drug type: Approved. Small Molecule. Drug category: Adrenergic alpha-Agonists. Sympathomimetics. Vasoconstrictor Agents</property:Definition>
+		<property:Has_role rdf:resource="&wiki;Category-3ADrug"/>
+		<property:Has_role rdf:resource="&wiki;Category-3ANeurotransmitter"/>
+		<property:Has_role rdf:resource="&wiki;Category-3AHormone"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DB00368</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACatecholamine_system"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AAdrenergic_system"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ANoradrenergic_system"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Norepinephrine</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2010-05-06T00:00:00</property:ModifiedDate>
+		<property:RelatedTo rdf:resource="&wiki;Category-3ABeta1_receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAlpha2A_receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAlpha2C_receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3ASodium-2Ddependent_noradrenaline_transporter"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAlpha1A_receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAlpha2B_receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAlpha1B_receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3ABeta2_receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAlpha1D_receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3APhenylalanine-2D4-2Dhydroxylase"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3ABeta3_receptor"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Molecule</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Arterenol</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">L-Norepinephrine</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">L-noradrenaline</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Noradrenaline</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Norepinephrine</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Levophed</property:Synonym>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3AMolecule"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAdrenoceptor_receptor">
+		<rdfs:label>Adrenoceptor receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Adrenoceptor_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Adrenoceptor_receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3ANorepinephrine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ABeta3_receptor">
+		<rdfs:label>Beta3 receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Beta3_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Beta3_receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3ANorepinephrine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ABeta2_receptor">
+		<rdfs:label>Beta2 receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Beta2_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Beta2_receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3ANorepinephrine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ABeta1_receptor">
+		<rdfs:label>Beta1 receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Beta1_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Beta1_receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3ANorepinephrine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAlpha2C_receptor">
+		<rdfs:label>Alpha2C receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Alpha2C_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Alpha2C_receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3ANorepinephrine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAlpha2B_receptor">
+		<rdfs:label>Alpha2B receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Alpha2B_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Alpha2B_receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3ANorepinephrine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAlpha2A_receptor">
+		<rdfs:label>Alpha2A receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Alpha2A_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Alpha2A_receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3ANorepinephrine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAlpha2D_receptor">
+		<rdfs:label>Alpha2D receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Alpha2D_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Alpha2D_receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3ANorepinephrine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADopamine_beta-2Dhydroxylase">
+		<rdfs:label>Dopamine beta-hydroxylase</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dopamine_beta-hydroxylase"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dopamine_beta-hydroxylase"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3ANorepinephrine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APhenylethanolamine_N-2DMethyltransferase">
+		<rdfs:label>Phenylethanolamine N-Methyltransferase</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Phenylethanolamine_N-Methyltransferase"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Phenylethanolamine_N-Methyltransferase"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3ANorepinephrine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AS-2DAdenosylmethionine">
+		<rdfs:label>S-Adenosylmethionine</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:S-Adenosylmethionine"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:S-Adenosylmethionine"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3ANorepinephrine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ALocus_coeruleus_NA_neuron">
+		<rdfs:label>Locus coeruleus NA neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Locus_coeruleus_NA_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Locus_coeruleus_NA_neuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3ANorepinephrine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ATaste_bud_type_3_cell">
+		<rdfs:label>Taste bud type 3 cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Taste_bud_type_3_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Taste_bud_type_3_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3ANorepinephrine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ANeuroMouse_Database">
+		<rdfs:label>Resource:NeuroMouse Database</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:NeuroMouse_Database"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:NeuroMouse_Database"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ANorepinephrine"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;Keywords">
+		<rdfs:label>Keywords</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Keywords"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Keywords"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;Neurotransmitter">
+		<rdfs:label>Neurotransmitter</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Neurotransmitter"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Neurotransmitter"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMolecule">
+		<rdfs:label>Molecule</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Molecule"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Molecule"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ABeta3_receptor">
+		<rdfs:label>Beta3 receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Beta3_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Beta3_receptor"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APhenylalanine-2D4-2Dhydroxylase">
+		<rdfs:label>Phenylalanine-4-hydroxylase</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Phenylalanine-4-hydroxylase"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Phenylalanine-4-hydroxylase"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAlpha1D_receptor">
+		<rdfs:label>Alpha1D receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Alpha1D_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Alpha1D_receptor"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ABeta2_receptor">
+		<rdfs:label>Beta2 receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Beta2_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Beta2_receptor"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAlpha1B_receptor">
+		<rdfs:label>Alpha1B receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Alpha1B_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Alpha1B_receptor"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAlpha2B_receptor">
+		<rdfs:label>Alpha2B receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Alpha2B_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Alpha2B_receptor"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAlpha1A_receptor">
+		<rdfs:label>Alpha1A receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Alpha1A_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Alpha1A_receptor"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASodium-2Ddependent_noradrenaline_transporter">
+		<rdfs:label>Sodium-dependent noradrenaline transporter</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Sodium-dependent_noradrenaline_transporter"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Sodium-dependent_noradrenaline_transporter"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAlpha2C_receptor">
+		<rdfs:label>Alpha2C receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Alpha2C_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Alpha2C_receptor"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAlpha2A_receptor">
+		<rdfs:label>Alpha2A receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Alpha2A_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Alpha2A_receptor"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ABeta1_receptor">
+		<rdfs:label>Beta1 receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Beta1_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Beta1_receptor"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;RelatedTo">
+		<rdfs:label>RelatedTo</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:RelatedTo"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:RelatedTo"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ANoradrenergic_system">
+		<rdfs:label>Noradrenergic system</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Noradrenergic_system"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Noradrenergic_system"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAdrenergic_system">
+		<rdfs:label>Adrenergic system</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Adrenergic_system"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Adrenergic_system"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACatecholamine_system">
+		<rdfs:label>Catecholamine system</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Catecholamine_system"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Catecholamine_system"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AHormone">
+		<rdfs:label>Hormone</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hormone"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hormone"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeurotransmitter">
+		<rdfs:label>Neurotransmitter</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neurotransmitter"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neurotransmitter"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADrug">
+		<rdfs:label>Drug</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Drug"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Drug"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Has_role">
+		<rdfs:label>Has role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_role"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;DefiningCitation">
+		<rdfs:label>DefiningCitation</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefiningCitation"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefiningCitation"/>
+	</owl:DatatypeProperty>
+	<swivt:Subject rdf:about="&wiki;Ab">
+		<rdfs:label>Ab</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Ab"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Ab"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;Curator">
+		<rdfs:label>Curator</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Curator"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Curator"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Comment">
+		<rdfs:label>Comment</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Comment"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Comment"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Abbrev">
+		<rdfs:label>Abbrev</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Abbrev"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Abbrev"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

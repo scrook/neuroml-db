@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T22:47:30-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3AHirudo_Retzius_cell">
+		<rdfs:label>Hirudo Retzius cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hirudo_Retzius_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hirudo_Retzius_cell"/>
+		<property:Authors rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Muller</property:Authors>
+		<property:Authors rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nicholls</property:Authors>
+		<property:Authors rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stent</property:Authors>
+		<property:CellSomaShape rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Category:Spherical Soma Quality </property:CellSomaShape>
+		<property:CellSomaSize rdf:datatype="http://www.w3.org/2001/XMLSchema#string">70-100 um</property:CellSomaSize>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A large, serotonergic neuron located in the central packet of the segmental ganglion in the medicinal leech. Two of these cell are located in each segmental ganglia and are electrically coupled to each other.</property:Definition>
+		<property:FiringPatterns rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Spontaneous spiking</property:FiringPatterns>
+		<property:Has_role rdf:resource="&wiki;Category-3AModulatory"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nlx_31744</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ALeech_Segmental_Ganglion"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hirudo Retzius cell</property:Label>
+		<property:Located_in rdf:resource="&wiki;Category-3ASegmental_ganglion"/>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-03-09T00:00:00</property:ModifiedDate>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3ASerotonin"/>
+		<property:OriginOfAxon rdf:datatype="http://www.w3.org/2001/XMLSchema#string">soma</property:OriginOfAxon>
+		<property:PublicationDate rdf:resource="&wiki;1981"/>
+		<property:Species rdf:resource="&wiki;Category-3AMedicinal_leech"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neuron</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Retzius</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">R Cell</property:Synonym>
+		<property:Title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neurobiology of the Leech</property:Title>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ANeuron"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:Class rdf:about="&wiki;Category-3ANeuron">
+		<rdfs:label>Neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neuron"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Title">
+		<rdfs:label>Title</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Title"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Title"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMedicinal_leech">
+		<rdfs:label>Medicinal leech</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Medicinal_leech"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Medicinal_leech"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<swivt:Subject rdf:about="&wiki;1981">
+		<rdfs:label>1981</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;1981"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/1981"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;PublicationDate">
+		<rdfs:label>PublicationDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PublicationDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PublicationDate"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;OriginOfAxon">
+		<rdfs:label>OriginOfAxon</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:OriginOfAxon"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:OriginOfAxon"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ASerotonin">
+		<rdfs:label>Serotonin</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Serotonin"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Serotonin"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Neurotransmitter">
+		<rdfs:label>Neurotransmitter</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Neurotransmitter"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Neurotransmitter"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ASegmental_ganglion">
+		<rdfs:label>Segmental ganglion</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Segmental_ganglion"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Segmental_ganglion"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ALeech_Segmental_Ganglion">
+		<rdfs:label>Leech Segmental Ganglion</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Leech_Segmental_Ganglion"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Leech_Segmental_Ganglion"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AModulatory">
+		<rdfs:label>Modulatory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Modulatory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Modulatory"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Has_role">
+		<rdfs:label>Has role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_role"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;FiringPatterns">
+		<rdfs:label>FiringPatterns</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:FiringPatterns"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:FiringPatterns"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CellSomaSize">
+		<rdfs:label>CellSomaSize</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CellSomaSize"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CellSomaSize"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CellSomaShape">
+		<rdfs:label>CellSomaShape</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CellSomaShape"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CellSomaShape"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Authors">
+		<rdfs:label>Authors</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Authors"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Authors"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

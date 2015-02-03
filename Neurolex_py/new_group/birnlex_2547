@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T23:05:16-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ANeocortex">
+		<rdfs:label>Neocortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neocortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neocortex"/>
+		<property:Comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The neocortex has often been considered to be the evolutionarily most recent portion of the cerebral cortex, and has been shown to have undergone disproportionate enlargement with respect to the rest of the brain in insectivora through prosimians, simians, and apes to humans (Stephan et al, 1981; Rilling and Insel, 1999).  It has been widely stated that expansion of neocortex underpins the higher cognitive functions in humans, though this is an area of contention and may reflect poor understanding of phylogenetic relationships and the neural substrate underlying what is deemed intelligent behavior (Stephan et al., 1981; Rilling et al., 1999).</property:Comment>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2007-08-28T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">graph position temporary</property:CurationStatus>
+		<property:Curator rdf:resource="&wiki;Maryann_Martone"/>
+		<property:DefiningCriteria rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cyto-architecture</property:DefiningCriteria>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Part of cerebral cortex defined on the basis of cytoarchitecture that has six layers. Starting from the cortical surface the layers are: molecular layer (I), external granular layer (II), external pyramidal layer (III), internal granular layer (IV), internal pyramidal layer (V), and multiform layer (VI). Neocortex is most prominent in the frontal lobe, the parietal lobe, the temporal lobe and the occipital lobe, less so in the cingulate gyrus, the parahippocampal gyrus and the insula. It is composed of two subdivisions: true isocortex and proisocortex (Carpenter-83) (NN) * The largest portion of the CEREBRAL CORTEX. It is composed of NEURONS arranged in six layers. (MSH) * the newer, 6 layered portion of the cerebral cortex showing stratification and organization characteristic of the most highly evolved type of cerebral tissue. (CSP)</property:Definition>
+		<property:DefinitionSource rdf:resource="&wiki;Http-3A//purl.org/nbirn/birnlex/ontology/annotation/OBO_annotation_properties.owl"/>
+		<property:EditorialNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The term neocortex is somewhat controversial (see notes below) but I am in agreement with Butler and Hodos (ISBN-13: 978-0471210054;  pg 58) that even though the term is not correct in an evolutionary sense, it is the preferred term for the regions of cerebral cortex that it refers, compared to others like isocortex.  So I am recommending it as a preferred label for now.</property:EditorialNote>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3APons"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3ASpinal_cord"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3AStriatum"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3AThalamus"/>
+		<property:ExternallySourcedDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">* The term neocortex refers to those areas of cerebral cortex defined on the basis of cytoarchitecture that have six layers. Starting from the cortical surface the layers are: molecular layer (I), external granular layer (II), external pyramidal layer (III), internal granular layer (IV), internal pyramidal layer (V), and multiform layer (VI). Neocortex is most prominent in the frontal lobe, the parietal lobe, the temporal lobe and the occipital lobe, less so in the cingulate gyrus, the parahippocampal gyrus and the insula. It is composed of two subdivisions: true isocortex and proisocortex (Carpenter-83) (NN) * The largest portion of the CEREBRAL CORTEX. It is composed of NEURONS arranged in six layers. (MSH) * the newer, 6 layered portion of the cerebral cortex showing stratification and organization characteristic of the most highly evolved type of cerebral tissue. (CSP)</property:ExternallySourcedDefinition>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">birnlex_2547</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACerebral_cortex"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neocortex</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-07-22T00:00:00</property:ModifiedDate>
+		<property:NeuronamesLink rdf:resource="http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=2314"/>
+		<property:Species rdf:resource="&wiki;Category-3AMammal"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional part of brain</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">neopallium</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">homotypical cortex</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">isocortex</property:Synonym>
+		<property:Umlscui rdf:datatype="http://www.w3.org/2001/XMLSchema#string">C0175173</property:Umlscui>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ARegional_part_of_brain"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A110077">
+		<rdfs:label>TermImport:110077</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:110077"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:110077"/>
+		<property:About rdf:resource="&wiki;Category-3ANeocortex"/>
+	</swivt:Subject>
+	<owl:Class rdf:about="&wiki;Category-3AInsula">
+		<rdfs:label>Insula</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Insula"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Insula"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AFrontal_cortex">
+		<rdfs:label>Frontal cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Frontal_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Frontal_cortex"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeocortex_layer_1">
+		<rdfs:label>Neocortex layer 1</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neocortex_layer_1"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neocortex_layer_1"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeocortex_layer_2">
+		<rdfs:label>Neocortex layer 2</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neocortex_layer_2"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neocortex_layer_2"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeocortex_layer_3">
+		<rdfs:label>Neocortex layer 3</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neocortex_layer_3"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neocortex_layer_3"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeocortex_layer_4">
+		<rdfs:label>Neocortex layer 4</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neocortex_layer_4"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neocortex_layer_4"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeocortex_layer_5">
+		<rdfs:label>Neocortex layer 5</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neocortex_layer_5"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neocortex_layer_5"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeocortex_layer_6">
+		<rdfs:label>Neocortex layer 6</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neocortex_layer_6"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neocortex_layer_6"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOccipital_cortex">
+		<rdfs:label>Occipital cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Occipital_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Occipital_cortex"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AParietal_cortex">
+		<rdfs:label>Parietal cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Parietal_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Parietal_cortex"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ATemporal_cortex">
+		<rdfs:label>Temporal cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Temporal_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Temporal_cortex"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APosterior_neocortex">
+		<rdfs:label>Posterior neocortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Posterior_neocortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Posterior_neocortex"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AStriatum">
+		<rdfs:label>Striatum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Striatum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Striatum"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeocortex_chandelier_cell">
+		<rdfs:label>Neocortex chandelier cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neocortex_chandelier_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neocortex_chandelier_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeocortex_basket_cell">
+		<rdfs:label>Neocortex basket cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neocortex_basket_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neocortex_basket_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeocortex_bipolar_cell">
+		<rdfs:label>Neocortex bipolar cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neocortex_bipolar_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neocortex_bipolar_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeocortex_candelabrum_cell">
+		<rdfs:label>Neocortex candelabrum cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neocortex_candelabrum_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neocortex_candelabrum_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeocortex_pyramidal_layer_2-2D3_cell">
+		<rdfs:label>Neocortex pyramidal layer 2-3 cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neocortex_pyramidal_layer_2-3_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neocortex_pyramidal_layer_2-3_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeocortex_stellate_cell">
+		<rdfs:label>Neocortex stellate cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neocortex_stellate_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neocortex_stellate_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeocortex_bouquet_double_cell">
+		<rdfs:label>Neocortex bouquet double cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neocortex_bouquet_double_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neocortex_bouquet_double_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeocortex_pyramidal_cell">
+		<rdfs:label>Neocortex pyramidal cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neocortex_pyramidal_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neocortex_pyramidal_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebral_cortex_of_PHT00">
+		<rdfs:label>Cerebral cortex of PHT00</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebral_cortex_of_PHT00"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebral_cortex_of_PHT00"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AIsocortex_of_PHT00">
+		<rdfs:label>Isocortex of PHT00</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Isocortex_of_PHT00"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Isocortex_of_PHT00"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebral_cortex_of_ABA_2009">
+		<rdfs:label>Cerebral cortex of ABA 2009</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebral_cortex_of_ABA_2009"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebral_cortex_of_ABA_2009"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ACortical_connectivity_data_sets">
+		<rdfs:label>Resource:Cortical connectivity data sets</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Cortical_connectivity_data_sets"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Cortical_connectivity_data_sets"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ACortical_Circuits_and_Dendritic_Spines">
+		<rdfs:label>Resource:Cortical Circuits and Dendritic Spines</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Cortical_Circuits_and_Dendritic_Spines"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Cortical_Circuits_and_Dendritic_Spines"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ARetina_Project">
+		<rdfs:label>Resource:Retina Project</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Retina_Project"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Retina_Project"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ABraInSitu-3A_A_homepage_for_molecular_neuroanatomy">
+		<rdfs:label>Resource:BraInSitu: A homepage for molecular neuroanatomy</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:BraInSitu:_A_homepage_for_molecular_neuroanatomy"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:BraInSitu:_A_homepage_for_molecular_neuroanatomy"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ANeocortex"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;Keywords">
+		<rdfs:label>Keywords</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Keywords"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Keywords"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;PartiallyOverlapsWith">
+		<rdfs:label>PartiallyOverlapsWith</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PartiallyOverlapsWith"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PartiallyOverlapsWith"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;AfferentProjections">
+		<rdfs:label>AfferentProjections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AfferentProjections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AfferentProjections"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ARegional_part_of_brain">
+		<rdfs:label>Regional part of brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Regional_part_of_brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Regional_part_of_brain"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Umlscui">
+		<rdfs:label>Umlscui</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Umlscui"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Umlscui"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMammal">
+		<rdfs:label>Mammal</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Mammal"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Mammal"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;NeuronamesLink">
+		<rdfs:label>NeuronamesLink</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NeuronamesLink"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NeuronamesLink"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ACerebral_cortex">
+		<rdfs:label>Cerebral cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebral_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebral_cortex"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;ExternallySourcedDefinition">
+		<rdfs:label>ExternallySourcedDefinition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ExternallySourcedDefinition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ExternallySourcedDefinition"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AThalamus">
+		<rdfs:label>Thalamus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Thalamus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Thalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AStriatum">
+		<rdfs:label>Striatum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Striatum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Striatum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord">
+		<rdfs:label>Spinal cord</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APons">
+		<rdfs:label>Pons</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Pons"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Pons"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;EfferentProjections">
+		<rdfs:label>EfferentProjections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:EfferentProjections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:EfferentProjections"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;EditorialNote">
+		<rdfs:label>EditorialNote</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:EditorialNote"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:EditorialNote"/>
+	</owl:DatatypeProperty>
+	<swivt:Subject rdf:about="&wiki;Http-3A//purl.org/nbirn/birnlex/ontology/annotation/OBO_annotation_properties.owl">
+		<rdfs:label>Http://purl.org/nbirn/birnlex/ontology/annotation/OBO annotation properties.owl</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Http://purl.org/nbirn/birnlex/ontology/annotation/OBO_annotation_properties.owl"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Http://purl.org/nbirn/birnlex/ontology/annotation/OBO_annotation_properties.owl"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;DefinitionSource">
+		<rdfs:label>DefinitionSource</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefinitionSource"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefinitionSource"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;DefiningCriteria">
+		<rdfs:label>DefiningCriteria</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefiningCriteria"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefiningCriteria"/>
+	</owl:DatatypeProperty>
+	<swivt:Subject rdf:about="&wiki;Maryann_Martone">
+		<rdfs:label>Maryann Martone</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Maryann_Martone"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Maryann_Martone"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;Curator">
+		<rdfs:label>Curator</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Curator"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Curator"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Comment">
+		<rdfs:label>Comment</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Comment"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Comment"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T09:57:19-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3AAmygdala">
+		<rdfs:label>Amygdala</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Amygdala"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Amygdala"/>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2006-10-05T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subcortical brain region lying anterior to the hippocampal formation in the temporal lobe and anterior to the temporal horn of the lateral ventricle in some species.  It is usually subdivided into several groups.  Functionally, it is not considered a unitary structure (MM).</property:Definition>
+		<property:ExampleImage rdf:resource="&wiki;File-3APhysiol_Rev_2003_Jul_83(3)_803-2D34"/>
+		<property:ExampleImage rdf:resource="&wiki;File-3A.pdf"/>
+		<property:Has_role rdf:resource="&wiki;Category-3APONS_reference_structure"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">birnlex_1241</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ABasal_forebrain"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Amygdala</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-07-13T00:00:00</property:ModifiedDate>
+		<property:NeuronamesLink rdf:resource="http://braininfo.rprc.washington.edu/Scripts/hiercentraldirectory.aspx?ID=219"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional part of brain</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">amygdaloid nucleus</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">amygdaloid body</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">archistriatum</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Amygdaloid complex</property:Synonym>
+		<property:Umlscui rdf:datatype="http://www.w3.org/2001/XMLSchema#string">C0002708</property:Umlscui>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ARegional_part_of_brain"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A106551">
+		<rdfs:label>TermImport:106551</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:106551"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:106551"/>
+		<property:About rdf:resource="&wiki;Category-3AAmygdala"/>
+	</swivt:Subject>
+	<owl:Class rdf:about="&wiki;Category-3AVentral_tegmental_area">
+		<rdfs:label>Ventral tegmental area</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Ventral_tegmental_area"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Ventral_tegmental_area"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3AAmygdala"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AVentral_tegmental_area">
+		<rdfs:label>Ventral tegmental area</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Ventral_tegmental_area"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Ventral_tegmental_area"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3AAmygdala"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3AAmygdala"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AIntercalated_amygdaloid_nuclei">
+		<rdfs:label>Intercalated amygdaloid nuclei</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Intercalated_amygdaloid_nuclei"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Intercalated_amygdaloid_nuclei"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AAmygdala"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACentral_amygdaloid_nucleus">
+		<rdfs:label>Central amygdaloid nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Central_amygdaloid_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Central_amygdaloid_nucleus"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AAmygdala"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACorticomedial_nuclear_complex">
+		<rdfs:label>Corticomedial nuclear complex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Corticomedial_nuclear_complex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Corticomedial_nuclear_complex"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AAmygdala"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ABasolateral_nuclear_complex">
+		<rdfs:label>Basolateral nuclear complex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Basolateral_nuclear_complex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Basolateral_nuclear_complex"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AAmygdala"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMedial_amygdala">
+		<rdfs:label>Medial amygdala</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Medial_amygdala"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Medial_amygdala"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AAmygdala"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ADuke_University_Medical_Center-3A_Duke_Image_Analysis_Laboratory">
+		<rdfs:label>Resource:Duke University Medical Center: Duke Image Analysis Laboratory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Duke_University_Medical_Center:_Duke_Image_Analysis_Laboratory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Duke_University_Medical_Center:_Duke_Image_Analysis_Laboratory"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AAmygdala"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AMouse_Neuronal_Expression_Database">
+		<rdfs:label>Resource:Mouse Neuronal Expression Database</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Mouse_Neuronal_Expression_Database"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Mouse_Neuronal_Expression_Database"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AAmygdala"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ANICHD_Developmental_Neuroethology_-2D_Laboratory_of_Comparative_Ethology">
+		<rdfs:label>Resource:NICHD Developmental Neuroethology - Laboratory of Comparative Ethology</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:NICHD_Developmental_Neuroethology_-_Laboratory_of_Comparative_Ethology"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:NICHD_Developmental_Neuroethology_-_Laboratory_of_Comparative_Ethology"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AAmygdala"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ABrainSpan-3A_Atlas_of_the_Developing_Human_Brain">
+		<rdfs:label>Resource:BrainSpan: Atlas of the Developing Human Brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:BrainSpan:_Atlas_of_the_Developing_Human_Brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:BrainSpan:_Atlas_of_the_Developing_Human_Brain"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AAmygdala"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ANIH_Blueprint_NHP_Atlas">
+		<rdfs:label>Resource:NIH Blueprint NHP Atlas</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:NIH_Blueprint_NHP_Atlas"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:NIH_Blueprint_NHP_Atlas"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AAmygdala"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AConfocal_Microscopy_Image_Gallery_-2D_Rat_Brain_Tissue_Sections">
+		<rdfs:label>Resource:Confocal Microscopy Image Gallery - Rat Brain Tissue Sections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Confocal_Microscopy_Image_Gallery_-_Rat_Brain_Tissue_Sections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Confocal_Microscopy_Image_Gallery_-_Rat_Brain_Tissue_Sections"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AAmygdala"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ADIAN_-2D_Dominantly_Inherited_Alzheimer_Network">
+		<rdfs:label>Resource:DIAN - Dominantly Inherited Alzheimer Network</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:DIAN_-_Dominantly_Inherited_Alzheimer_Network"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:DIAN_-_Dominantly_Inherited_Alzheimer_Network"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AAmygdala"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebral_cortex_of_ABA_2009">
+		<rdfs:label>Cerebral cortex of ABA 2009</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebral_cortex_of_ABA_2009"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebral_cortex_of_ABA_2009"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3AAmygdala"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAmygdala_basolateral_nuclear_complex_pyramidal_neuron">
+		<rdfs:label>Amygdala basolateral nuclear complex pyramidal neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Amygdala_basolateral_nuclear_complex_pyramidal_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Amygdala_basolateral_nuclear_complex_pyramidal_neuron"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3AAmygdala"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;LocationOfAxonArborization">
+		<rdfs:label>LocationOfAxonArborization</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:LocationOfAxonArborization"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:LocationOfAxonArborization"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;PartiallyOverlapsWith">
+		<rdfs:label>PartiallyOverlapsWith</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PartiallyOverlapsWith"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PartiallyOverlapsWith"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;Keywords">
+		<rdfs:label>Keywords</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Keywords"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Keywords"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;EfferentProjections">
+		<rdfs:label>EfferentProjections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:EfferentProjections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:EfferentProjections"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;AfferentProjections">
+		<rdfs:label>AfferentProjections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AfferentProjections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AfferentProjections"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ARegional_part_of_brain">
+		<rdfs:label>Regional part of brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Regional_part_of_brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Regional_part_of_brain"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Umlscui">
+		<rdfs:label>Umlscui</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Umlscui"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Umlscui"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:ObjectProperty rdf:about="&property;NeuronamesLink">
+		<rdfs:label>NeuronamesLink</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NeuronamesLink"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NeuronamesLink"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ABasal_forebrain">
+		<rdfs:label>Basal forebrain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Basal_forebrain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Basal_forebrain"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ATelencephalon">
+		<rdfs:label>Telencephalon</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Telencephalon"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Telencephalon"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3APONS_reference_structure">
+		<rdfs:label>PONS reference structure</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:PONS_reference_structure"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:PONS_reference_structure"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Has_role">
+		<rdfs:label>Has role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_role"/>
+	</owl:ObjectProperty>
+	<swivt:Subject rdf:about="&wiki;File-3A.pdf">
+		<rdfs:label>File:.pdf</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;File:.pdf"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/File:.pdf"/>
+	</swivt:Subject>
+	<swivt:Subject rdf:about="&wiki;File-3APhysiol_Rev_2003_Jul_83(3)_803-2D34">
+		<rdfs:label>File:Physiol Rev 2003 Jul 83(3) 803-34</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;File:Physiol_Rev_2003_Jul_83(3)_803-34"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/File:Physiol_Rev_2003_Jul_83(3)_803-34"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;ExampleImage">
+		<rdfs:label>ExampleImage</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ExampleImage"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ExampleImage"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

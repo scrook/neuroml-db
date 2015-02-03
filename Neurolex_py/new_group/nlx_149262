@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T09:57:23-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3AArea_prostriata_of_DMVH2003">
+		<rdfs:label>Area prostriata of DMVH2003</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Area_prostriata_of_DMVH2003"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Area_prostriata_of_DMVH2003"/>
+		<property:ChemoDefiningCriteria rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Slightly higher density of parvalbumin+ cells and neuropil in the anterior portion compared to the adjacent parasubiculum, but lower compared to area 29i and to the posterior portion of the parastriate area.  The difference between the parastriate area and area 18 is most clearly defined in SMI-32 stained sections, with few SMI-32+ cells in the Pro compared to area 18.</property:ChemoDefiningCriteria>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:CytoDefiningCriteria rdf:datatype="http://www.w3.org/2001/XMLSchema#string">accentuated layer 2, wide and lightly stained layer 3 and poorly developed layer 4, along with a poorly defined border between layers 5 and 6 (see fig 3, 4, 5 and 7).  An anterior and posterior part were distinguished based on layer 4, with the posterior portion adjacent to layer 17 characterized by a continuous and gradually thickened band of small cells forming a clear lamina between layers 3 and 5.</property:CytoDefiningCriteria>
+		<property:DefiningCriteria rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cyto-architecture</property:DefiningCriteria>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cytoarchitecturally defined region within the isthmus of the cingulate cortex located posterior to the parasubiculum of the isthmus, bordering area 17 posteriorly, further divided into an anterior and posterior portion based on cytoarchitectureal and immunocytochemical criteria</property:Definition>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nlx_149262</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACingulo-2Dparahippocampal_isthmus_of_DMVH2003"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Area prostriata of DMVH2003</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-07-13T00:00:00</property:ModifiedDate>
+		<property:ParcellationScheme rdf:resource="&wiki;Category-3ADMVH2003_parcellation_scheme"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3AProstriate_area"/>
+		<property:Species rdf:resource="&wiki;Category-3AMacaque"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional part of brain</property:SuperCategory>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ARegional_part_of_brain"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AProstriate_area">
+		<rdfs:label>Prostriate area</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Prostriate_area"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Prostriate_area"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3AArea_prostriata_of_DMVH2003"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:Class rdf:about="&wiki;Category-3ARegional_part_of_brain">
+		<rdfs:label>Regional part of brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Regional_part_of_brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Regional_part_of_brain"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMacaque">
+		<rdfs:label>Macaque</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Macaque"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Macaque"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AProstriate_area">
+		<rdfs:label>Prostriate area</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Prostriate_area"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Prostriate_area"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3AArea_prostriata_of_DMVH2003"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;PartiallyOverlapsWith">
+		<rdfs:label>PartiallyOverlapsWith</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PartiallyOverlapsWith"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PartiallyOverlapsWith"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ADMVH2003_parcellation_scheme">
+		<rdfs:label>DMVH2003 parcellation scheme</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:DMVH2003_parcellation_scheme"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:DMVH2003_parcellation_scheme"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;ParcellationScheme">
+		<rdfs:label>ParcellationScheme</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ParcellationScheme"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ParcellationScheme"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ACingulo-2Dparahippocampal_isthmus_of_DMVH2003">
+		<rdfs:label>Cingulo-parahippocampal isthmus of DMVH2003</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cingulo-parahippocampal_isthmus_of_DMVH2003"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cingulo-parahippocampal_isthmus_of_DMVH2003"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;DefiningCriteria">
+		<rdfs:label>DefiningCriteria</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefiningCriteria"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefiningCriteria"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CytoDefiningCriteria">
+		<rdfs:label>CytoDefiningCriteria</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CytoDefiningCriteria"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CytoDefiningCriteria"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;ChemoDefiningCriteria">
+		<rdfs:label>ChemoDefiningCriteria</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ChemoDefiningCriteria"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ChemoDefiningCriteria"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

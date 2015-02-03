@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T22:44:33-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ANeostriatum_indirect_pathway_spiny_neuron">
+		<rdfs:label>Neostriatum indirect pathway spiny neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neostriatum_indirect_pathway_spiny_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neostriatum_indirect_pathway_spiny_neuron"/>
+		<property:Abbrev rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MSN</property:Abbrev>
+		<property:AxonMyelination rdf:datatype="http://www.w3.org/2001/XMLSchema#string">myelinated</property:AxonMyelination>
+		<property:AxonProjectionLaterality rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ipsilateral</property:AxonProjectionLaterality>
+		<property:CellSomaShape rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Category:Multipolar </property:CellSomaShape>
+		<property:CellSomaSize rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Medium soma</property:CellSomaSize>
+		<property:Comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">This class is duplicated in NIF</property:Comment>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:DefiningCitation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kemp JM and Powell TPS The structure of the caudate nucleus of the cat: light and electron microscopy. Phil. Trans. R. Soc. Lond B 262:383-401</property:DefiningCitation>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The principal projection neuron of the caudate and putamen.</property:Definition>
+		<property:DendriteThickness rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2-3 um</property:DendriteThickness>
+		<property:EditorialNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://senselab.med.yale.edu/neurondb/NeuronProp.aspx?id=260</property:EditorialNote>
+		<property:Has_role rdf:resource="&wiki;Category-3APrincipal_neuron_role"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nlx_149136</property:Id>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neostriatum indirect pathway spiny neuron</property:Label>
+		<property:Located_in rdf:resource="&wiki;Category-3ACaudate_nucleus"/>
+		<property:Located_in rdf:resource="&wiki;Category-3APutamen"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ANucleus_accumbens"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3AGlobus_pallidus_internal_segment"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3AGlobus_pallidus_external_segment"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ASubstantia_nigra"/>
+		<property:LocationOfLocalAxonArborization rdf:resource="&wiki;Category-3AStriosomal_compartment_of_neostriatum"/>
+		<property:LocationOfLocalAxonArborization rdf:resource="&wiki;Category-3AMatrix_compartment_of_neostriatum"/>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-11-01T00:00:00</property:ModifiedDate>
+		<property:MolecularConstituents rdf:resource="&wiki;Category-3AEnkephalin"/>
+		<property:MolecularConstituents rdf:resource="&wiki;Category-3ASubstance_P"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGABA"/>
+		<property:NeurotransmitterReceptors rdf:resource="&wiki;Category-3AD1_receptor"/>
+		<property:NeurotransmitterReceptors rdf:resource="&wiki;Category-3AAMPA-2Dtype_glutamate-2Dgated_cationic_channel"/>
+		<property:NeurotransmitterReceptors rdf:resource="&wiki;Category-3AD2_receptor"/>
+		<property:NeurotransmitterReceptors rdf:resource="&wiki;Category-3AMuscarinic_ACh_receptor"/>
+		<property:NumberOfPrimaryDendrites rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3-5</property:NumberOfPrimaryDendrites>
+		<property:OriginOfAxon rdf:datatype="http://www.w3.org/2001/XMLSchema#string">soma and sometimes dendrite</property:OriginOfAxon>
+		<property:Species rdf:resource="&wiki;Category-3AMammal"/>
+		<property:SpineDensityOnDendrites rdf:resource="&wiki;Category-3ASpiny_high_density"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neuron</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Medium spiny neuron</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neostriatal spiny neuron</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Medium-sized spiny neuron</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Striatal spiny neuron</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Striatal medium spiny neuron</property:Synonym>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ANeuron"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:Class rdf:about="&wiki;Category-3ANeuron">
+		<rdfs:label>Neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neuron"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ASpiny_high_density">
+		<rdfs:label>Spiny high density</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spiny_high_density"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spiny_high_density"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;SpineDensityOnDendrites">
+		<rdfs:label>SpineDensityOnDendrites</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SpineDensityOnDendrites"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SpineDensityOnDendrites"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMammal">
+		<rdfs:label>Mammal</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Mammal"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Mammal"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;OriginOfAxon">
+		<rdfs:label>OriginOfAxon</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:OriginOfAxon"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:OriginOfAxon"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;NumberOfPrimaryDendrites">
+		<rdfs:label>NumberOfPrimaryDendrites</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NumberOfPrimaryDendrites"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NumberOfPrimaryDendrites"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMuscarinic_ACh_receptor">
+		<rdfs:label>Muscarinic ACh receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Muscarinic_ACh_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Muscarinic_ACh_receptor"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AD2_receptor">
+		<rdfs:label>D2 receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:D2_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:D2_receptor"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAMPA-2Dtype_glutamate-2Dgated_cationic_channel">
+		<rdfs:label>AMPA-type glutamate-gated cationic channel</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:AMPA-type_glutamate-gated_cationic_channel"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:AMPA-type_glutamate-gated_cationic_channel"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AD1_receptor">
+		<rdfs:label>D1 receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:D1_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:D1_receptor"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;NeurotransmitterReceptors">
+		<rdfs:label>NeurotransmitterReceptors</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NeurotransmitterReceptors"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NeurotransmitterReceptors"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AGABA">
+		<rdfs:label>GABA</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:GABA"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:GABA"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Neurotransmitter">
+		<rdfs:label>Neurotransmitter</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Neurotransmitter"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Neurotransmitter"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ASubstance_P">
+		<rdfs:label>Substance P</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Substance_P"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Substance_P"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AEnkephalin">
+		<rdfs:label>Enkephalin</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Enkephalin"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Enkephalin"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;MolecularConstituents">
+		<rdfs:label>MolecularConstituents</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:MolecularConstituents"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:MolecularConstituents"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMatrix_compartment_of_neostriatum">
+		<rdfs:label>Matrix compartment of neostriatum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Matrix_compartment_of_neostriatum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Matrix_compartment_of_neostriatum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AStriosomal_compartment_of_neostriatum">
+		<rdfs:label>Striosomal compartment of neostriatum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Striosomal_compartment_of_neostriatum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Striosomal_compartment_of_neostriatum"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;LocationOfLocalAxonArborization">
+		<rdfs:label>LocationOfLocalAxonArborization</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:LocationOfLocalAxonArborization"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:LocationOfLocalAxonArborization"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ASubstantia_nigra">
+		<rdfs:label>Substantia nigra</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Substantia_nigra"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Substantia_nigra"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AGlobus_pallidus_external_segment">
+		<rdfs:label>Globus pallidus external segment</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Globus_pallidus_external_segment"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Globus_pallidus_external_segment"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AGlobus_pallidus_internal_segment">
+		<rdfs:label>Globus pallidus internal segment</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Globus_pallidus_internal_segment"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Globus_pallidus_internal_segment"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;LocationOfAxonArborization">
+		<rdfs:label>LocationOfAxonArborization</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:LocationOfAxonArborization"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:LocationOfAxonArborization"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ANucleus_accumbens">
+		<rdfs:label>Nucleus accumbens</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Nucleus_accumbens"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Nucleus_accumbens"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3APutamen">
+		<rdfs:label>Putamen</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Putamen"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Putamen"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACaudate_nucleus">
+		<rdfs:label>Caudate nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Caudate_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Caudate_nucleus"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3APrincipal_neuron_role">
+		<rdfs:label>Principal neuron role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Principal_neuron_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Principal_neuron_role"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Has_role">
+		<rdfs:label>Has role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_role"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;EditorialNote">
+		<rdfs:label>EditorialNote</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:EditorialNote"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:EditorialNote"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;DendriteThickness">
+		<rdfs:label>DendriteThickness</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DendriteThickness"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DendriteThickness"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;DefiningCitation">
+		<rdfs:label>DefiningCitation</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefiningCitation"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefiningCitation"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Comment">
+		<rdfs:label>Comment</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Comment"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Comment"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CellSomaSize">
+		<rdfs:label>CellSomaSize</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CellSomaSize"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CellSomaSize"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CellSomaShape">
+		<rdfs:label>CellSomaShape</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CellSomaShape"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CellSomaShape"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;AxonProjectionLaterality">
+		<rdfs:label>AxonProjectionLaterality</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AxonProjectionLaterality"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AxonProjectionLaterality"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;AxonMyelination">
+		<rdfs:label>AxonMyelination</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AxonMyelination"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AxonMyelination"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Abbrev">
+		<rdfs:label>Abbrev</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Abbrev"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Abbrev"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

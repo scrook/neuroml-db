@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T22:45:39-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ACochlear_nucleus_(ventral)_octopus_cell">
+		<rdfs:label>Cochlear nucleus (ventral) octopus cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cochlear_nucleus_(ventral)_octopus_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cochlear_nucleus_(ventral)_octopus_cell"/>
+		<property:Abbrev rdf:datatype="http://www.w3.org/2001/XMLSchema#string">OC</property:Abbrev>
+		<property:AxonMyelination rdf:datatype="http://www.w3.org/2001/XMLSchema#string">myelinated</property:AxonMyelination>
+		<property:AxonProjectionLaterality rdf:datatype="http://www.w3.org/2001/XMLSchema#string">contralateral</property:AxonProjectionLaterality>
+		<property:CellSomaShape rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Category:Oval </property:CellSomaShape>
+		<property:CellSomaSize rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Large soma</property:CellSomaSize>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2007-09-05T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">graph position temporary</property:CurationStatus>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Large neuron located in the octopus cell area of the posterior division of the ventral cochlear nucleus (called dorsal tail of the ventral cochlear nucleus by Cajal and nucleus interfascicularis by Lorente de No), whose dendrites emanate from one side of the cell body, giving them a shape reminiscent of an octopus.</property:Definition>
+		<property:EditorialNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string">I can't track down the reference to the nucleus interfascicularis.  The reference given doesn't mention the nucleus and according to Brain Info, there are two nuclei, one in the midbrain tegmentum and one associated with the hypoglossal nucleus, that go by that name.  Needs clarification</property:EditorialNote>
+		<property:ExampleImage rdf:resource="&wiki;File-3ACochlear_nucleus_(ventral)_octopus_cell.gif"/>
+		<property:Has_role rdf:resource="&wiki;Category-3APrincipal_neuron_role"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nifext_72</property:Id>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cochlear nucleus (ventral) octopus cell</property:Label>
+		<property:Located_in rdf:resource="&wiki;Category-3ACochlear_nuclear_complex"/>
+		<property:Located_in rdf:resource="&wiki;Category-3AVentral_cochlear_nucleus"/>
+		<property:Located_in rdf:resource="&wiki;Category-3AOctopus_cell_area"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ADorsal_tail_of_ventral_cochlear_nucleus"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ANucleus_interfascicularis"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3AVentral_nucleus_of_lateral_lemniscus"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ASuperior_paraolivary_nucleus"/>
+		<property:LocationOfLocalAxonArborization rdf:resource="&wiki;Category-3AIn_some_species_(mice)_but_not_in_others_(cats)_octopus_cells_have_local_collaterals_in_the_octopus_cell_area_and_contact_granule_cells_in_the_granule_cell_lamina."/>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-08-09T00:00:00</property:ModifiedDate>
+		<property:MolecularConstituents rdf:resource="&wiki;Category-3AKCNA"/>
+		<property:MolecularConstituents rdf:resource="&wiki;Category-3AHCN1"/>
+		<property:MolecularConstituents rdf:resource="&wiki;Category-3AParvalbumin"/>
+		<property:MolecularConstituents rdf:resource="&wiki;Category-3ACalretinin"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AGlutamate"/>
+		<property:NeurotransmitterReceptors rdf:resource="&wiki;Category-3AAMPA-2Dtype_glutamate-2Dgated_cationic_channel"/>
+		<property:OriginOfAxon rdf:datatype="http://www.w3.org/2001/XMLSchema#string">soma and sometimes dendrite</property:OriginOfAxon>
+		<property:PMID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">5801446</property:PMID>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AOnset_responses_to_tones"/>
+		<property:Species rdf:resource="&wiki;Category-3AMammal"/>
+		<property:SpineDensityOnDendrites rdf:resource="&wiki;Category-3ASmooth"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neuron</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ventral cochlear nucleus octopus cell</property:Synonym>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">octopus cell</property:Synonym>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ANeuron"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A102365">
+		<rdfs:label>TermImport:102365</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:102365"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:102365"/>
+		<property:About rdf:resource="&wiki;Category-3ACochlear_nucleus_(ventral)_octopus_cell"/>
+	</swivt:Subject>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ANeuron">
+		<rdfs:label>Neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neuron"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ASmooth">
+		<rdfs:label>Smooth</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Smooth"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Smooth"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;SpineDensityOnDendrites">
+		<rdfs:label>SpineDensityOnDendrites</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SpineDensityOnDendrites"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SpineDensityOnDendrites"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMammal">
+		<rdfs:label>Mammal</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Mammal"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Mammal"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AOnset_responses_to_tones">
+		<rdfs:label>Onset responses to tones</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Onset_responses_to_tones"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Onset_responses_to_tones"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;RelatedTo">
+		<rdfs:label>RelatedTo</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:RelatedTo"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:RelatedTo"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;PMID">
+		<rdfs:label>PMID</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PMID"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PMID"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;OriginOfAxon">
+		<rdfs:label>OriginOfAxon</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:OriginOfAxon"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:OriginOfAxon"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AAMPA-2Dtype_glutamate-2Dgated_cationic_channel">
+		<rdfs:label>AMPA-type glutamate-gated cationic channel</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:AMPA-type_glutamate-gated_cationic_channel"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:AMPA-type_glutamate-gated_cationic_channel"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;NeurotransmitterReceptors">
+		<rdfs:label>NeurotransmitterReceptors</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NeurotransmitterReceptors"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NeurotransmitterReceptors"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3AGlutamate">
+		<rdfs:label>Glutamate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Glutamate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Glutamate"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Neurotransmitter">
+		<rdfs:label>Neurotransmitter</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Neurotransmitter"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Neurotransmitter"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ACalretinin">
+		<rdfs:label>Calretinin</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Calretinin"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Calretinin"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AParvalbumin">
+		<rdfs:label>Parvalbumin</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Parvalbumin"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Parvalbumin"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHCN1">
+		<rdfs:label>HCN1</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:HCN1"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:HCN1"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AKCNA">
+		<rdfs:label>KCNA</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:KCNA"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:KCNA"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;MolecularConstituents">
+		<rdfs:label>MolecularConstituents</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:MolecularConstituents"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:MolecularConstituents"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AIn_some_species_(mice)_but_not_in_others_(cats)_octopus_cells_have_local_collaterals_in_the_octopus_cell_area_and_contact_granule_cells_in_the_granule_cell_lamina.">
+		<rdfs:label>In some species (mice) but not in others (cats) octopus cells have local collaterals in the octopus cell area and contact granule cells in the granule cell lamina.</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:In_some_species_(mice)_but_not_in_others_(cats)_octopus_cells_have_local_collaterals_in_the_octopus_cell_area_and_contact_granule_cells_in_the_granule_cell_lamina."/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:In_some_species_(mice)_but_not_in_others_(cats)_octopus_cells_have_local_collaterals_in_the_octopus_cell_area_and_contact_granule_cells_in_the_granule_cell_lamina."/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;LocationOfLocalAxonArborization">
+		<rdfs:label>LocationOfLocalAxonArborization</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:LocationOfLocalAxonArborization"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:LocationOfLocalAxonArborization"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ASuperior_paraolivary_nucleus">
+		<rdfs:label>Superior paraolivary nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Superior_paraolivary_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Superior_paraolivary_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AVentral_nucleus_of_lateral_lemniscus">
+		<rdfs:label>Ventral nucleus of lateral lemniscus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Ventral_nucleus_of_lateral_lemniscus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Ventral_nucleus_of_lateral_lemniscus"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;LocationOfAxonArborization">
+		<rdfs:label>LocationOfAxonArborization</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:LocationOfAxonArborization"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:LocationOfAxonArborization"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ANucleus_interfascicularis">
+		<rdfs:label>Nucleus interfascicularis</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Nucleus_interfascicularis"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Nucleus_interfascicularis"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADorsal_tail_of_ventral_cochlear_nucleus">
+		<rdfs:label>Dorsal tail of ventral cochlear nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dorsal_tail_of_ventral_cochlear_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dorsal_tail_of_ventral_cochlear_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOctopus_cell_area">
+		<rdfs:label>Octopus cell area</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Octopus_cell_area"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Octopus_cell_area"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AVentral_cochlear_nucleus">
+		<rdfs:label>Ventral cochlear nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Ventral_cochlear_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Ventral_cochlear_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACochlear_nuclear_complex">
+		<rdfs:label>Cochlear nuclear complex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cochlear_nuclear_complex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cochlear_nuclear_complex"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3APrincipal_neuron_role">
+		<rdfs:label>Principal neuron role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Principal_neuron_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Principal_neuron_role"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Has_role">
+		<rdfs:label>Has role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_role"/>
+	</owl:ObjectProperty>
+	<swivt:Subject rdf:about="&wiki;File-3ACochlear_nucleus_(ventral)_octopus_cell.gif">
+		<rdfs:label>File:Cochlear nucleus (ventral) octopus cell.gif</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;File:Cochlear_nucleus_(ventral)_octopus_cell.gif"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/File:Cochlear_nucleus_(ventral)_octopus_cell.gif"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;ExampleImage">
+		<rdfs:label>ExampleImage</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ExampleImage"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ExampleImage"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;EditorialNote">
+		<rdfs:label>EditorialNote</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:EditorialNote"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:EditorialNote"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CellSomaSize">
+		<rdfs:label>CellSomaSize</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CellSomaSize"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CellSomaSize"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CellSomaShape">
+		<rdfs:label>CellSomaShape</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CellSomaShape"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CellSomaShape"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;AxonProjectionLaterality">
+		<rdfs:label>AxonProjectionLaterality</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AxonProjectionLaterality"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AxonProjectionLaterality"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;AxonMyelination">
+		<rdfs:label>AxonMyelination</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AxonMyelination"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AxonMyelination"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Abbrev">
+		<rdfs:label>Abbrev</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Abbrev"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Abbrev"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

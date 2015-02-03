@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T22:37:49-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3AMushroom_body_ventral_lobe_arborizing_neuron_1">
+		<rdfs:label>Mushroom body ventral lobe arborizing neuron 1</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Mushroom_body_ventral_lobe_arborizing_neuron_1"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Mushroom_body_ventral_lobe_arborizing_neuron_1"/>
+		<property:Comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Names are assigned according to the area of the mushroom body they arborize, as detailed in Tanaka et al., (2008). Tanaka et al., (2008) compare four enhancer traps to identify the MB-V1 neurons (MZ840, NP7187, NP7198 and NP7135).</property:Comment>
+		<property:Contributor rdf:resource="&wiki;Sr544"/>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A single neuron whose cell body is located on the superior neuropils lateral to the calyx of each brain hemisphere. The cell body fiber projects anterior-medially and forms branches in the superior neuropils posterior to the vertical lobes. One of these branches projects to the opposite hemisphere and others project to the vertical lobe and form extensive arborizations in the middle segment of both the alpha and alpha' lobes.</property:Definition>
+		<property:FBBT_Link rdf:resource="http://www.virtualflybrain.org/site/tools/anatomy_finder/index.htm?id=FBbt:00100236"/>
+		<property:FBbt_Id rdf:resource="&wiki;Category-3AMushroom_body_ventral_lobe_arborizing_neuron_1"/>
+		<property:Has_role rdf:resource="&wiki;Fly_Anatomy_Ontology"/>
+		<property:Has_synaptic_terminal_in rdf:resource="&wiki;Mushroom_body_alpha_lobe_segment_2"/>
+		<property:Has_synaptic_terminal_in rdf:resource="&wiki;Mushroom_body_alpha-27-27_lobe_segment_2"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nlx_148584</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3AAdult_brain"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mushroom body ventral lobe arborizing neuron 1</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-07-31T00:00:00</property:ModifiedDate>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mushroom body extrinsic neuron</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MB-V1</property:Synonym>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3AMushroom_body_extrinsic_neuron"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:Class rdf:about="&wiki;Category-3AMushroom_body_extrinsic_neuron">
+		<rdfs:label>Mushroom body extrinsic neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Mushroom_body_extrinsic_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Mushroom_body_extrinsic_neuron"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AAdult_brain">
+		<rdfs:label>Adult brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Adult_brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Adult_brain"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<swivt:Subject rdf:about="&wiki;Mushroom_body_alpha-27-27_lobe_segment_2">
+		<rdfs:label>Mushroom body alpha'' lobe segment 2</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Mushroom_body_alpha%27%27_lobe_segment_2"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Mushroom_body_alpha%27%27_lobe_segment_2"/>
+	</swivt:Subject>
+	<swivt:Subject rdf:about="&wiki;Mushroom_body_alpha_lobe_segment_2">
+		<rdfs:label>Mushroom body alpha lobe segment 2</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Mushroom_body_alpha_lobe_segment_2"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Mushroom_body_alpha_lobe_segment_2"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;Has_synaptic_terminal_in">
+		<rdfs:label>Has synaptic terminal in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_synaptic_terminal_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_synaptic_terminal_in"/>
+	</owl:ObjectProperty>
+	<swivt:Subject rdf:about="&wiki;Fly_Anatomy_Ontology">
+		<rdfs:label>Fly Anatomy Ontology</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Fly_Anatomy_Ontology"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Fly_Anatomy_Ontology"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;Has_role">
+		<rdfs:label>Has role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_role"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;FBbt_Id">
+		<rdfs:label>FBbt Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:FBbt_Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:FBbt_Id"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;FBBT_Link">
+		<rdfs:label>FBBT Link</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:FBBT_Link"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:FBBT_Link"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<swivt:Subject rdf:about="&wiki;Sr544">
+		<rdfs:label>Sr544</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Sr544"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Sr544"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;Contributor">
+		<rdfs:label>Contributor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Contributor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Contributor"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Comment">
+		<rdfs:label>Comment</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Comment"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Comment"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

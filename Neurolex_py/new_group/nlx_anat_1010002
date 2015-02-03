@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T23:08:13-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ASubthalamic_nucleus">
+		<rdfs:label>Subthalamic nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Subthalamic_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Subthalamic_nucleus"/>
+		<property:Abbrev rdf:datatype="http://www.w3.org/2001/XMLSchema#string">STh, STN</property:Abbrev>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3AGlobus_pallidus_external_segment"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3ACerebral_cortex"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3ASubstantia_nigra_pars_compacta"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3APedunculopontine_tegmental_nucleus"/>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:CytoDefiningCriteria rdf:datatype="http://www.w3.org/2001/XMLSchema#string">STN neurons have long sparsely spiny dendrites</property:CytoDefiningCriteria>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lens shaped nucleus lying in the subthalamus</property:Definition>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3AGlobus_pallidus_internal_segment"/>
+		<property:EfferentProjections rdf:resource="&wiki;Category-3ASubstantia_nigra_pars_reticulata"/>
+		<property:Has_role rdf:resource="&wiki;Category-3AEncode_decision_conflicts_during_action_selections"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nlx_anat_1010002</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ABasal_ganglia"/>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ASubthalamus"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subthalamic nucleus</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-04-27T00:00:00</property:ModifiedDate>
+		<property:Species rdf:resource="&wiki;Category-3AMammal"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nucleus of CNS</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Body of Luys</property:Synonym>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ANucleus_of_CNS"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A111756">
+		<rdfs:label>TermImport:111756</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:111756"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:111756"/>
+		<property:About rdf:resource="&wiki;Category-3ASubthalamic_nucleus"/>
+	</swivt:Subject>
+	<owl:Class rdf:about="&wiki;Category-3AGlobus_pallidus_internal_segment">
+		<rdfs:label>Globus pallidus internal segment</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Globus_pallidus_internal_segment"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Globus_pallidus_internal_segment"/>
+		<property:AfferentProjections rdf:resource="&wiki;Category-3ASubthalamic_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASubthalamic_nucleus_of_PHT00">
+		<rdfs:label>Subthalamic nucleus of PHT00</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Subthalamic_nucleus_of_PHT00"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Subthalamic_nucleus_of_PHT00"/>
+		<property:PartiallyOverlapsWith rdf:resource="&wiki;Category-3ASubthalamic_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASubthalamic_nucleus_principal_cell">
+		<rdfs:label>Subthalamic nucleus principal cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Subthalamic_nucleus_principal_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Subthalamic_nucleus_principal_cell"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ASubthalamic_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ADIAN_-2D_Dominantly_Inherited_Alzheimer_Network">
+		<rdfs:label>Resource:DIAN - Dominantly Inherited Alzheimer Network</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:DIAN_-_Dominantly_Inherited_Alzheimer_Network"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:DIAN_-_Dominantly_Inherited_Alzheimer_Network"/>
+		<property:Keywords rdf:resource="&wiki;Category-3ASubthalamic_nucleus"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;Keywords">
+		<rdfs:label>Keywords</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Keywords"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Keywords"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;PartiallyOverlapsWith">
+		<rdfs:label>PartiallyOverlapsWith</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PartiallyOverlapsWith"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PartiallyOverlapsWith"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ANucleus_of_CNS">
+		<rdfs:label>Nucleus of CNS</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Nucleus_of_CNS"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Nucleus_of_CNS"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMammal">
+		<rdfs:label>Mammal</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Mammal"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Mammal"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Species">
+		<rdfs:label>Species</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Species"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Species"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ASubthalamus">
+		<rdfs:label>Subthalamus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Subthalamus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Subthalamus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ABasal_ganglia">
+		<rdfs:label>Basal ganglia</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Basal_ganglia"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Basal_ganglia"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AEncode_decision_conflicts_during_action_selections">
+		<rdfs:label>Encode decision conflicts during action selections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Encode_decision_conflicts_during_action_selections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Encode_decision_conflicts_during_action_selections"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Has_role">
+		<rdfs:label>Has role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_role"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ASubstantia_nigra_pars_reticulata">
+		<rdfs:label>Substantia nigra pars reticulata</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Substantia_nigra_pars_reticulata"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Substantia_nigra_pars_reticulata"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AGlobus_pallidus_internal_segment">
+		<rdfs:label>Globus pallidus internal segment</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Globus_pallidus_internal_segment"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Globus_pallidus_internal_segment"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;EfferentProjections">
+		<rdfs:label>EfferentProjections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:EfferentProjections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:EfferentProjections"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CytoDefiningCriteria">
+		<rdfs:label>CytoDefiningCriteria</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CytoDefiningCriteria"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CytoDefiningCriteria"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3APedunculopontine_tegmental_nucleus">
+		<rdfs:label>Pedunculopontine tegmental nucleus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Pedunculopontine_tegmental_nucleus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Pedunculopontine_tegmental_nucleus"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASubstantia_nigra_pars_compacta">
+		<rdfs:label>Substantia nigra pars compacta</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Substantia_nigra_pars_compacta"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Substantia_nigra_pars_compacta"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebral_cortex">
+		<rdfs:label>Cerebral cortex</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebral_cortex"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebral_cortex"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AGlobus_pallidus_external_segment">
+		<rdfs:label>Globus pallidus external segment</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Globus_pallidus_external_segment"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Globus_pallidus_external_segment"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;AfferentProjections">
+		<rdfs:label>AfferentProjections</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:AfferentProjections"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:AfferentProjections"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Abbrev">
+		<rdfs:label>Abbrev</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Abbrev"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Abbrev"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

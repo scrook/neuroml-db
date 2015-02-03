@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T09:59:08-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3ASubventricular_Zone">
+		<rdfs:label>Subventricular Zone</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Subventricular_Zone"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Subventricular_Zone"/>
+		<property:Abbrev rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SVZ</property:Abbrev>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The subventricular zone (SVZ) is one of two sources of adult-born neurons in the mammalian brain, the other being the subgranular zone (SGZ) of the hippocampus. In most adult mammals, the SVZ is a three-layered sheath that lies along the lateral wall of the lateral ventricle and consists of type A, B, and C cells. Type A rest along the ventricle wall and are neuronal precursor cells, Type B are adjacent astrocytes, and Type C are immature precursors to the Type A neuroblasts. The neuronal precursor cells travel along the rostral migratory stream ensheathed in a tube of Type B astrocytes, until they reach the olfactory bulb. There they integrate into the existing cellular network and mature into local interneurons. While the majority become adult-born granule cells, a subset become periglomerular cells.
+
+Interestingly, the human SVZ differs from other mammals' in several ways. It consists of four layers rather than three: ependymal cells (layer I), a hypo cellular gap (layer II), a ribbon of astrocytes (layer III), and a transitional zone (layer IV). The astrocytes are capable of differentiating into many kinds of tissue including new neurons. However, there is no evidence that the proliferating neurons travel along the rostral migratory stream in a chain to populate the olfactory bulb with new interneurons, as is the case for other mammals.</property:Definition>
+		<property:Has_role rdf:resource="&wiki;Category-3AAdult_neurogenesis"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nlx_144262</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ATelencephalon"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subventricular Zone</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-03-21T00:00:00</property:ModifiedDate>
+		<property:PMID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">14973487</property:PMID>
+		<property:PublicationLink rdf:resource="http://www.nature.com/nature/journal/v427/n6976/full/nature02301.html"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AOlfactory_bulb_(main)_periglomerular_cell"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AOlfactory_bulb_(main)_adult-2Dborn_granule_cell"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AOlfactory_bulb"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3ARostral_migratory_stream"/>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regional part of brain</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">subependymal zone</property:Synonym>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ARegional_part_of_brain"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:Class rdf:about="&wiki;Category-3ARegional_part_of_brain">
+		<rdfs:label>Regional part of brain</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Regional_part_of_brain"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Regional_part_of_brain"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ARostral_migratory_stream">
+		<rdfs:label>Rostral migratory stream</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Rostral_migratory_stream"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Rostral_migratory_stream"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_bulb">
+		<rdfs:label>Olfactory bulb</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_bulb"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_bulb"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_bulb_(main)_adult-2Dborn_granule_cell">
+		<rdfs:label>Olfactory bulb (main) adult-born granule cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_bulb_(main)_adult-born_granule_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_bulb_(main)_adult-born_granule_cell"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AOlfactory_bulb_(main)_periglomerular_cell">
+		<rdfs:label>Olfactory bulb (main) periglomerular cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Olfactory_bulb_(main)_periglomerular_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Olfactory_bulb_(main)_periglomerular_cell"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;RelatedTo">
+		<rdfs:label>RelatedTo</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:RelatedTo"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:RelatedTo"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;PublicationLink">
+		<rdfs:label>PublicationLink</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PublicationLink"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PublicationLink"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;PMID">
+		<rdfs:label>PMID</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PMID"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PMID"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ATelencephalon">
+		<rdfs:label>Telencephalon</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Telencephalon"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Telencephalon"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AAdult_neurogenesis">
+		<rdfs:label>Adult neurogenesis</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Adult_neurogenesis"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Adult_neurogenesis"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Has_role">
+		<rdfs:label>Has role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_role"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Abbrev">
+		<rdfs:label>Abbrev</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Abbrev"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Abbrev"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T22:31:39-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3AHippocampus_CA1_trilaminar_neuron">
+		<rdfs:label>Hippocampus CA1 trilaminar neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hippocampus_CA1_trilaminar_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hippocampus_CA1_trilaminar_neuron"/>
+		<property:Comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">This class is still under review and requires changes before making it final. In the mean time, the contents of this cell class might change as the Mason cell ontology group is modifying/verifying the properties.</property:Comment>
+		<property:Created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2006-11-06T00:00:00</property:Created>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:Curator rdf:resource="&wiki;Sridevi_Polavaram"/>
+		<property:DefiningCitation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Somogyi &amp; Klausberger, 2005 (15539390); Klausberger T &amp; Somogyi P, 2008 (18599766);Spruston, 2008 (18270515)</property:DefiningCitation>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The CA1 trilaminar neuron is a neuron that is characterized by its axon densely innervating three layers stratum oriens, pyramidale and radiatum (Sik et al. 1995) projecting to subiculum and possibly to other regions, while the soma and long horizontal dendrites are in stratum oriens with strong immunoreactivity for the m2 receptor in the somato-dendritic domain and intense presynaptic mGluR8a decoration. It must also be noted that the same name has been used for various other cells with axon in at least three laminae (Hajos &amp; Mody, 1997; Pawelzik et al. 2002). However, for this particular cell class the axons project to subiculum and possibly to other brain areas as well.</property:Definition>
+		<property:DendriteLocation rdf:resource="&wiki;Category-3ACA1_alveus"/>
+		<property:DendriteLocation rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+		<property:DendriteLocation rdf:resource="&wiki;Category-3ACA1_stratum_radiatum"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nlx_27085</property:Id>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hippocampus CA1 trilaminar neuron</property:Label>
+		<property:Located_in rdf:resource="&wiki;Category-3ACA1_alveus"/>
+		<property:Located_in rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA1_alveus"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA1_stratum_oriens"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA1_stratum_pyramidale"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ACA1_stratum_radiatum"/>
+		<property:LocationOfAxonArborization rdf:resource="&wiki;Category-3ASubiculum_pyramidal_cell_layer"/>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-03-09T00:00:00</property:ModifiedDate>
+		<property:MolecularConstituents rdf:resource="&wiki;Category-3AM2_receptor"/>
+		<property:MolecularConstituents rdf:resource="&wiki;Category-3AMGLuR8a"/>
+		<property:PMID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15539390, 18599766, 18270515</property:PMID>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">neuron</property:SuperCategory>
+		<property:Synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CA1 trilaminar cell</property:Synonym>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ANeuron"/>
+	</owl:Class>
+	<swivt:Subject rdf:about="&wiki;TermImport-3A104214">
+		<rdfs:label>TermImport:104214</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;TermImport:104214"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/TermImport:104214"/>
+		<property:About rdf:resource="&wiki;Category-3AHippocampus_CA1_trilaminar_neuron"/>
+	</swivt:Subject>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;About">
+		<rdfs:label>About</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:About"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:About"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ANeuron">
+		<rdfs:label>Neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neuron"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;Synonym">
+		<rdfs:label>Synonym</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Synonym"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Synonym"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;PMID">
+		<rdfs:label>PMID</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:PMID"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:PMID"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3AMGLuR8a">
+		<rdfs:label>MGLuR8a</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:MGLuR8a"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:MGLuR8a"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AM2_receptor">
+		<rdfs:label>M2 receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:M2_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:M2_receptor"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;MolecularConstituents">
+		<rdfs:label>MolecularConstituents</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:MolecularConstituents"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:MolecularConstituents"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ASubiculum_pyramidal_cell_layer">
+		<rdfs:label>Subiculum pyramidal cell layer</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Subiculum_pyramidal_cell_layer"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Subiculum_pyramidal_cell_layer"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACA1_stratum_pyramidale">
+		<rdfs:label>CA1 stratum pyramidale</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:CA1_stratum_pyramidale"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:CA1_stratum_pyramidale"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;LocationOfAxonArborization">
+		<rdfs:label>LocationOfAxonArborization</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:LocationOfAxonArborization"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:LocationOfAxonArborization"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;Located_in">
+		<rdfs:label>Located in</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Located_in"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Located_in"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ACA1_stratum_radiatum">
+		<rdfs:label>CA1 stratum radiatum</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:CA1_stratum_radiatum"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:CA1_stratum_radiatum"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACA1_stratum_oriens">
+		<rdfs:label>CA1 stratum oriens</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:CA1_stratum_oriens"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:CA1_stratum_oriens"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACA1_alveus">
+		<rdfs:label>CA1 alveus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:CA1_alveus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:CA1_alveus"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;DendriteLocation">
+		<rdfs:label>DendriteLocation</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DendriteLocation"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DendriteLocation"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;DefiningCitation">
+		<rdfs:label>DefiningCitation</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefiningCitation"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefiningCitation"/>
+	</owl:DatatypeProperty>
+	<swivt:Subject rdf:about="&wiki;Sridevi_Polavaram">
+		<rdfs:label>Sridevi Polavaram</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Sridevi_Polavaram"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Sridevi_Polavaram"/>
+	</swivt:Subject>
+	<owl:ObjectProperty rdf:about="&property;Curator">
+		<rdfs:label>Curator</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Curator"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Curator"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Created">
+		<rdfs:label>Created</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Created"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Created"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Comment">
+		<rdfs:label>Comment</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Comment"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Comment"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>

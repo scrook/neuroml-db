@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF[
+	<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+	<!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+	<!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>
+	<!ENTITY wiki 'http://neurolex.org/wiki/'>
+	<!ENTITY property 'http://neurolex.org/wiki/Property-3A'>
+	<!ENTITY wikiurl 'http://neurolex.org/wiki/'>
+]>
+
+<rdf:RDF
+	xmlns:rdf="&rdf;"
+	xmlns:rdfs="&rdfs;"
+	xmlns:owl ="&owl;"
+	xmlns:swivt="&swivt;"
+	xmlns:wiki="&wiki;"
+	xmlns:property="&property;">
+	<!-- Ontology header -->
+	<owl:Ontology rdf:about="">
+		<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-02-23T08:15:26-08:00</swivt:creationDate>
+		<owl:imports rdf:resource="http://semantic-mediawiki.org/swivt/1.0" />
+	</owl:Ontology>
+	<!-- exported page data -->
+	<owl:Class rdf:about="&wiki;Category-3AAcetylcholine">
+		<rdfs:label>Acetylcholine</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Acetylcholine"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Acetylcholine"/>
+		<property:Abbrev rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ACh</property:Abbrev>
+		<property:CurationStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uncurated</property:CurationStatus>
+		<property:DefiningCitation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MSH</property:DefiningCitation>
+		<property:Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A neurotransmitter. Acetylcholine in vertebrates is the major transmitter at neuromuscular junctions, autonomic ganglia, parasympathetic effector junctions, a subset of sympathetic effector junctions, and at many sites in the central nervous system. It is generally not used as an administered drug because it is broken down very rapidly by cholinesterases, but it is useful in some ophthalmological applications (MSH).</property:Definition>
+		<property:Has_role rdf:resource="&wiki;Category-3ANeurotransmitter"/>
+		<property:Id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">sao185580330</property:Id>
+		<property:Is_part_of rdf:resource="&wiki;Category-3ACholinergic_system"/>
+		<property:Label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Acetylcholine</property:Label>
+		<property:ModifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2010-04-22T00:00:00</property:ModifiedDate>
+		<property:SuperCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biomolecule</property:SuperCategory>
+		<rdfs:subClassOf rdf:resource="&wiki;Category-3ABiomolecule"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAcetylcholine_Receptor">
+		<rdfs:label>Acetylcholine Receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Acetylcholine_Receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Acetylcholine_Receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAlpha_7_Acetylcholine_Receptor">
+		<rdfs:label>Alpha 7 Acetylcholine Receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Alpha_7_Acetylcholine_Receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Alpha_7_Acetylcholine_Receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAlpha_3_Acetylcholine_Receptor">
+		<rdfs:label>Alpha 3 Acetylcholine Receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Alpha_3_Acetylcholine_Receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Alpha_3_Acetylcholine_Receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AM5_receptor">
+		<rdfs:label>M5 receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:M5_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:M5_receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AM4_receptor">
+		<rdfs:label>M4 receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:M4_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:M4_receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AM3_receptor">
+		<rdfs:label>M3 receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:M3_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:M3_receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AM2_receptor">
+		<rdfs:label>M2 receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:M2_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:M2_receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AM1_receptor">
+		<rdfs:label>M1 receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:M1_receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:M1_receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACholinergic_receptor,_nicotinic,_alpha_5">
+		<rdfs:label>Cholinergic receptor, nicotinic, alpha 5</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cholinergic_receptor,_nicotinic,_alpha_5"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cholinergic_receptor,_nicotinic,_alpha_5"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeuronal_acetylcholine_receptor_subunit_alpha-2D2">
+		<rdfs:label>Neuronal acetylcholine receptor subunit alpha-2</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neuronal_acetylcholine_receptor_subunit_alpha-2"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neuronal_acetylcholine_receptor_subunit_alpha-2"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeuronal_acetylcholine_receptor_subunit_alpha-2D4">
+		<rdfs:label>Neuronal acetylcholine receptor subunit alpha-4</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neuronal_acetylcholine_receptor_subunit_alpha-4"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neuronal_acetylcholine_receptor_subunit_alpha-4"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeuronal_acetylcholine_receptor_subunit_alpha-2D9">
+		<rdfs:label>Neuronal acetylcholine receptor subunit alpha-9</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neuronal_acetylcholine_receptor_subunit_alpha-9"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neuronal_acetylcholine_receptor_subunit_alpha-9"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeuronal_acetylcholine_receptor_subunit_alpha-2D10">
+		<rdfs:label>Neuronal acetylcholine receptor subunit alpha-10</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neuronal_acetylcholine_receptor_subunit_alpha-10"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neuronal_acetylcholine_receptor_subunit_alpha-10"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeuronal_acetylcholine_receptor_subunit_alpha-2D6">
+		<rdfs:label>Neuronal acetylcholine receptor subunit alpha-6</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neuronal_acetylcholine_receptor_subunit_alpha-6"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neuronal_acetylcholine_receptor_subunit_alpha-6"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeuronal_acetylcholine_receptor_subunit_beta-2D2">
+		<rdfs:label>Neuronal acetylcholine receptor subunit beta-2</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neuronal_acetylcholine_receptor_subunit_beta-2"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neuronal_acetylcholine_receptor_subunit_beta-2"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeuronal_acetylcholine_receptor_subunit_beta-2D4">
+		<rdfs:label>Neuronal acetylcholine receptor subunit beta-4</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neuronal_acetylcholine_receptor_subunit_beta-4"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neuronal_acetylcholine_receptor_subunit_beta-4"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeuronal_acetylcholine_receptor_subunit_beta-2D3">
+		<rdfs:label>Neuronal acetylcholine receptor subunit beta-3</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neuronal_acetylcholine_receptor_subunit_beta-3"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neuronal_acetylcholine_receptor_subunit_beta-3"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANicotinic_Acetylcholine_Receptor">
+		<rdfs:label>Nicotinic Acetylcholine Receptor</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Nicotinic_Acetylcholine_Receptor"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Nicotinic_Acetylcholine_Receptor"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeuronal_acetylcholine_receptor_subunit_beta-2D1">
+		<rdfs:label>Neuronal acetylcholine receptor subunit beta-1</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neuronal_acetylcholine_receptor_subunit_beta-1"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neuronal_acetylcholine_receptor_subunit_beta-1"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeuronal_acetylcholine_receptor_subunit_alpha-2D1">
+		<rdfs:label>Neuronal acetylcholine receptor subunit alpha-1</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neuronal_acetylcholine_receptor_subunit_alpha-1"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neuronal_acetylcholine_receptor_subunit_alpha-1"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeuronal_acetylcholine_receptor_subunit_alpha-2D8">
+		<rdfs:label>Neuronal acetylcholine receptor subunit alpha-8</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neuronal_acetylcholine_receptor_subunit_alpha-8"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neuronal_acetylcholine_receptor_subunit_alpha-8"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AMuscarine">
+		<rdfs:label>Muscarine</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Muscarine"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Muscarine"/>
+		<property:RelatedTo rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACerebellar_mossy_fiber">
+		<rdfs:label>Cerebellar mossy fiber</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cerebellar_mossy_fiber"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cerebellar_mossy_fiber"/>
+		<property:MolecularConstituents rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord_intermediate_horn_motor_neuron_sympathetic">
+		<rdfs:label>Spinal cord intermediate horn motor neuron sympathetic</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord_intermediate_horn_motor_neuron_sympathetic"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord_intermediate_horn_motor_neuron_sympathetic"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord_ventral_horn_motor_neuron">
+		<rdfs:label>Spinal cord ventral horn motor neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord_ventral_horn_motor_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord_ventral_horn_motor_neuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANeostriatum_cholinergic_cell">
+		<rdfs:label>Neostriatum cholinergic cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neostriatum_cholinergic_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neostriatum_cholinergic_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord_ventral_horn_motor_neuron_alpha">
+		<rdfs:label>Spinal cord ventral horn motor neuron alpha</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord_ventral_horn_motor_neuron_alpha"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord_ventral_horn_motor_neuron_alpha"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord_ventral_horn_motor_neuron_beta">
+		<rdfs:label>Spinal cord ventral horn motor neuron beta</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord_ventral_horn_motor_neuron_beta"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord_ventral_horn_motor_neuron_beta"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord_ventral_horn_motor_neuron_gamma">
+		<rdfs:label>Spinal cord ventral horn motor neuron gamma</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord_ventral_horn_motor_neuron_gamma"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord_ventral_horn_motor_neuron_gamma"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ATaste_bud_type_2_cell">
+		<rdfs:label>Taste bud type 2 cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Taste_bud_type_2_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Taste_bud_type_2_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACiliary_ganglion_cell">
+		<rdfs:label>Ciliary ganglion cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Ciliary_ganglion_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Ciliary_ganglion_cell"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord_ventral_horn_interneuron_V0C">
+		<rdfs:label>Spinal cord ventral horn interneuron V0C</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord_ventral_horn_interneuron_V0C"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord_ventral_horn_interneuron_V0C"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ASpinal_cord_motor_neuron_parasympathetic">
+		<rdfs:label>Spinal cord motor neuron parasympathetic</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Spinal_cord_motor_neuron_parasympathetic"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Spinal_cord_motor_neuron_parasympathetic"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AHypoglossal_nucleus_motor_neuron">
+		<rdfs:label>Hypoglossal nucleus motor neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Hypoglossal_nucleus_motor_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Hypoglossal_nucleus_motor_neuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ATrigeminal_nucleus_motor_neuron">
+		<rdfs:label>Trigeminal nucleus motor neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Trigeminal_nucleus_motor_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Trigeminal_nucleus_motor_neuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AFacial_nucleus_motor_neuron">
+		<rdfs:label>Facial nucleus motor neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Facial_nucleus_motor_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Facial_nucleus_motor_neuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ADorsal_motor_nucleus_of_vagus_motor_neuron">
+		<rdfs:label>Dorsal motor nucleus of vagus motor neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Dorsal_motor_nucleus_of_vagus_motor_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Dorsal_motor_nucleus_of_vagus_motor_neuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ANucleus_ambiguus_motor_neuron">
+		<rdfs:label>Nucleus ambiguus motor neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Nucleus_ambiguus_motor_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Nucleus_ambiguus_motor_neuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAntennal_lobe_(Honey_bee)_principal_neuron">
+		<rdfs:label>Antennal lobe (Honey bee) principal neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Antennal_lobe_(Honey_bee)_principal_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Antennal_lobe_(Honey_bee)_principal_neuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAntennal_lobe_(Manduca)_principal_neuron">
+		<rdfs:label>Antennal lobe (Manduca) principal neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Antennal_lobe_(Manduca)_principal_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Antennal_lobe_(Manduca)_principal_neuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ABasalis_nucleus_cholinergic_neuron">
+		<rdfs:label>Basalis nucleus cholinergic neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Basalis_nucleus_cholinergic_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Basalis_nucleus_cholinergic_neuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAbducens_nucleus_motor_neuron">
+		<rdfs:label>Abducens nucleus motor neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Abducens_nucleus_motor_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Abducens_nucleus_motor_neuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AAccessory_nucleus_motor_neuron">
+		<rdfs:label>Accessory nucleus motor neuron</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Accessory_nucleus_motor_neuron"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Accessory_nucleus_motor_neuron"/>
+		<property:Neurotransmitter rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3ACochlea_outer_hair_cell">
+		<rdfs:label>Cochlea outer hair cell</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cochlea_outer_hair_cell"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cochlea_outer_hair_cell"/>
+		<property:NeurotransmitterReceptors rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3AAlpha-2D7_Database">
+		<rdfs:label>Resource:Alpha-7 Database</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:Alpha-7_Database"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:Alpha-7_Database"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<owl:Class rdf:about="&wiki;Category-3AResource-3ANeuroMouse_Database">
+		<rdfs:label>Resource:NeuroMouse Database</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Resource:NeuroMouse_Database"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Resource:NeuroMouse_Database"/>
+		<property:Keywords rdf:resource="&wiki;Category-3AAcetylcholine"/>
+	</owl:Class>
+	<!-- auxilliary definitions -->
+	<owl:ObjectProperty rdf:about="&property;Keywords">
+		<rdfs:label>Keywords</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Keywords"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Keywords"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;NeurotransmitterReceptors">
+		<rdfs:label>NeurotransmitterReceptors</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:NeurotransmitterReceptors"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:NeurotransmitterReceptors"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;Neurotransmitter">
+		<rdfs:label>Neurotransmitter</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Neurotransmitter"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Neurotransmitter"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;MolecularConstituents">
+		<rdfs:label>MolecularConstituents</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:MolecularConstituents"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:MolecularConstituents"/>
+	</owl:ObjectProperty>
+	<owl:ObjectProperty rdf:about="&property;RelatedTo">
+		<rdfs:label>RelatedTo</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:RelatedTo"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:RelatedTo"/>
+	</owl:ObjectProperty>
+	<owl:Class rdf:about="&wiki;Category-3ABiomolecule">
+		<rdfs:label>Biomolecule</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Biomolecule"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Biomolecule"/>
+	</owl:Class>
+	<owl:DatatypeProperty rdf:about="&property;SuperCategory">
+		<rdfs:label>SuperCategory</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:SuperCategory"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:SuperCategory"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;ModifiedDate">
+		<rdfs:label>ModifiedDate</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:ModifiedDate"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:ModifiedDate"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Label">
+		<rdfs:label>Label</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Label"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Label"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ACholinergic_system">
+		<rdfs:label>Cholinergic system</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Cholinergic_system"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Cholinergic_system"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Is_part_of">
+		<rdfs:label>Is part of</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Is_part_of"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Is_part_of"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Id">
+		<rdfs:label>Id</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Id"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Id"/>
+	</owl:DatatypeProperty>
+	<owl:Class rdf:about="&wiki;Category-3ANeurotransmitter">
+		<rdfs:label>Neurotransmitter</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Category:Neurotransmitter"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Category:Neurotransmitter"/>
+	</owl:Class>
+	<owl:ObjectProperty rdf:about="&property;Has_role">
+		<rdfs:label>Has role</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Has_role"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Has_role"/>
+	</owl:ObjectProperty>
+	<owl:DatatypeProperty rdf:about="&property;Definition">
+		<rdfs:label>Definition</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Definition"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Definition"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;DefiningCitation">
+		<rdfs:label>DefiningCitation</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:DefiningCitation"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:DefiningCitation"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;CurationStatus">
+		<rdfs:label>CurationStatus</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:CurationStatus"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:CurationStatus"/>
+	</owl:DatatypeProperty>
+	<owl:DatatypeProperty rdf:about="&property;Abbrev">
+		<rdfs:label>Abbrev</rdfs:label>
+		<swivt:page rdf:resource="&wikiurl;Property:Abbrev"/>
+		<rdfs:isDefinedBy rdf:resource="&wikiurl;Special:ExportRDF/Property:Abbrev"/>
+	</owl:DatatypeProperty>
+	<!-- References to the SWiVT Ontology, see http://semantic-mediawiki.org/swivt/ -->
+	<owl:AnnotationProperty rdf:about="&swivt;page">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:AnnotationProperty rdf:about="&swivt;creationDate">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:AnnotationProperty>
+	<owl:Class rdf:about="&swivt;Subject">
+		<rdfs:isDefinedBy rdf:resource="http://semantic-mediawiki.org/swivt/1.0"/>
+	</owl:Class>
+	<!-- Created by Semantic MediaWiki, http://semantic-mediawiki.org -->
+</rdf:RDF>
