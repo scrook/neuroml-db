@@ -1,4 +1,3 @@
-from Classes.Relationship import Relationship
 from Classes.SearchComponent import SearchComponent
 
 
@@ -38,7 +37,7 @@ class Recommender(SearchComponent):
 
             # Insert keyword ids into query
             query = query.replace(
-                "[NeuroLexIds]",
+                "[NeuroLexUris]",
                 self.SPARQLDB.BuildValuesString(ids)
             )
 

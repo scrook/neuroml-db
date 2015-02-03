@@ -2,12 +2,12 @@ PREFIX property:<http://neurolex.org/wiki/Property-3A>
 PREFIX name:<http://neurolex.org/wiki/Category-3A>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-SELECT DISTINCT ?target ?id ?forward ?backward
+SELECT DISTINCT ?target ?id ?forward ?backward # Last two are stored in "relationship"
 WHERE
 {
   VALUES ?ids
   {
-    [NeuroLexIds]
+    [NeuroLexUris]
   }
 
   ?keyword property:Id ?ids .

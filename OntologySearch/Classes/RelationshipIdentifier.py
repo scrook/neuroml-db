@@ -1,5 +1,3 @@
-from Classes.GapRelationship import GapRelationship
-from Classes.Relationship import Relationship
 from Classes.RelationshipCollection import RelationshipCollection
 from Classes.SearchComponent import SearchComponent
 
@@ -13,7 +11,7 @@ class RelationshipIdentifier(SearchComponent):
             query = queryFile.read()
 
             # Surround the values with "s and on separate lines
-            query = query.replace("[NeuroLexIds]", self.SPARQLDB.BuildValuesString(ids))
+            query = query.replace("[NeuroLexUris]", self.SPARQLDB.BuildValuesString(ids))
 
         subregions = self.SPARQLDB.Query(query)
 
@@ -42,7 +40,7 @@ class RelationshipIdentifier(SearchComponent):
 
             # Inject ids into the query
             query = query.replace(
-                "[NeuroLexIds]",
+                "[NeuroLexUris]",
                 self.SPARQLDB.BuildValuesString(entities)
             )
             
@@ -76,7 +74,7 @@ class RelationshipIdentifier(SearchComponent):
             query = queryFile.read()
 
             # Surround the values with "s and on separate lines
-            query = query.replace("[NeuroLexIds]", self.SPARQLDB.BuildValuesString(entities))
+            query = query.replace("[NeuroLexUris]", self.SPARQLDB.BuildValuesString(entities))
 
         relationships = self.SPARQLDB.Query(query)
 

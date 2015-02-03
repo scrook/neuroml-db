@@ -8,12 +8,12 @@ WHERE
 
 	VALUES ?end1id
 	{
-		[NeuroLexIds] # String literals separed by \n's
+		[NeuroLexUris] # String literals separed by \n's
 	}
 
 	VALUES ?end2id
 	{
-		[NeuroLexIds] # String literals separed by \n's
+		[NeuroLexUris] # String literals separed by \n's
 	}
 
   FILTER(?end1id != ?end2id)
@@ -22,29 +22,47 @@ WHERE
 	?end2 property:Id ?end2id.
 
   # Don't search for gap relations between subregions
-  MINUS
+  #MINUS
+  #{
+  #  ?end2 property:Is_part_of+ ?end1
+  #}
+  #
+  #MINUS
+  #{
+  #  ?end1 property:Is_part_of+ ?end2
+  #}
+
   {
-    ?end2 property:Is_part_of+ ?end1
-  }
+    ?gapObject
+    (
+      property:Located_in |
+      property:Neurotransmitter
+    )
+    ?end1.
 
-  MINUS
+    ?gapObject
+    (
+      property:Located_in |
+      property:Neurotransmitter
+    )
+    ?end2.
+  }
+  UNION
   {
-    ?end1 property:Is_part_of+ ?end2
+    ?end1
+    (
+      property:Located_in |
+      property:Neurotransmitter
+    )
+    ?gapObject.
+
+    ?end2
+    (
+      property:Located_in |
+      property:Neurotransmitter
+    )
+    ?gapObject.
   }
-
-	?gapObject
-	(
-		property:Located_in |
-		property:Neurotransmitter
-	)
-	?end1.
-
-	?gapObject
-	(
-		property:Located_in |
-		property:Neurotransmitter
-	)
-	?end2.
 
   ?gapObject ?relationship1 ?end1.
 	?gapObject ?relationship2 ?end2.

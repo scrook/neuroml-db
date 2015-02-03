@@ -8,12 +8,12 @@ WHERE
 
 	VALUES ?id1
 	{
-		[NeuroLexIds] # String literals separed by \n's
+		[NeuroLexUris] # String literals separed by \n's
 	}
 
 	VALUES ?id2
 	{
-		[NeuroLexIds]
+		[NeuroLexUris]
 	}
 
   ?name1 property:Id ?id1.

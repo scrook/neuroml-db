@@ -1,4 +1,5 @@
 import json
+import os
 import urllib
 import urllib2
 import subprocess
@@ -36,7 +37,12 @@ class SPARQLDB:
 
         # Check if the server home page loads ok
         request = urllib2.Request(self.ServerUrl)
-        response = urllib2.urlopen(request)
+
+        try:
+            response = urllib2.urlopen(request)
+
+        except urllib2.URLError:
+            return False
 
         return response.getcode() == 200
 
@@ -50,17 +56,17 @@ class SPARQLDB:
         #   "Data" ~/fuseki/Data is where db files are stored
         #   "/NeuroMLOntology" the name of the ontology DB
 
+        os.putenv("FUSEKI_HOME", "/home/neuromine/fuseki")
+
         subprocess.Popen([
-            "FUSEKI_HOME=/home/neuromine/fuseki"
             "/home/neuromine/fuseki/fuseki-server",
-            "--loc=/home/neurone/fuseki/Data",
-            "/NeuroMLOntology"
+            "--loc=/home/neuromine/fuseki/Data",
+            "/NeuroMLOntology",
         ])
 
     def Query(self, query):
 
-        values = \
-        {
+        values = {
             'query': query,
             'output': 'json',
         }

@@ -14,34 +14,37 @@ class SearchModule:
 
     def Search(self, keywords):
 
-        # Find id's of close matches to the keywords
-        keywordIds = self.Parser.GetKeywordOntologyIds(keywords)
-
-        # Look for direct and gap relationships between the terms
-        relationships = self.Identifier.GetRelationships(keywordIds)
-
         results = SearchResults()
 
-        # If found gap objects, show them
-        if len(relationships.GapRelationships) > 0:
+        # Find id's of close matches to the keywords
+        results.KeywordIds = self.Parser.GetKeywordOntologyIds(keywords)
 
-            results.GapRelationships = relationships.GapRelationships
+        # Look for direct and gap relationships between the terms
+        results.Relationships = self.Identifier.GetRelationships(results.KeywordIds)
+
+        # If found gap objects, show them
+        if len(results.Relationships.GapRelationships) > 0:
+
+            results.GapRelationships = results.Relationships.GapRelationships
 
         else:
 
             # If there are direct rels between search terms/subregions
             # Find analogue objects
-            if len(relationships.DirectRelationships) > 0:
+            if len(results.Relationships.DirectRelationships) > 0:
 
                 results.DirectRelationshipAnalogues = self \
                     .Recommender \
-                    .RunAnaloguesQuery(relationships.DirectRelationships)
+                    .RunAnaloguesQuery(results.Relationships.DirectRelationships)
 
             # If no gaps or direct relationships
             # Show objects related to the keywords via Located_in | Neurotransmitter
             else:
                 results.KeywordRelations = self \
                     .Recommender \
-                    .FindKeywordRelations(keywordIds)
+                    .FindKeywordRelations(results.KeywordIds)
+
+        # Workaround for json serialization
+        results.Relationships = results.Relationships.__dict__
 
         return results
