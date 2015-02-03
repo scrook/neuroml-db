@@ -1,0 +1,31 @@
+PREFIX property:<http://neurolex.org/wiki/Property-3A>
+PREFIX name:<http://neurolex.org/wiki/Category-3A>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT DISTINCT ?id1 ?name1 ?relationship ?id2 ?name2
+WHERE
+{
+
+	VALUES ?id1
+	{
+		[NeuroLexIds] # String literals separed by \n's
+	}
+
+	VALUES ?id2
+	{
+		[NeuroLexIds]
+	}
+
+  ?name1 property:Id ?id1.
+	?name2 property:Id ?id2.
+
+	?name1 
+	(
+		property:Located_in | 
+		property:Neurotransmitter
+	) 
+	?name2.
+
+  ?name1 ?relationship ?name2.
+}
+ORDER BY ?relationship
