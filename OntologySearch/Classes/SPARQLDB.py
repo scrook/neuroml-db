@@ -74,6 +74,13 @@ class SPARQLDB:
         request = urllib2.Request(self.EndPointUrl, data)
         response = urllib2.urlopen(request)
         responseText = response.read()
+
+        # Remove domains from results
+        responseText = responseText \
+            .replace("http://neurolex.org/wiki/Property-3A", "") \
+            .replace("http://neurolex.org/wiki/Category-3A", "") \
+            .replace("u'", "'")
+
         jsonResult = json.loads(responseText)
         bindings = jsonResult["results"]["bindings"]
 

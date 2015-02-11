@@ -21,36 +21,32 @@ class RubyInterfacer():
         # Get NeuroML model IDs from mysql db
         rows = self.GetNeuroMLids(pythonResult)
 
-        # Build a NeuroLexUri -> ModelDBid dictionary
+        # Build a NeuroLexUri -> ModelDBids dictionary
         models = {}
         for row in rows:
-            models[row[1]] = row[0]
+            if row[1] not in models:
+                models[row[1]] = [row[0]]
+            else:
+                # Each uri can have more than one model
+                models[row[1]].append(row[0])
 
-        headingGapRel = "Gap Relationships"
-        headingDirRelAngs = "Direct Relationship Analogues"
-        headingKeyRels = "Keyword Relations"
+        result["Gap Relationships"] = self.PopulateHeading(
+            pythonResult.Relationships.GapRelationships,
+            "gapObjectId",
+            models
+        )
 
-        for gap in pythonResult.GapRelationships:
-            if gap["gapObjectId"] in models:
-                result[headingGapRel].append(models[gap["gapObjectId"]])
+        result["Direct Relationship Analogues"] = self.PopulateHeading(
+            pythonResult.DirectRelationshipAnalogues,
+            "id",
+            models
+        )
 
-        if headingGapRel in result:
-            result[headingGapRel] = list(set(result[headingGapRel]))
-
-        for analogue in pythonResult.DirectRelationshipAnalogues:
-            if analogue["id"] in models:
-                result[headingDirRelAngs].append(models[analogue["id"]])
-
-        if headingDirRelAngs in result:
-            result[headingDirRelAngs] = list(set(result[headingDirRelAngs]))
-
-        for keyword in pythonResult.KeywordRelations:
-            if keyword["id"] in models:
-                result[headingKeyRels].append(models[keyword["id"]])
-
-        if headingKeyRels in result:
-            result[headingKeyRels] = list(set(result[headingKeyRels]))
-
+        result["Keyword Relations"] = self.PopulateHeading(
+            pythonResult.KeywordRelations,
+            "id",
+            models
+        )
 
         # # Fill out these
         # # result["neurons from the same region"]
@@ -93,6 +89,16 @@ class RubyInterfacer():
         #
         # if len(similar) > 0:
         #     result["similar neurons"] = similar
+
+        return result
+
+    def PopulateHeading(self, source, idProperty, models):
+
+        result = []
+        for line in source:
+            if line[idProperty] in models:
+                line["ModelIds"] = models[line[idProperty]]
+                result.append(line)
 
         return result
 

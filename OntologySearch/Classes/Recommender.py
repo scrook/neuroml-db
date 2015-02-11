@@ -1,3 +1,4 @@
+from Classes.RelationshipMap import RelationshipMap
 from Classes.SearchComponent import SearchComponent
 
 
@@ -23,13 +24,16 @@ class Recommender(SearchComponent):
             result.append({
                 "id": analogue["id"]["value"],
                 "name": analogue["neuron"]["value"],
-                "relationship": analogue["relationship"]["value"],
+                "relationship": RelationshipMap.Forward[analogue["relationship"]["value"]],
                 "relationshipTo": analogue["object"]["value"],
             })
 
         return result
 
-    def FindKeywordRelations(self, ids):
+    def FindKeywordRelations(self, parsedKeywords):
+
+        # Search between keyword matches and subregions
+        entities = parsedKeywords.GetKeywordAndSubregionUris()
 
         # Use Neurotransmitter and located_in to find related to KEYWORDS
         with open("Queries/FindRelationsToKeywords.rq") as queryFile:
@@ -38,7 +42,7 @@ class Recommender(SearchComponent):
             # Insert keyword ids into query
             query = query.replace(
                 "[NeuroLexUris]",
-                self.SPARQLDB.BuildValuesString(ids)
+                self.SPARQLDB.BuildValuesString(entities)
             )
 
         relations = self.SPARQLDB.Query(query)
@@ -46,25 +50,24 @@ class Recommender(SearchComponent):
         # Add keyword relations to results
         result = []
         for relation in relations:
+
+            if "forward" in relation:
+                relationship = RelationshipMap.Forward[relation["forward"]["value"]]
+            else:
+                relationship = RelationshipMap.Backward[relation["backward"]["value"]]
+
             result.append({
                 "id": relation["id"]["value"],
-                "name": relation["target"]["value"],
-                "relationship":
-                    relation.get("forward", {"value": ""})["value"] +
-                    relation.get("backward", {"value": ""})["value"]
+                "name": relation["keyword"]["value"],
+                "relationship": relationship
             })
 
         return result
 
     def ConstructRelationshipQueryUnions(self, relationships):
 
-        unionBlockTemplate = """
-        {
-            ?object property:Id "[NeuroLexId]"^^xsd:string.
-            ?neuron <[Relationship]> ?object.
-            ?neuron ?relationship ?object.
-        }
-        """
+        with open("Queries/FindAnalogues.RelationshipUnions.rq") as queryFile:
+            unionBlockTemplate = queryFile.read()
 
         entries = []
         for relationship in relationships:

@@ -12,39 +12,28 @@ class SearchModule:
         self.Identifier = RelationshipIdentifier()
         self.Recommender = Recommender()
 
-    def Search(self, keywords):
+    def Search(self, query):
 
         results = SearchResults()
 
-        # Find id's of close matches to the keywords
-        results.KeywordIds = self.Parser.GetKeywordOntologyIds(keywords)
+        # Parse query, get close matches, and their NLX uris
+        results.Keywords = self.Parser.ParseQuery(query)
 
         # Look for direct and gap relationships between the terms
-        results.Relationships = self.Identifier.GetRelationships(results.KeywordIds)
+        results.Relationships = self.Identifier.GetRelationships(results.Keywords)
 
-        # If found gap objects, show them
-        if len(results.Relationships.GapRelationships) > 0:
+        # If there are direct rels between search terms/subregions
+        # Find analogue objects
+        if len(results.Relationships.DirectRelationships) > 0:
 
-            results.GapRelationships = results.Relationships.GapRelationships
+            results.DirectRelationshipAnalogues = self \
+                .Recommender \
+                .RunAnaloguesQuery(results.Relationships.DirectRelationships)
 
-        else:
-
-            # If there are direct rels between search terms/subregions
-            # Find analogue objects
-            if len(results.Relationships.DirectRelationships) > 0:
-
-                results.DirectRelationshipAnalogues = self \
-                    .Recommender \
-                    .RunAnaloguesQuery(results.Relationships.DirectRelationships)
-
-            # If no gaps or direct relationships
-            # Show objects related to the keywords via Located_in | Neurotransmitter
-            else:
-                results.KeywordRelations = self \
-                    .Recommender \
-                    .FindKeywordRelations(results.KeywordIds)
-
-        # Workaround for json serialization
-        results.Relationships = results.Relationships.__dict__
+        # If no gaps or direct relationships
+        # Show objects related to the keywords via Located_in | Neurotransmitter
+        results.KeywordRelations = self \
+            .Recommender \
+            .FindKeywordRelations(results.Keywords)
 
         return results

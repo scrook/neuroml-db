@@ -14,7 +14,7 @@ def main():
     # Keywords are passed in as command parameters
     keywords = " ".join(sys.argv[1:])
 
-    #keywords = "purkinje golgi"
+    # keywords = 'cerebellum gaba'
 
     # Perform the ontology search
     result = SearchModule().Search(keywords)
@@ -29,6 +29,10 @@ def main():
 
     # Ruby code consumes printed output
     print rubyResult
+
+    # Workarounds for json serialization
+    result.Keywords = result.Keywords.__dict__
+    result.Relationships = result.Relationships.__dict__
 
     # For Debugging - Ruby ignores everything after the first set of { }'s
     print json.dumps(

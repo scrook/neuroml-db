@@ -2,70 +2,11 @@ PREFIX property:<http://neurolex.org/wiki/Property-3A>
 PREFIX name:<http://neurolex.org/wiki/Category-3A>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-SELECT DISTINCT ?end1 ?end1id ?relationship1 ?gapObject ?gapObjectId ?relationship2 ?end2 ?end2id
+SELECT DISTINCT ?end1 ?end1id ?relationship1fwd ?relationship1back ?gapObject ?gapObjectId ?relationship2fwd ?relationship2back ?end2 ?end2id
 WHERE
 {
 
-	VALUES ?end1id
-	{
-		[NeuroLexUris] # String literals separed by \n's
-	}
-
-	VALUES ?end2id
-	{
-		[NeuroLexUris] # String literals separed by \n's
-	}
-
-  FILTER(?end1id != ?end2id)
-
-  ?end1 property:Id ?end1id.
-	?end2 property:Id ?end2id.
-
-  # Don't search for gap relations between subregions
-  #MINUS
-  #{
-  #  ?end2 property:Is_part_of+ ?end1
-  #}
-  #
-  #MINUS
-  #{
-  #  ?end1 property:Is_part_of+ ?end2
-  #}
-
-  {
-    ?gapObject
-    (
-      property:Located_in |
-      property:Neurotransmitter
-    )
-    ?end1.
-
-    ?gapObject
-    (
-      property:Located_in |
-      property:Neurotransmitter
-    )
-    ?end2.
-  }
-  UNION
-  {
-    ?end1
-    (
-      property:Located_in |
-      property:Neurotransmitter
-    )
-    ?gapObject.
-
-    ?end2
-    (
-      property:Located_in |
-      property:Neurotransmitter
-    )
-    ?gapObject.
-  }
-
-  ?gapObject ?relationship1 ?end1.
-	?gapObject ?relationship2 ?end2.
+	[GapRelations]
 
 	?end1 property:Id ?end1id.
 	?end2 property:Id ?end2id.

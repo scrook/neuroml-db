@@ -17,9 +17,9 @@ class RecommenderTest(unittest.TestCase):
         cls.QueryParser = QueryParser()
         cls.RelIdentifier = RelationshipIdentifier()
 
-        cls.purkinjeCell = cls.QueryParser.GetKeywordOntologyIds("purkinje")
-        cls.dopamine = cls.QueryParser.GetKeywordOntologyIds("dopamine")
-        cls.purkinjeCerebellum = cls.QueryParser.GetKeywordOntologyIds("purkinje cerebellum")
+        cls.purkinjeCell = cls.QueryParser.ParseQuery("purkinje")
+        cls.dopamine = cls.QueryParser.ParseQuery("dopamine")
+        cls.purkinjeCerebellum = cls.QueryParser.ParseQuery("purkinje cerebellum")
 
         # Purk & cerebellum without region assist
         cls.purkCerebDirectRels = cls.RelIdentifier \

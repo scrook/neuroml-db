@@ -5,3 +5,4 @@ WHERE NeuroLex_URI IN
 ( 
   [NeuroLexUris]
 )
+ORDER BY nlx.NeuroLex_URI

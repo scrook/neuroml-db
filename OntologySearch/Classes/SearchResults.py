@@ -4,9 +4,8 @@ class SearchResults:
 
     def __init__(self):
 
-        self.KeywordIds = []
+        self.Keywords = []
         self.Relationships = []
-        self.GapRelationships = []
         self.KeywordRelations = []
         self.DirectRelationshipAnalogues = []
 
@@ -14,12 +13,12 @@ class SearchResults:
 
         result = []
 
-        result.extend(self.KeywordIds)
+        result.extend(self.Keywords.GetKeywordAndSubregionUris())
 
-        for line in self.GapRelationships:
+        for line in self.Relationships.GapRelationships:
             result.append(line["gapObjectId"])
 
-        for line in self.KeywordRelations:
+        for line in self.DirectRelationshipAnalogues:
             result.append(line["id"])
 
         for line in self.KeywordRelations:
