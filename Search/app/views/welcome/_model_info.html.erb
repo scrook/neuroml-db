@@ -1,4 +1,13 @@
-
+<div style="font-style:italic;font-size:12px;position:absolute; top: 71px; right: 12px;">
+<% for resource in @resources %>
+    <div style="height: 37px; padding-top: 2px;">
+        ( Obtained from <%=resource.Name %>)&nbsp;
+        <a href="<%=resource.HomePageUrl %>" target="_blank">
+            <img src="<%=resource.LogoUrl %>" height="30" style="vertical-align:middle;" />
+        </a>
+    </div>
+<% end %>
+</div>
 
 <div id="model_window">
                                                 <!-- title -->
@@ -12,8 +21,6 @@ Model Id:
 </td>
 <td class="description">
 <%= @model_id %>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<span style="font-style:italic;font-size:12px;">( Obtained from Open Source Brain )&nbsp;<img src="../images/osblogo.png" width="30px" height="30px" style="vertical-align:middle;" />
-</span>
 </td>
 </tr>
 

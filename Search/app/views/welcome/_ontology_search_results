@@ -14,6 +14,7 @@
        <% for eachid in temparray %>
           <%
           if shownModels.include? ont_ids[count] then
+            count=count + 1
             next
           else
             shownModels.push(ont_ids[count])

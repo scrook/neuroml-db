@@ -605,6 +605,7 @@ ActiveRecord::Schema.define(:version => 20130419200535) do
 
   create_table "references", :primary_key => "Reference_ID", :force => true do |t|
     t.string "Reference_Resource", :limit => 100, :null => false
+    t.string "Reference_Resource_ID", :limit => 100, :null => false
     t.string "Reference_URI",      :limit => 500, :null => false
     t.string "Comments",           :limit => 500
   end
