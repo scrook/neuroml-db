@@ -1,0 +1,144 @@
+<script>
+
+    var runEachTestHowManyTimes = 20;
+    var randomizeTestOrder = true;
+
+    var testUrls =
+    [
+        { name: "Keyword Search: cerebellum", url: "https://spike.asu.edu:5000/search_process?q=cerebellum&all=&exact=&any=&none=" },
+        { name: "Keyword Search: purkinje", url: "https://spike.asu.edu:5000/search_process?q=purkinje&all=&exact=&any=&none=" },
+        { name: "Keyword Search: golgi", url: "https://spike.asu.edu:5000/search_process?q=golgi&all=&exact=&any=&none=" },
+        { name: "Keyword Search: gaba", url: "https://spike.asu.edu:5000/search_process?q=gaba&all=&exact=&any=&none=" },
+        { name: "Keyword Search: hippocampus", url: "https://spike.asu.edu:5000/search_process?q=hippocampus&all=&exact=&any=&none=" },
+        { name: "Keyword Search: cortex", url: "https://spike.asu.edu:5000/search_process?q=cortex&all=&exact=&any=&none=" },
+        { name: "Keyword Search: pyramidal", url: "https://spike.asu.edu:5000/search_process?q=pyramidal&all=&exact=&any=&none=" },
+        { name: "Keyword Search: CA3", url: "https://spike.asu.edu:5000/search_process?q=CA3&all=&exact=&any=&none=" },
+        { name: "Keyword Search: glutamate", url: "https://spike.asu.edu:5000/search_process?q=glutamate&all=&exact=&any=&none=" },
+        { name: "Keyword Search: No Results", url: "https://spike.asu.edu:5000/search_process?q=nonexistent&all=&exact=&any=&none=" },
+        { name: "Keyword Search: gap junction golgi", url: "https://spike.asu.edu:5000/search_process?q=gap%20junction%20golgi&all=&exact=&any=&none=" },
+        { name: "Keyword Search: gleeson gaba", url: "https://spike.asu.edu:5000/search_process?q=gleeson%20gaba&all=&exact=&any=&none=" },
+
+        { name: "Ontology Search: cerebellum", url: "https://spike.asu.edu:5000/search_python?q=cerebellum" },
+        { name: "Ontology Search: cerebellum gaba", url: "https://spike.asu.edu:5000/search_python?q=cerebellum%20gaba" },
+        { name: "Ontology Search: cerebellum purkinje", url: "https://spike.asu.edu:5000/search_python?q=cerebellum%20purkinje" },
+        { name: "Ontology Search: cerebellum golgi", url: "https://spike.asu.edu:5000/search_python?q=cerebellum%20golgi" },
+        { name: "Ontology Search: purkinje", url: "https://spike.asu.edu:5000/search_python?q=purkinje" },
+        { name: "Ontology Search: golgi", url: "https://spike.asu.edu:5000/search_python?q=golgi" },
+        { name: "Ontology Search: hippocampus", url: "https://spike.asu.edu:5000/search_python?q=hippocampus" },
+        { name: "Ontology Search: cerebellum hippocampus", url: "https://spike.asu.edu:5000/search_python?q=cerebellum hippocampus" },
+        { name: "Ontology Search: cortex", url: "https://spike.asu.edu:5000/search_python?q=cortex" },
+        { name: "Ontology Search: gaba", url: "https://spike.asu.edu:5000/search_python?q=gaba" },
+        { name: "Ontology Search: glutamate", url: "https://spike.asu.edu:5000/search_python?q=glutamate" },
+        { name: "Ontology Search: CA3", url: "https://spike.asu.edu:5000/search_python?q=CA3" },
+        { name: "Ontology Search: gap junction golgi", url: "https://spike.asu.edu:5000/search_python?q=gap junction golgi" },
+        { name: "Ontology Search: CA3", url: "https://spike.asu.edu:5000/search_python?q=gleeson gaba" },
+
+
+        { name: "Ontology Search: No Results", url: "https://spike.asu.edu:5000/search_python?q=nonexistent" },
+
+    ];
+
+    var currentTest = 0;
+    var urlQueue = [];
+    function RunNextTest()
+    {
+        if(currentTest >= runEachTestHowManyTimes * testUrls.length)
+            return;
+
+        var url = urlQueue[currentTest];
+        var startTime = Date.now();
+
+        jQuery
+                .get(url, function () {})
+                .always(function()
+                {
+                    jQuery("#row" + currentTest).html(Date.now() - startTime);
+
+                    currentTest++;
+                    RunNextTest();
+                });
+    }
+
+
+    function RunTests()
+    {
+        //Initialize
+        currentTest = 0;
+        urlQueue = [];
+        jQuery('#testResults > tbody').html("");
+        var rowId = 0;
+
+        var rowTemplate = jQuery("#rowTemplate")
+                [0].outerHTML
+                .replace('id="rowTemplate"','');
+
+        //Multiple times each test, randomize test order
+        for(var batch = 0; batch < runEachTestHowManyTimes; batch++)
+        {
+            if(randomizeTestOrder)
+                shuffle(testUrls);
+
+            for(var test = 0; test < testUrls.length; test++)
+            {
+                var url = testUrls[test].url;
+                var name = testUrls[test].name;
+
+                var rowHtml = rowTemplate
+                        .split("[name]").join(name)
+                        .split("[url]").join(url)
+                        .split("[rowId]").join(rowId + "");
+
+                //Build table row
+                jQuery('#testResults > tbody').append(rowHtml);
+
+                //Add to queue
+                urlQueue.push(url);
+
+                rowId++;
+            }
+        }
+
+        //Start running tests
+        RunNextTest();
+    }
+
+    function shuffle(array)
+    {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+    }
+
+    setTimeout(RunTests,1000);
+
+</script>
+
+<table id="testResults">
+  <thead>
+    <td>Test Case</td><td>Time to Load (ms)</td>
+  </thead>
+  <tbody>
+
+  </tbody>
+</table>
+
+<table style="display: none;">
+    <tr id="rowTemplate">
+      <td style="width: 80%;"><a target='_blank' href='[url]'>[name]</a></td>
+      <td id='row[rowId]'></td>
+    </tr>
+</table>
+

@@ -1,0 +1,86 @@
+
+			
+
+			
+			<!-- MAIN -->
+			<div id="main">
+				<!-- wrapper-main -->
+				<div class="wrapper">
+					
+					<!-- content -->
+					<div id="content">
+						
+						<!-- title -->
+						<div id="page-title">
+							<span class="title">Sign In</span>
+							<span class="subtitle">Please enter your username and password.</span>
+						</div>
+<!-- ===================================================================== -->
+					<%= call_hook :view_account_login_top %>
+<div >
+<%= form_tag(signin_path) do %>
+<%= back_url_hidden_field_tag %>
+
+<table id="login-form">
+<tr>
+    <td align="right"><label for="username"><%=l(:field_login)%>:</label></td>
+    <td align="left"><%= text_field_tag 'username', params[:username], :tabindex => '1', :class => "form-poshytip",:title => "Enter your login id" %></td>
+</tr>
+<tr>
+    <td align="right"><label for="password"><%=l(:field_password)%>:</label></td>
+    <td align="left"><%= password_field_tag 'password', nil, :tabindex => '2', :class => "form-poshytip",:title => "Enter your password" %></td>
+</tr>
+<% if Setting.openid? %>
+<tr>
+  <td align="right"><label for="openid_url"><%=l(:field_identity_url)%></label></td>
+  <td align="left"><%= text_field_tag "openid_url", nil, :tabindex => '3' %></td>
+</tr>
+<% end %>
+<tr>
+    <td></td>
+    <td align="left">
+        <% if Setting.autologin? %>
+        <label for="autologin"><%= check_box_tag 'autologin', 1, false, :tabindex => 4 %> <%= l(:label_stay_logged_in) %></label>
+        <% end %>
+    </td>
+</tr>
+<tr>
+<td></td>
+<td>
+        <input type="submit" name="login" value="<%=l(:button_login)%> &#187;" tabindex="5"/>
+<span id="lost_password">
+<% if Setting.lost_password? %>
+            <%= link_to l(:label_password_lost), lost_password_path %>
+        <% end %>
+</span>
+    </td>
+</tr>
+
+</table>
+<% end %>
+</div>
+<%= call_hook :view_account_login_bottom %>
+
+<% if params[:username].present? %>
+<%= javascript_tag "$('#password').focus();" %>
+<% else %>
+<%= javascript_tag "$('#username').focus();" %>
+<% end %>	
+						
+<!-- ===================================================================== -->
+
+
+
+
+
+
+
+		
+					</div>
+					<!-- ENDS content -->
+
+				</div>
+				<!-- ENDS wrapper-main -->
+			</div>
+			<!-- ENDS MAIN -->
+			

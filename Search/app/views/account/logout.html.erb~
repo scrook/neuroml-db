@@ -1,0 +1,28 @@
+<!-- MAIN -->
+			<div id="main">
+				<!-- wrapper-main -->
+				<div class="wrapper">
+					
+					<!-- content -->
+					<div id="content">
+						
+						<!-- title -->
+						<div id="page-title">
+							<span class="title">Fourth NeuroML Development Workshop</span>
+							<span class="subtitle">Fourth NeuroML Development Workshop</span>
+						</div>
+						<%= form_tag(signout_path) do %>
+  <p><%= submit_tag l(:label_logout) %></p>
+<% end %>
+								
+					</div>
+					<!-- ENDS content -->
+
+				</div>
+				<!-- ENDS wrapper-main -->
+			</div>
+			<!-- ENDS MAIN -->
+			
+
+
+

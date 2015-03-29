@@ -1,0 +1,18 @@
+<div style="margin-top: 1em;" id="key_results">
+<% count=0 %>
+<% model_ids.each do |model_id| %>
+
+    <%
+        # If Cell, network, etc... is included in model name, don't show type
+        if model_names[count].downcase.include? model_types[count].downcase
+          type = ''
+        else
+          type = model_types[count]
+        end
+    %>
+    <div style="margin-bottom: 1em;"><a href="/model_info?model_id=<%=model_id%>" title="Model Information for <%=model_id%>" class="fancybox" ><b><%= model_names[count] %> <%= type %></b></a> <span style="color:gray">(<%=model_id%>)</span></div>
+
+    <% count = count + 1 %>
+<% end %>
+</div>
+

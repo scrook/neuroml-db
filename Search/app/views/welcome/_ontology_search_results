@@ -1,0 +1,46 @@
+<div style="margin-top: 1em;" id="ont_results">
+<% count=0 %>
+<% shownModels = [] %>
+<% for key,value in result_hash %>
+   <%
+   if value.to_a.length == 0
+     next
+   end
+   %>
+
+   <% for relationship in value %>
+       <% temparray=relationship["ModelIds"].to_a %>
+
+       <% for eachid in temparray %>
+          <%
+          if shownModels.include? ont_ids[count] then
+            next
+          else
+            shownModels.push(ont_ids[count])
+          end
+          %>
+
+          <div><a href="/model_info?model_id=<%=ont_ids[count]%>" title="Model Information for <%=ont_ids[count]%>" class="fancybox" ><b><%= ont_names[count] %></b></a> <span style="color:gray">(<%= ont_ids[count] %>)</span></div>
+
+          <% if ont_relations && ont_relations.length > 0 && ont_relations[count] %>
+            <% if ont_relations[count][:Type] == :Gap %>
+
+              <div style="padding-left: 20px; font-size: 90%;"><%= ont_relations[count][:End1][:Property] %> <b><%= ont_relations[count][:End1][:Subject] %></b></div>
+              <div style="padding-left: 20px; font-size: 90%; margin-bottom: 15px;"><%= ont_relations[count][:End2][:Property] %> <b><%= ont_relations[count][:End2][:Subject] %></b></div>
+
+            <% elsif ont_relations[count][:Type] == :Direct || ont_relations[count][:Type] == :Keyword %>
+
+              <div style="padding-left: 20px; font-size: 90%; margin-bottom: 15px;"><%= ont_relations[count][:Property] %> <b><%= ont_relations[count][:Subject] %></b></div>
+
+            <% end %>
+
+          <% end %>
+
+
+          <% count=count + 1 %>
+
+       <% end %>
+
+   <%  end %>
+<% end %>
+</div>

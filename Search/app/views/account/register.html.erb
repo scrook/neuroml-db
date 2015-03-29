@@ -1,0 +1,57 @@
+
+			
+
+			
+			<!-- MAIN -->
+			<div id="main">
+				<!-- wrapper-main -->
+				<div class="wrapper">
+					
+					<!-- content -->
+					<div id="content">
+						
+						<!-- title -->
+						<div id="page-title">
+							<span class="title">Register</span>
+							<span class="subtitle">Register by entering the following details</span>
+						</div>
+			<!--			<h2><%=l(:label_register)%> <%=link_to l(:label_login_with_open_id_option), signin_url if Setting.openid? %></h2> -->
+<br />
+<%= labelled_form_for @user, :url => register_path do |f| %>
+<%= error_messages_for 'user' %>
+
+<div id="register-form">
+<% if @user.auth_source_id.nil? %>
+  <p><%= f.text_field :login, :size => 30, :required => true, :class => "form-poshytip",:title => "Enter your login id" %></p>
+
+  <p><%= f.password_field :password, :size => 30, :required => true, :class => "form-poshytip",:title => l(:text_caracters_minimum, :count => Setting.password_min_length) %>
+ </p>
+
+  <p><%= f.password_field :password_confirmation, :size => 30, :required => true, :class => "form-poshytip",:title => "Re enter your password" %></p>
+<% end %>
+
+<p><%= f.text_field :firstname, :required => true, :class => "form-poshytip",:title => "Enter your first name" %></p>
+<p><%= f.text_field :lastname, :required => true, :class => "form-poshytip",:title => "Enter your last name" %></p>
+<p><%= f.text_field :mail, :required => true, :class => "form-poshytip",:title => "Enter your e-mail id" %></p>
+<p><%= f.select :language, lang_options_for_select, :class => "form-poshytip",:title => "Select your language" %></p>
+
+<% if Setting.openid? %>
+  <p><%= f.text_field :identity_url  %></p>
+<% end %>
+
+<% @user.custom_field_values.select {|v| v.editable? || v.required?}.each do |value| %>
+  <p><%= custom_field_tag_with_label :user, value %></p>
+<% end %>
+
+<p>
+<%= submit_tag l(:button_submit), :class => "form-poshytip",:title => "Submit" %></p></div>
+<% end %>
+								
+					</div>
+					<!-- ENDS content -->
+
+				</div>
+				<!-- ENDS wrapper-main -->
+			</div>
+			<!-- ENDS MAIN -->
+			

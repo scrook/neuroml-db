@@ -1,0 +1,868 @@
+<div class="overflowcontent">
+<div id='cssmenu'>
+<ul>
+   <li><a href='/lems'><span>About</span></a></li>
+   <li><a href='/lems_intro'><span>Introduction</span></a></li>
+   <li><a href='/lems_elements'><span>Elements</span></a></li>
+   <li><a href='/lems_download'><span>Download</span></a></li>
+   <li><a href='/lems_example1'><span>Example 1</span></a></li>
+   <li><a href='/lems_example2'><span>Example 2</span></a></li>
+   <li><a href='/lems_example3'><span>Example 3</span></a></li>
+   <li><a href='/lems_example4'><span>Example 4</span></a></li>
+   <li><a href='/lems_example5'><span>Example 5</span></a></li>
+   <li><a href='/lems_example6'><span>Example 6</span></a></li>
+   <li><a href='/lems_example7'><span>Example 7</span></a></li>
+   <li><a href='/lems_example_regimes'><span>Regimes Example</span></a></li>
+   <li><a href='/lems_example_n'><span>Example n</span></a></li>
+   <li class='active'><a><span>NeuroML2.0 Example</span></a></li>
+   <li><a href='/lems_canonical'><span>Canonical Form</span></a></li>
+   <li><a href='/lems_discussion'><span>Discussion</span></a></li>
+</ul>
+</div>
+<div class="lems_content">
+
+<h1>Examples illustrating NeuroML 2 concepts</h1>
+ 
+
+<p>
+    LEMS can be used as a basis for specifying models of many types of dynamical systems. 
+    NeuroML version 1 contained some type definitions such as &lt;channel_type&gt;, &lt;channel_type&gt;
+    etc. which were defined implicitly. LEMS <span class="xelt">ComponentType</span>s can be used to define the behaviour of a core set of
+    entities which can form the basis for the NeuroML 2 specification, at the very least for channel and
+    synapse types, and most likely network elements too. </p>
+
+    
+<p>More details on the relationship between LEMS and NeuroML 2 are <a href="../neuroml2.php">here</a>.</p>
+
+
+
+<h4>
+<a href="#Ex0">Ex0: Simple Integrate and Fire cell</a>
+</h4>
+
+<h4>
+<a href="#Ex1">Ex1: Simple Hodgkin Huxley example</a>
+</h4>
+
+<h4>
+<a href="#Izhikevich">Ex2: Bursting and tonic Izhikevich cells</a>
+</h4>
+
+<h4>
+<a href="#Ex3">Ex3: Network connection between HH cells</a>
+</h4>
+
+<h4>
+<a href="#Ex4">Ex4: Kinetic scheme description for K+ channel</a>
+</h4>
+
+<h4>
+<a href="#Ex5">Ex5: Using "pure" NeuroML v2 files with LEMS</a>
+</h4>
+
+<h4>
+<a href="#Ex6">Ex6: NMDA-R mediated synapse</a>
+</h4>
+
+<h4>
+<a href="#Ex7">Ex7: Short Term Plasticity</a>
+</h4>
+
+<h4>
+<a href="#Ex8">Ex8: Adaptive exponential integrate-and-fire model</a>
+</h4>
+
+<h4>
+<a href="#Ex9">Ex9: FitzHugh-Nagumo model</a>
+</h4>
+
+
+<h2>
+<a name="Ex0">Ex0: Simple Integrate and Fire cell</a>
+</h2>
+
+
+
+<p>This example imports a number of files which define the LEMS <span class="xelt">ComponentType</span>s allowed in a NeuroML version 2
+file. The core dimension/unit definitions (<a href="NeuroMLCoreDimensions.xml">NeuroMLCoreDimensions.xml</a>),
+a file defining channel <span class="xelt">ComponentType</span>s (<a href="Channels.xml">Channels.xml</a>), one for synpase <span class="xelt">ComponentType</span>s
+(<a href="Synapses.xml">Synapses.xml</a>), a number of simple cell definitions (<a href="Cells.xml">Cells.xml</a>),
+definition of network related <span class="xelt">ComponentType</span>s (<a href="Networks.xml">Networks.xml</a>) and some stimuli definitions
+(<a href="Inputs.xml">Inputs.xml</a>). Also imported is a
+set of simulation <span class="xelt">ComponentType</span> definitions (<a href="Simulation.xml">Simulation.xml</a>) which won't be part of NeuroML version 2
+(SED-ML will be used for this), but are convenient for executing the examples. </p>
+
+<div class="xcode">
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">Include</span> <span class="xmlverb-attr-name">file</span>="<span class="xmlverb-attr-content">NeuroML2CoreTypes/Cells.xml</span>" /&gt;</div>
+&lt;!-- The above file includes NeuroMLCoreDimensions.xml, Channels.xml, Synapses.xml and Inputs.xml--&gt;
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">Include</span> <span class="xmlverb-attr-name">file</span>="<span class="xmlverb-attr-content">NeuroML2CoreTypes/Networks.xml</span>" /&gt;</div>
+
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">Include</span> <span class="xmlverb-attr-name">file</span>="<span class="xmlverb-attr-content">NeuroML2CoreTypes/Simulation.xml</span>" /&gt;</div>
+
+</div>
+
+
+<p>A <span class="xelt">ComponentType</span> iafTau is defined in <a href="Cells.xml">Cells.xml</a>, which is a simple I&amp;F cell which tends to a leakReversal potential with characteristic time tau.
+
+Note that iafTau extends a basic I&amp;F cell type which has parameter thresh and reset.</p>
+
+<div class="xcode">
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">ComponentType</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">iafBase</span>" <span class="xmlverb-attr-name">extends</span>="<span class="xmlverb-attr-content">abstractCellVolt</span>"&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">Parameter</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">thresh</span>" <span class="xmlverb-attr-name">dimension</span>="<span class="xmlverb-attr-content">voltage</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">Parameter</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">reset</span>" <span class="xmlverb-attr-name">dimension</span>="<span class="xmlverb-attr-content">voltage</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&lt;/<span class="xmlverb-element-name">ComponentType</span>&gt;</div>
+
+
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">ComponentType</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">iafTau</span>" <span class="xmlverb-attr-name">extends</span>="<span class="xmlverb-attr-content">iafBase</span>"&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">Parameter</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">leakReversal</span>" <span class="xmlverb-attr-name">dimension</span>="<span class="xmlverb-attr-content">voltage</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">Parameter</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">tau</span>" <span class="xmlverb-attr-name">dimension</span>="<span class="xmlverb-attr-content">time</span>" /&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">EventPort</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">a</span>" <span class="xmlverb-attr-name">direction</span>="<span class="xmlverb-attr-content">out</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">Exposure</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">V</span>" <span class="xmlverb-attr-name">dimension</span>="<span class="xmlverb-attr-content">voltage</span>" /&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">Behavior</span>&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">StateVariable</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">V</span>" <span class="xmlverb-attr-name">exposure</span>="<span class="xmlverb-attr-content">V</span>" <span class="xmlverb-attr-name">dimension</span>="<span class="xmlverb-attr-content">voltage</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">TimeDerivative</span> <span class="xmlverb-attr-name">variable</span>="<span class="xmlverb-attr-content">V</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">(leakReversal - V) / tau</span>" /&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">OnStart</span>&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">StateAssignment</span> <span class="xmlverb-attr-name">variable</span>="<span class="xmlverb-attr-content">V</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">reset</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">OnStart</span>&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">OnCondition</span> <span class="xmlverb-attr-name">test</span>="<span class="xmlverb-attr-content">V .gt. thresh</span>"&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">StateAssignment</span> <span class="xmlverb-attr-name">variable</span>="<span class="xmlverb-attr-content">V</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">reset</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">EventOut</span> <span class="xmlverb-attr-name">port</span>="<span class="xmlverb-attr-content">a</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">OnCondition</span>&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">Behavior</span>&gt;<span class="xmlverb-text">
+
+</span>
+<br>&lt;/<span class="xmlverb-element-name">ComponentType</span>&gt;</div>
+</div>
+
+
+<p>A <span class="xelt">Component</span> of this cell type can be created, and a population of those components with the following (note leakReversal &gt; thresh
+so the cell is spontaneously active, so no external input is needed):</p>
+
+
+<div class="xcode">
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">iafTau</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">iaf</span>" <span class="xmlverb-attr-name">leakReversal</span>="<span class="xmlverb-attr-content">-50mV</span>" <span class="xmlverb-attr-name">thresh</span>="<span class="xmlverb-attr-content">-55mV</span>" <span class="xmlverb-attr-name">reset</span>="<span class="xmlverb-attr-content">-70mV</span>" <span class="xmlverb-attr-name">tau</span>="<span class="xmlverb-attr-content">30ms</span>" /&gt;</div>
+
+
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">network</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">net1</span>"&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">population</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">iafPop</span>" <span class="xmlverb-attr-name">component</span>="<span class="xmlverb-attr-content">iaf</span>" <span class="xmlverb-attr-name">size</span>="<span class="xmlverb-attr-content">1</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&lt;/<span class="xmlverb-element-name">network</span>&gt;</div>
+</div>
+
+
+<p>The output of this example is shown below.</p>
+
+
+<img src="/lems/IaF.png">
+
+<p>The full code for this example can be found <a href="NeuroML2_Ex0_IaF.xml">here</a>.</p>
+
+
+<h2>
+<a name="Ex1">Ex1: Simple Hodgkin Huxley example</a>
+</h2>
+
+
+
+<p>
+In <a href="Channels.xml">Channels.xml</a> there are definitions of a number of <span class="xelt">ComponentType</span>s which can be used for specifying HH like ion channels.
+Once this file is included, the <span class="xelt">ComponentType</span>s can be used to define <span class="xelt">Component</span>s which have a form similar to those proposed for NeuroML version 2:
+<div class="xcode">
+
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">ionChannel</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">na</span>" <span class="xmlverb-attr-name">type</span>="<span class="xmlverb-attr-content">ionChannelHH</span>" <span class="xmlverb-attr-name">conductance</span>="<span class="xmlverb-attr-content">10pS</span>"&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">gateHH</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">m</span>" <span class="xmlverb-attr-name">instances</span>="<span class="xmlverb-attr-content">3</span>"&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">forwardRate</span> <span class="xmlverb-attr-name">type</span>="<span class="xmlverb-attr-content">HHExpLinearRate</span>" <span class="xmlverb-attr-name">rate</span>="<span class="xmlverb-attr-content">1per_ms</span>" <span class="xmlverb-attr-name">midpoint</span>="<span class="xmlverb-attr-content">-40mV</span>" <span class="xmlverb-attr-name">scale</span>="<span class="xmlverb-attr-content">10mV</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">reverseRate</span> <span class="xmlverb-attr-name">type</span>="<span class="xmlverb-attr-content">HHExpRate</span>" <span class="xmlverb-attr-name">rate</span>="<span class="xmlverb-attr-content">4per_ms</span>" <span class="xmlverb-attr-name">midpoint</span>="<span class="xmlverb-attr-content">-65mV</span>" <span class="xmlverb-attr-name">scale</span>="<span class="xmlverb-attr-content">-18mV</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">gateHH</span>&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">gateHH</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">h</span>" <span class="xmlverb-attr-name">instances</span>="<span class="xmlverb-attr-content">1</span>"&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">forwardRate</span> <span class="xmlverb-attr-name">type</span>="<span class="xmlverb-attr-content">HHExpRate</span>" <span class="xmlverb-attr-name">rate</span>="<span class="xmlverb-attr-content">0.07per_ms</span>" <span class="xmlverb-attr-name">midpoint</span>="<span class="xmlverb-attr-content">-65mV</span>" <span class="xmlverb-attr-name">scale</span>="<span class="xmlverb-attr-content">-20mV</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">reverseRate</span> <span class="xmlverb-attr-name">type</span>="<span class="xmlverb-attr-content">HHSigmoidRate</span>" <span class="xmlverb-attr-name">rate</span>="<span class="xmlverb-attr-content">1per_ms</span>" <span class="xmlverb-attr-name">midpoint</span>="<span class="xmlverb-attr-content">-35mV</span>" <span class="xmlverb-attr-name">scale</span>="<span class="xmlverb-attr-content">10mV</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">gateHH</span>&gt;<span class="xmlverb-text">
+
+</span>
+<br>&lt;/<span class="xmlverb-element-name">ionChannel</span>&gt;</div>
+
+</div>
+
+</p>
+
+
+<p>Cells can also be created based on the types in <a href="Cells.xml">Cells.xml</a>, and stimuli based on those in <a href="Inputs.xml">Inputs.xml</a>:
+<div class="xcode">
+
+
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">abstractCell</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">hhcell</span>" <span class="xmlverb-attr-name">type</span>="<span class="xmlverb-attr-content">pointCellCondBased</span>" <span class="xmlverb-attr-name">capacitance</span>="<span class="xmlverb-attr-content">10pF</span>" <span class="xmlverb-attr-name">v0</span>="<span class="xmlverb-attr-content">-65mV</span>" <span class="xmlverb-attr-name">thresh</span>="<span class="xmlverb-attr-content">20mV</span>"&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">channelPopulation</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">leak</span>" <span class="xmlverb-attr-name">ionChannel</span>="<span class="xmlverb-attr-content">passive</span>" <span class="xmlverb-attr-name">number</span>="<span class="xmlverb-attr-content">300</span>" <span class="xmlverb-attr-name">erev</span>="<span class="xmlverb-attr-content">-54.3mV</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">channelPopulation</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">naChans</span>" <span class="xmlverb-attr-name">ionChannel</span>="<span class="xmlverb-attr-content">na</span>" <span class="xmlverb-attr-name">number</span>="<span class="xmlverb-attr-content">120000</span>" <span class="xmlverb-attr-name">erev</span>="<span class="xmlverb-attr-content">50mV</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">channelPopulation</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">kChans</span>" <span class="xmlverb-attr-name">ionChannel</span>="<span class="xmlverb-attr-content">k</span>" <span class="xmlverb-attr-name">number</span>="<span class="xmlverb-attr-content">36000</span>" <span class="xmlverb-attr-name">erev</span>="<span class="xmlverb-attr-content">-77mV</span>" /&gt;<span class="xmlverb-text">
+
+</span>
+<br>&lt;/<span class="xmlverb-element-name">abstractCell</span>&gt;</div>
+
+
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">pulseGenerator</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">pulseGen1</span>" <span class="xmlverb-attr-name">delay</span>="<span class="xmlverb-attr-content">100ms</span>" <span class="xmlverb-attr-name">duration</span>="<span class="xmlverb-attr-content">100ms</span>" <span class="xmlverb-attr-name">amplitude</span>="<span class="xmlverb-attr-content">0.08 nA</span>" /&gt;</div>
+
+
+</div>
+</p>
+
+
+
+<p>A simple network of one cell is created:
+<div class="xcode">
+
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">network</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">net1</span>"&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">population</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">hhpop</span>" <span class="xmlverb-attr-name">component</span>="<span class="xmlverb-attr-content">hhcell</span>" <span class="xmlverb-attr-name">size</span>="<span class="xmlverb-attr-content">1</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">explicitInput</span> <span class="xmlverb-attr-name">target</span>="<span class="xmlverb-attr-content">hhpop[0]</span>" <span class="xmlverb-attr-name">input</span>="<span class="xmlverb-attr-content">pulseGen1</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&lt;/<span class="xmlverb-element-name">network</span>&gt;</div>
+
+</div>
+</p>
+
+
+<p>A simulation can be run and a number of the variables of the model plotted, including membrane potential and the m, h, n gating variables
+of the Na<sup>+</sup> and K<sup>+</sup> channels. The data cann also be saved using the save attribute.
+<div class="xcode">
+
+<div class="xcodeelement">
+<br>&lt;<span class="xmlverb-element-name">Simulation</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">sim1</span>" <span class="xmlverb-attr-name">length</span>="<span class="xmlverb-attr-content">300ms</span>" <span class="xmlverb-attr-name">step</span>="<span class="xmlverb-attr-content">0.01ms</span>" <span class="xmlverb-attr-name">target</span>="<span class="xmlverb-attr-content">net1</span>"&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">Display</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">d1</span>" <span class="xmlverb-attr-name">title</span>="<span class="xmlverb-attr-content">Ex1: Simple HH example: Voltage</span>" <span class="xmlverb-attr-name">timeScale</span>="<span class="xmlverb-attr-content">1ms</span>"&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">Line</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">l1</span>" <span class="xmlverb-attr-name">quantity</span>="<span class="xmlverb-attr-content">hhpop[0]/v</span>" <span class="xmlverb-attr-name">scale</span>="<span class="xmlverb-attr-content">1mV</span>" <span class="xmlverb-attr-name">color</span>="<span class="xmlverb-attr-content">#ffffff</span>" <span class="xmlverb-attr-name">save</span>="<span class="xmlverb-attr-content">hh_v.dat</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">Display</span>&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">Display</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">d2</span>" <span class="xmlverb-attr-name">title</span>="<span class="xmlverb-attr-content">Ex1: Simple HH example: rate variables</span>" <span class="xmlverb-attr-name">timeScale</span>="<span class="xmlverb-attr-content">1ms</span>"&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;!--<span class="xmlverb-comment">&nbsp;Lines&nbsp;in&nbsp;extra&nbsp;Displays&nbsp;will&nbsp;only&nbsp;be&nbsp;plotted&nbsp;if&nbsp;saved!&nbsp;</span>--&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">Line</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">l2</span>" <span class="xmlverb-attr-name">quantity</span>="<span class="xmlverb-attr-content">hhpop[0]/naChans/na/m/q</span>" <span class="xmlverb-attr-name">scale</span>="<span class="xmlverb-attr-content">1</span>" <span class="xmlverb-attr-name">color</span>="<span class="xmlverb-attr-content">#000000</span>" <span class="xmlverb-attr-name">save</span>="<span class="xmlverb-attr-content">hh_m.dat</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">Line</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">l3</span>" <span class="xmlverb-attr-name">quantity</span>="<span class="xmlverb-attr-content">hhpop[0]/naChans/na/h/q</span>" <span class="xmlverb-attr-name">scale</span>="<span class="xmlverb-attr-content">1</span>" <span class="xmlverb-attr-name">color</span>="<span class="xmlverb-attr-content">#ff0000</span>" <span class="xmlverb-attr-name">save</span>="<span class="xmlverb-attr-content">hh_h.dat</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">Line</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">l4</span>" <span class="xmlverb-attr-name">quantity</span>="<span class="xmlverb-attr-content">hhpop[0]/kChans/k/n/q</span>" <span class="xmlverb-attr-name">scale</span>="<span class="xmlverb-attr-content">1</span>" <span class="xmlverb-attr-name">color</span>="<span class="xmlverb-attr-content">#0000ff</span>" <span class="xmlverb-attr-name">save</span>="<span class="xmlverb-attr-content">hh_n.dat</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">Display</span>&gt;<span class="xmlverb-text">
+
+</span>
+<br>&lt;/<span class="xmlverb-element-name">Simulation</span>&gt;</div>
+</div>
+</p>
+
+
+<p>The output of this example is shown below. The membrane potential trace is shown on top and the values of m, h, n are plotted below.</p>
+
+<img src="/lems/HH.png">
+
+<p>The full code for this example can be found <a href="NeuroML2_Ex1_HH.xml">here</a>.</p>
+
+
+
+<h2>
+<a name="Izhikevich">Ex2: Bursting and tonic Izhikevich cells</a>
+</h2>
+
+
+<p>An example of the <a href="http://www.izhikevich.org/publications/whichmod.htm">Izhikevich simple spiking neuron model</a> specified as
+a <span class="xelt">ComponentType</span> in LEMS. The <span class="xelt">ComponentType</span> for the
+cell follows (taken from <a href="Cells.xml">Cells.xml</a>):<div class="xcode">
+
+
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">ComponentType</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">izhikevichCell</span>" <span class="xmlverb-attr-name">extends</span>="<span class="xmlverb-attr-content">abstractCellMembPot</span>"&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">Parameter</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">v0</span>" <span class="xmlverb-attr-name">dimension</span>="<span class="xmlverb-attr-content">voltage</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">Parameter</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">a</span>" <span class="xmlverb-attr-name">dimension</span>="<span class="xmlverb-attr-content">none</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">Parameter</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">b</span>" <span class="xmlverb-attr-name">dimension</span>="<span class="xmlverb-attr-content">none</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">Parameter</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">c</span>" <span class="xmlverb-attr-name">dimension</span>="<span class="xmlverb-attr-content">none</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">Parameter</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">d</span>" <span class="xmlverb-attr-name">dimension</span>="<span class="xmlverb-attr-content">none</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">Parameter</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">thresh</span>" <span class="xmlverb-attr-name">dimension</span>="<span class="xmlverb-attr-content">voltage</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">Parameter</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">Iamp</span>" <span class="xmlverb-attr-name">dimension</span>="<span class="xmlverb-attr-content">none</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">Parameter</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">Idel</span>" <span class="xmlverb-attr-name">dimension</span>="<span class="xmlverb-attr-content">time</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">Parameter</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">Idur</span>" <span class="xmlverb-attr-name">dimension</span>="<span class="xmlverb-attr-content">time</span>" /&gt;<span class="xmlverb-text">
+
+</span>&lt;!--<span class="xmlverb-comment">
+&nbsp;The&nbsp;following&nbsp;are&nbsp;needed&nbsp;to&nbsp;ensure&nbsp;a,&nbsp;b,&nbsp;c,&nbsp;d,&nbsp;U&nbsp;&amp;&nbsp;I&nbsp;remain&nbsp;dimensionless...
+</span>--&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">Constant</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">tscale</span>" <span class="xmlverb-attr-name">dimension</span>="<span class="xmlverb-attr-content">per_time</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">1per_ms</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">Constant</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">vscale</span>" <span class="xmlverb-attr-name">dimension</span>="<span class="xmlverb-attr-content">voltage</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">1mV</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">Constant</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">pervscale</span>" <span class="xmlverb-attr-name">dimension</span>="<span class="xmlverb-attr-content">per_voltage</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">1per_mV</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">EventPort</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">a</span>" <span class="xmlverb-attr-name">direction</span>="<span class="xmlverb-attr-content">out</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">Exposure</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">U</span>" <span class="xmlverb-attr-name">dimension</span>="<span class="xmlverb-attr-content">none</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">Exposure</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">I</span>" <span class="xmlverb-attr-name">dimension</span>="<span class="xmlverb-attr-content">none</span>" /&gt;<span class="xmlverb-text">
+
+</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">Behavior</span>&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">StateVariable</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">v</span>" <span class="xmlverb-attr-name">dimension</span>="<span class="xmlverb-attr-content">voltage</span>" <span class="xmlverb-attr-name">exposure</span>="<span class="xmlverb-attr-content">v</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">StateVariable</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">U</span>" <span class="xmlverb-attr-name">dimension</span>="<span class="xmlverb-attr-content">none</span>" <span class="xmlverb-attr-name">exposure</span>="<span class="xmlverb-attr-content">U</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">StateVariable</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">I</span>" <span class="xmlverb-attr-name">dimension</span>="<span class="xmlverb-attr-content">none</span>" <span class="xmlverb-attr-name">exposure</span>="<span class="xmlverb-attr-content">I</span>" /&gt;<span class="xmlverb-text">
+
+</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">OnStart</span>&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">StateAssignment</span> <span class="xmlverb-attr-name">variable</span>="<span class="xmlverb-attr-content">v</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">v0</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">StateAssignment</span> <span class="xmlverb-attr-name">variable</span>="<span class="xmlverb-attr-content">U</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">v0 * b * pervscale</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">StateAssignment</span> <span class="xmlverb-attr-name">variable</span>="<span class="xmlverb-attr-content">I</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">0</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">OnStart</span>&gt;<span class="xmlverb-text">
+
+</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">OnCondition</span> <span class="xmlverb-attr-name">test</span>="<span class="xmlverb-attr-content">v .gt. thresh</span>"&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">StateAssignment</span> <span class="xmlverb-attr-name">variable</span>="<span class="xmlverb-attr-content">v</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">c*vscale</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">StateAssignment</span> <span class="xmlverb-attr-name">variable</span>="<span class="xmlverb-attr-content">U</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">U+d</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">EventOut</span> <span class="xmlverb-attr-name">port</span>="<span class="xmlverb-attr-content">a</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">OnCondition</span>&gt;<span class="xmlverb-text">
+
+</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">OnCondition</span> <span class="xmlverb-attr-name">test</span>="<span class="xmlverb-attr-content">t .gt. Idel .and. t .lt. Idel+Idur</span>"&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">StateAssignment</span> <span class="xmlverb-attr-name">variable</span>="<span class="xmlverb-attr-content">I</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">Iamp</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">OnCondition</span>&gt;<span class="xmlverb-text">
+
+</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">OnCondition</span> <span class="xmlverb-attr-name">test</span>="<span class="xmlverb-attr-content">t .gt. Idel+Idur</span>"&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">StateAssignment</span> <span class="xmlverb-attr-name">variable</span>="<span class="xmlverb-attr-content">I</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">0</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">OnCondition</span>&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">TimeDerivative</span> <span class="xmlverb-attr-name">variable</span>="<span class="xmlverb-attr-content">v</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">vscale*tscale * (0.04*v*v*pervscale*pervscale + 5*v*pervscale + 140.0 - U + I)</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">TimeDerivative</span> <span class="xmlverb-attr-name">variable</span>="<span class="xmlverb-attr-content">U</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">tscale * a * (b*v*pervscale - U)</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">Behavior</span>&gt;<span class="xmlverb-text">
+</span>
+<br>&lt;/<span class="xmlverb-element-name">ComponentType</span>&gt;</div>
+</div>
+</p>
+
+
+<p>This allows a very concise specification of a cell model when used in a network (here 3 cells with different spiking behaviour are created):<div class="xcode">
+
+
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">izhikevichCell</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">izBurst</span>" <span class="xmlverb-attr-name">v0</span>="<span class="xmlverb-attr-content">-70mV</span>" <span class="xmlverb-attr-name">thresh</span>="<span class="xmlverb-attr-content">30mV</span>" <span class="xmlverb-attr-name">a</span>="<span class="xmlverb-attr-content">0.02</span>" <span class="xmlverb-attr-name">b</span>="<span class="xmlverb-attr-content">0.2</span>" <span class="xmlverb-attr-name">c</span>="<span class="xmlverb-attr-content">-50.0</span>" <span class="xmlverb-attr-name">d</span>="<span class="xmlverb-attr-content">2</span>" <span class="xmlverb-attr-name">Iamp</span>="<span class="xmlverb-attr-content">15</span>" <span class="xmlverb-attr-name">Idel</span>="<span class="xmlverb-attr-content">22ms</span>" <span class="xmlverb-attr-name">Idur</span>="<span class="xmlverb-attr-content">2000ms</span>" /&gt;</div>
+
+
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">izhikevichCell</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">izTonic</span>" <span class="xmlverb-attr-name">v0</span>="<span class="xmlverb-attr-content">-70mV</span>" <span class="xmlverb-attr-name">thresh</span>="<span class="xmlverb-attr-content">30mV</span>" <span class="xmlverb-attr-name">a</span>="<span class="xmlverb-attr-content">0.02</span>" <span class="xmlverb-attr-name">b</span>="<span class="xmlverb-attr-content">0.2</span>" <span class="xmlverb-attr-name">c</span>="<span class="xmlverb-attr-content">-65.0</span>" <span class="xmlverb-attr-name">d</span>="<span class="xmlverb-attr-content">6</span>" <span class="xmlverb-attr-name">Iamp</span>="<span class="xmlverb-attr-content">14</span>" <span class="xmlverb-attr-name">Idel</span>="<span class="xmlverb-attr-content">20ms</span>" <span class="xmlverb-attr-name">Idur</span>="<span class="xmlverb-attr-content">2000ms</span>" /&gt;</div>
+
+
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">izhikevichCell</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">izMixed</span>" <span class="xmlverb-attr-name">v0</span>="<span class="xmlverb-attr-content">-70mV</span>" <span class="xmlverb-attr-name">thresh</span>="<span class="xmlverb-attr-content">30mV</span>" <span class="xmlverb-attr-name">a</span>="<span class="xmlverb-attr-content">0.02</span>" <span class="xmlverb-attr-name">b</span>="<span class="xmlverb-attr-content">0.2</span>" <span class="xmlverb-attr-name">c</span>="<span class="xmlverb-attr-content">-55.0</span>" <span class="xmlverb-attr-name">d</span>="<span class="xmlverb-attr-content">4</span>" <span class="xmlverb-attr-name">Iamp</span>="<span class="xmlverb-attr-content">10</span>" <span class="xmlverb-attr-name">Idel</span>="<span class="xmlverb-attr-content">20ms</span>" <span class="xmlverb-attr-name">Idur</span>="<span class="xmlverb-attr-content">2000ms</span>" /&gt;</div>
+
+
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">network</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">net1</span>"&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">population</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">izpopBurst</span>" <span class="xmlverb-attr-name">component</span>="<span class="xmlverb-attr-content">izBurst</span>" <span class="xmlverb-attr-name">size</span>="<span class="xmlverb-attr-content">1</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">population</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">izpopTonic</span>" <span class="xmlverb-attr-name">component</span>="<span class="xmlverb-attr-content">izTonic</span>" <span class="xmlverb-attr-name">size</span>="<span class="xmlverb-attr-content">1</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">population</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">izpopMixed</span>" <span class="xmlverb-attr-name">component</span>="<span class="xmlverb-attr-content">izMixed</span>" <span class="xmlverb-attr-name">size</span>="<span class="xmlverb-attr-content">1</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&lt;/<span class="xmlverb-element-name">network</span>&gt;</div>
+
+
+</div>
+</p>
+
+
+<p>The plots below shows the evolution of the v and U variables in 2 of the cells.</p>
+
+
+<img src="/lems/Izh.png">
+
+<p>The full code for this example can be found <a href="NeuroML2_Ex2_Izh.xml">here</a>.</p>
+
+
+
+<h2>
+<a name="Ex3">Ex3: Network connection between HH cells</a>
+</h2>
+
+
+<p>This examples uses user defined <span class="xelt">ComponentType</span>s for synapses in <a href="Synapses.xml">Synapses.xml</a>, which can be instantiated with:</p>
+
+<div class="xcode">
+
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">expOneSynapse</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">sy1</span>" <span class="xmlverb-attr-name">gbase</span>="<span class="xmlverb-attr-content">0.5nS</span>" <span class="xmlverb-attr-name">erev</span>="<span class="xmlverb-attr-content">0mV</span>" <span class="xmlverb-attr-name">tau</span>="<span class="xmlverb-attr-content">3ms</span>" /&gt;</div>
+
+
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">expTwoSynapse</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">sy2</span>" <span class="xmlverb-attr-name">gbase</span>="<span class="xmlverb-attr-content">0.5nS</span>" <span class="xmlverb-attr-name">erev</span>="<span class="xmlverb-attr-content">0mV</span>" <span class="xmlverb-attr-name">tauRise</span>="<span class="xmlverb-attr-content">1ms</span>" <span class="xmlverb-attr-name">tauDecay</span>="<span class="xmlverb-attr-content">2ms</span>" /&gt;</div>
+</div>
+
+
+<p>The plots below shows the source cell firing and the post synaptic membrane response.</p>
+
+
+<img src="/lems/Net.png">
+
+<p>The full code for this example can be found <a href="NeuroML2_Ex3_Net.xml">here</a>.</p>
+
+
+
+
+
+<h2>
+<a name="Ex4">Ex4: Kinetic scheme description for K+ channel</a>
+</h2>
+
+
+<p>This examples contains a K<sup>+</sup> channel specified using a Kinetic scheme description which will probably be the preferred format for channels in NeuroML version 2:</p>
+
+<div class="xcode">
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">ionChannel</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">k_vh</span>" <span class="xmlverb-attr-name">conductance</span>="<span class="xmlverb-attr-content">8pS</span>"&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">gate</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">n</span>" <span class="xmlverb-attr-name">power</span>="<span class="xmlverb-attr-content">1</span>" <span class="xmlverb-attr-name">deltaV</span>="<span class="xmlverb-attr-content">0.1mV</span>"&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">closedState</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">c1</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">openState</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">o1</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">vHalfTransition</span> <span class="xmlverb-attr-name">from</span>="<span class="xmlverb-attr-content">c1</span>" <span class="xmlverb-attr-name">to</span>="<span class="xmlverb-attr-content">o1</span>" <span class="xmlverb-attr-name">vHalf</span>="<span class="xmlverb-attr-content">0mV</span>" <span class="xmlverb-attr-name">z</span>="<span class="xmlverb-attr-content">1.5</span>" <span class="xmlverb-attr-name">gamma</span>="<span class="xmlverb-attr-content">0.75</span>" <span class="xmlverb-attr-name">tau</span>="<span class="xmlverb-attr-content">3.2ms</span>" <span class="xmlverb-attr-name">tauMin</span>="<span class="xmlverb-attr-content">0.3ms</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">gate</span>&gt;<span class="xmlverb-text">
+</span>
+<br>&lt;/<span class="xmlverb-element-name">ionChannel</span>&gt;</div>
+</div>
+
+
+
+<p>The full code for this example can be found <a href="NeuroML2_Ex4_KS.xml">here</a>.</p>
+
+
+
+<h2>
+<a name="Ex5">Ex5: Using "pure" NeuroML v2 files with LEMS</a>
+</h2>
+
+
+<p>The examples above have used files mixing LEMS specific elements (e.g. &lt;Lems&gt;, &lt;Simulation&gt;, &lt;Display&gt;) with NeuroML 2 elements
+(e.g. &lt;ionChannel&gt;, &lt;network&gt;). This example shows how all NeuroML 2 elements can be removed to separate files (valid according to the latest
+<a href="http://neuroml.svn.sourceforge.net/viewvc/neuroml/DemoVer2.0/lems/Schemas/NeuroML2/NeuroML_v2alpha.xsd?view=markup">NeuroML 2 draft schema</a>) and
+include these in the main LEMS file. This allows testing through LEMS of "pure" NeuroML v2 files, which may have been generated by applications without any reference to the LEMS framework.</p>
+
+
+<p>In the <a href="NeuroML2_Ex5_DetCell.xml">main LEMS file</a>, the NeuroML file is included as any other LEMS file</p>
+
+<div class="xcode">
+        
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">Include</span> <span class="xmlverb-attr-name">file</span>="<span class="xmlverb-attr-content">NeuroML2CoreTypes/NeuroMLCoreDimensions.xml</span>" /&gt;</div>
+        
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">Include</span> <span class="xmlverb-attr-name">file</span>="<span class="xmlverb-attr-content">NeuroML2CoreTypes/Cells.xml</span>" /&gt;</div>
+        
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">Include</span> <span class="xmlverb-attr-name">file</span>="<span class="xmlverb-attr-content">NeuroML2CoreTypes/Networks.xml</span>" /&gt;</div>
+        
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">Include</span> <span class="xmlverb-attr-name">file</span>="<span class="xmlverb-attr-content">NeuroML2CoreTypes/Simulation.xml</span>" /&gt;</div>
+
+
+        &lt;!-- Including file with a &lt;neuroml&gt; root, a "real" NeuroML 2 file --&gt;
+        <div class="xcodeelement">&lt;<span class="xmlverb-element-name">Include</span> <span class="xmlverb-attr-name">file</span>="<span class="xmlverb-attr-content">DetailedHHCell.nml</span>" /&gt;</div>
+
+
+        
+<div class="xcodeelement">
+<br>&lt;<span class="xmlverb-element-name">Simulation</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">sim1</span>" <span class="xmlverb-attr-name">length</span>="<span class="xmlverb-attr-content">300ms</span>" <span class="xmlverb-attr-name">step</span>="<span class="xmlverb-attr-content">0.01ms</span>" <span class="xmlverb-attr-name">target</span>="<span class="xmlverb-attr-content">net1</span>"&gt;<span class="xmlverb-text">&nbsp;&nbsp;</span>&lt;!--<span class="xmlverb-comment">&nbsp;Subelements&nbsp;omitted&nbsp;for&nbsp;clarity&nbsp;</span>--&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&lt;/<span class="xmlverb-element-name">Simulation</span>&gt;</div>
+
+</div>
+
+
+<p>The contents of the NeuroML file follow. Note the &lt;neuroml&gt; elements are stripped by the LEMS interpreter on including the file.</p>
+
+
+<div class="fileincludetitle">DetailedHHCell.nml
+            (<a href="DetailedHHCell.nml">xml</a>)
+        </div>
+<div class="xcodefile">
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">neuroml</span><span class="xmlverb-ns-name"> xmlns</span>="<span class="xmlverb-ns-uri">http:///schema/neuroml2</span>"<span class="xmlverb-ns-name"> xmlns:xsi</span>="<span class="xmlverb-ns-uri">http://www.w3.org/2001/XMLSchema-instance</span>" <span class="xmlverb-attr-name">xsi:schemaLocation</span>="<span class="xmlverb-attr-content">http:///schema/neuroml2 ../Schemas/NeuroML2/NeuroML_v2alpha.xsd</span>" <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">DetailedHHCell</span>"&gt;<span class="xmlverb-text">
+
+</span>&lt;!--<span class="xmlverb-comment">
+A&nbsp;file&nbsp;containing&nbsp;only&nbsp;NeuroML2&nbsp;elements.&nbsp;Valid&nbsp;according&nbsp;to&nbsp;draft&nbsp;schema
+http://neuroml.svn.sourceforge.net/viewvc/neuroml/DemoVer2.0/lems/Schemas/NeuroML2/NeuroML_v2alpha.xsd
+</span>--&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">ionChannel</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">passive</span>" <span class="xmlverb-attr-name">type</span>="<span class="xmlverb-attr-content">ionChannelPassive</span>" <span class="xmlverb-attr-name">conductance</span>="<span class="xmlverb-attr-content">10pS</span>"&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">notes</span>&gt;<span class="xmlverb-text">Leak&nbsp;conductance</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">notes</span>&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">ionChannel</span>&gt;<span class="xmlverb-text">
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">ionChannel</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">na</span>" <span class="xmlverb-attr-name">type</span>="<span class="xmlverb-attr-content">ionChannelHH</span>" <span class="xmlverb-attr-name">conductance</span>="<span class="xmlverb-attr-content">10pS</span>" <span class="xmlverb-attr-name">species</span>="<span class="xmlverb-attr-content">na</span>"&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">notes</span>&gt;<span class="xmlverb-text">Na&nbsp;channel</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">notes</span>&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">gateHH</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">m</span>" <span class="xmlverb-attr-name">instances</span>="<span class="xmlverb-attr-content">3</span>"&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">forwardRate</span> <span class="xmlverb-attr-name">type</span>="<span class="xmlverb-attr-content">HHExpLinearRate</span>" <span class="xmlverb-attr-name">rate</span>="<span class="xmlverb-attr-content">1per_ms</span>" <span class="xmlverb-attr-name">midpoint</span>="<span class="xmlverb-attr-content">-40mV</span>" <span class="xmlverb-attr-name">scale</span>="<span class="xmlverb-attr-content">10mV</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">reverseRate</span> <span class="xmlverb-attr-name">type</span>="<span class="xmlverb-attr-content">HHExpRate</span>" <span class="xmlverb-attr-name">rate</span>="<span class="xmlverb-attr-content">4per_ms</span>" <span class="xmlverb-attr-name">midpoint</span>="<span class="xmlverb-attr-content">-65mV</span>" <span class="xmlverb-attr-name">scale</span>="<span class="xmlverb-attr-content">-18mV</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">gateHH</span>&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">gateHH</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">h</span>" <span class="xmlverb-attr-name">instances</span>="<span class="xmlverb-attr-content">1</span>"&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">forwardRate</span> <span class="xmlverb-attr-name">type</span>="<span class="xmlverb-attr-content">HHExpRate</span>" <span class="xmlverb-attr-name">rate</span>="<span class="xmlverb-attr-content">0.07per_ms</span>" <span class="xmlverb-attr-name">midpoint</span>="<span class="xmlverb-attr-content">-65mV</span>" <span class="xmlverb-attr-name">scale</span>="<span class="xmlverb-attr-content">-20mV</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">reverseRate</span> <span class="xmlverb-attr-name">type</span>="<span class="xmlverb-attr-content">HHSigmoidRate</span>" <span class="xmlverb-attr-name">rate</span>="<span class="xmlverb-attr-content">1per_ms</span>" <span class="xmlverb-attr-name">midpoint</span>="<span class="xmlverb-attr-content">-35mV</span>" <span class="xmlverb-attr-name">scale</span>="<span class="xmlverb-attr-content">10mV</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">gateHH</span>&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">ionChannel</span>&gt;<span class="xmlverb-text">
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">ionChannel</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">k</span>" <span class="xmlverb-attr-name">type</span>="<span class="xmlverb-attr-content">ionChannelHH</span>" <span class="xmlverb-attr-name">conductance</span>="<span class="xmlverb-attr-content">10pS</span>" <span class="xmlverb-attr-name">species</span>="<span class="xmlverb-attr-content">k</span>"&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">gateHH</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">n</span>" <span class="xmlverb-attr-name">instances</span>="<span class="xmlverb-attr-content">4</span>"&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">forwardRate</span> <span class="xmlverb-attr-name">type</span>="<span class="xmlverb-attr-content">HHExpLinearRate</span>" <span class="xmlverb-attr-name">rate</span>="<span class="xmlverb-attr-content">0.1per_ms</span>" <span class="xmlverb-attr-name">midpoint</span>="<span class="xmlverb-attr-content">-55mV</span>" <span class="xmlverb-attr-name">scale</span>="<span class="xmlverb-attr-content">10mV</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">reverseRate</span> <span class="xmlverb-attr-name">type</span>="<span class="xmlverb-attr-content">HHExpRate</span>" <span class="xmlverb-attr-name">rate</span>="<span class="xmlverb-attr-content">0.125per_ms</span>" <span class="xmlverb-attr-name">midpoint</span>="<span class="xmlverb-attr-content">-65mV</span>" <span class="xmlverb-attr-name">scale</span>="<span class="xmlverb-attr-content">-80mV</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">gateHH</span>&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">ionChannel</span>&gt;<span class="xmlverb-text">
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">cell</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">hhcell</span>"&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">notes</span>&gt;<span class="xmlverb-text">A&nbsp;NeuroML&nbsp;2&nbsp;cell...</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">notes</span>&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">morphology</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">morph1</span>"&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">segment</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">0</span>" <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">soma</span>"&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">proximal</span> <span class="xmlverb-attr-name">x</span>="<span class="xmlverb-attr-content">0</span>" <span class="xmlverb-attr-name">y</span>="<span class="xmlverb-attr-content">0</span>" <span class="xmlverb-attr-name">z</span>="<span class="xmlverb-attr-content">0</span>" <span class="xmlverb-attr-name">diameter</span>="<span class="xmlverb-attr-content">17.841242</span>" /&gt;<span class="xmlverb-text">&nbsp;</span>&lt;!--<span class="xmlverb-comment">Gives&nbsp;a&nbsp;convenient&nbsp;surface&nbsp;area&nbsp;of&nbsp;1000.0&nbsp;?m&#65533;</span>--&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">distal</span> <span class="xmlverb-attr-name">x</span>="<span class="xmlverb-attr-content">0</span>" <span class="xmlverb-attr-name">y</span>="<span class="xmlverb-attr-content">0</span>" <span class="xmlverb-attr-name">z</span>="<span class="xmlverb-attr-content">0</span>" <span class="xmlverb-attr-name">diameter</span>="<span class="xmlverb-attr-content">17.841242</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">segment</span>&gt;<span class="xmlverb-text">
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">segmentGroup</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">soma_group</span>"&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">member</span> <span class="xmlverb-attr-name">segment</span>="<span class="xmlverb-attr-content">0</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">segmentGroup</span>&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">morphology</span>&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">biophysicalProperties</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">bioPhys1</span>"&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">membraneProperties</span>&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">channelDensity</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">leak</span>" <span class="xmlverb-attr-name">ionChannel</span>="<span class="xmlverb-attr-content">passive</span>" <span class="xmlverb-attr-name">condDensity</span>="<span class="xmlverb-attr-content">3.0 S_per_m2</span>" <span class="xmlverb-attr-name">erev</span>="<span class="xmlverb-attr-content">-54.3mV</span>" /&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">channelDensity</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">naChans</span>" <span class="xmlverb-attr-name">ionChannel</span>="<span class="xmlverb-attr-content">na</span>" <span class="xmlverb-attr-name">condDensity</span>="<span class="xmlverb-attr-content">120.0 mS_per_cm2</span>" <span class="xmlverb-attr-name">erev</span>="<span class="xmlverb-attr-content">50.0 mV</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">channelDensity</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">kChans</span>" <span class="xmlverb-attr-name">ionChannel</span>="<span class="xmlverb-attr-content">k</span>" <span class="xmlverb-attr-name">condDensity</span>="<span class="xmlverb-attr-content">360 S_per_m2</span>" <span class="xmlverb-attr-name">erev</span>="<span class="xmlverb-attr-content">-77mV</span>" /&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">spikeThresh</span> <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">-20mV</span>" /&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">specificCapacitance</span> <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">1.0 uF_per_cm2</span>" /&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">initMembPotential</span> <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">-65mV</span>" /&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">membraneProperties</span>&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">intracellularProperties</span>&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">resistivity</span> <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">0.03 kohm_cm</span>" /&gt;<span class="xmlverb-text">&nbsp;&nbsp;&nbsp;</span>&lt;!--<span class="xmlverb-comment">&nbsp;Note:&nbsp;not&nbsp;used&nbsp;in&nbsp;single&nbsp;compartment&nbsp;simulations&nbsp;</span>--&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">intracellularProperties</span>&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">biophysicalProperties</span>&gt;<span class="xmlverb-text">
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">cell</span>&gt;<span class="xmlverb-text">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">pulseGenerator</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">pulseGen1</span>" <span class="xmlverb-attr-name">delay</span>="<span class="xmlverb-attr-content">100ms</span>" <span class="xmlverb-attr-name">duration</span>="<span class="xmlverb-attr-content">100ms</span>" <span class="xmlverb-attr-name">amplitude</span>="<span class="xmlverb-attr-content">0.08nA</span>" /&gt;<span class="xmlverb-text">
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">network</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">net1</span>"&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">population</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">hhpop</span>" <span class="xmlverb-attr-name">component</span>="<span class="xmlverb-attr-content">hhcell</span>" <span class="xmlverb-attr-name">size</span>="<span class="xmlverb-attr-content">1</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">explicitInput</span> <span class="xmlverb-attr-name">target</span>="<span class="xmlverb-attr-content">hhpop[0]</span>" <span class="xmlverb-attr-name">input</span>="<span class="xmlverb-attr-content">pulseGen1</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;/<span class="xmlverb-element-name">network</span>&gt;<span class="xmlverb-text">
+
+</span>
+<br>&lt;/<span class="xmlverb-element-name">neuroml</span>&gt;<br>
+
+</div>
+</div>
+
+<p>Note: only single compartment cells are supported at the moment, i.e. only one &lt;segment&gt; element allowed in &lt;morphology&gt;!</p>
+
+
+<h2>
+<a name="Ex6">Ex6: NMDA-R mediated synapse</a>
+</h2>
+
+
+<p>This example shows how the basic synapse mechanism can be extended to allow addition of a voltage (and Magnesium concentration) dependent
+synaptic block component (e.g. for NMDA (N-Methyl-D-aspartic acid) receptor mediated synapses). The code below shows the NeuroML 2 form for an NMDA synapse:</p>
+
+
+<div class="xcode">
+        
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">nmdaSynapse</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">nmdaSyn</span>" <span class="xmlverb-attr-name">gbase</span>="<span class="xmlverb-attr-content">0.5nS</span>" <span class="xmlverb-attr-name">erev</span>="<span class="xmlverb-attr-content">0mV</span>" <span class="xmlverb-attr-name">tauRise</span>="<span class="xmlverb-attr-content">2ms</span>" <span class="xmlverb-attr-name">tauDecay</span>="<span class="xmlverb-attr-content">8ms</span>"&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">block</span> <span class="xmlverb-attr-name">type</span>="<span class="xmlverb-attr-content">VoltageConcDepBlock</span>" <span class="xmlverb-attr-name">species</span>="<span class="xmlverb-attr-content">mg</span>" <span class="xmlverb-attr-name">blockConcentration</span>="<span class="xmlverb-attr-content">1.2 mM</span>" <span class="xmlverb-attr-name">scalingConc</span>="<span class="xmlverb-attr-content">1.920544 mM</span>" <span class="xmlverb-attr-name">scalingVolt</span>="<span class="xmlverb-attr-content">16.129 mV</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&lt;/<span class="xmlverb-element-name">nmdaSynapse</span>&gt;</div>
+        
+</div>
+
+
+<p>The plots below show a passive cell (left) receiving synaptic input from an NMDAR synapse. The membrane potential is stepped at 200ms with a current clamp.
+The right plot shows the conductance waveform of the synapse. At more depolarised membrane potentials the synaptic response is higher.</p>
+
+
+<img src="/lems/NMDA.png">
+
+<p>The full code for this example can be found <a href="NeuroML2_Ex6_NMDA.xml">here</a>, and the definition of the nmdaSyn <span class="xelt">ComponentType</span>
+is in the <a href="Synapses.xml">Synapses.xml</a> file.</p>
+
+
+
+
+<h2>
+<a name="Ex7">Ex7: Short Term Plasticity</a>
+</h2>
+
+
+
+<p>This example shows an implementation of Short Term Plasticity roughly along the lines of Tsodyks M, Uziel A, Markram H: Synchrony generation in recurrent
+networks with frequency-dependent synapses. J Neurosci 2000. NeuroML 2 elements for a fixed, depressing and facilitating synapse are shown below:</p>
+
+
+<div class="xcode">
+
+        
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">expTwoSynapse</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">noStpSyn</span>" <span class="xmlverb-attr-name">gbase</span>="<span class="xmlverb-attr-content">1nS</span>" <span class="xmlverb-attr-name">erev</span>="<span class="xmlverb-attr-content">0mV</span>" <span class="xmlverb-attr-name">tauRise</span>="<span class="xmlverb-attr-content">0.1ms</span>" <span class="xmlverb-attr-name">tauDecay</span>="<span class="xmlverb-attr-content">2ms</span>" /&gt;</div>
+
+        
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">stpSynapse</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">stpSynDep</span>" <span class="xmlverb-attr-name">gbase</span>="<span class="xmlverb-attr-content">1nS</span>" <span class="xmlverb-attr-name">erev</span>="<span class="xmlverb-attr-content">0mV</span>" <span class="xmlverb-attr-name">tauRise</span>="<span class="xmlverb-attr-content">0.1ms</span>" <span class="xmlverb-attr-name">tauDecay</span>="<span class="xmlverb-attr-content">2ms</span>"&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">plasticity</span> <span class="xmlverb-attr-name">initReleaseProb</span>="<span class="xmlverb-attr-content">0.5</span>" <span class="xmlverb-attr-name">tauFac</span>="<span class="xmlverb-attr-content">0 ms</span>" <span class="xmlverb-attr-name">tauRec</span>="<span class="xmlverb-attr-content">120 ms</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&lt;/<span class="xmlverb-element-name">stpSynapse</span>&gt;</div>
+
+        
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">stpSynapse</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">stpSynFac</span>" <span class="xmlverb-attr-name">gbase</span>="<span class="xmlverb-attr-content">1nS</span>" <span class="xmlverb-attr-name">erev</span>="<span class="xmlverb-attr-content">0mV</span>" <span class="xmlverb-attr-name">tauRise</span>="<span class="xmlverb-attr-content">0.1ms</span>" <span class="xmlverb-attr-name">tauDecay</span>="<span class="xmlverb-attr-content">2ms</span>"&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">plasticity</span> <span class="xmlverb-attr-name">initReleaseProb</span>="<span class="xmlverb-attr-content">0.5</span>" <span class="xmlverb-attr-name">tauFac</span>="<span class="xmlverb-attr-content">300 ms</span>" <span class="xmlverb-attr-name">tauRec</span>="<span class="xmlverb-attr-content">0 ms</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&lt;/<span class="xmlverb-element-name">stpSynapse</span>&gt;</div>
+
+</div>
+
+
+<p>The figure below shows the behavour of the conductances of each of these 3 synapses (top plot), and the internal scaling
+variables (R and U) of the facilitating and depressing synapses (bottom).</p>
+
+
+<img src="/lems/STP.png">
+
+<p>The full code for this example can be found <a href="NeuroML2_Ex7_STP.xml">here</a>, and the definition of the stpSynapse <span class="xelt">ComponentType</span>
+is in the <a href="Synapses.xml">Synapses.xml</a> file.</p>
+
+
+
+<h2>
+<a name="Ex8">Ex8: Adaptive exponential integrate-and-fire model</a>
+</h2>
+
+
+<p>This is a 2 variable spiking neuron model developed by Brette and Gernstner in 2005. For more details see
+<a href="http://www.scholarpedia.org/article/Adaptive_exponential_integrate-and-fire_model">here</a>. NeuroML 2 elements for 
+creating 4 cells with different types of spiking behaviour is shown below:</p>
+
+
+<div class="xcode">
+
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">adExIaFCell</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">adExBurst2</span>" <span class="xmlverb-attr-name">C</span>="<span class="xmlverb-attr-content">281pF</span>" <span class="xmlverb-attr-name">gL</span>="<span class="xmlverb-attr-content">30nS</span>" <span class="xmlverb-attr-name">EL</span>="<span class="xmlverb-attr-content">-70.6mV</span>" <span class="xmlverb-attr-name">reset</span>="<span class="xmlverb-attr-content">-48.5mV</span>" <span class="xmlverb-attr-name">VT</span>="<span class="xmlverb-attr-content">-50.4mV</span>" <span class="xmlverb-attr-name">thresh</span>="<span class="xmlverb-attr-content">-40.4mV</span>" <span class="xmlverb-attr-name">delT</span>="<span class="xmlverb-attr-content">2mV</span>" <span class="xmlverb-attr-name">tauw</span>="<span class="xmlverb-attr-content">40ms</span>" <span class="xmlverb-attr-name">a</span>="<span class="xmlverb-attr-content">4nS</span>" <span class="xmlverb-attr-name">b</span>="<span class="xmlverb-attr-content">0.08nA</span>" <span class="xmlverb-attr-name">Iamp</span>="<span class="xmlverb-attr-content">0.8nA</span>" <span class="xmlverb-attr-name">Idel</span>="<span class="xmlverb-attr-content">0ms</span>" <span class="xmlverb-attr-name">Idur</span>="<span class="xmlverb-attr-content">2000ms</span>" /&gt;</div>
+
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">adExIaFCell</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">adExBurst4</span>" <span class="xmlverb-attr-name">C</span>="<span class="xmlverb-attr-content">281pF</span>" <span class="xmlverb-attr-name">gL</span>="<span class="xmlverb-attr-content">30nS</span>" <span class="xmlverb-attr-name">EL</span>="<span class="xmlverb-attr-content">-70.6mV</span>" <span class="xmlverb-attr-name">reset</span>="<span class="xmlverb-attr-content">-47.2mV</span>" <span class="xmlverb-attr-name">VT</span>="<span class="xmlverb-attr-content">-50.4mV</span>" <span class="xmlverb-attr-name">thresh</span>="<span class="xmlverb-attr-content">-40.4mV</span>" <span class="xmlverb-attr-name">delT</span>="<span class="xmlverb-attr-content">2mV</span>" <span class="xmlverb-attr-name">tauw</span>="<span class="xmlverb-attr-content">40ms</span>" <span class="xmlverb-attr-name">a</span>="<span class="xmlverb-attr-content">4nS</span>" <span class="xmlverb-attr-name">b</span>="<span class="xmlverb-attr-content">0.08nA</span>" <span class="xmlverb-attr-name">Iamp</span>="<span class="xmlverb-attr-content">0.8nA</span>" <span class="xmlverb-attr-name">Idel</span>="<span class="xmlverb-attr-content">0ms</span>" <span class="xmlverb-attr-name">Idur</span>="<span class="xmlverb-attr-content">2000ms</span>" /&gt;</div>
+
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">adExIaFCell</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">adExBurstChaos</span>" <span class="xmlverb-attr-name">C</span>="<span class="xmlverb-attr-content">281pF</span>" <span class="xmlverb-attr-name">gL</span>="<span class="xmlverb-attr-content">30nS</span>" <span class="xmlverb-attr-name">EL</span>="<span class="xmlverb-attr-content">-70.6mV</span>" <span class="xmlverb-attr-name">reset</span>="<span class="xmlverb-attr-content">-48mV</span>" <span class="xmlverb-attr-name">VT</span>="<span class="xmlverb-attr-content">-50.4mV</span>" <span class="xmlverb-attr-name">thresh</span>="<span class="xmlverb-attr-content">-40.4mV</span>" <span class="xmlverb-attr-name">delT</span>="<span class="xmlverb-attr-content">2mV</span>" <span class="xmlverb-attr-name">tauw</span>="<span class="xmlverb-attr-content">40ms</span>" <span class="xmlverb-attr-name">a</span>="<span class="xmlverb-attr-content">4nS</span>" <span class="xmlverb-attr-name">b</span>="<span class="xmlverb-attr-content">0.08nA</span>" <span class="xmlverb-attr-name">Iamp</span>="<span class="xmlverb-attr-content">0.8nA</span>" <span class="xmlverb-attr-name">Idel</span>="<span class="xmlverb-attr-content">0ms</span>" <span class="xmlverb-attr-name">Idur</span>="<span class="xmlverb-attr-content">2000ms</span>" /&gt;</div>
+
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">adExIaFCell</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">adExRebound</span>" <span class="xmlverb-attr-name">C</span>="<span class="xmlverb-attr-content">281pF</span>" <span class="xmlverb-attr-name">gL</span>="<span class="xmlverb-attr-content">30nS</span>" <span class="xmlverb-attr-name">EL</span>="<span class="xmlverb-attr-content">-60mV</span>" <span class="xmlverb-attr-name">reset</span>="<span class="xmlverb-attr-content">-51mV</span>" <span class="xmlverb-attr-name">VT</span>="<span class="xmlverb-attr-content">-54mV</span>" <span class="xmlverb-attr-name">thresh</span>="<span class="xmlverb-attr-content">-30mV</span>" <span class="xmlverb-attr-name">delT</span>="<span class="xmlverb-attr-content">2mV</span>" <span class="xmlverb-attr-name">tauw</span>="<span class="xmlverb-attr-content">150ms</span>" <span class="xmlverb-attr-name">a</span>="<span class="xmlverb-attr-content">200nS</span>" <span class="xmlverb-attr-name">b</span>="<span class="xmlverb-attr-content">0.1nA</span>" <span class="xmlverb-attr-name">Iamp</span>="<span class="xmlverb-attr-content">-0.5nA</span>" <span class="xmlverb-attr-name">Idel</span>="<span class="xmlverb-attr-content">150ms</span>" <span class="xmlverb-attr-name">Idur</span>="<span class="xmlverb-attr-content">50ms</span>" /&gt;</div>
+
+
+
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">network</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">net1</span>"&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">population</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">adExPop1</span>" <span class="xmlverb-attr-name">component</span>="<span class="xmlverb-attr-content">adExBurst2</span>" <span class="xmlverb-attr-name">size</span>="<span class="xmlverb-attr-content">1</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">population</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">adExPop2</span>" <span class="xmlverb-attr-name">component</span>="<span class="xmlverb-attr-content">adExBurst4</span>" <span class="xmlverb-attr-name">size</span>="<span class="xmlverb-attr-content">1</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">population</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">adExPop3</span>" <span class="xmlverb-attr-name">component</span>="<span class="xmlverb-attr-content">adExBurstChaos</span>" <span class="xmlverb-attr-name">size</span>="<span class="xmlverb-attr-content">1</span>" /&gt;<span class="xmlverb-text">
+&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>&nbsp;&nbsp;&nbsp;&lt;<span class="xmlverb-element-name">population</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">adExPop4</span>" <span class="xmlverb-attr-name">component</span>="<span class="xmlverb-attr-content">adExRebound</span>" <span class="xmlverb-attr-name">size</span>="<span class="xmlverb-attr-content">1</span>" /&gt;<span class="xmlverb-text">
+</span>
+<br>&lt;/<span class="xmlverb-element-name">network</span>&gt;</div>
+
+</div>
+
+
+
+<p>The full code for this example can be found <a href="NeuroML2_Ex8_AdEx.xml">here</a>, and the definition of the adExIaFCell <span class="xelt">ComponentType</span>
+is in the <a href="Cells.xml">Cells.xml</a> file. The section related to the time derivative of the V and w state variables is shown below:</p>
+
+
+<div class="xcode">
+        
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">TimeDerivative</span> <span class="xmlverb-attr-name">variable</span>="<span class="xmlverb-attr-content">v</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">(-1*gL*(v-EL) + gL*delT*exp((v - VT)/delT) - w + I)/C</span>" /&gt;</div>
+        
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">TimeDerivative</span> <span class="xmlverb-attr-name">variable</span>="<span class="xmlverb-attr-content">w</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">(a*(v-EL) - w) / tauw</span>" /&gt;</div>
+
+</div>
+
+
+<p>The figure below shows v and w for 3 of the cells described above. The left plots show the traces as run by the LEMS interpreter, and the right plots
+show the traces when NEURON code is generated from the LEMS definitions. The NEURON Python and mod files are generated using:</p>
+
+<div class="code">
+<pre>
+  ./lems nml2-examples/NeuroML2_Ex8_AdEx.xml -neuron
+</pre>
+</div>
+
+<p>After generation the mod files should be compiled in the usual way, and NeuroML2_Ex8_AdEx_nrn.py run using the NEURON Python interpreter.</p>
+
+
+<img src="/lems/adEx.png">
+
+<h2>
+<a name="Ex9">Ex8: FitzHugh-Nagumo model</a>
+</h2>
+
+
+<p>This is version of the simplified HH model by FitzHugh and Nagumo, see
+<a href="http://www.scholarpedia.org/article/FitzHugh-Nagumo_model">here</a>. 
+The 2 equations that define the behaviour of the state variables V and W of this model are:</p>
+
+
+<div class="xcode">
+        
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">TimeDerivative</span> <span class="xmlverb-attr-name">variable</span>="<span class="xmlverb-attr-content">V</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">tscale * (V - V^3 - W + I)</span>" /&gt;</div>
+        
+<div class="xcodeelement">&lt;<span class="xmlverb-element-name">TimeDerivative</span> <span class="xmlverb-attr-name">variable</span>="<span class="xmlverb-attr-content">W</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">tscale * (0.08 * (V + 0.7 - W))</span>" /&gt;</div>
+
+</div>
+
+
+<p>Note: tscale is a &lt;Constant&gt; with value 1 s<sup>-1</sup>, added to ensure consistency of units if V and W are dimensionless.</p>
+
+<p>The full code for the example below can be found <a href="NeuroML2_Ex9_FN.xml">here</a>, and the definition of the fitzHughNagumoCell <span class="xelt">ComponentType</span>
+is in the <a href="Cells.xml">Cells.xml</a> file. The screenshost below are the model running on (from the top): LEMS; the model mapped to SBML and run
+using <a href="http://www.celldesigner.org/">CellDesigner</a>.
+</p>
+
+<img src="/lems/nml2_9a.png">
+<img src="/lems/nml2_9b.png">
+</div>
+</div>

@@ -1,0 +1,197 @@
+
+			
+
+			
+			<!-- MAIN -->
+			<div id="main">
+				<!-- wrapper-main -->
+				<div class="wrapper">
+					
+					<!-- content -->
+					<div id="content">
+						
+						<!-- title -->
+						<div id="page-title">
+							<span class="title">Pynn And NeuroML</span>
+						</div>
+						<!-- ENDS title -->
+						
+<p><a href="http://neuralensemble.org/trac/PyNN">PyNN</a> and NeuroML are independently developed approaches to allow portability of models across simulators.
+    These reflect 2 differing approaches to model specification:
+    <ul>
+        <li><b>Declarative specification:</b> the structure of the model is explicitly specified in a structured model exchange format. XML is well suited as a basis
+            for a language in this format, and is used by NeuroML as well as <a href="http://www.sbml.org">SBML</a> and <a href="http://www.CellML.org">CellML</a>.</li>
+
+        <li><b>Procedural specification:</b> the function calls or procedures for building a model are standardised. This is the case with PyNN, where Python scripts can
+            be used to create simulations on multiple simulators.
+        </li>
+    </ul>
+<br />
+    <p>These approaches are complementary, and a number of options are available to allow interaction between PyNN and model components in NeuroML
+        (in particular <a href="alpha_schema">NeuroML v2.0</a>).
+</p>
+
+<h3> Converting PyNN models to NeuroML 2</h3>
+
+<p><a href="http://neuralensemble.org/trac/PyNN">PyNN</a> is a a Python package for simulator independent
+specification of neuronal network models. Model code can be developed
+using the PyNN API and then run using
+<a href="tool_support#NEURON">NEURON</a>,
+<a href="http://www.nest-initiative.org/index.php/Main_Page">NEST</a>,
+<a href="http://www.sourceforge.net/projects/pcsim">PCSIM</a>,
+ <a href="http://brian.di.ens.fr">Brian</a>
+ or <a href="tool_support#MOOSE">MOOSE</a>, by replacing <p>
+    
+<p class="code">from pyNN.<b>neuron</b> import *<br/><br/><i>...simulator independent Python commands...</i></p>
+
+with
+<p class="code">from pyNN.<b>nest</b> import *<br/><br/><i>...simulator independent Python commands...</i></p>
+
+and so on. There is now an <b>initial implementation</b> which will allow export of the network structure to NeuroML 2 using:
+<p class="code">from pyNN.<b>neuroml2</b> import *<br/><br/><i>...simulator independent Python commands...</i></p>
+
+This functionality is included in the <a href="http://neuralensemble.org/trac/PyNN/browser/branches/0.7">0.7 branch</a> of PyNN. This can be installed with:
+
+<p class="code">svn co https://neuralensemble.org/svn/PyNN/branch/0.7 pyNN<br/>
+cd pyNN<br/>
+sudo python setup.py install
+</p>
+<p>Further details on installing other simulators with PyNN support is outlined <a href="http://neuralensemble.org/trac/PyNN/wiki/Installation">here</a>.</p>
+
+<p>To illustrate this we use one of the <a href="http://neuralensemble.org/trac/PyNN/browser/branches/0.7/examples/IF_cond_exp.py">standard PyNN examples</a> of an Integrate and Fire
+neuron with conductance based synapse:</p>
+
+
+
+<table id="precode"><tr><td width="500">
+<pre>...
+
+ifcell <font color="#000000"><strong>=</strong></font> <font color="#9966ff">create</font><font color="#000000"><strong>(</strong></font>IF_cond_exp, {  <font color="#ff00cc">'</font><font color="#ff00cc">i_offset</font><font color="#ff00cc">'</font> <font color="#006699"><strong>:</strong></font> <font color="#ff0000">0</font>.<font color="#ff0000">1</font>,    <font color="#ff00cc">'</font><font color="#ff00cc">tau_refrac</font><font color="#ff00cc">'</font> <font color="#006699"><strong>:</strong></font> <font color="#ff0000">3</font>.<font color="#ff0000">0</font>,
+                                <font color="#ff00cc">'</font><font color="#ff00cc">v_thresh</font><font color="#ff00cc">'</font> <font color="#006699"><strong>:</strong></font> <font color="#000000"><strong>-</strong></font><font color="#ff0000">51</font>.<font color="#ff0000">0</font>,  <font color="#ff00cc">'</font><font color="#ff00cc">tau_syn_E</font><font color="#ff00cc">'</font>  <font color="#006699"><strong>:</strong></font> <font color="#ff0000">2</font>.<font color="#ff0000">0</font>,
+                                <font color="#ff00cc">'</font><font color="#ff00cc">tau_syn_I</font><font color="#ff00cc">'</font><font color="#006699"><strong>:</strong></font> <font color="#ff0000">5</font>.<font color="#ff0000">0</font>,    <font color="#ff00cc">'</font><font color="#ff00cc">v_reset</font><font color="#ff00cc">'</font>    <font color="#006699"><strong>:</strong></font> <font color="#000000"><strong>-</strong></font><font color="#ff0000">70</font>.<font color="#ff0000">0</font>,
+                                <font color="#ff00cc">'</font><font color="#ff00cc">e_rev_E</font><font color="#ff00cc">'</font>  <font color="#006699"><strong>:</strong></font> <font color="#ff0000">0</font>.,     <font color="#ff00cc">'</font><font color="#ff00cc">e_rev_I</font><font color="#ff00cc">'</font>    <font color="#006699"><strong>:</strong></font> <font color="#000000"><strong>-</strong></font><font color="#ff0000">80</font>.}<font color="#000000"><strong>)</strong></font>
+
+spike_sourceE <font color="#000000"><strong>=</strong></font> <font color="#9966ff">create</font><font color="#000000"><strong>(</strong></font>SpikeSourceArray, {<font color="#ff00cc">'</font><font color="#ff00cc">spike_times</font><font color="#ff00cc">'</font><font color="#006699"><strong>:</strong></font> [<font color="#009966"><strong>float</strong></font><font color="#000000"><strong>(</strong></font>i<font color="#000000"><strong>)</strong></font> <font color="#006699"><strong>for</strong></font> i <font color="#006699"><strong>in</strong></font> <font color="#009966"><strong>range</strong></font><font color="#000000"><strong>(</strong></font><font color="#ff0000">5</font>,<font color="#ff0000">105</font>,<font color="#ff0000">10</font><font color="#000000"><strong>)</strong></font>]}<font color="#000000"><strong>)</strong></font>
+spike_sourceI <font color="#000000"><strong>=</strong></font> <font color="#9966ff">create</font><font color="#000000"><strong>(</strong></font>SpikeSourceArray, {<font color="#ff00cc">'</font><font color="#ff00cc">spike_times</font><font color="#ff00cc">'</font><font color="#006699"><strong>:</strong></font> [<font color="#009966"><strong>float</strong></font><font color="#000000"><strong>(</strong></font>i<font color="#000000"><strong>)</strong></font> <font color="#006699"><strong>for</strong></font> i <font color="#006699"><strong>in</strong></font> <font color="#009966"><strong>range</strong></font><font color="#000000"><strong>(</strong></font><font color="#ff0000">155</font>,<font color="#ff0000">255</font>,<font color="#ff0000">10</font><font color="#000000"><strong>)</strong></font>]}<font color="#000000"><strong>)</strong></font>
+
+connE <font color="#000000"><strong>=</strong></font> <font color="#9966ff">connect</font><font color="#000000"><strong>(</strong></font>spike_sourceE, ifcell, weight<font color="#000000"><strong>=</strong></font><font color="#ff0000">0</font>.<font color="#ff0000">006</font>, synapse_type<font color="#000000"><strong>=</strong></font><font color="#ff00cc">'</font><font color="#ff00cc">excitatory</font><font color="#ff00cc">'</font>,delay<font color="#000000"><strong>=</strong></font><font color="#ff0000">2</font>.<font color="#ff0000">0</font><font color="#000000"><strong>)</strong></font>
+connI <font color="#000000"><strong>=</strong></font> <font color="#9966ff">connect</font><font color="#000000"><strong>(</strong></font>spike_sourceI, ifcell, weight<font color="#000000"><strong>=</strong></font><font color="#ff0000">0</font>.<font color="#ff0000">02</font>, synapse_type <font color="#000000"><strong>=</strong></font><font color="#ff00cc">'</font><font color="#ff00cc">inhibitory</font><font color="#ff00cc">'</font>,delay<font color="#000000"><strong>=</strong></font><font color="#ff0000">4</font>.<font color="#ff0000">0</font><font color="#000000"><strong>)</strong></font>
+
+...</pre>
+</td></tr></table>
+<br/>
+This can be translated into the equivalent NeuroML 2 version of the file using:
+
+<p class="code">python IF_cond_exp.py neuroml2</p>
+
+The output of this (<b>PyNN2NeuroMLv2.nml</b>) is shown below. Note that all cell parameters, including those like cm that have the default value and are omitted above, are included:
+<br/>
+<br/>
+
+
+<table id="precode"><tr><td>
+<pre><font color="#000000"><font color="#0099ff"><strong>&lt;?</strong></font><font color="#0099ff"><strong>xml</strong></font><font color="#0099ff"><strong> </strong></font><font color="#0099ff"><strong>version=&quot;1.0&quot;</strong></font><font color="#0099ff"><strong> </strong></font><font color="#0099ff"><strong>?</strong></font><font color="#0099ff"><strong>&gt;</strong></font>
+<font color="#0000ff">&lt;</font><font color="#0000ff">neuroml</font><font color="#0000ff"> </font><font color="#0000ff">id</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">PyNN2NeuroMLv2</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font>
+   <font color="#0000ff">xmlns</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">http:///schema/neuroml2</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font>
+   <font color="#02b902">xmlns</font><font color="#000000"><strong>:</strong></font><font color="#0000ff">xsi</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">http://www.w3.org/2001/XMLSchema-instance</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font>
+   <font color="#02b902">xsi</font><font color="#000000"><strong>:</strong></font><font color="#0000ff">schemaLocation</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">http:///schema/neuroml2</font><font color="#ff00cc"> </font>
+   <font color="#ff00cc">http://neuroml.svn.sourceforge.net/viewvc/neuroml/NeuroML2/Schemas/NeuroML2/NeuroML_v2alpha.xsd</font><font color="#ff00cc">&quot;</font><font color="#0000ff">&gt;</font>
+
+         <font color="#0000ff">&lt;</font><font color="#0000ff">IF_cond_exp</font><font color="#0000ff"> </font><font color="#0000ff">cm</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">1.0</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font><font color="#0000ff">e_rev_E</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">0.0</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font><font color="#0000ff">e_rev_I</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">-80.0</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font><font color="#0000ff">i_offset</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">0.1</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font><font color="#0000ff">id</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">cell_population0</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font>
+               <font color="#0000ff">tau_m</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">20.0</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font><font color="#0000ff">tau_refrac</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">3.0</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font><font color="#0000ff">tau_syn_E</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">2.0</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font><font color="#0000ff">tau_syn_I</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">5.0</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font><font color="#0000ff">v_init</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">-65</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font>
+               <font color="#0000ff">v_reset</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">-70.0</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font> <font color="#0000ff">v_rest</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">-65.0</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font><font color="#0000ff">v_thresh</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">-51.0</font><font color="#ff00cc">&quot;</font><font color="#0000ff">&gt;</font>
+                <font color="#0000ff">&lt;</font><font color="#0000ff">notes</font><font color="#0000ff">&gt;</font>
+                        Component for PyNN IF_cond_exp cell type
+                <font color="#0000ff">&lt;</font><font color="#0000ff">/</font><font color="#0000ff">notes</font><font color="#0000ff">&gt;</font>
+        <font color="#0000ff">&lt;</font><font color="#0000ff">/</font><font color="#0000ff">IF_cond_exp</font><font color="#0000ff">&gt;</font>
+        <font color="#0000ff">&lt;</font><font color="#0000ff">expCondSynapse</font><font color="#0000ff"> </font><font color="#0000ff">e_rev</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">0.0</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font><font color="#0000ff">id</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">syn_e_cell_population0</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font><font color="#0000ff">tau_syn</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">2.0</font><font color="#ff00cc">&quot;</font><font color="#0000ff">/</font><font color="#0000ff">&gt;</font>
+        <font color="#0000ff">&lt;</font><font color="#0000ff">expCondSynapse</font><font color="#0000ff"> </font><font color="#0000ff">e_rev</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">-80.0</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font><font color="#0000ff">id</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">syn_i_cell_population0</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font><font color="#0000ff">tau_syn</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">5.0</font><font color="#ff00cc">&quot;</font><font color="#0000ff">/</font><font color="#0000ff">&gt;</font>
+        <font color="#0000ff">&lt;</font><font color="#0000ff">spikeArray</font><font color="#0000ff"> </font><font color="#0000ff">id</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">cell_population1</font><font color="#ff00cc">&quot;</font><font color="#0000ff">&gt;</font>
+                <font color="#0000ff">&lt;</font><font color="#0000ff">spike</font><font color="#0000ff"> </font><font color="#0000ff">time</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">5.000000ms</font><font color="#ff00cc">&quot;</font><font color="#0000ff">/</font><font color="#0000ff">&gt;</font>
+                <font color="#0000ff">&lt;</font><font color="#0000ff">spike</font><font color="#0000ff"> </font><font color="#0000ff">time</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">15.000000ms</font><font color="#ff00cc">&quot;</font><font color="#0000ff">/</font><font color="#0000ff">&gt;</font>
+                <font color="#0000ff">&lt;</font><font color="#0000ff">spike</font><font color="#0000ff"> </font><font color="#0000ff">time</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">25.000000ms</font><font color="#ff00cc">&quot;</font><font color="#0000ff">/</font><font color="#0000ff">&gt;</font>
+                <font color="#0000ff">&lt;</font><font color="#0000ff">spike</font><font color="#0000ff"> </font><font color="#0000ff">time</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">35.000000ms</font><font color="#ff00cc">&quot;</font><font color="#0000ff">/</font><font color="#0000ff">&gt;</font>
+                <font color="#0000ff">&lt;</font><font color="#0000ff">spike</font><font color="#0000ff"> </font><font color="#0000ff">time</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">45.000000ms</font><font color="#ff00cc">&quot;</font><font color="#0000ff">/</font><font color="#0000ff">&gt;</font>
+                <font color="#0000ff">&lt;</font><font color="#0000ff">spike</font><font color="#0000ff"> </font><font color="#0000ff">time</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">55.000000ms</font><font color="#ff00cc">&quot;</font><font color="#0000ff">/</font><font color="#0000ff">&gt;</font>
+                <font color="#0000ff">&lt;</font><font color="#0000ff">spike</font><font color="#0000ff"> </font><font color="#0000ff">time</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">65.000000ms</font><font color="#ff00cc">&quot;</font><font color="#0000ff">/</font><font color="#0000ff">&gt;</font>
+                <font color="#0000ff">&lt;</font><font color="#0000ff">spike</font><font color="#0000ff"> </font><font color="#0000ff">time</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">75.000000ms</font><font color="#ff00cc">&quot;</font><font color="#0000ff">/</font><font color="#0000ff">&gt;</font>
+                <font color="#0000ff">&lt;</font><font color="#0000ff">spike</font><font color="#0000ff"> </font><font color="#0000ff">time</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">85.000000ms</font><font color="#ff00cc">&quot;</font><font color="#0000ff">/</font><font color="#0000ff">&gt;</font>
+                <font color="#0000ff">&lt;</font><font color="#0000ff">spike</font><font color="#0000ff"> </font><font color="#0000ff">time</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">95.000000ms</font><font color="#ff00cc">&quot;</font><font color="#0000ff">/</font><font color="#0000ff">&gt;</font>
+        <font color="#0000ff">&lt;</font><font color="#0000ff">/</font><font color="#0000ff">spikeArray</font><font color="#0000ff">&gt;</font>
+        <font color="#0000ff">&lt;</font><font color="#0000ff">spikeArray</font><font color="#0000ff"> </font><font color="#0000ff">id</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">cell_population2</font><font color="#ff00cc">&quot;</font><font color="#0000ff">&gt;</font>
+                <font color="#0000ff">&lt;</font><font color="#0000ff">spike</font><font color="#0000ff"> </font><font color="#0000ff">time</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">155.000000ms</font><font color="#ff00cc">&quot;</font><font color="#0000ff">/</font><font color="#0000ff">&gt;</font>
+                <font color="#0000ff">&lt;</font><font color="#0000ff">spike</font><font color="#0000ff"> </font><font color="#0000ff">time</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">165.000000ms</font><font color="#ff00cc">&quot;</font><font color="#0000ff">/</font><font color="#0000ff">&gt;</font>
+                <font color="#0000ff">&lt;</font><font color="#0000ff">spike</font><font color="#0000ff"> </font><font color="#0000ff">time</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">175.000000ms</font><font color="#ff00cc">&quot;</font><font color="#0000ff">/</font><font color="#0000ff">&gt;</font>
+                <font color="#0000ff">&lt;</font><font color="#0000ff">spike</font><font color="#0000ff"> </font><font color="#0000ff">time</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">185.000000ms</font><font color="#ff00cc">&quot;</font><font color="#0000ff">/</font><font color="#0000ff">&gt;</font>
+                <font color="#0000ff">&lt;</font><font color="#0000ff">spike</font><font color="#0000ff"> </font><font color="#0000ff">time</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">195.000000ms</font><font color="#ff00cc">&quot;</font><font color="#0000ff">/</font><font color="#0000ff">&gt;</font>
+                <font color="#0000ff">&lt;</font><font color="#0000ff">spike</font><font color="#0000ff"> </font><font color="#0000ff">time</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">205.000000ms</font><font color="#ff00cc">&quot;</font><font color="#0000ff">/</font><font color="#0000ff">&gt;</font>
+                <font color="#0000ff">&lt;</font><font color="#0000ff">spike</font><font color="#0000ff"> </font><font color="#0000ff">time</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">215.000000ms</font><font color="#ff00cc">&quot;</font><font color="#0000ff">/</font><font color="#0000ff">&gt;</font>
+                <font color="#0000ff">&lt;</font><font color="#0000ff">spike</font><font color="#0000ff"> </font><font color="#0000ff">time</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">225.000000ms</font><font color="#ff00cc">&quot;</font><font color="#0000ff">/</font><font color="#0000ff">&gt;</font>
+                <font color="#0000ff">&lt;</font><font color="#0000ff">spike</font><font color="#0000ff"> </font><font color="#0000ff">time</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">235.000000ms</font><font color="#ff00cc">&quot;</font><font color="#0000ff">/</font><font color="#0000ff">&gt;</font>
+                <font color="#0000ff">&lt;</font><font color="#0000ff">spike</font><font color="#0000ff"> </font><font color="#0000ff">time</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">245.000000ms</font><font color="#ff00cc">&quot;</font><font color="#0000ff">/</font><font color="#0000ff">&gt;</font>
+        <font color="#0000ff">&lt;</font><font color="#0000ff">/</font><font color="#0000ff">spikeArray</font><font color="#0000ff">&gt;</font>
+        <font color="#0000ff">&lt;</font><font color="#0000ff">network</font><font color="#0000ff"> </font><font color="#0000ff">id</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">network_PyNN2NeuroMLv2</font><font color="#ff00cc">&quot;</font><font color="#0000ff">&gt;</font>
+                <font color="#0000ff">&lt;</font><font color="#0000ff">population</font><font color="#0000ff"> </font><font color="#0000ff">component</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">cell_population0</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font><font color="#0000ff">id</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">population0</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font><font color="#0000ff">size</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">1</font><font color="#ff00cc">&quot;</font><font color="#0000ff">/</font><font color="#0000ff">&gt;</font>
+                <font color="#0000ff">&lt;</font><font color="#0000ff">population</font><font color="#0000ff"> </font><font color="#0000ff">component</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">cell_population1</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font><font color="#0000ff">id</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">population1</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font><font color="#0000ff">size</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">1</font><font color="#ff00cc">&quot;</font><font color="#0000ff">/</font><font color="#0000ff">&gt;</font>
+                <font color="#0000ff">&lt;</font><font color="#0000ff">population</font><font color="#0000ff"> </font><font color="#0000ff">component</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">cell_population2</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font><font color="#0000ff">id</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">population2</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font><font color="#0000ff">size</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">1</font><font color="#ff00cc">&quot;</font><font color="#0000ff">/</font><font color="#0000ff">&gt;</font>
+                <font color="#0000ff">&lt;</font><font color="#0000ff">synapticConnectionWD</font><font color="#0000ff"> </font><font color="#0000ff">delay</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">2.0ms</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font><font color="#0000ff">from</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">population1[0]</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font>
+                    <font color="#0000ff">synapse</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">syn_e_cell_population0</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font><font color="#0000ff">to</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">population0[0]</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font><font color="#0000ff">weight</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">0.006</font><font color="#ff00cc">&quot;</font><font color="#0000ff">/</font><font color="#0000ff">&gt;</font>
+                <font color="#0000ff">&lt;</font><font color="#0000ff">synapticConnectionWD</font><font color="#0000ff"> </font><font color="#0000ff">delay</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">4.0ms</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font><font color="#0000ff">from</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">population2[0]</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font>
+                    <font color="#0000ff">synapse</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">syn_i_cell_population0</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font><font color="#0000ff">to</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">population0[0]</font><font color="#ff00cc">&quot;</font><font color="#0000ff"> </font><font color="#0000ff">weight</font><font color="#0000ff">=</font><font color="#ff00cc">&quot;</font><font color="#ff00cc">0.02</font><font color="#ff00cc">&quot;</font><font color="#0000ff">/</font><font color="#0000ff">&gt;</font>
+        <font color="#0000ff">&lt;</font><font color="#0000ff">/</font><font color="#0000ff">network</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#0000ff">/</font><font color="#0000ff">neuroml</font><font color="#0000ff">&gt;</font>
+</font></pre></td></tr></table>
+<br/>
+
+<p>Also produced is a short script in LEMS (<b>LEMS_PyNN2NeuroMLv2.xml</b>) which allows a simulation of the network to be run in a LEMS compliant application
+    (e.g. the <a href="libnml">LEMS Reference Implementation with NeueoML 2 ComponentType definitions</a>).</p>
+
+<p class="code">nml2 LEMS_PyNN2NeuroMLv2.xml</p>
+
+
+<p>Below shows a <a href="http://sourceforge.net/apps/trac/neuroml/browser/NeuroML2/exportImportUtils/PyNN/NeuroMLTest.py">number of cells in a PyNN script</a>
+    simulated in NEST (top plots), and the exported to NeuroML 2/LEMS and simulated using the LEMS Reference Implementation (bottom plots):</p>
+
+<img src="images/pynnlems.png"
+                    alt="PyNN script run on NEST and converted for use in LEMS" />
+
+<br>
+This functionality is possible since the dynamical behaviour of the <a href="http://neuralensemble.org/trac/PyNN/wiki/StandardModels">standard PyNN neuron models</a> has been
+described in LEMS, see <a href="https://sourceforge.net/apps/trac/neuroml/browser/NeuroML2/NeuroML2CoreTypes/PyNN.xml">NeuroML2CoreTypes/PyNN.xml</a> for more detail.
+<br /><br />
+
+<h4>Limitations</h4>
+This functionality is still in development. Key issues at the moment include:
+
+<ul class="bluebullets"><li>Changes to the parameters of individual instances of cells in a network are not reflected in the exported NeuroML 2, i.e. all elements of the population have the same parameters</li>
+    <li>Need to implement: DCSource, StepCurrentSource, ACSource, NoisyCurrentSource</li>
+    <li>Synapse dynamics (e.g. STDP) not yet implemented</li>
+</ul>
+<br />
+    
+
+<h3> Converting NeuroML 2 models to PyNN</h3>
+<p>The key issue here is that NeuroML 2 can describe a much wider range of cell models than the <a href="http://neuralensemble.org/trac/PyNN/wiki/StandardModels">standard PyNN neuron models</a>.</p>
+
+<p>The solution will be to generate code for, or natively interact with, each simulator to instantiate the cell models on that simulator.
+This is possible to a certain extent already with NEURON as the <a href="compatibility#NEURON">example here shows</a>. </p>
+
+<p>There is also a <a href="http://sourceforge.net/apps/trac/neuroml/browser/NeuroML2/python/examples/testBrianReadNML2.py">preliminary implementation</a> which uses libNeuroML to
+    load cells in NeuroML 2 (and their behaviour definitions in LEMS) and generate NeuronGroup descriptions in <a href="http://brian.di.ens.fr">Brian</a>
+    to allow simulations in that simulator.</p>
+
+<br>
+						
+						
+								<div class="clear"></div>
+						<!-- ENDS project column (right) -->
+						
+						
+					</div>
+					<!-- ENDS content -->
+
+				</div>
+				<!-- ENDS wrapper-main -->
+			</div>
+			<!-- ENDS MAIN -->
+			

@@ -1,0 +1,53 @@
+{
+  VALUES ?end1id
+	{
+    [End1Ids]
+	}
+
+	VALUES ?end2id
+	{
+    [End2Ids]
+	}
+
+  ?end1 property:Id ?end1id.
+	?end2 property:Id ?end2id.
+
+  {
+    ?gapObject
+    (
+      property:Located_in |
+      property:Neurotransmitter
+    )
+    ?end1.
+
+    ?gapObject
+    (
+      property:Located_in |
+      property:Neurotransmitter
+    )
+    ?end2.
+
+    ?gapObject ?relationship1fwd ?end1.
+	  ?gapObject ?relationship2fwd ?end2.
+  }
+  UNION
+  {
+    ?end1
+    (
+      property:Located_in |
+      property:Neurotransmitter
+    )
+    ?gapObject.
+
+    ?end2
+    (
+      property:Located_in |
+      property:Neurotransmitter
+    )
+    ?gapObject.
+
+	  ?end1 ?relationship1back ?gapObject.
+	  ?end2 ?relationship2back ?gapObject.
+  }
+}
+#UNION

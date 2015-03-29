@@ -178,26 +178,19 @@ class WelcomeController < ApplicationController
         ala     =AuthorListAssociation.new
         authlist.each do |ala|
           translator=ala.is_translator.to_s
-          if translator == "0"
-            auth_name =String.new
-            personname=Person.find_by_Person_ID(ala.Person_ID)
-            auth_name = personname.Person_First_Name.to_s + " " +personname.Person_Middle_Name.to_s + " " + personname.Person_Last_Name.to_s
-            @auth_list.push(auth_name)
 
-#@auth_list.push(ala.Person_ID)
-          elsif translator == "1"
-            auth_name =String.new
-            personname=Person.find_by_Person_ID(ala.Person_ID)
-            auth_name = personname.Person_First_Name.to_s + " " +personname.Person_Middle_Name.to_s + " " + personname.Person_Last_Name.to_s
-            @trans_list.push(auth_name)
-          else
-            auth_name =String.new
-            personname=Person.find_by_Person_ID(ala.Person_ID)
-            auth_name = personname.Person_First_Name.to_s + " " +personname.Person_Middle_Name.to_s + " " + personname.Person_Last_Name.to_s
-            @auth_list.push(auth_name)
-#@trans_list.push(auth_name)
+          auth_name =String.new
+          personname=Person.find_by_Person_ID(ala.Person_ID)
+          auth_name = personname.Person_First_Name.to_s + " " +personname.Person_Middle_Name.to_s + " " + personname.Person_Last_Name.to_s
 
+          if translator == "0" || translator == "2"
+            @auth_list.push(auth_name)
           end
+
+          if translator == "1" || translator == "2"
+            @trans_list.push(auth_name)
+          end
+
         end
       end
     end
@@ -409,26 +402,19 @@ class WelcomeController < ApplicationController
         ala     =AuthorListAssociation.new
         authlist.each do |ala|
           translator=ala.is_translator.to_s
-          if translator == "0"
-            auth_name =String.new
-            personname=Person.find_by_Person_ID(ala.Person_ID)
-            auth_name = personname.Person_First_Name.to_s + " " +personname.Person_Middle_Name.to_s + " " + personname.Person_Last_Name.to_s
-            @auth_list.push(auth_name)
 
-#@auth_list.push(ala.Person_ID)
-          elsif translator == "1"
-            auth_name =String.new
-            personname=Person.find_by_Person_ID(ala.Person_ID)
-            auth_name = personname.Person_First_Name.to_s + " " +personname.Person_Middle_Name.to_s + " " + personname.Person_Last_Name.to_s
-            @trans_list.push(auth_name)
-          else
-            auth_name =String.new
-            personname=Person.find_by_Person_ID(ala.Person_ID)
-            auth_name = personname.Person_First_Name.to_s + " " +personname.Person_Middle_Name.to_s + " " + personname.Person_Last_Name.to_s
-            @auth_list.push(auth_name)
-#@trans_list.push(auth_name)
+          auth_name =String.new
+          personname=Person.find_by_Person_ID(ala.Person_ID)
+          auth_name = personname.Person_First_Name.to_s + " " +personname.Person_Middle_Name.to_s + " " + personname.Person_Last_Name.to_s
 
+          if translator == "0" || translator == "2"
+            @auth_list.push(auth_name)
           end
+
+          if translator == "1" || translator == "2"
+            @trans_list.push(auth_name)
+          end
+
         end
       end
     end
@@ -456,7 +442,8 @@ class WelcomeController < ApplicationController
 #============================== Python Search
   def search_python
 
-    search_text=params[:q]
+    search_text = params[:q].gsub('"','\"')
+
     @resultset =`/usr/bin/python /home/neuromine/Neurolex_py/pseudo_main.py #{search_text}`
 
     if @resultset.to_s.length == 0
@@ -571,7 +558,8 @@ class WelcomeController < ApplicationController
                  :ont_names => @ont_names,
                  :ont_types => @ont_types,
                  :ont_relations => @ont_relations,
-                 :result_hash => @result_hash
+                 :result_hash => @result_hash,
+                 :query => search_text,
              }
     else
       render :partial => 'no_results'
