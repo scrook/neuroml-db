@@ -16,8 +16,6 @@ class SearchModule:
 
         results = SearchResults()
 
-        results.Query = query
-
         # Parse query, get close matches, and their NLX uris
         results.Keywords = self.Parser.ParseQuery(query)
 

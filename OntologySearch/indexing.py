@@ -1,3 +1,5 @@
+import os
+
 def build_index():
 
     f_index = open("indexing_file")

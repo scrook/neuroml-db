@@ -155,7 +155,7 @@ class WelcomeController < ApplicationController
       end
 
       if substring2 == "500"
-        ref                          =Reference.find_by_Reference_ID(@metadata_id)
+        ref                          =Refer.find_by_Reference_ID(@metadata_id)
         @ref_list[ref.Reference_URI] = ref.Reference_Resource
       end
 
@@ -206,14 +206,6 @@ class WelcomeController < ApplicationController
 #@res=`/usr/bin/python /home/neuromine/NeuroML2_To_HTML/convert.py #{@file} > /home/neuromine/newred_dbsrch/public/NeuroML2_To_HTML/#{@destinationFile}`
     end
     render :partial => "show_model_nif"
-  end
-
-
-  def render_xml_file
-    filename=params[:file].to_s
-#render :file=>filename, :content_type => 'application/xml'
-#render :text => @template.h(File.read(filename))
-    render :text => File.read(filename), :content_type => 'application/xml'
   end
 
   def submission
@@ -380,7 +372,7 @@ class WelcomeController < ApplicationController
       end
 
       if substring2 == "500"
-        ref                          =Reference.find_by_Reference_ID(@metadata_id)
+        ref                          =Refer.find_by_Reference_ID(@metadata_id)
         @ref_list[ref.Reference_URI] = ref.Reference_Resource
 
         @resources.push(Resource.find_by_ID(ref.Reference_Resource_ID))
@@ -447,7 +439,7 @@ class WelcomeController < ApplicationController
 
     search_text = params[:q].gsub('"','\"')
 
-    @resultset =`/usr/bin/python /home/neuromine/Neurolex_py/pseudo_main.py #{search_text}`
+    @resultset =`/usr/bin/python /var/www/neuroml-db.org_ontology/main.py #{search_text}`
 
     if @resultset.to_s.length == 0
       render :partial => 'no_results' and return

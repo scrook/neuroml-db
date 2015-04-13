@@ -25,7 +25,8 @@ RedmineApp::Application.routes.draw do
   match 'lems', :to => 'welcome#lems', :as => 'lems'
   match 'relevant_publications', :to => 'welcome#relevant_publications', :as => 'relevant_publications'
   match 'workshops', :to => 'welcome#workshops', :as => 'workshops'
-  match 'render_xml_file', :to => 'welcome#render_xml_file', :as => 'render_xml_file'  
+  match 'render_xml_file', :to => 'xml#render_xml_file', :as => 'render_xml_file'
+  match 'render_xml_as_html', :to => 'xml#render_xml_as_html', :as => 'render_xml_as_html'
   match 'tool_support', :to => 'welcome#tool_support', :as => 'tool_support'
   match 'validate', :to => 'welcome#validate', :as => 'validate'
   match 'neuron_tools', :to => 'welcome#neuron_tools', :as => 'neuron_tools'
@@ -44,6 +45,7 @@ RedmineApp::Application.routes.draw do
   match 'submission_error' , :to => 'welcome#submission_error', :as => 'submission_error'
 
   match 'performance_test', :to => 'testing#performance_test', :as => 'performance_test'
+  match 'GetModelZip', :to => 'model#GetModelZip', :as => 'GetModelZip'
 
   match 'history', :to => 'welcome#history', :as => 'history'
   match 'scientific_committee', :to => 'welcome#scientific_committee', :as => 'scientific_committee'

@@ -56,11 +56,11 @@ class SPARQLDB:
         #   "Data" ~/fuseki/Data is where db files are stored
         #   "/NeuroMLOntology" the name of the ontology DB
 
-        os.putenv("FUSEKI_HOME", "/home/neuromine/fuseki")
+        os.putenv("FUSEKI_HOME", "/opt/fuseki")
 
         subprocess.Popen([
-            "/home/neuromine/fuseki/fuseki-server",
-            "--loc=/home/neuromine/fuseki/Data",
+            "/opt/fuseki/fuseki-server",
+            "--loc=/opt/fuseki/Data",
             "/NeuroMLOntology",
         ])
 
