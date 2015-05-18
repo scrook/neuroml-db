@@ -375,7 +375,7 @@ class WelcomeController < ApplicationController
         ref                          =Refer.find_by_Reference_ID(@metadata_id)
         @ref_list[ref.Reference_URI] = ref.Reference_Resource
 
-        @resources.push(Resource.find_by_ID(ref.Reference_Resource_ID))
+        @resources.push(Resource.find_by_Resource_ID(ref.Reference_Resource_ID))
       end
 
       if substring2 == "400"
