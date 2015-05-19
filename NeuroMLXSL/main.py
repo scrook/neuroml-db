@@ -4,7 +4,7 @@ import sys
 def main():
 
     xml = ET.parse(sys.argv[1])
-    xslt = ET.parse("/var/www/NeuroMLXSL/XSL/NeuroML_Level2_v1.8.1_HTML.xsl")
+    xslt = ET.parse("/var/www/NeuroMLXSL/XSL/NeuroML_Level3_v1.8.1_HTML.xsl")
     transform = ET.XSLT(xslt)
     html = transform(xml)
     print(html)
