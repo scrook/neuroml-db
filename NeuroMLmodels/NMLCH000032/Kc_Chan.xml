@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<channelml xmlns="http://morphml.org/channelml/schema" 
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+           xmlns:meta="http://morphml.org/metadata/schema" 
+           xsi:schemaLocation="http://morphml.org/channelml/schema  http://localhost:8084/NeuroMLValidator/NeuroMLFiles/Schemata/v1.7.1/Level2/ChannelML_v1.7.1.xsd" 
+           units="Physiological Units">
+
+
+     <ion name="k" charge="1" default_erev="-85" role="PermeatedSubstance">   
+        <meta:notes>The ion which actually flows through the channel</meta:notes>
+    </ion>
+    <ion name="ca" charge="2" role="ModulatingSubstance">
+        <meta:notes>The channel's conductance of K is dependent on this ion's concentration</meta:notes>
+    </ion>
+
+
+
+    <channel_type name="KC" density="yes">
+        
+        <status value="in_progress">
+            <meta:comment>Getting there...</meta:comment>
+            <meta:contributor>
+                <meta:name>Padraig Gleeson</meta:name>
+            </meta:contributor>
+        </status>
+        
+        
+        <meta:notes>Ca2+ dependent K current. Based on Roth et al's reimplementation of original GENESIS model in NEURON</meta:notes>
+
+    
+
+        <current_voltage_relation>
+            <ohmic ion="k">
+                <conductance default_gmax="80">                  
+                
+		            <gate power="1">
+                        <state name="m" fraction="1"/>
+                    </gate>
+                   
+                    <gate power="2">
+                        <state name="z" fraction="1"/>
+                    </gate>
+
+                </conductance>
+            </ohmic>
+        </current_voltage_relation>
+        
+            
+        <hh_gate state="m">
+            <transition>
+                <voltage_conc_gate>
+                    <conc_dependence name="Calcium" ion="ca" variable_name="ca_conc_m" min_conc="0" max_conc="0.050"/>
+                    <alpha>
+                        <generic_equation_hh expr="7.5"/>
+                    </alpha>
+                    <beta>
+                        <parameterised_hh type="exponential">
+                            <parameter name="A" value="0.11"/>
+                            <parameter name="k" value="-0.06711409"/>
+                            <parameter name="d" value="35"/>
+                        </parameterised_hh>
+                    </beta> 
+                </voltage_conc_gate>
+            </transition>
+        </hh_gate>
+        
+        
+        
+        <hh_gate state="z">
+            <transition>
+                <voltage_conc_gate>
+                    <conc_dependence name="Calcium" ion="ca" variable_name="ca_conc_z" min_conc="0" max_conc="1e-8"/>
+                    <alpha>
+                    
+                        <generic_equation_hh expr="4/( (ca_conc_z*1e6) *1000)"/>  <!-- ...ideally...  -->
+                        
+                     <!--   <generic_equation_hh expr="4/( ( floor(((ca_conc_z*1e6) - 4e-5)/9.9986667e-5)*9.9986667e-5 + 4e-5) *1000)"/>   With fix -->
+                        
+                    </alpha>
+                    <beta>
+                        <generic_equation_hh expr="1"/>
+                    </beta>         
+                    <tau>
+                        <generic_equation_hh expr="10"/>
+                    </tau>
+                    <inf>
+                        <generic_equation_hh expr="1/(1 + alpha)"/>
+                    </inf>                           
+                </voltage_conc_gate>
+            </transition>
+        </hh_gate>
+       
+             
+             
+        <impl_prefs>
+            <comment>Using the NEURON mod file impl settings to get a closer match</comment>
+            <table_settings max_v="100" min_v="-100" table_divisions="200"/>
+        </impl_prefs>
+        
+    </channel_type>
+</channelml>
