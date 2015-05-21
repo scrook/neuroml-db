@@ -1,0 +1,2704 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<networkml xmlns="http://morphml.org/networkml/schema" xmlns:meta="http://morphml.org/metadata/schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://morphml.org/networkml/schema  http://www.neuroml.org/NeuroMLValidator/NeuroMLFiles/Schemata/v1.8.1/Level3/NetworkML_v1.8.1.xsd" lengthUnits="micrometer">
+
+    <meta:notes>
+
+Network structure (NeuroML 1.x) for project: GranCellLayer saved with neuroConstruct v1.7.1 on: 11:20:43, 18-Jul-14
+
+Cell Group: Golgis contains 4 cells
+Cell Group: Grans contains 75 cells
+Cell Group: Mossies contains 12 cells
+
+Network connection: NetConn_Golgis_Grans contains 75 individual synaptic connections
+Network connection: NetConn_Mossies_Grans contains 300 individual synaptic connections
+Network connection: NetConn_Grans_Golgis contains 300 individual synaptic connections
+
+
+    </meta:notes>
+
+<meta:properties>
+    <meta:property tag="neuroConstruct_random_seed" value="1234"/>
+
+    <meta:property tag="neuroConstruct_sim_config" value="Default Simulation Configuration"/>
+
+    <meta:property tag="neuroConstruct_sim_duration" value="500.0"/>
+
+    <meta:property tag="neuroConstruct_sim_time_step" value="0.01"/>
+
+    <meta:property tag="neuroConstruct_temperature" value="32.0"/>
+</meta:properties>
+
+        <populations>
+    <population name="Golgis" cell_type="Golgi_98">
+        <meta:properties>
+            <meta:property tag="color" value="0.65234375 0.5078125 0.84375"/>
+        </meta:properties>
+        <instances size="4">
+            <instance id="0">
+                <location x="0.0" y="100.0" z="0.0"/>
+            </instance>
+            <instance id="1">
+                <location x="300.0" y="100.0" z="0.0"/>
+            </instance>
+            <instance id="2">
+                <location x="600.0" y="100.0" z="0.0"/>
+            </instance>
+            <instance id="3">
+                <location x="900.0" y="100.0" z="0.0"/>
+            </instance>
+        </instances>
+    </population>
+    <population name="Grans" cell_type="Granule_98">
+        <meta:properties>
+            <meta:property tag="color" value="0.59765625 0.3984375 0.0"/>
+        </meta:properties>
+        <instances size="75">
+            <instance id="0">
+                <location x="0.0" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="1">
+                <location x="12.162162" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="2">
+                <location x="24.324324" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="3">
+                <location x="36.486485" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="4">
+                <location x="48.648647" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="5">
+                <location x="60.81081" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="6">
+                <location x="72.97297" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="7">
+                <location x="85.13513" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="8">
+                <location x="97.297295" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="9">
+                <location x="109.45946" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="10">
+                <location x="121.62162" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="11">
+                <location x="133.78378" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="12">
+                <location x="145.94594" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="13">
+                <location x="158.10811" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="14">
+                <location x="170.27026" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="15">
+                <location x="182.43243" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="16">
+                <location x="194.59459" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="17">
+                <location x="206.75674" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="18">
+                <location x="218.91891" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="19">
+                <location x="231.08107" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="20">
+                <location x="243.24324" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="21">
+                <location x="255.4054" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="22">
+                <location x="267.56757" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="23">
+                <location x="279.72974" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="24">
+                <location x="291.89188" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="25">
+                <location x="304.05405" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="26">
+                <location x="316.21622" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="27">
+                <location x="328.37836" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="28">
+                <location x="340.54053" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="29">
+                <location x="352.7027" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="30">
+                <location x="364.86487" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="31">
+                <location x="377.027" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="32">
+                <location x="389.18918" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="33">
+                <location x="401.35135" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="34">
+                <location x="413.5135" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="35">
+                <location x="425.67566" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="36">
+                <location x="437.83783" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="37">
+                <location x="450.0" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="38">
+                <location x="462.16214" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="39">
+                <location x="474.3243" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="40">
+                <location x="486.48648" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="41">
+                <location x="498.64862" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="42">
+                <location x="510.8108" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="43">
+                <location x="522.97296" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="44">
+                <location x="535.13513" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="45">
+                <location x="547.2973" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="46">
+                <location x="559.4595" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="47">
+                <location x="571.6216" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="48">
+                <location x="583.78375" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="49">
+                <location x="595.9459" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="50">
+                <location x="608.1081" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="51">
+                <location x="620.27026" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="52">
+                <location x="632.43243" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="53">
+                <location x="644.5946" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="54">
+                <location x="656.7567" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="55">
+                <location x="668.9189" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="56">
+                <location x="681.08105" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="57">
+                <location x="693.2432" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="58">
+                <location x="705.4054" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="59">
+                <location x="717.56757" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="60">
+                <location x="729.72974" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="61">
+                <location x="741.89185" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="62">
+                <location x="754.054" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="63">
+                <location x="766.2162" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="64">
+                <location x="778.37836" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="65">
+                <location x="790.5405" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="66">
+                <location x="802.7027" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="67">
+                <location x="814.86487" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="68">
+                <location x="827.027" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="69">
+                <location x="839.18915" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="70">
+                <location x="851.3513" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="71">
+                <location x="863.5135" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="72">
+                <location x="875.67566" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="73">
+                <location x="887.8378" y="50.0" z="0.0"/>
+            </instance>
+            <instance id="74">
+                <location x="900.0" y="50.0" z="0.0"/>
+            </instance>
+        </instances>
+    </population>
+    <population name="Mossies" cell_type="MossyFiber">
+        <meta:properties>
+            <meta:property tag="color" value="0.19921875 0.59765625 0.99609375"/>
+        </meta:properties>
+        <instances size="12">
+            <instance id="0">
+                <location x="0.0" y="0.0" z="0.0"/>
+            </instance>
+            <instance id="1">
+                <location x="81.818184" y="0.0" z="0.0"/>
+            </instance>
+            <instance id="2">
+                <location x="163.63637" y="0.0" z="0.0"/>
+            </instance>
+            <instance id="3">
+                <location x="245.45456" y="0.0" z="0.0"/>
+            </instance>
+            <instance id="4">
+                <location x="327.27274" y="0.0" z="0.0"/>
+            </instance>
+            <instance id="5">
+                <location x="409.0909" y="0.0" z="0.0"/>
+            </instance>
+            <instance id="6">
+                <location x="490.90912" y="0.0" z="0.0"/>
+            </instance>
+            <instance id="7">
+                <location x="572.7273" y="0.0" z="0.0"/>
+            </instance>
+            <instance id="8">
+                <location x="654.5455" y="0.0" z="0.0"/>
+            </instance>
+            <instance id="9">
+                <location x="736.36365" y="0.0" z="0.0"/>
+            </instance>
+            <instance id="10">
+                <location x="818.1818" y="0.0" z="0.0"/>
+            </instance>
+            <instance id="11">
+                <location x="900.0" y="0.0" z="0.0"/>
+            </instance>
+        </instances>
+    </population>
+</populations>
+
+
+
+        <projections units="Physiological Units">
+    <projection name="NetConn_Golgis_Grans" source="Golgis" target="Grans">
+        <synapse_props synapse_type="GABAA" internal_delay="0.0" weight="45.0" threshold="-20.0">
+        </synapse_props>
+        <connections size="75">
+            <connection id="0" pre_cell_id="0" pre_fraction_along="0.0" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="40.476227"/>
+            </connection>
+            <connection id="1" pre_cell_id="0" pre_fraction_along="0.0" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="45.55408"/>
+            </connection>
+            <connection id="2" pre_cell_id="0" pre_fraction_along="0.0" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="43.89984"/>
+            </connection>
+            <connection id="3" pre_cell_id="0" pre_fraction_along="0.0" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="45.365627"/>
+            </connection>
+            <connection id="4" pre_cell_id="0" pre_fraction_along="0.0" post_cell_id="4">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="38.981125"/>
+            </connection>
+            <connection id="5" pre_cell_id="0" pre_fraction_along="0.0" post_cell_id="5">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="38.86727"/>
+            </connection>
+            <connection id="6" pre_cell_id="0" pre_fraction_along="0.0" post_cell_id="6">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="46.049927"/>
+            </connection>
+            <connection id="7" pre_cell_id="0" pre_fraction_along="0.0" post_cell_id="7">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="38.55613"/>
+            </connection>
+            <connection id="8" pre_cell_id="0" pre_fraction_along="0.0" post_cell_id="8">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="45.49659"/>
+            </connection>
+            <connection id="9" pre_cell_id="0" pre_fraction_along="0.0" post_cell_id="9">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="38.583824"/>
+            </connection>
+            <connection id="10" pre_cell_id="0" pre_fraction_along="0.0" post_cell_id="10">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="41.05845"/>
+            </connection>
+            <connection id="11" pre_cell_id="0" pre_fraction_along="0.0" post_cell_id="11">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="44.314884"/>
+            </connection>
+            <connection id="12" pre_cell_id="0" pre_fraction_along="0.0" post_cell_id="12">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="40.39116"/>
+            </connection>
+            <connection id="13" pre_cell_id="1" pre_fraction_along="0.0" post_cell_id="13">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="39.57026"/>
+            </connection>
+            <connection id="14" pre_cell_id="1" pre_fraction_along="0.0" post_cell_id="14">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="39.611652"/>
+            </connection>
+            <connection id="15" pre_cell_id="1" pre_fraction_along="0.0" post_cell_id="15">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="41.574192"/>
+            </connection>
+            <connection id="16" pre_cell_id="1" pre_fraction_along="0.0" post_cell_id="16">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="41.88036"/>
+            </connection>
+            <connection id="17" pre_cell_id="1" pre_fraction_along="0.0" post_cell_id="17">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="42.06735"/>
+            </connection>
+            <connection id="18" pre_cell_id="1" pre_fraction_along="0.0" post_cell_id="18">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="50.147095"/>
+            </connection>
+            <connection id="19" pre_cell_id="1" pre_fraction_along="0.0" post_cell_id="19">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="45.51977"/>
+            </connection>
+            <connection id="20" pre_cell_id="1" pre_fraction_along="0.0" post_cell_id="20">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="38.92922"/>
+            </connection>
+            <connection id="21" pre_cell_id="1" pre_fraction_along="0.0" post_cell_id="21">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="50.303677"/>
+            </connection>
+            <connection id="22" pre_cell_id="1" pre_fraction_along="0.0" post_cell_id="22">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="41.7377"/>
+            </connection>
+            <connection id="23" pre_cell_id="1" pre_fraction_along="0.0" post_cell_id="23">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="46.48932"/>
+            </connection>
+            <connection id="24" pre_cell_id="1" pre_fraction_along="0.0" post_cell_id="24">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="46.012863"/>
+            </connection>
+            <connection id="25" pre_cell_id="1" pre_fraction_along="0.0" post_cell_id="25">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="39.89603"/>
+            </connection>
+            <connection id="26" pre_cell_id="1" pre_fraction_along="0.0" post_cell_id="26">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="45.726402"/>
+            </connection>
+            <connection id="27" pre_cell_id="1" pre_fraction_along="0.0" post_cell_id="27">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="48.695496"/>
+            </connection>
+            <connection id="28" pre_cell_id="1" pre_fraction_along="0.0" post_cell_id="28">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="51.130444"/>
+            </connection>
+            <connection id="29" pre_cell_id="1" pre_fraction_along="0.0" post_cell_id="29">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="38.873554"/>
+            </connection>
+            <connection id="30" pre_cell_id="1" pre_fraction_along="0.0" post_cell_id="30">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="43.772"/>
+            </connection>
+            <connection id="31" pre_cell_id="1" pre_fraction_along="0.0" post_cell_id="31">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="41.350494"/>
+            </connection>
+            <connection id="32" pre_cell_id="1" pre_fraction_along="0.0" post_cell_id="32">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="38.807003"/>
+            </connection>
+            <connection id="33" pre_cell_id="1" pre_fraction_along="0.0" post_cell_id="33">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="49.045036"/>
+            </connection>
+            <connection id="34" pre_cell_id="1" pre_fraction_along="0.0" post_cell_id="34">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="38.86092"/>
+            </connection>
+            <connection id="35" pre_cell_id="1" pre_fraction_along="0.0" post_cell_id="35">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="48.393536"/>
+            </connection>
+            <connection id="36" pre_cell_id="1" pre_fraction_along="0.0" post_cell_id="36">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="51.141605"/>
+            </connection>
+            <connection id="37" pre_cell_id="1" pre_fraction_along="0.0" post_cell_id="37">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="43.170425"/>
+            </connection>
+            <connection id="38" pre_cell_id="2" pre_fraction_along="0.0" post_cell_id="38">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="49.46795"/>
+            </connection>
+            <connection id="39" pre_cell_id="2" pre_fraction_along="0.0" post_cell_id="39">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="43.756863"/>
+            </connection>
+            <connection id="40" pre_cell_id="2" pre_fraction_along="0.0" post_cell_id="40">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="50.26816"/>
+            </connection>
+            <connection id="41" pre_cell_id="2" pre_fraction_along="0.0" post_cell_id="41">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="48.498573"/>
+            </connection>
+            <connection id="42" pre_cell_id="2" pre_fraction_along="0.0" post_cell_id="42">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="40.911823"/>
+            </connection>
+            <connection id="43" pre_cell_id="2" pre_fraction_along="0.0" post_cell_id="43">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="39.44879"/>
+            </connection>
+            <connection id="44" pre_cell_id="2" pre_fraction_along="0.0" post_cell_id="44">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="42.387913"/>
+            </connection>
+            <connection id="45" pre_cell_id="2" pre_fraction_along="0.0" post_cell_id="45">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="43.69393"/>
+            </connection>
+            <connection id="46" pre_cell_id="2" pre_fraction_along="0.0" post_cell_id="46">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="40.04876"/>
+            </connection>
+            <connection id="47" pre_cell_id="2" pre_fraction_along="0.0" post_cell_id="47">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="42.18521"/>
+            </connection>
+            <connection id="48" pre_cell_id="2" pre_fraction_along="0.0" post_cell_id="48">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="46.309284"/>
+            </connection>
+            <connection id="49" pre_cell_id="2" pre_fraction_along="0.0" post_cell_id="49">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="39.49444"/>
+            </connection>
+            <connection id="50" pre_cell_id="2" pre_fraction_along="0.0" post_cell_id="50">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="46.278484"/>
+            </connection>
+            <connection id="51" pre_cell_id="2" pre_fraction_along="0.0" post_cell_id="51">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="44.86275"/>
+            </connection>
+            <connection id="52" pre_cell_id="2" pre_fraction_along="0.0" post_cell_id="52">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="48.692173"/>
+            </connection>
+            <connection id="53" pre_cell_id="2" pre_fraction_along="0.0" post_cell_id="53">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="42.622307"/>
+            </connection>
+            <connection id="54" pre_cell_id="2" pre_fraction_along="0.0" post_cell_id="54">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="40.40327"/>
+            </connection>
+            <connection id="55" pre_cell_id="2" pre_fraction_along="0.0" post_cell_id="55">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="43.83846"/>
+            </connection>
+            <connection id="56" pre_cell_id="2" pre_fraction_along="0.0" post_cell_id="56">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="45.439247"/>
+            </connection>
+            <connection id="57" pre_cell_id="2" pre_fraction_along="0.0" post_cell_id="57">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="47.507812"/>
+            </connection>
+            <connection id="58" pre_cell_id="2" pre_fraction_along="0.0" post_cell_id="58">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="40.680843"/>
+            </connection>
+            <connection id="59" pre_cell_id="2" pre_fraction_along="0.0" post_cell_id="59">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="48.261314"/>
+            </connection>
+            <connection id="60" pre_cell_id="2" pre_fraction_along="0.0" post_cell_id="60">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="42.406864"/>
+            </connection>
+            <connection id="61" pre_cell_id="2" pre_fraction_along="0.0" post_cell_id="61">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="46.784203"/>
+            </connection>
+            <connection id="62" pre_cell_id="3" pre_fraction_along="0.0" post_cell_id="62">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="44.94653"/>
+            </connection>
+            <connection id="63" pre_cell_id="3" pre_fraction_along="0.0" post_cell_id="63">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="38.591286"/>
+            </connection>
+            <connection id="64" pre_cell_id="3" pre_fraction_along="0.0" post_cell_id="64">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="45.822536"/>
+            </connection>
+            <connection id="65" pre_cell_id="3" pre_fraction_along="0.0" post_cell_id="65">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="41.769196"/>
+            </connection>
+            <connection id="66" pre_cell_id="3" pre_fraction_along="0.0" post_cell_id="66">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="44.949284"/>
+            </connection>
+            <connection id="67" pre_cell_id="3" pre_fraction_along="0.0" post_cell_id="67">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="40.440994"/>
+            </connection>
+            <connection id="68" pre_cell_id="3" pre_fraction_along="0.0" post_cell_id="68">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="46.49466"/>
+            </connection>
+            <connection id="69" pre_cell_id="3" pre_fraction_along="0.0" post_cell_id="69">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="46.765194"/>
+            </connection>
+            <connection id="70" pre_cell_id="3" pre_fraction_along="0.0" post_cell_id="70">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="51.049427"/>
+            </connection>
+            <connection id="71" pre_cell_id="3" pre_fraction_along="0.0" post_cell_id="71">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="42.984024"/>
+            </connection>
+            <connection id="72" pre_cell_id="3" pre_fraction_along="0.0" post_cell_id="72">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="48.583252"/>
+            </connection>
+            <connection id="73" pre_cell_id="3" pre_fraction_along="0.0" post_cell_id="73">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="48.486393"/>
+            </connection>
+            <connection id="74" pre_cell_id="3" pre_fraction_along="0.0" post_cell_id="74">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="45.663868"/>
+            </connection>
+        </connections>
+    </projection>
+    <projection name="NetConn_Mossies_Grans" source="Mossies" target="Grans">
+        <synapse_props synapse_type="MF_AMPA" internal_delay="0.0" weight="6.0" threshold="-20.0">
+        </synapse_props>
+        <synapse_props synapse_type="NMDA" internal_delay="0.0" weight="4.0" threshold="-20.0">
+        </synapse_props>
+        <connections size="300">
+            <connection id="0" pre_cell_id="3" post_cell_id="0">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.5273933"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.4291058"/>
+            </connection>
+            <connection id="1" pre_cell_id="4" post_cell_id="0">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.7047143"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.5111725"/>
+            </connection>
+            <connection id="2" pre_cell_id="2" post_cell_id="0">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.920585"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.1407766"/>
+            </connection>
+            <connection id="3" pre_cell_id="1" post_cell_id="0">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.1892285"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.4371555"/>
+            </connection>
+            <connection id="4" pre_cell_id="1" post_cell_id="1">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.6436214"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.7152054"/>
+            </connection>
+            <connection id="5" pre_cell_id="0" post_cell_id="1">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.807094"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.9533873"/>
+            </connection>
+            <connection id="6" pre_cell_id="3" post_cell_id="1">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.447482"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.8450341"/>
+            </connection>
+            <connection id="7" pre_cell_id="2" post_cell_id="1">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.8012276"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.617579"/>
+            </connection>
+            <connection id="8" pre_cell_id="4" post_cell_id="2">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.1779537"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.1092634"/>
+            </connection>
+            <connection id="9" pre_cell_id="3" post_cell_id="2">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.766473"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.8856776"/>
+            </connection>
+            <connection id="10" pre_cell_id="0" post_cell_id="2">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.820911"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.5189075"/>
+            </connection>
+            <connection id="11" pre_cell_id="2" post_cell_id="2">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.5995646"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.274081"/>
+            </connection>
+            <connection id="12" pre_cell_id="0" post_cell_id="3">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.026339"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.427735"/>
+            </connection>
+            <connection id="13" pre_cell_id="1" post_cell_id="3">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.4045615"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.655744"/>
+            </connection>
+            <connection id="14" pre_cell_id="5" post_cell_id="3">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.995253"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.211479"/>
+            </connection>
+            <connection id="15" pre_cell_id="4" post_cell_id="3">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.2820086"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.155395"/>
+            </connection>
+            <connection id="16" pre_cell_id="2" post_cell_id="4">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.7193756"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.9118962"/>
+            </connection>
+            <connection id="17" pre_cell_id="3" post_cell_id="4">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.3651953"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.0360255"/>
+            </connection>
+            <connection id="18" pre_cell_id="4" post_cell_id="4">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.391115"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.5316763"/>
+            </connection>
+            <connection id="19" pre_cell_id="0" post_cell_id="4">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.84789"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.0051446"/>
+            </connection>
+            <connection id="20" pre_cell_id="2" post_cell_id="5">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.2507954"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.1294107"/>
+            </connection>
+            <connection id="21" pre_cell_id="0" post_cell_id="5">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.6893764"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.265859"/>
+            </connection>
+            <connection id="22" pre_cell_id="3" post_cell_id="5">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.034012"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.3724594"/>
+            </connection>
+            <connection id="23" pre_cell_id="1" post_cell_id="5">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.64749"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.5337245"/>
+            </connection>
+            <connection id="24" pre_cell_id="3" post_cell_id="6">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.6843743"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.7474189"/>
+            </connection>
+            <connection id="25" pre_cell_id="5" post_cell_id="6">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.8326817"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.744764"/>
+            </connection>
+            <connection id="26" pre_cell_id="0" post_cell_id="6">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.7136183"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.1748133"/>
+            </connection>
+            <connection id="27" pre_cell_id="4" post_cell_id="6">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.231861"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.101672"/>
+            </connection>
+            <connection id="28" pre_cell_id="0" post_cell_id="7">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.980478"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.484422"/>
+            </connection>
+            <connection id="29" pre_cell_id="2" post_cell_id="7">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.2080297"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.0903344"/>
+            </connection>
+            <connection id="30" pre_cell_id="3" post_cell_id="7">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.3839903"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.8683076"/>
+            </connection>
+            <connection id="31" pre_cell_id="4" post_cell_id="7">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.154463"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.388777"/>
+            </connection>
+            <connection id="32" pre_cell_id="5" post_cell_id="8">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.768865"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.4189954"/>
+            </connection>
+            <connection id="33" pre_cell_id="4" post_cell_id="8">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.974352"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.463976"/>
+            </connection>
+            <connection id="34" pre_cell_id="6" post_cell_id="8">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.7296104"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.5811753"/>
+            </connection>
+            <connection id="35" pre_cell_id="3" post_cell_id="8">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.456663"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.5146246"/>
+            </connection>
+            <connection id="36" pre_cell_id="1" post_cell_id="9">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.4843507"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.164571"/>
+            </connection>
+            <connection id="37" pre_cell_id="4" post_cell_id="9">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.5215063"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.778114"/>
+            </connection>
+            <connection id="38" pre_cell_id="3" post_cell_id="9">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.333004"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.445484"/>
+            </connection>
+            <connection id="39" pre_cell_id="0" post_cell_id="9">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.1813264"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.080049"/>
+            </connection>
+            <connection id="40" pre_cell_id="0" post_cell_id="10">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.0512753"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.4326236"/>
+            </connection>
+            <connection id="41" pre_cell_id="6" post_cell_id="10">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.591404"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.897083"/>
+            </connection>
+            <connection id="42" pre_cell_id="4" post_cell_id="10">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.600537"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.755802"/>
+            </connection>
+            <connection id="43" pre_cell_id="2" post_cell_id="10">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.484478"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.6680222"/>
+            </connection>
+            <connection id="44" pre_cell_id="2" post_cell_id="11">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.8146334"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.9941897"/>
+            </connection>
+            <connection id="45" pre_cell_id="4" post_cell_id="11">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.6300383"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.8178701"/>
+            </connection>
+            <connection id="46" pre_cell_id="0" post_cell_id="11">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.538334"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.0518074"/>
+            </connection>
+            <connection id="47" pre_cell_id="1" post_cell_id="11">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.839494"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.6246915"/>
+            </connection>
+            <connection id="48" pre_cell_id="6" post_cell_id="12">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.357576"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.161115"/>
+            </connection>
+            <connection id="49" pre_cell_id="4" post_cell_id="12">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.569065"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.5448546"/>
+            </connection>
+            <connection id="50" pre_cell_id="5" post_cell_id="12">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.1089983"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.689609"/>
+            </connection>
+            <connection id="51" pre_cell_id="3" post_cell_id="12">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.258891"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.1697903"/>
+            </connection>
+            <connection id="52" pre_cell_id="1" post_cell_id="13">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.787216"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.2698"/>
+            </connection>
+            <connection id="53" pre_cell_id="5" post_cell_id="13">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.4035826"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.420499"/>
+            </connection>
+            <connection id="54" pre_cell_id="2" post_cell_id="13">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.27766"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.1065946"/>
+            </connection>
+            <connection id="55" pre_cell_id="0" post_cell_id="13">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.184289"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.1861906"/>
+            </connection>
+            <connection id="56" pre_cell_id="5" post_cell_id="14">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.6017094"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.6498961"/>
+            </connection>
+            <connection id="57" pre_cell_id="3" post_cell_id="14">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.5974092"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.4892163"/>
+            </connection>
+            <connection id="58" pre_cell_id="4" post_cell_id="14">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.754526"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.2825212"/>
+            </connection>
+            <connection id="59" pre_cell_id="1" post_cell_id="14">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.2034707"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.409883"/>
+            </connection>
+            <connection id="60" pre_cell_id="4" post_cell_id="15">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.404541"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.668597"/>
+            </connection>
+            <connection id="61" pre_cell_id="7" post_cell_id="15">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.263069"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.8663347"/>
+            </connection>
+            <connection id="62" pre_cell_id="5" post_cell_id="15">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.0612297"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.004976"/>
+            </connection>
+            <connection id="63" pre_cell_id="2" post_cell_id="15">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.7667885"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.0122185"/>
+            </connection>
+            <connection id="64" pre_cell_id="6" post_cell_id="16">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.5597873"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.6162372"/>
+            </connection>
+            <connection id="65" pre_cell_id="3" post_cell_id="16">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.7231736"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.9635487"/>
+            </connection>
+            <connection id="66" pre_cell_id="0" post_cell_id="16">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.5395975"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.593139"/>
+            </connection>
+            <connection id="67" pre_cell_id="5" post_cell_id="16">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.66243"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.694488"/>
+            </connection>
+            <connection id="68" pre_cell_id="4" post_cell_id="17">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.889769"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.2673697"/>
+            </connection>
+            <connection id="69" pre_cell_id="5" post_cell_id="17">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.870617"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.729546"/>
+            </connection>
+            <connection id="70" pre_cell_id="3" post_cell_id="17">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.5341144"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.9186435"/>
+            </connection>
+            <connection id="71" pre_cell_id="7" post_cell_id="17">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.894253"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.0119624"/>
+            </connection>
+            <connection id="72" pre_cell_id="1" post_cell_id="18">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.367259"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.7306626"/>
+            </connection>
+            <connection id="73" pre_cell_id="3" post_cell_id="18">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.533509"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.9264407"/>
+            </connection>
+            <connection id="74" pre_cell_id="4" post_cell_id="18">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.2250614"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.407957"/>
+            </connection>
+            <connection id="75" pre_cell_id="0" post_cell_id="18">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.4662404"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.0334263"/>
+            </connection>
+            <connection id="76" pre_cell_id="2" post_cell_id="19">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.4990172"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.561959"/>
+            </connection>
+            <connection id="77" pre_cell_id="0" post_cell_id="19">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.1680064"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.6151907"/>
+            </connection>
+            <connection id="78" pre_cell_id="3" post_cell_id="19">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.8155613"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.4124913"/>
+            </connection>
+            <connection id="79" pre_cell_id="1" post_cell_id="19">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.1524158"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.9820406"/>
+            </connection>
+            <connection id="80" pre_cell_id="0" post_cell_id="20">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.354661"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.9123757"/>
+            </connection>
+            <connection id="81" pre_cell_id="5" post_cell_id="20">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.9195294"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.076907"/>
+            </connection>
+            <connection id="82" pre_cell_id="6" post_cell_id="20">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.2009125"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.525505"/>
+            </connection>
+            <connection id="83" pre_cell_id="2" post_cell_id="20">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.792793"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.7059798"/>
+            </connection>
+            <connection id="84" pre_cell_id="0" post_cell_id="21">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.7838097"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.9294739"/>
+            </connection>
+            <connection id="85" pre_cell_id="7" post_cell_id="21">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.347445"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.3740187"/>
+            </connection>
+            <connection id="86" pre_cell_id="1" post_cell_id="21">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.904961"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.3638206"/>
+            </connection>
+            <connection id="87" pre_cell_id="6" post_cell_id="21">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.257977"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.0550485"/>
+            </connection>
+            <connection id="88" pre_cell_id="6" post_cell_id="22">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.937304"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.1114044"/>
+            </connection>
+            <connection id="89" pre_cell_id="5" post_cell_id="22">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.429525"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.3081074"/>
+            </connection>
+            <connection id="90" pre_cell_id="2" post_cell_id="22">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.46655"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.9082375"/>
+            </connection>
+            <connection id="91" pre_cell_id="7" post_cell_id="22">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.6202655"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.9449017"/>
+            </connection>
+            <connection id="92" pre_cell_id="2" post_cell_id="23">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.9339128"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.5779486"/>
+            </connection>
+            <connection id="93" pre_cell_id="1" post_cell_id="23">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.5784035"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.1835136"/>
+            </connection>
+            <connection id="94" pre_cell_id="6" post_cell_id="23">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.588657"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.149319"/>
+            </connection>
+            <connection id="95" pre_cell_id="3" post_cell_id="23">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.1689243"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.4994702"/>
+            </connection>
+            <connection id="96" pre_cell_id="1" post_cell_id="24">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.4834185"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.421108"/>
+            </connection>
+            <connection id="97" pre_cell_id="5" post_cell_id="24">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.491231"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.3133607"/>
+            </connection>
+            <connection id="98" pre_cell_id="3" post_cell_id="24">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.695977"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.6373212"/>
+            </connection>
+            <connection id="99" pre_cell_id="7" post_cell_id="24">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.541918"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.4137383"/>
+            </connection>
+            <connection id="100" pre_cell_id="4" post_cell_id="25">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.6728115"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.9426508"/>
+            </connection>
+            <connection id="101" pre_cell_id="5" post_cell_id="25">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.856184"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.1520214"/>
+            </connection>
+            <connection id="102" pre_cell_id="7" post_cell_id="25">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.467464"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.5034654"/>
+            </connection>
+            <connection id="103" pre_cell_id="8" post_cell_id="25">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.8690443"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.1913548"/>
+            </connection>
+            <connection id="104" pre_cell_id="2" post_cell_id="26">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.2480683"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.594959"/>
+            </connection>
+            <connection id="105" pre_cell_id="5" post_cell_id="26">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.7013693"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.2128634"/>
+            </connection>
+            <connection id="106" pre_cell_id="4" post_cell_id="26">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.329135"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.424074"/>
+            </connection>
+            <connection id="107" pre_cell_id="7" post_cell_id="26">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.8091006"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.2781167"/>
+            </connection>
+            <connection id="108" pre_cell_id="8" post_cell_id="27">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.5628014"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.3877373"/>
+            </connection>
+            <connection id="109" pre_cell_id="4" post_cell_id="27">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.7521334"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.5707476"/>
+            </connection>
+            <connection id="110" pre_cell_id="0" post_cell_id="27">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.2700896"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.5389056"/>
+            </connection>
+            <connection id="111" pre_cell_id="2" post_cell_id="27">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.864861"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.7942433"/>
+            </connection>
+            <connection id="112" pre_cell_id="6" post_cell_id="28">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.532633"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.524579"/>
+            </connection>
+            <connection id="113" pre_cell_id="2" post_cell_id="28">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.7023864"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.4007063"/>
+            </connection>
+            <connection id="114" pre_cell_id="4" post_cell_id="28">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.815806"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.2217793"/>
+            </connection>
+            <connection id="115" pre_cell_id="8" post_cell_id="28">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.9410973"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.3277006"/>
+            </connection>
+            <connection id="116" pre_cell_id="5" post_cell_id="29">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.85139"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.4659107"/>
+            </connection>
+            <connection id="117" pre_cell_id="3" post_cell_id="29">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.5522466"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.6720765"/>
+            </connection>
+            <connection id="118" pre_cell_id="8" post_cell_id="29">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.150792"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.432074"/>
+            </connection>
+            <connection id="119" pre_cell_id="1" post_cell_id="29">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.7768655"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.474479"/>
+            </connection>
+            <connection id="120" pre_cell_id="2" post_cell_id="30">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.5046167"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.5380692"/>
+            </connection>
+            <connection id="121" pre_cell_id="3" post_cell_id="30">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.8026624"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.5281427"/>
+            </connection>
+            <connection id="122" pre_cell_id="0" post_cell_id="30">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.2839074"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.1342597"/>
+            </connection>
+            <connection id="123" pre_cell_id="5" post_cell_id="30">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.277153"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.3998885"/>
+            </connection>
+            <connection id="124" pre_cell_id="3" post_cell_id="31">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.124645"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.4611096"/>
+            </connection>
+            <connection id="125" pre_cell_id="1" post_cell_id="31">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.377429"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.753806"/>
+            </connection>
+            <connection id="126" pre_cell_id="5" post_cell_id="31">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.365867"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.3959846"/>
+            </connection>
+            <connection id="127" pre_cell_id="0" post_cell_id="31">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.851921"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.219684"/>
+            </connection>
+            <connection id="128" pre_cell_id="6" post_cell_id="32">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.84097"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.7138891"/>
+            </connection>
+            <connection id="129" pre_cell_id="9" post_cell_id="32">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.145025"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.587985"/>
+            </connection>
+            <connection id="130" pre_cell_id="1" post_cell_id="32">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.6374817"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.9450657"/>
+            </connection>
+            <connection id="131" pre_cell_id="5" post_cell_id="32">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.8614135"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.6223555"/>
+            </connection>
+            <connection id="132" pre_cell_id="1" post_cell_id="33">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.325685"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.4696395"/>
+            </connection>
+            <connection id="133" pre_cell_id="6" post_cell_id="33">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.4450154"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.617581"/>
+            </connection>
+            <connection id="134" pre_cell_id="9" post_cell_id="33">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.5154896"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.765546"/>
+            </connection>
+            <connection id="135" pre_cell_id="7" post_cell_id="33">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.082377"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.492677"/>
+            </connection>
+            <connection id="136" pre_cell_id="8" post_cell_id="34">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.3373423"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.5752532"/>
+            </connection>
+            <connection id="137" pre_cell_id="5" post_cell_id="34">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.5880466"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.7244186"/>
+            </connection>
+            <connection id="138" pre_cell_id="4" post_cell_id="34">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.41493"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.6355672"/>
+            </connection>
+            <connection id="139" pre_cell_id="9" post_cell_id="34">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.0367618"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.314129"/>
+            </connection>
+            <connection id="140" pre_cell_id="8" post_cell_id="35">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.37806"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.5073557"/>
+            </connection>
+            <connection id="141" pre_cell_id="4" post_cell_id="35">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.8630705"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.2005196"/>
+            </connection>
+            <connection id="142" pre_cell_id="1" post_cell_id="35">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.6707544"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.41545"/>
+            </connection>
+            <connection id="143" pre_cell_id="9" post_cell_id="35">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.432327"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.0675735"/>
+            </connection>
+            <connection id="144" pre_cell_id="7" post_cell_id="36">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.1725554"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.60354"/>
+            </connection>
+            <connection id="145" pre_cell_id="9" post_cell_id="36">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.5262833"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.247858"/>
+            </connection>
+            <connection id="146" pre_cell_id="2" post_cell_id="36">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.9131775"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.3006444"/>
+            </connection>
+            <connection id="147" pre_cell_id="3" post_cell_id="36">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.2894273"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.9930463"/>
+            </connection>
+            <connection id="148" pre_cell_id="2" post_cell_id="37">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.604643"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.9065685"/>
+            </connection>
+            <connection id="149" pre_cell_id="1" post_cell_id="37">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.2564545"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.189366"/>
+            </connection>
+            <connection id="150" pre_cell_id="7" post_cell_id="37">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.111585"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.118064"/>
+            </connection>
+            <connection id="151" pre_cell_id="5" post_cell_id="37">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.628602"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.4901109"/>
+            </connection>
+            <connection id="152" pre_cell_id="10" post_cell_id="38">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.7098446"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.6414688"/>
+            </connection>
+            <connection id="153" pre_cell_id="5" post_cell_id="38">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.937998"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.7950103"/>
+            </connection>
+            <connection id="154" pre_cell_id="8" post_cell_id="38">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.2981744"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.4079385"/>
+            </connection>
+            <connection id="155" pre_cell_id="4" post_cell_id="38">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.0050097"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.460185"/>
+            </connection>
+            <connection id="156" pre_cell_id="9" post_cell_id="39">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.608883"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.0438094"/>
+            </connection>
+            <connection id="157" pre_cell_id="10" post_cell_id="39">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.290217"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.545887"/>
+            </connection>
+            <connection id="158" pre_cell_id="1" post_cell_id="39">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.3459296"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.488344"/>
+            </connection>
+            <connection id="159" pre_cell_id="8" post_cell_id="39">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.5710325"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.66041"/>
+            </connection>
+            <connection id="160" pre_cell_id="9" post_cell_id="40">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.8214717"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.6330087"/>
+            </connection>
+            <connection id="161" pre_cell_id="7" post_cell_id="40">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.03396"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.6003854"/>
+            </connection>
+            <connection id="162" pre_cell_id="2" post_cell_id="40">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.318233"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.5881758"/>
+            </connection>
+            <connection id="163" pre_cell_id="4" post_cell_id="40">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.3147335"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.507553"/>
+            </connection>
+            <connection id="164" pre_cell_id="5" post_cell_id="41">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.3601594"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.1353426"/>
+            </connection>
+            <connection id="165" pre_cell_id="9" post_cell_id="41">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.5185823"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.8186018"/>
+            </connection>
+            <connection id="166" pre_cell_id="2" post_cell_id="41">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.9569373"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.322219"/>
+            </connection>
+            <connection id="167" pre_cell_id="10" post_cell_id="41">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.7333813"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.6540687"/>
+            </connection>
+            <connection id="168" pre_cell_id="2" post_cell_id="42">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.0792904"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.6655478"/>
+            </connection>
+            <connection id="169" pre_cell_id="9" post_cell_id="42">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.6079164"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.573856"/>
+            </connection>
+            <connection id="170" pre_cell_id="10" post_cell_id="42">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.3267293"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.4458911"/>
+            </connection>
+            <connection id="171" pre_cell_id="11" post_cell_id="42">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.2595367"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.5621297"/>
+            </connection>
+            <connection id="172" pre_cell_id="3" post_cell_id="43">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.8360395"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.58663"/>
+            </connection>
+            <connection id="173" pre_cell_id="9" post_cell_id="43">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.1800413"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.8612626"/>
+            </connection>
+            <connection id="174" pre_cell_id="10" post_cell_id="43">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.389694"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.1639614"/>
+            </connection>
+            <connection id="175" pre_cell_id="4" post_cell_id="43">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.482081"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.9516444"/>
+            </connection>
+            <connection id="176" pre_cell_id="5" post_cell_id="44">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.182109"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.144026"/>
+            </connection>
+            <connection id="177" pre_cell_id="9" post_cell_id="44">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.506323"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.1174817"/>
+            </connection>
+            <connection id="178" pre_cell_id="2" post_cell_id="44">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.193211"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.6617713"/>
+            </connection>
+            <connection id="179" pre_cell_id="7" post_cell_id="44">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.2726407"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.970622"/>
+            </connection>
+            <connection id="180" pre_cell_id="11" post_cell_id="45">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.1173234"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.468082"/>
+            </connection>
+            <connection id="181" pre_cell_id="10" post_cell_id="45">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.3017244"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.367675"/>
+            </connection>
+            <connection id="182" pre_cell_id="6" post_cell_id="45">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.4440627"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.5031478"/>
+            </connection>
+            <connection id="183" pre_cell_id="8" post_cell_id="45">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.7282305"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.4028602"/>
+            </connection>
+            <connection id="184" pre_cell_id="10" post_cell_id="46">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.7833576"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.9660647"/>
+            </connection>
+            <connection id="185" pre_cell_id="8" post_cell_id="46">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.2973375"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.5908716"/>
+            </connection>
+            <connection id="186" pre_cell_id="7" post_cell_id="46">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.114487"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.967754"/>
+            </connection>
+            <connection id="187" pre_cell_id="4" post_cell_id="46">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.560029"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.668727"/>
+            </connection>
+            <connection id="188" pre_cell_id="4" post_cell_id="47">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.248207"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.4878948"/>
+            </connection>
+            <connection id="189" pre_cell_id="6" post_cell_id="47">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.145355"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.4689054"/>
+            </connection>
+            <connection id="190" pre_cell_id="5" post_cell_id="47">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.342659"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.301276"/>
+            </connection>
+            <connection id="191" pre_cell_id="8" post_cell_id="47">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.250203"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.4054165"/>
+            </connection>
+            <connection id="192" pre_cell_id="10" post_cell_id="48">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.276761"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.468953"/>
+            </connection>
+            <connection id="193" pre_cell_id="4" post_cell_id="48">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.77382"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.7680829"/>
+            </connection>
+            <connection id="194" pre_cell_id="5" post_cell_id="48">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.3263946"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.9818757"/>
+            </connection>
+            <connection id="195" pre_cell_id="8" post_cell_id="48">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.58189"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.7265816"/>
+            </connection>
+            <connection id="196" pre_cell_id="8" post_cell_id="49">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.800015"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.82152"/>
+            </connection>
+            <connection id="197" pre_cell_id="10" post_cell_id="49">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.756648"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.267622"/>
+            </connection>
+            <connection id="198" pre_cell_id="9" post_cell_id="49">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.8436584"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.1467614"/>
+            </connection>
+            <connection id="199" pre_cell_id="6" post_cell_id="49">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.4977837"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.451768"/>
+            </connection>
+            <connection id="200" pre_cell_id="5" post_cell_id="50">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.2530913"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.996107"/>
+            </connection>
+            <connection id="201" pre_cell_id="6" post_cell_id="50">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.843015"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.402794"/>
+            </connection>
+            <connection id="202" pre_cell_id="9" post_cell_id="50">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.3150043"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.1871395"/>
+            </connection>
+            <connection id="203" pre_cell_id="4" post_cell_id="50">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.1723485"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.4147282"/>
+            </connection>
+            <connection id="204" pre_cell_id="5" post_cell_id="51">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.8442144"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.6937804"/>
+            </connection>
+            <connection id="205" pre_cell_id="4" post_cell_id="51">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.3949957"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.8077312"/>
+            </connection>
+            <connection id="206" pre_cell_id="7" post_cell_id="51">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.6187696"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.4093757"/>
+            </connection>
+            <connection id="207" pre_cell_id="3" post_cell_id="51">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.432392"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.087517"/>
+            </connection>
+            <connection id="208" pre_cell_id="11" post_cell_id="52">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.9988055"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.055001"/>
+            </connection>
+            <connection id="209" pre_cell_id="6" post_cell_id="52">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.761371"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.4238434"/>
+            </connection>
+            <connection id="210" pre_cell_id="7" post_cell_id="52">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.6575966"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.310086"/>
+            </connection>
+            <connection id="211" pre_cell_id="10" post_cell_id="52">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.877608"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.7715611"/>
+            </connection>
+            <connection id="212" pre_cell_id="4" post_cell_id="53">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.355696"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.1817756"/>
+            </connection>
+            <connection id="213" pre_cell_id="5" post_cell_id="53">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.3578043"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.164775"/>
+            </connection>
+            <connection id="214" pre_cell_id="8" post_cell_id="53">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.2332983"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.4119859"/>
+            </connection>
+            <connection id="215" pre_cell_id="11" post_cell_id="53">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.391223"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.9743216"/>
+            </connection>
+            <connection id="216" pre_cell_id="9" post_cell_id="54">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.7067556"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.4254289"/>
+            </connection>
+            <connection id="217" pre_cell_id="10" post_cell_id="54">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.720153"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.6252987"/>
+            </connection>
+            <connection id="218" pre_cell_id="11" post_cell_id="54">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.0954137"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.7978656"/>
+            </connection>
+            <connection id="219" pre_cell_id="5" post_cell_id="54">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.313532"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.328407"/>
+            </connection>
+            <connection id="220" pre_cell_id="11" post_cell_id="55">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.56172"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.5172377"/>
+            </connection>
+            <connection id="221" pre_cell_id="10" post_cell_id="55">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.1151624"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.221824"/>
+            </connection>
+            <connection id="222" pre_cell_id="6" post_cell_id="55">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.169193"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.0328326"/>
+            </connection>
+            <connection id="223" pre_cell_id="7" post_cell_id="55">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.77257"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.4299984"/>
+            </connection>
+            <connection id="224" pre_cell_id="10" post_cell_id="56">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.933099"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.4733152"/>
+            </connection>
+            <connection id="225" pre_cell_id="7" post_cell_id="56">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.5991745"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.441378"/>
+            </connection>
+            <connection id="226" pre_cell_id="9" post_cell_id="56">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.5622087"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.085971"/>
+            </connection>
+            <connection id="227" pre_cell_id="6" post_cell_id="56">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.019152"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.015214"/>
+            </connection>
+            <connection id="228" pre_cell_id="4" post_cell_id="57">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.238561"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.5416994"/>
+            </connection>
+            <connection id="229" pre_cell_id="8" post_cell_id="57">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.173551"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.99431"/>
+            </connection>
+            <connection id="230" pre_cell_id="5" post_cell_id="57">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.5418673"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.1177483"/>
+            </connection>
+            <connection id="231" pre_cell_id="9" post_cell_id="57">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.4402575"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.4757016"/>
+            </connection>
+            <connection id="232" pre_cell_id="4" post_cell_id="58">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.132797"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.2095156"/>
+            </connection>
+            <connection id="233" pre_cell_id="11" post_cell_id="58">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.222059"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.4657812"/>
+            </connection>
+            <connection id="234" pre_cell_id="6" post_cell_id="58">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.2607813"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.808037"/>
+            </connection>
+            <connection id="235" pre_cell_id="7" post_cell_id="58">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.547367"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.58016"/>
+            </connection>
+            <connection id="236" pre_cell_id="5" post_cell_id="59">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.455129"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.4042706"/>
+            </connection>
+            <connection id="237" pre_cell_id="11" post_cell_id="59">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.7413607"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.062832"/>
+            </connection>
+            <connection id="238" pre_cell_id="6" post_cell_id="59">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.2829056"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.901054"/>
+            </connection>
+            <connection id="239" pre_cell_id="4" post_cell_id="59">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.511492"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.0725284"/>
+            </connection>
+            <connection id="240" pre_cell_id="6" post_cell_id="60">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.524824"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.7075164"/>
+            </connection>
+            <connection id="241" pre_cell_id="7" post_cell_id="60">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.6515408"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.3703566"/>
+            </connection>
+            <connection id="242" pre_cell_id="8" post_cell_id="60">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.3262644"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.004267"/>
+            </connection>
+            <connection id="243" pre_cell_id="10" post_cell_id="60">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.5636377"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.2635326"/>
+            </connection>
+            <connection id="244" pre_cell_id="8" post_cell_id="61">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.585501"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.6223023"/>
+            </connection>
+            <connection id="245" pre_cell_id="5" post_cell_id="61">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.2104435"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.0764937"/>
+            </connection>
+            <connection id="246" pre_cell_id="11" post_cell_id="61">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.9930096"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.488595"/>
+            </connection>
+            <connection id="247" pre_cell_id="10" post_cell_id="61">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.7652645"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.8859456"/>
+            </connection>
+            <connection id="248" pre_cell_id="6" post_cell_id="62">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.702998"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.437809"/>
+            </connection>
+            <connection id="249" pre_cell_id="5" post_cell_id="62">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.4175715"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.0653124"/>
+            </connection>
+            <connection id="250" pre_cell_id="10" post_cell_id="62">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.601086"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.2650695"/>
+            </connection>
+            <connection id="251" pre_cell_id="9" post_cell_id="62">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.5335193"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.972454"/>
+            </connection>
+            <connection id="252" pre_cell_id="6" post_cell_id="63">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.680038"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.535845"/>
+            </connection>
+            <connection id="253" pre_cell_id="7" post_cell_id="63">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.9560504"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.065755"/>
+            </connection>
+            <connection id="254" pre_cell_id="11" post_cell_id="63">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.9987483"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.8320534"/>
+            </connection>
+            <connection id="255" pre_cell_id="10" post_cell_id="63">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.3495626"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.4200182"/>
+            </connection>
+            <connection id="256" pre_cell_id="11" post_cell_id="64">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.608818"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.5592666"/>
+            </connection>
+            <connection id="257" pre_cell_id="10" post_cell_id="64">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.138548"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.466835"/>
+            </connection>
+            <connection id="258" pre_cell_id="9" post_cell_id="64">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.3610816"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.4357543"/>
+            </connection>
+            <connection id="259" pre_cell_id="6" post_cell_id="64">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.8449755"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.00612"/>
+            </connection>
+            <connection id="260" pre_cell_id="7" post_cell_id="65">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.9670935"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.9440184"/>
+            </connection>
+            <connection id="261" pre_cell_id="8" post_cell_id="65">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.1236176"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.4566174"/>
+            </connection>
+            <connection id="262" pre_cell_id="11" post_cell_id="65">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.3053856"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.3932643"/>
+            </connection>
+            <connection id="263" pre_cell_id="5" post_cell_id="65">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.282063"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.096684"/>
+            </connection>
+            <connection id="264" pre_cell_id="10" post_cell_id="66">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.739234"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.530713"/>
+            </connection>
+            <connection id="265" pre_cell_id="7" post_cell_id="66">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.7876244"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.0049806"/>
+            </connection>
+            <connection id="266" pre_cell_id="11" post_cell_id="66">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.651649"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.4428725"/>
+            </connection>
+            <connection id="267" pre_cell_id="5" post_cell_id="66">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.1008034"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.6979892"/>
+            </connection>
+            <connection id="268" pre_cell_id="8" post_cell_id="67">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.7855325"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.9040134"/>
+            </connection>
+            <connection id="269" pre_cell_id="6" post_cell_id="67">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.261526"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.8569217"/>
+            </connection>
+            <connection id="270" pre_cell_id="10" post_cell_id="67">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.587291"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.8245907"/>
+            </connection>
+            <connection id="271" pre_cell_id="9" post_cell_id="67">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.846015"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.239771"/>
+            </connection>
+            <connection id="272" pre_cell_id="10" post_cell_id="68">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.5241437"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.1392136"/>
+            </connection>
+            <connection id="273" pre_cell_id="8" post_cell_id="68">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.213263"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.374003"/>
+            </connection>
+            <connection id="274" pre_cell_id="6" post_cell_id="68">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.029006"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.5706446"/>
+            </connection>
+            <connection id="275" pre_cell_id="9" post_cell_id="68">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.660338"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.6214235"/>
+            </connection>
+            <connection id="276" pre_cell_id="6" post_cell_id="69">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.115125"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.514097"/>
+            </connection>
+            <connection id="277" pre_cell_id="11" post_cell_id="69">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.9717054"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.4431596"/>
+            </connection>
+            <connection id="278" pre_cell_id="9" post_cell_id="69">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.358662"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.4321713"/>
+            </connection>
+            <connection id="279" pre_cell_id="7" post_cell_id="69">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.3409867"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.525134"/>
+            </connection>
+            <connection id="280" pre_cell_id="8" post_cell_id="70">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.3956494"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.3701987"/>
+            </connection>
+            <connection id="281" pre_cell_id="11" post_cell_id="70">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.0974946"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.12301"/>
+            </connection>
+            <connection id="282" pre_cell_id="7" post_cell_id="70">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.2486"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.6839337"/>
+            </connection>
+            <connection id="283" pre_cell_id="9" post_cell_id="70">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.2845564"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.3696437"/>
+            </connection>
+            <connection id="284" pre_cell_id="11" post_cell_id="71">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.10688"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.8137393"/>
+            </connection>
+            <connection id="285" pre_cell_id="8" post_cell_id="71">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.37087"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.4804144"/>
+            </connection>
+            <connection id="286" pre_cell_id="9" post_cell_id="71">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.4514284"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.4098814"/>
+            </connection>
+            <connection id="287" pre_cell_id="7" post_cell_id="71">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.7804227"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.5024621"/>
+            </connection>
+            <connection id="288" pre_cell_id="6" post_cell_id="72">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.7390842"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.5288134"/>
+            </connection>
+            <connection id="289" pre_cell_id="10" post_cell_id="72">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.6126847"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.5450845"/>
+            </connection>
+            <connection id="290" pre_cell_id="7" post_cell_id="72">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.837509"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.4986796"/>
+            </connection>
+            <connection id="291" pre_cell_id="9" post_cell_id="72">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.777"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.245147"/>
+            </connection>
+            <connection id="292" pre_cell_id="9" post_cell_id="73">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.6992946"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.5828352"/>
+            </connection>
+            <connection id="293" pre_cell_id="6" post_cell_id="73">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.3010254"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.4128246"/>
+            </connection>
+            <connection id="294" pre_cell_id="11" post_cell_id="73">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.1861773"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.8050296"/>
+            </connection>
+            <connection id="295" pre_cell_id="7" post_cell_id="73">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.1185813"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.6777887"/>
+            </connection>
+            <connection id="296" pre_cell_id="8" post_cell_id="74">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.556969"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.264934"/>
+            </connection>
+            <connection id="297" pre_cell_id="9" post_cell_id="74">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.7725687"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="3.4162896"/>
+            </connection>
+            <connection id="298" pre_cell_id="10" post_cell_id="74">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="6.695106"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.274901"/>
+            </connection>
+            <connection id="299" pre_cell_id="7" post_cell_id="74">
+                <properties synapse_type="MF_AMPA" prop_delay="0.0" internal_delay="0.0" weight="5.9024353"/>
+                <properties synapse_type="NMDA" prop_delay="0.0" internal_delay="0.0" weight="4.126984"/>
+            </connection>
+        </connections>
+    </projection>
+    <projection name="NetConn_Grans_Golgis" source="Grans" target="Golgis">
+        <synapse_props synapse_type="AMPA_GranGol" internal_delay="0.0" weight="0.6" threshold="-20.0">
+        </synapse_props>
+        <connections size="300">
+            <connection id="0" pre_cell_id="0" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.57823956"/>
+            </connection>
+            <connection id="1" pre_cell_id="0" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.61755615"/>
+            </connection>
+            <connection id="2" pre_cell_id="0" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.63416874"/>
+            </connection>
+            <connection id="3" pre_cell_id="0" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.56490165"/>
+            </connection>
+            <connection id="4" pre_cell_id="1" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5190067"/>
+            </connection>
+            <connection id="5" pre_cell_id="1" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6652007"/>
+            </connection>
+            <connection id="6" pre_cell_id="1" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5143861"/>
+            </connection>
+            <connection id="7" pre_cell_id="1" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.66179246"/>
+            </connection>
+            <connection id="8" pre_cell_id="2" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.61723393"/>
+            </connection>
+            <connection id="9" pre_cell_id="2" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.60820496"/>
+            </connection>
+            <connection id="10" pre_cell_id="2" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6064093"/>
+            </connection>
+            <connection id="11" pre_cell_id="2" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5259463"/>
+            </connection>
+            <connection id="12" pre_cell_id="3" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6816218"/>
+            </connection>
+            <connection id="13" pre_cell_id="3" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5857507"/>
+            </connection>
+            <connection id="14" pre_cell_id="3" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.67091405"/>
+            </connection>
+            <connection id="15" pre_cell_id="3" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6542621"/>
+            </connection>
+            <connection id="16" pre_cell_id="4" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.51146746"/>
+            </connection>
+            <connection id="17" pre_cell_id="4" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6270462"/>
+            </connection>
+            <connection id="18" pre_cell_id="4" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.63421977"/>
+            </connection>
+            <connection id="19" pre_cell_id="4" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.56408596"/>
+            </connection>
+            <connection id="20" pre_cell_id="5" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5585899"/>
+            </connection>
+            <connection id="21" pre_cell_id="5" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5807738"/>
+            </connection>
+            <connection id="22" pre_cell_id="5" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.51164097"/>
+            </connection>
+            <connection id="23" pre_cell_id="5" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6191653"/>
+            </connection>
+            <connection id="24" pre_cell_id="6" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.660248"/>
+            </connection>
+            <connection id="25" pre_cell_id="6" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6472548"/>
+            </connection>
+            <connection id="26" pre_cell_id="6" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5502599"/>
+            </connection>
+            <connection id="27" pre_cell_id="6" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.51734906"/>
+            </connection>
+            <connection id="28" pre_cell_id="7" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.63332313"/>
+            </connection>
+            <connection id="29" pre_cell_id="7" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5480676"/>
+            </connection>
+            <connection id="30" pre_cell_id="7" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6373519"/>
+            </connection>
+            <connection id="31" pre_cell_id="7" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.56468624"/>
+            </connection>
+            <connection id="32" pre_cell_id="8" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6283599"/>
+            </connection>
+            <connection id="33" pre_cell_id="8" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.66842204"/>
+            </connection>
+            <connection id="34" pre_cell_id="8" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6602449"/>
+            </connection>
+            <connection id="35" pre_cell_id="8" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5462332"/>
+            </connection>
+            <connection id="36" pre_cell_id="9" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.64215654"/>
+            </connection>
+            <connection id="37" pre_cell_id="9" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.67144835"/>
+            </connection>
+            <connection id="38" pre_cell_id="9" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6343548"/>
+            </connection>
+            <connection id="39" pre_cell_id="9" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5264574"/>
+            </connection>
+            <connection id="40" pre_cell_id="10" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5154707"/>
+            </connection>
+            <connection id="41" pre_cell_id="10" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6401578"/>
+            </connection>
+            <connection id="42" pre_cell_id="10" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.68509996"/>
+            </connection>
+            <connection id="43" pre_cell_id="10" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.57926095"/>
+            </connection>
+            <connection id="44" pre_cell_id="11" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5207281"/>
+            </connection>
+            <connection id="45" pre_cell_id="11" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.64476573"/>
+            </connection>
+            <connection id="46" pre_cell_id="11" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6153038"/>
+            </connection>
+            <connection id="47" pre_cell_id="11" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6235137"/>
+            </connection>
+            <connection id="48" pre_cell_id="12" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.640788"/>
+            </connection>
+            <connection id="49" pre_cell_id="12" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6288705"/>
+            </connection>
+            <connection id="50" pre_cell_id="12" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5786915"/>
+            </connection>
+            <connection id="51" pre_cell_id="12" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6583931"/>
+            </connection>
+            <connection id="52" pre_cell_id="13" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6142323"/>
+            </connection>
+            <connection id="53" pre_cell_id="13" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5812378"/>
+            </connection>
+            <connection id="54" pre_cell_id="13" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.53816116"/>
+            </connection>
+            <connection id="55" pre_cell_id="13" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.67476577"/>
+            </connection>
+            <connection id="56" pre_cell_id="14" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.59015"/>
+            </connection>
+            <connection id="57" pre_cell_id="14" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6532609"/>
+            </connection>
+            <connection id="58" pre_cell_id="14" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5686229"/>
+            </connection>
+            <connection id="59" pre_cell_id="14" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6789509"/>
+            </connection>
+            <connection id="60" pre_cell_id="15" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.60673237"/>
+            </connection>
+            <connection id="61" pre_cell_id="15" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5420072"/>
+            </connection>
+            <connection id="62" pre_cell_id="15" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6306285"/>
+            </connection>
+            <connection id="63" pre_cell_id="15" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5873242"/>
+            </connection>
+            <connection id="64" pre_cell_id="16" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.58008504"/>
+            </connection>
+            <connection id="65" pre_cell_id="16" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.62728256"/>
+            </connection>
+            <connection id="66" pre_cell_id="16" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.67380697"/>
+            </connection>
+            <connection id="67" pre_cell_id="16" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.53543144"/>
+            </connection>
+            <connection id="68" pre_cell_id="17" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6474202"/>
+            </connection>
+            <connection id="69" pre_cell_id="17" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.52997434"/>
+            </connection>
+            <connection id="70" pre_cell_id="17" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.669288"/>
+            </connection>
+            <connection id="71" pre_cell_id="17" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6186383"/>
+            </connection>
+            <connection id="72" pre_cell_id="18" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6827169"/>
+            </connection>
+            <connection id="73" pre_cell_id="18" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5165754"/>
+            </connection>
+            <connection id="74" pre_cell_id="18" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.56213677"/>
+            </connection>
+            <connection id="75" pre_cell_id="18" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.67784834"/>
+            </connection>
+            <connection id="76" pre_cell_id="19" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.56156445"/>
+            </connection>
+            <connection id="77" pre_cell_id="19" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6468585"/>
+            </connection>
+            <connection id="78" pre_cell_id="19" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6164382"/>
+            </connection>
+            <connection id="79" pre_cell_id="19" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5593966"/>
+            </connection>
+            <connection id="80" pre_cell_id="20" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5404946"/>
+            </connection>
+            <connection id="81" pre_cell_id="20" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5224699"/>
+            </connection>
+            <connection id="82" pre_cell_id="20" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6377607"/>
+            </connection>
+            <connection id="83" pre_cell_id="20" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.52249336"/>
+            </connection>
+            <connection id="84" pre_cell_id="21" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6716851"/>
+            </connection>
+            <connection id="85" pre_cell_id="21" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.64973736"/>
+            </connection>
+            <connection id="86" pre_cell_id="21" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6146525"/>
+            </connection>
+            <connection id="87" pre_cell_id="21" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.54043233"/>
+            </connection>
+            <connection id="88" pre_cell_id="22" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5795654"/>
+            </connection>
+            <connection id="89" pre_cell_id="22" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6758269"/>
+            </connection>
+            <connection id="90" pre_cell_id="22" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.65374196"/>
+            </connection>
+            <connection id="91" pre_cell_id="22" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6305146"/>
+            </connection>
+            <connection id="92" pre_cell_id="23" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.61525804"/>
+            </connection>
+            <connection id="93" pre_cell_id="23" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.54580605"/>
+            </connection>
+            <connection id="94" pre_cell_id="23" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.594285"/>
+            </connection>
+            <connection id="95" pre_cell_id="23" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6401339"/>
+            </connection>
+            <connection id="96" pre_cell_id="24" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6202411"/>
+            </connection>
+            <connection id="97" pre_cell_id="24" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.54375535"/>
+            </connection>
+            <connection id="98" pre_cell_id="24" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.631241"/>
+            </connection>
+            <connection id="99" pre_cell_id="24" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.60202575"/>
+            </connection>
+            <connection id="100" pre_cell_id="25" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5686422"/>
+            </connection>
+            <connection id="101" pre_cell_id="25" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5594153"/>
+            </connection>
+            <connection id="102" pre_cell_id="25" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6628361"/>
+            </connection>
+            <connection id="103" pre_cell_id="25" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5176582"/>
+            </connection>
+            <connection id="104" pre_cell_id="26" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5681987"/>
+            </connection>
+            <connection id="105" pre_cell_id="26" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6451858"/>
+            </connection>
+            <connection id="106" pre_cell_id="26" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6872896"/>
+            </connection>
+            <connection id="107" pre_cell_id="26" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5139388"/>
+            </connection>
+            <connection id="108" pre_cell_id="27" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.68048537"/>
+            </connection>
+            <connection id="109" pre_cell_id="27" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.665293"/>
+            </connection>
+            <connection id="110" pre_cell_id="27" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6138459"/>
+            </connection>
+            <connection id="111" pre_cell_id="27" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.55097044"/>
+            </connection>
+            <connection id="112" pre_cell_id="28" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.636168"/>
+            </connection>
+            <connection id="113" pre_cell_id="28" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6807722"/>
+            </connection>
+            <connection id="114" pre_cell_id="28" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6855368"/>
+            </connection>
+            <connection id="115" pre_cell_id="28" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5493598"/>
+            </connection>
+            <connection id="116" pre_cell_id="29" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6661266"/>
+            </connection>
+            <connection id="117" pre_cell_id="29" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5338923"/>
+            </connection>
+            <connection id="118" pre_cell_id="29" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.51585346"/>
+            </connection>
+            <connection id="119" pre_cell_id="29" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6002141"/>
+            </connection>
+            <connection id="120" pre_cell_id="30" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6671118"/>
+            </connection>
+            <connection id="121" pre_cell_id="30" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6088069"/>
+            </connection>
+            <connection id="122" pre_cell_id="30" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.52339405"/>
+            </connection>
+            <connection id="123" pre_cell_id="30" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6111943"/>
+            </connection>
+            <connection id="124" pre_cell_id="31" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.55644953"/>
+            </connection>
+            <connection id="125" pre_cell_id="31" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6680158"/>
+            </connection>
+            <connection id="126" pre_cell_id="31" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5593522"/>
+            </connection>
+            <connection id="127" pre_cell_id="31" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.631585"/>
+            </connection>
+            <connection id="128" pre_cell_id="32" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.58486104"/>
+            </connection>
+            <connection id="129" pre_cell_id="32" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.56707233"/>
+            </connection>
+            <connection id="130" pre_cell_id="32" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6084096"/>
+            </connection>
+            <connection id="131" pre_cell_id="32" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6417104"/>
+            </connection>
+            <connection id="132" pre_cell_id="33" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6784678"/>
+            </connection>
+            <connection id="133" pre_cell_id="33" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5782474"/>
+            </connection>
+            <connection id="134" pre_cell_id="33" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.632143"/>
+            </connection>
+            <connection id="135" pre_cell_id="33" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5797176"/>
+            </connection>
+            <connection id="136" pre_cell_id="34" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.59738946"/>
+            </connection>
+            <connection id="137" pre_cell_id="34" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.563818"/>
+            </connection>
+            <connection id="138" pre_cell_id="34" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5115705"/>
+            </connection>
+            <connection id="139" pre_cell_id="34" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5858077"/>
+            </connection>
+            <connection id="140" pre_cell_id="35" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.61376077"/>
+            </connection>
+            <connection id="141" pre_cell_id="35" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.66028345"/>
+            </connection>
+            <connection id="142" pre_cell_id="35" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.58300316"/>
+            </connection>
+            <connection id="143" pre_cell_id="35" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5383936"/>
+            </connection>
+            <connection id="144" pre_cell_id="36" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5765076"/>
+            </connection>
+            <connection id="145" pre_cell_id="36" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.51126176"/>
+            </connection>
+            <connection id="146" pre_cell_id="36" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6499049"/>
+            </connection>
+            <connection id="147" pre_cell_id="36" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5168689"/>
+            </connection>
+            <connection id="148" pre_cell_id="37" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6638324"/>
+            </connection>
+            <connection id="149" pre_cell_id="37" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6278239"/>
+            </connection>
+            <connection id="150" pre_cell_id="37" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.626943"/>
+            </connection>
+            <connection id="151" pre_cell_id="37" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.66900563"/>
+            </connection>
+            <connection id="152" pre_cell_id="38" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.58120227"/>
+            </connection>
+            <connection id="153" pre_cell_id="38" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5920166"/>
+            </connection>
+            <connection id="154" pre_cell_id="38" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6264378"/>
+            </connection>
+            <connection id="155" pre_cell_id="38" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5942298"/>
+            </connection>
+            <connection id="156" pre_cell_id="39" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5718761"/>
+            </connection>
+            <connection id="157" pre_cell_id="39" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.58722454"/>
+            </connection>
+            <connection id="158" pre_cell_id="39" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.57278794"/>
+            </connection>
+            <connection id="159" pre_cell_id="39" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5266108"/>
+            </connection>
+            <connection id="160" pre_cell_id="40" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.60336626"/>
+            </connection>
+            <connection id="161" pre_cell_id="40" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6423678"/>
+            </connection>
+            <connection id="162" pre_cell_id="40" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5122519"/>
+            </connection>
+            <connection id="163" pre_cell_id="40" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5607134"/>
+            </connection>
+            <connection id="164" pre_cell_id="41" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.655658"/>
+            </connection>
+            <connection id="165" pre_cell_id="41" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5125157"/>
+            </connection>
+            <connection id="166" pre_cell_id="41" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5820195"/>
+            </connection>
+            <connection id="167" pre_cell_id="41" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.56485766"/>
+            </connection>
+            <connection id="168" pre_cell_id="42" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6133059"/>
+            </connection>
+            <connection id="169" pre_cell_id="42" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.54589427"/>
+            </connection>
+            <connection id="170" pre_cell_id="42" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.61085856"/>
+            </connection>
+            <connection id="171" pre_cell_id="42" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5257661"/>
+            </connection>
+            <connection id="172" pre_cell_id="43" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5541707"/>
+            </connection>
+            <connection id="173" pre_cell_id="43" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6760446"/>
+            </connection>
+            <connection id="174" pre_cell_id="43" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.52652615"/>
+            </connection>
+            <connection id="175" pre_cell_id="43" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5335712"/>
+            </connection>
+            <connection id="176" pre_cell_id="44" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.51683325"/>
+            </connection>
+            <connection id="177" pre_cell_id="44" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6055762"/>
+            </connection>
+            <connection id="178" pre_cell_id="44" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.54385084"/>
+            </connection>
+            <connection id="179" pre_cell_id="44" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.65458274"/>
+            </connection>
+            <connection id="180" pre_cell_id="45" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5154867"/>
+            </connection>
+            <connection id="181" pre_cell_id="45" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5259951"/>
+            </connection>
+            <connection id="182" pre_cell_id="45" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.60210365"/>
+            </connection>
+            <connection id="183" pre_cell_id="45" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6213357"/>
+            </connection>
+            <connection id="184" pre_cell_id="46" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.54450935"/>
+            </connection>
+            <connection id="185" pre_cell_id="46" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5178265"/>
+            </connection>
+            <connection id="186" pre_cell_id="46" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6260309"/>
+            </connection>
+            <connection id="187" pre_cell_id="46" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.59205955"/>
+            </connection>
+            <connection id="188" pre_cell_id="47" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5550155"/>
+            </connection>
+            <connection id="189" pre_cell_id="47" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5474719"/>
+            </connection>
+            <connection id="190" pre_cell_id="47" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.654009"/>
+            </connection>
+            <connection id="191" pre_cell_id="47" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5949356"/>
+            </connection>
+            <connection id="192" pre_cell_id="48" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.51226526"/>
+            </connection>
+            <connection id="193" pre_cell_id="48" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.68725556"/>
+            </connection>
+            <connection id="194" pre_cell_id="48" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5974561"/>
+            </connection>
+            <connection id="195" pre_cell_id="48" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6154908"/>
+            </connection>
+            <connection id="196" pre_cell_id="49" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.56705856"/>
+            </connection>
+            <connection id="197" pre_cell_id="49" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6840572"/>
+            </connection>
+            <connection id="198" pre_cell_id="49" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.57754153"/>
+            </connection>
+            <connection id="199" pre_cell_id="49" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6724234"/>
+            </connection>
+            <connection id="200" pre_cell_id="50" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6032996"/>
+            </connection>
+            <connection id="201" pre_cell_id="50" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.57106817"/>
+            </connection>
+            <connection id="202" pre_cell_id="50" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6138818"/>
+            </connection>
+            <connection id="203" pre_cell_id="50" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.58329827"/>
+            </connection>
+            <connection id="204" pre_cell_id="51" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.51192576"/>
+            </connection>
+            <connection id="205" pre_cell_id="51" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6718608"/>
+            </connection>
+            <connection id="206" pre_cell_id="51" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.66429853"/>
+            </connection>
+            <connection id="207" pre_cell_id="51" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.67345124"/>
+            </connection>
+            <connection id="208" pre_cell_id="52" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.61883485"/>
+            </connection>
+            <connection id="209" pre_cell_id="52" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.64393294"/>
+            </connection>
+            <connection id="210" pre_cell_id="52" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.65183616"/>
+            </connection>
+            <connection id="211" pre_cell_id="52" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5720183"/>
+            </connection>
+            <connection id="212" pre_cell_id="53" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6180222"/>
+            </connection>
+            <connection id="213" pre_cell_id="53" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.68155074"/>
+            </connection>
+            <connection id="214" pre_cell_id="53" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.64659554"/>
+            </connection>
+            <connection id="215" pre_cell_id="53" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6508038"/>
+            </connection>
+            <connection id="216" pre_cell_id="54" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.63106024"/>
+            </connection>
+            <connection id="217" pre_cell_id="54" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.59792864"/>
+            </connection>
+            <connection id="218" pre_cell_id="54" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.62635285"/>
+            </connection>
+            <connection id="219" pre_cell_id="54" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5359023"/>
+            </connection>
+            <connection id="220" pre_cell_id="55" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.57962835"/>
+            </connection>
+            <connection id="221" pre_cell_id="55" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6717396"/>
+            </connection>
+            <connection id="222" pre_cell_id="55" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.55835766"/>
+            </connection>
+            <connection id="223" pre_cell_id="55" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.67678386"/>
+            </connection>
+            <connection id="224" pre_cell_id="56" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5613254"/>
+            </connection>
+            <connection id="225" pre_cell_id="56" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.60124433"/>
+            </connection>
+            <connection id="226" pre_cell_id="56" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6115914"/>
+            </connection>
+            <connection id="227" pre_cell_id="56" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.63860345"/>
+            </connection>
+            <connection id="228" pre_cell_id="57" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.57225716"/>
+            </connection>
+            <connection id="229" pre_cell_id="57" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6825077"/>
+            </connection>
+            <connection id="230" pre_cell_id="57" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.65663874"/>
+            </connection>
+            <connection id="231" pre_cell_id="57" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5643112"/>
+            </connection>
+            <connection id="232" pre_cell_id="58" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6078052"/>
+            </connection>
+            <connection id="233" pre_cell_id="58" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6743338"/>
+            </connection>
+            <connection id="234" pre_cell_id="58" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.57119673"/>
+            </connection>
+            <connection id="235" pre_cell_id="58" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5545562"/>
+            </connection>
+            <connection id="236" pre_cell_id="59" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5953278"/>
+            </connection>
+            <connection id="237" pre_cell_id="59" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5575655"/>
+            </connection>
+            <connection id="238" pre_cell_id="59" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.67933846"/>
+            </connection>
+            <connection id="239" pre_cell_id="59" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.56696534"/>
+            </connection>
+            <connection id="240" pre_cell_id="60" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.65790343"/>
+            </connection>
+            <connection id="241" pre_cell_id="60" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6084519"/>
+            </connection>
+            <connection id="242" pre_cell_id="60" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.64311725"/>
+            </connection>
+            <connection id="243" pre_cell_id="60" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.64117336"/>
+            </connection>
+            <connection id="244" pre_cell_id="61" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6182441"/>
+            </connection>
+            <connection id="245" pre_cell_id="61" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.658059"/>
+            </connection>
+            <connection id="246" pre_cell_id="61" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.60616946"/>
+            </connection>
+            <connection id="247" pre_cell_id="61" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.540913"/>
+            </connection>
+            <connection id="248" pre_cell_id="62" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5843172"/>
+            </connection>
+            <connection id="249" pre_cell_id="62" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6803241"/>
+            </connection>
+            <connection id="250" pre_cell_id="62" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6415898"/>
+            </connection>
+            <connection id="251" pre_cell_id="62" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6629458"/>
+            </connection>
+            <connection id="252" pre_cell_id="63" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6509429"/>
+            </connection>
+            <connection id="253" pre_cell_id="63" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6158543"/>
+            </connection>
+            <connection id="254" pre_cell_id="63" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5148743"/>
+            </connection>
+            <connection id="255" pre_cell_id="63" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5182044"/>
+            </connection>
+            <connection id="256" pre_cell_id="64" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5574058"/>
+            </connection>
+            <connection id="257" pre_cell_id="64" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.64173925"/>
+            </connection>
+            <connection id="258" pre_cell_id="64" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.51804054"/>
+            </connection>
+            <connection id="259" pre_cell_id="64" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.52683836"/>
+            </connection>
+            <connection id="260" pre_cell_id="65" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.593292"/>
+            </connection>
+            <connection id="261" pre_cell_id="65" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5645012"/>
+            </connection>
+            <connection id="262" pre_cell_id="65" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.55875915"/>
+            </connection>
+            <connection id="263" pre_cell_id="65" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.57862556"/>
+            </connection>
+            <connection id="264" pre_cell_id="66" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5128992"/>
+            </connection>
+            <connection id="265" pre_cell_id="66" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5731133"/>
+            </connection>
+            <connection id="266" pre_cell_id="66" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.54107493"/>
+            </connection>
+            <connection id="267" pre_cell_id="66" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6517626"/>
+            </connection>
+            <connection id="268" pre_cell_id="67" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5166387"/>
+            </connection>
+            <connection id="269" pre_cell_id="67" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.590671"/>
+            </connection>
+            <connection id="270" pre_cell_id="67" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.65476894"/>
+            </connection>
+            <connection id="271" pre_cell_id="67" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6346047"/>
+            </connection>
+            <connection id="272" pre_cell_id="68" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6240524"/>
+            </connection>
+            <connection id="273" pre_cell_id="68" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.58973134"/>
+            </connection>
+            <connection id="274" pre_cell_id="68" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6176318"/>
+            </connection>
+            <connection id="275" pre_cell_id="68" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5757661"/>
+            </connection>
+            <connection id="276" pre_cell_id="69" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5102967"/>
+            </connection>
+            <connection id="277" pre_cell_id="69" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6816196"/>
+            </connection>
+            <connection id="278" pre_cell_id="69" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.55660224"/>
+            </connection>
+            <connection id="279" pre_cell_id="69" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.63124406"/>
+            </connection>
+            <connection id="280" pre_cell_id="70" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5573509"/>
+            </connection>
+            <connection id="281" pre_cell_id="70" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5521905"/>
+            </connection>
+            <connection id="282" pre_cell_id="70" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6556742"/>
+            </connection>
+            <connection id="283" pre_cell_id="70" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.63854855"/>
+            </connection>
+            <connection id="284" pre_cell_id="71" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5936024"/>
+            </connection>
+            <connection id="285" pre_cell_id="71" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6672649"/>
+            </connection>
+            <connection id="286" pre_cell_id="71" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5791346"/>
+            </connection>
+            <connection id="287" pre_cell_id="71" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.68211204"/>
+            </connection>
+            <connection id="288" pre_cell_id="72" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.66339946"/>
+            </connection>
+            <connection id="289" pre_cell_id="72" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6737852"/>
+            </connection>
+            <connection id="290" pre_cell_id="72" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.60460955"/>
+            </connection>
+            <connection id="291" pre_cell_id="72" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.522013"/>
+            </connection>
+            <connection id="292" pre_cell_id="73" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6018588"/>
+            </connection>
+            <connection id="293" pre_cell_id="73" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.53560585"/>
+            </connection>
+            <connection id="294" pre_cell_id="73" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.53493816"/>
+            </connection>
+            <connection id="295" pre_cell_id="73" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.53798133"/>
+            </connection>
+            <connection id="296" pre_cell_id="74" post_cell_id="3">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6018572"/>
+            </connection>
+            <connection id="297" pre_cell_id="74" post_cell_id="2">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.5878108"/>
+            </connection>
+            <connection id="298" pre_cell_id="74" post_cell_id="0">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6509407"/>
+            </connection>
+            <connection id="299" pre_cell_id="74" post_cell_id="1">
+                <properties prop_delay="0.0" internal_delay="0.0" weight="0.6365039"/>
+            </connection>
+        </connections>
+    </projection>
+</projections>
+
+        <inputs units="Physiological Units">
+    <input name="Input_0">
+        <random_stim frequency="0.05" synaptic_mechanism="MFSpikeSyn"/>
+        <target population="Mossies">
+            <sites size="12">
+            <site cell_id="0" segment_id="0" fraction_along="0.5"/>
+            <site cell_id="1" segment_id="0" fraction_along="0.5"/>
+            <site cell_id="2" segment_id="0" fraction_along="0.5"/>
+            <site cell_id="3" segment_id="0" fraction_along="0.5"/>
+            <site cell_id="4" segment_id="0" fraction_along="0.5"/>
+            <site cell_id="5" segment_id="0" fraction_along="0.5"/>
+            <site cell_id="6" segment_id="0" fraction_along="0.5"/>
+            <site cell_id="7" segment_id="0" fraction_along="0.5"/>
+            <site cell_id="8" segment_id="0" fraction_along="0.5"/>
+            <site cell_id="9" segment_id="0" fraction_along="0.5"/>
+            <site cell_id="10" segment_id="0" fraction_along="0.5"/>
+            <site cell_id="11" segment_id="0" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+</inputs>
+
+
+
+
+
+</networkml>
