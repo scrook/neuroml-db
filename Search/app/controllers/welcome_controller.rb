@@ -26,6 +26,9 @@ class WelcomeController < ApplicationController
   def home_db
   end
 
+  def documentation
+  end
+
   def model_submit
     @cells=Modelupload.all
   end
