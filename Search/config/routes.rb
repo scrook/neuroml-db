@@ -17,7 +17,8 @@
 
 RedmineApp::Application.routes.draw do
   root :to => 'welcome#search_model', :as => 'search_model'
-  match 'home_db', :to => 'welcome#home_db', :as => 'home_db'  
+  match 'home_db', :to => 'welcome#home_db', :as => 'home_db'
+  match 'documentation', :to => 'welcome#documentation', :as => 'documentation'
   match 'home', :to => 'welcome#index', :as => 'home'
   match 'neuromlv2', :to => 'welcome#neuromlv2', :as => 'neuromlv2'
   match 'alpha_schema', :to => 'welcome#alpha_schema' , :as => 'alpha_schema'

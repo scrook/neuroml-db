@@ -199,7 +199,9 @@ active_class="current-menu-item"
 elsif controller.action_name == "home_db"
 index3 =1
 active_class="current-menu-item"
-
+elsif controller.action_name == "documentation"
+  index4 =1
+  active_class="current-menu-item"
 end
 
                          %>
@@ -213,7 +215,8 @@ end
                             <li <% if index2 == 1 %>class="<%= active_class %>" <% end %> ><a href="/search_model">Search NeuroML Models</a></li>
                             <li <% if index == 1 %>class="<%= active_class %>" <% end %> ><a href="/model_submit">Submit NeuroML Models</a></li>
                             <li <% if index3 == 1 %> class="<%= active_class %>"<% end %> ><a href="/home_db">About NeuroML-DB</a></li>
-						    <li><a href="http://neuroml.org/">NeuroML Home</a></li>
+                            <li <% if index4 == 1 %> class="<%= active_class %>"<% end %> ><a href="/documentation">Documentation</a></li>
+						    <li><a href="http://neuroml.org/" target="_blank">NeuroML Home</a></li>
                         </ul>
 						<!-- Navigation -->
 					</div>
