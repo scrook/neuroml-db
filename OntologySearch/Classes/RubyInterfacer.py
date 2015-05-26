@@ -1,6 +1,7 @@
 from collections import defaultdict
 import MySQLdb
 from Classes.SearchResults import SearchResults
+import database
 
 
 class RubyInterfacer():
@@ -104,7 +105,7 @@ class RubyInterfacer():
 
     def GetNeuroMLids(self, pythonResult):
 
-        connection = MySQLdb.connect("localhost", "neuromldb2", "neuromldbv2", "neuroml_dev")
+        connection = MySQLdb.connect("localhost", database.connection['user'], database.connection['password'], database.connection['db'])
         connection.autocommit(True)
         cursor = connection.cursor()
 
