@@ -1,0 +1,3 @@
+<% @modelsources.each do |source| %>
+  <input type="radio" name="modelsources_dropdown" value="<%= source[:ID] %>"><%=h(source[:Name]) %></input>
+<% end %>

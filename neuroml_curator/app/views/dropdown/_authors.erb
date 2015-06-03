@@ -1,0 +1,6 @@
+<select id="authors_dropdown[index]" class="authors_dropdown" style="width: 100%;">
+  <option value="0">Select an existing *author* by typing a name...</option>
+  <% @authors.each do |author| %>
+      <option value="<%= author[:ID] %>"><%=h(author[:ID].to_s + ': ' + author[:LastName] + ', ' + author[:FirstName]) %></option>
+  <% end %>
+</select>

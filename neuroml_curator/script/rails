@@ -17,13 +17,13 @@ module Rails
                 :debugger => false,
                 :pid => File.expand_path("tmp/pids/server.pid"),
                 :config => File.expand_path("config.ru"),
-                :SSLEnable => true,
-                :SSLVerifyClient => OpenSSL::SSL::VERIFY_NONE,
-                :SSLPrivateKey => OpenSSL::PKey::RSA.new(
-                       File.open("/etc/apache2/sites-available/ssl/spike.asu.edu.key").read),
-                :SSLCertificate => OpenSSL::X509::Certificate.new(
-                       File.open("/etc/apache2/sites-available/ssl/spike_asu_edu_cert.cer").read),
-                :SSLCertName => [["CN", WEBrick::Utils::getservername]]
+                # :SSLEnable => true,
+                # :SSLVerifyClient => OpenSSL::SSL::VERIFY_NONE,
+                # :SSLPrivateKey => OpenSSL::PKey::RSA.new(
+                #        File.open("/etc/apache2/sites-available/ssl/spike.asu.edu.key").read),
+                # :SSLCertificate => OpenSSL::X509::Certificate.new(
+                #        File.open("/etc/apache2/sites-available/ssl/spike_asu_edu_cert.cer").read),
+                # :SSLCertName => [["CN", WEBrick::Utils::getservername]]
             })
         end
     end

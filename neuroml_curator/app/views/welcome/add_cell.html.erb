@@ -1,301 +1,296 @@
-<script type="text/javascript" charset="utf-8">
+<div id="newAuthorTemplate" style="display: none;">
+  <div id="author[index]">
+    <div class="newModelHeader">Model Author <span id="authorIndex">[index]</span>:</div>
+    <div class="newModelControls">
+      <div id="existingAuthorFields[index]">
+          <%= render 'dropdown/authors' %>
+          <div class="addNewControls" style="display: none;" id="addNewAuthor"><input type="button" value="[+] Or, create a new author" onclick="$('#existingAuthorFields[index]').hide(); $('#newAuthorFields[index]').show();" /></div>
+      </div>
+      <table id="newAuthorFields[index]" class="news_table" style="margin-bottom: 0; display:none;">
+        <tr>
+          <td style="width: 30%;"> First Name* :</td>
+          <td>
+            <div id="fname_addn">
+              <input maxlength="100" name="fname[index]" size="30" type="text" class="poshytip" title="Enter your first name" />
+            </div>
+          </td>
+        </tr>
 
-counterpub = 0;
-counterref=0;
-countercont=0;
-counter_fname = 1;
-counter_lname = 1;
-counter_mname = 1;
-counter_email = 1;
-counter_inst = 1;
-counter_dropdown = 1;
-        function addFields(id) {
-            // Get the main Div in which all the other divs will be added
-            var mainContainer = document.getElementById(id);
-            // Create a new div for holding text and button input elements
-            var newDiv = document.createElement('div');
-            // Create a new text input
-            var newText = document.createElement('input');
-            newText.type = "input"; 
-            newText.maxlength = "300"; 
-            newText.maxlimit = "300"; 
-            newText.size = "30"; 
-	    if(id == "fname_addn") {newText.name = "fname" + counter_fname;
-		counter_fname++;}
-	    if(id == "lname_addn") { newText.name = "lname" + counter_lname; 
-		counter_lname++;}
-	    if(id == "mname_addn"){ newText.name = "mname" + counter_mname;  
-		counter_mname++;}
-	    if(id == "email_addn"){ newText.name = "email" + counter_email;
-		  counter_email++; }
-	    if(id == "inst_addn") {newText.name = "instname" + counter_inst; 
-		counter_inst++;} 
-            if(id == "pubFields")
-            newText.value = counterpub;
-            else if(id == "contFields"){
-            	//newdropd.size = "1";
-            	//newdropd.setAttribute('id', 'dropdownelement');
-		//newDiv.appendChild(newdropd);
-            	//newdropd = document.getElementById('dropdownelement');
-                //add first value to the dropdown
-		var newdropd = document.createElement('select');
-		newdropd.name = "cont_select" + counter_dropdown;
-		counter_dropdown++;
-		 var _opt = document.createElement('option');
-                _opt.text = "Select Role";
-                _opt.value = "";
-                newdropd.add(_opt); 
-                var _opt = document.createElement('option');
-                _opt.text = "Author";
-                _opt.value = "0";
-                newdropd.add(_opt); 
-		var _opt = document.createElement('option');
-                _opt.text = 'Translator';
-                _opt.value = '1';
-                newdropd.add(_opt);
-		var _opt = document.createElement('option');
-                _opt.text = 'Both';
-                _opt.value = '2';
-                newdropd.add(_opt);
-		}
-	    else if(id == "fileFields")
-		var fupload = document.createElement('file_field_tag')
-            else
-		newText.value = "";
-            // Create a new button input
-            var newDelButton = document.createElement('input');
-            newDelButton.type = "button";
-            newDelButton.value = "-";
-             
-            // Append new text input to the newDiv
-	    if(id == "fileFields") newDiv.appendChild(fupload);
-	    if(id == "contFields")	newDiv.appendChild(newdropd);
-		else  newDiv.appendChild(newText);
-            // Append new button input to the newDiv
-            newDiv.appendChild(newDelButton);
-            // Append newDiv input to the mainContainer div
-            mainContainer.appendChild(newDiv);
-            if(id == "pubFields")
-            counterpub++;
-            else if(id == "contFields")
-            countercont++;
-            else
-            counterref++;
-            // Add a handler to button for deleting the newDiv from the mainContainer
-            newDelButton.onclick = function() {
-                    mainContainer.removeChild(newDiv);
-            }
-        }
-</script>
+        <tr>
+          <td> Middle Name :
+          </td><td>
+          <div id="mname_addn">
+            <input maxlength="120" name="mname[index]" size="30" type="text" class="poshytip" title="Enter your middle name" />
+          </div>
+        </td></tr>
+        <tr>
+          <td>Last Name* :
+          </td><td> <div id="lname_addn">
+          <input maxlength="120" name="lname[index]" size="30" type="text" class="poshytip" title="Enter your last name" />
+        </div>
+        </td></tr>
+
+        <tr>
+          <td> Email Address* :
+          </td><td>
+          <div id="email_addn">
+            <input maxlength="50" name="email[index]" size="30" type="email" class="poshytip" title="Enter your email id" />
+          </div>
+        </td></tr>
+
+        <tr>
+          <td> Institution :
+          </td><td>
+          <div id="inst_addn">
+            <input maxlength="300" name="instname[index]" size="30" type="text" class="poshytip" title="Enter name of the institution" />
+          </div>
+        </td></tr>
+        </table>
+        <table class="news_table" style="margin-bottom: 0;">
+        <tr>
+          <td style="width: 30%;"> Type of Contribution to the Model :
+          </td><td>
+          <div id="contFields">
+            <input type="radio" name="cont_select[index]" value="0">Author</input>
+            <input type="radio" name="cont_select[index]" value="1">Translator</input>
+            <input type="radio" name="cont_select[index]" value="2">Author and Translator</input>
+          </div>
+        </td>
+        </tr>
+      </table>
+      <div class="addNewControls" style="display: none;" id="addNewAuthor"><input type="button" value="[+] Add another author to the new author list" onclick="$(this).hide(); addAuthor();" /></div>
+    </div>
+  </div>
+</div>
 
 
 <!-- MAIN -->
-                        <div id="main">
-                                <!-- wrapper-main -->
-                                <div class="wrapper">
+<div id="main">
+  <!-- wrapper-main -->
+  <div class="wrapper">
 
-                                        <!-- content -->
-                                        <div id="content">
+    <!-- content -->
+    <div id="content">
 
-                                                <!-- title -->
-                                                <div id="page-title">
-                                                        <span class="title">Submit a Model</span>
-                                                </div>
-                                                <!-- ENDS title -->
-<p>
-                        * Indicates required field</p>
-                <p>
-<%= form_tag("add_model",:id => "anID", :multipart => "true" , :method => "post") do %>
+      <!-- title -->
+      <div id="page-title">
+        <span class="title">Submit a Model</span>
+      </div>
+      <!-- ENDS title -->
+      <%= form_tag("add_model",:id => "anID", :multipart => "true" , :method => "post") do %>
+          <style>
+            .authors { }
+            .newModelHeader { font-weight: bold; padding: 10px; color: white; background: rgb(81, 86, 91) none repeat scroll 0px 0px; border: 1px solid rgb(81, 86, 91); border-top-left-radius: 10px; border-top-right-radius: 10px; }
+            .newModelControls { margin-bottom: 10px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; padding: 10px; border: 1px solid rgb(81, 86, 91); }
+            .addNewControls { text-align: right; margin-top: 10px; }
+            .addNewControls input { font-size: 15px; }
+            input.custom-combobox-input  { width: 832px }
+            table { margin-bottom: 0; }
+          </style>
+        <%= stylesheet_link_tag 'combobox' %>
+        <div id="modelDetails">
+            <div class="newModelHeader">Model Details</div>
+            <div class="newModelControls">
+              <table class="news_table">
+                <tr>
+                  <td> Model Name* :
+                  </td><td> <input maxlength="120" name="model" size="30" type="text" class="poshytip" title="Enter model name" />
+                </td></tr>
 
-<table class="news_table">
-<!-- <table class="collapsible alt-row-colors sm-padding" width="100%"> -->
-<tr>
-<td> First Name* :
-</td><td>
-<div id="fname_addn">
- <input maxlength="100" name="fname0" size="30" type="text" class="poshytip" title="Enter your first name" />
-<input type="button" value="+" onclick="addFields('fname_addn');" />
-</td></tr>
-</div>
+                <tr>
+                  <td> Model Type:
+                  </td>
+                  <td>
+                    <input type="radio" name="mtype_select" value="C">Cell</input>
+                    <input type="radio" name="mtype_select" value="S">Synapse</input>
+                    <input type="radio" name="mtype_select" value="Ch">Channel</input>
+                    <input type="radio" name="mtype_select" value="N">Network</input>
+                  </td>
+                </tr>
 
-<tr>
-<td> Middle Name :
-</td><td> 
-<div id="mname_addn">
-<input maxlength="120" name="mname0" size="30" type="text" class="poshytip" title="Enter your middle name" />
-<input type="button" value="+" onclick="addFields('mname_addn');" />
-</td></tr>
-</div>
-<tr>
-<td>Last Name* :
-</td><td> <div id="lname_addn">
-<input maxlength="120" name="lname0" size="30" type="text" class="poshytip" title="Enter your last name" />
-<input type="button" value="+" onclick="addFields('lname_addn');" />
-</td></tr>
-</div>
+                <tr>
+                  <td> A Brief Description of the Model :
+                  </td><td> <textarea cols="60" name="model_desc" rows="10" class="poshytip" title="Enter discription about the model"  ></textarea>
+                </td></tr>
 
-<tr>
-<td> Email Address* :
-</td><td>
-<div id="email_addn">
- <input maxlength="50" name="email0" size="30" type="email" class="poshytip" title="Enter your email id" />
-<input type="button" value="+" onclick="addFields('email_addn');" />
- </td></tr>
-</div>
+                <tr>
+                  <td> Associated Channels:
+                  </td><td>
+                  <div id="assocFields"> <input maxlength="250" name="assoc_chnl" size="30" type="text" class="poshytip" title="Enter associated models" />
+                  </div>
+                </td></tr>
 
-<tr>
-<td> Institution :
-</td><td> 
-<div id="inst_addn">
-<input maxlength="300" name="instname0" size="30" type="text" class="poshytip" title="Enter name of the institution" />
-<input type="button" value="+" onclick="addFields('inst_addn');" />
-</td></tr>
-</div>
+                <tr>
+                  <td> Associated Networks:
+                  </td><td>
+                  <div id="assocFields"> <input maxlength="250" name="assoc_nw" size="30" type="text" class="poshytip" title="Enter associated models" />
+                  </div>
+                </td></tr>
 
-<tr>
-<td> Type of Contribution Model :
-</td><td>
-<div id="contFields">
-<select name="cont_select0">
-  <option value="0" Selected="selected">Select a Role</option>
-  <option value="0">Author</option>
-  <option value="1">Translator</option>
-  <option value="2">Both</option>
-</select>
-<input type="button" value="+" onclick="addFields('contFields');" />
-</td>
-</div>
-</tr>
+                <tr>
+                  <td> Associated Cells:
+                  </td><td>
+                  <div id="assocFields"> <input maxlength="250" name="assoc_cell" size="30" type="text" class="poshytip" title="Enter associated models" />
+                  </div>
+                </td></tr>
 
-
-<tr>
-<td> Model Name* :
-</td><td> <input maxlength="120" name="model" size="30" type="text" class="poshytip" title="Enter model name" />
-</td></tr>
-
-<tr>
-<td> Model Type:
-</td><td>
-<select name="mtype_select">
-  <option value="" Selected="selected">Model Type </option>
-  <option value="C">Cell</option>
-  <option value="S">Synapse</option>
-  <option value="Ch">Channel</option>
-  <option value="N">Network</option>
-</select>
-</td>
-</tr>
-
-<tr>
-<td> A Brief Description about the Model :
-</td><td> <textarea cols="60" name="model_desc" rows="10" class="poshytip" title="Enter discription about the model"  ></textarea>
-</td></tr>
-
-<tr>
-<td> Publication(s) Title :
-</td><td><div id="pubFields"> <input maxlength="300" name="pubmed_title" size="30" type="text" class="poshytip" title="Enter publication title" />
-</div>
-</td>
-</tr>
-
-<tr>
-<td> PubMed RefID :
-</td><td><div id="pubFields"> <input maxlength="300" name="pubmed_id" size="30" type="text" class="poshytip" title="Enter pubmed ID" />
-</div>
-</td>
-</tr>
-
-<tr>
-<td> References to the Model :
-</td><td>
-<div id="refFields"> <input maxlength="250" name="ref_src" size="30" type="text" class="poshytip" title="Enter references to the model" />
-</div>
-</td></tr>
-
-<tr>
-<td> References URI:
-</td><td>
-<div id="refFields"> <input maxlength="250" name="ref_uri" size="30" type="url" class="poshytip" title="Enter references URI to the model" />
-</div>
-</td></tr>
+                <tr>
+                  <td> Associated Synapses:
+                  </td><td>
+                  <div id="assocFields"> <input maxlength="250" name="assoc_syn" size="30" type="text" class="poshytip" title="Enter associated models" />
+                  </div>
+                </td></tr>
 
 
-<tr>
-<td> NeuroLex URI:
-</td><td>
-<div id="refFields"> <input maxlength="250" name="nlx_uri" size="30" type="text" class="poshytip" title="Enter NeuroLex URI of the model" />
-</div>
-</td></tr>
-
-<tr>
-<td> NeuroLex Terms:
-</td><td>
-<div id="refFields"> <input maxlength="250" name="nlx_trm" size="30" type="text" class="poshytip" title="Enter Neurolex Terms" />
-</div>
-</td></tr>
-
-<tr>
-<td> Associated Channels:
-</td><td>
-<div id="assocFields"> <input maxlength="250" name="assoc_chnl" size="30" type="text" class="poshytip" title="Enter associated models" />
-</div>
-</td></tr>
-
-<tr>
-<td> Associated Networks:
-</td><td>
-<div id="assocFields"> <input maxlength="250" name="assoc_nw" size="30" type="text" class="poshytip" title="Enter associated models" />
-</div>
-</td></tr>
-
-<tr>
-<td> Associated Cells:
-</td><td>
-<div id="assocFields"> <input maxlength="250" name="assoc_cell" size="30" type="text" class="poshytip" title="Enter associated models" />
-</div>
-</td></tr>
-
-<tr>
-<td> Associated Synapses:
-</td><td>
-<div id="assocFields"> <input maxlength="250" name="assoc_syn" size="30" type="text" class="poshytip" title="Enter associated models" />
-</div>
-</td></tr>
+                <tr>
+                  <td> Upload you Model file(s) here :
+                  </td>
+                  <div id="fileFields">
+                    <td><%= file_field_tag "file",:class=>'poshytip', :title => 'upload your model files here' %>
+                      <input type="button" value="+" onclick="addFields('fileFields');" />
+                  </div>
+                  </td></tr>
 
 
-<tr>
-<td> Upload you Model file(s) here :
-</td>
-<div id="fileFields">
-<td><%= file_field_tag "file",:class=>'poshytip', :title => 'upload your model files here' %>
-<input type="button" value="+" onclick="addFields('fileFields');" />
-</div>
-</td></tr>
+                <tr>
+                  <td> Enter Other Keyword(s):
+                  </td><td>
+                  <input maxlength="300" name="keywords_model" size="30" type="text" class="poshytip" title="Enter the keywords" />
+                </td></tr>
 
 
-<tr>
-<td> Enter Other Keyword(s):
-</td><td>
-<input maxlength="300" name="keywords_model" size="30" type="text" class="poshytip" title="Enter the keywords" />
-</td></tr>
+                <tr>
+                  <td> Note(s) or Comment(s):
+                  </td><td> <textarea cols="60" name="notes" rows="10" class="poshytip" title="Enter the comments"></textarea>
+                </td></tr></table>
+            </div>
+        </div>
+        <div id="authorList">
+          <div class="newModelHeader">Model Author List</div>
+          <div class="newModelControls">
+            <div>
+                <div>
+                  <%= render 'dropdown/author_lists' %>
+                </div>
+            </div>
+            <div class="addNewControls">
+              <div class="addNewControls"><input type="button" value="[+] Or, Create a new author list" onclick="jQuery('#authors, #addNewAuthor').show(); jQuery('#authorList').hide(); addAuthor();" /></div>
+            </div>
+          </div>
+        </div>
+        <div id="authors"></div>
+        <div id="publication">
+          <div class="newModelHeader">Publication</div>
+          <div class="newModelControls">
+            <div id="existingPublicationFields">
+                <%= render 'dropdown/publications' %>
+                <div class="addNewControls">
+                    <div class="addNewControls"><input type="button" value="[+] Or, Create a new publication" onclick="jQuery('#newPublicationFields').show(); jQuery('#existingPublicationFields').hide();" /></div>
+                </div>
+            </div>
+            <div id="newPublicationFields" style="display: none;">
+              <table class="news_table">
+                  <tr>
+                    <td> Publication(s) Title :
+                    </td><td><div id="pubFields"> <input maxlength="300" name="pubmed_title" size="30" type="text" class="poshytip" title="Enter publication title" />
+                  </div>
+                  </td>
+                  </tr>
+
+                  <tr>
+                    <td> PubMed RefID (i.e.: pubmed/20696381):
+                    </td><td><div id="pubFields"> <input maxlength="300" name="pubmed_id" size="30" type="text" class="poshytip" title="Enter pubmed ID" />
+                  </div>
+                  </td>
+                  </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+          <div id="reference">
+            <div class="newModelHeader">Reference</div>
+            <div class="newModelControls">
+              <div id="existingReferenceFields">
+                <%= render 'dropdown/references' %>
+                <div class="addNewControls">
+                  <div class="addNewControls"><input type="button" value="[+] Or, Create a new source reference" onclick="jQuery('#newReferenceFields').show(); jQuery('#existingReferenceFields').hide();" /></div>
+                </div>
+              </div>
+              <div id="newReferenceFields" style="display: none;">
+                <table class="news_table">
+                  <tr>
+                    <td>Model Source :</td>
+                    <td><%= render 'dropdown/modelsources' %></td>
+                  </tr>
+
+                  <tr>
+                    <td> Source URI:</td>
+                    <td>
+                    <div id="refFields"> <input maxlength="250" name="ref_uri" size="30" type="url" class="poshytip" title="Enter references URI to the model" />
+                    </div>
+                  </td></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div id="neurolexterm">
+            <div class="newModelHeader">NeuroLex Term</div>
+            <div class="newModelControls">
+              <div id="existingNeurolexTermFields">
+                <%= render 'dropdown/neurolexterms' %>
+                <div class="addNewControls">
+                  <div class="addNewControls"><input type="button" value="[+] Or, Create a new NeuroLex term" onclick="jQuery('#newNeurolexTermFields').show(); jQuery('#existingNeurolexTermFields').hide();" /></div>
+                </div>
+              </div>
+              <div id="newNeurolexTermFields" style="display: none;">
+                <table class="news_table">
+                  <tr>
+                    <td> NeuroLex URI:
+                    </td><td>
+                    <div id="refFields"> <input maxlength="250" name="nlx_uri" size="30" type="text" class="poshytip" title="Enter NeuroLex URI of the model" />
+                    </div>
+                  </td></tr>
+
+                  <tr>
+                    <td> NeuroLex Term:
+                    </td><td>
+                    <div id="refFields"> <input maxlength="250" name="nlx_trm" size="30" type="text" class="poshytip" title="Enter Neurolex Terms" />
+                    </div>
+                  </td></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        <div class="addNewControls" >
+          <input name="save" type="button" value="Save" />&nbsp;&nbsp; <input name="Submit" type="submit" value="Submit Model" />
+        </div>
+      <% end%>
+      <div class="clear"></div>
+      <!-- ENDS project column (right) -->
 
 
-<tr>
-<td> Note(s) or Comment(s):
-</td><td> <textarea cols="60" name="notes" rows="10" class="poshytip" title="Enter the comments"></textarea>
-</td></tr></table>
+      </div>
+      <!-- ENDS content -->
 
-		<p>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input name="reset" type="reset"/>&nbsp;&nbsp; <input name="save" type="button" value="Save" />&nbsp;&nbsp; <input name="Submit" type="submit" value="Submit Model" /></p>
-<% end%>
-<div class="clear"></div>
-                                                <!-- ENDS project column (right) -->
+      </div>
+      <!-- ENDS wrapper-main -->
+      </div>
 
+<script>
+    var authorIndex = 1;
+    function addAuthor()
+    {
 
-                                        </div>
-                                        <!-- ENDS content -->
+        newAuthorHtml = $('#newAuthorTemplate')[0]
+                .innerHTML
+                .replace(/\[index\]/g,authorIndex);
 
-                                </div>
-                                <!-- ENDS wrapper-main -->
-                        </div>
+        $('#authors').append(newAuthorHtml);
 
+        //Make the dropdown searchable
+        $('#authors').children().last().find(".authors_dropdown").combobox();
+
+        authorIndex++;
+    }
+</script>
+<%= javascript_include_tag 'combobox' %>
