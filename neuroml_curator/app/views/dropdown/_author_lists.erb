@@ -1,0 +1,21 @@
+<select id="author_lists_dropdown[index]" class="author_lists_dropdown" style="width: 100%;">
+  <option value="0">Select an existing *author list* for this model by typing an author name...</option>
+  <%
+     @authorLists.each do |authorList|
+       lastNames = []
+       authorList[:Authors].each do |author|
+
+         authorString = author[:LastName]
+
+         if author[:Translator] == "1"
+           authorString += " (T)"
+         elsif author[:Translator] == "2"
+           authorString += " (A+T)"
+         end
+
+         lastNames.push(authorString)
+       end
+  %>
+      <option value="<%= authorList[:ID] %>"><%=h(authorList[:ID] + ": " + lastNames.join(', ')) %></option>
+  <% end %>
+</select>
