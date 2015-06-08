@@ -124,4 +124,115 @@ module DropdownHelper
 
   end
 
+  def channels
+
+    records = ActiveRecord::Base.connection_pool.with_connection { |con| con.exec_query( \
+      'SELECT Channel_ID, Channel_Name, pubs.Full_Title FROM channels ' \
+      'LEFT OUTER JOIN  ' \
+      '( ' \
+      '    SELECT mma.Model_ID, p.Full_Title FROM model_metadata_associations mma ' \
+      '    JOIN publications p ON p.Publication_ID = mma.Metadata_ID ' \
+      ') pubs ' \
+      'ON pubs.Model_ID = Channel_ID ' \
+      'ORDER BY Channel_ID DESC' \
+    )}
+
+    result = []
+
+    records.each do |record|
+      result.push({ \
+        :ID => record["Channel_ID"], \
+        :Name => record["Channel_Name"], \
+        :PubTitle => record["Full_Title"],
+      })
+    end
+
+    @channels = result
+
+  end
+
+
+
+  def networks
+
+    records = ActiveRecord::Base.connection_pool.with_connection { |con| con.exec_query( \
+      'SELECT Network_ID, Network_Name, pubs.Full_Title FROM networks '\
+      'LEFT OUTER JOIN  '\
+      '( '\
+      '	   SELECT mma.Model_ID, p.Full_Title FROM model_metadata_associations mma '\
+      '    JOIN publications p ON p.Publication_ID = mma.Metadata_ID '\
+      ') pubs '\
+      'ON pubs.Model_ID = Network_ID '\
+      'ORDER BY Network_ID DESC' \
+    )}
+
+    result = []
+
+    records.each do |record|
+      result.push({ \
+        :ID => record["Network_ID"], \
+        :Name => record["Network_Name"], \
+        :PubTitle => record["Full_Title"],
+      })
+    end
+
+    @networks = result
+
+  end
+
+
+  def synapses
+
+    records = ActiveRecord::Base.connection_pool.with_connection { |con| con.exec_query( \
+      'SELECT Synapse_ID, Synapse_Name, pubs.Full_Title FROM synapses '\
+      'LEFT OUTER JOIN  '\
+      '( '\
+      '	   SELECT mma.Model_ID, p.Full_Title FROM model_metadata_associations mma '\
+      '    JOIN publications p ON p.Publication_ID = mma.Metadata_ID '\
+      ') pubs '\
+      'ON pubs.Model_ID = Synapse_ID '\
+      'ORDER BY Synapse_ID DESC' \
+    )}
+
+    result = []
+
+    records.each do |record|
+      result.push({ \
+        :ID => record["Synapse_ID"], \
+        :Name => record["Synapse_Name"], \
+        :PubTitle => record["Full_Title"],
+      })
+    end
+
+    @synapses = result
+
+  end
+
+  def cells
+
+    records = ActiveRecord::Base.connection_pool.with_connection { |con| con.exec_query( \
+      'SELECT Cell_ID, Cell_Name, pubs.Full_Title FROM cells '\
+      'LEFT OUTER JOIN  '\
+      '( '\
+      '	   SELECT mma.Model_ID, p.Full_Title FROM model_metadata_associations mma '\
+      '    JOIN publications p ON p.Publication_ID = mma.Metadata_ID '\
+      ') pubs '\
+      'ON pubs.Model_ID = Cell_ID '\
+      'ORDER BY Cell_ID DESC' \
+    )}
+
+    result = []
+
+    records.each do |record|
+      result.push({ \
+        :ID => record["Cell_ID"], \
+        :Name => record["Cell_Name"], \
+        :PubTitle => record["Full_Title"],
+                  })
+    end
+
+    @cells = result
+
+  end
+
 end
