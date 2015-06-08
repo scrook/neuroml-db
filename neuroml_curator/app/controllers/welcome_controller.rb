@@ -399,6 +399,10 @@ class WelcomeController < ApplicationController
     references
     modelsources
     neurolexterms
+    channels
+    networks
+    synapses
+    cells
 
   end
 

@@ -51,9 +51,9 @@
           <td style="width: 30%;"> Type of Contribution to the Model :
           </td><td>
           <div id="contFields">
-            <input type="radio" name="cont_select[index]" value="0">Author</input>
-            <input type="radio" name="cont_select[index]" value="1">Translator</input>
-            <input type="radio" name="cont_select[index]" value="2">Author and Translator</input>
+            <label><input type="radio" name="cont_select[index]" value="0">Author</input></label>
+            <label><input type="radio" name="cont_select[index]" value="1">Translator</input></label>
+            <label><input type="radio" name="cont_select[index]" value="2">Author and Translator</input></label>
           </div>
         </td>
         </tr>
@@ -86,6 +86,9 @@
             .addNewControls input { font-size: 15px; }
             input.custom-combobox-input  { width: 832px }
             table { margin-bottom: 0; }
+            .submodels .submodelID { width: 135px; }
+            .submodels .submodelName { width: 230px; }
+            .submodels .submodelList { overflow: auto; height: 200px; border: 1px solid; }
           </style>
         <%= stylesheet_link_tag 'combobox' %>
         <div id="modelDetails">
@@ -101,10 +104,10 @@
                   <td> Model Type:
                   </td>
                   <td>
-                    <input type="radio" name="mtype_select" value="C">Cell</input>
-                    <input type="radio" name="mtype_select" value="S">Synapse</input>
-                    <input type="radio" name="mtype_select" value="Ch">Channel</input>
-                    <input type="radio" name="mtype_select" value="N">Network</input>
+                    <label><input type="radio" name="mtype_select" value="C">Cell</input></label>
+                    <label><input type="radio" name="mtype_select" value="S">Synapse</input></label>
+                    <label><input type="radio" name="mtype_select" value="Ch">Channel</input></label>
+                    <label><input type="radio" name="mtype_select" value="N">Network</input></label>
                   </td>
                 </tr>
 
@@ -112,35 +115,6 @@
                   <td> A Brief Description of the Model :
                   </td><td> <textarea cols="60" name="model_desc" rows="10" class="poshytip" title="Enter discription about the model"  ></textarea>
                 </td></tr>
-
-                <tr>
-                  <td> Associated Channels:
-                  </td><td>
-                  <div id="assocFields"> <input maxlength="250" name="assoc_chnl" size="30" type="text" class="poshytip" title="Enter associated models" />
-                  </div>
-                </td></tr>
-
-                <tr>
-                  <td> Associated Networks:
-                  </td><td>
-                  <div id="assocFields"> <input maxlength="250" name="assoc_nw" size="30" type="text" class="poshytip" title="Enter associated models" />
-                  </div>
-                </td></tr>
-
-                <tr>
-                  <td> Associated Cells:
-                  </td><td>
-                  <div id="assocFields"> <input maxlength="250" name="assoc_cell" size="30" type="text" class="poshytip" title="Enter associated models" />
-                  </div>
-                </td></tr>
-
-                <tr>
-                  <td> Associated Synapses:
-                  </td><td>
-                  <div id="assocFields"> <input maxlength="250" name="assoc_syn" size="30" type="text" class="poshytip" title="Enter associated models" />
-                  </div>
-                </td></tr>
-
 
                 <tr>
                   <td> Upload you Model file(s) here :
@@ -162,7 +136,127 @@
                 <tr>
                   <td> Note(s) or Comment(s):
                   </td><td> <textarea cols="60" name="notes" rows="10" class="poshytip" title="Enter the comments"></textarea>
-                </td></tr></table>
+                </td></tr>
+
+                <tr id="addNetworks">
+                  <td>Associated Networks:
+                  </td><td>
+                  <input type="button" value="[+] Associate Networks" onclick="jQuery('#newNetworks').show(); jQuery('#addNetworks').hide();" />
+                </td>
+                </tr>
+
+                <tr id="newNetworks" class="submodels" style="display: none;">
+                  <td colspan="2" style="width: 100%;">
+                    <div>Associated Networks:</div>
+                    <div class="submodelList">
+                      <table>
+                        <thead>
+                        <tr><th class="submodelID">Network ID</th><th class="submodelName">Name</th><th>Publication</th></tr>
+                        </thead>
+                        <tbody>
+                        <% @networks.each do |network| %>
+                            <tr>
+                              <td><label><input type="checkbox" name="assoc_nw" value="<%= h(network[:ID].to_s) %>"><%= h(network[:ID].to_s) %></label></td>
+                              <td><%= h(network[:Name]) %></td>
+                              <td><%= h(network[:PubTitle]) %></td>
+                            </tr>
+                        <% end %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr id="addCells">
+                  <td>Associated Cells:
+                  </td><td>
+                  <input type="button" value="[+] Associate Cells" onclick="jQuery('#newCells').show(); jQuery('#addCells').hide();" />
+                </td>
+                </tr>
+
+                <tr id="newCells" class="submodels" style="display: none;">
+                  <td colspan="2" style="width: 100%;">
+                    <div>Associated Cells:</div>
+                    <div class="submodelList">
+                      <table>
+                        <thead>
+                        <tr><th class="submodelID">Cell ID</th><th class="submodelName">Name</th><th>Publication</th></tr>
+                        </thead>
+                        <tbody>
+                        <% @cells.each do |cell| %>
+                            <tr>
+                              <td><label><input type="checkbox" name="assoc_cell" value="<%= h(cell[:ID].to_s) %>"><%= h(cell[:ID].to_s) %></label></td>
+                              <td><%= h(cell[:Name]) %></td>
+                              <td><%= h(cell[:PubTitle]) %></td>
+                            </tr>
+                        <% end %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </td>
+                </tr>
+
+
+
+                <tr id="addChannels">
+                  <td>Associated Channels:
+                  </td><td>
+                  <input type="button" value="[+] Associate Channels" onclick="jQuery('#newChannels').show(); jQuery('#addChannels').hide();" />
+                </td>
+                </tr>
+
+                <tr id="newChannels" class="submodels" style="display: none;">
+                  <td colspan="2" style="width: 100%;">
+                    <div>Associated Channels:</div>
+                    <div class="submodelList">
+                      <table>
+                        <thead>
+                        <tr><th class="submodelID">Channel ID</th><th class="submodelName">Name</th><th>Publication</th></tr>
+                        </thead>
+                        <tbody>
+                        <% @channels.each do |channel| %>
+                            <tr>
+                              <td><label><input type="checkbox" name="assoc_chnl" value="<%= h(channel[:ID].to_s) %>"><%= h(channel[:ID].to_s) %></label></td>
+                              <td><%= h(channel[:Name]) %></td>
+                              <td><%= h(channel[:PubTitle]) %></td>
+                            </tr>
+                        <% end %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr id="addSynapses">
+                  <td>Associated Synapses:
+                  </td><td>
+                  <input type="button" value="[+] Associate Synapses" onclick="jQuery('#newSynapses').show(); jQuery('#addSynapses').hide();" />
+                </td>
+                </tr>
+
+                <tr id="newSynapses" class="submodels" style="display: none;">
+                  <td colspan="2" style="width: 100%;">
+                    <div>Associated Synapses:</div>
+                    <div class="submodelList">
+                      <table>
+                        <thead>
+                        <tr><th class="submodelID">Synapse ID</th><th class="submodelName">Name</th><th>Publication</th></tr>
+                        </thead>
+                        <tbody>
+                        <% @synapses.each do |synapse| %>
+                            <tr>
+                              <td><label><input type="checkbox" name="assoc_syn" value="<%= h(synapse[:ID].to_s) %>"><%= h(synapse[:ID].to_s) %></label></td>
+                              <td><%= h(synapse[:Name]) %></td>
+                              <td><%= h(synapse[:PubTitle]) %></td>
+                            </tr>
+                        <% end %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </td>
+                </tr>
+
+              </table>
             </div>
         </div>
         <div id="authorList">
