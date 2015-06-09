@@ -235,4 +235,29 @@ module DropdownHelper
 
   end
 
+  def nextIDs
+
+    records = ActiveRecord::Base.connection_pool.with_connection { |con| con.exec_query( \
+      'SELECT * FROM ' \
+      '	  (SELECT CAST(SUBSTR(Model_ID,5+1) AS UNSIGNED)+1 as Model_ID FROM models ORDER BY Model_ID DESC LIMIT 1) model, ' \
+      '	  (SELECT CAST(SUBSTR(Metadata_id,1+1) AS UNSIGNED)+1 as Metadata_id FROM metadatas ORDER BY Metadata_id DESC LIMIT 1) metadata, ' \
+      '   (SELECT CAST(SUBSTR(Person_ID,1+1) AS UNSIGNED)+1 as Person_ID FROM people ORDER BY Person_ID DESC LIMIT 1) person, ' \
+      '	  (SELECT CAST(SUBSTR(AuthorList_ID,1+1) AS UNSIGNED)+1 as AuthorList_ID FROM author_lists ORDER BY AuthorList_ID DESC LIMIT 1) authorlist ' \
+    )}
+
+    result = []
+
+    records.each do |record|
+      result.push({ \
+        :NextModelID => record["Model_ID"], \
+        :NextMetadataID => record["Metadata_id"], \
+        :NextPersonID => record["Person_ID"], \
+        :NextAuthorListID => record["AuthorList_ID"],
+      })
+    end
+
+    @nextIDs = result
+
+  end
+
 end
