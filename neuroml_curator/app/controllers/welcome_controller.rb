@@ -1086,6 +1086,8 @@ class WelcomeController < ApplicationController
   end
 
   def add_model
+
+    #Gather parameter values from the submitted form
     @model_name=params[:model].to_s
     @model_type=params[:mtype_select].to_s
     @model_description = params[:model_desc].to_s
@@ -1100,106 +1102,133 @@ class WelcomeController < ApplicationController
     @other_kwords = params[:keywords_model].to_s
     @comments = params[:notes].to_s
 
-    seq_nbr1=Sequence.find_by_Attr_Name("Model_ID");
-    @seq_nbr_model =seq_nbr1.Seq_Nbr
-    seq_nbr2=Sequence.find_by_Attr_Name("Metadata_ID");
-    @seq_nbr_metadata = seq_nbr2.Seq_Nbr;
-    seq_nbr3=Sequence.find_by_Attr_Name("Person_ID");
-    @seq_nbr_pid = seq_nbr3.Seq_Nbr;
+    @authorListID = params[:authorListID].to_s
+    @authorID = params[:authorID].to_s
+    @modelSourceID = params[:modelSourceID].to_s
+    @neurolexTermID = params[:neurolexTermID].to_s
+    @publicationID = params[:publicationID].to_s
+    @sourceReferenceID = params[:sourceReferenceID].to_s
+    @uploadedFile = params[:file]
 
-    @post = params[:file]
+    #Create model directory for files if any
     if !@model_name.blank?
       @model_dir = Dir.home + "/models/" + (@model_name.split(' ')).join('_')
       Dir.mkdir(@model_dir.to_s, 0755) unless File.exists?(@model_dir.to_s)
-#Dir.mkdir(@model_dir.to_s, 0700) #=> 0
     else
       @model_dir = Dir.home + "/models/"
     end
 
-    if !@post.blank?
-      target_file =  @model_dir + "/" + @post.original_filename
-      upload_file = File.open(target_file.to_s,"wb")
-      upload_file .write(@post.read)
+    #Upload file
+    if !@uploadedFile.blank?
+      target_file =  @model_dir + "/" + @uploadedFile.original_filename
+      upload_file = File.open(target_file.to_s, "wb")
+      upload_file.write(@uploadedFile.read)
       upload_file.close
       @fpath = target_file.to_s
     else
       @fpath = "Not Specified"
     end
 
-    @format_mid = '%06i' % @seq_nbr_model
+    #DB design did not include auto-incrementing identity fields
+    #So, fetch max ids from their respective tables (this should *REALLY* be changed)
+    #Part of the problem is the choice of compound string+number ID field
+    nextIDs
+
+    #Create 6 digit int
+    @format_mid = '%06i' % @nextIDs[:NextModelID]
+
+    #Insert new models into db
     if @model_type == 'C'
       @modelid = "NMLCL" + @format_mid
       Model.create(:Model_ID => @modelid)
-      Cell.create(:Cell_ID => @modelid, :Cell_Name => @model_name, :Upload_Time => @upload_time, :Comments => @model_description, :MorphML_File => @fpath);
-    end
-    if @model_type == 'S'
+      Cell.create(:Cell_ID => @modelid, :Cell_Name => @model_name, :Upload_Time => @upload_time, :Comments => @model_description, :MorphML_File => @fpath)
+    elsif @model_type == 'S'
       @modelid = "NMLSY" + @format_mid
       Model.create(:Model_ID => @modelid)
-      Synapse.create(:Synapse_ID => @modelid, :Synapse_Name => @model_name, :Synapse_File => @fpath, :Upload_Time => @upload_time, :Comments => @model_description);
-    end
-    if @model_type == "Ch"
+      Synapse.create(:Synapse_ID => @modelid, :Synapse_Name => @model_name, :Upload_Time => @upload_time, :Comments => @model_description, :Synapse_File => @fpath)
+    elsif @model_type == "Ch"
       @modelid = "NMLCH" + @format_mid
       Model.create(:Model_ID => @modelid)
-      Channel.create(:Channel_ID => @modelid, :Channel_Name => @model_name, :Upload_Time => @upload_time, :Comments => @model_description, :ChannelML_File =>  @fpath);
-    end
-    if @model_type == 'N'
+      Channel.create(:Channel_ID => @modelid, :Channel_Name => @model_name, :Upload_Time => @upload_time, :Comments => @model_description, :ChannelML_File =>  @fpath)
+    elsif @model_type == 'N'
       @modelid = "NMLNT" + @format_mid
       Model.create(:Model_ID => @modelid)
-      Network.create(:Network_ID => @modelid, :Network_Name => @model_name, :Upload_Time => @upload_time, :Comments => @model_description , :NetworkML_File => @fpath);
+      Network.create(:Network_ID => @modelid, :Network_Name => @model_name, :Upload_Time => @upload_time, :Comments => @model_description , :NetworkML_File => @fpath)
     end
-    seq_nbr1.Seq_Nbr = @seq_nbr_model + 1;
-    seq_nbr1.save;
 
-    @format_mid = '%06i' % @seq_nbr_metadata
-    @metadata_id = "1" + @format_mid
-    @person_fname = params[:fname0].to_s
-    if !@person_fname.blank?
-      Metadata.create(:Metadata_ID => @metadata_id);
+
+    #Authors
+    @format_mid = '%06i' % @nextIDs[:NextMetadataID]
+    @metadata_id = "1" + @format_mid #Apparently, magic number 1 is a authorlist record
+
+    #Check if author list was selected
+    if @authorListID != 0
+
+      #If authorlist selected, create model-authorlist association
       ModelMetadataAssociation.create(:Model_ID => @modelid,:Metadata_ID => @metadata_id);
-      AuthorList.create(:AuthorList_ID => @metadata_id);
-#As of now will successively add only for six authors
-      (0..5).each do |i|
-        @format_pid = '%06i' % @seq_nbr_pid;
-        @person_id = "2" + @format_pid;
-        @temp_var= "fname" + i.to_s
-        @person_fname = params[@temp_var].to_s
-        @temp_var= "mname" + i.to_s
-        @person_mname = params[@temp_var].to_s
-        @temp_var= "lname" + i.to_s
-        @person_lname = params[@temp_var].to_s
-        @temp_var= "email" + i.to_s
-        @person_email = params[@temp_var].to_s
-        @temp_var= "instname" + i.to_s
-        @person_inst = params[@temp_var].to_s
-        @temp_var= "cont_select" + i.to_s
-        @person_contrib = params[@temp_var].to_s
-        if !@person_fname.blank?
-          @find_person=Person.where(:Person_First_Name => @person_fname,:Person_Last_Name => @person_lname)
-          if @find_person.blank?
-            Person.create(:Person_ID =>@person_id,:Person_First_Name => @person_fname,:Person_Middle_Name =>@person_mname,:Person_Last_Name => @person_lname,:Instituition => @person_inst,:Email => @person_email);
-            AuthorListAssociation.create(:AuthorList_ID => @metadata_id,:Person_ID => @person_id,:is_translator => @person_contrib);
-            @seq_nbr_pid = @seq_nbr_pid+1
-          else
-            per=Person.new
-            @find_person.each do |per|
-              @person_id = per.Person_ID
-            end
-            AuthorListAssociation.create(:AuthorList_ID => @metadata_id,:Person_ID => @person_id,:is_translator => @person_contrib);
+
+    #if not, check if any authors have been selected or created
+    else
+
+      @authorIndex = 0
+
+      while params["authorID" + @authorIndex.to_s] != 0 || !params["lname" + @authorIndex.to_s].blank? do
+
+        @person_id = "2" + ('%06i' % @nextIDs[:NextPersonID]) #magic number 2 is person record
+        @person_contrib = params["cont_select" + @authorIndex.to_s].to_s
+
+        #New author created
+        if !params["lname" + @authorIndex].blank?
+
+          #Create new author record
+          @person_fname = params["fname" + @authorIndex.to_s].to_s
+          @person_mname = params["mname" + @authorIndex.to_s].to_s
+          @person_lname = params["lname" + @authorIndex.to_s].to_s
+          @person_email = params["email" + @authorIndex.to_s].to_s
+          @person_inst = params["instname" + @authorIndex.to_s].to_s
+
+          if !@person_lname.blank?
+
+            Person.create( \
+              :Person_ID =>@person_id, \
+              :Person_First_Name => @person_fname, \
+              :Person_Middle_Name =>@person_mname, \
+              :Person_Last_Name => @person_lname, \
+              :Instituition => @person_inst, \
+              :Email => @person_email \
+            )
+
           end
+
+        else #If existing author selected
+
+          @person_id = params["authorID" + @authorIndex.to_s]
+
         end
+
+        AuthorListAssociation.create( \
+              :AuthorList_ID => @metadata_id, \
+              :Person_ID => @person_id, \
+              :is_translator => @person_contrib \
+            )
+
       end
 
     end
 
-    seq_nbr3.Seq_Nbr = @seq_nbr_pid
-    seq_nbr3.save
-
+    #Check if new pubmed created
     if !@pubmed_id.blank?
       @metadata_id = "6" + @format_mid
-      Metadata.create(:Metadata_ID => @metadata_id);
+      Metadata.create(:Metadata_ID => @metadata_id)
       ModelMetadataAssociation.create(:Model_ID => @modelid,:Metadata_ID => @metadata_id);
-      Publication.create(:Publication_ID => @metadata_id,:Pubmed_Ref => @pubmed_id, :Full_Title => @pubmed_title);
+      Publication.create(:Publication_ID => @metadata_id,:Pubmed_Ref => @pubmed_id, :Full_Title => @pubmed_title)
+    elsif @publicationID != 0
+      @metadata_id = "6" + @format_mid
+      Metadata.create(:Metadata_ID => @metadata_id)
+      ModelMetadataAssociation.create(:Model_ID => @modelid,:Metadata_ID => @metadata_id);
+      Publication.create(:Publication_ID => @metadata_id,:Pubmed_Ref => @pubmed_id, :Full_Title => @pubmed_title)
     end
+    
     if !@ref_uri.blank?
       @metadata_id = "5" + @format_mid
       Metadata.create(:Metadata_ID => @metadata_id);
@@ -1218,8 +1247,6 @@ class WelcomeController < ApplicationController
       ModelMetadataAssociation.create(:Model_ID => @modelid,:Metadata_ID => @metadata_id);
       OtherKeyword.create(:Other_Keyword_ID => @metadata_id, :Other_Keyword_term => @other_kwords, :Comments => @comments);
     end
-    seq_nbr2.Seq_Nbr = @seq_nbr_metadata + 1;
-    seq_nbr2.save;
 
     if !params[:assoc_chnl].to_s.blank?
       @associated_models = params[:assoc_chnl].to_s.split(' ')
