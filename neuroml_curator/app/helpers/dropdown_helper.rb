@@ -245,15 +245,15 @@ module DropdownHelper
       '	  (SELECT CAST(SUBSTR(AuthorList_ID,1+1) AS UNSIGNED)+1 as AuthorList_ID FROM author_lists ORDER BY AuthorList_ID DESC LIMIT 1) authorlist ' \
     )}
 
-    result = []
+    result = Hash.new
 
     records.each do |record|
-      result.push({ \
+      result = { \
         :NextModelID => record["Model_ID"], \
-        :NextMetadataID => record["Metadata_id"], \
-        :NextPersonID => record["Person_ID"], \
-        :NextAuthorListID => record["AuthorList_ID"],
-      })
+          :NextMetadataID => record["Metadata_id"], \
+          :NextPersonID => record["Person_ID"], \
+          :NextAuthorListID => record["AuthorList_ID"], \
+      }
     end
 
     @nextIDs = result

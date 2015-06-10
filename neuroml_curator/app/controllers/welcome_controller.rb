@@ -1110,13 +1110,37 @@ class WelcomeController < ApplicationController
     @sourceReferenceID = params[:sourceReferenceID].to_s
     @uploadedFile = params[:file]
 
-    #Create model directory for files if any
-    if !@model_name.blank?
-      @model_dir = Dir.home + "/models/" + (@model_name.split(' ')).join('_')
-      Dir.mkdir(@model_dir.to_s, 0755) unless File.exists?(@model_dir.to_s)
-    else
-      @model_dir = Dir.home + "/models/"
+    #DB design did not include auto-incrementing identity fields (this should *REALLY* be changed)
+    #So, fetch max ids from their respective tables
+    #Part of the problem is the choice of compound string+number ID field (DB IDs should always be auto-inc'ing ints)
+    nextIDs
+
+    #Create 6 digit int
+    @format_mid = '%06i' % @nextIDs[:NextModelID]
+
+    #Generate model ID
+    if @model_type == 'C'
+      @modelid = "NMLCL" + @format_mid
+
+    elsif @model_type == 'S'
+      @modelid = "NMLSY" + @format_mid
+
+    elsif @model_type == "Ch"
+      @modelid = "NMLCH" + @format_mid
+
+    elsif @model_type == 'N'
+      @modelid = "NMLNT" + @format_mid
+
     end
+
+    #Create model directory for files if any
+    @model_dir = Dir.home + "/models/" + @modelid
+
+    if Dir.home.start_with? 'C' #If testing on windows
+      @model_dir.gsub! '/' '\\'
+    end
+
+    Dir.mkdir(@model_dir.to_s, 0755) unless File.exists?(@model_dir.to_s)
 
     #Upload file
     if !@uploadedFile.blank?
@@ -1129,56 +1153,56 @@ class WelcomeController < ApplicationController
       @fpath = "Not Specified"
     end
 
-    #DB design did not include auto-incrementing identity fields
-    #So, fetch max ids from their respective tables (this should *REALLY* be changed)
-    #Part of the problem is the choice of compound string+number ID field
-    nextIDs
-
-    #Create 6 digit int
-    @format_mid = '%06i' % @nextIDs[:NextModelID]
-
-    #Insert new models into db
+    #Create the new model records
     if @model_type == 'C'
-      @modelid = "NMLCL" + @format_mid
       Model.create(:Model_ID => @modelid)
       Cell.create(:Cell_ID => @modelid, :Cell_Name => @model_name, :Upload_Time => @upload_time, :Comments => @model_description, :MorphML_File => @fpath)
+
     elsif @model_type == 'S'
-      @modelid = "NMLSY" + @format_mid
       Model.create(:Model_ID => @modelid)
       Synapse.create(:Synapse_ID => @modelid, :Synapse_Name => @model_name, :Upload_Time => @upload_time, :Comments => @model_description, :Synapse_File => @fpath)
+
     elsif @model_type == "Ch"
-      @modelid = "NMLCH" + @format_mid
       Model.create(:Model_ID => @modelid)
       Channel.create(:Channel_ID => @modelid, :Channel_Name => @model_name, :Upload_Time => @upload_time, :Comments => @model_description, :ChannelML_File =>  @fpath)
+
     elsif @model_type == 'N'
-      @modelid = "NMLNT" + @format_mid
       Model.create(:Model_ID => @modelid)
       Network.create(:Network_ID => @modelid, :Network_Name => @model_name, :Upload_Time => @upload_time, :Comments => @model_description , :NetworkML_File => @fpath)
     end
 
-
     #Authors
     @format_mid = '%06i' % @nextIDs[:NextMetadataID]
-    @metadata_id = "1" + @format_mid #Apparently, magic number 1 is a authorlist record
+    @metadata_id = "1" + @format_mid #Apparently, magic number 1 is an authorlist record
 
     #Check if author list was selected
-    if @authorListID != 0
+    if @authorListID != "0"
 
       #If authorlist selected, create model-authorlist association
-      ModelMetadataAssociation.create(:Model_ID => @modelid,:Metadata_ID => @metadata_id);
+      ModelMetadataAssociation.create(:Model_ID => @modelid,:Metadata_ID => @authorListID);
 
     #if not, check if any authors have been selected or created
     else
 
-      @authorIndex = 0
+      @authorIndex = 1
 
-      while params["authorID" + @authorIndex.to_s] != 0 || !params["lname" + @authorIndex.to_s].blank? do
+      while params["authorID" + @authorIndex.to_s].to_s.blank? == false || \
+            params["lname" + @authorIndex.to_s].blank? == false do
+
+        #If at least one author, create an authorlist, metadata for it, and associate it with the model
+        if @authorIndex == 1
+          Metadata.create(:Metadata_ID => @metadata_id)
+          ModelMetadataAssociation.create(:Model_ID => @modelid,:Metadata_ID => @metadata_id)
+          AuthorList.create(:AuthorList_ID => @metadata_id)
+
+          @authorListID = @metadata_id
+        end
 
         @person_id = "2" + ('%06i' % @nextIDs[:NextPersonID]) #magic number 2 is person record
         @person_contrib = params["cont_select" + @authorIndex.to_s].to_s
 
         #New author created
-        if !params["lname" + @authorIndex].blank?
+        if !params["lname" + @authorIndex.to_s].blank?
 
           #Create new author record
           @person_fname = params["fname" + @authorIndex.to_s].to_s
@@ -1207,40 +1231,59 @@ class WelcomeController < ApplicationController
         end
 
         AuthorListAssociation.create( \
-              :AuthorList_ID => @metadata_id, \
+              :AuthorList_ID => @authorListID, \
               :Person_ID => @person_id, \
               :is_translator => @person_contrib \
             )
+
+        @authorIndex += 1
+
+        nextIDs #Refresh ids
 
       end
 
     end
 
     #Check if new pubmed created
+    @metadata_id = "6" + @format_mid
     if !@pubmed_id.blank?
+
       @metadata_id = "6" + @format_mid
       Metadata.create(:Metadata_ID => @metadata_id)
-      ModelMetadataAssociation.create(:Model_ID => @modelid,:Metadata_ID => @metadata_id);
+      ModelMetadataAssociation.create(:Model_ID => @modelid,:Metadata_ID => @metadata_id)
       Publication.create(:Publication_ID => @metadata_id,:Pubmed_Ref => @pubmed_id, :Full_Title => @pubmed_title)
-    elsif @publicationID != 0
-      @metadata_id = "6" + @format_mid
-      Metadata.create(:Metadata_ID => @metadata_id)
-      ModelMetadataAssociation.create(:Model_ID => @modelid,:Metadata_ID => @metadata_id);
-      Publication.create(:Publication_ID => @metadata_id,:Pubmed_Ref => @pubmed_id, :Full_Title => @pubmed_title)
+
+    #Or existing selected
+    elsif @publicationID != "0"
+      ModelMetadataAssociation.create(:Model_ID => @modelid,:Metadata_ID => @publicationID)
     end
-    
+
+    #Check if model source created
     if !@ref_uri.blank?
+
       @metadata_id = "5" + @format_mid
-      Metadata.create(:Metadata_ID => @metadata_id);
-      ModelMetadataAssociation.create(:Model_ID => @modelid,:Metadata_ID => @metadata_id);
-      Reference.create(:Reference_ID => @metadata_id,:Reference_Resource => @ref_src,:Reference_URI => @ref_uri);
+      Metadata.create(:Metadata_ID => @metadata_id)
+      ModelMetadataAssociation.create(:Model_ID => @modelid,:Metadata_ID => @metadata_id)
+      Reference.create(:Reference_ID => @metadata_id,:Reference_Resource => @ref_src,:Reference_URI => @ref_uri)
+
+    #Or existing selected
+    elsif @sourceReferenceID != "0"
+      ModelMetadataAssociation.create(:Model_ID => @modelid,:Metadata_ID => @sourceReferenceID)
     end
+
+    #NeuroLex term selected
     if !@nlx_uri.blank?
       @metadata_id = "3" + @format_mid
-      Metadata.create(:Metadata_ID => @metadata_id);
-      ModelMetadataAssociation.create(:Model_ID => @modelid,:Metadata_ID => @metadata_id);
-      Neurolex.create(:NeuroLex_ID => @metadata_id,:NeuroLex_URI =>@nlx_uri,:NeuroLex_Term => @nlx_trm);
+      Metadata.create(:Metadata_ID => @metadata_id)
+      ModelMetadataAssociation.create(:Model_ID => @modelid,:Metadata_ID => @metadata_id)
+      Neurolex.create(:NeuroLex_ID => @metadata_id,:NeuroLex_URI =>@nlx_uri,:NeuroLex_Term => @nlx_trm)
+
+    #Or existing selected
+    elsif @neurolexTermID != "0"
+      ModelMetadataAssociation.create(:Model_ID => @modelid,:Metadata_ID => @neurolexTermID)
     end
+
+    #Keywords specified
     if !@other_kwords.blank?
       @metadata_id = "4"  + @format_mid
       Metadata.create(:Metadata_ID => @metadata_id);
@@ -1248,50 +1291,61 @@ class WelcomeController < ApplicationController
       OtherKeyword.create(:Other_Keyword_ID => @metadata_id, :Other_Keyword_term => @other_kwords, :Comments => @comments);
     end
 
-    if !params[:assoc_chnl].to_s.blank?
-      @associated_models = params[:assoc_chnl].to_s.split(' ')
-      @associated_models.each do |each_model|
-        if @model_type == 'C'
-          CellChannelAssociation.create(:Cell_ID => @modelid,:Channel_ID => each_model);
-        end
+    #Associated Channels
+    if !params[:assoc_chnl].to_s.blank? && @model_type == 'C' #Only cells can have channels
+
+      params[:assoc_chnl].each do |each_model|
+        CellChannelAssociation.create(:Cell_ID => @modelid,:Channel_ID => each_model);
       end
+
     end
 
+    #Associated Cells
     if !params[:assoc_cell].to_s.blank?
-      @associated_models = params[:assoc_cell].to_s.split(' ')
-      @associated_models.each do |each_model|
+
+      params[:assoc_cell].each do |each_model|
+
         if @model_type == 'Ch'
           CellChannelAssociation.create(:Channel_ID => @modelid,:Cell_ID => each_model);
-        end
-        if @model_type == 'S'
+
+        elsif @model_type == 'S'
           CellSynapseAssociation.create(:Synapse_ID => @modelid,:Cell_ID => each_model);
-        end
-        if @model_type == 'N'
+
+        elsif @model_type == 'N'
           NetworkCellAssociation.create(:Network_ID => @modelid,:Cell_ID => each_model);
+
         end
+
       end
+
     end
 
+    #Associated Synnapses
     if !params[:assoc_syn].to_s.blank?
-      @associated_models = params[:assoc_syn].to_s.split(' ')
-      @associated_models.each do |each_model|
+
+      params[:assoc_syn].each do |each_model|
+
         if @model_type == 'C'
-          CellSynapseAssociation.create(:Cell_ID => @modelid,:Synapse_ID => each_model);
+          CellSynapseAssociation.create(:Cell_ID => @modelid,:Synapse_ID => each_model)
+
+        elsif @model_type == 'N'
+          NetworkSynapseAssociation.create(:Network_ID => @modelid,:Synapse_ID => each_model)
         end
-        if @model_type == 'N'
-          NetworkSynapseAssociation.create(:Network_ID => @modelid,:Synapse_ID => each_model);
-        end
+
       end
     end
 
+    #Associated Networks
     if !params[:assoc_nw].to_s.blank?
-      @associated_models = params[:assoc_nw].to_s.split(' ')
-      @associated_models.each do |each_model|
+
+      params[:assoc_nw].each do |each_model|
+
         if @model_type == 'C'
-          NetworkCellAssociation.create(:Cell_ID => @modelid,:Network_ID => each_model);
-        end
-        if @model_type == 'S'
-          NetworkSynapseAssociation.create(:Synapse_ID => @modelid,:Network_ID => each_model);
+          NetworkCellAssociation.create(:Cell_ID => @modelid,:Network_ID => each_model)
+
+        elsif @model_type == 'S'
+          NetworkSynapseAssociation.create(:Synapse_ID => @modelid,:Network_ID => each_model)
+
         end
 
       end
