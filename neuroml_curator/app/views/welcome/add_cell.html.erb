@@ -51,7 +51,7 @@
           <td style="width: 30%;"> Type of Contribution to the Model :
           </td><td>
           <div id="contFields">
-            <label><input type="radio" name="cont_select[index]" value="0">Author</input></label>
+            <label><input type="radio" name="cont_select[index]" value="0" checked="checked">Author</input></label>
             <label><input type="radio" name="cont_select[index]" value="1">Translator</input></label>
             <label><input type="radio" name="cont_select[index]" value="2">Author and Translator</input></label>
           </div>
@@ -104,7 +104,7 @@
                   <td> Model Type:
                   </td>
                   <td>
-                    <label><input type="radio" name="mtype_select" value="C">Cell</input></label>
+                    <label><input type="radio" name="mtype_select" value="C" checked="checked">Cell</input></label>
                     <label><input type="radio" name="mtype_select" value="S">Synapse</input></label>
                     <label><input type="radio" name="mtype_select" value="Ch">Channel</input></label>
                     <label><input type="radio" name="mtype_select" value="N">Network</input></label>
@@ -156,7 +156,7 @@
                         <tbody>
                         <% @networks.each do |network| %>
                             <tr>
-                              <td><label><input type="checkbox" name="assoc_nw" value="<%= h(network[:ID].to_s) %>"><%= h(network[:ID].to_s) %></label></td>
+                              <td><label><input type="checkbox" name="assoc_nw[]" value="<%= h(network[:ID].to_s) %>"><%= h(network[:ID].to_s) %></label></td>
                               <td><%= h(network[:Name]) %></td>
                               <td><%= h(network[:PubTitle]) %></td>
                             </tr>
@@ -185,7 +185,7 @@
                         <tbody>
                         <% @cells.each do |cell| %>
                             <tr>
-                              <td><label><input type="checkbox" name="assoc_cell" value="<%= h(cell[:ID].to_s) %>"><%= h(cell[:ID].to_s) %></label></td>
+                              <td><label><input type="checkbox" name="assoc_cell[]" value="<%= h(cell[:ID].to_s) %>"><%= h(cell[:ID].to_s) %></label></td>
                               <td><%= h(cell[:Name]) %></td>
                               <td><%= h(cell[:PubTitle]) %></td>
                             </tr>
@@ -216,7 +216,7 @@
                         <tbody>
                         <% @channels.each do |channel| %>
                             <tr>
-                              <td><label><input type="checkbox" name="assoc_chnl" value="<%= h(channel[:ID].to_s) %>"><%= h(channel[:ID].to_s) %></label></td>
+                              <td><label><input type="checkbox" name="assoc_chnl[]" value="<%= h(channel[:ID].to_s) %>"><%= h(channel[:ID].to_s) %></label></td>
                               <td><%= h(channel[:Name]) %></td>
                               <td><%= h(channel[:PubTitle]) %></td>
                             </tr>
@@ -245,7 +245,7 @@
                         <tbody>
                         <% @synapses.each do |synapse| %>
                             <tr>
-                              <td><label><input type="checkbox" name="assoc_syn" value="<%= h(synapse[:ID].to_s) %>"><%= h(synapse[:ID].to_s) %></label></td>
+                              <td><label><input type="checkbox" name="assoc_syn[]" value="<%= h(synapse[:ID].to_s) %>"><%= h(synapse[:ID].to_s) %></label></td>
                               <td><%= h(synapse[:Name]) %></td>
                               <td><%= h(synapse[:PubTitle]) %></td>
                             </tr>
@@ -268,7 +268,7 @@
                 </div>
             </div>
             <div class="addNewControls">
-              <div class="addNewControls"><input type="button" value="[+] Or, Create a new author list" onclick="jQuery('#authors, #addNewAuthor').show(); jQuery('#authorList').hide(); addAuthor();" /></div>
+              <div class="addNewControls"><input type="button" value="[+] Or, Create a new author list" onclick="jQuery('#authors, #addNewAuthor').show(); jQuery('#authorList').hide(); $('#author_lists_dropdown').val("0"); addAuthor();" /></div>
             </div>
           </div>
         </div>
