@@ -1,343 +1,339 @@
 <style type="text/css">
-a.fancybox,a.channel_link {
-    background:#eee;
-    text-decoration:none;
-    color:#333;
-    font-family:Arial, sans-serif;
-    font-size:11px;
-    font-weight:bold;
-    padding:3px 5px;
-    border:1px solid #aaa;
-    border-radius:3px;
-    cursor:default;
-}
+    a.fancybox,a.channel_link {
+        background:#eee;
+        text-decoration:none;
+        color:#333;
+        font-family:Arial, sans-serif;
+        font-size:11px;
+        font-weight:bold;
+        padding:3px 5px;
+        border:1px solid #aaa;
+        border-radius:3px;
+        cursor:default;
+    }
 
-a.fancybox:hover,a.channel_link:hover {
-    background-color:#f2f2f2;
-    border-color:#888;
-    box-shadow:0 0 2px #ccc;
-}
+    a.fancybox:hover,a.channel_link:hover {
+        background-color:#f2f2f2;
+        border-color:#888;
+        box-shadow:0 0 2px #ccc;
+    }
 
-a.fancybox:active,a.channel_link:active {
-    vertical-align:-1px;
-}
+    a.fancybox:active,a.channel_link:active {
+        vertical-align:-1px;
+    }
 </style>
 
 
 <% modelid = @model_id.Model_ID.to_s %>
 <script type="text/javascript" charset="utf-8">
-function  add_metadata(value){
-var selectoption= value;
-var link=document.getElementById("aid");
-if(selectoption == "1")
-link.href="add_publication?modelid=<%= modelid %>";
-if(selectoption == "2")
-link.href="add_neurolex?modelid=<%= modelid %>";
-if(selectoption == "3")
-link.href="add_references?modelid=<%= modelid %>";
-if(selectoption == "4")
-link.href="add_author?modelid=<%= modelid %>";
-if(selectoption == "5")
-link.href="add_keywords?modelid=<%= modelid %>";
-link.style.visibility="visible";
-}
+    function  add_metadata(value){
+        var selectoption= value;
+        var link=document.getElementById("aid");
+        if(selectoption == "1")
+            link.href="add_publication?modelid=<%= modelid %>";
+        if(selectoption == "2")
+            link.href="add_neurolex?modelid=<%= modelid %>";
+        if(selectoption == "3")
+            link.href="add_references?modelid=<%= modelid %>";
+        if(selectoption == "4")
+            link.href="add_author?modelid=<%= modelid %>";
+        if(selectoption == "5")
+            link.href="add_keywords?modelid=<%= modelid %>";
+        link.style.visibility="visible";
+    }
 
 </script>
 
 <!-- MAIN -->
-                        <div id="main">
-                                <!-- wrapper-main -->
-                                <div class="wrapper">
+<div id="main">
+  <!-- wrapper-main -->
+  <div class="wrapper">
 
-                                        <!-- content -->
-                                        <div id="content">
+    <!-- content -->
+    <div id="content">
 
-                                                <!-- title -->
-                                                <div id="page-title">
-                                                        <span class="title">Edit Channel Model Details</span>
-                                                </div>
-                                                <!-- ENDS title -->
-<% if !@model.blank? %>
-<%= form_for @model,:url => {:action => 'edit_channel'}  do |f| %>
-  <p>
- <table class="news_table">
-   <tr>
-   <th><%= f.label(:Channel_ID,"Channel NeuroML ID") %></th>
-   <td><%= f.text_field(:Channel_ID,:readonly => true) %></td>
-  </tr>
+      <!-- title -->
+      <div id="page-title">
+        <span class="title">Edit Channel Model Details</span>
+      </div>
+      <!-- ENDS title -->
+      <% if !@model.blank? %>
+          <%= form_for @model,:url => {:action => 'edit_channel'}  do |f| %>
+              <p>
+              <table class="news_table">
+                <tr>
+                  <th><%= f.label(:Channel_ID,"Channel NeuroML ID") %></th>
+                  <td><%= f.text_field(:Channel_ID,:readonly => true) %></td>
+                </tr>
 
-   <th><%= f.label(:Channel_Name,"Channel Name") %></th>
-   <td><%= f.text_field(:Channel_Name) %></td>
-  </tr>
-  <tr>
-   <th><%= f.label(:ChannelML_File, "ChannelML File") %></th>
-   <td><%= f.text_area(:ChannelML_File, :size => '40x5') %></td>
-  </tr>
-  <tr>
-  <tr>
-   <th><%= f.label(:Upload_Time, "Submitted during") %></th>
-   <td><%= f.text_field(:Upload_Time,:readonly => true) %></td>
-  </tr>
-  <tr>
-   <th><%= f.label(:Comments, "Comments") %></th>
-   <td><%= f.text_field(:Comments) %></td>
-  </tr>
- </table>
-  </p>
+                <th><%= f.label(:Channel_Name,"Channel Name") %></th>
+                <td><%= f.text_field(:Channel_Name) %></td>
+                </tr>
+                <tr>
+                  <th><%= f.label(:ChannelML_File, "ChannelML File") %></th>
+                  <td><%= f.text_area(:ChannelML_File, :size => '40x5') %></td>
+                </tr>
+                <tr>
+                <tr>
+                  <th><%= f.label(:Upload_Time, "Submitted during") %></th>
+                  <td><%= f.text_field(:Upload_Time,:readonly => true) %></td>
+                </tr>
+                <tr>
+                  <th><%= f.label(:Comments, "Comments") %></th>
+                  <td><%= f.text_field(:Comments) %></td>
+                </tr>
+              </table>
+              </p>
 
-    <%= f.submit "Update Channel Information"%>
-  </p>
-<% end %>
-<%end%>
-<% if !@publication_list.blank? %>
-<% @publication_list.each do |publication| %>
-<%= form_for publication,:url => {:action => 'edit_publication'}  do |f1| %>
-  <p>
- <table>
-<tr>
-   <td><%= f1.hidden_field(:Publication_ID,:readonly => true) %></td>
-  </tr>
-<tr>
-   <th><%= f1.label(:Full_Title,"Publication Full Title") %></th>
-   <td><%= f1.text_field(:Full_Title) %></td>
-</tr>
-<tr>  
-   <th><%= f1.label(:Pubmed_Ref,"Pub reference") %></th>
-   <td><%= f1.text_field(:Pubmed_Ref) %></td>
-  <tr>
-<tr>
-   <th><%= f1.label(:Comments,"Comments") %></th>
-   <td><%= f1.text_field(:Comments) %></td>
-  <tr>
- </table>
-  </p>
- 
- 
-  <p>
-<%= f1.submit "Update Publication",name: 'update'%>
-    <%= f1.submit "Delete Publication", name: 'delete',:confirm => "Delete Publication: Are you sure to delete this publication?" %>
-
-  </p>
-<% end %>
-<%end%>
-<%end%>
-
-<% if !@ref_list.blank? %>
-<% @ref_list.each do |ref| %>
-<%= form_for ref,:url => {:action => 'edit_references'}  do |f2| %>
-  <p>
- <table>
-<tr>
-   <td><%= f2.hidden_field(:Reference_ID,:readonly => true) %></td>
-  </tr>
-<tr>
-   <th><%= f2.label(:Reference_Resource,"Reference Resource") %></th>
-   <td><%= f2.text_field(:Reference_Resource) %></td>
-  <tr>
-<tr>
-<tr>
-   <th><%= f2.label(:Reference_URI,"Reference URI") %></th>
-   <td><%= f2.text_field(:Reference_URI) %></td>
-  <tr>
-<tr>
-
-   <th><%= f2.label(:Comments,"Comments") %></th>
-   <td><%= f2.text_field(:Comments) %></td>
-  <tr>
- </table>
-  </p>
+              <%= f.submit "Update Channel Information"%>
+              </p>
+          <% end %>
+      <%end%>
+      <% if !@publication_list.blank? %>
+          <% @publication_list.each do |publication| %>
+              <%= form_for publication,:url => {:action => 'edit_publication'}  do |f1| %>
+                  <p>
+                  <table>
+                    <tr>
+                      <td><%= f1.hidden_field(:Publication_ID,:readonly => true) %></td>
+                    </tr>
+                    <tr>
+                      <th><%= f1.label(:Full_Title,"Publication Full Title") %></th>
+                      <td><%= f1.text_field(:Full_Title) %></td>
+                    </tr>
+                    <tr>
+                      <th><%= f1.label(:Pubmed_Ref,"Pub reference") %></th>
+                      <td><%= f1.text_field(:Pubmed_Ref) %></td>
+                    <tr>
+                    <tr>
+                      <th><%= f1.label(:Comments,"Comments") %></th>
+                      <td><%= f1.text_field(:Comments) %></td>
+                    <tr>
+                  </table>
+                  </p>
 
 
-  <p>
-   <%= f2.submit "Update Reference" ,name: 'update'%>
-        <%= f2.submit "Delete Reference", name: 'delete',:confirm => "Delete Reference: Are you sure to delete this reference?" %>
+                  <p>
+                    <%= f1.submit "Update Publication",name: 'update'%>
+                    <%= f1.submit "Delete Publication", name: 'delete',:confirm => "Delete Publication: Are you sure to delete this publication?" %>
 
-  </p>
-<% end %>
-<%end%>
-<%end%>
+                  </p>
+              <% end %>
+          <%end%>
+      <%end%>
 
-<% if !@keyword_models.blank? %>
-<%@keyword_models.each do |keyword_model| %>
-<%= form_for keyword_model,:url => {:action => 'edit_keywords'}  do |fk| %>
-  <p>
- <table>
-<tr>
-   <td><%= fk.hidden_field(:Other_Keyword_ID,:readonly => true) %></td>
-  <tr>
-<tr>
-<tr>
-   <th><%= fk.label(:Other_Keyword_term,"Other Keywords") %></th>
-   <td><%= fk.text_field(:Other_Keyword_term) %></td>
-  <tr>
-<tr>
+      <div><a href="add_publication?modelid=<%= modelid %>">Add Publication</a></div>
 
-   <th><%= fk.label(:Comments,"Comments") %></th>
-   <td><%= fk.text_field(:Comments) %></td>
-  <tr>
- </table>
-  </p>
+      <% if !@ref_list.blank? %>
+          <% @ref_list.each do |ref| %>
+              <%= form_for ref,:url => {:action => 'edit_references'}  do |f2| %>
+                  <p>
+                  <table>
+                    <tr>
+                      <td><%= f2.hidden_field(:Reference_ID,:readonly => true) %></td>
+                    </tr>
+                    <tr>
+                      <th><%= f2.label(:Reference_Resource,"Reference Resource") %></th>
+                      <td><%= f2.text_field(:Reference_Resource) %></td>
+                    <tr>
+                    <tr>
+                    <tr>
+                      <th><%= f2.label(:Reference_URI,"Reference URI") %></th>
+                      <td><%= f2.text_field(:Reference_URI) %></td>
+                    <tr>
+                    <tr>
 
-
-  <p>
-  <%= fk.submit "Update Keywords" ,name: 'update'%>
-    <%= fk.submit "Delete Keywords" ,name: 'delete',:confirm => "Delete Keyword: Are you sure to delete this keyword?"%>
-
-  </p>
-<% end %>
-<%end%>
-<%end%>
-
-<% if !@nlx_list.blank? %>
-<%@nlx_list.each do |nlx| %>
-<%= form_for nlx,:url => {:action => 'edit_neurolex_terms'}  do |fnlx| %>
-  <p>
-<table>
-<tr>
-   <td><%= fnlx.hidden_field(:NeuroLex_ID,:readonly => true) %></td>
-  <tr>
-<tr>
-<tr>
-   <th><%= fnlx.label(:NeuroLex_URI,"NeuroLex URI") %></th>
-   <td><%= fnlx.text_field(:NeuroLex_URI) %></td>
-  <tr>
-<tr>
-<tr>
-   <th><%= fnlx.label(:NeuroLex_Term,"NeuroLex Terms") %></th>
-   <td><%= fnlx.text_field(:NeuroLex_Term) %></td>
-  <tr>
-<tr>
+                      <th><%= f2.label(:Comments,"Comments") %></th>
+                      <td><%= f2.text_field(:Comments) %></td>
+                    <tr>
+                  </table>
+                  </p>
 
 
-   <th><%= fnlx.label(:Comments,"Comments") %></th>
-   <td><%= fnlx.text_field(:Comments) %></td>
-  <tr>
-  </p>
-</table>
-  <p>
-  <%= fnlx.submit "Update Neurolex Terms" ,name: 'update'%>
-    <%= fnlx.submit "Delete Neurolex Terms" ,name: 'delete',:confirm => "Delete Neurolexes: Are you sure to delete this neurolex ids?"%>
+                  <p>
+                    <%= f2.submit "Update Reference" ,name: 'update'%>
+                    <%= f2.submit "Delete Reference", name: 'delete',:confirm => "Delete Reference: Are you sure to delete this reference?" %>
 
-  </p>
-<% end %>
-<%end%>
-<%end%>
+                  </p>
+              <% end %>
+          <%end%>
+      <%end%>
 
-<% if !@person.blank? %>
-<% @person.each do |author| %>
-<%= form_for author,:url => {:action => 'edit_author_details'}  do |fperson| %>
-  <p>
-<table>
-<tr>
-   <td><%= fperson.hidden_field(:Person_ID,:readonly => true) %></td>
-  <tr>
-<tr>
-<tr>
-   <th><%= fperson.label(:Person_First_Name,"First Name") %></th>
-   <td><%= fperson.text_field(:Person_First_Name) %></td>
-  <tr>
-<tr>
-<tr>
-   <th><%= fperson.label(:Person_Last_Name,"Last Name") %></th>
-   <td><%= fperson.text_field(:Person_Last_Name) %></td>
-  <tr>
-<tr>
 
-<tr>
-   <th><%= fperson.label(:Person_Middle_Name,"Middle Name") %></th>
-   <td><%= fperson.text_field(:Person_Middle_Name) %></td>
-  <tr>
-<tr>
+      <div><a href="add_references?modelid=<%= modelid %>">Add Reference</a></div>
 
-<tr>
-   <th><%= fperson.label(:Instituition,"Instituition") %></th>
-   <td><%= fperson.text_field(:Instituition) %></td>
-  <tr>
-<tr>
+      <% if !@keyword_models.blank? %>
+          <%@keyword_models.each do |keyword_model| %>
+              <%= form_for keyword_model,:url => {:action => 'edit_keywords'}  do |fk| %>
+                  <p>
+                  <table>
+                    <tr>
+                      <td><%= fk.hidden_field(:Other_Keyword_ID,:readonly => true) %></td>
+                    <tr>
+                    <tr>
+                    <tr>
+                      <th><%= fk.label(:Other_Keyword_term,"Other Keywords") %></th>
+                      <td><%= fk.text_field(:Other_Keyword_term) %></td>
+                    <tr>
+                    <tr>
 
-<tr>
-   <th><%= fperson.label(:Email,"Authors Email ID") %></th>
-   <td><%= fperson.text_field(:Email) %></td>
-  <tr>
-<tr>
+                      <th><%= fk.label(:Comments,"Comments") %></th>
+                      <td><%= fk.text_field(:Comments) %></td>
+                    <tr>
+                  </table>
+                  </p>
 
-<tr>
-   <th><%= fperson.label(:Comments,"Comments") %></th>
-   <td><%= fperson.text_field(:Comments) %></td>
-  <tr>
-<tr>
-<%= fields_for @model_id do |fassoc1| %>
-<%= fassoc1.hidden_field(:Model_ID,:readonly => true) %></td>
-  <% end %>
 
-</table>
-  <p>
- <%= fperson.submit "Update Author Details" ,name: 'update'%>
-    <%= fperson.submit "Delete Author Details" ,name: 'delete',:confirm => "Delete Author: Are you sure to delete this author?"%>
+                  <p>
+                    <%= fk.submit "Update Keywords" ,name: 'update'%>
+                    <%= fk.submit "Delete Keywords" ,name: 'delete',:confirm => "Delete Keyword: Are you sure to delete this keyword?"%>
 
-  </p>
-<% end %>
-<%end%>
-<%end%>
+                  </p>
+              <% end %>
+          <%end%>
+      <%end%>
 
-<%if !@cell_list.blank? %>
-<b>List of Associated Cells</b>
-<p>
-<%= form_for @cell_list,:url => {:action => 'del_channel_cell_associations'}  do |fassoc| %>
-<%= select_tag "cells",options_from_collection_for_select(@cell_list.each.collect , "Cell_ID","Cell_Name"), :multiple => true%>
-<%= fields_for @model do |fassoc1| %>
-<%= fassoc1.hidden_field(:Channel_ID,:readonly => true) %></td>
-  <% end %>
 
- <%= fassoc.submit "Delete existing cell associations",:confirm => "Delete Associations: Are you sure to delete these Cell Associations?" %>
-<% end %>
-<p>
-<p>
-<% if @cell_list.any? %>
-<% @cell_list.each do |cell|%>
-<a class="channel_link" href="edit_cells_info?models_list[model_id]=<%= cell.Cell_ID %>"><%=cell.Cell_Name%></a>
-<% end %>
-<%else%>
-None
-<%end %>
+      <div><a href="add_keywords?modelid=<%= modelid %>">Add Keywords</a></div>
 
-<%end%>
+      <% if !@nlx_list.blank? %>
+          <%@nlx_list.each do |nlx| %>
+              <%= form_for nlx,:url => {:action => 'edit_neurolex_terms'}  do |fnlx| %>
+                  <p>
+                  <table>
+                    <tr>
+                      <td><%= fnlx.hidden_field(:NeuroLex_ID,:readonly => true) %></td>
+                    <tr>
+                    <tr>
+                    <tr>
+                      <th><%= fnlx.label(:NeuroLex_URI,"NeuroLex URI") %></th>
+                      <td><%= fnlx.text_field(:NeuroLex_URI) %></td>
+                    <tr>
+                    <tr>
+                    <tr>
+                      <th><%= fnlx.label(:NeuroLex_Term,"NeuroLex Terms") %></th>
+                      <td><%= fnlx.text_field(:NeuroLex_Term) %></td>
+                    <tr>
+                    <tr>
 
-<p>
-<p>
-<% if !@model.blank? %>
-<b>Associate to other Cell(s)</b>
-<p>
-<p>
-<%= form_for @model,:url => {:action => 'add_channel_cell_associations'}  do |fassoc| %>
-<%= select_tag "add_cells",options_from_collection_for_select(Cell.all , "Cell_ID","Cell_Name"), :multiple => true%>
-<%= fields_for @model do |fassoc1| %>
-<%= fassoc1.hidden_field(:Channel_ID,:readonly => true) %></td>
-  <% end %>
- <%= fassoc.submit "Add new cell associations",:confirm => "Add Associations: Are you sure to add these Cell Associations?" %>
-<% end %>
-<p>
-<p>
-<% end %>
-<p>
-<p>
-<b>Add more Metadata</b>
-<p>
-<div id = "add_meta_data">
-<select name="add_metadata" id="add_metadata_dd" onchange="add_metadata(this.value)" >
-  <option value="" selected="selected">Select Metadata to Add</option>
-  <option value="1">Add New Publication</option>
-  <option value="2">Add New Neurolex IDs</option>
-  <option value="3">Add New References</option>
-<option value="4">Add New Author</option>
-<option value="5">Add New Keywords</option>
-</select>
-<a href="" id="aid" class="fancybox">Go</a>
-<p>
-<p>
-</div>
 
-<!-- MAIN -->
-                       </div>
-</div>
+                      <th><%= fnlx.label(:Comments,"Comments") %></th>
+                      <td><%= fnlx.text_field(:Comments) %></td>
+                    <tr>
+                  </p>
+                  </table>
+                  <p>
+                    <%= fnlx.submit "Update Neurolex Terms" ,name: 'update'%>
+                    <%= fnlx.submit "Delete Neurolex Terms" ,name: 'delete',:confirm => "Delete Neurolexes: Are you sure to delete this neurolex ids?"%>
+
+                  </p>
+              <% end %>
+          <%end%>
+      <%end%>
+
+
+      <div><a href="add_neurolex?modelid=<%= modelid %>">Add NeuroLex Terms</a></div>
+
+      <% if !@person.blank? %>
+          <% @person.each do |author| %>
+              <%= form_for author,:url => {:action => 'edit_author_details'}  do |fperson| %>
+                  <p>
+                  <table>
+                    <tr>
+                      <td><%= fperson.hidden_field(:Person_ID,:readonly => true) %></td>
+                    <tr>
+                    <tr>
+                    <tr>
+                      <th><%= fperson.label(:Person_First_Name,"First Name") %></th>
+                      <td><%= fperson.text_field(:Person_First_Name) %></td>
+                    <tr>
+                    <tr>
+                    <tr>
+                      <th><%= fperson.label(:Person_Last_Name,"Last Name") %></th>
+                      <td><%= fperson.text_field(:Person_Last_Name) %></td>
+                    <tr>
+                    <tr>
+
+                    <tr>
+                      <th><%= fperson.label(:Person_Middle_Name,"Middle Name") %></th>
+                      <td><%= fperson.text_field(:Person_Middle_Name) %></td>
+                    <tr>
+                    <tr>
+
+                    <tr>
+                      <th><%= fperson.label(:Instituition,"Instituition") %></th>
+                      <td><%= fperson.text_field(:Instituition) %></td>
+                    <tr>
+                    <tr>
+
+                    <tr>
+                      <th><%= fperson.label(:Email,"Authors Email ID") %></th>
+                      <td><%= fperson.text_field(:Email) %></td>
+                    <tr>
+                    <tr>
+
+                    <tr>
+                      <th><%= fperson.label(:Comments,"Comments") %></th>
+                      <td><%= fperson.text_field(:Comments) %></td>
+                    <tr>
+                    <tr>
+                      <%= fields_for @model_id do |fassoc1| %>
+                          <%= fassoc1.hidden_field(:Model_ID,:readonly => true) %></td>
+                      <% end %>
+
+                      </table>
+                  <p>
+                    <%= fperson.submit "Update Author Details" ,name: 'update'%>
+                    <%= fperson.submit "Delete Author Details" ,name: 'delete',:confirm => "Delete Author: Are you sure to delete this author?"%>
+
+                  </p>
+              <% end %>
+          <%end%>
+      <%end%>
+
+      <div><a href="add_author?modelid=<%= modelid %>">Add Author</a></div>
+
+      <%if !@cell_list.blank? %>
+          <b>List of Associated Cells</b>
+          <p>
+            <%= form_for @cell_list,:url => {:action => 'del_channel_cell_associations'}  do |fassoc| %>
+                <%= select_tag "cells",options_from_collection_for_select(@cell_list.each.collect , "Cell_ID","Cell_Name"), :multiple => true%>
+                <%= fields_for @model do |fassoc1| %>
+                    <%= fassoc1.hidden_field(:Channel_ID,:readonly => true) %></td>
+                <% end %>
+
+                <%= fassoc.submit "Delete existing cell associations",:confirm => "Delete Associations: Are you sure to delete these Cell Associations?" %>
+            <% end %>
+            <p>
+            <p>
+              <% if @cell_list.any? %>
+                  <% @cell_list.each do |cell|%>
+                      <a class="channel_link" href="edit_cells_info?models_list[model_id]=<%= cell.Cell_ID %>"><%=cell.Cell_Name%></a>
+                  <% end %>
+              <%else%>
+                  None
+              <%end %>
+
+      <%end%>
+
+      <p>
+      <p>
+        <% if !@model.blank? %>
+            <b>Associate to other Cell(s)</b>
+            <p>
+            <p>
+              <%= form_for @model,:url => {:action => 'add_channel_cell_associations'}  do |fassoc| %>
+                  <%= select_tag "add_cells",options_from_collection_for_select(Cell.all , "Cell_ID","Cell_Name"), :multiple => true%>
+                  <%= fields_for @model do |fassoc1| %>
+                      <%= fassoc1.hidden_field(:Channel_ID,:readonly => true) %></td>
+                  <% end %>
+                  <%= fassoc.submit "Add new cell associations",:confirm => "Add Associations: Are you sure to add these Cell Associations?" %>
+              <% end %>
+              <p>
+              <p>
+        <% end %>
+
+        <!-- MAIN -->
+        </div>
+  </div>
 </div>

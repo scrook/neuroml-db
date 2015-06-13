@@ -3,55 +3,55 @@ jQuery(document).ready(function($) {
 	
 	// nivo slider ------------------------------------------------------ //
 	
-	$('#slider').nivoSlider({
-		effect:'slideInLeft', //Specify sets like: 'fold,fade,sliceDown'
-        slices:15,
-        animSpeed:500, //Slide transition speed
-        pauseTime:5000,
-        startSlide:0, //Set starting Slide (0 index)
-        directionNav:true, //Next & Prev
-        directionNavHide:true, //Only show on hover
-        controlNav:true, //1,2,3...
-        controlNavThumbs:false, //Use thumbnails for Control Nav
-        controlNavThumbsFromRel:false, //Use image rel for thumbs
-        controlNavThumbsSearch: '.jpg', //Replace this with...
-        controlNavThumbsReplace: '_thumb.jpg', //...this in thumb Image src
-        keyboardNav:true, //Use left & right arrows
-        pauseOnHover:true, //Stop animation while hovering
-        manualAdvance: false, //Force manual transitions
-        captionOpacity:0.7 //Universal caption opacity
-	});
+	//$('#slider').nivoSlider({
+	//	effect:'slideInLeft', //Specify sets like: 'fold,fade,sliceDown'
+     //   slices:15,
+     //   animSpeed:500, //Slide transition speed
+     //   pauseTime:5000,
+     //   startSlide:0, //Set starting Slide (0 index)
+     //   directionNav:true, //Next & Prev
+     //   directionNavHide:true, //Only show on hover
+     //   controlNav:true, //1,2,3...
+     //   controlNavThumbs:false, //Use thumbnails for Control Nav
+     //   controlNavThumbsFromRel:false, //Use image rel for thumbs
+     //   controlNavThumbsSearch: '.jpg', //Replace this with...
+     //   controlNavThumbsReplace: '_thumb.jpg', //...this in thumb Image src
+     //   keyboardNav:true, //Use left & right arrows
+     //   pauseOnHover:true, //Stop animation while hovering
+     //   manualAdvance: false, //Force manual transitions
+     //   captionOpacity:0.7 //Universal caption opacity
+	//});
 	
 	// Poshytips ------------------------------------------------------ //
 	
-    $('.poshytip').poshytip({
-    	className: 'tip-twitter',
-		showTimeout: 1,
-		alignTo: 'target',
-		alignX: 'center',
-		offsetY: 5,
-		allowTipHover: false
-    });
+    //$('.poshytip').poshytip({
+    //	className: 'tip-twitter',
+		//showTimeout: 1,
+		//alignTo: 'target',
+		//alignX: 'center',
+		//offsetY: 5,
+		//allowTipHover: false
+    //});
     
     
     // Poshytips Forms ------------------------------------------------------ //
     
-    $('.form-poshytip').poshytip({
-		className: 'tip-yellowsimple',
-		showOn: 'focus',
-		alignTo: 'target',
-		alignX: 'right',
-		alignY: 'center',
-		offsetX: 5
-	});
+    //$('.form-poshytip').poshytip({
+	//	className: 'tip-yellowsimple',
+	//	showOn: 'focus',
+	//	alignTo: 'target',
+	//	alignX: 'right',
+	//	alignY: 'center',
+	//	offsetX: 5
+	//});
 	
 	// Superfish menu ------------------------------------------------------ //
 	
-	$("ul.sf-menu").superfish({ 
-        animation: {height:'show'},   // slide-down effect without fade-in 
-        delay:     800 ,              // 1.2 second delay on mouseout 
-        autoArrows:  false
-    });
+    //$("ul.sf-menu").superfish({
+    //    animation: {height:'show'},   // slide-down effect without fade-in
+    //    delay:     800 ,              // 1.2 second delay on mouseout
+    //    autoArrows:  false
+    //});
     
     // Scroll to top ------------------------------------------------------ //
     
@@ -75,11 +75,11 @@ jQuery(document).ready(function($) {
 	
 	// Tweet Feed ------------------------------------------------------ //
 	
-    $("#tweets").tweet({
-        count: 5,
-        username: "NeuroML",
-        callback: tweet_cycle
-    });
+    //$("#tweets").tweet({
+    //    count: 5,
+    //    username: "NeuroML",
+    //    callback: tweet_cycle
+    //});
 	
 	// Tweet arrows rollover --------------------------------------------- //
 	
@@ -184,27 +184,24 @@ jQuery(document).ready(function($) {
 	});
 	
 */
-$("a.fancybox").live("hover",
-        function()
-        {$("a.fancybox").fancybox({
-        'speedIn'           : 600, 
-        'speedOut'          : 200, 
-        'overlayShow'       : false,
-        'autoDimensions'    : false,
-        'width'             : 620,
-        'height'            : 'auto',
-        'overlayShow'       : true,
-        'overlayOpacity'    : 0.8,
-        'overlayColor'      : '#ccc'
-        });
-        });
-
-
-
+	$(document).ready(function() {
+		$("a.fancybox").fancybox(
+		{
+			'speedIn'           : 600,
+			'speedOut'          : 200,
+			'overlayShow'       : false,
+			'autoDimensions'    : false,
+			'width'             : 620,
+			'height'            : 'auto',
+			'overlayShow'       : true,
+			'overlayOpacity'    : 0.8,
+			'overlayColor'      : '#ccc'
+		});
+	});
 
 	// pretty photo  ------------------------------------------------------ //
 	
-	$("a[rel^='prettyPhoto']").prettyPhoto();
+	//$("a[rel^='prettyPhoto']").prettyPhoto();
 
 
 	// Project gallery over --------------------------------------------- //
@@ -228,8 +225,8 @@ $("a.fancybox").live("hover",
 	
 		// prettyphoto
 		
-		$("a[rel^='prettyPhoto']").prettyPhoto();
-						
+		//$("a[rel^='prettyPhoto']").prettyPhoto();
+
 		// Fancy box
 		$("a.fancybox").fancybox({ 
 			'overlayColor'		:	'#000'
@@ -251,14 +248,14 @@ $("a.fancybox").live("hover",
 		
 		// tips
 		
-		$('.gallery a').poshytip({
-	    	className: 'tip-twitter',
-			showTimeout: 1,
-			alignTo: 'target',
-			alignX: 'center',
-			offsetY: -15,
-			allowTipHover: false
-	    });
+        //$('.gallery a').poshytip({
+	    //	className: 'tip-twitter',
+			//showTimeout: 1,
+			//alignTo: 'target',
+			//alignX: 'center',
+			//offsetY: -15,
+			//allowTipHover: false
+	    //});
 		
 	}
 	// init
@@ -266,15 +263,15 @@ $("a.fancybox").live("hover",
 	
 	// Filtering using isotope -----------------------------------------------------------//
 	
-	var $container = $('#portfolio-list');
-	
-	$container.imagesLoaded( function(){
-		$container.isotope({
-			itemSelector : 'li',
-			filter: '*',
-			animationEngine: 'jquery'
-		});
-	});
+	//var $container = $('#portfolio-list');
+	//
+	//$container.imagesLoaded( function(){
+	//	$container.isotope({
+	//		itemSelector : 'li',
+	//		filter: '*',
+	//		animationEngine: 'jquery'
+	//	});
+	//});
 	
 	// filter buttons
 		

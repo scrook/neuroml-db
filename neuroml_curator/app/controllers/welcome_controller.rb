@@ -1913,6 +1913,7 @@ class WelcomeController < ApplicationController
   def x3dtools
   end
   def browse_models
+    redirect_to action: "list_models", select_models: 1
   end
   def search_result
   end

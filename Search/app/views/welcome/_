@@ -1,0 +1,136 @@
+
+			
+
+			
+			<!-- MAIN -->
+			<div id="main">
+				<!-- wrapper-main -->
+				<div class="wrapper">
+					
+					<!-- content -->
+					<div id="content">
+						
+						<!-- title -->
+						<div id="page-title">
+							<span class="title">NeuroML Version 2.0</span>
+						</div>
+						<!-- ENDS title -->
+						
+						<!-- filter -->
+						<ul class="filter">
+                                                <li></li>
+				    		<li ><a href="/neuromlv2" > NML Alpha Schema </a></li>
+				    		<li><a href="/lems_dev" > LEMS Mapping </a></li>
+				    		<li><a href="/libnml" > libNeuroML </a></li>
+				    		<li class="active"><a href="/compatibility" > Compatibility With Others </a></li>
+				    		<li><a href="/specifications" > NML Specifications  </a></li>
+				    		<li><a href="/examples" > Examples </a></li>
+				    		
+				    	</ul>
+						<!-- ENDS filter -->
+<img src="../images/tabs-divider.png" height="2" width="100%" />
+			
+<h1>Compatability with other MLs: SBML, CellML, NineML & mappings to simulators</h1>
+
+    <p>There are a number of other modelling language initiatives which have overlapping aims to NeuroML. One of the goals of NeuroML 2 is to
+        avoid the temptation to be "one modelling language to build them all", but to acknowledge that these other languages exist with active communities,
+        there are large model repositories of <a href="http://www.ebi.ac.uk/biomodels-main/">SBML</a> & <a href="http://models.cellml.org/cellml">CellML</a> models and corresponding
+        tools available, and that many researchers will want to use these as
+        components in computational neuroscience simulations with the minimum of effort.</p>
+
+
+    <a name="SBML"/>
+    <h3>SBML</h3>
+    <p>There is a preliminary <a href="http://www.sbml.org">SBML</a> export function from libNeuroML which
+        generates an SBML file containing the model as defined in LEMS/NeuroML 2 <b>Components</b>/<b>ComponentTypes.</b> Try downloading libNeuroML
+        and running: </p><p class="code">ant testSBML</p>
+
+        <p>This export function requires more work, particularly related to the unit handling,
+        but see <a href="lems/neuroml2.html#Ex9">here</a> for a working example.</p>
+
+    <p>It should be possible to import a large class of SBML models into the LEMS framework to allow seamless use of SBML model elements beside NeuroML 2 elements for any simulator which understands
+        LEMS. This is a work in progress using <a href="http://sbml.org/Software/JSBML">JSBML</a>. To test this try: </p><p class="code">ant testSBMLRead</p>
+
+
+    <h3>CellML</h3>
+    <p>Similar export/import options should be possible for <a href="http://www.CellML.org">CellML</a> as SBML. Work is also in progress towards this.</p>
+
+    <a name="NineML"/>
+    <h3>NineML</h3>
+
+    <p><a href="http://www.nineml.org">NineML</a> is being developed as part of the <a href="http://www.incf.org/core/programs/modeling">INCF Multiscale Modelling Program</a>, and 
+        developments in LEMS and NeuroML 2 have benefitted from discussions within that forum. </p>
+
+    <p>libNeuroML can export files containing the equivalent NineML Abstraction Layer & User Layer entities (component/node/network)
+        for a model read in in LEMS (with ComponentType, Component, network, etc.). A limited number of LEMS examples can be exported in this format, try downloading the application
+        and running: </p><p class="code">ant testNineML</p> <p>This export will be updated as the NineML language evolves.</p>
+
+
+    <table id="highlighted" align="center" >
+        <tr><td>ComponentType was the original name for ComponentClass/ComponentType in LEMS.
+                ComponentClass was adopted by both LEMS & NineML in early 2010, as an object with similar scope was being used in the NineML Abstraction Layer.
+                However, as there are no current plans to incorporate key features of LEMS such as extension or composition of ComponentTypes into NineML, and so the LEMS
+                element has been renamed ComponentType, to distinguish it.<br/><br/>
+
+            These differences and future work towards greater compatibility between these formats will be discussed at the <a href="workshop2012.php">fourth NeuroML Development Workshop</a>. </td></tr></table>
+            <a name="NEURON">&nbsp;</a>
+    <h3>NEURON</h3>
+    <p>There is a basic export function implemented for many LEMS based abstract cell models to <a href="http://www.neuron.yale.edu/neuron/">NEURON</a>. Try downloading the application
+        and running: </p><p class="code">ant testNEURON</p>
+
+    <img src="images/adEx.png"/>
+
+    <p align="center"><i>This shows 3 adaptive exponential integrate-and-fire model cells which have been specified in NeuroML 2 and run with the
+            libNeuroML (left plots). The NEURON export function uses the LEMS <b>ComponentType</b> definition to generate NMODL files for the cell behaviour and NEURON Python files
+            to execute the network (right plots). See <a href="lems/neuroml2.html#Ex8">here</a> for more details.</i></p>
+
+
+
+    <!--    <h2>Metadata & structured annotations</h2>-->
+
+
+
+    <h2>Object model for 3D hierarchical network generation</h2>
+
+
+    <p>A package has been developed for prototyping ideas about specification of <a href="NeuroMLValidator/Networks.jsp">hierarchical network structures</a> in NeuroML 2.</p>
+
+    <p align="center"><a name="nCnet" href="NeuroMLValidator/Networks.jsp">
+            <img alt="Hierarchical network" src="http:///NeuroMLValidator/images/Netv2.png" align="middle" width="500"/></a>
+    </p>
+    <p align="center"><i>A network containing a 3x3 grid, each element of which is a subnetwork of 3 populations (2 laid out on regular 3D grids,
+            and one randomly placed in a rectangular box above the others)</i>
+
+    <p>A <a href="NeuroMLValidator/Networks.jsp#JavaAPI">Java package</a> has been produced which can generate network descriptions in this form. The NeuroML 2
+        files produced are valid according to the <a href="http://sourceforge.net/apps/trac/neuroml/browser/NeuroML2/Schemas/NeuroML2/NeuroML_v2alpha.xsd">
+            NeuroML v2alpha Schema</a> mentioned above.</p>
+
+    <p>This package does not yet interact with LEMS, but it is planned to harmonise the network descriptions used here with those LEMS uses to create networks</p>
+
+
+
+    <h2>What's missing?</h2>
+    <p>A summary of the holes & areas of current work in the current specifications...</p>
+    <ul class="bluebullets">
+        <li><b>Network connection templates:</b> more advanced options for defining connectivity between populations of cells is required.
+            This is being worked on in LEMS and for NineML.</li>
+
+        <li><b>Support for multi compartment modelling in LEMS:</b> While the <a href="http://sourceforge.net/apps/trac/neuroml/browser/NeuroML2/Schemas/NeuroML2/NeuroML_v2alpha.xsd">
+                NeuroML v2alpha Schema</a> supports description of multi compartmental conductance based neuronal models, the LEMS interpreter can only execute single compartment cell models at present.</li>
+        
+        <li><b>Better numerical integration in LEMS:</b> At present the LEMS interpreter uses a simple forward Euler numerical integration method, limiting the size and speed of simulations.</li>
+    </ul>
+
+			
+								<div class="clear"></div>
+						<!-- ENDS project column (right) -->
+						
+						
+					</div>
+					<!-- ENDS content -->
+
+				</div>
+				<!-- ENDS wrapper-main -->
+			</div>
+			<!-- ENDS MAIN -->
+			

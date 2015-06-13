@@ -1,110 +1,124 @@
 
-			
 
-			
-			<!-- MAIN -->
-			<div id="main">
-				<!-- wrapper-main -->
-				<div class="wrapper">
-					
-					<!-- content -->
-					<div id="content">
-						
-						<!-- title -->
-						<div id="page-title">
-							<span class="title">Browse Models</span>
-						</div>
-						<!-- ENDS title -->
-						
-						
-						
-								<div class="clear"></div>
-<% if !@network_models.blank? %>
-<p>
-<p>
-<b>List of all Networks<b>
-<p>
-<p>
-<% @network_models.each do |nw| %>
-<table id="model_info">
-<tr>
-<td class="keyword">
-<a  class="fancybox" href="/model_info?model_id=<%=nw.Network_ID%>"><%= nw.Network_ID %></a>
-</td><td class="description" ><%= nw.Network_Name %></td>
-<td class="description"><%= nw.NetworkML_File%></td>
-<td class="description"><%= nw.Upload_Time%></td>
-<td class="description"><%= nw.Comments%></td>
-</tr>
- </table>
-  </p>
-<%end%>
-<%end%>
-<% if !@cell_models.blank? %>
-<p>
-<p>
-<b>List of all Cells<b>
-<p>
-<p>
-<% @cell_models.each do |cell| %>
-<table id="model_info">
-<tr>
-<td class="keyword">
-<a  class="fancybox" href="/model_info?model_id=<%=cell.Cell_ID%>"><%= cell.Cell_ID %></a>
-</td><td class="description" ><%= cell.Cell_Name %></td>
-<td class="description"><%= cell.MorphML_File%></td>
-<td class="description"><%= cell.Upload_Time%></td>
-<td class="description"><%= cell.Comments%></td>
-</tr>
- </table>
-  </p>
-<%end%>
-<%end%>
-<% if !@syn_models.blank? %>
-<p>
-<p>
-<b>List of all Synapses<b>
-<p>
-<p>
-<% @syn_models.each do |syn| %>
-<table id="model_info">
-<tr>
-<td class="keyword">
-<a  class="fancybox" href="/model_info?model_id=<%=syn.Synapse_ID%>"><%= syn.Synapse_ID %></a>
-</td><td class="description" ><%= syn.Synapse_Name %></td>
-<td class="description"><%= syn.Synapse_File%></td>
-<td class="description"><%= syn.Upload_Time%></td>
-<td class="description"><%= syn.Comments%></td>
-</tr>
- </table>
-  </p>
-<%end%>
-<%end%>
-<% if !@channels.blank? %>
-<p>
-<p>
-<b>List of all Channels<b>
-<p>
-<p>						
 
-<% @channels.each do |chnl| %>
-<table id="model_info">
-<tr>
-<td class="keyword">
-<a  class="fancybox" href="/model_info?model_id=<%=chnl.Channel_ID%>"><%= chnl.Channel_ID %></a>
-</td><td class="description" ><%= chnl.Channel_Name %></td>
-<td class="description"><%= chnl.ChannelML_File%></td>
-<td class="description"><%= chnl.Upload_Time%></td>
-<td class="description"><%= chnl.Comments%></td>
-</tr>
- </table>
-  </p>
-<%end%>
-<%end%>
-					</div>
-					<!-- ENDS content -->
 
-				</div>
-				<!-- ENDS wrapper-main -->
-			</div>
-			<!-- ENDS MAIN -->
+<!-- MAIN -->
+<div id="main">
+  <!-- wrapper-main -->
+  <div class="wrapper">
+
+    <!-- content -->
+    <div id="content">
+
+      <!-- title -->
+      <div id="page-title">
+        <span class="title">View and Edit Models</span>
+      </div>
+      <!-- ENDS title -->
+
+      <div style="margin-bottom:1em;">
+        Show: <a href="list_models?select_models=0">All Models</a> |
+        <a href="list_models?select_models=1">Networks</a> |
+        <a href="list_models?select_models=2">Cells</a> |
+        <a href="list_models?select_models=3">Synapses</a> |
+        <a href="list_models?select_models=4">Channels</a>
+      </div>
+
+      <div class="clear"></div>
+      <% if !@network_models.blank? %>
+          <div>
+            <b>List of all Networks<b>
+              <table id="model_info">
+                <% @network_models.each do |nw| %>
+
+                    <tr>
+                      <td class="keyword">
+                        <div><%= nw.Network_ID %></div>
+                        <div>
+                            <a  class="fancybox" href="/model_info?model_id=<%=nw.Network_ID%>">View</a>
+                            <a  class="fancybox" href="/edit_networks_info?models_list[model_id]=<%=nw.Network_ID%>">Edit</a>
+                        </div>
+                      </td>
+                      <td class="description" ><%= nw.Network_Name %></td>
+                      <td class="description"><%= nw.NetworkML_File%></td>
+                      <td class="description"><%= nw.Upload_Time%></td>
+                      <td class="description"><%= nw.Comments%></td>
+                    </tr>
+                <%end%>
+
+              </table>
+          </div>
+      <%end%>
+      <% if !@cell_models.blank? %>
+          <div>
+            <b>List of all Cells<b>
+              <table id="model_info">
+                <% @cell_models.each do |cell| %>
+                    <tr>
+                      <td class="keyword">
+                        <div><%= cell.Cell_ID %></div>
+                        <div>
+                          <a  class="fancybox" href="/model_info?model_id=<%=cell.Cell_ID%>">View</a>
+                          <a  class="fancybox" href="/edit_cells_info?models_list[model_id]=<%=cell.Cell_ID%>">Edit</a>
+                        </div>
+                      </td><td class="description" ><%= cell.Cell_Name %></td>
+                      <td class="description"><%= cell.MorphML_File%></td>
+                      <td class="description"><%= cell.Upload_Time%></td>
+                      <td class="description"><%= cell.Comments%></td>
+                    </tr>
+                <%end%>
+            </table>
+          </div>
+      <%end%>
+      <% if !@syn_models.blank? %>
+          <div>
+            <b>List of all Synapses<b>
+              <table id="model_info">
+                <% @syn_models.each do |syn| %>
+                    <tr>
+                      <td class="keyword">
+                        <div><%= syn.Synapse_ID %></div>
+                        <div>
+                          <a  class="fancybox" href="/model_info?model_id=<%=syn.Synapse_ID%>">View</a>
+                          <a  class="fancybox" href="/edit_synapses_info?models_list[model_id]=<%=syn.Synapse_ID%>">Edit</a>
+                        </div>
+                      </td>
+                      <td class="description" ><%= syn.Synapse_Name %></td>
+                      <td class="description"><%= syn.Synapse_File%></td>
+                      <td class="description"><%= syn.Upload_Time%></td>
+                      <td class="description"><%= syn.Comments%></td>
+                    </tr>
+                <%end%>
+            </table>
+          </div>
+      <%end%>
+      <% if !@channels.blank? %>
+          <div>
+            <b>List of all Channels<b>
+              <table id="model_info">
+                <% @channels.each do |chnl| %>
+                    <tr>
+                      <td class="keyword">
+                        <div><%= chnl.Channel_ID %></div>
+                        <div>
+                          <a  class="fancybox" href="/model_info?model_id=<%=chnl.Channel_ID%>">View</a>
+                          <a  class="fancybox" href="/edit_channels_info?models_list[model_id]=<%=chnl.Channel_ID%>">Edit</a>
+                        </div>
+                      </td>
+                      <td class="description" ><%= chnl.Channel_Name %></td>
+                      <td class="description"><%= chnl.ChannelML_File%></td>
+                      <td class="description"><%= chnl.Upload_Time%></td>
+                      <td class="description"><%= chnl.Comments%></td>
+                    </tr>
+                <%end%>
+            </table>
+          </div>
+      <%end%>
+    </div>
+    <!-- ENDS content -->
+
+  </div>
+  <!-- ENDS wrapper-main -->
+</div>
+<!-- ENDS MAIN -->
 			

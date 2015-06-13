@@ -11,6 +11,7 @@
 <%= call_hook :view_layouts_base_html_head %>
 
 <!-- CSS -->
+<link rel="stylesheet" href="/javascripts/fancybox/jquery.fancybox.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <%= stylesheet_link_tag 'style', :media => 'screen' %>
 <%= stylesheet_link_tag 'social-icons', :media => 'screen' %>
@@ -22,7 +23,8 @@
 
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
+<%= javascript_include_tag 'fancybox/jquery.fancybox.pack.js' %>
+<%= javascript_include_tag 'js/custom' %>
 </head>
 	
 	<body class="home">
@@ -111,12 +113,9 @@ end
 <% if User.current.logged? %>
 						<ul id="nav" class="sf-menu">
 							<% if index != 1 %>
-							<li <% if browse == 1 %>class="<%= active_class %>" <% end %> ><a href="/browse_models">Browse Models</a></li>
-						<!--	<li <% if documents == 1 %>class="<%= active_class %>" <% end %> ><a href="/model_submit">Submit Models</a></li>
-                                                        <li <% if tools == 1 %>class="<%= active_class %>" <% end %>> <a href="/search_result">Search Models</a></li> -->
+							<li <% if browse == 1 %>class="<%= active_class %>" <% end %> ><a href="/list_models?select_models=1">View and Edit Models</a></li>
 							 <li <% if models == 1 %>class="<%= active_class %>" <% end %>><a href="/add_cell">Add Models</a></li>
 							<li <% if community == 1 %>class="<%= active_class %>" <% end %>><a href="/curate_model">Curate Submitted Models</a></li>
-							<li <% if development == 1 %>class="<%= active_class %>" <% end %>><a href="/edit_model">Edit Models</a></li>
 							<% end %>
 <%#= render_menu :top_menu if User.current.logged? || !Setting.login_required? -%>
 						</ul>
