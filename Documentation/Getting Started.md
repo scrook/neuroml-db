@@ -1,4 +1,4 @@
-Note: Treat this as a live-document, and please update it if you find any mistakes.
+Note: Treat this as a live-document, and please update it if you find any mistakes. Also add anything that would be useful for newcomers.
 
 # Websites
 
