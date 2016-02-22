@@ -10,13 +10,13 @@ These are the main websites:
 #Architecture
 
 **NeuroML.org**
-This is a Ruby on Rails site that uses [Redmine](http://www.redmine.org/) as the starting point. Apache server redirects  domain requests to a Ruby [Webrick](https://en.wikipedia.org/wiki/WEBrick) server , which then serves the Ruby site. This site talks to a MySQL server. There are also some Java files for NeuroML validation functionality. Apache redirects requests to those subfolders to a Tomcat server that handles the validator requests. All this happens on the same physical server.
+This is a Ruby on Rails site that uses [Redmine](http://www.redmine.org/) as the starting point. Apache server uses the Ruby [Passenger](https://www.phusionpassenger.com/library/walkthroughs/deploy/ruby/ownserver/apache/oss/install_language_runtime.html) module to serve the Ruby site. This site talks to a MySQL server. There are also some Java files for NeuroML validation functionality. Apache redirects requests to those subfolders to a Tomcat server that handles the validator requests. All this happens on the same physical server.
 
 **NeuroML-DB.org**
-Also a Ruby on Rails site, based on Redmine, runs on Webrick (http://dendrite.asu.edu:5000/) and talks to the MySQL server. There is an interface for the search engine that executes Python code to return the search results. The Python code talks to a [Fuseki](https://jena.apache.org/documentation/fuseki2/) server that stores the ontology tripples. It also talks to the MySQL server. 
+Also a Ruby on Rails site, based on Redmine, runs on Passenger module, and talks to the MySQL server. There is an interface for the search engine that executes Python code to return the search results. The Python code talks to a [Fuseki](https://jena.apache.org/documentation/fuseki2/) server that stores the ontology tripples. It also talks to the MySQL server. 
 
 **Curator**
-Also a Ruby on Rails site, based on Redmine, and talks to the MySQL server. This site is mostly used as a UI to manage the models displayed in the NeuroML-DB.org site. It reads and writes the same database that NeuroML-DB points to.
+Also a Ruby on Rails site, based on Redmine, and talks to the MySQL server. This site is mostly used as a UI to manage the models displayed in the NeuroML-DB.org site. It reads and writes the same database that NeuroML-DB points to. At the moment, it is hosted on dendrite.asu.edu server and uses the [Webrick](https://en.wikipedia.org/wiki/WEBrick) server.
 
 #Servers
 
@@ -33,7 +33,6 @@ The prefered development cycle should be: Local machine -> Spike -> Dendrite
 ##Server Access
 
 Both are Ubuntu servers, and SSH'ing into them is the general workflow. Renate (see below) can give you access to the servers. 
-Note that these servers cannot be SSH'd into from outside of ASU network. You'll need to [VPN](https://startpage.com/do/search?q=arizona+state+university+vpn&lui=english) in or connect from campus.
 
 The physical servers are maintained by [Renate Mittelmann](https://webapp4.asu.edu/directory/person/85012). Her office is on the same floor as Sharon. See the directory link for contact info. Any questions about usernames, passwords, access, backups, restarts, and scheduled maintenance should be directed to her.
 
@@ -44,7 +43,7 @@ Connect to the servers using the following params:
  - Username & pwd: the set you received from Renate
 
 #Folders
-Once inside the servers, following folders are useful:
+Once inside the servers, the following folders are useful:
 
 **Dendrite**: The Production Server
  - /var/www/NeuroML_Web: NeuroML.org *Ruby on Rails* site files
@@ -58,7 +57,7 @@ Once inside the servers, following folders are useful:
 
 #Databases
 
-Dendrite and Spike both function as web and DB servers. Both have MySQL database servers installed with several databases each. You will need to SSH into the server first, then establish a MySQL connection. Ask Renate to create a DB username for you. Also, connection to the MySQL server only works from ASU campus/VPN.
+Dendrite and Spike both function as web and DB servers. Both have MySQL database servers installed with several databases each. You will need to SSH into the server first, then establish a MySQL connection. Ask Renate to create a DB username for you. Also, connection to the MySQL server only works from ASU campus/[VPN](https://startpage.com/do/search?q=arizona+state+university+vpn&lui=english).
 
 The Ruby sites connect to different dabatases and the best way to find out which one the site is using is by looking at the **[site root]/config/database.yml** file.
 
@@ -84,10 +83,10 @@ The domains are mapped to the ports through the apache config files located on *
 #(Re)Starting Websites
 
 On **Dendrite**:
- - Generally Renate will restart the websites on Dendrite. However, the contents of the restartruby file on Spike can be examined to get the commands to restart the webrick and fuseki servers. Apache server can be restarted by restarting the apache2 service.
+ - Generally Renate will restart the websites on Dendrite. Apache server can be restarted by restarting the apache2 service with: `sudo service apache2 restart` after logging into the server.
 
 On **Spike**:
- - In /home/neuromine there is a script restartruby. Running the script with ./restartruby should restart the ruby sites & and the Fuseki server. 
+ - In /home/neuromine there is a script restartruby. Running the script with ./restartruby should restart the Ruby Webrick sites & and the Fuseki server. 
 
 #Feature/Bug Tracking
 Use this [repo's Issues tab](https://github.com/scrook/neuroml-db/issues) to keep track of outstanding issues and bug fixes. Use it as a ToDo list, and create issues whenever you see something that should be fixed. Close issues when they have been implemented in production.
