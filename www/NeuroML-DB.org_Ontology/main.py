@@ -8,8 +8,8 @@ from Classes.SearchModule import SearchModule
 if os.path.isdir("/home/neuromine/Neurolex_py"):
     os.chdir("/home/neuromine/Neurolex_py")
 
-if os.path.isdir("/var/www/neuroml-db.org_ontology"):
-    os.chdir("/var/www/neuroml-db.org_ontology")
+if os.path.isdir("/var/www/NeuroML-DB.org_Ontology"):
+    os.chdir("/var/www/NeuroML-DB.org_Ontology")
 
 def main():
 
