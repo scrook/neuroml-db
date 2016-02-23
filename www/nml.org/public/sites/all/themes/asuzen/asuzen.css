@@ -1,0 +1,553 @@
+/* $Id: style.css,v 5.x-3.1.1 2008/4/21 05:28:41 jjeff Exp $ */
+/**
+*  Title: ASU Zen Theme (Gold)
+*  Copyright: (c) 2008 Arizona State University
+*  Author: Jeff Beeman, Kathy Marks, Nathan Gudmunson 
+*  Description: Basic style rules for ASU Drupal sites 
+*/
+
+/**
+*   RESET STYLES 
+*
+*  Reset browser default styles to same values.
+*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,quote,th,td {
+	margin: 0;
+	padding: 0;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+fieldset,img {
+	border: 0;
+}
+address,caption,cite,code,dfn,th,var {
+	font-style: normal;
+	font-weight: normal;
+}
+ol,ul {
+	list-style: none;
+}
+caption,th {
+	text-align: left;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-size: 100%;
+	font-weight: normal;
+}
+q:before,q:after {
+	content: '';
+}
+abbr,acronym {
+	border: 0;
+}
+/**
+* General page styles
+*/
+body {
+	color: #000000;
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 0.75em;
+	font-size-adjust: none;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	line-height: 1.33em;
+}
+strong {
+	font-weight: bold;
+}
+em {
+	font-style: italic;
+}
+a {
+	color: #990033;
+}
+a:hover {
+	color: #000;
+}
+p {
+	margin: .75em 0;
+}
+ul {
+	list-style-type: disc;
+}
+ol {
+	list-style-type: decimal;
+}
+ul, ol {
+	margin: 1.12em 0 1.12em 40px;
+}
+dt {
+	font-weight: bold;
+}
+dd {
+	margin-bottom: 1em;
+	margin-left: 1em;
+}
+fieldset {
+	border: 1px solid #cccccc;
+	margin: 1em 0pt;
+	padding: 1em;
+}
+#asu_container li.last,
+#asu_login_module li.last,
+#asu_container li.no-border,
+#asu_login_module li.no-border {
+	border: none;
+}
+#asu_login_module li {
+	font-weight: bold;
+}
+/**
+* Headings
+*/
+h1.title {
+	background: #fff;
+	border-bottom: none;
+	margin: 5px 0 10px 0;
+	padding: 10px 0;
+	color: #4A0030;
+	font-size: 2.33em;
+	font-weight: normal;
+	line-height: 1.33em;
+}
+h1 a {
+	text-decoration: none;
+}
+h2 {
+	border-bottom: 1px solid #CCCCCC;
+	color: #4A0030;
+	font-size: 1.67em;
+	font-weight: normal;
+	line-height: 1.33em;
+	margin: 0 0 0.25em 0;
+	padding: 5px 0;
+}
+h2 a {
+	text-decoration: none;
+}
+h3 {
+	border-bottom: 1px solid #CCCCCC;
+	color: #4A0030;
+	font-size: 1.33em;
+	font-weight: bold;
+	letter-spacing: 2px;
+	line-height: 1.33em;
+	margin: 1.06em 0pt 0.625em;
+	padding: 5px 0pt;
+	text-transform: uppercase;
+}
+h4 {
+	border-bottom: 1px solid #CCCCCC;
+	color: #4A0030;
+	font-size: 1.16em;
+	font-weight: bold;
+	margin: 1.07em 0pt 0.71em;
+	padding: 5px 0pt;
+}
+h4 a {
+	text-decoration: none;
+}
+p.skip, ul.skip {
+	position: absolute;
+	left: -10000px;
+}
+
+/**
+* Header region (for blocks)
+*/
+#header-region {
+	clear: both;
+}
+#header-region .block h2 {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+/**
+* Secondary links
+*/
+#secondary {
+	background: #b2b2b2 url(images/asu_gray_bg.jpg) repeat-x scroll left bottom;
+	height: 2.3em;
+	border-bottom: 1px solid #777;
+}
+#secondary li a {
+	border-right: 1px solid #fff;
+	color: #fff;
+}
+#secondary ul.links {
+	margin: 0 0 0 22px;
+}
+#secondary ul.links li {
+	float: left;
+	list-style-type: none;
+	font-weight: bold;
+	line-height: 2.3em;
+}
+#secondary li a {
+	padding: 0 0.66em 0 0;
+	text-decoration: none;
+}
+#secondary li a:hover {
+	text-decoration: underline;
+	color: #333;
+}
+#secondary li a:visited {
+	color: #903;
+}
+#secondary li.last a {
+	border-right: none;
+}
+/*-------------------------------------------------------------
+  OPTIONAL GOLD GRAIDENT
+  If you want a gold gradient background on the secondary nav
+  menu bar instead of the gray bar, comment out the above two
+  rules and uncomment the two rules that follow:
+  ------------------------------------------------------------*/
+/*
+#secondary {
+	background: #fff url(images/asu_gold_bg.jpg) repeat-x scroll left bottom;
+	height: 2.3em;
+}
+#secondary li a {
+	border-right: 1px solid #999;
+	color: #999;
+}
+*/
+
+/**
+* Blocks
+*/
+.block .title {
+	border-bottom: 1px solid #CCCCCC;
+	color: #4A0030;
+	font-size: 1.67em;
+	font-weight: normal;
+	line-height: 1.33em;
+	margin: 0 0pt 0.75em;
+	padding: 5px 0pt;
+}
+/**
+* Sidebars
+*/
+.sidebar a {
+	text-decoration: none;
+}
+#name-and-slogan {
+	margin: 0 0 1em 0;
+	padding: 0 0 .5em 0;
+	border-bottom: 1px solid #cccccc;
+	width: 195px;
+}
+#name-and-slogan h1 {
+	font-size: 2em;
+	font-family: 'Times New Roman', Times, serif;
+	font-weight: normal;
+	margin: .25em 0 0 0;
+	text-align: center;
+	line-height: 1em;
+}
+#name-and-slogan a {
+	text-decoration: none;
+}
+#site-slogan {
+	font-size: .95em;
+	color: #838383;
+	margin: 1em 0 0 0;
+	text-align: center;
+}
+#mission {
+	color: #000000;
+	background: #cdd4e1;
+	padding: 1em;
+}
+#mission a {
+	color: #ffffff;
+	text-decoration: underline;
+}
+/**
+* Nodes
+*/
+.node {
+	margin-bottom: 2em;
+}
+div.links {
+	border: 1px solid #cccccc;
+	background: #fdf5e6;
+	padding: .5em;
+}
+.node-meta {
+	color: #838383;
+	font-size: .95em;
+}
+.node-meta a {
+	color: #996666;
+}
+.node-meta .taxonomy {
+	display: inline;
+}
+.node-meta .taxonomy .links.inline li {
+	padding: 0;
+	*padding: 0 .1em;
+}
+/* targets IE6 and 7 */
+.node-meta .taxonomy .links.inline li:after {
+	content: ", ";
+}
+.node-meta .taxonomy .links.inline li.last:after {
+	content: ".";
+}
+.preview .node {
+	background: #fffaf0;
+	padding: 1em;
+}
+/**
+* Comments
+*/
+.comment {
+	background: #F0E8D9;
+	padding: 10px;
+	margin: 10px 0;
+}
+.comment h3 {
+	margin: 0;
+	padding: 0;
+}
+.comment .submitted {
+	color: #838383;
+	font-size: .95em;
+}
+.comment h3 a {
+	text-decoration: none;
+}
+.comment div.links {
+	font-size: .95em;
+}
+.comment .picture, .node .picture, .profile .picture {
+	float: left;
+	margin: 0 1em 1em 0;
+}
+.comment span.new {
+	color: #cc9900;
+	float: right;
+}
+.comment.comment-author {
+	background: #eee8aa;
+}
+/**
+* Tabs - primary
+*/
+ul.primary {
+	margin-top: 1em;
+	margin-bottom: 1em;
+	border-bottom: 1px solid #aeaa8e;
+	padding-bottom: 5px;
+}
+ul.primary li a {
+	background: none;
+	border: none;
+	padding: 5px 10px;
+	font-weight: bold;
+}
+ul.primary li a:hover {
+	background: #ebe9cb;
+}
+ul.primary li a.active {
+	border-bottom: none;
+	background: #d2ceb0;
+}
+/**
+* Tabs - secondary
+*/
+ul.secondary {
+	margin-top: 1em;
+	margin-bottom: 1em;
+	padding-bottom: 5px;
+}
+ul.secondary li {
+	line-height: 1.75em;
+}
+/**
+* Tables and table rows
+*/
+table {
+	color: #333;
+	width: 100%;
+	margin: 1em 0;
+}
+th,
+tr.header th,
+tr.header td {
+	border: 1px solid #ddd;
+	background-color: #f0d6b2;
+	padding: 4px 12px;
+	color: #555;
+	font-weight: bold;
+	text-align: left;
+}
+td,
+td.column_header {
+	border: 1px solid #ddd;
+	padding: 4px 12px;
+	text-align: left;
+}
+td.column_header {
+	color: #555;
+	font-weight: bold;
+	width: 200px;
+}
+td.narrow_cell {
+	text-align: center;
+	width: 5%;
+}
+tr.footer td {
+	background-color: #E1D1B3;
+	border: 1px solid #ddd;
+	padding: 4px 12px;
+}
+tr.odd td {
+	border: 1px solid #ddd;
+	background-color: #fbfbf3;
+	padding: 4px 12px;
+	vertical-align: top;
+}
+tr.even td {
+	border: 1px solid #ddd;
+	background-color: #f2f2eb;
+	padding: 4px 12px;
+	vertical-align: top;
+}
+tr.selected td {
+	border: 1px solid #ddd;
+	background-color: #FFE8B7;
+	padding: 4px 12px;
+	vertical-align: top;
+}
+table#attachments {
+	width: auto;
+}
+caption {
+	font-weight: bold;
+}
+/**
+* Specific input formats
+*/
+input#edit-title {
+	font-size: 1.75em;
+	font-weight: bold;
+}
+/**
+* Forum
+*/
+#forum td.icon {
+	width: 16px;
+}
+
+/**
+* Miscellaneous
+*/
+.breadcrumb {
+	margin: 0;
+	font-size: .95em;
+	padding-bottom: .25em;
+}
+.description {
+	color: #838383;
+}
+#asu_footer li.last, #asu_footer li.no-border, #asu_login_search li.last {
+	border-right: none;
+}
+div.admin-panel .description {
+	margin-bottom: .75em;
+}
+div.admin-panel dd {
+	color: #838383;
+	font-size: .95em;
+}
+#node-form textarea {
+	font-size: 1em;
+}
+/**
+* Status messages
+*/
+.messages {
+	background-color: #ffffff;
+	border: 1px solid #bbb;
+}
+.status {
+	border-color: #9dbbcb;
+	color: #2f7497;
+}
+.messages, .preview {
+	margin: .75em 0;
+	padding: .5em 1em;
+}
+.error {
+	color: #c52020;
+	background: #ffcccc;
+	border: 1px solid #cf7777;
+}
+/**
+* Watchdog / Access log
+*/
+tr.watchdog-user {
+	background-color: #FCF9E5 !important;
+}
+tr.watchdog-user td.active {
+	background-color: #FBF5CF;
+}
+tr.watchdog-content {
+	background-color: #FEFEFE;
+}
+tr.watchdog-content td.active {
+	background-color: #F5F5F5;
+}
+tr.watchdog-warning {
+	background-color: #FDF5E6;
+}
+tr.watchdog-warning td.active {
+	background-color: #FDF2DE;
+}
+tr.watchdog-error {
+	background-color: #FBE4E4;
+}
+tr.watchdog-error td.active {
+	background-color: #FBDBDB;
+}
+tr.watchdog-page-not-found, tr.watchdog-access-denied {
+	background: #D7FFD7 none repeat scroll 0%;
+}
+tr.watchdog-page-not-found td.active, tr.watchdog-access-denied td.active {
+	background: #C7EEC7 none repeat scroll 0%;
+}
+table.system-status-report tr.error, table.system-status-report tr.error th {
+	background-color: #FFCCCC;
+	border-color: #EEBBBB;
+	color: #220000;
+}
+table.system-status-report tr.warning, table.system-status-report tr.warning th {
+	background-color: #FFFFDD;
+	border-color: #EEEEBB;
+}
+table.system-status-report tr.ok, table.system-status-report tr.ok th {
+	background-color: #DDFFDD;
+	border-color: #BBEEBB;
+}
+/**
+* Administration tables
+*/
+table.sticky-enabled,
+table.sticky-header,
+table.sticky-table {
+	width: 98%;
+}
+/**
+* Maintenance styles
+*/
+body.maintenance #container {
+	width: 600px;
+	margin: 2em auto 4em auto;
+}

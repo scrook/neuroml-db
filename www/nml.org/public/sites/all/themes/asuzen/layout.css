@@ -1,0 +1,135 @@
+/* $Id: layout-liquid.css,v 1.5 2008/09/14 10:39:32 johnalbin Exp $ */
+
+/*
+ * LAYOUT STYLES
+ *
+ * Define CSS classes to create a table-free, 3-column, 2-column, or single
+ * column layout depending on whether blocks are enabled in the left or right
+ * columns.
+ *
+ * This layout is based on the Border Politics Layout Method.
+ *   http://drupal.org/node/201428
+ *
+ * Only CSS that affects the layout (positioning) of major elements should be
+ * listed here.  Such as:
+ *   display, position, float, clear, width, height, min-width, min-height
+ *   margin, border, padding, overflow
+ */
+
+#header-blocks {
+    clear: both; /* Clear the logo */
+}
+#asu_container {
+	min-width: 996px;
+	max-width: inherit;
+	clear: both;
+	margin: 0 0 1em 0;
+}
+
+/** main (container for everything else) **/
+#main {
+    position: relative;
+    padding-bottom: 2em;
+}
+.asu_set_fixed_width { /* Override of global include rule; we want this to be optional, below */
+	width: 100%;
+	margin: 0;
+}
+
+/** content **/
+#content {
+    float: left;
+    width: 100%;
+    margin-left: 0;
+    margin-right: -99%; /* Negative value of #content's width + left margin. */
+    padding: 0; /* DO NOT CHANGE. Add padding or margin to #content-inner. */
+}
+.no-sidebars #content-inner {
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar-left #content-inner {
+    padding-left: 200px; /* The width + left margin of #sidebar-left. */
+    padding-right: 0;
+}
+
+.sidebar-right #content-inner {
+    padding-left: 0;
+    padding-right: 200px; /* The width + right margin of #sidebar-right. */
+}
+
+.two-sidebars #content-inner {
+    padding-left: 200px; /* The width + left margin of #sidebar-left. */
+    padding-right: 200px; /* The width + right margin of #sidebar-right. */
+}
+
+
+/** sidebar-left **/
+#sidebar-left {
+    float: left;
+    width: 200px;
+    margin-left: 0;
+    margin-right: -200px; /* Negative value of #sidebar-left's width + left margin. */
+    padding: 0; /* DO NOT CHANGE. Add padding or margin to #sidebar-left-inner. */
+}
+
+#sidebar-left-inner {
+    margin: 0 20px 0 0;
+    padding: 0;
+}
+
+/** sidebar-right **/
+#sidebar-right {
+    float: right;
+    width: 200px;
+    margin-left: -200px; /* Negative value of #sidebar-right's width + right margin. */
+    margin-right: 0;
+    padding: 0; /* DO NOT CHANGE. Add padding or margin to #sidebar-right-inner. */
+}
+
+#sidebar-right-inner {
+    margin: 0 0 0 20px;
+    padding: 0;
+}
+/** Prevent overflowing content **/
+#header,
+#content,
+#sidebar-left,
+#sidebar-right,
+#footer,
+#closure-blocks {
+    overflow: visible;
+    word-wrap: break-word; /* A very nice CSS3 property */
+}
+#main {
+	overflow: hidden;
+}
+
+  /* If a div.clear-block doesn't have any content after it, Firefox and Safari
+     will mistakenly place several pixels worth of space between the bottom of
+     the div and the bottom of the viewport. This fixes it. */
+#asu_container { overflow-y: hidden; } /* CSS3 property */
+
+
+
+/**
+* =FIXED WIDTH layout
+* Uncomment these styles for a centered fixed width layout
+* Also, uncomment the corresponding rules in ie6.css
+*/
+
+body {
+	background-color: #ddd;
+}
+.asu_set_fixed_width {
+	width: 1000px;
+	margin: 0 auto;
+	background-color: #fff;
+}
+#asu_container {
+	background-color: #fff;
+}
+/**
+* END FIXED WIDTH
+*/
