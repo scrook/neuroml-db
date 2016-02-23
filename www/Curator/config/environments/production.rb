@@ -29,6 +29,4 @@ RedmineApp::Application.configure do
   config.action_mailer.logger = nil
 
   config.active_support.deprecation = :log
-
-config.force_ssl = true
 end

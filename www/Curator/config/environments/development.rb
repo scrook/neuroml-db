@@ -16,4 +16,6 @@ RedmineApp::Application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   config.active_support.deprecation = :log
+
+  config.log_level = :warn
 end

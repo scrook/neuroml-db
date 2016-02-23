@@ -49,7 +49,7 @@ module RedmineApp
     config.assets.version = '1.0'
 
     config.action_mailer.perform_deliveries = false
-    
+
     # Do not include all helpers
     config.action_controller.include_all_helpers = false
 
