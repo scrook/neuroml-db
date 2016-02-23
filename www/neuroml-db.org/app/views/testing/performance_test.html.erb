@@ -1,0 +1,179 @@
+<script>
+
+    var runEachTestHowManyTimes = 20;
+    var randomizeTestOrder = true;
+
+    var testUrls =
+    [
+
+        { name: "Keyword Search: nonexistent", url: "https://neuroml-db.org/search_process?q=nonexistent&all=&exact=&any=&none=" },
+        { name: "Keyword Search: NMLCH000012", url: "https://neuroml-db.org/search_process?q=NMLCH000012&all=&exact=&any=&none=" },
+        { name: "Keyword Search: NMLSY000083", url: "https://neuroml-db.org/search_process?q=NMLSY000083&all=&exact=&any=&none=" },
+        { name: "Keyword Search: NMLCL000002", url: "https://neuroml-db.org/search_process?q=NMLCL000002&all=&exact=&any=&none=" },
+        { name: "Keyword Search: NMLNT000001", url: "https://neuroml-db.org/search_process?q=NMLNT000001&all=&exact=&any=&none=" },
+        { name: "Keyword Search: gleeson", url: "https://neuroml-db.org/search_process?q=gleeson&all=&exact=&any=&none=" },
+        { name: "Keyword Search: bursting cortical", url: "https://neuroml-db.org/search_process?q=bursting cortical&all=&exact=&any=&none=" },
+        { name: "Keyword Search: Izhikevich", url: "https://neuroml-db.org/search_process?q=Izhikevich&all=&exact=&any=&none=" },
+        { name: "Keyword Search: granule network", url: "https://neuroml-db.org/search_process?q=granule network&all=&exact=&any=&none=" },
+        { name: "Keyword Search: NaT CML", url: "https://neuroml-db.org/search_process?q=NaT CML&all=&exact=&any=&none=" },
+        { name: "Keyword Search: double exponential", url: "https://neuroml-db.org/search_process?q=double exponential&all=&exact=&any=&none=" },
+        { name: "Keyword Search: sleep spindles", url: "https://neuroml-db.org/search_process?q=sleep spindles&all=&exact=&any=&none=" },
+        { name: "Keyword Search: NaR CML", url: "https://neuroml-db.org/search_process?q=NaT CML&all=&exact=&any=&none=" },
+        { name: "Keyword Search: cerebellar granule network", url: "https://neuroml-db.org/search_process?q=cerebellar granule network&all=&exact=&any=&none=" },
+        { name: "Keyword Search: granule cell", url: "https://neuroml-db.org/search_process?q=granule cell&all=&exact=&any=&none=" },
+        { name: "Keyword Search: Pyramidal cell 5b", url: "https://neuroml-db.org/search_process?q=Pyramidal cell 5b&all=&exact=&any=&none=" },
+        { name: "Keyword Search: pyramidal", url: "https://neuroml-db.org/search_process?q=pyramidal&all=&exact=&any=&none=" },
+        { name: "Keyword Search: superficial spiking", url: "https://neuroml-db.org/search_process?q=superficial spiking&all=&exact=&any=&none=" },
+        { name: "Keyword Search: granule mossy fiber", url: "https://neuroml-db.org/search_process?q=granule mossy fiber&all=&exact=&any=&none=" },
+
+
+        { name: "Ontology Search: nonexistent", url: "https://neuroml-db.org/search_python?q=nonexistent" },
+        { name: "Ontology Search: cerbellum", url: "https://neuroml-db.org/search_python?q=cerbellum" },
+        { name: "Ontology Search: goji", url: "https://neuroml-db.org/search_python?q=goji" },
+        { name: "Ontology Search: gaaba", url: "https://neuroml-db.org/search_python?q=gaaba" },
+        { name: "Ontology Search: gaba", url: "https://neuroml-db.org/search_python?q=gaba" },
+        { name: "Ontology Search: glutamate", url: "https://neuroml-db.org/search_python?q=glutamate" },
+        { name: 'Ontology Search: "CA1 stratum pyramidale"', url: 'https://neuroml-db.org/search_python?q="CA1 stratum pyramidale"' },
+        { name: 'Ontology Search: "Granular layer of cerebellar cortex"', url: 'https://neuroml-db.org/search_python?q="Granular layer of cerebellar cortex"' },
+        { name: "Ontology Search: cerebellum", url: "https://neuroml-db.org/search_python?q=cerebellum" },
+        { name: "Ontology Search: hippocampus", url: "https://neuroml-db.org/search_python?q=hippocampus" },
+        { name: 'Ontology Search: "Granular layer of cerebellar cortex" granule', url: 'https://neuroml-db.org/search_python?q="Granular layer of cerebellar cortex" granule' },
+        { name: "Ontology Search: cerebellum golgi", url: "https://neuroml-db.org/search_python?q=cerebellum golgi" },
+        { name: "Ontology Search: cerebellum purkinje", url: "https://neuroml-db.org/search_python?q=cerebellum purkinje" },
+        { name: "Ontology Search: gaba purkinje", url: "https://neuroml-db.org/search_python?q=gaba purkinje" },
+        { name: "Ontology Search: gaba golgi", url: "https://neuroml-db.org/search_python?q=gaba golgi" },
+        { name: 'Ontology Search: "granular layer of cerebellar cortex" gaba', url: 'https://neuroml-db.org/search_python?q="granular layer of cerebellar cortex" gaba' },
+        { name: "Ontology Search: gaba cerebellum", url: "https://neuroml-db.org/search_python?q=gaba cerebellum" },
+        { name: "Ontology Search: glutamate hippocampus", url: "https://neuroml-db.org/search_python?q=glutamate hippocampus" },
+        { name: "Ontology Search: cerebellum hippocampus", url: "https://neuroml-db.org/search_python?q=cerebellum hippocampus" },
+        { name: "Ontology Search: gaba glutamate cerebellum hippocampus", url: "https://neuroml-db.org/search_python?q=gaba glutamate cerebellum hippocampus" },
+
+    ];
+
+    var currentTest = 0;
+    var urlQueue = [];
+    function RunNextTest()
+    {
+        if(currentTest >= runEachTestHowManyTimes * testUrls.length)
+            return;
+
+        var url = urlQueue[currentTest];
+        var startTime = Date.now();
+
+        jQuery
+                .get(url, function () {})
+                .always(function()
+                {
+                    jQuery("#row" + currentTest).html(Date.now() - startTime);
+
+                    currentTest++;
+                    RunNextTest();
+                });
+    }
+
+
+    function RunTests()
+    {
+        //Initialize
+        currentTest = 0;
+        urlQueue = [];
+        jQuery('#testResults > tbody').html("");
+        var rowId = 0;
+
+        var rowTemplate = jQuery("#rowTemplate")
+                [0].outerHTML
+                .replace('id="rowTemplate"','');
+
+        //Multiple times each test, randomize test order
+        for(var batch = 0; batch < runEachTestHowManyTimes; batch++)
+        {
+            if(randomizeTestOrder)
+                shuffle(testUrls);
+
+            for(var test = 0; test < testUrls.length; test++)
+            {
+                var url = testUrls[test].url;
+                var name = testUrls[test].name;
+
+                var rowHtml = rowTemplate
+                        .split("[name]").join(name)
+                        .split("[url]").join(url)
+                        .split("[rowId]").join(rowId + "");
+
+                //Build table row
+                jQuery('#testResults > tbody').append(rowHtml);
+
+                //Add to queue
+                urlQueue.push(url);
+
+                rowId++;
+            }
+        }
+
+        //Start running tests
+        RunNextTest();
+    }
+
+    function shuffle(array)
+    {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+    }
+
+    function StopTests()
+    {
+       currentTest = 999999;
+    }
+
+</script>
+
+<table>
+  <thead>
+    <td>Test Url</td>
+  </thead>
+  <tbody>
+    <tr><td><a href="http://neuroml.org">http://neuroml.org</a></td></tr>
+    <tr><td><a href="http://www.neuroml.org">http://www.neuroml.org</a></td></tr>
+    <tr><td><a href="https://neuroml.org">http://neuroml.org</a></td></tr>
+    <tr><td><a href="https://www.neuroml.org">http://www.neuroml.org</a></td></tr>
+
+    <tr><td><a href="http://neuroml-db.org">http://neuroml.org</a></td></tr>
+    <tr><td><a href="http://www.neuroml-db.org">http://www.neuroml.org</a></td></tr>
+    <tr><td><a href="https://neuroml-db.org">http://neuroml.org</a></td></tr>
+    <tr><td><a href="https://www.neuroml-db.org">http://www.neuroml.org</a></td></tr>
+  </tbody>
+</table>
+
+<input type="button" onclick="RunTests();" value="Run Performance Test" />
+<input type="button" onclick="StopTests();" value="STOP Performance Test" />
+
+<table id="testResults">
+  <thead>
+    <td>Test Case</td><td>Time to Load (ms)</td>
+  </thead>
+  <tbody>
+
+  </tbody>
+</table>
+
+<table style="display: none;">
+    <tr id="rowTemplate">
+      <td style="width: 80%;"><a target='_blank' href='[url]'>[name]</a></td>
+      <td id='row[rowId]'></td>
+    </tr>
+</table>
+
