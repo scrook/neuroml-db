@@ -28,7 +28,7 @@ There are two servers:
 
 **Spike** is the "testing/staging" server. All code changes should be made here, and moved to Dendrite only after they pass QA (Sharon).
 
-The prefered development cycle should be: Local machine -> Spike -> Dendrite. See [Source Code](#Source-Code)
+The prefered development cycle should be: Local machine -> Spike -> Dendrite. See [Source Code](#source-Code)
 
 ##Server Access
 
