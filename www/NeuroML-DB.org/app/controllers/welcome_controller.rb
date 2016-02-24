@@ -442,7 +442,13 @@ class WelcomeController < ApplicationController
 
     search_text = params[:q].gsub('"','\"')
 
-    @resultset =`/usr/bin/python /var/www/NeuroML-DB.org_Ontology/main.py #{search_text}`
+    logger.warn("search_python?q=#{params[:q]}")
+
+    @resultset =`/usr/bin/python /var/www/NeuroML-DB.org_Ontology/main.py #{search_text} 2>&1`
+
+    if @resultset.index('{') == nil
+	logger.warn("python search returned: '#{@resultset}'")
+    end
 
     if @resultset.to_s.length == 0
       render :partial => 'no_results' and return
