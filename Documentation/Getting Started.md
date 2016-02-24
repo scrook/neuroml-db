@@ -6,6 +6,7 @@ These are the main websites:
  - [NeuroML.org](https://NeuroML.org)
  - [NeuroML-DB.org](https://neuroml-db.org)
  - [Curator](https://neuroml-db.org/Curate)
+ - The domain DNS/hosting records are controlled by Sharon via the registrar website.
 
 #Architecture
 
@@ -66,7 +67,8 @@ Dendrite and Spike Databases:
 #Ports, SSL, Apache Configuration Files
  - NeuroML.org runs on port 5001: http://dendrite.asu.edu:5001/
  - NeuroML-DB.org runs on port 5000: http://dendrite.asu.edu:5000/
- - Curator runs on port 5002: http://dendrite.asu.edu:5002/
+ - Curator runs on port 5002: [http://dendrite.asu.edu:5002/](http://dendrite.asu.edu:5002/add_cell)
+ - These three sites also run on spike, with matching ports.
 
 The domains are mapped to the ports through the apache config files located on each server under `/etc/apache2/`:
  - `httpd-nml2.conf`: Sets up redirects from http to http**s**
@@ -74,7 +76,7 @@ The domains are mapped to the ports through the apache config files located on e
  - `sites-available/neuroml.org.conf`: Maps port 5001 to `/var/www/NeuroML.org` folder. Also sets up Java to handle the Validator code.
  - `sites-available/neuroml-db.org.conf`: Maps port 5000 to `/var/www/NeuroML-DB.org` folder.
  - `sites-available/default-ssl.conf`: Maps port 5002 to `/var/www/Curator` folder. **Note:** on *spike.asu.edu* this file also maps the ports to website code found in the developer branches (e.g. `/var/www/DevBranches/[DevName]/neuroml-db/www/NeuroML.org/`)
- - `sites-available/ssl-certs/`: This folder contains the files needed for HTTPS/SSL. When certificates expire, these files should be updated. They are referenced in the `/etc/apache2/httpd-nml2.conf` file above.
+ - `sites-available/ssl-certs/`: This folder contains the files needed for HTTPS/SSL. When certificates expire, these files should be updated. They are referenced in the `/etc/apache2/httpd-nml2.conf` file above. Ask Renate to renew the certificates and send them to you.
 
 #Source Code
 This github repo contains the latest source code of the three websites. Dendrite and Spike are both set up to pull the latest version in this repo to their `/var/www/` folders. The difference is that dendrite pulls from the `production` branch, while spike pulls from the `master` branch. At the moment, the pulls have to be done manually, by executing the `./pullFromGithub` script located in `/var/www/`. I'm working to automate this with Github webhooks.
