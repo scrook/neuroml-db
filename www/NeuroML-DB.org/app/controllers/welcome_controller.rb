@@ -159,7 +159,9 @@ class WelcomeController < ApplicationController
 
       if substring2 == "500"
         ref                          =Refer.find_by_Reference_ID(@metadata_id)
-        @ref_list[ref.Reference_URI] = ref.Reference_Resource
+        resource = Resource.find_by_Resource_ID(ref.Reference_Resource_ID)
+
+        @ref_list[ref.Reference_URI] = resource.Name
       end
 
       if substring2 == "400"
@@ -177,7 +179,7 @@ class WelcomeController < ApplicationController
       end
 
       if substring2 == "100"
-        authlist=AuthorListAssociation.where(:AuthorList_ID => @metadata_id.to_s)
+        authlist=AuthorListAssociation.where(:AuthorList_ID => @metadata_id.to_s).order(:author_sequence)
         ala     =AuthorListAssociation.new
         authlist.each do |ala|
           translator=ala.is_translator.to_s
@@ -375,10 +377,12 @@ class WelcomeController < ApplicationController
       end
 
       if substring2 == "500"
-        ref                          =Refer.find_by_Reference_ID(@metadata_id)
-        @ref_list[ref.Reference_URI] = ref.Reference_Resource
+        ref = Refer.find_by_Reference_ID(@metadata_id)
+        resource = Resource.find_by_Resource_ID(ref.Reference_Resource_ID)
 
-        @resources.push(Resource.find_by_Resource_ID(ref.Reference_Resource_ID))
+        @ref_list[ref.Reference_URI] = resource.Name
+
+        @resources.push(resource)
       end
 
       if substring2 == "400"
@@ -396,7 +400,7 @@ class WelcomeController < ApplicationController
       end
 
       if substring2 == "100"
-        authlist=AuthorListAssociation.where(:AuthorList_ID => @metadata_id.to_s)
+        authlist=AuthorListAssociation.where(:AuthorList_ID => @metadata_id.to_s).order(:author_sequence)
         ala     =AuthorListAssociation.new
         authlist.each do |ala|
           translator=ala.is_translator.to_s

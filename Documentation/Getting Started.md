@@ -79,7 +79,7 @@ The domains are mapped to the ports through the apache config files located on e
  - `sites-available/ssl-certs/`: This folder contains the files needed for HTTPS/SSL. When certificates expire, these files should be updated. They are referenced in the `/etc/apache2/httpd-nml2.conf` file above. Ask Renate to renew the certificates and send them to you.
 
 #Source Code
-This github repo contains the latest source code of the three websites. Dendrite and Spike are both set up to pull the latest version in this repo to their `/var/www/` folders. The difference is that dendrite pulls from the `production` branch, while spike pulls from the `master` branch. At the moment, the pulls have to be done manually, by executing the `./pullFromGithub` script located in `/var/www/`. I'm working to automate this with Github webhooks.
+This github repo contains the latest source code of the three websites. Dendrite and Spike are both set up to pull the latest version in this repo to their `/var/www/` folders. The difference is that dendrite pulls from the `production` branch, while spike pulls from the `master` branch. The pulls have to be done manually, by executing the `./pullFromGithub` script located in `/var/www/`. 
 
 ##Branches
  - `master`: This is the main development branch. After local changes have been made, features commited to this branch will appear on spike.
