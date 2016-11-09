@@ -112,8 +112,13 @@ class RubyInterfacer():
         with open("Queries/GetNeuroMLmodels.sql") as queryFile:
             query = queryFile.read()
 
+            uris = self.GetNeuroLexUris(pythonResult)
+
+            if len(uris) == 0:
+                uris = "''"
+
             # Insert keyword ids into query
-            query = query.replace("[NeuroLexUris]", self.GetNeuroLexUris(pythonResult))
+            query = query.replace("[NeuroLexUris]", uris)
 
         cursor.execute(query)
         result = cursor.fetchall()
