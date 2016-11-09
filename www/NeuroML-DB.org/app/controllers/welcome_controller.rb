@@ -179,24 +179,7 @@ class WelcomeController < ApplicationController
       end
 
       if substring2 == "100"
-        authlist=AuthorListAssociation.where(:AuthorList_ID => @metadata_id.to_s).order(:author_sequence)
-        ala     =AuthorListAssociation.new
-        authlist.each do |ala|
-          translator=ala.is_translator.to_s
-
-          auth_name =String.new
-          personname=Person.find_by_Person_ID(ala.Person_ID)
-          auth_name = personname.Person_First_Name.to_s + " " +personname.Person_Middle_Name.to_s + " " + personname.Person_Last_Name.to_s
-
-          if translator == "0" || translator == "2"
-            @auth_list.push(auth_name)
-          end
-
-          if translator == "1" || translator == "2"
-            @trans_list.push(auth_name)
-          end
-
-        end
+        fill_authors_translators
       end
     end
 
@@ -400,24 +383,7 @@ class WelcomeController < ApplicationController
       end
 
       if substring2 == "100"
-        authlist=AuthorListAssociation.where(:AuthorList_ID => @metadata_id.to_s).order(:author_sequence)
-        ala     =AuthorListAssociation.new
-        authlist.each do |ala|
-          translator=ala.is_translator.to_s
-
-          auth_name =String.new
-          personname=Person.find_by_Person_ID(ala.Person_ID)
-          auth_name = personname.Person_First_Name.to_s + " " +personname.Person_Middle_Name.to_s + " " + personname.Person_Last_Name.to_s
-
-          if translator == "0" || translator == "2"
-            @auth_list.push(auth_name)
-          end
-
-          if translator == "1" || translator == "2"
-            @trans_list.push(auth_name)
-          end
-
-        end
+        fill_authors_translators
       end
     end
 
@@ -434,6 +400,39 @@ class WelcomeController < ApplicationController
     render :partial => "model_info"
 
 
+  end
+
+  def fill_authors_translators
+    authors = AuthorListAssociation
+                  .where("AuthorList_ID = " + @metadata_id.to_s + " and is_translator IN ('0','2')")
+                  .joins("INNER JOIN people ON people.Person_ID = author_list_associations.Person_ID")
+                  .order("author_sequence, people.Person_Last_Name")
+
+    translators = AuthorListAssociation
+                      .where("AuthorList_ID = " + @metadata_id.to_s + " and is_translator IN ('1','2')")
+                      .joins("INNER JOIN people ON people.Person_ID = author_list_associations.Person_ID")
+                      .order("people.Person_Last_Name")
+
+    ala =AuthorListAssociation.new
+    authors.each do |ala|
+
+      auth_name =String.new
+      personname=Person.find_by_Person_ID(ala.Person_ID)
+      auth_name = personname.Person_First_Name.to_s + " " +personname.Person_Middle_Name.to_s + " " + personname.Person_Last_Name.to_s
+
+      @auth_list.push(auth_name)
+
+    end
+
+    translators.each do |ala|
+
+      auth_name =String.new
+      personname=Person.find_by_Person_ID(ala.Person_ID)
+      auth_name = personname.Person_First_Name.to_s + " " +personname.Person_Middle_Name.to_s + " " + personname.Person_Last_Name.to_s
+
+      @trans_list.push(auth_name)
+
+    end
   end
 
 
