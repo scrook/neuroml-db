@@ -1,4 +1,5 @@
 import difflib
+import nltk
 from nltk.corpus import stopwords
 from Classes.Keyword import Keyword
 from Classes.KeywordCollection import KeywordCollection
@@ -10,6 +11,9 @@ import indexing
 
 class QueryParser(SearchComponent):
     def __init__(self):
+
+        # Set the corpora location
+        nltk.data.path.append("/var/www/nltk_data")
 
         SearchComponent.__init__(self)
 
