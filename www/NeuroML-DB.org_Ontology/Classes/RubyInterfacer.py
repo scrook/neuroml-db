@@ -10,26 +10,27 @@ class RubyInterfacer():
 
         result = defaultdict(list)
 
-        # Analyzing old code, these were all possible dictionary keys:
-        #   "neurons in the same region" XXX
-        #   "neurons from the same region" ***
-        #   "neurons with the same neurotransmitter"
-        #   "similar neurons"
-        #
-        # XXX - duplicate
-        # *** - actually seen used on website
-
         # Get NeuroML model IDs from mysql db
         rows = self.GetNeuroMLids(pythonResult)
 
         # Build a NeuroLexUri -> ModelDBids dictionary
+        # and ModelID->Name Table
         models = {}
+        modelNames = {}
+
         for row in rows:
+            #For each nlx, store the list of model IDs
             if row[1] not in models:
                 models[row[1]] = [row[0]]
             else:
                 # Each uri can have more than one model
                 models[row[1]].append(row[0])
+
+            # For each model ID, store model Name
+            if row[0] not in modelNames:
+                modelNames[row[0]] = row[2]
+
+        result["ModelNames"] = modelNames
 
         result["Gap Relationships"] = self.PopulateHeading(
             pythonResult.Relationships.GapRelationships,
@@ -48,48 +49,6 @@ class RubyInterfacer():
             "id",
             models
         )
-
-        # # Fill out these
-        # # result["neurons from the same region"]
-        # # result["neurons with the same neurotransmitter"
-        #
-        # sameRegion = []
-        # sameNeuroTrans = []
-        # for analogue in pythonResult.DirectRelationshipAnalogues:
-        #
-        #     if analogue["id"] in models:
-        #
-        #         if analogue["relationship"].endswith("Located_in"):
-        #             sameRegion.append(models[analogue["id"]])
-        #
-        #         elif analogue["relationship"].endswith("Neurotransmitter"):
-        #             sameNeuroTrans.append(models[analogue["id"]])
-        #
-        # for keyword in pythonResult.KeywordRelations:
-        #
-        #     if keyword["id"] in models:
-        #
-        #         if keyword["relationship"].endswith("Located_in"):
-        #             sameRegion.append(models[keyword["id"]])
-        #
-        #         elif keyword["relationship"].endswith("Neurotransmitter"):
-        #             sameNeuroTrans.append(models[keyword["id"]])
-        #
-        # if len(sameRegion) > 0:
-        #     result["neurons from the same region"] = sameRegion
-        #
-        # if len(sameNeuroTrans) > 0:
-        #     result["neurons with the same neurotransmitter"] = sameNeuroTrans
-        #
-        # # Fill out this one
-        # # result["similar neurons"]
-        # similar = []
-        # for gap in pythonResult.GapRelationships:
-        #     if gap["gapObjectId"] in models:
-        #         similar.append(models[gap["gapObjectId"]])
-        #
-        # if len(similar) > 0:
-        #     result["similar neurons"] = similar
 
         return result
 

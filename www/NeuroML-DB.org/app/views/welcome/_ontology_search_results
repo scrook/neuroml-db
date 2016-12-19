@@ -3,7 +3,7 @@
 <% shownModels = [] %>
 <% for key,value in result_hash %>
    <%
-   if value.to_a.length == 0
+   if key == "ModelNames" or value.to_a.length == 0
      next
    end
    %>

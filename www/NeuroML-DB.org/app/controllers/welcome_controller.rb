@@ -1,237 +1,5 @@
-# Redmine - project management software
-# Copyright (C) 2006-2013  Jean-Philippe Lang
-#
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-
 class WelcomeController < ApplicationController
   caches_action :robots
-
-  def index
-    @news     = News.latest User.current
-    @projects = Project.latest User.current
-  end
-
-  def home_db
-  end
-
-  def documentation
-  end
-
-  def model_submit
-    @cells=Modelupload.all
-  end
-
-  def show_model_nif
-
-    @model_id    =params[:model_id].to_s
-    substring    =@model_id[0..4]
-    @channel_list=Hash.new
-    @network_list=Hash.new
-    @cell_list   = Hash.new
-    @syn_list    = Hash.new
-    @auth_list   = Array.new
-    @trans_list  = Array.new
-    @nlx_list    = Hash.new
-    @ref_list    = Hash.new
-    @pub_list    = Hash.new
-    @trans_list  = Array.new
-    if substring == "NMLCL"
-      cell =Cell.find_by_Cell_ID(@model_id.to_s)
-      @name=cell.Cell_Name
-      @type="Cell"
-      @file=cell.MorphML_File
-
-      cell_channel_assoc=CellChannelAssociation.where(:Cell_ID => @model_id.to_s)
-      cca               =CellChannelAssociation.new
-      cell_channel_assoc.each do |cca|
-        @channel_list[cca.Channel_ID] = Channel.find_by_Channel_ID(cca.Channel_ID).Channel_Name
-      end
-
-      cell_synapse_assoc=CellSynapseAssociation.where(:Cell_ID => @model_id.to_s)
-      csa               =CellSynapseAssociation.new
-      cell_synapse_assoc.each do |csa|
-        @syn_list[csa.Synapse_ID] = Synapse.find_by_Synapse_ID(csa.Synapse_ID).Synapse_Name
-      end
-
-      cell_network_assoc=NetworkCellAssociation.where(:Cell_ID => @model_id.to_s)
-      cna               =NetworkCellAssociation.new
-      cell_network_assoc.each do |cna|
-        @network_list[cna.Network_ID] = Network.find_by_Network_ID(cna.Network_ID).Network_Name
-        if @network_list.any?
-          @model_id = @network_list.keys[0]
-        else
-          @model_id=params[:model_id].to_s
-        end
-      end
-    end
-
-    if substring == "NMLCH"
-      channel=Channel.find_by_Channel_ID(@model_id.to_s)
-      @name  =channel.Channel_Name
-      @type  ="Channel"
-      @file  =channel.ChannelML_File
-
-      channel_cell_assoc=CellChannelAssociation.where(:Channel_ID => @model_id.to_s)
-      cca               =CellChannelAssociation.new
-      channel_cell_assoc.each do |cca|
-        @cell_list[cca.Cell_ID] = Cell.find_by_Cell_ID(cca.Cell_ID).Cell_Name
-      end
-      puts 'hierarcial get'
-      puts @model_id
-      cell_id = @cell_list.keys[0]
-      puts cell_id
-      network_cell_assoc=NetworkCellAssociation.where(:Cell_ID => cell_id.to_s)
-      cna               =NetworkCellAssociation.new
-      network_cell_assoc.each do |cna|
-        @network_list[cna.Network_ID] = Network.find_by_Network_ID(cna.Network_ID).Network_Name
-      end
-      if  @network_list.any?
-        @model_id = @network_list.keys[0]
-      else
-        @model_id = @cell_list.keys[0]
-      end
-
-      puts @model_id
-    end
-
-
-    if substring == "NMLNT"
-      network=Network.find_by_Network_ID(@model_id.to_s)
-      @name  =network.Network_Name
-      @type  ="Network"
-      @file  =network.NetworkML_File
-
-      network_cell_assoc=NetworkCellAssociation.where(:Network_ID => @model_id.to_s)
-      nca               =NetworkCellAssociation.new
-      network_cell_assoc.each do |nca|
-        @cell_list[nca.Cell_ID] = Cell.find_by_Cell_ID(nca.Cell_ID).Cell_Name
-      end
-
-      network_syn_assoc=NetworkSynapseAssociation.where(:Network_ID => @model_id.to_s)
-      nsa              =NetworkSynapseAssociation.new
-      network_syn_assoc.each do |nsa|
-        @syn_list[nsa.Synapse_ID] = Synapse.find_by_Synapse_ID(nsa.Synapse_ID).Synapse_Name
-      end
-    end
-
-    if substring == "NMLSY"
-      synapse=Synapse.find_by_Synapse_ID(@model_id.to_s)
-      @name  =synapse.Synapse_Name
-      @type  ="Synapse"
-      @file  =synapse.Synapse_File
-
-      cell_synapse_assoc=CellSynapseAssociation.where(:Synapse_ID => @model_id.to_s)
-      csa               =CellSynapseAssociation.new
-      cell_synapse_assoc.each do |csa|
-        @cell_list[csa.Cell_ID] = Cell.find_by_Cell_ID(csa.Cell_ID).Cell_Name
-      end
-
-
-      network_syn_assoc=NetworkSynapseAssociation.where(:Synapse_ID => @model_id.to_s)
-      sna              =NetworkSynapseAssociation.new
-      network_syn_assoc.each do |sna|
-        @network_list[sna.Network_ID] = Network.find_by_Network_ID(sna.Network_ID).Network_Name
-      end
-    end
-
-    model_metadata_assoc=ModelMetadataAssociation.where(:Model_ID => @model_id.to_s)
-    res                 =ModelMetadataAssociation.new
-    model_metadata_assoc.each do |res|
-      @metadata_id=res.Metadata_ID.to_s
-      substring2  =@metadata_id[0..2]
-
-      if substring2 == "600"
-        publication                      =Publication.find_by_Publication_ID(@metadata_id)
-        @pub_list[publication.Pubmed_Ref]=publication.Full_Title
-      end
-
-      if substring2 == "500"
-        ref                          =Refer.find_by_Reference_ID(@metadata_id)
-        resource = Resource.find_by_Resource_ID(ref.Reference_Resource_ID)
-
-        @ref_list[ref.Reference_URI] = resource.Name
-      end
-
-      if substring2 == "400"
-        keyword_model  =OtherKeyword.find_by_Other_Keyword_ID(@metadata_id)
-        @keywords_model=keyword_model.Other_Keyword_term
-      end
-
-      if substring2 == "300"
-        nlx                        =Neurolex.find_by_NeuroLex_ID(@metadata_id)
-        @nlx_list[nlx.NeuroLex_URI]= nlx.NeuroLex_Term
-      end
-
-      if substring2 == "200"
-
-      end
-
-      if substring2 == "100"
-        fill_authors_translators
-      end
-    end
-
-
-#keyword_model=KeywordSymbolTable.find_by_Model_ID(@model_id.to_s)
-#@keywords_model=keyword_model.Keyword
-    @model_id=params[:model_id].to_s
-    if !@file.blank?
-      filename =@file.split('/')
-      @filename=filename.last
-#@destinationFile=@filename[0..-4]+"html"
-#@res=`/usr/bin/python /home/neuromine/NeuroML2_To_HTML/convert.py #{@file} > /home/neuromine/newred_dbsrch/public/NeuroML2_To_HTML/#{@destinationFile}`
-    end
-    render :partial => "show_model_nif"
-  end
-
-  def submission
-    @fname             =params[:fname].to_s
-    @mname             =params[:mname].to_s
-    @lname             = params[:lname].to_s
-    @email             = params[:email].to_s
-    @institution       = params[:instname].to_s
-    @modelname         = params[:model].to_s
-    @model_contributor = params[:model_contributor].to_s
-    @pubmed            =params[:pubmed].to_s
-    @modref            = params[:refrences].to_s
-    @moddesc           = params[:model_desc].to_s
-    @keywords          = params[:keywords_model].to_s
-    @comments          = params[:notes].to_s
-    @post              = params[:file]
-    @model_dir         = Dir.home + "/models/" + (@modelname.split(' ')).join('_')
-    if @post.blank? or @fname.blank? or @modelname.blank? or @lname.blank? or @email.blank?
-      redirect_to('/submission_error')
-
-    else
-      Dir.mkdir(@model_dir.to_s, 0700) #=> 0
-
-      target_file = @model_dir + "/" + @post.original_filename
-      upload_file = File.open(target_file.to_s, "wb")
-      upload_file.write(@post.read)
-      upload_file.close
-      @test  =Array.new
-      @test  =params[:pubmed]
-#@test.each do |num|
-#xxi3puts num
-#end
-
-      @fpath = target_file.to_s
-      Modelupload.create(:FirstName => @fname, :MiddleName => @mname, :LastName => @lname, :ModelName => @modelname, :Email => @email, :Institution => @institution, :Publication => @pubmed, :Modelref => @modref, :Description => @moddesc, :Contributor => @model_contributor, :Modelspath => @fpath, :Keywords => @keywords, :Comments => @comments)
-    end
-  end
-
 
   def model_info
     @model_id    =params[:model_id].to_s
@@ -241,6 +9,7 @@ class WelcomeController < ApplicationController
     @network_list=Hash.new
     @cell_list   = Hash.new
     @syn_list    = Hash.new
+    @conc_list   = Hash.new
     @auth_list   = Array.new
     @trans_list  = Array.new
     @nlx_list    = Hash.new
@@ -265,16 +34,16 @@ class WelcomeController < ApplicationController
         @syn_list[csa.Synapse_ID] = Synapse.find_by_Synapse_ID(csa.Synapse_ID).Synapse_Name
       end
 
+      cell_concentration_assoc=CellConcentrationAssociation.where(:Cell_ID => @model_id.to_s)
+      cca               =CellConcentrationAssociation.new
+      cell_concentration_assoc.each do |cca|
+        @conc_list[cca.Concentration_ID] = Concentration.find_by_Concentration_ID(cca.Concentration_ID).Concentration_Name
+      end
+
       cell_network_assoc=NetworkCellAssociation.where(:Cell_ID => @model_id.to_s)
       cna               =NetworkCellAssociation.new
       cell_network_assoc.each do |cna|
         @network_list[cna.Network_ID] = Network.find_by_Network_ID(cna.Network_ID).Network_Name
-#commenting as of now to avoid inheritance
-# if @network_list.any?
-#@model_id = @network_list.keys[0]
-#else
-#@model_id=params[:model_id].to_s
-#end
       end
     end
 
@@ -298,14 +67,6 @@ class WelcomeController < ApplicationController
       network_cell_assoc.each do |cna|
         @network_list[cna.Network_ID] = Network.find_by_Network_ID(cna.Network_ID).Network_Name
       end
-#commenting as of now to avoid inheritance
-#if  @network_list.any? 
-#@model_id = @network_list.keys[0]
-#else
-#@model_id = @cell_list.keys[0]
-#end
-
-#puts @model_id
     end
 
 
@@ -325,6 +86,12 @@ class WelcomeController < ApplicationController
       nsa              =NetworkSynapseAssociation.new
       network_syn_assoc.each do |nsa|
         @syn_list[nsa.Synapse_ID] = Synapse.find_by_Synapse_ID(nsa.Synapse_ID).Synapse_Name
+      end
+
+      network_conc_assoc=NetworkConcentrationAssociation.where(:Network_ID => @model_id.to_s)
+      nca              =NetworkConcentrationAssociation.new
+      network_conc_assoc.each do |nca|
+        @conc_list[nca.Concentration_ID] = Concentration.find_by_Concentration_ID(nca.Concentration_ID).Concentration_Name
       end
     end
 
@@ -348,8 +115,30 @@ class WelcomeController < ApplicationController
       end
     end
 
+    if substring == "NMLCN"
+      concentration=Concentration.find_by_Concentration_ID(@model_id.to_s)
+      @name  =concentration.Concentration_Name
+      @type  ="Concentration"
+      @file  =concentration.Concentration_File
+
+      cell_concentration_assoc=CellConcentrationAssociation.where(:Concentration_ID => @model_id.to_s)
+      cca               =CellConcentrationAssociation.new
+      cell_concentration_assoc.each do |cca|
+        @cell_list[cca.Cell_ID] = Cell.find_by_Cell_ID(cca.Cell_ID).Cell_Name
+      end
+
+
+      network_concentration_assoc=NetworkConcentrationAssociation.where(:Concentration_ID => @model_id.to_s)
+      cna              =NetworkConcentrationAssociation.new
+      network_concentration_assoc.each do |cna|
+        @network_list[cna.Network_ID] = Network.find_by_Network_ID(cna.Network_ID).Network_Name
+      end
+    end
+
     model_metadata_assoc=ModelMetadataAssociation.where(:Model_ID => @model_id.to_s)
     res                 =ModelMetadataAssociation.new
+
+
     model_metadata_assoc.each do |res|
       @metadata_id=res.Metadata_ID.to_s
       substring2  =@metadata_id[0..2]
@@ -378,25 +167,18 @@ class WelcomeController < ApplicationController
         @nlx_list[nlx.NeuroLex_URI]= nlx.NeuroLex_Term
       end
 
-      if substring2 == "200"
-
-      end
-
       if substring2 == "100"
         fill_authors_translators
       end
     end
 
 
-#keyword_model=KeywordSymbolTable.find_by_Model_ID(@model_id.to_s)
-#@keywords_model=keyword_model.Keyword
     @model_id=params[:model_id].to_s
     if !@file.blank?
       filename =@file.split('/')
       @filename=filename.last
-#@destinationFile=@filename[0..-4]+"html"
-#@res=`/usr/bin/python /home/neuromine/NeuroML2_To_HTML/convert.py #{@file} > /home/neuromine/newred_dbsrch/public/NeuroML2_To_HTML/#{@destinationFile}`
     end
+
     render :partial => "model_info"
 
 
@@ -414,6 +196,7 @@ class WelcomeController < ApplicationController
                       .order("people.Person_Last_Name")
 
     ala =AuthorListAssociation.new
+
     authors.each do |ala|
 
       auth_name =String.new
@@ -435,11 +218,6 @@ class WelcomeController < ApplicationController
     end
   end
 
-
-  def searchi_model
-    render :layout => 'searchresults'
-  end
-
 #============================== Python Search
   def search_python
 
@@ -450,7 +228,7 @@ class WelcomeController < ApplicationController
     @resultset =`/usr/bin/python /var/www/NeuroML-DB.org_Ontology/main.py #{search_text} 2>&1`
 
     if @resultset.index('{') == nil
-	logger.warn("python search returned: '#{@resultset}'")
+	    logger.warn("python search returned: '#{@resultset}'")
     end
 
     if @resultset.to_s.length == 0
@@ -461,12 +239,17 @@ class WelcomeController < ApplicationController
     resultstring=@resultset.to_s
     indexdiff   = 0
 
-    indexdiff=resultstring.index('}') - resultstring.index('{')
+    startPython = resultstring.index('-BEGIN-PYTHON-')
+    endPython = resultstring.index('-END-PYTHON-')
+    indexdiff = endPython - startPython
 
     if indexdiff != 1
 
-      cleanstring =resultstring[resultstring.index('{')..resultstring.index(']}')+1]
+      cleanstring =resultstring[startPython..(endPython-3)]
+
       cleanstring = cleanstring
+                        .gsub("defaultdict(<type 'list'>, ","")
+                        .gsub("-BEGIN-PYTHON-","")
                         .gsub(':', '=>')
                         .gsub("u'","'")
                         .gsub("_"," ")
@@ -480,81 +263,64 @@ class WelcomeController < ApplicationController
       @ont_types  =Array.new
       @ont_relations = []
 
+      #logger.warn(@result_hash)
+
+      modelNames = @result_hash["ModelNames"]
+
       for key, value in @result_hash
-        puts key.to_s
-        @ont_headers.push(key)
+        if key != "ModelNames"
+          puts key.to_s
+          @ont_headers.push(key)
 
-        for relationship in value
+          for relationship in value
 
-          temparray=relationship["ModelIds"].to_a
+            temparray=relationship["ModelIds"].to_a
 
-          for eachid in temparray
+            for modelID in temparray
 
-            if key == "Gap Relationships"
+              if key == "Gap Relationships"
 
-              relation = {
-                  :Type => :Gap,
-                  :End1 => {
-                      :Subject => relationship["end1"],
-                      :Property => relationship["relationship1"]
-                  },
-                  :End2 => {
-                      :Subject => relationship["end2"],
-                      :Property => relationship["relationship2"]
-                  }
-              }
+                relation = {
+                    :Type => :Gap,
+                    :End1 => {
+                        :Subject => relationship["end1"],
+                        :Property => relationship["relationship1"]
+                    },
+                    :End2 => {
+                        :Subject => relationship["end2"],
+                        :Property => relationship["relationship2"]
+                    }
+                }
 
-            elsif key == "Direct Relationship Analogues"
+              elsif key == "Direct Relationship Analogues"
 
-              relation = {
-                  :Type => :Direct,
-                  :Subject => relationship["relationshipTo"],
-                  :Property => relationship["relationship"]
-               }
+                relation = {
+                    :Type => :Direct,
+                    :Subject => relationship["relationshipTo"],
+                    :Property => relationship["relationship"]
+                 }
 
-            elsif key == "Keyword Relations"
+              elsif key == "Keyword Relations"
 
-              relation = {
-                  :Type => :Keyword,
-                  :Subject => relationship["name"],
-                  :Property => relationship["relationship"]
-              }
+                relation = {
+                    :Type => :Keyword,
+                    :Subject => relationship["name"],
+                    :Property => relationship["relationship"]
+                }
 
+              end
+
+              type = getModelType(modelID)
+              name = modelNames[modelID]
+
+              @ont_ids.push(modelID)
+              @ont_names.push(name)
+              @ont_types.push(type)
+              @ont_relations.push(relation)
             end
-
-            substring=eachid[0..4]
-
-            puts "\n\n************"+substring
-            if substring == "NMLCL"
-              cell=Cell.find_by_Cell_ID(eachid.to_s)
-              name=cell.Cell_Name
-              type="Cell"
-            end
-
-            if substring == "NMLCH"
-              channel=Channel.find_by_Channel_ID(eachid.to_s)
-              name   =channel.Channel_Name
-              type   ="Channel"
-            end
-
-
-            if substring == "NMLNT"
-              network=Network.find_by_Network_ID(eachid.to_s)
-              name   =network.Network_Name
-              type   ="Network"
-            end
-
-            if substring == "NMLSY"
-              name=Synapse.find_by_Synapse_ID(eachid.to_s)
-              type="Synapse"
-            end
-
-            @ont_ids.push(eachid)
-            @ont_names.push(name)
-            @ont_types.push(type)
-            @ont_relations.push(relation)
           end
         end
+
       end
     end
 
@@ -645,49 +411,24 @@ class WelcomeController < ApplicationController
     connection           = ActiveRecord::Base.connection
 
     if all != "" or exact != "" or any != "" or none != ""
-      @resultset = connection.execute("#{advanced_query}");
+      @dbResult = connection.execute("#{advanced_query}");
     else
-      @resultset = connection.execute("call keyword_search('#{parameter_search_text}',#{keyword_count})");
+      @dbResult = connection.execute("call keyword_search('#{parameter_search_text}',#{keyword_count})");
     end
 
     ActiveRecord::Base.clear_active_connections!
-
-    @resultset_strings = @resultset.map { |result| result.to_s.gsub(/[^0-9A-Za-z]/, '') }
 
     @model_ids         =Array.new
     @model_names       =Array.new
     @model_types       =Array.new
 
-    @resultset_strings.each do |result|
+    @dbResult.each do |row|
 
-      substring=result[0..4]
+      modelID = row[0]
+      name = row[1]
+      type = getModelType(modelID)
 
-      if substring == "NMLCL"
-        cell=Cell.find_by_Cell_ID(result.to_s)
-        name=cell.Cell_Name
-        type="Cell"
-      end
-
-      if substring == "NMLCH"
-        channel=Channel.find_by_Channel_ID(result.to_s)
-        name   =channel.Channel_Name
-        type   ="Channel"
-      end
-
-
-      if substring == "NMLNT"
-        network=Network.find_by_Network_ID(result.to_s)
-        name   =network.Network_Name
-        type   ="Network"
-      end
-
-      if substring == "NMLSY"
-        synapse=Synapse.find_by_Synapse_ID(result.to_s)
-        name   =synapse.Synapse_Name
-        type   ="Synapse"
-      end
-
-      @model_ids.push(result)
+      @model_ids.push(modelID)
       @model_names.push(name)
       @model_types.push(type)
 
@@ -710,8 +451,85 @@ class WelcomeController < ApplicationController
 
   end
 
+  def getModelType(modelID)
+
+    modelTypeCode=modelID[0..4]
+
+    if modelTypeCode == "NMLCL"
+      type="Cell"
+
+    elsif modelTypeCode == "NMLCH"
+      type ="Channel"
+
+    elsif modelTypeCode == "NMLNT"
+      type ="Network"
+
+    elsif modelTypeCode == "NMLSY"
+      type ="Synapse"
+
+    elsif modelTypeCode == "NMLCN"
+      type ="Concentration"
+    end
+
+    return type
+  end
+
 #====================================== End of Keyword Search =============
 
+  def submission
+    @fname             =params[:fname].to_s
+    @mname             =params[:mname].to_s
+    @lname             = params[:lname].to_s
+    @email             = params[:email].to_s
+    @institution       = params[:instname].to_s
+    @modelname         = params[:model].to_s
+    @model_contributor = params[:model_contributor].to_s
+    @pubmed            =params[:pubmed].to_s
+    @modref            = params[:refrences].to_s
+    @moddesc           = params[:model_desc].to_s
+    @keywords          = params[:keywords_model].to_s
+    @comments          = params[:notes].to_s
+    @post              = params[:file]
+    @model_dir         = Dir.home + "/models/" + (@modelname.split(' ')).join('_')
+    if @post.blank? or @fname.blank? or @modelname.blank? or @lname.blank? or @email.blank?
+      redirect_to('/submission_error')
+
+    else
+      Dir.mkdir(@model_dir.to_s, 0700) #=> 0
+
+      target_file = @model_dir + "/" + @post.original_filename
+      upload_file = File.open(target_file.to_s, "wb")
+      upload_file.write(@post.read)
+      upload_file.close
+      @test  =Array.new
+      @test  =params[:pubmed]
+      #@test.each do |num|
+      #xxi3puts num
+      #end
+
+      @fpath = target_file.to_s
+      Modelupload.create(:FirstName => @fname, :MiddleName => @mname, :LastName => @lname, :ModelName => @modelname, :Email => @email, :Institution => @institution, :Publication => @pubmed, :Modelref => @modref, :Description => @moddesc, :Contributor => @model_contributor, :Modelspath => @fpath, :Keywords => @keywords, :Comments => @comments)
+    end
+  end
+
+
+# region Other Page Methods
+
+  def index
+    @news     = News.latest User.current
+    @projects = Project.latest User.current
+  end
+
+
+  def home_db
+  end
+
+  def documentation
+  end
+
+  def model_submit
+    @cells=Modelupload.all
+  end
 
   def robots
     @projects = Project.all_public.active
@@ -753,6 +571,10 @@ class WelcomeController < ApplicationController
 
   def search_result
     @cells=Modelupload.all
+  end
+
+  def searchi_model
+    render :layout => 'searchresults'
   end
 
   def history
@@ -799,4 +621,6 @@ class WelcomeController < ApplicationController
 
   def CNS_workshop
   end
+
+# endregion
 end

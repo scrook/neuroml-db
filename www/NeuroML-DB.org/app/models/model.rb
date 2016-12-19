@@ -69,6 +69,11 @@ class Model < ActiveRecord::Base
         GetModelFiles(synapseRecord.Synapse_ID, result)
       end
 
+      # Look for network concentrations
+      NetworkConcentrationAssociation.where(:Network_ID => modelID).each do |concentrationRecord|
+        GetModelFiles(concentrationRecord.Concentration_ID, result)
+      end
+
     end
 
     # If cell
@@ -87,6 +92,11 @@ class Model < ActiveRecord::Base
         GetModelFiles(synapseRecord.Synapse_ID, result)
       end
 
+      # Add concentrations
+      CellConcentrationAssociation.where(:Cell_ID => modelID).each do |concentrationRecord|
+        GetModelFiles(concentrationRecord.Concentration_ID, result)
+      end
+
     end
 
     # If channel
@@ -101,6 +111,14 @@ class Model < ActiveRecord::Base
 
       # Synapses only have files, no children
       result.push({ "ModelID" => modelID, "File" => Synapse.find_by_Synapse_ID(modelID).Synapse_File })
+
+    end
+
+    # If concentration
+    if modelID.starts_with?('NMLCN')
+
+      # Concentrations only have files, no children
+      result.push({ "ModelID" => modelID, "File" => Concentration.find_by_Concentration_ID(modelID).Concentration_File })
 
     end
 

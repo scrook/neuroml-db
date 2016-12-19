@@ -1,35 +1,46 @@
 import lxml.etree as ET
 import sys
+import re
+import os
 
 def main():
 
-    htmlNML1 = tryNML1()
-    htmlNML2 = tryNML2()
+    #DEBUG
+    #import pydevd
+    #pydevd.settrace('10.211.55.3', port=4200, stdoutToServer=True, stderrToServer=True)
 
-    if htmlNML1.find('table') > 0:
-        print(htmlNML1)
-
-    elif htmlNML2.find('table') > 0:
-        print(htmlNML2)
-
-    else:
-        print('Sorry, there is no HTML view available for this file. You may go back and view the raw XML file.')
-
-def tryNML1():
+    # Read XML
     xml = ET.parse(sys.argv[1])
-    xslt = ET.parse("/var/www/NeuroMLXSL/XSL/NeuroML_Level3_v1.8.1_HTML.xsl")
-    #xslt = ET.parse("XSL/NeuroML_Level3_v1.8.1_HTML.xsl")
-    transform = ET.XSLT(xslt)
-    html = transform(xml)
-    return str(html)
 
-def tryNML2():
-    xml = ET.parse(sys.argv[1])
-    xslt = ET.parse("/var/www/NeuroMLXSL/XSL/NeuroML2_To_HTML.xsl")
-    #xslt = ET.parse("XSL/NeuroML2_To_HTML.xsl")
-    transform = ET.XSLT(xslt)
-    html = transform(xml)
-    return str(html)
+    try:
+        # Get the xml schema version
+        schemaURI = xml.getroot().get('{http://www.w3.org/2001/XMLSchema-instance}schemaLocation')
+        match = re.match(r".*/(.*?_v)(\d)(.*?)\.xsd", schemaURI)
+        schemaMainVersion = int(match.group(2))
+        schemaFile = match.group(1) + match.group(2) + match.group(3)
+    except:
+        print("Sorry, could not determine the NeuroML schema from the XML file")
+
+    # Get the corresponding XSL file
+    xslFile = schemaFile + "_HTML.xsl"
+
+    if schemaMainVersion == 2:
+        xslFile = "NeuroML2_To_HTML.xsl"
+
+    #xslFile = "XSL/" + xslFile
+    xslFile = "/var/www/NeuroMLXSL/XSL/" + xslFile
+
+    if not os.path.isfile(xslFile):
+        print("Sorry, could not find a required XSL file: " + xslFile)
+        return
+
+    # Transform
+    xsl = ET.parse(xslFile)
+    transform = ET.XSLT(xsl)
+    html = str(transform(xml))
+
+    # Output HTML
+    print(html)
 
 if __name__ == "__main__":
     main()

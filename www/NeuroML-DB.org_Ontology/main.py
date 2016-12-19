@@ -30,15 +30,24 @@ def main():
     rubyResult = RubyInterfacer().FormatForRuby(result)
 
     # Ruby code consumes printed output
-    print rubyResult
+    print("-BEGIN-PYTHON-")
+    print(rubyResult)
+    print("-END-PYTHON-")
 
     # Workarounds for json serialization
     result.Keywords = result.Keywords.__dict__
     result.Relationships = result.Relationships.__dict__
 
-    # For Debugging - Ruby ignores everything after the first set of { }'s
+    # For Debugging
     print json.dumps(
         result.__dict__,
+        sort_keys=True,
+        indent=4,
+        separators=(',', ': ')
+    )
+
+    print json.dumps(
+        rubyResult['ModelNames'],
         sort_keys=True,
         indent=4,
         separators=(',', ': ')
