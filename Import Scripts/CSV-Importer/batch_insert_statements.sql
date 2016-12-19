@@ -1,0 +1,27 @@
+-- NMLCL001122
+INSERT into models(Model_ID) values ('NMLCL001122');
+INSERT into cells(Cell_ID, Cell_Name, MorphML_File, Upload_Time, Comments) values ('NMLCL001122','Layer 6 Burst Stuttering Double Bouquet Cell (1)','/var/www/NeuroMLmodels/NMLCL001122/bSTUT213_L6_DBC_65305c1be2_0_0.cell.nml',NOW(),'');
+INSERT into metadatas(Metadata_ID) values (5001296);
+INSERT into refers(Reference_ID, Reference_Resource_ID, Reference_URI, Comments) values (5001296, 4,'https://bbp.epfl.ch/nmc-portal/downloads', '');
+INSERT into model_metadata_associations(Metadata_ID, Model_ID, Comments) values (5001296,'NMLCL001122', '') ;
+INSERT into metadatas(Metadata_ID) values (4001293);
+INSERT into other_keywords(Other_Keyword_ID, Other_Keyword_Term, Comments) values (4001293, 'burst stuttering,Layer 6,GABAergic, inhibitory, neocortex, rat, somatosensory cortex, double bouquet', '') ;
+INSERT into model_metadata_associations(Metadata_ID, Model_ID, Comments) values (4001293,'NMLCL001122', '') ;
+INSERT into model_metadata_associations(Metadata_ID, Model_ID, Comments) values (3000203,'NMLCL001122', '') ;
+INSERT into model_metadata_associations(Metadata_ID, Model_ID, Comments) values (3000075,'NMLCL001122', '') ;
+INSERT into model_metadata_associations(Metadata_ID, Model_ID, Comments) values (6000246,'NMLCL001122', '') ;
+INSERT into model_metadata_associations(Metadata_ID, Model_ID, Comments) values (1000198,'NMLCL001122', '') ;
+INSERT into cell_channel_associations(Cell_ID, Channel_ID, Comments) values ('NMLCL001122', 'NMLCH000108', '');
+INSERT into cell_channel_associations(Cell_ID, Channel_ID, Comments) values ('NMLCL001122', 'NMLCH000113', '');
+INSERT into cell_channel_associations(Cell_ID, Channel_ID, Comments) values ('NMLCL001122', 'NMLCH000115', '');
+INSERT into cell_channel_associations(Cell_ID, Channel_ID, Comments) values ('NMLCL001122', 'NMLCH000109', '');
+INSERT into cell_channel_associations(Cell_ID, Channel_ID, Comments) values ('NMLCL001122', 'NMLCH000111', '');
+INSERT into cell_channel_associations(Cell_ID, Channel_ID, Comments) values ('NMLCL001122', 'NMLCH000104', '');
+INSERT into cell_channel_associations(Cell_ID, Channel_ID, Comments) values ('NMLCL001122', 'NMLCH000114', '');
+INSERT into cell_channel_associations(Cell_ID, Channel_ID, Comments) values ('NMLCL001122', 'NMLCH000105', '');
+INSERT into cell_channel_associations(Cell_ID, Channel_ID, Comments) values ('NMLCL001122', 'NMLCH000110', '');
+INSERT into cell_channel_associations(Cell_ID, Channel_ID, Comments) values ('NMLCL001122', 'NMLCH000103', '');
+INSERT into cell_channel_associations(Cell_ID, Channel_ID, Comments) values ('NMLCL001122', 'NMLCH000112', '');
+INSERT into cell_channel_associations(Cell_ID, Channel_ID, Comments) values ('NMLCL001122', 'NMLCH000107', '');
+INSERT into cell_concentration_associations(Cell_ID, Concentration_ID, Comments) values ('NMLCL001122', 'NMLCN000001', '');
+INSERT into cell_channel_associations(Cell_ID, Channel_ID, Comments) values ('NMLCL001122', 'NMLCH000101', '');
