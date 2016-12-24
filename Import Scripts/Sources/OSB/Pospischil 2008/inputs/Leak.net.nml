@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2  https://raw.githubusercontent.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="network_PospischilEtAl2008">
+
+    <include href="Leak.cell.nml"/> 
+
+    <pulseGenerator id="Input_1" delay="0.3s" duration="0.4s" amplitude="7.5E-10A"/>
+    
+    <network id="network_PospischilEtAl2008" type="networkWithTemperature" temperature="36.0 degC">
+
+        <population id="CG_Leak_ModelDB" component="Leak_ModelDB" type="populationList" size="1">
+           <annotation>
+                <property tag="color" value="0.3203125 0.3828125 0.765625"/>
+            </annotation>
+            <instance id="0">
+                <location x="361.80304" y="513.20953" z="932.99347"/>
+            </instance>
+        </population>
+
+        <inputList id="Input_1" component="Input_1" population="CG_Leak_ModelDB">
+            <input id="0" target="../CG_Leak_ModelDB/0/Leak_ModelDB" destination="synapses"/>
+        </inputList>
+    
+    </network>
+    
+</neuroml>

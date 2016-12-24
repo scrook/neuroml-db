@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="kamt">
+
+    <notes>K-A current for Mitral Cells from Wang et al (1996) M.Migliore Jan. 2002
+    Note, the values used here are based on the Neuron Mod scripts accompanying Migliore et al (2005)</notes>
+
+    <ionChannel id="kamt" conductance="10pS" type="ionChannelHH" species="k">
+
+        <notes>A-type K channel. Comment from the original mod file: K-A current for Mitral Cells from Wang et al (1996)
+        M.Migliore Jan. 2002</notes>
+                
+        <annotation>
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                <rdf:Description rdf:about="kamt">
+                    
+                    <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>Migliore M, Shepherd GM (2008) Dendritic action potentials connect distributed dendrodendritic microcircuits J Comp Neurosci 24(2):207-221</rdf:li>
+                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/pubmed/17674173"/>
+                        </rdf:Bag>
+                    </bqmodel:isDescribedBy>
+
+                
+                    <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>Migliore, M., Hines, M.L., Shepherd, G.M. The Role of Distal Dendritic Gap Junctions in Synchronization of Mitral Cell Axonal Output J.Comput. Neurosci. 18, 151-161, 2005</rdf:li>
+                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/pubmed/15714267"/>
+                        </rdf:Bag>
+                    </bqmodel:isDescribedBy>
+
+                
+                    <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>K channels</rdf:li>
+                            <rdf:li rdf:resource="http://senselab.med.yale.edu/senselab/NeuronDB/channelGene2.htm#table3"/>
+                        </rdf:Bag>
+                    </bqbiol:isVersionOf>
+
+                </rdf:Description>
+            </rdf:RDF>
+        </annotation>
+
+        <gate id="m" type="gateHHratesTauInf" instances="1">
+            <q10Settings type="q10ExpTemp" q10Factor="3" experimentalTemp="24 degC"/>
+            <forwardRate type="HHExpRate" rate="1per_ms" scale="10mV" midpoint="-45mV"/>
+            <reverseRate type="HHExpRate" rate="1per_ms" scale="13.33333333mV" midpoint="-45mV"/>
+            <timeCourse type="kamt_m_tau_tau"/>
+            <steadyState type="HHSigmoidVariable" rate="1" scale="14mV" midpoint="17.5mV"/>
+        </gate>
+
+        <gate id="h" type="gateHHratesTauInf" instances="1">
+            <q10Settings type="q10ExpTemp" q10Factor="3" experimentalTemp="24 degC"/>
+            <forwardRate type="HHExpRate" rate="1per_ms" scale="5mV" midpoint="-70mV"/>
+            <reverseRate type="HHExpRate" rate="1per_ms" scale="5.05050505mV" midpoint="-70mV"/>
+            <timeCourse type="kamt_h_tau_tau"/>
+            <steadyState type="HHSigmoidVariable" rate="1" scale="-6mV" midpoint="-41.7mV"/>
+        </gate>
+                            
+    </ionChannel>
+
+    <ComponentType name="kamt_m_tau_tau" extends="baseVoltageDepTime">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <Requirement name="alpha" dimension="per_time"/>
+        <Requirement name="beta" dimension="per_time"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="ALPHA" dimension="none" value="alpha * TIME_SCALE"/>
+            <DerivedVariable name="BETA" dimension="none" value="beta * TIME_SCALE"/>
+            <DerivedVariable name="t" exposure="t" dimension="time" value="(BETA / (0.04 *(1 + ALPHA))) * TIME_SCALE"/>
+        </Dynamics>
+
+    </ComponentType>
+
+    <ComponentType name="kamt_h_tau_tau" extends="baseVoltageDepTime">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <Requirement name="alpha" dimension="per_time"/>
+        <Requirement name="beta" dimension="per_time"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="ALPHA" dimension="none" value="alpha * TIME_SCALE"/>
+            <DerivedVariable name="BETA" dimension="none" value="beta * TIME_SCALE"/>
+            <DerivedVariable name="t" exposure="t" dimension="time" value="(BETA / (0.018 *(1 + ALPHA))) * TIME_SCALE"/>
+        </Dynamics>
+
+    </ComponentType>
+
+</neuroml>

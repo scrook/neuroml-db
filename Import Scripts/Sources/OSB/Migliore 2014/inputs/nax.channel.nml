@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="nax">
+
+    <notes>ChannelML file containing a single Channel description</notes>
+
+    <ionChannel id="nax" conductance="10pS" type="ionChannelHH" species="na">
+
+        <notes>Na channel for axon. Comment from original mod file: Na current for axon. No slow inact. M.Migliore Jul. 1997,
+        added sh to account for higher threshold M.Migliore, Apr.2002</notes>
+                
+        <annotation>
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                <rdf:Description rdf:about="nax">
+                    
+                    <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>Migliore M, Shepherd GM (2008) Dendritic action potentials connect distributed dendrodendritic microcircuits J Comp Neurosci 24(2):207-221</rdf:li>
+                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/pubmed/17674173"/>
+                        </rdf:Bag>
+                    </bqmodel:isDescribedBy>
+
+                
+                    <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>Migliore, M., Hines, M.L., Shepherd, G.M. The Role of Distal Dendritic Gap Junctions in Synchronization of Mitral Cell Axonal Output J.Comput. Neurosci. 18, 151-161, 2005</rdf:li>
+                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/pubmed/15714267"/>
+                        </rdf:Bag>
+                    </bqmodel:isDescribedBy>
+
+                
+                    <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>Migliore M, Ferrante M, Ascoli GA (2005) Signal propagation in oblique dendrites of CA1 pyramidal cells. J Neurophysiol 94:4145-4155</rdf:li>
+                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/pubmed/16293591"/>
+                        </rdf:Bag>
+                    </bqmodel:isDescribedBy>
+
+                
+                    <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>Na channels</rdf:li>
+                            <rdf:li rdf:resource="http://senselab.med.yale.edu/senselab/NeuronDB/channelGene2.htm#table2"/>
+                        </rdf:Bag>
+                    </bqbiol:isVersionOf>
+
+                </rdf:Description>
+            </rdf:RDF>
+        </annotation>
+
+        <gate id="m" type="gateHHratesTau" instances="3">
+            <q10Settings type="q10ExpTemp" q10Factor="2" experimentalTemp="24 degC"/>
+            <forwardRate type="nax_m_alpha_rate"/>
+            <reverseRate type="nax_m_beta_rate"/>
+            <timeCourse type="nax_m_tau_tau"/>
+        </gate>
+
+        <gate id="h" type="gateHHratesTauInf" instances="1">
+            <q10Settings type="q10ExpTemp" q10Factor="2" experimentalTemp="24 degC"/>
+            <forwardRate type="nax_h_alpha_rate"/>
+            <reverseRate type="nax_h_beta_rate"/>
+            <timeCourse type="nax_h_tau_tau"/>
+            <steadyState type="nax_h_inf_inf"/>
+        </gate>
+                            
+    </ionChannel>
+
+    <ComponentType name="nax_m_alpha_rate" extends="baseVoltageDepRate">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <!--Note: this parameter (sh) should ideally be defined only once within the ionChannel! Work in progress...--><Constant name="sh" dimension="none" value="5"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <ConditionalDerivedVariable name="r" exposure="r" dimension="per_time">
+                <Case condition="(V - (-30+sh))  .eq. ( 0 )" value="( 2.88 ) / TIME_SCALE"/>
+                <Case value="( 2.88 * ((V - (-30+sh)) / 7.2) /(1 - exp((-1 * (V - (-30+sh)))/7.2))) / TIME_SCALE"/>
+            </ConditionalDerivedVariable>
+        </Dynamics>
+
+    </ComponentType>
+
+    <ComponentType name="nax_m_beta_rate" extends="baseVoltageDepRate">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <!--Note: this parameter (sh) should ideally be defined only once within the ionChannel! Work in progress...--><Constant name="sh" dimension="none" value="5"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <ConditionalDerivedVariable name="r" exposure="r" dimension="per_time">
+                <Case condition="(V - (-30+sh))  .eq. ( 0 )" value="( 0.8928 ) / TIME_SCALE"/>
+                <Case value="( 0.8928 * ((V - (-30+sh)) / -7.2) /(1 - exp((-1 * (V - (-30+sh)))/-7.2))) / TIME_SCALE"/>
+            </ConditionalDerivedVariable>
+        </Dynamics>
+
+    </ComponentType>
+
+    <ComponentType name="nax_m_tau_tau" extends="baseVoltageDepTime">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <!--Note: this parameter (sh) should ideally be defined only once within the ionChannel! Work in progress...--><Constant name="sh" dimension="none" value="5"/>
+        <Requirement name="alpha" dimension="per_time"/>
+        <Requirement name="beta" dimension="per_time"/>
+        <Requirement name="rateScale" dimension="none"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="ALPHA" dimension="none" value="alpha * TIME_SCALE"/>
+            <DerivedVariable name="BETA" dimension="none" value="beta * TIME_SCALE"/>
+            <ConditionalDerivedVariable name="t" exposure="t" dimension="time">
+                <Case condition="(ALPHA + BETA) .eq. 0" value="( 0 ) * TIME_SCALE"/>
+                <Case condition="1/( (ALPHA + BETA) * rateScale )  .lt. ( 0.02 )" value="( (0.02 * rateScale) ) * TIME_SCALE"/>
+                <Case value="( 1/(ALPHA + BETA) ) * TIME_SCALE"/>
+            </ConditionalDerivedVariable>
+        </Dynamics>
+
+    </ComponentType>
+
+    <ComponentType name="nax_h_alpha_rate" extends="baseVoltageDepRate">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <!--Note: this parameter (sh) should ideally be defined only once within the ionChannel! Work in progress...--><Constant name="sh" dimension="none" value="5"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <ConditionalDerivedVariable name="r" exposure="r" dimension="per_time">
+                <Case condition="(V - (-45+sh))  .eq. ( 0 )" value="( 0.045 ) / TIME_SCALE"/>
+                <Case value="( 0.045 * ((V - (-45+sh)) / 1.5) /(1 - exp((-1 * (V - (-45+sh)))/1.5))) / TIME_SCALE"/>
+            </ConditionalDerivedVariable>
+        </Dynamics>
+
+    </ComponentType>
+
+    <ComponentType name="nax_h_beta_rate" extends="baseVoltageDepRate">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <!--Note: this parameter (sh) should ideally be defined only once within the ionChannel! Work in progress...--><Constant name="sh" dimension="none" value="5"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <ConditionalDerivedVariable name="r" exposure="r" dimension="per_time">
+                <Case condition="(V - (-45+sh))  .eq. ( 0 )" value="( 0.015 ) / TIME_SCALE"/>
+                <Case value="( 0.015 * ((V - (-45+sh)) / -1.5) /(1 - exp((-1 * (V - (-45+sh)))/-1.5))) / TIME_SCALE"/>
+            </ConditionalDerivedVariable>
+        </Dynamics>
+
+    </ComponentType>
+
+    <ComponentType name="nax_h_tau_tau" extends="baseVoltageDepTime">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <!--Note: this parameter (sh) should ideally be defined only once within the ionChannel! Work in progress...--><Constant name="sh" dimension="none" value="5"/>
+        <Requirement name="alpha" dimension="per_time"/>
+        <Requirement name="beta" dimension="per_time"/>
+        <Requirement name="rateScale" dimension="none"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="ALPHA" dimension="none" value="alpha * TIME_SCALE"/>
+            <DerivedVariable name="BETA" dimension="none" value="beta * TIME_SCALE"/>
+            <ConditionalDerivedVariable name="t" exposure="t" dimension="time">
+                <Case condition="(ALPHA + BETA) .eq. 0" value="( 0 ) * TIME_SCALE"/>
+                <Case condition="1/( (ALPHA + BETA) * rateScale )  .lt. ( 0.5 )" value="( (0.5 * rateScale) ) * TIME_SCALE"/>
+                <Case value="( 1/(ALPHA + BETA) ) * TIME_SCALE"/>
+            </ConditionalDerivedVariable>
+        </Dynamics>
+
+    </ComponentType>
+
+    <ComponentType name="nax_h_inf_inf" extends="baseVoltageDepVariable">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <!--Note: this parameter (sh) should ideally be defined only once within the ionChannel! Work in progress...--><Constant name="sh" dimension="none" value="5"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="x" exposure="x" dimension="none" value="1/(1 + (exp (((V-(-50))-sh)/4 )) )"/>
+        </Dynamics>
+
+    </ComponentType>
+
+</neuroml>

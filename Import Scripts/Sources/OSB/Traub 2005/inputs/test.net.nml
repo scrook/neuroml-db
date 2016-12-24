@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2  https://raw.githubusercontent.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta5.xsd" id="network_Thalamocortical">
+
+    <notes>
+
+Network structure (NeuroML 2beta5) for project: Thalamocortical saved with neuroConstruct v1.7.1 on: 16:33:41, 12-Jul-16
+
+Cell Group: CG3D_nRT contains 10 cells
+Cell Group: CG3D_DeepBask contains 10 cells
+Cell Group: CG3D_DeepAxAx contains 10 cells
+Cell Group: CG3D_L5TuftIB contains 80 cells
+Cell Group: CG3D_SupBask contains 9 cells
+Cell Group: CG3D_L23PyrRS contains 100 cells
+Cell Group: CG3D_SupAxAx contains 9 cells
+Cell Group: CG3D_L5TuftRS contains 20 cells
+Cell Group: CG3D_DeepLTS contains 10 cells
+Cell Group: CG3D_L6NonTuftRS contains 50 cells
+Cell Group: CG3D_L23PyrFRB contains 5 cells
+Cell Group: CG3D_TCR contains 10 cells
+Cell Group: CG3D_SupLTS contains 9 cells
+Cell Group: CG3D_L4SpinStell contains 24 cells
+
+Network connection: NC3D_L5TuftIB_L6NonTuftRS contains 1000 individual synaptic connections
+Network connection: NC3D_L5TuftIB_DeepLTS contains 200 individual synaptic connections
+Network connection: NC3D_L5TuftRS_L6NonTuftRS contains 1000 individual synaptic connections
+Network connection: NC3D_SupAxAx_L6NonTuftRS contains 250 individual synaptic connections
+Network connection: NC3D_TCR_L23PyrFRB contains 50 individual synaptic connections
+Network connection: NC3D_SupBask_L23PyrFRB contains 100 individual synaptic connections
+Network connection: NC3D_DeepBask_DeepBask contains 200 individual synaptic connections
+Network connection: NC3D_L6NonTuftRS_TCR contains 200 individual synaptic connections
+Network connection: NC3D_DeepLTS_DeepAxAx contains 200 individual synaptic connections
+Network connection: NC3D_L23PyrRS_SupLTS contains 810 individual synaptic connections
+Network connection: NC3D_TCR_DeepAxAx contains 100 individual synaptic connections
+Network connection: NC3D_L6NonTuftRS_SupLTS contains 90 individual synaptic connections
+Network connection: NC3D_nRT_nRT_Gap contains 26 individual synaptic connections
+Network connection: NC3D_nRT_TCR contains 300 individual synaptic connections
+Network connection: NC3D_L5TuftRS_L23PyrFRB contains 10 individual synaptic connections
+Network connection: NC3D_L23PyrFRB_DeepBask contains 30 individual synaptic connections
+Network connection: NC3D_DeepBask_DeepAxAx contains 200 individual synaptic connections
+Network connection: NC3D_L6NonTuftRS_DeepBask contains 100 individual synaptic connections
+Network connection: NC3D_L5TuftRS_L5TuftRS contains 200 individual synaptic connections
+Network connection: NC3D_SupLTS_DeepLTS contains 200 individual synaptic connections
+Network connection: NC3D_L5TuftIB_DeepBask contains 200 individual synaptic connections
+Network connection: NC3D_L6NonTuftRS_L4SpinStell contains 240 individual synaptic connections
+Network connection: NC3D_L23PyrFRB_DeepAxAx contains 30 individual synaptic connections
+Network connection: NC3D_L5TuftIB_L23PyrFRB contains 10 individual synaptic connections
+Network connection: NC3D_SupLTS_L5TuftRS contains 400 individual synaptic connections
+Network connection: NC3D_L4SpinStell_DeepLTS contains 200 individual synaptic connections
+Network connection: NC3D_DeepLTS_L6NonTuftRS contains 1000 individual synaptic connections
+Network connection: NC3D_L23PyrFRB_L6NonTuftRS contains 50 individual synaptic connections
+Network connection: NC3D_SupAxAx_L5TuftIB contains 400 individual synaptic connections
+Network connection: NC3D_L6NonTuftRS_DeepAxAx contains 100 individual synaptic connections
+Network connection: NC3D_L4SpinStell_L5TuftIB contains 1600 individual synaptic connections
+Network connection: NC3D_L4SpinStell_L6NonTuftRS contains 1000 individual synaptic connections
+Network connection: NC3D_L5TuftIB_DeepAxAx contains 200 individual synaptic connections
+Network connection: NC3D_DeepBask_L6NonTuftRS contains 1000 individual synaptic connections
+Network connection: NC3D_DeepLTS_L5TuftIB contains 1600 individual synaptic connections
+Network connection: NC3D_L6NonTuftRS_L6NonTuftRS_Gap contains 50 individual synaptic connections
+Network connection: NC3D_SupBask_L23PyrRS contains 2000 individual synaptic connections
+Network connection: NC3D_TCR_L5TuftIB contains 800 individual synaptic connections
+Network connection: NC3D_DeepBask_DeepLTS contains 200 individual synaptic connections
+Network connection: NC3D_L4SpinStell_L4SpinStell_Gap contains 24 individual synaptic connections
+Network connection: NC3D_L23PyrRS_DeepBask contains 300 individual synaptic connections
+Network connection: NC3D_TCR_L4SpinStell contains 480 individual synaptic connections
+Network connection: NC3D_L23PyrRS_L23PyrFRB contains 250 individual synaptic connections
+Network connection: NC3D_SupLTS_L23PyrFRB contains 100 individual synaptic connections
+Network connection: NC3D_L5TuftRS_L23PyrRS contains 200 individual synaptic connections
+Network connection: NC3D_L23PyrRS_DeepLTS contains 300 individual synaptic connections
+Network connection: NC3D_L23PyrRS_L23PyrRS_Gap contains 67 individual synaptic connections
+Network connection: NC3D_SupLTS_L6NonTuftRS contains 1000 individual synaptic connections
+Network connection: NC3D_L23PyrRS_L23PyrFRB_Gap contains 1 individual synaptic connections
+Network connection: NC3D_SupLTS_L23PyrRS contains 2000 individual synaptic connections
+Network connection: NC3D_L23PyrFRB_SupLTS contains 45 individual synaptic connections
+Network connection: NC3D_L23PyrRS_DeepAxAx contains 300 individual synaptic connections
+Network connection: NC3D_SupBask_SupBask contains 180 individual synaptic connections
+Network connection: NC3D_L4SpinStell_L23PyrFRB contains 100 individual synaptic connections
+Network connection: NC3D_L6NonTuftRS_DeepLTS contains 100 individual synaptic connections
+Network connection: NC3D_L5TuftIB_SupBask contains 180 individual synaptic connections
+Network connection: NC3D_DeepLTS_SupLTS contains 90 individual synaptic connections
+Network connection: NC3D_DeepBask_L5TuftIB contains 1600 individual synaptic connections
+Network connection: NC3D_L6NonTuftRS_L23PyrFRB contains 50 individual synaptic connections
+Network connection: NC3D_L5TuftRS_DeepLTS contains 200 individual synaptic connections
+Network connection: NC3D_DeepLTS_DeepLTS contains 200 individual synaptic connections
+Network connection: NC3D_SupAxAx_L5TuftRS contains 100 individual synaptic connections
+Network connection: NC3D_SupBask_SupAxAx contains 180 individual synaptic connections
+Network connection: NC3D_L4SpinStell_L5TuftRS contains 400 individual synaptic connections
+Network connection: NC3D_L23PyrFRB_SupBask contains 45 individual synaptic connections
+Network connection: NC3D_L23PyrFRB_L5TuftIB contains 240 individual synaptic connections
+Network connection: NC3D_DeepLTS_L5TuftRS contains 400 individual synaptic connections
+Network connection: NC3D_DeepLTS_DeepLTS_Gap contains 26 individual synaptic connections
+Network connection: NC3D_L5TuftIB_SupAxAx contains 180 individual synaptic connections
+Network connection: NC3D_TCR_L5TuftRS contains 200 individual synaptic connections
+Network connection: NC3D_L6NonTuftRS_L5TuftIB contains 800 individual synaptic connections
+Network connection: NC3D_L23PyrRS_L4SpinStell contains 72 individual synaptic connections
+Network connection: NC3D_SupAxAx_L23PyrRS contains 2000 individual synaptic connections
+Network connection: NC3D_L6NonTuftRS_L6NonTuftRS contains 1000 individual synaptic connections
+Network connection: NC3D_L5TuftIB_L5TuftIB contains 4000 individual synaptic connections
+Network connection: NC3D_L23PyrFRB_SupAxAx contains 45 individual synaptic connections
+Network connection: NC3D_DeepAxAx_L4SpinStell contains 120 individual synaptic connections
+Network connection: NC3D_L6NonTuftRS_nRT contains 200 individual synaptic connections
+Network connection: NC3D_DeepAxAx_L5TuftIB contains 400 individual synaptic connections
+Network connection: NC3D_L4SpinStell_L23PyrRS contains 2000 individual synaptic connections
+Network connection: NC3D_nRT_nRT contains 100 individual synaptic connections
+Network connection: NC3D_L5TuftRS_DeepBask contains 200 individual synaptic connections
+Network connection: NC3D_SupLTS_SupBask contains 180 individual synaptic connections
+Network connection: NC3D_L5TuftIB_L4SpinStell contains 480 individual synaptic connections
+Network connection: NC3D_SupAxAx_L4SpinStell contains 120 individual synaptic connections
+Network connection: NC3D_L5TuftRS_L4SpinStell contains 480 individual synaptic connections
+Network connection: NC3D_DeepBask_L5TuftRS contains 400 individual synaptic connections
+Network connection: NC3D_L23PyrRS_L5TuftIB contains 4800 individual synaptic connections
+Network connection: NC3D_TCR_L6NonTuftRS contains 500 individual synaptic connections
+Network connection: NC3D_DeepLTS_L23PyrRS contains 1000 individual synaptic connections
+Network connection: NC3D_L4SpinStell_SupBask contains 180 individual synaptic connections
+Network connection: NC3D_SupLTS_DeepBask contains 200 individual synaptic connections
+Network connection: NC3D_TCR_L23PyrRS contains 1000 individual synaptic connections
+Network connection: NC3D_SupAxAx_L23PyrFRB contains 100 individual synaptic connections
+Network connection: NC3D_L23PyrFRB_L5TuftRS contains 60 individual synaptic connections
+Network connection: NC3D_TCR_SupBask contains 90 individual synaptic connections
+Network connection: NC3D_L23PyrFRB_L23PyrFRB contains 25 individual synaptic connections
+Network connection: NC3D_L5TuftIB_SupLTS contains 180 individual synaptic connections
+Network connection: NC3D_L5TuftRS_DeepAxAx contains 200 individual synaptic connections
+Network connection: NC3D_SupLTS_SupAxAx contains 180 individual synaptic connections
+Network connection: NC3D_L6NonTuftRS_L5TuftRS contains 200 individual synaptic connections
+Network connection: NC3D_L4SpinStell_SupAxAx contains 180 individual synaptic connections
+Network connection: NC3D_SupLTS_DeepAxAx contains 200 individual synaptic connections
+Network connection: NC3D_SupLTS_SupLTS contains 180 individual synaptic connections
+Network connection: NC3D_L23PyrFRB_L4SpinStell contains 24 individual synaptic connections
+Network connection: NC3D_L5TuftRS_L5TuftRS_Gap contains 28 individual synaptic connections
+Network connection: NC3D_SupLTS_SupLTS_Gap contains 19 individual synaptic connections
+Network connection: NC3D_L5TuftIB_L5TuftRS contains 400 individual synaptic connections
+Network connection: NC3D_L23PyrFRB_L23PyrRS contains 500 individual synaptic connections
+Network connection: NC3D_L5TuftRS_SupLTS contains 180 individual synaptic connections
+Network connection: NC3D_SupBask_SupBask_Gap contains 20 individual synaptic connections
+Network connection: NC3D_TCR_SupAxAx contains 90 individual synaptic connections
+Network connection: NC3D_DeepLTS_L23PyrFRB contains 50 individual synaptic connections
+Network connection: NC3D_L23PyrRS_SupBask contains 810 individual synaptic connections
+Network connection: NC3D_DeepAxAx_L23PyrFRB contains 25 individual synaptic connections
+Network connection: NC3D_DeepAxAx_L5TuftRS contains 100 individual synaptic connections
+Network connection: NC3D_L6NonTuftRS_L23PyrRS contains 1000 individual synaptic connections
+Network connection: NC3D_L5TuftRS_SupBask contains 180 individual synaptic connections
+Network connection: NC3D_DeepLTS_SupBask contains 90 individual synaptic connections
+Network connection: NC3D_DeepLTS_L4SpinStell contains 480 individual synaptic connections
+Network connection: NC3D_L4SpinStell_DeepBask contains 200 individual synaptic connections
+Network connection: NC3D_L4SpinStell_SupLTS contains 180 individual synaptic connections
+Network connection: NC3D_SupBask_L4SpinStell contains 480 individual synaptic connections
+Network connection: NC3D_L5TuftIB_L5TuftIB_Gap contains 34 individual synaptic connections
+Network connection: NC3D_L23PyrRS_L5TuftRS contains 1200 individual synaptic connections
+Network connection: NC3D_L6NonTuftRS_SupBask contains 90 individual synaptic connections
+Network connection: NC3D_L4SpinStell_L4SpinStell contains 720 individual synaptic connections
+Network connection: NC3D_DeepBask_L4SpinStell contains 480 individual synaptic connections
+Network connection: NC3D_L23PyrRS_SupAxAx contains 810 individual synaptic connections
+Network connection: NC3D_L23PyrRS_L6NonTuftRS contains 150 individual synaptic connections
+Network connection: NC3D_L5TuftRS_SupAxAx contains 180 individual synaptic connections
+Network connection: NC3D_L5TuftRS_L5TuftIB contains 1600 individual synaptic connections
+Network connection: NC3D_DeepLTS_SupAxAx contains 90 individual synaptic connections
+Network connection: NC3D_TCR_nRT contains 400 individual synaptic connections
+Network connection: NC3D_DeepBask_DeepBask_Gap contains 27 individual synaptic connections
+Network connection: NC3D_L4SpinStell_DeepAxAx contains 200 individual synaptic connections
+Network connection: NC3D_L5TuftIB_L23PyrRS contains 200 individual synaptic connections
+Network connection: NC3D_SupBask_SupLTS contains 180 individual synaptic connections
+Network connection: NC3D_SupLTS_L5TuftIB contains 1600 individual synaptic connections
+Network connection: NC3D_DeepAxAx_L6NonTuftRS contains 250 individual synaptic connections
+Network connection: NC3D_SupLTS_L4SpinStell contains 480 individual synaptic connections
+Network connection: NC3D_L23PyrRS_L23PyrRS contains 5000 individual synaptic connections
+Network connection: NC3D_L6NonTuftRS_SupAxAx contains 90 individual synaptic connections
+Network connection: NC3D_DeepLTS_DeepBask contains 200 individual synaptic connections
+Network connection: NC3D_TCR_DeepBask contains 200 individual synaptic connections
+Network connection: NC3D_L23PyrFRB_DeepLTS contains 30 individual synaptic connections
+Network connection: NC3D_DeepAxAx_L23PyrRS contains 500 individual synaptic connections
+
+
+    </notes>
+
+
+    <include href="ar.channel.nml"/>
+    <include href="ar.channel.nml"/>
+    <include href="ar.channel.nml"/>
+    <include href="ar.channel.nml"/>
+    <include href="ar.channel.nml"/>
+    <include href="ar.channel.nml"/>
+    <include href="ar.channel.nml"/>
+    <include href="ar.channel.nml"/>
+    <include href="ar.channel.nml"/>
+    <include href="ar.channel.nml"/>
+    <include href="ar.channel.nml"/>
+    <include href="ar.channel.nml"/>
+    <include href="ar.channel.nml"/>
+    <include href="ar.channel.nml"/>
+    <include href="ar__m00.channel.nml"/>
+    <include href="ar__m00.channel.nml"/>
+    <include href="ar__m00.channel.nml"/>
+    <include href="ar__m00_25.channel.nml"/>
+    <include href="ar__m00_25.channel.nml"/>
+    <include href="ar__m00_25.channel.nml"/>
+    <include href="ar__m00_25.channel.nml"/>
+    <include href="ar__m00_25.channel.nml"/>
+    <include href="ar__m00_25.channel.nml"/>
+    <include href="ar__m00_25.channel.nml"/>
+    <include href="ar__m00_25.channel.nml"/>
+    <include href="ar__m00_25.channel.nml"/>
+    <include href="ar__m00_25.channel.nml"/>
+    <include href="ar__m00_25.channel.nml"/>
+    <include href="ar__m00_25.channel.nml"/>
+    <include href="ar__m00_25.channel.nml"/>
+    <include href="ar__m00_25.channel.nml"/>
+    <include href="ar__m00_25.channel.nml"/>
+    <include href="ar__m00_25.channel.nml"/>
+    <include href="ar__m00_25.channel.nml"/>
+    <include href="ar__m00_25.channel.nml"/>
+    <include href="ar__m00_25.channel.nml"/>
+    <include href="ar__m00_25.channel.nml"/>
+    <include href="ar__m00_25.channel.nml"/>
+    <include href="cad.nml"/>
+    <include href="cad.nml"/>
+    <include href="cad.nml"/>
+    <include href="cad.nml"/>
+    <include href="cad.nml"/>
+    <include href="cad.nml"/>
+    <include href="cad.nml"/>
+    <include href="cad.nml"/>
+    <include href="cad.nml"/>
+    <include href="cad.nml"/>
+    <include href="cad.nml"/>
+    <include href="cad.nml"/>
+    <include href="cad.nml"/>
+    <include href="cad.nml"/>
+    <include href="cad__beta0_01__phi13000.nml"/>
+    <include href="cad__beta0_01__phi26000.nml"/>
+    <include href="cad__beta0_01__phi26000.nml"/>
+    <include href="cad__beta0_01__phi4333_33.nml"/>
+    <include href="cad__beta0_01__phi4333_33.nml"/>
+    <include href="cad__beta0_02__phi10400.nml"/>
+    <include href="cad__beta0_02__phi260000.nml"/>
+    <include href="cad__beta0_02__phi260000.nml"/>
+    <include href="cad__beta0_02__phi260000.nml"/>
+    <include href="cad__beta0_02__phi260000.nml"/>
+    <include href="cad__beta0_02__phi260000.nml"/>
+    <include href="cad__beta0_02__phi260000.nml"/>
+    <include href="cad__beta0_02__phi260000.nml"/>
+    <include href="cad__beta0_02__phi52000.nml"/>
+    <include href="cad__beta0_02__phi86666_7.nml"/>
+    <include href="cad__beta0_02__phi86666_7.nml"/>
+    <include href="cad__beta0_05__phi104000.nml"/>
+    <include href="cad__beta0_05__phi260000.nml"/>
+    <include href="cad__beta0_05__phi260000.nml"/>
+    <include href="cad__beta0_05__phi52000.nml"/>
+    <include href="cad__beta0_05__phi52000.nml"/>
+    <include href="cad__beta0_05__phi520000.nml"/>
+    <include href="cad__beta0_05__phi520000.nml"/>
+    <include href="cad__beta0_05__phi520000.nml"/>
+    <include href="cad__beta0_05__phi520000.nml"/>
+    <include href="cad__beta0_05__phi520000.nml"/>
+    <include href="cad__beta0_05__phi520000.nml"/>
+    <include href="cad__beta0_05__phi65000.nml"/>
+    <include href="cad__beta0_075__phi86666_7.nml"/>
+    <include href="cad__beta0_075__phi86666_7.nml"/>
+    <include href="cal.channel.nml"/>
+    <include href="cat.channel.nml"/>
+    <include href="cat_a.channel.nml"/>
+    <include href="DeepAxAx.cell.nml"/>
+    <include href="DeepBasket.cell.nml"/>
+    <include href="DeepLTSInter.cell.nml"/>
+    <include href="k2.channel.nml"/>
+    <include href="ka.channel.nml"/>
+    <include href="ka_ib.channel.nml"/>
+    <include href="kahp.channel.nml"/>
+    <include href="kahp_deeppyr.channel.nml"/>
+    <include href="kahp_slower.channel.nml"/>
+    <include href="kc.channel.nml"/>
+    <include href="kc_fast.channel.nml"/>
+    <include href="kdr.channel.nml"/>
+    <include href="kdr_fs.channel.nml"/>
+    <include href="km.channel.nml"/>
+    <include href="L23PyrFRB_varInit.cell.nml"/>
+    <include href="L23PyrRS.cell.nml"/>
+    <include href="L4SpinyStellate.cell.nml"/>
+    <include href="L5TuftedPyrIB.cell.nml"/>
+    <include href="L5TuftedPyrRS.cell.nml"/>
+    <include href="L6NonTuftedPyrRS.cell.nml"/>
+    <include href="naf.channel.nml"/>
+    <include href="naf.channel.nml"/>
+    <include href="naf.channel.nml"/>
+    <include href="naf.channel.nml"/>
+    <include href="naf.channel.nml"/>
+    <include href="naf2.channel.nml"/>
+    <include href="naf2.channel.nml"/>
+    <include href="naf2.channel.nml"/>
+    <include href="naf2.channel.nml"/>
+    <include href="naf2.channel.nml"/>
+    <include href="naf2.channel.nml"/>
+    <include href="naf2.channel.nml"/>
+    <include href="naf2.channel.nml"/>
+    <include href="naf2__a0__b0__c0__d0__fastNa_shift0.channel.nml"/>
+    <include href="naf2__a0__b0__c0__d0__fastNa_shift0.channel.nml"/>
+    <include href="naf2__a0__b0__c0__d0__fastNa_shift0.channel.nml"/>
+    <include href="naf2__a0__b0__c0__d0__fastNa_shiftmin2_5.channel.nml"/>
+    <include href="naf2__a0__b0__c0__d0__fastNa_shiftmin2_5.channel.nml"/>
+    <include href="naf2__a0__b0__c0__d0__fastNa_shiftmin2_5.channel.nml"/>
+    <include href="naf2__a0__b0__c0__d0__fastNa_shiftmin2_5.channel.nml"/>
+    <include href="naf2__a0__b0__c0__d0__fastNa_shiftmin2_5.channel.nml"/>
+    <include href="naf2__a0__b0__c0__d0__fastNa_shiftmin2_5.channel.nml"/>
+    <include href="naf2__a0__b0__c0__d0__fastNa_shiftmin2_5.channel.nml"/>
+    <include href="naf2__a0__b0__c0__d0__fastNa_shiftmin2_5.channel.nml"/>
+    <include href="naf2__a0__b0__c0__d0__fastNa_shiftmin2_5.channel.nml"/>
+    <include href="naf2__a0__b0__c0__d0__fastNa_shiftmin2_5.channel.nml"/>
+    <include href="naf2__a0__b0__c0__d0__fastNa_shiftmin2_5.channel.nml"/>
+    <include href="naf2__a0__b0__c0__d0__fastNa_shiftmin2_5.channel.nml"/>
+    <include href="naf2__a0__b0__c0__d0__fastNa_shiftmin2_5.channel.nml"/>
+    <include href="naf2__a0__b0__c0__d0__fastNa_shiftmin2_5.channel.nml"/>
+    <include href="naf2__a0__b0__c0__d0__fastNa_shiftmin2_5.channel.nml"/>
+    <include href="naf2__a0__b0__c0__d0__fastNa_shiftmin2_5.channel.nml"/>
+    <include href="naf2__a0__b0__c0__d0__fastNa_shiftmin2_5.channel.nml"/>
+    <include href="naf2__a0__b0__c0__d0__fastNa_shiftmin2_5.channel.nml"/>
+    <include href="naf2__a0__b0__c0__d0__fastNa_shiftmin2_5.channel.nml"/>
+    <include href="naf2__a0__b0__c0__d0__fastNa_shiftmin2_5.channel.nml"/>
+    <include href="naf2__a0__b0__c0__d0__fastNa_shiftmin2_5.channel.nml"/>
+    <include href="naf__a0__b0__c0__d0__fastNa_shiftmin3_5.channel.nml"/>
+    <include href="naf__a0__b0__c0__d0__fastNa_shiftmin3_5.channel.nml"/>
+    <include href="naf__a0__b0__c0__d0__fastNa_shiftmin3_5.channel.nml"/>
+    <include href="naf__a0__b0__c0__d0__fastNa_shiftmin3_5.channel.nml"/>
+    <include href="naf__a0__b0__c0__d0__fastNa_shiftmin3_5.channel.nml"/>
+    <include href="naf__a0__b0__c0__d0__fastNa_shiftmin3_5.channel.nml"/>
+    <include href="naf__a0__b0__c0__d0__fastNa_shiftmin3_5.channel.nml"/>
+    <include href="naf__a0__b0__c0__d0__fastNa_shiftmin3_5.channel.nml"/>
+    <include href="naf__a0__b0__c0__d0__fastNa_shiftmin3_5.channel.nml"/>
+    <include href="naf__a0__b0__c0__d0__fastNa_shiftmin3_5.channel.nml"/>
+    <include href="naf__a0__b0__c0__d0__fastNa_shiftmin3_5.channel.nml"/>
+    <include href="naf__a0__b0__c0__d0__fastNa_shiftmin3_5.channel.nml"/>
+    <include href="naf__a0__b0__c0__d0__fastNa_shiftmin3_5.channel.nml"/>
+    <include href="naf__a0__b0__c0__d0__fastNa_shiftmin3_5.channel.nml"/>
+    <include href="naf__a0__b0__c0__d0__fastNa_shiftmin3_5.channel.nml"/>
+    <include href="naf__a0__b0__c0__d0__fastNa_shiftmin3_5.channel.nml"/>
+    <include href="naf__a0__b0__c0__d0__fastNa_shiftmin3_5.channel.nml"/>
+    <include href="naf__a0__b0__c0__d0__fastNa_shiftmin3_5.channel.nml"/>
+    <include href="naf__a0__b0__c0__d0__fastNa_shiftmin3_5.channel.nml"/>
+    <include href="naf__a0__b0__c0__d0__fastNa_shiftmin3_5.channel.nml"/>
+    <include href="naf__a0__b0__c0__d0__fastNa_shiftmin3_5.channel.nml"/>
+    <include href="naf__a0__b0__c0__d0__fastNa_shiftmin3_5.channel.nml"/>
+    <include href="naf__a0__b0__c0__d0__fastNa_shiftmin3_5.channel.nml"/>
+    <include href="naf__a0__b0__c0__d0__fastNa_shiftmin3_5.channel.nml"/>
+    <include href="naf__a0__b0__c0__d0__fastNa_shiftmin3_5.channel.nml"/>
+    <include href="naf_tcr.channel.nml"/>
+    <include href="naf_tcr__sh_hmin7__sh_m_imin3__sh_m_rmin2_5.channel.nml"/>
+    <include href="naf_tcr__sh_hmin7__sh_m_imin3__sh_m_rmin2_5.channel.nml"/>
+    <include href="naf_tcr__sh_hmin7__sh_m_imin3__sh_m_rmin2_5.channel.nml"/>
+    <include href="nap.channel.nml"/>
+    <include href="napf.channel.nml"/>
+    <include href="napf__a0__b0__c0__d0__fastNa_shift0.channel.nml"/>
+    <include href="napf__a0__b0__c0__d0__fastNa_shift0.channel.nml"/>
+    <include href="napf_spinstell.channel.nml"/>
+    <include href="napf_spinstell__a0__b0__c0__d0__fastNa_shiftmin2_5.channel.nml"/>
+    <include href="napf_spinstell__a0__b0__c0__d0__fastNa_shiftmin2_5.channel.nml"/>
+    <include href="napf_tcr.channel.nml"/>
+    <include href="napf_tcr__a0__b0__c0__d0__fastNa_shift7.channel.nml"/>
+    <include href="napf_tcr__a0__b0__c0__d0__fastNa_shift7.channel.nml"/>
+    <include href="nRT.cell.nml"/>
+    <include href="pas.channel.nml"/>
+    <include href="pas.channel.nml"/>
+    <include href="pas.channel.nml"/>
+    <include href="pas.channel.nml"/>
+    <include href="pas.channel.nml"/>
+    <include href="pas.channel.nml"/>
+    <include href="pas.channel.nml"/>
+    <include href="pas.channel.nml"/>
+    <include href="pas.channel.nml"/>
+    <include href="pas.channel.nml"/>
+    <include href="pas.channel.nml"/>
+    <include href="pas.channel.nml"/>
+    <include href="pas.channel.nml"/>
+    <include href="pas.channel.nml"/>
+    <include href="SupAxAx.cell.nml"/>
+    <include href="SupBasket.cell.nml"/>
+    <include href="SupLTSInter.cell.nml"/>
+    <include href="Syn_AMPA_L4SS_IN.synapse.nml"/>
+    <include href="Syn_AMPA_L4SS_L4SS.synapse.nml"/>
+    <include href="Syn_AMPA_L4SS_Pyr.synapse.nml"/>
+    <include href="Syn_AMPA_L5IB_DeepFS.synapse.nml"/>
+    <include href="Syn_AMPA_L5IB_DeepLTS.synapse.nml"/>
+    <include href="Syn_AMPA_L5IB_L4SS.synapse.nml"/>
+    <include href="Syn_AMPA_L5IB_L5Pyr.synapse.nml"/>
+    <include href="Syn_AMPA_L5IB_L6NT.synapse.nml"/>
+    <include href="Syn_AMPA_L5IB_SupFS.synapse.nml"/>
+    <include href="Syn_AMPA_L5IB_SupLTS.synapse.nml"/>
+    <include href="Syn_AMPA_L5IB_SupPyr.synapse.nml"/>
+    <include href="Syn_AMPA_L5RS_DeepFS.synapse.nml"/>
+    <include href="Syn_AMPA_L5RS_DeepLTS.synapse.nml"/>
+    <include href="Syn_AMPA_L5RS_L4SS.synapse.nml"/>
+    <include href="Syn_AMPA_L5RS_L5Pyr.synapse.nml"/>
+    <include href="Syn_AMPA_L5RS_L6NT.synapse.nml"/>
+    <include href="Syn_AMPA_L5RS_SupFS.synapse.nml"/>
+    <include href="Syn_AMPA_L5RS_SupLTS.synapse.nml"/>
+    <include href="Syn_AMPA_L5RS_SupPyr.synapse.nml"/>
+    <include href="Syn_AMPA_L6NT_DeepFS.synapse.nml"/>
+    <include href="Syn_AMPA_L6NT_DeepLTS.synapse.nml"/>
+    <include href="Syn_AMPA_L6NT_L4SS.synapse.nml"/>
+    <include href="Syn_AMPA_L6NT_L5Pyr.synapse.nml"/>
+    <include href="Syn_AMPA_L6NT_L6NT.synapse.nml"/>
+    <include href="Syn_AMPA_L6NT_nRT.synapse.nml"/>
+    <include href="Syn_AMPA_L6NT_SupFS.synapse.nml"/>
+    <include href="Syn_AMPA_L6NT_SupLTS.synapse.nml"/>
+    <include href="Syn_AMPA_L6NT_SupPyr.synapse.nml"/>
+    <include href="Syn_AMPA_L6NT_TCR.synapse.nml"/>
+    <include href="Syn_AMPA_SupPyr_DeepFS.synapse.nml"/>
+    <include href="Syn_AMPA_SupPyr_DeepLTS.synapse.nml"/>
+    <include href="Syn_AMPA_SupPyr_L4SS.synapse.nml"/>
+    <include href="Syn_AMPA_SupPyr_L5Pyr.synapse.nml"/>
+    <include href="Syn_AMPA_SupPyr_L6NT.synapse.nml"/>
+    <include href="Syn_AMPA_SupPyr_SupFS.synapse.nml"/>
+    <include href="Syn_AMPA_SupPyr_SupLTS.synapse.nml"/>
+    <include href="Syn_AMPA_SupPyr_SupPyr.synapse.nml"/>
+    <include href="Syn_AMPA_TCR_DeepAxAx.synapse.nml"/>
+    <include href="Syn_AMPA_TCR_DeepBask.synapse.nml"/>
+    <include href="Syn_AMPA_TCR_L4SS.synapse.nml"/>
+    <include href="Syn_AMPA_TCR_L5Pyr.synapse.nml"/>
+    <include href="Syn_AMPA_TCR_L6NT.synapse.nml"/>
+    <include href="Syn_AMPA_TCR_nRT.synapse.nml"/>
+    <include href="Syn_AMPA_TCR_SupFS.synapse.nml"/>
+    <include href="Syn_AMPA_TCR_SupPyr.synapse.nml"/>
+    <include href="Syn_Elect_CortIN_CortIN.nml"/>
+    <include href="Syn_Elect_DeepPyr_DeepPyr.nml"/>
+    <include href="Syn_Elect_L4SS_L4SS.nml"/>
+    <include href="Syn_Elect_nRT_nRT.nml"/>
+    <include href="Syn_Elect_SupPyr_SupPyr.nml"/>
+    <include href="Syn_GABAA_DeepAxAx_Pyr.synapse.nml"/>
+    <include href="Syn_GABAA_DeepBask_DeepFS.synapse.nml"/>
+    <include href="Syn_GABAA_DeepBask_DeepLTS.synapse.nml"/>
+    <include href="Syn_GABAA_DeepBask_L5Pyr.synapse.nml"/>
+    <include href="Syn_GABAA_DeepBask_L6NT.synapse.nml"/>
+    <include href="Syn_GABAA_DeepFS_L4SS.synapse.nml"/>
+    <include href="Syn_GABAA_DeepLTS_DeepFS.synapse.nml"/>
+    <include href="Syn_GABAA_DeepLTS_DeepLTS.synapse.nml"/>
+    <include href="Syn_GABAA_DeepLTS_L4SS.synapse.nml"/>
+    <include href="Syn_GABAA_DeepLTS_L5IB.synapse.nml"/>
+    <include href="Syn_GABAA_DeepLTS_L5RS.synapse.nml"/>
+    <include href="Syn_GABAA_DeepLTS_L6NT.synapse.nml"/>
+    <include href="Syn_GABAA_DeepLTS_SupFS.synapse.nml"/>
+    <include href="Syn_GABAA_DeepLTS_SupLTS.synapse.nml"/>
+    <include href="Syn_GABAA_DeepLTS_SupPyr.synapse.nml"/>
+    <include href="Syn_GABAA_nRT_nRT_s.synapse.nml"/>
+    <include href="Syn_GABAA_nRT_TCR_s.synapse.nml"/>
+    <include href="Syn_GABAA_SupAxAx_DeepPyr.synapse.nml"/>
+    <include href="Syn_GABAA_SupAxAx_L4SS.synapse.nml"/>
+    <include href="Syn_GABAA_SupAxAx_SupPyr.synapse.nml"/>
+    <include href="Syn_GABAA_SupBask_L4SS.synapse.nml"/>
+    <include href="Syn_GABAA_SupBask_SupAxAx.synapse.nml"/>
+    <include href="Syn_GABAA_SupBask_SupBask.synapse.nml"/>
+    <include href="Syn_GABAA_SupBask_SupLTS.synapse.nml"/>
+    <include href="Syn_GABAA_SupBask_SupPyr.synapse.nml"/>
+    <include href="Syn_GABAA_SupLTS_FS.synapse.nml"/>
+    <include href="Syn_GABAA_SupLTS_L4SS.synapse.nml"/>
+    <include href="Syn_GABAA_SupLTS_L5Pyr.synapse.nml"/>
+    <include href="Syn_GABAA_SupLTS_L6NT.synapse.nml"/>
+    <include href="Syn_GABAA_SupLTS_LTS.synapse.nml"/>
+    <include href="Syn_GABAA_SupLTS_SupPyr.synapse.nml"/>
+    <include href="Syn_NMDA_FRBPyr_DeepLTS.synapse.nml"/>
+    <include href="Syn_NMDA_FRBPyr_SupFS.synapse.nml"/>
+    <include href="Syn_NMDA_FRBPyr_SupLTS.synapse.nml"/>
+    <include href="Syn_NMDA_L4SS_IN.synapse.nml"/>
+    <include href="Syn_NMDA_L4SS_L4SS.synapse.nml"/>
+    <include href="Syn_NMDA_L4SS_Pyr.synapse.nml"/>
+    <include href="Syn_NMDA_L5IB_DeepPyr.synapse.nml"/>
+    <include href="Syn_NMDA_L5IB_IN.synapse.nml"/>
+    <include href="Syn_NMDA_L5IB_L4SS.synapse.nml"/>
+    <include href="Syn_NMDA_L5IB_SupPyr.synapse.nml"/>
+    <include href="Syn_NMDA_L5RS_DeepIN.synapse.nml"/>
+    <include href="Syn_NMDA_L5RS_DeepPyr.synapse.nml"/>
+    <include href="Syn_NMDA_L5RS_L4SS.synapse.nml"/>
+    <include href="Syn_NMDA_L5RS_SupIN.synapse.nml"/>
+    <include href="Syn_NMDA_L5RS_SupPyr.synapse.nml"/>
+    <include href="Syn_NMDA_L6NT_DeepFS.synapse.nml"/>
+    <include href="Syn_NMDA_L6NT_DeepLTS.synapse.nml"/>
+    <include href="Syn_NMDA_L6NT_DeepPyr.synapse.nml"/>
+    <include href="Syn_NMDA_L6NT_L4SS.synapse.nml"/>
+    <include href="Syn_NMDA_L6NT_nRT.synapse.nml"/>
+    <include href="Syn_NMDA_L6NT_SupFS.synapse.nml"/>
+    <include href="Syn_NMDA_L6NT_SupLTS.synapse.nml"/>
+    <include href="Syn_NMDA_L6NT_SupPyr.synapse.nml"/>
+    <include href="Syn_NMDA_L6NT_TCR.synapse.nml"/>
+    <include href="Syn_NMDA_RSPyr_DeepLTS.synapse.nml"/>
+    <include href="Syn_NMDA_RSPyr_SupFS.synapse.nml"/>
+    <include href="Syn_NMDA_RSPyr_SupLTS.synapse.nml"/>
+    <include href="Syn_NMDA_SupPyr_DeepFS.synapse.nml"/>
+    <include href="Syn_NMDA_SupPyr_L4SS.synapse.nml"/>
+    <include href="Syn_NMDA_SupPyr_L5Pyr.synapse.nml"/>
+    <include href="Syn_NMDA_SupPyr_L6NT.synapse.nml"/>
+    <include href="Syn_NMDA_SupPyr_SupPyr.synapse.nml"/>
+    <include href="Syn_NMDA_TCR_DeepAxAx.synapse.nml"/>
+    <include href="Syn_NMDA_TCR_DeepBask.synapse.nml"/>
+    <include href="Syn_NMDA_TCR_L4SS.synapse.nml"/>
+    <include href="Syn_NMDA_TCR_L5Pyr.synapse.nml"/>
+    <include href="Syn_NMDA_TCR_L6NT.synapse.nml"/>
+    <include href="Syn_NMDA_TCR_nRT.synapse.nml"/>
+    <include href="Syn_NMDA_TCR_SupFS.synapse.nml"/>
+    <include href="Syn_NMDA_TCR_SupPyr.synapse.nml"/>
+    <include href="TCR.cell.nml"/>
+    
+</neuroml>

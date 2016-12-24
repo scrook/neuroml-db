@@ -5,7 +5,7 @@ db_server = "spike.asu.edu"
 db_name = "neuroml_dev"
 #model_csv_file = "ChannelsReformat.csv"
 #model_csv_file = "ChannelsReformatConcModel.csv"
-model_csv_file = "cells_data.csv"
+model_csv_file = "Traub2005_NT.csv"
 
 import MySQLdb
 import splinter
@@ -97,6 +97,7 @@ class BatchNeuroML:
     # referential integrity from specific metadata table to metadatas     
     insert_authorList_template = Template("INSERT into author_lists(AuthorList_ID) values ($metaid)")
     insert_author_list_association_template = Template("INSERT into author_list_associations(AuthorList_ID, Person_ID, author_sequence, is_translator, Comments) values ($alid, $pid, $seq,'$aort', '')")
+    insert_keyword_template = Template("INSERT into other_keywords(Other_Keyword_ID, Other_Keyword_Term, Comments) values ($metaid, '$keywords', '') " )
     insert_keyword_template = Template("INSERT into other_keywords(Other_Keyword_ID, Other_Keyword_Term, Comments) values ($metaid, '$keywords', '') " )
     insert_neurolex_template = Template("INSERT into neurolexes(NeuroLex_ID, NeuroLex_URI, NeuroLex_Term, Comments) values ($metaid, '$uri', '$term', '')")
     insert_people_template = Template("INSERT into people(Person_ID, Person_First_Name, Person_Middle_Name, Person_Last_Name, Institution, Email, Comments) values($metaid, '$first', null, '$last', null, null, '')")
@@ -289,9 +290,9 @@ class BatchNeuroML:
     def process_author_translators(self, out, line, author_tuples, model_ID):  
         # assumes only 1 translator at this point; need to revise if invalid assumption!!!
         # Coded for "fuzzy" comparison of author/translator to match on lastname and first initial
-        firstname, __, lastname= line.translator.partition(" ")  
-        translator = self.Author(lastname, firstname) 
-        next_authorList_id = self.add_authorList(out, model_ID)   
+        firstname, __, lastname= line.translator.partition(" ")
+        translator = self.Author(lastname, firstname)
+        next_authorList_id = self.add_authorList(out, model_ID)
         translator_is_author = False
         author_sequence = 0
         for author in author_tuples:
@@ -305,7 +306,7 @@ class BatchNeuroML:
             self.add_person_to_author_list(out, person_ID, next_authorList_id, self.author_translator[author_or_translator], author_sequence)
         if not translator_is_author:
             person_ID = self.process_person(out, translator)
-            self.add_person_to_author_list(out, person_ID, next_authorList_id, self.author_translator["translator"], 0)        
+            self.add_person_to_author_list(out, person_ID, next_authorList_id, self.author_translator["translator"], 0)
             return next_authorList_id
     
     def process_line_pubmed_authors_translators(self, out, line, model_ID):
@@ -354,7 +355,10 @@ class BatchNeuroML:
             else:
                 logging.error('INVALID INPUT: No pubmedID; No authors; No translators specified>' + str(line))
     
-    def process_line_neurolex(self, out, line, model_ID): 
+    def process_line_neurolex(self, out, line, model_ID):
+        if line.neurolexTerm is None or line.neurolexTerm.strip() == "":
+            return
+
         neurolex_terms = line.neurolexTerm.split(',')
         neurolex_uris = line.neurolexURI.split(',')
 
@@ -441,6 +445,8 @@ class BatchNeuroML:
                             insert_child_association = self.insert_child_template.get(parent_child_type).substitute(parent=model_ID, child=child_model_ID)
                             logging.info(insert_child_association)
                             out.write(insert_child_association + ';\n')
+                        elif parent_child_type == 'NTCH':
+                            continue # networks don't have channel children, but are often part of includes in NML file
                         else:
                             logging.error('Incorrect parent-child association')
                 except Exception as e:
