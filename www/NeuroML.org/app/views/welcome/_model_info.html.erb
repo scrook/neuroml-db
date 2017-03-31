@@ -1,0 +1,279 @@
+
+
+<div id="model_window">
+                                                <!-- title -->
+                                                <div id="page-title">
+                                                        <h4>Model Information</h4><!--<div id="close_model" onclick="closemodel()">X</div>-->
+                                                </div>
+<table id="model_info">
+<tr>
+<td class="keyword">
+Model Id:
+</td>
+<td class="description">
+<%= @model_id %>
+</td>
+</tr>
+
+
+<tr>
+<td class="keyword">
+Model Type:
+</td>
+
+<td class="description">
+<%= @type %>
+</td>
+</tr>
+
+
+<tr>
+<td class="keyword">
+Model Name:
+</td>
+
+<td class="description">
+<%= @name %>
+</td>
+</tr>
+
+<tr>
+<td class="keyword">
+Author(s):
+</td>
+
+<td class="description">
+<% if @auth_list.any? %>
+<% @auth_list.each do |author| %>
+<%=  author %><br>
+<% end %>
+<%else%>
+None
+<%end %>
+
+</td>
+</tr>
+
+<tr>
+<td class="keyword">
+Publication(s):
+</td>
+<td class="description">
+<% if @pub_list.any? %>
+<% @pub_list.each do |key,value|     %>
+<a target="_blank" href="http://www.ncbi.nlm.nih.gov/<%= key %>"><%= value %></a><br>
+<%end%>
+<%else%>
+None
+<%end %>
+
+</td>
+</tr>
+
+<tr>
+<td class="keyword">
+Neurolex ID(s):
+</td>
+
+<td class="description">
+<% if @nlx_list.any? %>
+<% @nlx_list.each do |key,value| %>
+<a target="_blank" href="http://neurolex.org/wiki/<%= key%>"><%= value %></a><br>
+<%end%>
+<%else%>
+None
+<%end %>
+
+</td>
+</tr>
+
+<tr>
+<td class="keyword">
+References:
+</td>
+
+<td class="description">
+<% if @ref_list.any? %>
+<% @ref_list.each do |key,value|     %>
+<a target="_blank" href="<%= key%>"><%= value %></a><br>
+<%end%>
+<%else%>
+None
+<%end %>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="keyword">
+Keywords:
+</td>
+
+<td class="description">
+<% if @keywords_model.blank? %>
+None
+<% else%>
+<%= @keywords_model %>
+<%end %>
+</td>
+</tr>
+
+<% if @type == "Cell" %>
+
+<tr>
+<td class="keyword">
+Associated Channel(s):
+</td>
+<td class="description">
+<% if @channel_list.any? %>
+<% @channel_list.each do |channel_id| %>
+<a class="fancybox" href="/model_info?model_id=<%=channel_id%>"><%= channel_id %></a>
+<% end %>
+<%else%>
+None
+<%end %>
+</td>
+</tr>
+<tr>
+<td class="keyword">
+Associated Syanpse(s):
+</td>
+<td class="description">
+<% if @syn_list.any? %>
+<% @syn_list.each do |syn_id|%>
+<a class="fancybox" href="/model_info?model_id=<%=syn_id%>"><%=syn_id%></a>
+<% end %>
+<%else%>
+None
+<%end %>
+</td>
+</tr>
+<tr>
+<td class="keyword">
+Associated Network(s):
+</td>
+<td class="description">
+<% if @network_list.any? %>
+<% @network_list.each do |network_id|%>
+<a class="fancybox" href="/model_info?model_id=<%=network_id%>"><%=network_id%></a>
+<% end %>
+<%else%>
+None
+<%end %>
+</td>
+</tr>
+
+<% elsif @type == "Channel" %>
+
+<tr>
+<td class="keyword">
+Associated Cell(s):
+</td>
+<td class="description">
+<% if @cell_list.any? %>
+<% @cell_list.each do |cell_id|%>
+<a  class="fancybox" href="/model_info?model_id=<%=cell_id%>"><%=cell_id%></a>
+<% end %>
+<%else%>
+None
+<%end %>
+</td>
+</tr>
+
+
+<% elsif @type == "Network" %>
+
+<tr>
+<td class="keyword">
+Associated Cell(s):
+</td>
+<td class="description">
+<% if @cell_list.any? %>
+<% @cell_list.each do |cell_id|%>
+<a class="fancybox" href="/model_info?model_id=<%=cell_id%>"><%=cell_id%></a>
+<% end %>
+<%else%>
+None
+<%end %>
+</td>
+</tr>
+<tr>
+<td class="keyword">
+Associated Syanpse(s):
+</td>
+
+<td class="description">
+<% if @syn_list.any? %>
+<% @syn_list.each do |syn_id|%>
+<a  class="fancybox" href="/model_info?model_id=<%=syn_id%>"><%=syn_id%></a>
+<% end %>
+<%else%>
+None
+<%end %>
+</td>
+</tr>
+
+<% else %>
+<tr>
+<td class="keyword">
+Associated Network(s):
+</td>
+
+<td class="description">
+<% if @network_list.any? %>
+<% @network_list.each do |network_id|%>
+<a class="fancybox" href="/model_info?model_id=<%=network_id%>"><%=network_id%></a>
+<% end %>
+<%else%>
+None
+<%end %>
+</td>
+</tr>
+
+<tr>
+<td class="keyword">
+Associated Cell(s):
+</td>
+
+<td class="description">
+<% if @cell_list.any? %>
+<% @cell_list.each do |cell_id|%>
+<a  class="fancybox" href="/model_info?model_id=<%=cell_id%>"><%=cell_id%></a>
+<% end %>
+<%else%>
+None
+<%end %>
+</td>
+</tr>
+
+
+<% end %>
+
+
+<tr>
+<td class="keyword">
+<% if @type == "Cell" %>
+Morph ML File
+<% elsif @type == "Channel" %>
+Channel ML File
+<% elsif @type == "Network" %>
+Network ML File
+<% else %>
+Synapse ML File
+<% end %>
+</td>
+
+<td class="description">
+<a class="fancybox" href="http://www.neuroml.org/NeuroMLValidator/Transform.jsp?localFile=NeuroMLFiles/Examples/ChannelML/Granule_98.xml&xslFile=NeuroMLFiles/Schemata/v1.8.1/Level3/NeuroML_Level3_v1.8.1_HTML.xsl"><%= @filename %></a>
+</td>
+</tr>
+</table>
+ <!-- ENDS title -->
+                                                                <div class="clear"></div>
+                                                <!-- ENDS project column (right) -->
+
+
+                                        </div>
+                                        <!-- ENDS content -->
+

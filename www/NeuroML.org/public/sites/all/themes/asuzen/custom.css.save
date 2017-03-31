@@ -1,0 +1,549 @@
+/**
+*  Title: ASU Zen Theme (Gold)
+*  Copyright: (c) 2008 Arizona State University
+*  Author: Jeff Beeman, Kathy Marks, Nathan Gudmunson 
+*  Description: Custom style rules to override asuzen.css 
+*/
+
+@import url("/sites/all/themes/asuzen/layout.css");
+
+
+
+img{border:0;}
+
+.clear-block:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+
+.clear-block{display:inline-block;}
+
+/* Hides from IE-mac \*/* html .clear-block{height:1%;}
+
+.clear-block{display:block;}
+
+/*table style */
+
+table{border-collapse:collapse;border-spacing:0;}
+
+th{text-align:left;padding-right:1em;border-bottom:3px solid #ccc;}
+
+th.active img{display:inline;}
+
+tr.even,tr.odd{background-color:#eee;border-bottom:1px solid #ccc;padding:0.1em 0.6em;}
+
+td.active{background-color:#ddd;}tbody{border-top:none medium;}
+
+tbody th{border-bottom:1px solid #999;}
+
+thead th{text-align:left;padding-right:1em;border-bottom:3px solid #ccc;}
+
+
+tr.odd .form-item,tr.even .form-item{margin-top:0;margin-bottom:0;white-space:nowrap;}
+:q^:merge-down,tr.merge-down td,tr.merge-down th{border-bottom-width:0 !important;}
+
+tr.merge-up,tr.merge-up td,tr.merge-up th{border-top-width:0 !important;}
+
+
+
+
+/* menu styles */
+
+ul.menu{list-style:none;border:none;text-align:left;}
+
+ul.menu li{margin:0 0 0 0.5em;}
+
+li.expanded{list-style-type:circle;list-style-image:url(/modules/system/../../misc/menu-expanded.png);padding:0.2em 0.5em 0 0;margin:0;}
+
+li.collapsed{list-style-type:disc;list-style-image:url(/modules/system/../../misc/menu-collapsed.png);padding:0.2em 0.5em 0 0;margin:0;}
+
+li.leaf{list-style-type:none;list-style-image:url(/modules/system/../../misc/menu-leaf.png);padding:0.2em 0.5em 0 0;margin:0;}
+
+li a.active{color:#000;}
+
+td.menu-disabled{background:#ccc;}
+
+ul.links{margin:0;padding:0;}
+
+ul.links.inline{display:inline;}
+
+ul.links li{display:inline;list-style-type:none;padding:0 0.5em;}
+
+.block ul{margin:0;padding:0 0 0.25em 1em;}
+
+ul.primary{border-collapse:collapse;padding:0 0 0 1em;white-space:nowrap;list-style:none;margin:5px;height:auto;line-height:normal;border-bottom:1px solid #bbb;}
+
+ul.primary li{display:inline;}
+
+ul.primary li a{background-color:#ddd;border-color:#bbb;border-width:1px;border-style:solid solid none solid;height:auto;margin-right:0.5em;padding:0 1em;text-decoration:none;}
+
+
+ul.primary li.active a{background-color:#fff;border:1px solid #bbb;border-bottom:#fff 1px solid;}
+
+
+ul.primary li a:hover{background-color:#eee;border-color:#ccc;border-bottom-color:#eee;}
+
+ul.secondary{border-bottom:1px solid #bbb;padding:0.5em 1em;margin:5px;}ul.secondary li{display:inline;padding:0 1em;border-right:1px solid #ccc;}
+
+ul.secondary a{padding:0;text-decoration:none;}
+
+ul.secondary a.active{border-bottom:4px solid #999;}
+
+.block li.leaf, ul.menu li.leaf {
+list-style-image:none;
+}
+
+.block ul li {
+}
+
+/* end menu styles */
+
+/* page styles */
+
+.breadcrumb{padding-bottom:.5em}.error{color:#f00;}
+
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,quote,th,td{margin:0;padding:0;}
+
+
+fieldset,img{border:0;}
+
+
+ol,ul{list-style:none;}
+
+
+body{color:#000000;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-size-adjust:none;font-style:normal;font-variant:normal;font-weight:normal;line-height:1.33em;}
+
+strong{font-weight:bold;}
+
+em{font-style:italic;}
+
+/* link styles */
+
+a{color:#990033;text-decoration: none;font-weight:bold; }
+
+a:hover{color:#000;text-decoration: none;font-weight:bold;}
+
+p{margin:.75em 0;}ul{list-style-type:disc;}
+
+ol{list-style-type:decimal;}
+
+ul,ol{margin:1.12em 0 1.12em 40px;}
+
+dt{font-weight:bold;}
+
+dd{margin-bottom:1em;margin-left:1em;}
+
+fieldset{border:1px solid #cccccc;margin:1em 0pt;padding:1em;}
+
+
+#asu_container li.last,#asu_login_module li.last,#asu_container li.no-border,#asu_login_module li.no-border{border:none;}
+
+#asu_login_module li{font-weight:bold;}
+
+/* text and header styles */
+
+h1.title {
+background: transparent;
+border-bottom:medium none;
+color:#505050;
+font-size:2.11em;
+font-weight:normal;
+line-height:1.33em;
+margin:5px 0 10px;
+padding:10px 0;
+
+}
+
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+
+
+h1 a{text-decoration:none;}
+
+h2{border-bottom:0px solid #CCCCCC;color:#505050;font-size:1.5em;font-weight:normal;line-height:1.33em;margin:0 0 0.25em 0;padding:5px 0;}
+
+h2 a{text-decoration:none;}
+
+h3{border-bottom:1px solid #CCCCCC;color:#505050;font-size:1.1em;font-weight:bold;letter-spacing:2px;line-height:1.33em;margin:1.06em 0pt 0.625em;padding:5px 0pt;text-transform:uppercase;}
+
+h4{border-bottom:1px solid #CCCCCC;color:#505050;font-size:.95em;font-weight:bold;margin:1.07em 0pt 0.71em;padding:5px 0pt;}
+
+h4 a{text-decoration:none;}
+
+/* end text and header styles */
+
+p.skip,ul.skip{position:absolute;left:-10000px;}
+
+#asu_search_module{font-size:0.92em;}
+
+#asu_search_module input#asu_search{width:15.1em;}
+
+.block .title{border-bottom:0px solid #CCCCCC;font-size:1.67em;font-weight:normal;line-height:1.33em;margin:0 0pt 0.75em;padding:5px 0pt;}
+
+.sidebar a{text-decoration:none;}
+
+#logo-title{padding-top:34px;padding-left:28px;background:#FFCC66 url(/sites/all/themes/asuzen/images/asu_hdr_sunburst.gif) no-repeat scroll right bottom;height:66px;z-index:10;}
+
+#logo{float:left;margin-right:30px;}
+
+
+
+
+table{color:#333;width:100%;margin:1em 0;}
+
+th,tr.header th,tr.header td{border:0px solid #ddd;background-color:#ffffff;padding:4px 12px;color:#555;font-weight:bold;text-align:left;}
+
+td,td.column_header{border:0px solid #ddd;padding:4px 12px;text-align:left;}
+
+td.column_header{color:#555;font-weight:bold;width:200px;}
+
+td.narrow_cell{text-align:center;width:5%;}
+
+tr.footer td{background-color:#E1D1B3;border:0px solid #ddd;padding:4px 12px;}
+
+tr.odd td{border:0px solid #ddd;background-color:#fbfbf3;padding:4px 12px;vertical-align:top;}
+
+tr.even td{
+border:0px solid #ddd;background-color:#f2f2eb;padding:4px 12px;vertical-align:top;}
+
+tr.selected td{
+border:0px solid #ddd;background-color:#FFE8B7;padding:4px 12px;vertical-align:top;}
+
+table#attachments{width:auto;}
+
+caption{font-weight:bold;}input#edit-title{font-size:1.75em;font-weight:bold;}#forum td.icon{width:16px;}
+
+.breadcrumb{
+
+margin:0;
+font-size:.95em;
+padding-bottom:.25em;
+padding-top: 0.45em;}
+
+.description{color:#838383;}
+
+
+
+
+
+
+
+#block-menu-2 .title {
+
+display:none;
+
+
+}
+
+
+
+/**
+* =FIXED WIDTH, centered layout
+* Comment out these styles to restore a fluid a layout
+* Also, comment out the corresponding rules in ie6.css
+* and ie7.css
+*/
+body {
+	background-color: #ddd;  /* customize at will */
+}
+.asu_set_fixed_width {
+	width: 999px;
+	margin: 0 auto;
+	background-color: #fff;
+}
+
+
+
+#header-blocks{
+
+clear:both;
+margin-top:-10px;
+
+}
+
+#header-blocks .block h2{margin:0;padding:0;border:none;}
+
+
+
+
+#content-inner {
+overflow:hidden;
+padding:11px 0.001em 1;
+font-size:1.1em;
+line-height:1.4em;
+}
+
+
+body.maintenance
+
+
+
+#sidebar-right {
+background:  url(images/asu_single_col_divider.gif) repeat-y scroll 235px 0;
+margin-top:0.5em;
+padding:0 10px 10px;
+}
+
+
+body.both-sidebars #content-inner {
+border-right:medium solid #b9b9b9;
+margin:10px 210px;
+padding-right:25px;
+
+}
+
+body.both-sidebars .breadcrumb {
+
+margin:0px;
+margin-top:-5px;
+padding-right:25px;
+
+}
+
+
+#asu_container {
+background:transparent url(/sites/all/themes/asuzen/images/bg.jpg) repeat-y scroll 0 0;
+margin-top:0;
+}
+
+
+
+#main {
+margin:0;
+width:950px;
+}
+
+ul.menu li a {
+color:#000000;
+font-size:1em;
+font-weight:bold;
+}
+
+ul.menu li ul li a {
+font-size:0.9em;
+font-weight:normal;
+}
+
+ul.menu li ul li ul li a {
+font-size:0.8em;
+font-weight:normal;
+}
+
+
+.block li.expanded, ul.menu li.expanded a{
+
+color:#990033;
+}
+
+.block-inner .content ul.menu {custom.css (line 112)
+font-family:Arial,Helvetica,sans-serif;
+font-weight:bold;
+margin-top:0;
+font-size: 1.1em;
+}
+
+
+/**
+* END FIXED WIDTH
+*/
+
+
+#block-block-4 {
+margin-top:-29px;
+}
+
+/* footer */
+
+#asu_footer li.last,#asu_footer li.no-border,#asu_login_search li.last{border-right:none;}
+
+#footerStyles a {
+color:#990033;
+text-decoration:none;
+}
+
+
+#calpopup-body {
+background-color:#FFFFFF;
+border:1px dotted #CCCCCC;
+margin-left:600px;
+margin-top:-670px;
+position:absolute;
+width:200px;
+}
+
+#popup-close {
+
+background-color:#FFFFFF;
+border:1px dotted #CCCCCC;
+margin-left:600px;
+margin-top:-670px;
+position:absolute;
+width:200px;
+}
+
+#content-inner .mini {
+font-size:0.8em;
+line-height:1.1em;
+}
+
+
+.mini {
+width:10px;
+}
+
+#mini {
+width:50px;
+}
+
+.calendar_div {
+background-color:#FFFFFF;
+border:1px dotted #CCCCCC;
+
+
+}
+
+#calendar_div {
+background-color:#FFFFFF;
+border:1px dotted #CCCCCC;
+
+
+}
+
+#clasMark {
+	margin-top:-18px;
+}
+#clasMark td, td.column_header {
+	border:none;
+}
+
+#asu_search_module input.asu_search_button {
+background-color:#FFCB66;
+border:medium none;
+color:#231F20;
+display:block;
+float:right;
+margin:-45px 0 0;
+padding:0;
+text-indent:-21.05em;
+}
+
+
+
+.form-item {
+margin-bottom:1em;
+margin-top:1em;
+}
+
+.form-submit {
+margin-bottom:3em;
+margin-top:1em;
+}
+
+#block-block-18 p {
+margin-left: 20px;
+margin-top: 0;
+color: #000000;
+font-size: 1em;
+
+}
+
+#block-block-18 p a {
+color: #000;
+font-size: 1.1em;
+font-weight: bold;
+}
+
+
+#content .node table.mediumtab {
+	width:550px;
+}
+
+.imgposition1
+{
+margin:2px;
+padding-right:5px;
+  float:left;
+  text-align:center;
+}
+
+.imgposition2
+{
+ position: relative;
+padding-left:5px; 
+  float:right;
+  text-align:center;
+}
+
+.imgposition3
+{
+ position: relative;
+padding-right:5px;  
+float:left;
+  text-align:center;
+}
+
+.imgposition4
+{
+ position: relative;
+padding-left:5px;   
+float:right;
+text-align:center;
+}
+
+.meta { display:none; }
+
+
+.views-field-field-image-fid
+{
+
+padding-top:10px;
+padding-bottom:10px;
+padding-right:10px;
+padding-left:10px;
+border-style:solid;
+border-color: rgb(36,66,116);
+border-width:1px;
+
+}
+
+.views-view-grid
+{
+width:550px;
+
+}
+
+
+.views-field-field-mimage-fid
+{
+
+border-style:solid;
+border-color: rgb(36,66,116);
+border-width:1px;
+
+}
+
+
+img.floatLeft { 
+ 
+ position: relative;
+padding-right:5px;   
+float:left;
+text-align:center;
+margin: 0 10px 10px 0;
+}
+
+img.floatRight { 
+ 
+ position: relative;
+padding-left:5px;   
+float:right;
+text-align:center;
+margin: 0 0 10px 10px;
+
+}
+
+a.description {
+ position: relative;
+
+text-align:center;
+margin: 0 0 10px 10px;
+}
+
+

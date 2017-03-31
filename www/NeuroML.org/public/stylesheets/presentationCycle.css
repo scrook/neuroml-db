@@ -1,0 +1,66 @@
+.pc_container {
+    width: 600px;
+    height: 200px;
+    padding: 15px 1px 47px 1px;
+    background-image: url('../images/pc_bg.png');
+    margin: 0px auto;
+}
+
+.pc_container .pc_item {
+    margin-top: 15px;
+    margin-left: 1px;
+    width: 600px;
+    height: 200px;
+}
+
+.pc_container .pc_bar_container {
+    position: absolute;
+    top: 230px;
+    color: white;
+    padding: 0px 10px 0px 10px;
+    width: 100%;
+    overflow:visible;
+}
+
+.pc_bar_container_underflow {
+    width: 90000px;
+    overflow: visible;
+}
+
+.pc_bar_container_overflow {
+    overflow: hidden;
+    position: absolute;
+    top: 230px;
+    color: white;
+    margin: 0px 10px 0px 10px;
+    padding: 0px;
+}
+
+.left, .center, .right {
+    background-position: left;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    font-size: 1px;
+    float: left;
+}
+
+.bar {
+    background-position: left;
+    overflow: hidden;
+    font-size: 1px;
+    float: left;
+}
+
+.pc_item .desc {
+    position: absolute;
+    width: 250px;
+    padding: 10px;
+    height: 180px;
+    line-height: 1.8em;
+    right: 0px;
+    background-image: url(../images/slide_fade.png);
+}
+
+.pc_item .desc h1 {
+    color: #DE8F26;    
+}

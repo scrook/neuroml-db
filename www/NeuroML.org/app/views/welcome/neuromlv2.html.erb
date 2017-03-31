@@ -1,0 +1,99 @@
+
+
+<% nml2_version = 'v2beta3' %>  <!-- TODO: find a global location for this...-->
+
+<!-- MAIN -->
+<div id="main">
+    <!-- wrapper-main -->
+    <div class="wrapper">
+
+        <!-- content -->
+        <div id="content">
+
+            <!-- title -->
+            <div id="page-title">
+                <span class="title">NeuroML Version 2.0</span>
+            </div>
+            <!-- ENDS title -->
+
+            <!-- filter -->
+            <ul style="margin-left:auto;margin-right:auto;width:560px;"class="filter">
+                <li></li>
+                <li class="active"><a href="/neuromlv2" >NeuroML version <%=nml2_version%></a></li>
+                <li><a href="/lems_dev" > LEMS and NeuroML 2 </a></li>
+                <li><a href="/mappings" > Mapping to other formats </a></li>
+            </ul>
+            <!-- ENDS filter -->
+            <img src="../images/tabs-divider.png" height="2" width="100%" />
+
+            <p>Developments towards NeuroML version 2.0 are well under way, but please note that <a href="specifications">v1.8.1</a> is still the 
+                version which is <a href="tool_support">most widely supported</a>.</p>
+            
+            <table id="highlighted" align="center" bgcolor="#CECEDE" border="1px" width="40%" frame="box">
+                <tr><td>For a quick overview of all specifications, documentation, examples & libraries for NeuroML see <a href="getneuroml">here</>.</td></tr>
+            </table>
+            <br/>
+
+            <p>For details of the meetings which have taken place to date where NeuroML v2.0 has been discussed see <a href="newsevents">here</a>.</p>
+
+            <p>In June 2013 the first <b>NeuroML Editorial Board</b> was elected by the NeuroML community. This group will have responsibility for 
+                creating a stable specification for NeuroML v2.0 (and appropriate parts of LEMS). See <a href="editors.php">here</a> for more details.</p>
+
+            <h2>NeuroML <%=nml2_version%> </h2>
+            <br/>
+            <p>The latest version of NeuroML is <b><%=nml2_version%></b>. The structure of NeuroML <%=nml2_version%> is defined by a
+                single <a href="http://www.w3schools.com/schema/default.asp">XML Schema</a> file:
+                <a href="https://github.com/NeuroML/NeuroML2/blob/master/Schemas/NeuroML2/NeuroML_<%=nml2_version%>.xsd">NeuroML_<%=nml2_version%>.xsd</a>.
+                This should be the target structure for anyone wishing to implement NeuroML 2 support in their application.</p>
+
+
+
+            <p align="center"><img alt="NeuroML <%=nml2_version%> structure" src="images/Figure6a.png" usemap="#NeuroMLstructure"/>
+                <map name="NeuroMLstructure" id="NeuroMLstructure" >
+                    <area  alt="Networks" title="Click here to view the definitions of the Network elements" href="http://www.neuroml.org/NeuroML2CoreTypes/Networks.html" shape="poly" coords="150,40,29,48,10,201,121,242,283,282,305,274" style="outline:none;" target="_self"     />
+                    <area  alt="Synapses" title="Click here to view the definitions of the Synapse elements" href="http://www.neuroml.org/NeuroML2CoreTypes/Synapses.html" shape="poly" coords="305,161,199,39,182,11,451,3,781,15,780,95,409,294,330,296,246,149,172,26,179,16" style="outline:none;" target="_self"     />
+                    <area  alt="Inputs" title="Click here to view the definitions of the Input elements" href="http://www.neuroml.org/NeuroML2CoreTypes/Inputs.html" shape="poly" coords="797,111,443,289,449,306,787,262" style="outline:none;" target="_self"     />
+                    <area  alt="Channels" title="Click here to view the definitions of the Ion Channel elements" href="http://www.neuroml.org/NeuroML2CoreTypes/Channels.html" shape="poly" coords="431,320,783,279,780,421,421,333" style="outline:none;" target="_self"     />
+                    <area  alt="Cells" title="Click here to view the definitions of the Cell elements" href="http://www.neuroml.org/NeuroML2CoreTypes/Cells.html" shape="poly" coords="387,339,761,438,731,597,41,602,11,394,316,335" style="outline:none;" target="_self"     />
+                    <area  alt="Cell morphology" title="Click here to view the definitions of the Cell morphology elements" href="http://www.neuroml.org/NeuroML2CoreTypes/Cells.html#morphology" shape="poly" coords="9,232,282,298,288,322,12,376" style="outline:none;" target="_self"     />
+                </map>
+
+
+            </p>
+            <p align="center"><i>This figure (taken from <a href="http://journal.frontiersin.org/Journal/10.3389/fninf.2014.00079/abstract">Cannon et al. 2014</a>)
+                    shows some of the elements currently defined in NeuroML <%=nml2_version%>. The overall structure is 
+                    similar to NeuroML version 1.x Level 3 (see figures 4-6 <a href="http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1000815">here</a>). 
+                    Note that there are a greater range of cell models supported
+                    (e.g. <a href="http://www.neuroml.org/NeuroML2CoreTypes/Cells.html#izhikevichCell">Izhikevich spiking cell</a>,
+                    <a href="http://www.neuroml.org/NeuroML2CoreTypes/Cells.html#adExIaFCell">adaptive exponential integrate & fire</a>) in addition to the 
+                    multicompartmental conductance based models which were a focus of version 1.x.</i></p>
+
+            <p>Examples of NeuroML 2 files using this schema are available here:</p>
+            <ul class="bluebullets">
+                <li>A <a href="https://github.com/NeuroML/NeuroML2/tree/master/examples/NML2_SimpleMorphology.nml">simple cell</a> with morphology & segment groups</li>
+                <li>A cell with <a href="https://github.com/NeuroML/NeuroML2/tree/master/examples/NML2_FullCell.nml">biophysical properties</a> (channel densities, passive electrical properties, etc.)</li>
+                <li>A simple <a href="https://github.com/NeuroML/NeuroML2/tree/master/examples/NML2_SimpleIonChannel.nml">HH Na<sup>+</sup> channel</a></li>
+                <li>Some of the <a href="https://github.com/NeuroML/NeuroML2/tree/master/examples/NML2_AbstractCells.nml">simplified spiking neuron models</a> which are supported</li>
+                <li>Some <a href="https://github.com/NeuroML/NeuroML2/tree/master/examples/NML2_SynapseTypes.nml">synapse models</a> (single/double exponential conductances, NMDA-R synapse)</li>
+                <li>A <a href="https://github.com/NeuroML/NeuroML2/tree/master/examples/NML2_NestedNetworks.nml">network of populations of cells</a> in 3D</li>
+                <li>A <a href="https://github.com/NeuroML/NeuroML2/tree/master/examples/NML2_FullNeuroML.nml">full NeuroML network model description</a> with cells, channels, populations and networks</li>
+            </ul>
+
+            
+            <br/>
+            <p>&nbsp; &nbsp; <a href="/lems_dev">LEMS and NeuroML 2...</a></p>
+            <br/>
+
+
+            <div class="clear"></div>
+            <!-- ENDS project column (right) -->
+
+
+        </div>
+        <!-- ENDS content -->
+
+    </div>
+    <!-- ENDS wrapper-main -->
+</div>
+<!-- ENDS MAIN -->
+

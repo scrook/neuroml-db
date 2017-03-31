@@ -1,0 +1,135 @@
+ASU ZEN THEME CHANGELOG
+
+6.x-1.4
+-------------------
+* Adjusted margins on header search button to account for Firefox 3.5+.
+
+6.x-1.3
+-------------------
+* Fixed margin on header search button for all ie browsers.
+
+6.x-1.2
+-------------------
+* Fixed instructions in README for enabled gold gradient secondary navigation bar.
+
+6.x-1.1
+-------------------
+* Added a node.tpl.php file for easier customizations.
+
+6.x-1.0
+-------------------
+* See CHANGELOG for many changes made to Zen base theme
+* New path for includes:
+	asu_head_tags.inc.php
+	asu_drupal_print
+	asu_header_login chg'd to asu_header_d6 and all options incorporated into the one header
+* added IE6png.js to force png transparency in ie6
+* Included new #asu_fixed_width div, which can be activated in the asuzen.css file
+* #container div renamed to #asu_container to avoid potential conflict with Zen theme chagnes
+* region names have changed in Zen 6
+* layout has changed to 1- or 2-col negative-margin fluid, with content div coming first
+* eliminated #squeeze div
+* style.css file renamed asuzen.css
+* css folder eliminated and all css files moved into main /asuzen folder
+* new css files added to accommodate changes in Zen base theme
+* all font sizes changed to ems
+* added search-theme-form-tpl.php file to accomodate Search Scope module
+
+5.x-3.1.3, 2008-10-29
+-------------------
+CHANGES TO THE THEME PACKAGE
+- In css/icon.css
+	- Changed .block ul li to "list-style-image: none;" to remove blue
+bullet. (Thanks to Tammy Allgood)
+- In style.css
+	- Added "em {font-style: italic;}" to reset em
+	- Added "Times New Roman" to font-family on #name-and-slogan h1
+	- Added "position: absolute;" to the hide method on skip nav links for IE.
+- In css/ie7.css (Thanks again, Tammy)
+	- Changed length of max-width so that ASU links don't wrap in IE7.
+	- Position relative added to make links underline on hover for IE7.
+	- Inserted to override the blue bullet in icons.css for asuzen theme.
+- In page.tpl.php
+	- Added a second call to the asu_drupal_print.css below the scripts.  Some modules' css files were overriding the print styles.
+	
+CHANGES TO THE CENTRAL ASUTHEME INCLUDES (on afs, not in this theme package):
+	- In header_login.inc.php
+		- Added "print l(t('SIGN IN'), 'user', array(), 'destination='.$_REQUEST['q']);" to login block, so user is returned to referring url on login and logout
+		- Added a link to a new asu_drupal_print.css
+	- In asu_drupal_print.css
+		- This is the same as asu_print.css, with one addition: added "{overflow: visible;}" on #squeeze so pages will print correctly in Firefox.
+		
+5.x-3.1.2, 2008-06-17
+-------------------
+    * Changed skip-to link style to improve accessibility.
+    * Added fixed width to CLAS theme.
+
+5.x-3.1.1, 2008-04-21
+-------------------
+- Fixed a possible security problem with including nonsecure files from the global AFS templates
+	- Made many .SHTML include files .PHP files and changed paths to reflect this
+	- Added PNG fix for IE6 to ie6.css
+	- Added check for http/https to dynamically assign the correct protocol to each site
+
+5.x-3.1, 2008-04-16
+-------------------
+- Corrected include paths to point to production 2.0 version
+
+5.x-3.x, 2008-04-15
+-------------------
+- Complete redesign of gold header
+- Colleges and Schools (only) have the option to use a maroon header. 
+- In style.css
+	- Reset styles added to style.css, rather than imported
+	- Added a link a:hover of #000
+	- Added skip link style
+	- Moved all asu_gold_header styles to includes
+	- Moved all footer styles to includes
+	- Provided opitonal gold secondary link bar
+	- Removed link from username on login links
+	
+- In page.tpl.php
+	- Changed DOCTYPE from strict to transitional
+	- Removed all #header markup and replaced with global header markup pulled from one include
+	- Removed all #footer markup and replaced with global header markup pulled from one include
+	- Added IE6 and IE7 conditional comment style sheets
+
+5.x-1.3, 2007-09-08
+-------------------
+- Added two new regions, "node top" and "node bottom" along with some default
+  styles for those regions
+- Added maintenance page template
+- Fixed spacing issue in header that caused extra space at the top of the page
+- Attachments table now has a reasonable width (instead of 100%)
+- Added a default override for theme_username which uses the profile field 
+- Username rendering now uses theme_username correctly
+  profile_cn to populate the displayed name.  This will not break any sites that
+  don't have that profile field established.
+- #squeeze div now has default padding and adds scroll bars if its content is
+  too wide to display in the given width.
+- Added default styles for <caption> tags
+- Added some My ASU Courses specific styles and template changes, which should
+  not affect any other sites.
+
+
+5.x-1.2, 2007-08-22
+-------------------
+- Updated README to reflect changes in 1.1.
+
+
+5.x-1.1, 2007-08-22
+-------------------
+- Added underlines to primary and secondary link hover states
+- Removed customizable header logo and replaced it with a customizable sidebar 
+  logo.  The site logo, site title and site mission will all appear at the top 
+  of the left sidebar, if enabled
+- Enabling the search box in the theme settings now works
+- Secondary menu links are capitalized
+- Changed mission statement style to be a lighter shade of blue
+- Fixed some display issues in Safari
+- Added a maintenance page template
+
+
+5.x-1.0, 2007-08-09
+-------------------
+Initial Release

@@ -339,82 +339,85 @@ class WelcomeController < ApplicationController
     end
   end
 
-#============================================ End of Python Search ================
-
 
 #===================================== Keyword Search ======================
   def search_process
-    @search_text  =params[:q].to_s
-    all           =params[:all].to_s
-    exact         =params[:exact].to_s
-    any           =params[:any].to_s
-    none          =params[:none].to_s
-    advanced_query=""
-
-    if all != ""
-      all           =all.split(' ')
-      all_like      =all.map { |x| "keyword like " + "'%" + x + "%'" }
-      all_like      =all_like.join(' and ')
-      advanced_query=all_like
-    end
-
-    if exact != "" && all != ""
-      exact          ="'%"+exact+"%'"
-      advanced_query = advanced_query + " and keyword like " + exact
-    end
-
-    if exact != "" && all == ""
-      exact          ="'%"+exact+"%'"
-      advanced_query = "keyword like " + exact
-    end
-
-    if any != "" and (all != "" or exact != "")
-      any            =any.split(' ')
-      any_like       =any.map { |x| "keyword like " + "'%" + x + "%'" }
-      any_like       =any_like.join(' or ')
-      advanced_query = advanced_query + " and (" + any_like + ")"
-    end
-
-    if any != "" and all == "" and exact == ""
-      any            =any.split(' ')
-      any_like       =any.map { |x| "keyword like " + "'%" + x + "%'" }
-      any_like       =any_like.join(' or ')
-      advanced_query = "(" + any_like + ")"
-    end
-
-    if none != "" and (all != "" or exact != "" or any != "")
-      none         =none.split(' ')
-      none_not_like=none.map { |x| "keyword not like " + "'%" + x + "%'" }
-
-      none_not_like=none_not_like.join(' and ')
-
-      advanced_query=advanced_query + " and " + none_not_like
-
-    end
-
-    if none != "" and all == "" and exact == "" and any == ""
-      none         =none.split(' ')
-      none_not_like=none.map { |x| "keyword not like " + "'%" + x + "%'" }
-
-      none_not_like=none_not_like.join(' and ')
-
-      advanced_query= none_not_like
-    end
-
-
-    advanced_query = "SELECT Model_ID FROM keyword_symbol_tables WHERE "+advanced_query
-
-    parameter_search_text=@search_text.split.join(" ")
-    keyword_array        =parameter_search_text.split(' ')
-    keyword_count        =keyword_array.size
-
     connection           = ActiveRecord::Base.connection
+    @search_text  = params[:q].to_s
 
-    if all != "" or exact != "" or any != "" or none != ""
-      @dbResult = connection.execute("#{advanced_query}");
+    logger.warn("query: " + @search_text)
+
+    # use regex to find " surrounded phares: / ?"(.*?)" ?/ the group in all matches will contain just the phrases
+    # all other text is unquoted
+    quotedRegex = / ?"(.*?)" ?/
+    phrases = Array.new
+
+    quotedMatches = @search_text.to_enum(:scan, quotedRegex).map { Regexp.last_match }
+
+    logger.warn("matches: " + quotedMatches.to_s)
+
+    if quotedMatches.length == 0
+
+      words = @search_text.split(' ')
+      phrases.push(*words)
+
     else
-      @dbResult = connection.execute("call keyword_search('#{parameter_search_text}',#{keyword_count})");
+
+      # Scan from the begginging of the query
+      index = 0
+
+      for match in quotedMatches
+        # Get the unquoted text before the match
+        matchStart, matchFinish = match.offset(0)
+
+        if matchStart > 0
+          unquoted = @search_text[index..matchStart-1]
+          words = unquoted.split(' ')
+          phrases.push(*words)
+          logger.warn("words: " + words.to_s)
+        end
+
+        index = matchFinish # will contain the index of char just after the match
+
+        # Get the text inside the quotes
+        capture = match.captures[0]
+        logger.warn("cap: " + capture)
+        phrases.push(capture)
+      end
+
+      # Till the end of the query
+      if index < @search_text.length-1
+        unquoted = @search_text[index..@search_text.length-1]
+        words = unquoted.split(' ')
+        phrases.push(*words)
+        logger.warn("words: " + words.to_s)
+      end
+
     end
+
+    logger.warn("raw phrases: " + phrases.to_s)
+
+    # Remove any blank phrases
+    phrases.reject! {|p| p.nil? || p.length == 0}
+
+    # Escape each phrase
+    phrases.map! {|p| connection.quote_string(p)}
+
+    # Use the sql syntax to construct the query, using +s and putting qoutes around everything "" even single terms
+    phrases.map! do |p|
+      if p.length >= 4
+        '+"' + p +  '"' # add +s and quotes
+      else
+        '"' + p +  '"' # don't add the plus for <4 char phrases
+      end
+    end
+
+
+    fullTextSearchString = phrases.join(" ")
+    sql = "call keyword_search('#{fullTextSearchString}')"
+
+    logger.warn(sql)
+    @dbResult = connection.execute(sql);
 
     ActiveRecord::Base.clear_active_connections!
 
@@ -474,7 +477,6 @@ class WelcomeController < ApplicationController
     return type
   end
 
-#====================================== End of Keyword Search =============
 
   def submission
     @fname             =params[:fname].to_s
@@ -567,6 +569,12 @@ class WelcomeController < ApplicationController
   end
 
   def browse_models
+  end
+
+  def search_test
+
+    @queries = ExpectedSearchResult.all
+
   end
 
   def search_result

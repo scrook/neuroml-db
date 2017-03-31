@@ -187,7 +187,7 @@ class BatchNeuroML:
         return pub_metadata_ID
     
     def find_pubmed_info(self, browser, pmid):        
-        browser.visit('http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml&id='+pmid)
+                browser.visit('http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml&id='+pmid)
         
         pm_Element = ET.XML(browser.html.encode('utf-8'))
         pm_Tree = ET.ElementTree(pm_Element)
@@ -328,7 +328,7 @@ class BatchNeuroML:
                 self.next_metadata_ID['Publication'] += 1
                 insert_metadatas = self.insert_metadatas_template.substitute(metaid=next_pub_id)
                 logging.info(insert_metadatas)
-                insert_pub = self.insert_pub_template.substitute(metaid=next_pub_id, ref=pmid, title=self.pubmed_title_author[pmid].title)
+1                insert_pub = self.insert_pub_template.substitute(metaid=next_pub_id, ref=pmid, title=self.pubmed_title_author[pmid].title)
                 logging.info(insert_pub)
                 insert_pub_association = self.insert_model_metadata_associations_template.substitute(metaid=next_pub_id, modelid=model_ID)
                 logging.info(insert_pub_association)
