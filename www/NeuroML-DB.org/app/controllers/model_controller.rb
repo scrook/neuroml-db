@@ -9,4 +9,14 @@ class ModelController < ApplicationController
 
   end
 
+  def GetChannelLEMSZip
+
+    modelID =params[:modelID].to_s
+
+    send_data(File.read(Model.GetChannelLEMSZipFilePath(modelID)), :type => 'application/zip', :filename => modelID + '.zip')
+
+  end
+
+
+
 end

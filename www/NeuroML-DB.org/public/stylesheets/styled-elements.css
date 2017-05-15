@@ -3,14 +3,14 @@
 
 .ui-accordion .ui-accordion-header,
 .toggle-trigger {
-  cursor: pointer;
-  margin-top: 1px;
-  position: relative;
-  padding-bottom: 5px;
-  background: #f1f1f1;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
+	cursor: pointer;
+	margin-top: 1px;
+	position: relative;
+	padding-bottom: 5px;
+	background: #f1f1f1;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
 }
 
 .ui-accordion .ui-accordion-header:hover,
@@ -28,11 +28,11 @@
 
 .ui-accordion .ui-accordion-content,
 .toggle-container {
-  border-top: 0 none;
-  margin-bottom: 2px;
-  padding: 20px 20px;
-  position: relative;
-  top: 1px;
+	border-top: 0 none;
+	margin-bottom: 2px;
+	padding: 20px 20px;
+	position: relative;
+	top: 1px;
 }
 
 /* ALIGNMENT ------------------------------------------------------------*/
@@ -63,14 +63,14 @@
 
 /* DROPCAP ------------------------------------------------------------*/
 
-.dropcap:first-letter{ 
-	font-size: 3.571em; 
-	line-height: 0.76em; 
-	padding: 0.04em 0.12em 0 0; 
+.dropcap:first-letter{
+	font-size: 3.571em;
+	line-height: 0.76em;
+	padding: 0.04em 0.12em 0 0;
 	float: left;
 }
 
-.dropcap.dark:first-letter{ 
+.dropcap.dark:first-letter{
 	display:block;
 	float:left;
 	font-size:30px;
@@ -82,7 +82,7 @@
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
-	
+
 }
 
 /* HIGHLIGHT ------------------------------------------------------------*/
@@ -95,7 +95,7 @@
 	padding:2px 5px;
 }
 
-.highlight-red{ 
+.highlight-red{
 	background: red;
 	color:#fff;
 }
@@ -143,21 +143,21 @@
 	padding-left: 6px;
 	text-decoration: none;
 	color: #fff;
-	
+
 	border-radius: 33px;
 	-moz-border-radius: 33px;
 	-webkit-border-radius: 33px;
-	
+
 	background: #515558;
-	background: -webkit-gradient(linear, left top, left bottom, from(#515558), to(#131313)); 
+	background: -webkit-gradient(linear, left top, left bottom, from(#515558), to(#131313));
 	background: -moz-linear-gradient(top,  #515558,  #131313);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#515558', endColorstr='#131313', GradientType=0);
-	
-	-webkit-box-shadow: 0px 1px 2px rgba(0,0,0,.5); 
-	-moz-box-shadow: 0px 1px 2px rgba(0,0,0,.5); 
+
+	-webkit-box-shadow: 0px 1px 2px rgba(0,0,0,.5);
+	-moz-box-shadow: 0px 1px 2px rgba(0,0,0,.5);
 	box-shadow: 0px 1px 2px rgba(0,0,0,.5);
 }
-	
+
 .link-button-big span{
 	display: block;
 	height: 100% ;
@@ -170,7 +170,7 @@
 
 .link-button-big:hover{
 	background: #515558;
-	background: -webkit-gradient(linear, left top, left bottom, from(#131313), to(#515558)); 
+	background: -webkit-gradient(linear, left top, left bottom, from(#131313), to(#515558));
 	background: -moz-linear-gradient(top,  #131313,  #515558);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#131313', endColorstr='#515558', GradientType=0);
 }
@@ -184,21 +184,21 @@
 	text-decoration: none;
 	color: #fff;
 	/* background: url(../img/button.png) 1px 0px  no-repeat; */
-	
+
 	border-radius: 33px;
 	-moz-border-radius: 33px;
 	-webkit-border-radius: 33px;
-	
+
 	background: #515558;
-	background: -webkit-gradient(linear, left top, left bottom, from(#515558), to(#131313)); 
+	background: -webkit-gradient(linear, left top, left bottom, from(#515558), to(#131313));
 	background: -moz-linear-gradient(top,  #515558,  #131313);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#515558', endColorstr='#131313', GradientType=0);
-	
-	-webkit-box-shadow: 0px 1px 2px rgba(0,0,0,.5); 
-	-moz-box-shadow: 0px 1px 2px rgba(0,0,0,.5); 
-	box-shadow: 0px 1px 2px rgba(0,0,0,.5); 
+
+	-webkit-box-shadow: 0px 1px 2px rgba(0,0,0,.5);
+	-moz-box-shadow: 0px 1px 2px rgba(0,0,0,.5);
+	box-shadow: 0px 1px 2px rgba(0,0,0,.5);
 }
-	
+
 #content .link-button span{
 	display: block;
 	height: 100% ;
@@ -208,11 +208,11 @@
 	padding-right: 15px;
 	/* background: url(../img/button.png) right -36px  no-repeat; */
 	text-shadow: 0px -1px rgba(0, 0, 0, .8);
-}	
+}
 
 #content .link-button:hover{
 	background: #515558;
-	background: -webkit-gradient(linear, left top, left bottom, from(#131313), to(#515558)); 
+	background: -webkit-gradient(linear, left top, left bottom, from(#131313), to(#515558));
 	background: -moz-linear-gradient(top,  #131313,  #515558);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#131313', endColorstr='#515558', GradientType=0);
 }
@@ -252,47 +252,47 @@ td, th{
 	border-bottom: 1px solid white;
 }
 table#longlist{
-border-collapse:collapse;
+	border-collapse:collapse;
 }
 #longlist tr td{
-border:1px solid #00529B;
+	border:1px solid #00529B;
 }
 tr.alt{
-background-color:#d2d2d2;
+	background-color:#d2d2d2;
 }
 td.middle_col{
-padding-right:22px;
-text-align:justify;
+	padding-right:22px;
+	text-align:justify;
 }
 #midlist{
-border:0px;
+	border:0px;
 }
 #midlist tr td{
-border:0px;
+	border:0px;
 }
 table#highlighted
 {
-width:70%;
-margin:0 auto;
+	width:70%;
+	margin:0 auto;
 }
 #highlighted tr td{
-background-color: #E8E5E1;
-    color: #F05033;
-    font-weight: bold;
-    text-align: center;
+	background-color: #E8E5E1;
+	color: #F05033;
+	font-weight: bold;
+	text-align: center;
 
 }
 table#model_info{
 
 
 
-border: 1px solid #ababab;
-border-collapse:collapse;
-    margin-left: auto;
+	border: 1px solid #ababab;
+	border-collapse:collapse;
+	margin-left: auto;
 
-    margin-right: auto;
+	margin-right: auto;
 
-    margin-top: 22px;
+	margin-top: 22px;
 
 
 }
@@ -301,15 +301,17 @@ border-collapse:collapse;
 
 td.keyword{
 
-  border: 1px solid #ABABAB;
+	border: 1px solid #ABABAB;
 
-    padding: 10px;
+	padding: 10px;
 
-  font-weight:bold;
+	font-weight:bold;
 
-color:#0095ff;
+	color:#0095ff;
 
-background:#ab;
+	background:#ab;
+
+	vertical-align: top;
 
 }
 
@@ -317,11 +319,11 @@ background:#ab;
 
 td.description{
 
-  border: 1px solid #ABABAB;
+	border: 1px solid #ABABAB;
 
-    padding: 10px;
+	padding: 10px;
 
-background:#dedede;
+	background:#dedede;
 
 }
 /* LISTS ------------------------------------------------------------*/
@@ -337,28 +339,28 @@ background:#dedede;
 }
 
 
-.lists-check ul li{ 
+.lists-check ul li{
 	list-style-image: url(../img/bullets/check.png);
 	line-height: 1.5em;
 }
-	
-.lists-arrow ul{ 
-	list-style-image: url(../img/bullets/arrow.png); 
+
+.lists-arrow ul{
+	list-style-image: url(../img/bullets/arrow.png);
 	line-height: 1.5em;
 }
 
-.lists-plus ul{ 
-	list-style-image: url(../img/bullets/plus.png); 
+.lists-plus ul{
+	list-style-image: url(../img/bullets/plus.png);
 	line-height: 1.5em;
 }
 
-.lists-star ul{ 
-	list-style-image: url(../img/bullets/star.png); 
+.lists-star ul{
+	list-style-image: url(../img/bullets/star.png);
 	line-height: 1.5em;
 }
 
-.lists-heart ul{ 
-	list-style-image: url(../img/bullets/heart.png); 
+.lists-heart ul{
+	list-style-image: url(../img/bullets/heart.png);
 	line-height: 1.5em;
 }
 

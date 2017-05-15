@@ -153,4 +153,39 @@ class Model < ActiveRecord::Base
     return _zipFilePath
 
   end
+
+  def self.GetChannelLEMSZipFilePath(modelID)
+
+    _zipFileName = modelID + '_vclamp_simulation.zip'
+    _zipFilePath = '/var/www/NeuroMLmodels/' + modelID + '/' + _zipFileName
+
+    if not File.exist?(_zipFilePath) or File.mtime(_zipFilePath) < 1.month.ago
+
+      filesToZip = GetFiles(modelID)
+
+      # Add the LEMS file to the list of files to zip
+      channelFile = File.basename(filesToZip[0]["File"])
+      directory = File.dirname(filesToZip[0]["File"])
+      filesToZip.push({ "File" => directory + '/LEMS_' + channelFile })
+
+      begin
+        Zip::ZipFile.open(_zipFilePath, Zip::ZipFile::CREATE) do |zip|
+
+          filesToZip.each do |record|
+            zip.add(File.basename(record["File"]), record["File"])
+          end
+
+        end
+
+      rescue
+
+        File.delete(_zipFilePath)
+        raise
+
+      end
+    end
+
+    return _zipFilePath
+
+  end
 end

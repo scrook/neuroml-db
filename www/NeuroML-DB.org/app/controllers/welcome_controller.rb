@@ -477,6 +477,59 @@ class WelcomeController < ApplicationController
     return type
   end
 
+# This will return a sorted list of vclamp*.js files in the model directory
+  def GetVclampFiles
+    modelID = @model_id
+
+    # Get the list of vcamp js files in the model folder
+    files = Dir["/var/www/NeuroMLmodels/"+modelID+"/vclamp*.js"].sort
+
+    return files
+  end
+
+  def GetVclampCaConcentrations
+    files = GetVclampFiles()
+
+    # Find out which Ca concentrations are present by inspecting the vclamp file names
+    caConcs = Array.new
+    for file in files
+      matches = /vclamp_(.*?)_/.match(file)
+      if matches.length > 0
+        concString = matches[1]
+        concFloat = eval(concString.sub("1E","10**")).to_f
+        caConcs.push({Name:concString,Value:concFloat})
+      end
+    end
+
+    # Discard duplicates & sort by descending float value
+    caConcs = caConcs.uniq.sort_by {|e| e[:Value]}
+
+    return caConcs
+  end
+
+  def GetDefaultVclampFile
+
+    # Get the largest concentration value
+    defaultConc = GetVclampCaConcentrations().last
+
+    # Get the activation subprotocol file for it
+    defaultVclampFile = Dir["/var/www/NeuroMLmodels/"+@model_id+"/vclamp_"+defaultConc[:Name]+"_Activation*.js"][0]
+
+    return defaultVclampFile
+  end
+
+
+  def GetModelProtocolData
+
+    modelID =params[:modelID].to_s
+    caConc =params[:caConc].to_s
+    subProtocol =params[:subProtocol].to_s
+
+    file = Dir["/var/www/NeuroMLmodels/"+modelID+"/vclamp_"+caConc+"_"+subProtocol+"*.js"][0]
+
+    send_data(File.read(file), :type => 'application/javascript')
+
+  end
 
   def submission
     @fname             =params[:fname].to_s

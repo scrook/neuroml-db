@@ -34,7 +34,7 @@ RedmineApp::Application.routes.draw do
   match 'neuron_tools', :to => 'welcome#neuron_tools', :as => 'neuron_tools'
   match 'pynn', :to => 'welcome#pynn', :as => 'pynn'
   match 'x3dtools', :to => 'welcome#x3dtools', :as => 'x3dtools'
-#  match '/:model_id', :to => 'welcome#model_info', :as => 'model_info'
+  #match '/:model_id', :to => 'welcome#model_info', :as => 'model_info'
   match 'browse_models', :to => 'welcome#browse_models', :as => 'browse_models'
   match 'model_submit', :to => 'welcome#model_submit', :as => 'model_submit'
   match 'search_result', :to => 'welcome#model_submit', :as => 'model_submit'
@@ -43,11 +43,13 @@ RedmineApp::Application.routes.draw do
   match 'search_process', :to => 'welcome#search_process', :as => 'search_process'
   match 'search_python', :to => 'welcome#search_python', :as => 'search_python'
   match 'model_info', :to => 'welcome#model_info', :as => 'model_info'
+  match 'GetModelProtocolData', :to => 'welcome#GetModelProtocolData', :as => 'GetModelProtocolData'
   match 'submission', :to => 'welcome#submission', :as => 'submission'
   match 'submission_error' , :to => 'welcome#submission_error', :as => 'submission_error'
 
   match 'performance_test', :to => 'testing#performance_test', :as => 'performance_test'
   match 'GetModelZip', :to => 'model#GetModelZip', :as => 'GetModelZip'
+  match 'GetChannelLEMSZip', :to => 'model#GetChannelLEMSZip', :as => 'GetChannelLEMSZip'
 
   match 'history', :to => 'welcome#history', :as => 'history'
   match 'scientific_committee', :to => 'welcome#scientific_committee', :as => 'scientific_committee'
@@ -377,7 +379,7 @@ RedmineApp::Application.routes.draw do
   match 'sys/fetch_changesets', :to => 'sys#fetch_changesets', :via => :get
 
   match 'uploads', :to => 'attachments#upload', :via => :post
-match '/:model_id', :to => 'welcome#model_info', :as => 'model_info'
+  #match '/:model_id', :to => 'welcome#model_info', :as => 'model_info'
   get 'robots.txt', :to => 'welcome#robots'
 
   Dir.glob File.expand_path("plugins/*", Rails.root) do |plugin_dir|

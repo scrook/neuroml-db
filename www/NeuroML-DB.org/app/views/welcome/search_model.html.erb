@@ -68,6 +68,9 @@
           <p><a href="[url]" target="_blank">[url]</a></p>
         </div>
 
+        <div id="loadingView" style="display:none;">
+          <image src="../images/loading.gif" style="height: 25px; width: 25px; margin-top: 50px;" />
+        </div>
       </div>
 
 
@@ -88,151 +91,59 @@
 <script>jQuery.noConflict();</script>
 
 <script type="text/javascript">
-    var x=0;
-    function togglesearch()
-    {
-        if(x==1){
-            new Effect.SlideUp('advanced_search');
-            x=0;
-            document.getElementById('all_of_these').value="";
-            document.getElementById('this_exact_phrase').value="";
-            document.getElementById('any_of_these_words').value="";
-            document.getElementById('none_of_these_words').value="";
-            document.getElementById('keyword_search_box').disabled=false;
-        }
-        else{
-            document.getElementById('keyword_search_box').value="";
-            document.getElementById('keyword_search_box').disabled=true;
-
-            new Effect.SlideDown('advanced_search');
-            x=1;
-
-        }
-    }
-
     function clearWatermark(e)
     {
         if(e.value == "Enter search keywords here (e.g. cerebellum)")
             e.value = "";
     }
 
-    function retrieve_results()
-    {
+    function retrieve_results() {
         jQuery("#search_container").show();
 
-        var input_text=document.getElementById('keyword_search_box').value;
-        var all=document.getElementById('all_of_these').value;
-        var exact=document.getElementById('this_exact_phrase').value;
-        var any=document.getElementById('any_of_these_words').value;
-        var none=document.getElementById('none_of_these_words').value;
-        new Ajax.Request("search_process"+"?q="+input_text+"&all="+all+"&exact="+exact+"&any="+any+"&none="+none,{onSuccess:function(request){
-            document.getElementById('keyword_results').innerHTML="";
-            $('keyword_results').update(request.responseText);
+        var input_text = jQuery('#keyword_search_box').val();
+        var all = jQuery('#all_of_these').val();
+        var exact = jQuery('#this_exact_phrase').val();
+        var any = jQuery('#any_of_these_words').val();
+        var none = jQuery('#none_of_these_words').val();
 
+        jQuery.ajax(
+                "search_process" + "?q=" + input_text + "&all=" + all + "&exact=" + exact + "&any=" + any + "&none=" + none,
+                {
+                    success: function (result) {
+                        jQuery('#keyword_results').html(result);
+                    },
+                    beforeSend: function () {
+                        jQuery('#keyword_results').html(jQuery("#loadingView").html());
+                    }
+                }
+        );
 
+        jQuery.ajax(
+                "search_python" + "?q=" + input_text,
+                {
+                    success: function (result) {
+                        jQuery('#ontology_results').html(result);
+                    },
+                    error: function (xhr, status, e) {
+                        //Get template text from a hidden div element
+                        //Replace template tokens with values
+                        var errorHtml = jQuery('#ontology_search_results_error_template')
+                                .html()
+                                .replace("[statusText]", e)
+                                .split("[url]").join(this.url); //replace all in JS is annoying
 
-
-        },
-            onLoading:function(){
-                var key=document.getElementById("keyword_results");
-                key.innerHTML=" ";
-                var image1= new Image();
-                image1.src="../images/loading.gif"
-                image1.style.height="25px";
-                image1.style.width="25px";
-                image1.style.marginLeft="185px";
-                image1.style.marginTop="100px";
-                key.appendChild(image1);
-
-
-
-
-            }
-        });
-
-
-
-        new Ajax.Request("search_python"+"?q="+input_text,{onSuccess:function(request){
-            document.getElementById('ontology_results').innerHTML="";
-            $('ontology_results').update(request.responseText);
-        },
-
-            onFailure:function(e)
-            {
-                //Get template text from a hidden div element
-                //Replace template tokens with values
-                var errorHtml = $('ontology_search_results_error_template')
-                        .innerHTML
-                        .replace("[statusText]", e.statusText)
-                        .split("[url]").join(e.request.url); //replace all
-
-                //Show in the ontology results column
-                $('ontology_results').update(errorHtml);
-            },
-
-            onLoading:function(){
-                var ont=document.getElementById("ontology_results");
-                ont.innerHTML=" ";
-                var image= new Image();
-                image.src="../images/loading.gif"
-                image.style.height="25px";
-                image.style.width="25px";
-                image.style.marginLeft="195px";
-                image.style.marginTop="100px";
-                ont.appendChild(image);
-            }
-        });
-
-
-
-
-
+                        //Show in the ontology results column
+                        jQuery('#ontology_results').html(errorHtml);
+                    },
+                    beforeSend: function () {
+                        jQuery('#ontology_results').html(jQuery("#loadingView").html());
+                    }
+                }
+        );
 
         return false;
 
     }
-    function modelinfo(model)
-    {
-        var model_id=model.innerHTML;
-//alert("the model id is:"+model_id);
-        new Ajax.Request("model_info"+"?model_id="+model_id,{onSuccess:function(request){
-            document.getElementById('keyword_model').innerHTML="";
-
-
-
-            $('keyword_model').update(request.responseText);
-
-
-        },
-
-            onLoading:function(){
-                var ont=document.getElementById("keyword_model");
-                ont.innerHTML=" "
-                ont.style.display="block";
-                var image= new Image();
-                image.src="../images/loading.gif"
-                image.style.height="25px";
-                image.style.width="25px";
-                image.style.marginLeft="195px";
-                image.style.marginTop="100px";
-                ont.appendChild(image);
-            }
-        });
-
-        return false;
-    }
-
-
-
-
-    function closemodel(){
-
-        new Effect.Fade('keyword_model');
-
-    }
-
-
-
 </script>
              
 

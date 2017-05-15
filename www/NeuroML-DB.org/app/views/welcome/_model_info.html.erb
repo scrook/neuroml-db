@@ -6,7 +6,7 @@
   </div>
   <table id="model_info">
     <tr>
-      <td class="keyword">
+      <td class="keyword" style="width:120px;">
         Model Name:
       </td>
 
@@ -94,6 +94,7 @@
       </td>
 
       <td class="description">
+        <div style="max-height:120px; overflow:auto; padding: 1px 0; width:637px;">
         <% if @auth_list.any? %>
             <% @auth_list.each do |author| %>
                 <%= author %> &nbsp;
@@ -101,7 +102,7 @@
         <% else %>
             None
         <% end %>
-
+        </div>
       </td>
     </tr>
 
@@ -122,143 +123,6 @@
       </td>
     </tr>
 
-
-
-
-
-
-    <% if @type == "Cell" %>
-
-        <tr>
-          <td class="keyword">
-            Associated Channels:
-          </td>
-          <td class="description">
-            <% if @channel_list.any? %>
-                <% @channel_list.each do |channel_id, channel_name| %>
-                    <a class="fancybox" href="/model_info?model_id=<%= channel_id %>"><%= channel_name %></a>
-                <% end %>
-            <% else %>
-                None
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-          <td class="keyword">
-            Associated Synapses:
-          </td>
-          <td class="description">
-            <% if @syn_list.any? %>
-                <% @syn_list.each do |syn_id, syn_name| %>
-                    <a class="fancybox" href="/model_info?model_id=<%= syn_id %>"><%= syn_name %></a>
-                <% end %>
-            <% else %>
-                None
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-          <td class="keyword">
-            Associated Networks:
-          </td>
-          <td class="description">
-            <% if @network_list.any? %>
-                <% @network_list.each do |network_id, network_name| %>
-                    <a class="fancybox" href="/model_info?model_id=<%= network_id %>"><%= network_name %></a>
-                <% end %>
-            <% else %>
-                None
-            <% end %>
-          </td>
-        </tr>
-
-    <% elsif @type == "Channel" %>
-
-        <tr>
-          <td class="keyword">
-            Associated Cells:
-          </td>
-          <td class="description">
-            <% if @cell_list.any? %>
-                <% @cell_list.each do |cell_id, cell_name| %>
-                    <div><a class="fancybox" href="/model_info?model_id=<%= cell_id %>"><%= cell_name %></a></div>
-                <% end %>
-            <% else %>
-                None
-            <% end %>
-          </td>
-        </tr>
-
-
-    <% elsif @type == "Network" %>
-
-        <tr>
-          <td class="keyword">
-            Associated Cells:
-          </td>
-          <td class="description">
-            <% if @cell_list.any? %>
-                <% @cell_list.each do |cell_id, cell_name| %>
-                    <a class="fancybox" href="/model_info?model_id=<%= cell_id %>"><%= cell_name %></a>
-                <% end %>
-            <% else %>
-                None
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-          <td class="keyword">
-            Associated Synapses:
-          </td>
-
-          <td class="description">
-            <% if @syn_list.any? %>
-                <% @syn_list.each do |syn_id, syn_name| %>
-                    <a class="fancybox" href="/model_info?model_id=<%= syn_id %>"><%= syn_name %></a>
-                <% end %>
-            <% else %>
-                None
-            <% end %>
-          </td>
-        </tr>
-
-    <% else %>
-        <tr>
-          <td class="keyword">
-            Associated Network:
-          </td>
-
-          <td class="description">
-            <% if @network_list.any? %>
-                <% @network_list.each do |network_id, network_name| %>
-                    <a class="fancybox" href="/model_info?model_id=<%= network_id %>"><%= network_name %></a>
-                <% end %>
-            <% else %>
-                None
-            <% end %>
-          </td>
-        </tr>
-
-        <tr>
-          <td class="keyword">
-            Associated Cells:
-          </td>
-
-          <td class="description">
-            <% if @cell_list.any? %>
-                <% @cell_list.each do |cell_id, cell_name| %>
-                    <a class="fancybox" href="/model_info?model_id=<%= cell_id %>"><%= cell_name %></a>
-                <% end %>
-            <% else %>
-                None
-            <% end %>
-          </td>
-        </tr>
-
-
-    <% end %>
-
-
     <tr>
       <td class="keyword" style="vertical-align: top;">
         <% if @type == "Cell" %>
@@ -275,42 +139,210 @@
       <td class="description">
 
         <a id="downloadButtonA" href="/GetModelZip?modelID=<%= @model_id %>">
-            <div id="downloadButton">
-              DOWNLOAD MODEL FILES
-            </div>
+          <div id="downloadButton">
+            DOWNLOAD MODEL FILES
+          </div>
         </a>
-
-        <table>
-              <thead>
-                <tr>
-                  <td>Model ID</td>
-                  <td>NeuroML File</td>
-                  <td></td>
-                  <td></td>
-                </tr>
-              </thead>
+        <div style="max-height:200px; overflow: auto; width:637px;">
+          <table>
+            <thead>
+            <tr>
+              <td>Model ID</td>
+              <td>NeuroML File</td>
+              <td></td>
+              <td></td>
+            </tr>
+            </thead>
             <% Model.GetFiles(@model_id).each do |record| %>
 
                 <tr>
 
                   <td><a class="fancybox" href="/model_info?model_id=<%= record["ModelID"] %>"><%= record["ModelID"] %></a></td>
 
-                  <td><%= File.basename(record["File"]) %></td>
+                  <td><div style="width:300px; overflow:hidden;"><%= File.basename(record["File"]) %></div></td>
 
                   <td><a style="text-decoration: none" target="_blank"
-                         href="/render_xml_as_html?modelID=<%= record["ModelID"] %>">( view HTML )</a></td>
+                         href="/render_xml_as_html?modelID=<%= record["ModelID"] %>">(&nbsp;view&nbsp;HTML&nbsp;)</a></td>
 
                   <td><a style="text-decoration: none" target="_blank"
-                         href="/render_xml_file?modelID=<%= record["ModelID"] %>">( view XML )</a></td>
+                         href="/render_xml_file?modelID=<%= record["ModelID"] %>">(&nbsp;view&nbsp;XML&nbsp;)</a></td>
 
                 </tr>
 
             <% end %>
-        </table>
-
+          </table>
+        </div>
       </td>
 
     </tr>
+    <%
+    def DisplayRelatedModels(modelList)
+       if modelList.any? %>
+            <div style="max-height:120px; overflow:auto; padding: 1px 0; width:637px;">
+            <% modelList.each do |modelId, modelName| %>
+                <div><a class="fancybox" href="/model_info?model_id=<%= modelId %>"><%= modelName %></a></div>
+            <% end %>
+            </div>
+       <% else %>
+            None
+       <% end
+    end
+    %>
+
+
+
+
+    <% if @type == "Cell" %>
+
+        <tr>
+          <td class="keyword">
+            Associated Channels:
+          </td>
+          <td class="description">
+            <% DisplayRelatedModels(@channel_list) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="keyword">
+            Associated Synapses:
+          </td>
+          <td class="description">
+            <% DisplayRelatedModels(@syn_list) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="keyword">
+            Associated Networks:
+          </td>
+          <td class="description">
+            <% DisplayRelatedModels(@network_list) %>
+          </td>
+        </tr>
+
+    <% elsif @type == "Channel" %>
+
+        <tr>
+          <td class="keyword">
+            Associated Cells:
+          </td>
+          <td class="description">
+            <% DisplayRelatedModels(@cell_list) %>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="keyword" style="vertical-align: top;">
+            Voltage Clamp Response:
+          </td>
+          <td class="description conditions">
+
+            <% jsFiles = controller.GetVclampFiles() %>
+            <% if jsFiles.length > 0 %>
+                <style>
+                    sup { vertical-align: super; font-size: 12px; }
+                    .protocolButton { text-decoration:none; padding: 5px; border: 1px solid transparent; }
+                    .conditions .selected { border-color:blue; }
+                </style>
+                <div id="protocols" style="margin-bottom: 10px;">
+                  <span>Select Protocol: </span>
+                  <a href="#" class="protocolButton selected" onclick="changeSubProtocol(this,'Activation'); return false;" onmouseenter="changeSubProtocol(this,'Activation'); return false;">Activation</a>
+                  <a href="#" class="protocolButton" onclick="changeSubProtocol(this,'Inactivation'); return false;" onmouseenter="changeSubProtocol(this,'Inactivation'); return false;">Inactivation</a>
+                  <a href="#" class="protocolButton" onclick="changeSubProtocol(this,'Deactivation'); return false;" onmouseenter="changeSubProtocol(this,'Deactivation'); return false;">Deactivation</a>
+                </div>
+
+                <% caConcLevels = controller.GetVclampCaConcentrations() %>
+                <% if caConcLevels.length > 1 %>
+
+                <div id="caConcLevels" style="margin-bottom: 10px;">
+                  <span>Select [Ca<sup>2+</sup>] level (mM): </span>
+                  <div style="display: inline;">
+                  <% for level in caConcLevels %>
+                        <% if level == caConcLevels.last %>
+                            <% btnClass = "selected" %>
+                        <% end %>
+                    <a href="#" onclick="changeCaConc(this,'<%= level[:Name] %>'); return false;" onmouseenter="changeCaConc(this,'<%= level[:Name] %>'); return false;" title="<%= level[:Name] %>" class="protocolButton <%= btnClass %>" ><%= raw level[:Name].sub("1E","10<sup>").sub("E","x10<sup>") %></sup></a>
+                  <% end %>
+                  </div>
+                </div>
+                <% end %>
+                <input type="hidden" id="modelID" value="<%= @model_id %>" />
+                <input type="hidden" id="caConc" value="<%= caConcLevels.last[:Name] %>"/>
+                <input type="hidden" id="subProtocol" value="Activation"/>
+
+                <!--Render voltage clamp charts using chart.js library-->
+                <canvas id="canvasV" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;" width="637" height="215"></canvas>
+                <canvas id="canvasG" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;" width="637" height="215"></canvas>
+                <canvas id="canvasI" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;" width="637" height="215"></canvas>
+
+                <!--
+                <div style="text-align: center; margin-top:15px;">Reproduce the above plots by executing <a href="/GetChannelLEMSZip?modelID=<%= @model_id %>">the simulation file</a> with <a href="https://github.com/NeuroML/jNeuroML" target="_blank">jNeuroML</a>.<a href="#" onclick="jQuery('#instructions').toggle(); return false;">More</a></div>
+                <div id="instructions" style="display:none; padding: 9px;">
+                  Perform the following steps to reproduce the above plots:
+                  <ol style="list-style: inside decimal; font-size: 15px; margin-top: 6px;">
+                    <li style="padding: 2px;">Download <a href="/GetChannelLEMSZip?modelID=<%= @model_id %>">the simulation .zip file</a> and extract it to a directory whose path does not contain spaces.</li>
+                    <li style="padding: 2px;">Follow <a href="https://github.com/NeuroML/jNeuroML" target="_blank">instructions to install jNeuroML</a> and confirm that "jnml -v" command works.</li>
+                    <li style="padding: 2px;">In the folder where the simulation files are extracted, run "jnml LEMS_XYZ.nml" command to run the simulation and generate the plots. Replace LEMS_XYZ.nml with the actual file in the directory.</li>
+                    <li style="padding: 2px;">Use the "jnml -help" command for syntax to convert the model to <a href="https://www.neuron.yale.edu/neuron/" target="_blank">NEURON</a> and other simulator formats.</li>
+                  </ol>
+                </div>
+                -->
+
+                <script>
+                  //This will be called on box load
+                  createCharts();
+                </script>
+
+            <% else %>
+                Voltage clamp data not available for this channel.
+            <% end %>
+
+          </td>
+        </tr>
+
+
+    <% elsif @type == "Network" %>
+
+        <tr>
+          <td class="keyword">
+            Associated Cells:
+          </td>
+          <td class="description">
+            <% DisplayRelatedModels(@cell_list) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="keyword">
+            Associated Synapses:
+          </td>
+
+          <td class="description">
+            <% DisplayRelatedModels(@syn_list) %>
+          </td>
+        </tr>
+
+    <% else %>
+        <tr>
+          <td class="keyword">
+            Associated Network:
+          </td>
+
+          <td class="description">
+            <% DisplayRelatedModels(@network_list) %>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="keyword">
+            Associated Cells:
+          </td>
+
+          <td class="description">
+            <% DisplayRelatedModels(@cell_list) %>
+          </td>
+        </tr>
+
+
+    <% end %>
 
     <tr>
       <td class="keyword">

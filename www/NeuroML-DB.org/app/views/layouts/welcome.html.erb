@@ -40,27 +40,7 @@
 <%#= javascript_include_tag 'jquery.livequery.min' %>
 
 <script>
-
-
 var $j = jQuery.noConflict();
-//jQuery(document).ready(function($j) { $j("#add-iframe").fancybox({ 'hideOnContentClick': true }); });
-/*
-$(document).ready(function(){
-$('a.fancybox').livequery(function(){
-alert("veer");
-  $(this).fancybox({
-    'hideOnContentClick': true,
-    'hideOnOverlayClick': true,
-    'padding'           :   0 ,
-        'width'         :   600 ,
-        'height'        :   500,
-        'transitionIn'  :   'elastic',
-        'transitionOut' :   'elastic',
-        'speedIn'       :   200,
-        'speedOut'      :   200,
-  });
-});
-})*/
 </script>
 <%= javascript_include_tag  'js/jquery-1.5.1.min' %>
 		<!--<script type="text/javascript" src="javascripts/js/jquery-ui-1.8.13.custom.min.js"></script>-->
@@ -73,9 +53,6 @@ alert("veer");
 <%= javascript_include_tag  'js/jquery.cycle.all' %>
 		<!--<script type="text/javascript" src="javascripts/js/custom.js"></script>-->
 <%= javascript_include_tag  'js/custom' %>
-<%= javascript_include_tag 'prototype' %>
-<%= javascript_include_tag 'scriptaculous' %>
-<%= javascript_include_tag 'effects' %>
 		<!-- Isotope -->
 		<!--<script src="javascripts/js/jquery.isotope.min.js"></script>-->
 	<%= javascript_include_tag  'js/jquery.isotope.min' %>
@@ -138,9 +115,7 @@ alert("veer");
 		<!--<script type="text/javascript" src="javascripts/js/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js"></script>-->
 <%= javascript_include_tag  'js/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack' %>
 		<!-- ENDS Fancybox -->
-
-
-
+<%= javascript_include_tag  'Chart.bundle.js' %>
 
 <script>
 
