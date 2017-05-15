@@ -1,0 +1,83 @@
+<Lems>
+
+    <!-- Specify which component to run -->
+    <Target component="sim1"/>
+
+    <!-- Include core NeuroML2 ComponentType definitions -->
+    <Include file="Cells.xml"/>
+    <Include file="Networks.xml"/>
+    <Include file="Simulation.xml"/>
+
+    <Include file="[FileName]"/>
+    
+    <ComponentType name="twoStepVoltageClamp" extends="baseCellMembPot">
+        
+        <!-- RestingV&t, step1V&t, step2V&t, restingV&t-->
+        <Parameter name="restStartDuration" dimension="time"/>
+        <Parameter name="step1Duration" dimension="time"/>
+        <Parameter name="step2Duration" dimension="time"/>
+        <Parameter name="restEndDuration" dimension="time"/>
+        
+        <Parameter name="restV" dimension="voltage"/>
+        <Parameter name="step1V" dimension="voltage"/>
+        <Parameter name="step2V" dimension="voltage"/>
+        
+        <Parameter name="caConc" dimension="concentration"/>
+        
+        <Children name="channelPopulation" type="channelPopulation"/>
+        
+        <Dynamics>
+            
+            <StateVariable name="v" exposure="v" dimension="voltage"/>
+            
+            <OnStart>
+                <StateAssignment variable="v" value="restV"/>
+            </OnStart>
+            
+            <OnCondition test="t .geq. restStartDuration .and. t .leq. restStartDuration+step1Duration">
+                <StateAssignment variable="v" value="step1V"/>
+            </OnCondition>
+            
+            <OnCondition test="t .gt. restStartDuration+step1Duration .and. t .leq. restStartDuration+step1Duration+step2Duration">
+                <StateAssignment variable="v" value="step2V"/>
+            </OnCondition>
+            
+            <OnCondition test="t .gt. restStartDuration+step1Duration+step2Duration">
+                <StateAssignment variable="v" value="restV"/>
+            </OnCondition>
+            
+        </Dynamics>
+        
+    </ComponentType>
+    
+
+    [VoltageClamps]
+
+    
+    <network id="net1" type="networkWithTemperature" temperature = "32 degC">
+        [Populations]
+    </network>
+
+
+    <Simulation id="sim1" length="[SimDuration]" step="0.01ms" target="net1">
+        
+        <Display id="d0" title="V"  timeScale="1ms" xmin="[xmin]" xmax="[xmax]" ymin="-150.0" ymax="150.0">
+            [VoltagePlots]
+        </Display>
+
+        <Display id="d1" title="G"  timeScale="1ms" xmin="[xmin]" xmax="[xmax]" ymin="0" ymax="10">
+            [ConductancePlots]
+        </Display>
+        
+        <Display id="d7" title="I"  timeScale="1ms" xmin="[xmin]" xmax="[xmax]" ymin="-10" ymax="10">
+            [CurrentPlots]
+        </Display>
+        
+        <OutputFile id="fileOut" fileName="[OutFile]">
+            [FileColumns]
+        </OutputFile>
+        
+    </Simulation>
+
+
+</Lems>
