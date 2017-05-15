@@ -59,8 +59,8 @@ Uses: https://github.com/OpenSourceBrain/BlueBrainProjectShowcase/blob/master/Ch
         <Constant name = "TIME_SCALE" value = "1 ms" dimension = "time"/>
         <Constant name = "VOLT_SCALE" value = "1 mV" dimension = "voltage"/>
         <Dynamics>
-            <DerivedVariable name="x" dimension="none" exposure="x" value="(1/(1 + exp(-(V+14)/14.6)))"/>
             <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="x" dimension="none" exposure="x" value="(1/(1 + exp(-(V+14)/14.6)))"/>
         </Dynamics>
     </ComponentType>
 
@@ -69,8 +69,8 @@ Uses: https://github.com/OpenSourceBrain/BlueBrainProjectShowcase/blob/master/Ch
         <Constant name = "TIME_SCALE" value = "1 ms" dimension = "time"/>
         <Constant name = "VOLT_SCALE" value = "1 mV" dimension = "voltage"/>
         <Dynamics>
-            <DerivedVariable name="x" dimension="none" exposure="x" value="1/(1 + exp(-(V+54)/-11))"/>
             <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="x" dimension="none" exposure="x" value="1/(1 + exp(-(V+54)/-11))"/>
         </Dynamics>
     </ComponentType>
 
@@ -79,8 +79,8 @@ Uses: https://github.com/OpenSourceBrain/BlueBrainProjectShowcase/blob/master/Ch
         <Constant name = "TIME_SCALE" value = "1 ms" dimension = "time"/>
         <Constant name = "VOLT_SCALE" value = "1 mV" dimension = "voltage"/>
         <Dynamics>
-            <DerivedVariable name="t" dimension="none" exposure="t" value="(360+(1010+24*(V+55))*exp(-((V+75)/48)^2)) * TIME_SCALE"/>
             <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="t" dimension="time" exposure="t" value="(360+(1010+24*(V+55))*exp(-((V+75)/48)^2))*TIME_SCALE"/>
         </Dynamics>
     </ComponentType>
 
@@ -89,8 +89,8 @@ Uses: https://github.com/OpenSourceBrain/BlueBrainProjectShowcase/blob/master/Ch
         <Constant name = "TIME_SCALE" value = "1 ms" dimension = "time"/>
         <Constant name = "VOLT_SCALE" value = "1 mV" dimension = "voltage"/>
         <Dynamics>
-            <DerivedVariable name="t" dimension="none" exposure="t" value="((1.25+175.03*exp(-V * -0.026))) * TIME_SCALE"/>
             <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="t" dimension="time" exposure="t" value="((1.25+175.03*exp(-V * -0.026)))*TIME_SCALE"/>
         </Dynamics>
     </ComponentType>
 

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<neuroml xmlns:org.4suite.4xslt.ns0="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.neuroml.org/schema/neuroml2" org.4suite.4xslt.ns0:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="NaR_CML">
+
+    <notes>ChannelML file containing a single Channel description from Solinas et al 2007</notes>
+
+    <ionChannel conductance="10pS" type="ionChannelHH" id="NaR_CML" species="na">
+
+        <notes>Resurgent Na+ channel</notes>
+
+        <gate instances="1" type="gateHHrates" id="s">
+            <q10Settings experimentalTemp="20 degC" type="q10ExpTemp" q10Factor="3"/>
+            <forwardRate type="NaR_CML_s_alpha_rate"/>
+            <reverseRate type="NaR_CML_s_beta_rate"/>
+        </gate>
+
+        <gate instances="1" type="gateHHrates" id="f">
+            <q10Settings experimentalTemp="20 degC" type="q10ExpTemp" q10Factor="3"/>
+            <forwardRate midpoint="-80mV" rate="0.31836per_ms" scale="-62.52621mV" type="HHExpRate"/>
+            <reverseRate midpoint="-83.3332mV" rate="0.01014per_ms" scale="16.05379mV" type="HHExpRate"/>
+        </gate>
+                            
+    </ionChannel>
+
+    <ComponentType extends="baseVoltageDepRate" name="NaR_CML_s_alpha_rate">
+        <Constant name="TIME_SCALE" value="1 ms" dimension="time"/>
+        <Constant name="VOLT_SCALE" value="1 mV" dimension="voltage"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" value="v / VOLT_SCALE" dimension="none"/>
+            <DerivedVariable dimension="per_time" name="r" value="( 0.00008 + 0.0336167333 * ((V-4.48754)/6.81881)  / (1 - (exp (-(V-4.48754)/6.81881)))) / TIME_SCALE" exposure="r"/>
+        </Dynamics>
+
+    </ComponentType>
+
+    <ComponentType extends="baseVoltageDepRate" name="NaR_CML_s_beta_rate">
+        <Constant name="TIME_SCALE" value="1 ms" dimension="time"/>
+        <Constant name="VOLT_SCALE" value="1 mV" dimension="voltage"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" value="v / VOLT_SCALE" dimension="none"/>
+            <DerivedVariable dimension="per_time" name="r" value="( 0.04752 + 0.0016854444 * ((V+43.97494)/-0.10818)  / (1 - (exp (-(V+43.97494)/-0.10818)))) / TIME_SCALE" exposure="r"/>
+        </Dynamics>
+
+    </ComponentType>
+
+</neuroml>

@@ -1,0 +1,323 @@
+<Lems>
+
+    <!-- Specify which component to run -->
+    <Target component="sim1"/>
+
+    <!-- Include core NeuroML2 ComponentType definitions -->
+    <Include file="Cells.xml"/>
+    <Include file="Networks.xml"/>
+    <Include file="Simulation.xml"/>
+
+    <Include file="K2_Chan.nml"/>
+    
+    <ComponentType name="twoStepVoltageClamp" extends="baseCellMembPot">
+        
+        <!-- RestingV&t, step1V&t, step2V&t, restingV&t-->
+        <Parameter name="restStartDuration" dimension="time"/>
+        <Parameter name="step1Duration" dimension="time"/>
+        <Parameter name="step2Duration" dimension="time"/>
+        <Parameter name="restEndDuration" dimension="time"/>
+        
+        <Parameter name="restV" dimension="voltage"/>
+        <Parameter name="step1V" dimension="voltage"/>
+        <Parameter name="step2V" dimension="voltage"/>
+        
+        <Parameter name="caConc" dimension="concentration"/>
+        
+        <Children name="channelPopulation" type="channelPopulation"/>
+        
+        <Dynamics>
+            
+            <StateVariable name="v" exposure="v" dimension="voltage"/>
+            
+            <OnStart>
+                <StateAssignment variable="v" value="restV"/>
+            </OnStart>
+            
+            <OnCondition test="t .geq. restStartDuration .and. t .leq. restStartDuration+step1Duration">
+                <StateAssignment variable="v" value="step1V"/>
+            </OnCondition>
+            
+            <OnCondition test="t .gt. restStartDuration+step1Duration .and. t .leq. restStartDuration+step1Duration+step2Duration">
+                <StateAssignment variable="v" value="step2V"/>
+            </OnCondition>
+            
+            <OnCondition test="t .gt. restStartDuration+step1Duration+step2Duration">
+                <StateAssignment variable="v" value="restV"/>
+            </OnCondition>
+            
+        </Dynamics>
+        
+    </ComponentType>
+    
+
+    <twoStepVoltageClamp id="caconc3.2E-4mM_protocolDeactivation_step0" 
+   restStartDuration="100ms" step1Duration="300ms" step2Duration="200ms" restEndDuration="100ms" 
+   restV="-80mV" step1V="70mV" step2V="-100.0mV" caConc="3.2E-4 mM">
+   <channelPopulation id="channel" ionChannel="K2" number="1" erev="-86.7 mV"/>
+</twoStepVoltageClamp>
+
+<twoStepVoltageClamp id="caconc3.2E-4mM_protocolDeactivation_step1" 
+   restStartDuration="100ms" step1Duration="300ms" step2Duration="200ms" restEndDuration="100ms" 
+   restV="-80mV" step1V="70mV" step2V="-87.2727272727mV" caConc="3.2E-4 mM">
+   <channelPopulation id="channel" ionChannel="K2" number="1" erev="-86.7 mV"/>
+</twoStepVoltageClamp>
+
+<twoStepVoltageClamp id="caconc3.2E-4mM_protocolDeactivation_step2" 
+   restStartDuration="100ms" step1Duration="300ms" step2Duration="200ms" restEndDuration="100ms" 
+   restV="-80mV" step1V="70mV" step2V="-74.5454545455mV" caConc="3.2E-4 mM">
+   <channelPopulation id="channel" ionChannel="K2" number="1" erev="-86.7 mV"/>
+</twoStepVoltageClamp>
+
+<twoStepVoltageClamp id="caconc3.2E-4mM_protocolDeactivation_step3" 
+   restStartDuration="100ms" step1Duration="300ms" step2Duration="200ms" restEndDuration="100ms" 
+   restV="-80mV" step1V="70mV" step2V="-61.8181818182mV" caConc="3.2E-4 mM">
+   <channelPopulation id="channel" ionChannel="K2" number="1" erev="-86.7 mV"/>
+</twoStepVoltageClamp>
+
+<twoStepVoltageClamp id="caconc3.2E-4mM_protocolDeactivation_step4" 
+   restStartDuration="100ms" step1Duration="300ms" step2Duration="200ms" restEndDuration="100ms" 
+   restV="-80mV" step1V="70mV" step2V="-49.0909090909mV" caConc="3.2E-4 mM">
+   <channelPopulation id="channel" ionChannel="K2" number="1" erev="-86.7 mV"/>
+</twoStepVoltageClamp>
+
+<twoStepVoltageClamp id="caconc3.2E-4mM_protocolDeactivation_step5" 
+   restStartDuration="100ms" step1Duration="300ms" step2Duration="200ms" restEndDuration="100ms" 
+   restV="-80mV" step1V="70mV" step2V="-36.3636363636mV" caConc="3.2E-4 mM">
+   <channelPopulation id="channel" ionChannel="K2" number="1" erev="-86.7 mV"/>
+</twoStepVoltageClamp>
+
+<twoStepVoltageClamp id="caconc3.2E-4mM_protocolDeactivation_step6" 
+   restStartDuration="100ms" step1Duration="300ms" step2Duration="200ms" restEndDuration="100ms" 
+   restV="-80mV" step1V="70mV" step2V="-23.6363636364mV" caConc="3.2E-4 mM">
+   <channelPopulation id="channel" ionChannel="K2" number="1" erev="-86.7 mV"/>
+</twoStepVoltageClamp>
+
+<twoStepVoltageClamp id="caconc3.2E-4mM_protocolDeactivation_step7" 
+   restStartDuration="100ms" step1Duration="300ms" step2Duration="200ms" restEndDuration="100ms" 
+   restV="-80mV" step1V="70mV" step2V="-10.9090909091mV" caConc="3.2E-4 mM">
+   <channelPopulation id="channel" ionChannel="K2" number="1" erev="-86.7 mV"/>
+</twoStepVoltageClamp>
+
+<twoStepVoltageClamp id="caconc3.2E-4mM_protocolDeactivation_step8" 
+   restStartDuration="100ms" step1Duration="300ms" step2Duration="200ms" restEndDuration="100ms" 
+   restV="-80mV" step1V="70mV" step2V="1.81818181818mV" caConc="3.2E-4 mM">
+   <channelPopulation id="channel" ionChannel="K2" number="1" erev="-86.7 mV"/>
+</twoStepVoltageClamp>
+
+<twoStepVoltageClamp id="caconc3.2E-4mM_protocolDeactivation_step9" 
+   restStartDuration="100ms" step1Duration="300ms" step2Duration="200ms" restEndDuration="100ms" 
+   restV="-80mV" step1V="70mV" step2V="14.5454545455mV" caConc="3.2E-4 mM">
+   <channelPopulation id="channel" ionChannel="K2" number="1" erev="-86.7 mV"/>
+</twoStepVoltageClamp>
+
+<twoStepVoltageClamp id="caconc3.2E-4mM_protocolDeactivation_step10" 
+   restStartDuration="100ms" step1Duration="300ms" step2Duration="200ms" restEndDuration="100ms" 
+   restV="-80mV" step1V="70mV" step2V="27.2727272727mV" caConc="3.2E-4 mM">
+   <channelPopulation id="channel" ionChannel="K2" number="1" erev="-86.7 mV"/>
+</twoStepVoltageClamp>
+
+<twoStepVoltageClamp id="caconc3.2E-4mM_protocolDeactivation_step11" 
+   restStartDuration="100ms" step1Duration="300ms" step2Duration="200ms" restEndDuration="100ms" 
+   restV="-80mV" step1V="70mV" step2V="40.0mV" caConc="3.2E-4 mM">
+   <channelPopulation id="channel" ionChannel="K2" number="1" erev="-86.7 mV"/>
+</twoStepVoltageClamp>
+
+
+
+    
+    <network id="net1" type="networkWithTemperature" temperature = "32 degC">
+        <population id="caconc3.2E-4mM_protocolDeactivation_step0_pop" component="caconc3.2E-4mM_protocolDeactivation_step0" size="1"/>
+
+<population id="caconc3.2E-4mM_protocolDeactivation_step1_pop" component="caconc3.2E-4mM_protocolDeactivation_step1" size="1"/>
+
+<population id="caconc3.2E-4mM_protocolDeactivation_step2_pop" component="caconc3.2E-4mM_protocolDeactivation_step2" size="1"/>
+
+<population id="caconc3.2E-4mM_protocolDeactivation_step3_pop" component="caconc3.2E-4mM_protocolDeactivation_step3" size="1"/>
+
+<population id="caconc3.2E-4mM_protocolDeactivation_step4_pop" component="caconc3.2E-4mM_protocolDeactivation_step4" size="1"/>
+
+<population id="caconc3.2E-4mM_protocolDeactivation_step5_pop" component="caconc3.2E-4mM_protocolDeactivation_step5" size="1"/>
+
+<population id="caconc3.2E-4mM_protocolDeactivation_step6_pop" component="caconc3.2E-4mM_protocolDeactivation_step6" size="1"/>
+
+<population id="caconc3.2E-4mM_protocolDeactivation_step7_pop" component="caconc3.2E-4mM_protocolDeactivation_step7" size="1"/>
+
+<population id="caconc3.2E-4mM_protocolDeactivation_step8_pop" component="caconc3.2E-4mM_protocolDeactivation_step8" size="1"/>
+
+<population id="caconc3.2E-4mM_protocolDeactivation_step9_pop" component="caconc3.2E-4mM_protocolDeactivation_step9" size="1"/>
+
+<population id="caconc3.2E-4mM_protocolDeactivation_step10_pop" component="caconc3.2E-4mM_protocolDeactivation_step10" size="1"/>
+
+<population id="caconc3.2E-4mM_protocolDeactivation_step11_pop" component="caconc3.2E-4mM_protocolDeactivation_step11" size="1"/>
+
+
+    </network>
+
+
+    <Simulation id="sim1" length="700.0ms" step="0.01ms" target="net1">
+        
+        <Display id="d0" title="V"  timeScale="1ms" xmin="0" xmax="700.0" ymin="-150.0" ymax="150.0">
+            <Line id="caconc3.2E-4mM_protocolDeactivation_step0" quantity="caconc3.2E-4mM_protocolDeactivation_step0_pop[0]/v" scale="1 mV" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step1" quantity="caconc3.2E-4mM_protocolDeactivation_step1_pop[0]/v" scale="1 mV" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step2" quantity="caconc3.2E-4mM_protocolDeactivation_step2_pop[0]/v" scale="1 mV" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step3" quantity="caconc3.2E-4mM_protocolDeactivation_step3_pop[0]/v" scale="1 mV" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step4" quantity="caconc3.2E-4mM_protocolDeactivation_step4_pop[0]/v" scale="1 mV" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step5" quantity="caconc3.2E-4mM_protocolDeactivation_step5_pop[0]/v" scale="1 mV" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step6" quantity="caconc3.2E-4mM_protocolDeactivation_step6_pop[0]/v" scale="1 mV" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step7" quantity="caconc3.2E-4mM_protocolDeactivation_step7_pop[0]/v" scale="1 mV" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step8" quantity="caconc3.2E-4mM_protocolDeactivation_step8_pop[0]/v" scale="1 mV" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step9" quantity="caconc3.2E-4mM_protocolDeactivation_step9_pop[0]/v" scale="1 mV" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step10" quantity="caconc3.2E-4mM_protocolDeactivation_step10_pop[0]/v" scale="1 mV" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step11" quantity="caconc3.2E-4mM_protocolDeactivation_step11_pop[0]/v" scale="1 mV" timeScale="1ms"/>
+
+
+        </Display>
+
+        <Display id="d1" title="G"  timeScale="1ms" xmin="0" xmax="700.0" ymin="0" ymax="10">
+            <Line id="caconc3.2E-4mM_protocolDeactivation_step0" quantity="caconc3.2E-4mM_protocolDeactivation_step0_pop[0]/channel/K2/g" scale="1 pS" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step1" quantity="caconc3.2E-4mM_protocolDeactivation_step1_pop[0]/channel/K2/g" scale="1 pS" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step2" quantity="caconc3.2E-4mM_protocolDeactivation_step2_pop[0]/channel/K2/g" scale="1 pS" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step3" quantity="caconc3.2E-4mM_protocolDeactivation_step3_pop[0]/channel/K2/g" scale="1 pS" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step4" quantity="caconc3.2E-4mM_protocolDeactivation_step4_pop[0]/channel/K2/g" scale="1 pS" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step5" quantity="caconc3.2E-4mM_protocolDeactivation_step5_pop[0]/channel/K2/g" scale="1 pS" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step6" quantity="caconc3.2E-4mM_protocolDeactivation_step6_pop[0]/channel/K2/g" scale="1 pS" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step7" quantity="caconc3.2E-4mM_protocolDeactivation_step7_pop[0]/channel/K2/g" scale="1 pS" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step8" quantity="caconc3.2E-4mM_protocolDeactivation_step8_pop[0]/channel/K2/g" scale="1 pS" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step9" quantity="caconc3.2E-4mM_protocolDeactivation_step9_pop[0]/channel/K2/g" scale="1 pS" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step10" quantity="caconc3.2E-4mM_protocolDeactivation_step10_pop[0]/channel/K2/g" scale="1 pS" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step11" quantity="caconc3.2E-4mM_protocolDeactivation_step11_pop[0]/channel/K2/g" scale="1 pS" timeScale="1ms"/>
+
+
+        </Display>
+        
+        <Display id="d7" title="I"  timeScale="1ms" xmin="0" xmax="700.0" ymin="-10" ymax="10">
+            <Line id="caconc3.2E-4mM_protocolDeactivation_step0" quantity="caconc3.2E-4mM_protocolDeactivation_step0_pop[0]/channel/i" scale="1 pA" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step1" quantity="caconc3.2E-4mM_protocolDeactivation_step1_pop[0]/channel/i" scale="1 pA" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step2" quantity="caconc3.2E-4mM_protocolDeactivation_step2_pop[0]/channel/i" scale="1 pA" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step3" quantity="caconc3.2E-4mM_protocolDeactivation_step3_pop[0]/channel/i" scale="1 pA" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step4" quantity="caconc3.2E-4mM_protocolDeactivation_step4_pop[0]/channel/i" scale="1 pA" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step5" quantity="caconc3.2E-4mM_protocolDeactivation_step5_pop[0]/channel/i" scale="1 pA" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step6" quantity="caconc3.2E-4mM_protocolDeactivation_step6_pop[0]/channel/i" scale="1 pA" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step7" quantity="caconc3.2E-4mM_protocolDeactivation_step7_pop[0]/channel/i" scale="1 pA" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step8" quantity="caconc3.2E-4mM_protocolDeactivation_step8_pop[0]/channel/i" scale="1 pA" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step9" quantity="caconc3.2E-4mM_protocolDeactivation_step9_pop[0]/channel/i" scale="1 pA" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step10" quantity="caconc3.2E-4mM_protocolDeactivation_step10_pop[0]/channel/i" scale="1 pA" timeScale="1ms"/>
+
+<Line id="caconc3.2E-4mM_protocolDeactivation_step11" quantity="caconc3.2E-4mM_protocolDeactivation_step11_pop[0]/channel/i" scale="1 pA" timeScale="1ms"/>
+
+
+        </Display>
+        
+        <OutputFile id="fileOut" fileName="fileOut_ca3.2E-4mM_Deactivation_-100.0_40.0_380_700.dat">
+            <OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step0_pop[0]/v" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step1_pop[0]/v" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step2_pop[0]/v" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step3_pop[0]/v" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step4_pop[0]/v" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step5_pop[0]/v" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step6_pop[0]/v" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step7_pop[0]/v" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step8_pop[0]/v" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step9_pop[0]/v" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step10_pop[0]/v" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step11_pop[0]/v" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step0_pop[0]/channel/i" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step1_pop[0]/channel/i" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step2_pop[0]/channel/i" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step3_pop[0]/channel/i" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step4_pop[0]/channel/i" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step5_pop[0]/channel/i" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step6_pop[0]/channel/i" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step7_pop[0]/channel/i" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step8_pop[0]/channel/i" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step9_pop[0]/channel/i" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step10_pop[0]/channel/i" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step11_pop[0]/channel/i" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step0_pop[0]/channel/K2/g" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step1_pop[0]/channel/K2/g" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step2_pop[0]/channel/K2/g" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step3_pop[0]/channel/K2/g" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step4_pop[0]/channel/K2/g" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step5_pop[0]/channel/K2/g" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step6_pop[0]/channel/K2/g" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step7_pop[0]/channel/K2/g" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step8_pop[0]/channel/K2/g" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step9_pop[0]/channel/K2/g" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step10_pop[0]/channel/K2/g" />
+
+<OutputColumn quantity="caconc3.2E-4mM_protocolDeactivation_step11_pop[0]/channel/K2/g" />
+
+
+        </OutputFile>
+        
+    </Simulation>
+
+
+</Lems>
