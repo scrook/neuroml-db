@@ -9,6 +9,8 @@ path = sys.argv[1]
 DirName = os.path.dirname(os.path.abspath(path))
 FileName = os.path.basename(path)
 
+print("Converting to JavaScript: "+path)
+
 # Parse file name for parameters e.g. fileOut_ca1E0mM_Activation_-150.0_0.0_95_2130.dat
 m = re.search(r"_ca(.*?)mM_(.*?)_(.*?)_(.*?)_(.*?)_(.*?).dat", FileName)
 caConc = m.group(1)
@@ -78,11 +80,17 @@ with open(path) as f:
 
 # Convert units time*1000, voltage*1000, current*10^12, conductance*10^12
 # There are 3*12+1 columns. 1 time col, and 12*3 cols for each plot type
-for row in data:
-    row[0] = float(row[0])*1000 # time
-    row[1:13] = [float(e)*1000 if e != None else None for e in row[1:13]] #voltage
-    row[13:25] = [float(e)*10E12 if e != None else None for e in row[13:25]] #current
-    row[25:37] = [float(e)*10E12 if e != None else None for e in row[25:37]] #conductance
+rowsProcessed = 0
+try:
+    for row in data:
+        row[0] = float(row[0])*1000 # time
+        row[1:13] = [float(e)*1000 if e != None else None for e in row[1:13]] #voltage
+        row[13:25] = [float(e)*10E12 if e != None else None for e in row[13:25]] #current
+        row[25:37] = [float(e)*10E12 if e != None else None for e in row[25:37]] #conductance
+        
+        rowsProcessed = rowsProcessed + 1
+except:
+    data = data[0:rowsProcessed]
 
 # Format each column as {x:t0,y:321},{x:t1,y:321}...
 dataStrings = []
