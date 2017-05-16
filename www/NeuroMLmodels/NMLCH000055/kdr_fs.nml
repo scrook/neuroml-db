@@ -55,7 +55,10 @@ J. Neurophysiol. 93, 2194-2232, 2005</rdf:li>
 
         <Dynamics>
             <DerivedVariable dimension="none" value="v / VOLT_SCALE" name="V"/>
-            <DerivedVariable name="t" valueCondition="V  .leq. ( -10 )" value="( 0.25 + 4.35 * (exp (( V + 10 )/10)) ) * TIME_SCALE" valueIfFalse="( 0.25 + 4.35 * (exp ((- V - 10)/ 10))) * TIME_SCALE" dimension="time" exposure="t"/>
+            <ConditionalDerivedVariable name="t" dimension="time" exposure="t">
+                <Case condition="V  .leq. ( -10 )" value="( 0.25 + 4.35 * (exp (( V + 10 )/10)) ) * TIME_SCALE" />
+                <Case condition="V  .gt. ( -10 )" value="( 0.25 + 4.35 * (exp ((- V - 10)/ 10))) * TIME_SCALE" />
+            </ConditionalDerivedVariable>
         </Dynamics>
 
     </ComponentType>

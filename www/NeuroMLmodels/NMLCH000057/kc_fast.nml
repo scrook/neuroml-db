@@ -52,13 +52,14 @@ J. Neurophysiol. 93, 2194-2232, 2005</rdf:li>
     <ComponentType extends="baseVoltageDepRate" name="kc_fast_m_alpha_rate">
         <Constant dimension="time" value="1 ms" name="TIME_SCALE"/>
         <Constant dimension="voltage" value="1 mV" name="VOLT_SCALE"/>
-        <Constant dimension="none" value="2" name="speedup_factor">
-                <!-- Note: this parameter should instead be defined only once within the ionChannel! -->
-        </Constant>
+        <Constant dimension="none" value="2" name="speedup_factor"/>
 
         <Dynamics>
             <DerivedVariable dimension="none" value="v / VOLT_SCALE" name="V"/>
-            <DerivedVariable name="r" valueCondition="V  .lt. ( -10 )" value="( speedup_factor * (2 / 37.95) * ( exp ( ((V + 50 ) / 11) - (( V + 53.5) / 27) ) ) ) / TIME_SCALE" valueIfFalse="( speedup_factor * 2 * (exp ( ( (-1 * V) - 53.5 ) / 27 ))) / TIME_SCALE" dimension="per_time" exposure="r"/>
+            <ConditionalDerivedVariable name="r" dimension="per_time" exposure="r">
+                <Case condition="V  .lt. ( -10 )" value="( speedup_factor * (2 / 37.95) * ( exp ( ((V + 50 ) / 11) - (( V + 53.5) / 27) ) ) ) / TIME_SCALE" />
+                <Case condition="V  .geq. ( -10 )" value="( speedup_factor * 2 * (exp ( ( (-1 * V) - 53.5 ) / 27 ))) / TIME_SCALE"/>
+            </ConditionalDerivedVariable>
         </Dynamics>
 
     </ComponentType>
@@ -66,15 +67,16 @@ J. Neurophysiol. 93, 2194-2232, 2005</rdf:li>
     <ComponentType extends="baseVoltageDepRate" name="kc_fast_m_beta_rate">
         <Constant dimension="time" value="1 ms" name="TIME_SCALE"/>
         <Constant dimension="voltage" value="1 mV" name="VOLT_SCALE"/>
-        <Constant dimension="none" value="2" name="speedup_factor">
-                <!-- Note: this parameter should instead be defined only once within the ionChannel! -->
-        </Constant>
+        <Constant dimension="none" value="2" name="speedup_factor"/>
         <Requirement dimension="per_time" name="alpha"/>
         <Requirement dimension="per_time" name="beta"/>
 
         <Dynamics>
             <DerivedVariable dimension="none" value="v / VOLT_SCALE" name="V"/>
-            <DerivedVariable name="r" valueCondition="V  .lt. ( -10 )" value="( speedup_factor * 2 * (exp ( ( (-1 * V) - 53.5 ) / 27 )) - alpha*TIME_SCALE) / TIME_SCALE" valueIfFalse="( speedup_factor * 0.0) / TIME_SCALE" dimension="per_time" exposure="r"/>
+            <ConditionalDerivedVariable name="r" dimension="per_time" exposure="r">
+                <Case condition="V  .lt. ( -10 )" value="( speedup_factor * 2 * (exp ( ( (-1 * V) - 53.5 ) / 27 )) - alpha*TIME_SCALE) / TIME_SCALE"/>
+                <Case condition="V  .geq. ( -10 )" value="( speedup_factor * 0.0) / TIME_SCALE"/>
+            </ConditionalDerivedVariable>
         </Dynamics>
 
     </ComponentType>

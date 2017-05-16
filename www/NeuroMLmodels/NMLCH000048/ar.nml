@@ -44,9 +44,7 @@ J. Neurophysiol. 93, 2194-2232, 2005</rdf:li>
     <ComponentType extends="baseVoltageDepTime" name="ar_m_tau_tau">
         <Constant dimension="time" value="1 ms" name="TIME_SCALE"/>
         <Constant dimension="voltage" value="1 mV" name="VOLT_SCALE"/>
-        <Constant dimension="none" value="0" name="m0">
-                <!-- Note: this parameter should instead be defined only once within the ionChannel! -->
-        </Constant>
+        <Constant dimension="none" value="0" name="m0"/>
 
         <Dynamics>
             <DerivedVariable dimension="none" value="v / VOLT_SCALE" name="V"/>

@@ -57,25 +57,18 @@ J. Neurophysiol. 93, 2194-2232, 2005</rdf:li>
     <ComponentType extends="baseVoltageDepTime" name="naf2_m_tau_tau">
         <Constant dimension="time" value="1 ms" name="TIME_SCALE"/>
         <Constant dimension="voltage" value="1 mV" name="VOLT_SCALE"/>
-        <Constant dimension="none" value="0" name="fastNa_shift">
-                <!-- Note: this parameter should instead be defined only once within the ionChannel! -->
-        </Constant>
-        <Constant dimension="none" value="0" name="a">
-                <!-- Note: this parameter should instead be defined only once within the ionChannel! -->
-        </Constant>
-        <Constant dimension="none" value="0" name="b">
-                <!-- Note: this parameter should instead be defined only once within the ionChannel! -->
-        </Constant>
-        <Constant dimension="none" value="0" name="c">
-                <!-- Note: this parameter should instead be defined only once within the ionChannel! -->
-        </Constant>
-        <Constant dimension="none" value="0" name="d">
-                <!-- Note: this parameter should instead be defined only once within the ionChannel! -->
-        </Constant>
+        <Constant dimension="none" value="0" name="fastNa_shift"/>
+        <Constant dimension="none" value="0" name="a"/>
+        <Constant dimension="none" value="0" name="b"/>
+        <Constant dimension="none" value="0" name="c"/>
+        <Constant dimension="none" value="0" name="d"/>
 
         <Dynamics>
             <DerivedVariable dimension="none" value="v / VOLT_SCALE" name="V"/>
-            <DerivedVariable name="t" valueCondition="( V + fastNa_shift )  .lt. ( -30 )" value="( 0.0125 + 0.1525 * ( exp ( ((V + fastNa_shift) + 30) / 10) ) ) * TIME_SCALE" valueIfFalse="( 0.02 + a + (0.145 + b) * ( exp ( -1 * ((V + fastNa_shift + d) + 30) / (10 + c)) )) * TIME_SCALE" dimension="time" exposure="t"/>
+            <ConditionalDerivedVariable name="t" dimension="time" exposure="t">
+                <Case condition="( V + fastNa_shift )  .lt. ( -30 )" value="( 0.0125 + 0.1525 * ( exp ( ((V + fastNa_shift) + 30) / 10) ) ) * TIME_SCALE"/>
+                <Case value="( 0.02 + a + (0.145 + b) * ( exp ( -1 * ((V + fastNa_shift + d) + 30) / (10 + c)) )) * TIME_SCALE"/>
+            </ConditionalDerivedVariable>
         </Dynamics>
 
     </ComponentType>
@@ -83,21 +76,11 @@ J. Neurophysiol. 93, 2194-2232, 2005</rdf:li>
     <ComponentType extends="baseVoltageDepVariable" name="naf2_m_inf_inf">
         <Constant dimension="time" value="1 ms" name="TIME_SCALE"/>
         <Constant dimension="voltage" value="1 mV" name="VOLT_SCALE"/>
-        <Constant dimension="none" value="0" name="fastNa_shift">
-                <!-- Note: this parameter should instead be defined only once within the ionChannel! -->
-        </Constant>
-        <Constant dimension="none" value="0" name="a">
-                <!-- Note: this parameter should instead be defined only once within the ionChannel! -->
-        </Constant>
-        <Constant dimension="none" value="0" name="b">
-                <!-- Note: this parameter should instead be defined only once within the ionChannel! -->
-        </Constant>
-        <Constant dimension="none" value="0" name="c">
-                <!-- Note: this parameter should instead be defined only once within the ionChannel! -->
-        </Constant>
-        <Constant dimension="none" value="0" name="d">
-                <!-- Note: this parameter should instead be defined only once within the ionChannel! -->
-        </Constant>
+        <Constant dimension="none" value="0" name="fastNa_shift"/>
+        <Constant dimension="none" value="0" name="a"/>
+        <Constant dimension="none" value="0" name="b"/>
+        <Constant dimension="none" value="0" name="c"/>
+        <Constant dimension="none" value="0" name="d"/>
 
         <Dynamics>
             <DerivedVariable dimension="none" value="v / VOLT_SCALE" name="V"/>
@@ -109,21 +92,11 @@ J. Neurophysiol. 93, 2194-2232, 2005</rdf:li>
     <ComponentType extends="baseVoltageDepTime" name="naf2_h_tau_tau">
         <Constant dimension="time" value="1 ms" name="TIME_SCALE"/>
         <Constant dimension="voltage" value="1 mV" name="VOLT_SCALE"/>
-        <Constant dimension="none" value="0" name="fastNa_shift">
-                <!-- Note: this parameter should instead be defined only once within the ionChannel! -->
-        </Constant>
-        <Constant dimension="none" value="0" name="a">
-                <!-- Note: this parameter should instead be defined only once within the ionChannel! -->
-        </Constant>
-        <Constant dimension="none" value="0" name="b">
-                <!-- Note: this parameter should instead be defined only once within the ionChannel! -->
-        </Constant>
-        <Constant dimension="none" value="0" name="c">
-                <!-- Note: this parameter should instead be defined only once within the ionChannel! -->
-        </Constant>
-        <Constant dimension="none" value="0" name="d">
-                <!-- Note: this parameter should instead be defined only once within the ionChannel! -->
-        </Constant>
+        <Constant dimension="none" value="0" name="fastNa_shift"/>
+        <Constant dimension="none" value="0" name="a"/>
+        <Constant dimension="none" value="0" name="b"/>
+        <Constant dimension="none" value="0" name="c"/>
+        <Constant dimension="none" value="0" name="d"/>
 
         <Dynamics>
             <DerivedVariable dimension="none" value="v / VOLT_SCALE" name="V"/>
@@ -135,22 +108,11 @@ J. Neurophysiol. 93, 2194-2232, 2005</rdf:li>
     <ComponentType extends="baseVoltageDepVariable" name="naf2_h_inf_inf">
         <Constant dimension="time" value="1 ms" name="TIME_SCALE"/>
         <Constant dimension="voltage" value="1 mV" name="VOLT_SCALE"/>
-        <Constant dimension="none" value="0" name="fastNa_shift">
-                <!-- Note: this parameter should instead be defined only once within the ionChannel! -->
-        </Constant>
-        <Constant dimension="none" value="0" name="a">
-                <!-- Note: this parameter should instead be defined only once within the ionChannel! -->
-        </Constant>
-        <Constant dimension="none" value="0" name="b">
-                <!-- Note: this parameter should instead be defined only once within the ionChannel! -->
-        </Constant>
-        <Constant dimension="none" value="0" name="c">
-                <!-- Note: this parameter should instead be defined only once within the ionChannel! -->
-        </Constant>
-        <Constant dimension="none" value="0" name="d">
-                <!-- Note: this parameter should instead be defined only once within the ionChannel! -->
-        </Constant>
-
+        <Constant dimension="none" value="0" name="fastNa_shift"/>
+        <Constant dimension="none" value="0" name="a"/>
+        <Constant dimension="none" value="0" name="b"/>
+        <Constant dimension="none" value="0" name="c"/>
+        <Constant dimension="none" value="0" name="d"/>
         <Dynamics>
             <DerivedVariable dimension="none" value="v / VOLT_SCALE" name="V"/>
             <DerivedVariable exposure="x" dimension="none" value="1 / ( 1 + (exp (( ( V + fastNa_shift * 0 ) + 58.3 ) / 6.7)) )" name="x"/>

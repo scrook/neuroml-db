@@ -35,12 +35,12 @@
             <q10Settings experimentalTemp="25.5 degC" type="q10ExpTemp" q10Factor="3"/>
             <forwardRate midpoint="-9.17203mV" rate="0.8147 per_ms" scale="23.32708mV" type="HHSigmoidRate"/>
             <reverseRate type="KA_CML_a_beta_rate"/>
-            <steadyState midpoint=" -38mV" rate="1" scale="17mV" type="HHSigmoidVariable"/>
+            <steadyState midpoint="-38mV" rate="1" scale="17mV" type="HHSigmoidVariable"/>
         </gate>
 
         <gate instances="1" type="gateHHratesInf" id="b">
             <q10Settings experimentalTemp="25.5 degC" type="q10ExpTemp" q10Factor="3"/>
-            <forwardRate midpoint=" -111.33209mV" rate="0.0368 per_ms" scale="-12.8433mV" type="HHSigmoidRate"/>
+            <forwardRate midpoint="-111.33209mV" rate="0.0368 per_ms" scale="-12.8433mV" type="HHSigmoidRate"/>
             <reverseRate midpoint="-49.953mV" rate="0.0345per_ms" scale="8.90123mV" type="HHSigmoidRate"/>
             <steadyState midpoint="-78.8mV" rate="1" scale="-8.4mV" type="HHSigmoidVariable"/>
         </gate>

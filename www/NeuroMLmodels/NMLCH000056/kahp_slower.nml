@@ -57,7 +57,10 @@ J. Neurophysiol. 93, 2194-2232, 2005</rdf:li>
         <Dynamics>
             <DerivedVariable dimension="none" value="v / VOLT_SCALE" name="V"/>
             <DerivedVariable dimension="none" value="caConc / CONC_SCALE" name="ca_conc"/>
-            <DerivedVariable name="r" valueCondition="ca_conc  .lt. ( 0.0005 )" value="( ca_conc/0.05 ) / TIME_SCALE" valueIfFalse="( 0.01) / TIME_SCALE" dimension="per_time" exposure="r"/>
+            <ConditionalDerivedVariable name="r" dimension="per_time" exposure="r">
+                <Case condition="ca_conc  .lt. ( 0.0005 )" value="( ca_conc/0.05 ) / TIME_SCALE"/>
+                <Case value="( 0.01) / TIME_SCALE"/>
+            </ConditionalDerivedVariable>
         </Dynamics>
 
     </ComponentType>
