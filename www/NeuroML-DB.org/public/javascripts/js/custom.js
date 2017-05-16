@@ -403,6 +403,48 @@ function getProtocolData(doneCallback) {
 	jQuery.ajax(url, {
 		success: function (data) {
 			eval.call(window,data);
+
+			//For non-activation voltage plots, add a "series"  that,
+			//when drawn, will result in a dashed ROI box
+			//vxmin, vxmax vars will have the ROI tmin/tmax values
+
+			//Find the y min/max values from the data
+			firstY = voltages.datasets[0].data[0].y;
+			var vymax = firstY;
+			var vymin = firstY;
+
+			for (var d in voltages.datasets) {
+				ds = voltages.datasets[d]
+				for (var p in ds.data) {
+					y = ds.data[p].y
+
+					if (y > vymax)
+						vymax = y
+
+					if (y < vymin)
+						vymin = y
+				}
+			}
+
+			//Add some padding
+			var padding = 0.1 * (vymax - vymin);
+			vymin = vymin - padding;
+			vymax = vymax + padding;
+
+			//Add a "series" that, when drawn, will result in the dashed ROI box
+			voltages.datasets.push({
+				borderColor: "black",
+				borderDash: [5],
+				label: "Region of Interest shown in the Current and Conductance plots below",
+				data: [
+					{x: vxmin, y: vymin},
+					{x: vxmin, y: vymax},
+					{x: vxmax, y: vymax},
+					{x: vxmax, y: vymin},
+					{x: vxmin, y: vymin},
+				]
+			});
+
 			doneCallback();
 		}
 	});

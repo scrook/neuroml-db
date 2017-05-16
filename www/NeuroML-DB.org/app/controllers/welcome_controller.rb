@@ -507,18 +507,6 @@ class WelcomeController < ApplicationController
     return caConcs
   end
 
-  def GetDefaultVclampFile
-
-    # Get the largest concentration value
-    defaultConc = GetVclampCaConcentrations().last
-
-    # Get the activation subprotocol file for it
-    defaultVclampFile = Dir["/var/www/NeuroMLmodels/"+@model_id+"/vclamp_"+defaultConc[:Name]+"_Activation*.js"][0]
-
-    return defaultVclampFile
-  end
-
-
   def GetModelProtocolData
 
     modelID =params[:modelID].to_s
@@ -526,8 +514,14 @@ class WelcomeController < ApplicationController
     subProtocol =params[:subProtocol].to_s
 
     file = Dir["/var/www/NeuroMLmodels/"+modelID+"/vclamp_"+caConc+"_"+subProtocol+"*.js"][0]
+    matches = /.*_(.*?)_(.*?).js/.match(file)
+    xmin = matches[1]
+    xmax = matches[2]
 
-    send_data(File.read(file), :type => 'application/javascript')
+    contents = File.read(file)
+    contents = contents + "; var vxmin=#{xmin}; var vxmax=#{xmax};"
+
+    send_data(contents, :type => 'application/javascript')
 
   end
 

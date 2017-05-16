@@ -163,10 +163,15 @@ class Model < ActiveRecord::Base
 
       filesToZip = GetFiles(modelID)
 
-      # Add the LEMS file to the list of files to zip
+      # Add the LEMS files to the list of files to zip
       channelFile = File.basename(filesToZip[0]["File"])
       directory = File.dirname(filesToZip[0]["File"])
-      filesToZip.push({ "File" => directory + '/LEMS_' + channelFile })
+
+      lemsFiles = Dir[directory+"/LEMS*"]
+
+      for lemsFile in lemsFiles
+        filesToZip.push({ "File" => lemsFile })
+      end
 
       begin
         Zip::ZipFile.open(_zipFilePath, Zip::ZipFile::CREATE) do |zip|
