@@ -1,6 +1,6 @@
 import sys, re, os
 
-# usage python createLEMS.py ChannelFile.nml Na/Kv/Cav/Kca/Ih [vLow] [vHigh]
+# usage: python createLEMS.py ChannelFile.nml Na/Kv/Cav/Kca/Ih [vLow] [vHigh]
 
 path = sys.argv[1]
 channelClass = sys.argv[2]
@@ -147,21 +147,32 @@ steps = 12
 
 # Templates
 clampTemplate = \
-'<twoStepVoltageClamp id="[ClampID]" \n'+ \
-'   restStartDuration="[restStartDuration]" step1Duration="[step1Duration]" step2Duration="[step2Duration]" restEndDuration="[restEndDuration]" \n' + \
-'   restV="[restV]" step1V="[step1V]" step2V="[step2V]" caConc="[CaConc]">\n' + \
-'   <channelPopulation id="channel" ionChannel="[ChannelName]" number="1" erev="[ReversalE]"/>\n'+ \
-'</twoStepVoltageClamp>\n'
+'   <voltageClampProtocol id="[ClampID]" \n'+ \
+'       active = "1" \n'+ \
+'        delay="[restStartDuration]" duration1="[step1Duration]" duration2="[step2Duration]" \n'+ \
+'        restingVoltage="[restV]" \n'+ \
+'        voltage1="[step1V]" \n'+ \
+'        voltage2="[step2V]" \n'+ \
+'        simpleSeriesResistance="1e0 ohm"/> \n'
 
-populationTemplate = '<population id="[ClampID]_pop" component="[ClampID]" size="1"/>\n'
+populationTemplate = \
+'   <population id="[ClampID]_pop" component="TestCell" type="populationList" size="1"> \n'+ \
+'       <instance id="0"> \n'+ \
+'           <location x="0" y="0" z="0"/> \n'+ \
+'       </instance> \n'+ \
+'   </population> \n'+ \
+'   <inputList id="[ClampID]_input" component="[ClampID]" population="[ClampID]_pop"> \n'+ \
+'       <input id="0" target="../[ClampID]_pop/0/TestCell" destination="synapses"/> \n'+ \
+'   </inputList> \n'
 
-voltagePlotTemplate = '<Line id="[ClampID]" quantity="[ClampID]_pop[0]/v" scale="1 mV" timeScale="1ms"/>\n'
-currentPlotTemplate = '<Line id="[ClampID]" quantity="[ClampID]_pop[0]/channel/i" scale="1 pA" timeScale="1ms"/>\n'
-conductancePlotTemplate = '<Line id="[ClampID]" quantity="[ClampID]_pop[0]/channel/[ChannelName]/g" scale="1 pS" timeScale="1ms"/>\n'
 
-voltageOutputTemplate = '<OutputColumn quantity="[ClampID]_pop[0]/v" />\n'
-currentOutputTemplate = '<OutputColumn quantity="[ClampID]_pop[0]/channel/i" />\n'
-conductanceOutputTemplate = '<OutputColumn quantity="[ClampID]_pop[0]/channel/[ChannelName]/g" />\n'
+voltagePlotTemplate = '<Line id="[ClampID]" timeScale="1 ms" quantity="[ClampID]_pop/0/TestCell/v" scale="1"/> \n'
+currentPlotTemplate = '<Line id="[ClampID]" timeScale="1 ms" quantity="[ClampID]_pop/0/TestCell/biophys/membraneProperties/channel/iDensity" scale="1"/> \n'
+conductancePlotTemplate = '<Line id="[ClampID]" timeScale="1 ms" quantity="[ClampID]_pop/0/TestCell/biophys/membraneProperties/channel/gDensity" scale="1" /> \n'
+
+voltageOutputTemplate = '<OutputColumn id="[ClampID]_v" quantity="[ClampID]_pop/0/TestCell/v" />\n'
+currentOutputTemplate = '<OutputColumn id="[ClampID]_i" quantity="[ClampID]_pop/0/TestCell/biophys/membraneProperties/channel/iDensity" />\n'
+conductanceOutputTemplate = '<OutputColumn id="[ClampID]_g" quantity="[ClampID]_pop/0/TestCell/biophys/membraneProperties/channel/gDensity" />\n'
 
 def replaceTokens(target, reps):
     result = target
@@ -193,7 +204,7 @@ for caConc in classProtocol["CaLevels"]:
         iOutLines = ""
         gOutLines = ""
 
-        caConcShort = caConc.replace(" ","")
+        caConcShort = caConc.replace(" ","").replace("-","minus").replace(".","point")
         
         vHigh = float(subProtocol["step1Vhigh" if subProtocolName != "Deactivation" else "step2Vhigh"].replace("mV",""))
         vLow  = float(subProtocol["step1Vlow"  if subProtocolName != "Deactivation" else "step2Vlow"].replace("mV",""))

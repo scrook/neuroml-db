@@ -2,6 +2,8 @@
 # Will replace the .dat file with a
 # sub-sampled .JS file in a format usable by the Chart.js library
 
+removeDat = True
+
 import csv, re, sys, os
 from decimal import Decimal
 
@@ -13,7 +15,7 @@ print("Converting to JavaScript: "+path)
 
 # Parse file name for parameters e.g. fileOut_ca1E0mM_Activation_-150.0_0.0_95_2130.dat
 m = re.search(r"_ca(.*?)mM_(.*?)_(.*?)_(.*?)_(.*?)_(.*?).dat", FileName)
-caConc = m.group(1)
+caConc = m.group(1).replace("minus","-").replace("point",".")
 subProtocol = m.group(2)
 vLow = int(float(m.group(3)))
 vHigh = int(float(m.group(4)))
@@ -78,15 +80,15 @@ with open(path) as f:
 
 
 
-# Convert units time*1000, voltage*1000, current*10^12, conductance*10^12
+# Convert units time*1000, voltage*1000
 # There are 3*12+1 columns. 1 time col, and 12*3 cols for each plot type
 rowsProcessed = 0
 try:
     for row in data:
         row[0] = float(row[0])*1000 # time
         row[1:13] = [float(e)*1000 if e != None else None for e in row[1:13]] #voltage
-        row[13:25] = [float(e)*10E12 if e != None else None for e in row[13:25]] #current
-        row[25:37] = [float(e)*10E12 if e != None else None for e in row[25:37]] #conductance
+        row[13:25] = [float(e) if e != None else None for e in row[13:25]] #current
+        row[25:37] = [float(e) if e != None else None for e in row[25:37]] #conductance
         
         rowsProcessed = rowsProcessed + 1
 except:
@@ -131,4 +133,5 @@ with open(DirName + "/vclamp_"+caConc+"_"+subProtocol+"_%s_%s"%(roiStart,roiEnd)
 
     f.write("]};\n")
 
-os.remove(path)
+if removeDat:
+    os.remove(path)
