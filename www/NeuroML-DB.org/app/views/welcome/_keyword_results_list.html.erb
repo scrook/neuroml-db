@@ -10,7 +10,7 @@
           type = model_types[count]
         end
     %>
-    <div style="margin-bottom: 1em;"><a href="/model_info?model_id=<%=model_id%>" title="Model Information for <%=model_id%>" class="fancybox" ><b><%= model_names[count] %> <%= type %></b></a> <span style="color:gray">(<%=model_id%>)</span></div>
+    <div style="margin-bottom: 1em;"><a href="/model_info?model_id=<%=model_id%>&partial=true" title="Model Information for <%=model_id%>" class="fancybox" ><b><%= model_names[count] %> <%= type %></b></a> <span style="color:gray">(<%=model_id%>)</span></div>
 
     <% count = count + 1 %>
 <% end %>

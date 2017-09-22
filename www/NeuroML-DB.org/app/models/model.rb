@@ -4,6 +4,29 @@ class Model < ActiveRecord::Base
   attr_accessible :Model_ID
   set_primary_key "Model_ID"
 
+  def self.GetAllModels()
+    models = ActiveRecord::Base.connection.exec_query(
+        "
+        SELECT
+          CAST(
+            REPLACE(
+            REPLACE(
+            LOWER(Reference_URI),
+            'http://senselab.med.yale.edu/modeldb/showmodel.asp?model=',''),
+            'https://senselab.med.yale.edu/modeldb/showmodel.cshtml?model=','')
+            AS UNSIGNED) as ModelDB_ID,
+            mma.Model_ID as NeuroMLDB_ID,
+            REPLACE(REPLACE(amv.Model_File, mma.Model_ID, ''), '/var/www/NeuroMLmodels//','') as File
+        FROM refers
+        JOIN model_metadata_associations as mma ON metadata_id = reference_ID
+        JOIN all_models_view as amv ON amv.Model_ID = mma.Model_ID
+        WHERE Reference_Resource_ID = 2
+        ORDER BY ModelDB_ID, NeuroMLDB_ID;
+        ")
+
+    return models
+  end
+
   def self.GetFile(modelID)
 
     # If network
@@ -134,6 +157,11 @@ class Model < ActiveRecord::Base
       filesToZip = GetFiles(modelID)
 
       begin
+
+        if File.exist?(_zipFilePath)
+          File.delete(_zipFilePath)
+        end
+
         Zip::ZipFile.open(_zipFilePath, Zip::ZipFile::CREATE) do |zip|
 
           filesToZip.each do |record|
@@ -144,7 +172,10 @@ class Model < ActiveRecord::Base
 
       rescue
 
-        File.delete(_zipFilePath)
+        if File.exist?(_zipFilePath)
+          File.delete(_zipFilePath)
+        end
+
         raise
 
       end
@@ -174,6 +205,11 @@ class Model < ActiveRecord::Base
       end
 
       begin
+
+        if File.exist?(_zipFilePath)
+          File.delete(_zipFilePath)
+        end
+
         Zip::ZipFile.open(_zipFilePath, Zip::ZipFile::CREATE) do |zip|
 
           filesToZip.each do |record|
@@ -184,7 +220,10 @@ class Model < ActiveRecord::Base
 
       rescue
 
-        File.delete(_zipFilePath)
+        if File.exist?(_zipFilePath)
+          File.delete(_zipFilePath)
+        end
+
         raise
 
       end

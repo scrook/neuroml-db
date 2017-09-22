@@ -179,8 +179,11 @@ class WelcomeController < ApplicationController
       @filename=filename.last
     end
 
-    render :partial => "model_info"
-
+    if params[:partial].to_s == "true"
+      render :partial => "model_info"
+    else
+      render
+    end
 
   end
 

@@ -55,19 +55,12 @@
 
       <td class="description">
         <% if @ref_list.any? %>
-
             <% @ref_list.each_with_index do |(key,value),index| %>
-                <span>
-                    <a href="<%= key %>" target="_blank" style="text-decoration: none;">
-                      <img src="<%=@resources[index].LogoUrl %>" height="45" style="vertical-align:middle;" />
-                    </a>&nbsp;
-                </span>
+                <span style="display: inline-block;"><a href="<%= key %>" target="_blank" style="text-decoration: none;"><img src="<%=@resources[index].LogoUrl %>" height="45" style="vertical-align:middle;" /></a></span>
             <% end %>
-
         <% else %>
             None
         <% end %>
-
       </td>
     </tr>
 
@@ -157,7 +150,7 @@
 
                 <tr>
 
-                  <td><a class="fancybox" href="/model_info?model_id=<%= record["ModelID"] %>"><%= record["ModelID"] %></a></td>
+                  <td><a class="fancybox" href="/model_info?model_id=<%= record["ModelID"] %>&partial=true"><%= record["ModelID"] %></a></td>
 
                   <td><div style="width:300px; overflow:hidden;"><%= File.basename(record["File"]) %></div></td>
 
@@ -180,7 +173,7 @@
        if modelList.any? %>
             <div style="max-height:120px; overflow:auto; padding: 1px 0; width:637px;">
             <% modelList.each do |modelId, modelName| %>
-                <div><a class="fancybox" href="/model_info?model_id=<%= modelId %>"><%= modelName %></a></div>
+                <div><a class="fancybox" href="/model_info?model_id=<%= modelId %>&partial=true"><%= modelName %></a></div>
             <% end %>
             </div>
        <% else %>

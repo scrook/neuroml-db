@@ -29,6 +29,7 @@ RedmineApp::Application.routes.draw do
   match 'workshops', :to => 'welcome#workshops', :as => 'workshops'
   match 'render_xml_file', :to => 'xml#render_xml_file', :as => 'render_xml_file'
   match 'render_xml_as_html', :to => 'xml#render_xml_as_html', :as => 'render_xml_as_html'
+  match 'modeldb_model_list', :to => 'modeldb#model_list', :as => 'model_list'
   match 'tool_support', :to => 'welcome#tool_support', :as => 'tool_support'
   match 'validate', :to => 'welcome#validate', :as => 'validate'
   match 'neuron_tools', :to => 'welcome#neuron_tools', :as => 'neuron_tools'

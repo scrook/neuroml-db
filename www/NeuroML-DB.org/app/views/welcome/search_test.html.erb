@@ -81,7 +81,7 @@
           {
               queryObject.Time = performance.now() - beginTime;
 
-              var dom = jQuery(jQuery.parseXML(data));
+              var dom = jQuery(jQuery.parseXML(data.replace(/&/g, "&amp;")));
               var idSpans = dom.find(elementQuery);
               var found = false;
               var position = 0;
