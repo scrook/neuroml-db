@@ -175,7 +175,7 @@
         <% @queries.each do |query| %>
 
             <tr>
-              <td><%= query.Query %></td>
+              <td><a target="_blank" href="/search_model?q=<%= query.Query %>"><%= query.Query %></a></td>
               <td><a target="_blank" href="/model_info?model_id=<%= query.ModelID_Keyword %>"><%= query.ModelID_Keyword %></a></td>
               <td class="Keyword<%= count %>_Pos"></td>
               <td class="Keyword<%= count %>_Time"></td>
