@@ -187,6 +187,12 @@ class WelcomeController < ApplicationController
 
   end
 
+  helper_method :model_atag_params
+
+  def model_atag_params(id)
+    return "href=\"/model_info?model_id=#{id}\" onclick=\"document.showModel('/model_info?model_id=#{id}&partial=true'); return false;\"".html_safe
+  end
+
   def fill_authors_translators
     authors = AuthorListAssociation
                   .where("AuthorList_ID = " + @metadata_id.to_s + " and is_translator IN ('0','2')")

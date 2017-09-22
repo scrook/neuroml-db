@@ -185,31 +185,62 @@ jQuery(document).ready(function($) {
 	 });
 
 	 */
-	$("a.fancybox").live("hover", function() {
-		$("a.fancybox").fancybox({
-			'speedIn'           : 600,
-			'speedOut'          : 200,
-			'overlayShow'       : false,
-			'autoDimensions'    : false,
-			'width'             : 800, //'auto'
-			'height'            : 'auto', //'auto'
-			'overlayShow'       : true,
-			'overlayOpacity'    : 0.8,
-			'overlayColor'      : '#ccc',
-			'onComplete'		: function()
-			{
-				//Execute any scripts that are part of the model view
-				var scripts = jQuery("#fancybox-content script");
+	//$("a.fancybox").live("click", );
 
-				for(var s = 0; s < scripts.length; s++)
-				{
-					eval.call(window,scripts[s].innerHTML);
+
+    document.showModel = function(url) {
+
+    	//Save original url (if haven't already)
+		if(!document.searchUrl) {
+            document.searchUrl = window.location.href;
+			document.searchTitle = document.title;
+        }
+
+    	//Show model url in browser
+		var browserUrl = url.replace("&partial=true","");
+    	try { window.history.pushState({href:browserUrl},'',browserUrl); } catch(e) {}
+    	
+    	$.fancybox({
+            'href'              : url,
+            'speedIn'           : 600,
+            'speedOut'          : 200,
+            'overlayShow'       : false,
+            'autoDimensions'    : false,
+            'width'             : 800, //'auto'
+            'height'            : 'auto', //'auto'
+            'overlayShow'       : true,
+            'overlayOpacity'    : 0.8,
+            'overlayColor'      : '#ccc',
+            'onComplete'		: function()
+            {
+            	//Set the page title
+				document.title = jQuery("#modelName").text().trim() + " - NeuroML Database";
+
+                //Execute any scripts that are part of the model view
+                var scripts = jQuery("#fancybox-content script");
+
+                for(var s = 0; s < scripts.length; s++)
+                {
+                    eval.call(window,scripts[s].innerHTML);
+                }
+            },
+			'onClosed'			: function() {
+				//Restore the search url and title
+				if(document.searchUrl) {
+					document.title = document.searchTitle;
+					try { window.history.pushState({href:document.searchUrl},'',document.searchUrl); } catch(e) {}
+
+				    document.searchUrl = null;
 				}
 			}
-		});
-	});
-
-
+        })
+    }
+    
+    window.onpopstate = function(e) {
+    	if(e.state && e.state.href) {
+    		window.location.href = e.state.href;
+		}
+	}
 
 	$("a.example").live("hover",
 		function(){

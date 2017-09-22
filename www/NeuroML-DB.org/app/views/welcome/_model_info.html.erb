@@ -10,7 +10,7 @@
         Model Name:
       </td>
 
-      <td class="description">
+      <td class="description" id="modelName">
         <%= @name %>
       </td>
     </tr>
@@ -150,7 +150,7 @@
 
                 <tr>
 
-                  <td><a class="fancybox" href="/model_info?model_id=<%= record["ModelID"] %>&partial=true"><%= record["ModelID"] %></a></td>
+                  <td><a <%= model_atag_params(record["ModelID"]) %>><%= record["ModelID"] %></a></td>
 
                   <td><div style="width:300px; overflow:hidden;"><%= File.basename(record["File"]) %></div></td>
 
@@ -173,7 +173,7 @@
        if modelList.any? %>
             <div style="max-height:120px; overflow:auto; padding: 1px 0; width:637px;">
             <% modelList.each do |modelId, modelName| %>
-                <div><a class="fancybox" href="/model_info?model_id=<%= modelId %>&partial=true"><%= modelName %></a></div>
+                <div><a <%= model_atag_params(modelId) %> ><%= modelName %></a></div>
             <% end %>
             </div>
        <% else %>
@@ -342,7 +342,7 @@
         Model Id:
       </td>
       <td class="description">
-        <%= @model_id %> (<a href="/model_info?model_id=<%= @model_id %>">Direct Link to this Model</a>)
+        <%= @model_id %> (<a <%= model_atag_params(@model_id) %> >Direct Link to this Model</a>)
       </td>
     </tr>
 

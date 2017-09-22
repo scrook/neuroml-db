@@ -21,7 +21,7 @@
           end
           %>
 
-          <div><a href="/model_info?model_id=<%=ont_ids[count]%>&partial=true" title="Model Information for <%=ont_ids[count]%>" class="fancybox" ><b><%= ont_names[count] %></b></a> <span style="color:gray">(<%= ont_ids[count] %>)</span></div>
+          <div><a <%= model_atag_params(ont_ids[count]) %> title="Model Information for <%=ont_ids[count]%>" ><b><%= ont_names[count] %></b></a> <span style="color:gray">(<%= ont_ids[count] %>)</span></div>
 
           <% if ont_relations && ont_relations.length > 0 && ont_relations[count] %>
             <% if ont_relations[count][:Type] == :Gap %>
