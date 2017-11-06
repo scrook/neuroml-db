@@ -1,0 +1,513 @@
+<Lems xmlns="http://www.neuroml.org/lems/0.7.2"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.neuroml.org/lems/0.7.2 https://raw.githubusercontent.com/LEMS/LEMS/development/Schemas/LEMS/LEMS_v0.7.2.xsd">
+    
+    <Target component="sim1"/>
+    
+    <!--Include standard NeuroML 2 ComponentType definitions-->
+    
+    <Include file="Cells.xml"/>
+    <Include file="Networks.xml"/>
+    <Include file="Simulation.xml"/>
+    
+    <Include file="SK_E2.channel.nml"/>
+    
+    <fixedCaConcModel id="CaPoolModel" restingConc="3.2E-5 mM" ion="ca">
+    </fixedCaConcModel>
+    
+       <voltageClampProtocol id="Ca3p2Em5mM_protocolAct_step0" 
+       active = "1" 
+        delay="100ms" duration1="500ms" duration2="0ms" 
+        restingVoltage="-80mV" 
+        voltage1="-80.0mV" 
+        voltage2="-80mV" 
+        simpleSeriesResistance="1e0 ohm"/> 
+
+   <voltageClampProtocol id="Ca3p2Em5mM_protocolAct_step1" 
+       active = "1" 
+        delay="100ms" duration1="500ms" duration2="0ms" 
+        restingVoltage="-80mV" 
+        voltage1="-66.3636363636mV" 
+        voltage2="-80mV" 
+        simpleSeriesResistance="1e0 ohm"/> 
+
+   <voltageClampProtocol id="Ca3p2Em5mM_protocolAct_step2" 
+       active = "1" 
+        delay="100ms" duration1="500ms" duration2="0ms" 
+        restingVoltage="-80mV" 
+        voltage1="-52.7272727273mV" 
+        voltage2="-80mV" 
+        simpleSeriesResistance="1e0 ohm"/> 
+
+   <voltageClampProtocol id="Ca3p2Em5mM_protocolAct_step3" 
+       active = "1" 
+        delay="100ms" duration1="500ms" duration2="0ms" 
+        restingVoltage="-80mV" 
+        voltage1="-39.0909090909mV" 
+        voltage2="-80mV" 
+        simpleSeriesResistance="1e0 ohm"/> 
+
+   <voltageClampProtocol id="Ca3p2Em5mM_protocolAct_step4" 
+       active = "1" 
+        delay="100ms" duration1="500ms" duration2="0ms" 
+        restingVoltage="-80mV" 
+        voltage1="-25.4545454545mV" 
+        voltage2="-80mV" 
+        simpleSeriesResistance="1e0 ohm"/> 
+
+   <voltageClampProtocol id="Ca3p2Em5mM_protocolAct_step5" 
+       active = "1" 
+        delay="100ms" duration1="500ms" duration2="0ms" 
+        restingVoltage="-80mV" 
+        voltage1="-11.8181818182mV" 
+        voltage2="-80mV" 
+        simpleSeriesResistance="1e0 ohm"/> 
+
+   <voltageClampProtocol id="Ca3p2Em5mM_protocolAct_step6" 
+       active = "1" 
+        delay="100ms" duration1="500ms" duration2="0ms" 
+        restingVoltage="-80mV" 
+        voltage1="1.81818181818mV" 
+        voltage2="-80mV" 
+        simpleSeriesResistance="1e0 ohm"/> 
+
+   <voltageClampProtocol id="Ca3p2Em5mM_protocolAct_step7" 
+       active = "1" 
+        delay="100ms" duration1="500ms" duration2="0ms" 
+        restingVoltage="-80mV" 
+        voltage1="15.4545454545mV" 
+        voltage2="-80mV" 
+        simpleSeriesResistance="1e0 ohm"/> 
+
+   <voltageClampProtocol id="Ca3p2Em5mM_protocolAct_step8" 
+       active = "1" 
+        delay="100ms" duration1="500ms" duration2="0ms" 
+        restingVoltage="-80mV" 
+        voltage1="29.0909090909mV" 
+        voltage2="-80mV" 
+        simpleSeriesResistance="1e0 ohm"/> 
+
+   <voltageClampProtocol id="Ca3p2Em5mM_protocolAct_step9" 
+       active = "1" 
+        delay="100ms" duration1="500ms" duration2="0ms" 
+        restingVoltage="-80mV" 
+        voltage1="42.7272727273mV" 
+        voltage2="-80mV" 
+        simpleSeriesResistance="1e0 ohm"/> 
+
+   <voltageClampProtocol id="Ca3p2Em5mM_protocolAct_step10" 
+       active = "1" 
+        delay="100ms" duration1="500ms" duration2="0ms" 
+        restingVoltage="-80mV" 
+        voltage1="56.3636363636mV" 
+        voltage2="-80mV" 
+        simpleSeriesResistance="1e0 ohm"/> 
+
+   <voltageClampProtocol id="Ca3p2Em5mM_protocolAct_step11" 
+       active = "1" 
+        delay="100ms" duration1="500ms" duration2="0ms" 
+        restingVoltage="-80mV" 
+        voltage1="70.0mV" 
+        voltage2="-80mV" 
+        simpleSeriesResistance="1e0 ohm"/> 
+
+
+    
+    <network id="net1" type="networkWithTemperature" temperature="36.0 degC">
+        
+           <population id="Ca3p2Em5mM_protocolAct_step0_pop" component="TestCell" type="populationList" size="1"> 
+       <instance id="0"> 
+           <location x="0" y="0" z="0"/> 
+       </instance> 
+   </population> 
+   <inputList id="Ca3p2Em5mM_protocolAct_step0_input" component="Ca3p2Em5mM_protocolAct_step0" population="Ca3p2Em5mM_protocolAct_step0_pop"> 
+       <input id="0" target="../Ca3p2Em5mM_protocolAct_step0_pop/0/TestCell" destination="synapses"/> 
+   </inputList> 
+
+   <population id="Ca3p2Em5mM_protocolAct_step1_pop" component="TestCell" type="populationList" size="1"> 
+       <instance id="0"> 
+           <location x="0" y="0" z="0"/> 
+       </instance> 
+   </population> 
+   <inputList id="Ca3p2Em5mM_protocolAct_step1_input" component="Ca3p2Em5mM_protocolAct_step1" population="Ca3p2Em5mM_protocolAct_step1_pop"> 
+       <input id="0" target="../Ca3p2Em5mM_protocolAct_step1_pop/0/TestCell" destination="synapses"/> 
+   </inputList> 
+
+   <population id="Ca3p2Em5mM_protocolAct_step2_pop" component="TestCell" type="populationList" size="1"> 
+       <instance id="0"> 
+           <location x="0" y="0" z="0"/> 
+       </instance> 
+   </population> 
+   <inputList id="Ca3p2Em5mM_protocolAct_step2_input" component="Ca3p2Em5mM_protocolAct_step2" population="Ca3p2Em5mM_protocolAct_step2_pop"> 
+       <input id="0" target="../Ca3p2Em5mM_protocolAct_step2_pop/0/TestCell" destination="synapses"/> 
+   </inputList> 
+
+   <population id="Ca3p2Em5mM_protocolAct_step3_pop" component="TestCell" type="populationList" size="1"> 
+       <instance id="0"> 
+           <location x="0" y="0" z="0"/> 
+       </instance> 
+   </population> 
+   <inputList id="Ca3p2Em5mM_protocolAct_step3_input" component="Ca3p2Em5mM_protocolAct_step3" population="Ca3p2Em5mM_protocolAct_step3_pop"> 
+       <input id="0" target="../Ca3p2Em5mM_protocolAct_step3_pop/0/TestCell" destination="synapses"/> 
+   </inputList> 
+
+   <population id="Ca3p2Em5mM_protocolAct_step4_pop" component="TestCell" type="populationList" size="1"> 
+       <instance id="0"> 
+           <location x="0" y="0" z="0"/> 
+       </instance> 
+   </population> 
+   <inputList id="Ca3p2Em5mM_protocolAct_step4_input" component="Ca3p2Em5mM_protocolAct_step4" population="Ca3p2Em5mM_protocolAct_step4_pop"> 
+       <input id="0" target="../Ca3p2Em5mM_protocolAct_step4_pop/0/TestCell" destination="synapses"/> 
+   </inputList> 
+
+   <population id="Ca3p2Em5mM_protocolAct_step5_pop" component="TestCell" type="populationList" size="1"> 
+       <instance id="0"> 
+           <location x="0" y="0" z="0"/> 
+       </instance> 
+   </population> 
+   <inputList id="Ca3p2Em5mM_protocolAct_step5_input" component="Ca3p2Em5mM_protocolAct_step5" population="Ca3p2Em5mM_protocolAct_step5_pop"> 
+       <input id="0" target="../Ca3p2Em5mM_protocolAct_step5_pop/0/TestCell" destination="synapses"/> 
+   </inputList> 
+
+   <population id="Ca3p2Em5mM_protocolAct_step6_pop" component="TestCell" type="populationList" size="1"> 
+       <instance id="0"> 
+           <location x="0" y="0" z="0"/> 
+       </instance> 
+   </population> 
+   <inputList id="Ca3p2Em5mM_protocolAct_step6_input" component="Ca3p2Em5mM_protocolAct_step6" population="Ca3p2Em5mM_protocolAct_step6_pop"> 
+       <input id="0" target="../Ca3p2Em5mM_protocolAct_step6_pop/0/TestCell" destination="synapses"/> 
+   </inputList> 
+
+   <population id="Ca3p2Em5mM_protocolAct_step7_pop" component="TestCell" type="populationList" size="1"> 
+       <instance id="0"> 
+           <location x="0" y="0" z="0"/> 
+       </instance> 
+   </population> 
+   <inputList id="Ca3p2Em5mM_protocolAct_step7_input" component="Ca3p2Em5mM_protocolAct_step7" population="Ca3p2Em5mM_protocolAct_step7_pop"> 
+       <input id="0" target="../Ca3p2Em5mM_protocolAct_step7_pop/0/TestCell" destination="synapses"/> 
+   </inputList> 
+
+   <population id="Ca3p2Em5mM_protocolAct_step8_pop" component="TestCell" type="populationList" size="1"> 
+       <instance id="0"> 
+           <location x="0" y="0" z="0"/> 
+       </instance> 
+   </population> 
+   <inputList id="Ca3p2Em5mM_protocolAct_step8_input" component="Ca3p2Em5mM_protocolAct_step8" population="Ca3p2Em5mM_protocolAct_step8_pop"> 
+       <input id="0" target="../Ca3p2Em5mM_protocolAct_step8_pop/0/TestCell" destination="synapses"/> 
+   </inputList> 
+
+   <population id="Ca3p2Em5mM_protocolAct_step9_pop" component="TestCell" type="populationList" size="1"> 
+       <instance id="0"> 
+           <location x="0" y="0" z="0"/> 
+       </instance> 
+   </population> 
+   <inputList id="Ca3p2Em5mM_protocolAct_step9_input" component="Ca3p2Em5mM_protocolAct_step9" population="Ca3p2Em5mM_protocolAct_step9_pop"> 
+       <input id="0" target="../Ca3p2Em5mM_protocolAct_step9_pop/0/TestCell" destination="synapses"/> 
+   </inputList> 
+
+   <population id="Ca3p2Em5mM_protocolAct_step10_pop" component="TestCell" type="populationList" size="1"> 
+       <instance id="0"> 
+           <location x="0" y="0" z="0"/> 
+       </instance> 
+   </population> 
+   <inputList id="Ca3p2Em5mM_protocolAct_step10_input" component="Ca3p2Em5mM_protocolAct_step10" population="Ca3p2Em5mM_protocolAct_step10_pop"> 
+       <input id="0" target="../Ca3p2Em5mM_protocolAct_step10_pop/0/TestCell" destination="synapses"/> 
+   </inputList> 
+
+   <population id="Ca3p2Em5mM_protocolAct_step11_pop" component="TestCell" type="populationList" size="1"> 
+       <instance id="0"> 
+           <location x="0" y="0" z="0"/> 
+       </instance> 
+   </population> 
+   <inputList id="Ca3p2Em5mM_protocolAct_step11_input" component="Ca3p2Em5mM_protocolAct_step11" population="Ca3p2Em5mM_protocolAct_step11_pop"> 
+       <input id="0" target="../Ca3p2Em5mM_protocolAct_step11_pop/0/TestCell" destination="synapses"/> 
+   </inputList> 
+
+
+        
+    </network>
+    
+    
+    <Component type="Simulation" id="sim1" length="700.0ms" step="0.001ms" target="net1">
+        <Display id="V" title="V" xmin="0" xmax="700.0" ymin="-150" ymax="150" timeScale="1ms">
+            <Line id="Ca3p2Em5mM_protocolAct_step0" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step0_pop/0/TestCell/v" scale="1"/> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step1" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step1_pop/0/TestCell/v" scale="1"/> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step2" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step2_pop/0/TestCell/v" scale="1"/> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step3" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step3_pop/0/TestCell/v" scale="1"/> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step4" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step4_pop/0/TestCell/v" scale="1"/> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step5" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step5_pop/0/TestCell/v" scale="1"/> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step6" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step6_pop/0/TestCell/v" scale="1"/> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step7" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step7_pop/0/TestCell/v" scale="1"/> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step8" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step8_pop/0/TestCell/v" scale="1"/> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step9" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step9_pop/0/TestCell/v" scale="1"/> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step10" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step10_pop/0/TestCell/v" scale="1"/> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step11" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step11_pop/0/TestCell/v" scale="1"/> 
+
+
+        </Display>
+        
+        <Display id="G" title="G" xmin="0" xmax="700.0" ymin="0" ymax="10" timeScale="1ms">
+            <Line id="Ca3p2Em5mM_protocolAct_step0" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step0_pop/0/TestCell/biophys/membraneProperties/channel/gDensity" scale="1" /> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step1" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step1_pop/0/TestCell/biophys/membraneProperties/channel/gDensity" scale="1" /> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step2" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step2_pop/0/TestCell/biophys/membraneProperties/channel/gDensity" scale="1" /> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step3" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step3_pop/0/TestCell/biophys/membraneProperties/channel/gDensity" scale="1" /> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step4" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step4_pop/0/TestCell/biophys/membraneProperties/channel/gDensity" scale="1" /> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step5" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step5_pop/0/TestCell/biophys/membraneProperties/channel/gDensity" scale="1" /> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step6" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step6_pop/0/TestCell/biophys/membraneProperties/channel/gDensity" scale="1" /> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step7" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step7_pop/0/TestCell/biophys/membraneProperties/channel/gDensity" scale="1" /> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step8" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step8_pop/0/TestCell/biophys/membraneProperties/channel/gDensity" scale="1" /> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step9" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step9_pop/0/TestCell/biophys/membraneProperties/channel/gDensity" scale="1" /> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step10" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step10_pop/0/TestCell/biophys/membraneProperties/channel/gDensity" scale="1" /> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step11" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step11_pop/0/TestCell/biophys/membraneProperties/channel/gDensity" scale="1" /> 
+
+
+        </Display>
+        
+        <Display id="I" title="I" xmin="0" xmax="700.0" ymin="-10" ymax="10" timeScale="1ms">
+            <Line id="Ca3p2Em5mM_protocolAct_step0" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step0_pop/0/TestCell/biophys/membraneProperties/channel/iDensity" scale="1"/> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step1" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step1_pop/0/TestCell/biophys/membraneProperties/channel/iDensity" scale="1"/> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step2" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step2_pop/0/TestCell/biophys/membraneProperties/channel/iDensity" scale="1"/> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step3" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step3_pop/0/TestCell/biophys/membraneProperties/channel/iDensity" scale="1"/> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step4" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step4_pop/0/TestCell/biophys/membraneProperties/channel/iDensity" scale="1"/> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step5" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step5_pop/0/TestCell/biophys/membraneProperties/channel/iDensity" scale="1"/> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step6" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step6_pop/0/TestCell/biophys/membraneProperties/channel/iDensity" scale="1"/> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step7" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step7_pop/0/TestCell/biophys/membraneProperties/channel/iDensity" scale="1"/> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step8" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step8_pop/0/TestCell/biophys/membraneProperties/channel/iDensity" scale="1"/> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step9" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step9_pop/0/TestCell/biophys/membraneProperties/channel/iDensity" scale="1"/> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step10" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step10_pop/0/TestCell/biophys/membraneProperties/channel/iDensity" scale="1"/> 
+
+<Line id="Ca3p2Em5mM_protocolAct_step11" timeScale="1 ms" quantity="Ca3p2Em5mM_protocolAct_step11_pop/0/TestCell/biophys/membraneProperties/channel/iDensity" scale="1"/> 
+
+
+        </Display>
+
+        <OutputFile id="fileOut" fileName="fileOut_ca3p2Em5mM_Activation_-80.0_70.0_95_700.dat">
+            <OutputColumn id="Ca3p2Em5mM_protocolAct_step0_v" quantity="Ca3p2Em5mM_protocolAct_step0_pop/0/TestCell/v" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step1_v" quantity="Ca3p2Em5mM_protocolAct_step1_pop/0/TestCell/v" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step2_v" quantity="Ca3p2Em5mM_protocolAct_step2_pop/0/TestCell/v" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step3_v" quantity="Ca3p2Em5mM_protocolAct_step3_pop/0/TestCell/v" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step4_v" quantity="Ca3p2Em5mM_protocolAct_step4_pop/0/TestCell/v" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step5_v" quantity="Ca3p2Em5mM_protocolAct_step5_pop/0/TestCell/v" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step6_v" quantity="Ca3p2Em5mM_protocolAct_step6_pop/0/TestCell/v" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step7_v" quantity="Ca3p2Em5mM_protocolAct_step7_pop/0/TestCell/v" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step8_v" quantity="Ca3p2Em5mM_protocolAct_step8_pop/0/TestCell/v" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step9_v" quantity="Ca3p2Em5mM_protocolAct_step9_pop/0/TestCell/v" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step10_v" quantity="Ca3p2Em5mM_protocolAct_step10_pop/0/TestCell/v" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step11_v" quantity="Ca3p2Em5mM_protocolAct_step11_pop/0/TestCell/v" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step0_i" quantity="Ca3p2Em5mM_protocolAct_step0_pop/0/TestCell/biophys/membraneProperties/channel/iDensity" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step1_i" quantity="Ca3p2Em5mM_protocolAct_step1_pop/0/TestCell/biophys/membraneProperties/channel/iDensity" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step2_i" quantity="Ca3p2Em5mM_protocolAct_step2_pop/0/TestCell/biophys/membraneProperties/channel/iDensity" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step3_i" quantity="Ca3p2Em5mM_protocolAct_step3_pop/0/TestCell/biophys/membraneProperties/channel/iDensity" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step4_i" quantity="Ca3p2Em5mM_protocolAct_step4_pop/0/TestCell/biophys/membraneProperties/channel/iDensity" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step5_i" quantity="Ca3p2Em5mM_protocolAct_step5_pop/0/TestCell/biophys/membraneProperties/channel/iDensity" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step6_i" quantity="Ca3p2Em5mM_protocolAct_step6_pop/0/TestCell/biophys/membraneProperties/channel/iDensity" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step7_i" quantity="Ca3p2Em5mM_protocolAct_step7_pop/0/TestCell/biophys/membraneProperties/channel/iDensity" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step8_i" quantity="Ca3p2Em5mM_protocolAct_step8_pop/0/TestCell/biophys/membraneProperties/channel/iDensity" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step9_i" quantity="Ca3p2Em5mM_protocolAct_step9_pop/0/TestCell/biophys/membraneProperties/channel/iDensity" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step10_i" quantity="Ca3p2Em5mM_protocolAct_step10_pop/0/TestCell/biophys/membraneProperties/channel/iDensity" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step11_i" quantity="Ca3p2Em5mM_protocolAct_step11_pop/0/TestCell/biophys/membraneProperties/channel/iDensity" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step0_g" quantity="Ca3p2Em5mM_protocolAct_step0_pop/0/TestCell/biophys/membraneProperties/channel/gDensity" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step1_g" quantity="Ca3p2Em5mM_protocolAct_step1_pop/0/TestCell/biophys/membraneProperties/channel/gDensity" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step2_g" quantity="Ca3p2Em5mM_protocolAct_step2_pop/0/TestCell/biophys/membraneProperties/channel/gDensity" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step3_g" quantity="Ca3p2Em5mM_protocolAct_step3_pop/0/TestCell/biophys/membraneProperties/channel/gDensity" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step4_g" quantity="Ca3p2Em5mM_protocolAct_step4_pop/0/TestCell/biophys/membraneProperties/channel/gDensity" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step5_g" quantity="Ca3p2Em5mM_protocolAct_step5_pop/0/TestCell/biophys/membraneProperties/channel/gDensity" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step6_g" quantity="Ca3p2Em5mM_protocolAct_step6_pop/0/TestCell/biophys/membraneProperties/channel/gDensity" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step7_g" quantity="Ca3p2Em5mM_protocolAct_step7_pop/0/TestCell/biophys/membraneProperties/channel/gDensity" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step8_g" quantity="Ca3p2Em5mM_protocolAct_step8_pop/0/TestCell/biophys/membraneProperties/channel/gDensity" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step9_g" quantity="Ca3p2Em5mM_protocolAct_step9_pop/0/TestCell/biophys/membraneProperties/channel/gDensity" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step10_g" quantity="Ca3p2Em5mM_protocolAct_step10_pop/0/TestCell/biophys/membraneProperties/channel/gDensity" />
+
+<OutputColumn id="Ca3p2Em5mM_protocolAct_step11_g" quantity="Ca3p2Em5mM_protocolAct_step11_pop/0/TestCell/biophys/membraneProperties/channel/gDensity" />
+
+
+        </OutputFile>
+    </Component>
+    
+    <cell id="TestCell">
+        
+        <morphology>
+            
+            <segment id="0" name="Soma">
+                <proximal x="0.0" y="0.0" z="0.0" diameter="96.0"/>
+                <distal x="0.0" y="0.0" z="0.0" diameter="96.0"/>
+            </segment>
+            
+            <segmentGroup id="Soma" neuroLexId="sao864921383">
+                <member segment="0"/>
+            </segmentGroup>
+            
+            <segmentGroup id="all">
+                <include segmentGroup="Soma"/>
+            </segmentGroup>
+            
+            <segmentGroup id="soma_group" neuroLexId="GO:0043025">
+                <include segmentGroup="Soma"/>
+            </segmentGroup>
+            
+            
+        </morphology>
+        
+        <!--Adding the biophysical parameters-->
+        
+        <biophysicalProperties id="biophys">
+            
+            <membraneProperties>
+                
+                <channelDensity condDensity="1e-4 S_per_cm2" id="channel" ionChannel="SK_E2" erev="-86.7 mV" ion="k"/>
+                
+                <spikeThresh value="0 mV"/>
+                
+                <specificCapacitance value="1.0 uF_per_cm2"/>
+                
+                <initMembPotential value="-84.0 mV"/>
+                
+            </membraneProperties>
+            
+            <intracellularProperties>
+                
+                <species id="ca" ion="ca" concentrationModel="CaPoolModel" initialConcentration="3.2E-5 mM" initialExtConcentration="3.2E-5 mM" />
+                
+                <resistivity value="100 ohm_cm"/>
+                
+            </intracellularProperties>
+            
+        </biophysicalProperties>
+        
+    </cell>
+    
+    <ComponentType name="voltageClampProtocol" extends="baseVoltageDepPointCurrent">
+        
+        <Parameter name="active" dimension="none" />
+        
+        <Parameter name="delay" dimension="time" />
+        <Parameter name="duration1" dimension="time" />
+        <Parameter name="duration2" dimension="time" />
+        <Parameter name="restingVoltage" dimension="voltage" />
+        <Parameter name="voltage1" dimension="voltage" />
+        <Parameter name="voltage2" dimension="voltage" />
+        
+        <Parameter name="simpleSeriesResistance" dimension="resistance"/>
+        
+        <!--TODO: remove! Only required as EventConnection is used in explicitInput to
+         connect inputs to cells. Events aren't passed! ... -->
+        <EventPort name="in" direction="in" description="Note this is not used here. Will be removed in future"/>
+        
+        <Dynamics>
+            
+            <StateVariable name="i" exposure="i" dimension="current"/>
+            
+            <OnEvent port="in"><!--TODO: remove, see above...
+                                <StateAssignment variable="i" value="0"/>-->
+            </OnEvent>
+            
+            <OnCondition test="active .eq. 1 .and. t .lt. delay">
+                <StateAssignment variable="i" value="(restingVoltage - v) / simpleSeriesResistance"/>
+            </OnCondition>
+            
+            <OnCondition test="active .eq. 1 .and. t .geq. delay .and. t .lt. (delay + duration1)">
+                <StateAssignment variable="i" value="(voltage1 - v) / simpleSeriesResistance"/>
+            </OnCondition>
+            
+            <OnCondition test="active .eq. 1 .and. t .geq. delay + duration1 .and. t .lt. delay + duration1 + duration2">
+                <StateAssignment variable="i" value="(voltage2 - v) / simpleSeriesResistance"/>
+            </OnCondition>
+            
+            <OnCondition test="active .eq. 1 .and. t .geq. delay + duration1 + duration2">
+                <StateAssignment variable="i" value="(restingVoltage - v) / simpleSeriesResistance"/>
+            </OnCondition>
+            
+        </Dynamics>
+        
+    </ComponentType>
+    
+    
+    
+    <ComponentType name="fixedCaConcModel"
+        extends="concentrationModel">
+        <Parameter name="restingConc" dimension="concentration"/>
+        
+        <Text name="ion"/>
+        
+        <Dynamics>
+            
+            <StateVariable name="concentration" exposure="concentration" dimension="concentration"/>
+            <StateVariable name="extConcentration" exposure="extConcentration" dimension="concentration"/>
+            
+            <OnStart>
+                <StateAssignment variable="concentration" value="restingConc"/>
+                <StateAssignment variable="extConcentration" value="restingConc"/>
+            </OnStart>
+            
+        </Dynamics>
+        
+    </ComponentType>
+    
+    
+</Lems>

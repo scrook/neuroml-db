@@ -502,9 +502,13 @@ class WelcomeController < ApplicationController
     # Find out which Ca concentrations are present by inspecting the vclamp file names
     caConcs = Array.new
     for file in files
+      # Find concentration stored between the first and second underscore
       matches = /vclamp_(.*?)_/.match(file)
       if matches.length > 0
-        concString = matches[1]
+        # Decode p as . and m as - (these were used to avoid variable names containing -'s and .'s )
+        concString = matches[1].sub("m","-").sub("p",".")
+
+        # Replace the encoded 1E-N notation with ruby interpretable version
         concFloat = eval(concString.sub("1E","10**")).to_f
         caConcs.push({Name:concString,Value:concFloat})
       end
@@ -519,7 +523,7 @@ class WelcomeController < ApplicationController
   def GetModelProtocolData
 
     modelID =params[:modelID].to_s
-    caConc =params[:caConc].to_s
+    caConc =params[:caConc].to_s.sub("-","m").sub(".","p")
     subProtocol =params[:subProtocol].to_s
 
     file = Dir["/var/www/NeuroMLmodels/"+modelID+"/vclamp_"+caConc+"_"+subProtocol+"*.js"][0]
