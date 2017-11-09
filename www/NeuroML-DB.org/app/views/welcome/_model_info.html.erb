@@ -72,7 +72,7 @@
       <td class="description">
         <% if @pub_list.any? %>
             <% @pub_list.each do |key, value| %>
-                <a target="_blank" href="http://www.ncbi.nlm.nih.gov/<%= key %>"><%= value %></a><br>
+                <a target="_blank" href="http://www.ncbi.nlm.nih.gov/<%= key %>"><%= @shortPub %> <%= value %></a><br>
             <% end %>
         <% else %>
             None
@@ -261,6 +261,12 @@
                 <input type="hidden" id="modelID" value="<%= @model_id %>" />
                 <input type="hidden" id="caConc" value="<%= caConcLevels.last[:Name] %>"/>
                 <input type="hidden" id="subProtocol" value="Activation"/>
+                <div id="plotsLoading" style="display:none;">
+                  <div style="width: 637px;position: absolute; display: flex;height: 645px;align-items: center;justify-content: center;background: #DDDDDD;">
+                    <img id="loadingImage" src="../images/loading.gif" style="height: 25px;width: 25px;">
+                    <div id="plotError" style="display: none; padding: 30px;">There was a problem loading plots for this protocol. See Notes below for more information.</div>
+                  </div>
+                </div>
 
                 <!--Render voltage clamp charts using chart.js library-->
                 <canvas id="canvasV" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;" width="637" height="215"></canvas>
@@ -268,14 +274,16 @@
                 <canvas id="canvasI" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;" width="637" height="215"></canvas>
 
 
+                <div style="text-align: center; margin-top:15px;">Tip: Use the mouse wheel to zoom and drag mouse to pan. <a onclick="resetChartZooms(); return false;" href="resetZoom">Click here to reset zoom</a></div>
                 <div style="text-align: center; margin-top:15px;">Reproduce the above plots by executing <a href="/GetChannelLEMSZip?modelID=<%= @model_id %>">the simulation file</a> with <a href="https://github.com/NeuroML/jNeuroML" target="_blank">jNeuroML</a>.<a href="#" onclick="jQuery('#instructions').toggle(); return false;">More</a></div>
                 <div id="instructions" style="display:none; padding: 9px;">
                   Perform the following steps to reproduce the above plots:
                   <ol style="list-style: inside decimal; font-size: 15px; margin-top: 6px;">
-                    <li style="padding: 2px;">Download <a href="/GetChannelLEMSZip?modelID=<%= @model_id %>">the simulation .zip file</a> and extract it to a directory whose path does not contain spaces.</li>
+                    <li style="padding: 2px;">Ensure you have <a href="https://www.neuron.yale.edu/neuron/" target="_blank">NEURON+Python</a> simulator installed (command "nrniv -python" works).</li>
                     <li style="padding: 2px;">Follow <a href="https://github.com/NeuroML/jNeuroML" target="_blank">instructions to install jNeuroML</a> and confirm that "jnml -v" command works.</li>
-                    <li style="padding: 2px;">In the folder where the simulation files are extracted, run "jnml LEMS_XYZ.nml" command to run the simulation and generate the plots. Replace LEMS_XYZ.nml with the actual file in the directory.</li>
-                    <li style="padding: 2px;">Use the "jnml -help" command for syntax to convert the model to <a href="https://www.neuron.yale.edu/neuron/" target="_blank">NEURON</a> and other simulator formats.</li>
+                    <li style="padding: 2px;">Download <a href="/GetChannelLEMSZip?modelID=<%= @model_id %>">the simulation .zip file</a> and extract it to a directory whose path does not contain spaces.</li>
+                    <li style="padding: 2px;">In the folder where the simulation files are extracted, run "jnml LEMS_XYZ.nml -neuron -run" command to run the simulation and generate the plots in NEURON. Replace LEMS_XYZ.nml with the actual file in the directory.</li>
+                    <li style="padding: 2px;">See the "jnml -help" command for syntax and support for converting the model to other simulator formats.</li>
                   </ol>
                 </div>
 
@@ -289,6 +297,21 @@
                 Voltage clamp data not available for this channel.
             <% end %>
 
+          </td>
+        </tr>
+
+
+        <tr>
+          <td class="keyword">
+            Notes:
+          </td>
+
+          <td class="description">
+            <% if @model_notes.blank? %>
+                None
+            <% else %>
+                <%= @model_notes %>
+            <% end %>
           </td>
         </tr>
 

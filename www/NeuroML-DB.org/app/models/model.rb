@@ -27,6 +27,43 @@ class Model < ActiveRecord::Base
     return models
   end
 
+  def self.GetModelShortPub(modelID)
+    shortPub = ActiveRecord::Base.connection.exec_query(
+      "
+      SELECT p.Person_Last_Name as lastName, pub.Year as year FROM people p
+      JOIN author_list_associations ala ON ala.Person_ID = p.Person_ID
+      JOIN model_metadata_associations mma ON mma.Metadata_ID = ala.AuthorList_ID
+      JOIN model_metadata_associations mma2 ON mma2.Model_ID = mma.Model_ID
+      JOIN publications pub ON pub.Publication_ID = mma2.Metadata_ID
+      WHERE mma2.model_ID = '#{modelID}' AND mma2.Metadata_Id like '600%' AND ala.is_translator != '1'
+      ORDER BY ala.author_sequence
+      LIMIT 3
+      ;
+      "
+    )
+
+    authorCount = shortPub.rows.length
+
+    # One author - name (year)
+    # two authors - first & second (year)
+    # three or more - first, et. al. (year)
+
+    if authorCount > 0
+      year = " (#{shortPub.rows[0][1]})"
+      firstAuthor = shortPub.rows[0][0]
+    end
+
+    if authorCount == 1
+      return firstAuthor + year
+    elsif authorCount == 2
+      return firstAuthor + " & " + shortPub.rows[1][0] + year
+    elsif authorCount > 2
+      return firstAuthor + ", et. al." + year
+    end
+
+    return "MISSING REF"
+  end
+
   def self.GetFile(modelID)
 
     # If network

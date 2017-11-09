@@ -15,9 +15,10 @@ class WelcomeController < ApplicationController
     @nlx_list    = Hash.new
     @ref_list    = Hash.new
     @pub_list    = Hash.new
+    @shortPub    = ""
     @trans_list  = Array.new
     if substring == "NMLCL"
-      cell =Cell.find_by_Cell_ID(@model_id.to_s)
+      cell =Cell.find_by_Cell_ID(@model_id)
       @name=cell.Cell_Name
       @type="Cell"
       @file=cell.MorphML_File
@@ -146,6 +147,7 @@ class WelcomeController < ApplicationController
       if substring2 == "600"
         publication                      =Publication.find_by_Publication_ID(@metadata_id)
         @pub_list[publication.Pubmed_Ref]=publication.Full_Title
+        @shortPub = Model.GetModelShortPub(@model_id)
       end
 
       if substring2 == "500"
@@ -172,6 +174,9 @@ class WelcomeController < ApplicationController
       end
     end
 
+    @model_notes = Model.find_by_Model_ID(@model_id).Notes
+
+
 
     @model_id=params[:model_id].to_s
     if !@file.blank?
@@ -190,7 +195,7 @@ class WelcomeController < ApplicationController
   helper_method :model_atag_params
 
   def model_atag_params(id)
-    return "href=\"/model_info?model_id=#{id}\" onclick=\"document.showModel('/model_info?model_id=#{id}&partial=true'); return false;\"".html_safe
+    return "href=\"/model_info?model_id=#{id}\"".html_safe
   end
 
   def fill_authors_translators

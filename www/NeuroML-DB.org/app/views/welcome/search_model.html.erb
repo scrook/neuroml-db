@@ -154,7 +154,7 @@
     }
 
     if(jQuery.urlParam('q') != "") {
-        jQuery("#keyword_search_box").val(jQuery.urlParam('q'));
+        jQuery("#keyword_search_box").val(unescape(jQuery.urlParam('q')));
         retrieve_results();
     }
 
