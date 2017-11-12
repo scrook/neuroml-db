@@ -1,8 +1,25 @@
 require 'zip/zip'
 
 class Model < ActiveRecord::Base
-  attr_accessible :Model_ID
-  set_primary_key "Model_ID"
+  attr_accessible :Model_ID, :Type, :Name, :File, :Notes
+
+  self.primary_key = "Model_ID"
+
+  belongs_to :ModelType,
+              class_name: "ModelType",
+              foreign_key: "Type"
+
+  has_and_belongs_to_many :parents,
+                          class_name: "Model",
+                          foreign_key: "Child_ID",
+                          join_table: "model_model_associations",
+                          association_foreign_key: "Parent_ID"
+
+  has_and_belongs_to_many :children,
+                          class_name: "Model",
+                          foreign_key: "Parent_ID",
+                          join_table: "model_model_associations",
+                          association_foreign_key: "Child_ID"
 
   def self.GetAllModels()
     models = ActiveRecord::Base.connection.exec_query(
@@ -16,7 +33,7 @@ class Model < ActiveRecord::Base
             'https://senselab.med.yale.edu/modeldb/showmodel.cshtml?model=','')
             AS UNSIGNED) as ModelDB_ID,
             mma.Model_ID as NeuroMLDB_ID,
-            REPLACE(REPLACE(amv.Model_File, mma.Model_ID, ''), '/var/www/NeuroMLmodels//','') as File
+            REPLACE(REPLACE(amv.File, mma.Model_ID, ''), '/var/www/NeuroMLmodels//','') as File
         FROM refers
         JOIN model_metadata_associations as mma ON metadata_id = reference_ID
         JOIN all_models_view as amv ON amv.Model_ID = mma.Model_ID
@@ -66,33 +83,7 @@ class Model < ActiveRecord::Base
 
   def self.GetFile(modelID)
 
-    # If network
-    if modelID.starts_with?('NMLNT')
-
-      return Network.find_by_Network_ID(modelID).NetworkML_File
-
-    end
-
-    # If cell
-    if modelID.starts_with?('NMLCL')
-
-      return Cell.find_by_Cell_ID(modelID).MorphML_File
-
-    end
-
-    # If channel
-    if modelID.starts_with?('NMLCH')
-
-      return Channel.find_by_Channel_ID(modelID).ChannelML_File
-
-    end
-
-    # If synapse
-    if modelID.starts_with?('NMLSY')
-
-      return Synapse.find_by_Synapse_ID(modelID).Synapse_File
-
-    end
+    return Model.find_by_Model_ID(modelID).File
 
   end
 
@@ -113,73 +104,12 @@ class Model < ActiveRecord::Base
       result = Array.new
     end
 
-    # If network
-    if modelID.starts_with?('NMLNT')
+    # Add the model file
+    result.push({ "ModelID" => modelID, "File" => Model.find_by_Model_ID(modelID).File })
 
-      # Add the network file
-      result.push({ "ModelID" => modelID, "File" => Network.find_by_Network_ID(modelID).NetworkML_File })
-
-      # Look for network cells and their children
-      NetworkCellAssociation.where(:Network_ID => modelID).each do |cellRecord|
-        GetModelFiles(cellRecord.Cell_ID, result)
-      end
-
-      # Look for network synapses
-      NetworkSynapseAssociation.where(:Network_ID => modelID).each do |synapseRecord|
-        GetModelFiles(synapseRecord.Synapse_ID, result)
-      end
-
-      # Look for network concentrations
-      NetworkConcentrationAssociation.where(:Network_ID => modelID).each do |concentrationRecord|
-        GetModelFiles(concentrationRecord.Concentration_ID, result)
-      end
-
-    end
-
-    # If cell
-    if modelID.starts_with?('NMLCL')
-
-      # Add the cell file
-      result.push({ "ModelID" => modelID, "File" => Cell.find_by_Cell_ID(modelID).MorphML_File })
-
-      # Add channels
-      CellChannelAssociation.where(:Cell_ID => modelID).each do |channelRecord|
-        GetModelFiles(channelRecord.Channel_ID, result)
-      end
-
-      # Add synnapses
-      CellSynapseAssociation.where(:Cell_ID => modelID).each do |synapseRecord|
-        GetModelFiles(synapseRecord.Synapse_ID, result)
-      end
-
-      # Add concentrations
-      CellConcentrationAssociation.where(:Cell_ID => modelID).each do |concentrationRecord|
-        GetModelFiles(concentrationRecord.Concentration_ID, result)
-      end
-
-    end
-
-    # If channel
-    if modelID.starts_with?('NMLCH')
-
-        # Channels only have files, no children
-        result.push({ "ModelID" => modelID, "File" => Channel.find_by_Channel_ID(modelID).ChannelML_File })
-    end
-
-    # If synapse
-    if modelID.starts_with?('NMLSY')
-
-      # Synapses only have files, no children
-      result.push({ "ModelID" => modelID, "File" => Synapse.find_by_Synapse_ID(modelID).Synapse_File })
-
-    end
-
-    # If concentration
-    if modelID.starts_with?('NMLCN')
-
-      # Concentrations only have files, no children
-      result.push({ "ModelID" => modelID, "File" => Concentration.find_by_Concentration_ID(modelID).Concentration_File })
-
+    # Look for model child models
+    ModelModelAssociation.where(:Parent_ID => modelID).each do |childRecord|
+      GetModelFiles(childRecord.Child_ID, result)
     end
 
   end

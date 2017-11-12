@@ -1,15 +1,13 @@
 class WelcomeController < ApplicationController
   caches_action :robots
+  layout "welcome"
 
   def model_info
     @model_id    =params[:model_id].to_s
     @resources   =Array.new
     substring    =@model_id[0..4]
-    @channel_list=Hash.new
-    @network_list=Hash.new
-    @cell_list   = Hash.new
-    @syn_list    = Hash.new
-    @conc_list   = Hash.new
+    @channel_list, @network_list, @cell_list, @syn_list, @conc_list = [], [], [] , [], []
+
     @auth_list   = Array.new
     @trans_list  = Array.new
     @nlx_list    = Hash.new
@@ -17,123 +15,20 @@ class WelcomeController < ApplicationController
     @pub_list    = Hash.new
     @shortPub    = ""
     @trans_list  = Array.new
-    if substring == "NMLCL"
-      cell =Cell.find_by_Cell_ID(@model_id)
-      @name=cell.Cell_Name
-      @type="Cell"
-      @file=cell.MorphML_File
 
-      cell_channel_assoc=CellChannelAssociation.where(:Cell_ID => @model_id.to_s)
-      cca               =CellChannelAssociation.new
-      cell_channel_assoc.each do |cca|
-        @channel_list[cca.Channel_ID] = Channel.find_by_Channel_ID(cca.Channel_ID).Channel_Name
-      end
+    model =Model.find_by_Model_ID(@model_id)
+    @name=model.Name
+    @type=model.ModelType.Name
+    @file=model.File
 
-      cell_synapse_assoc=CellSynapseAssociation.where(:Cell_ID => @model_id.to_s)
-      csa               =CellSynapseAssociation.new
-      cell_synapse_assoc.each do |csa|
-        @syn_list[csa.Synapse_ID] = Synapse.find_by_Synapse_ID(csa.Synapse_ID).Synapse_Name
-      end
+    relatedModels = model.children + model.parents
 
-      cell_concentration_assoc=CellConcentrationAssociation.where(:Cell_ID => @model_id.to_s)
-      cca               =CellConcentrationAssociation.new
-      cell_concentration_assoc.each do |cca|
-        @conc_list[cca.Concentration_ID] = Concentration.find_by_Concentration_ID(cca.Concentration_ID).Concentration_Name
-      end
-
-      cell_network_assoc=NetworkCellAssociation.where(:Cell_ID => @model_id.to_s)
-      cna               =NetworkCellAssociation.new
-      cell_network_assoc.each do |cna|
-        @network_list[cna.Network_ID] = Network.find_by_Network_ID(cna.Network_ID).Network_Name
-      end
-    end
-
-    if substring == "NMLCH"
-      channel=Channel.find_by_Channel_ID(@model_id.to_s)
-      @name  =channel.Channel_Name
-      @type  ="Channel"
-      @file  =channel.ChannelML_File
-
-      channel_cell_assoc=CellChannelAssociation.where(:Channel_ID => @model_id.to_s)
-      cca               =CellChannelAssociation.new
-      channel_cell_assoc.each do |cca|
-        @cell_list[cca.Cell_ID] = Cell.find_by_Cell_ID(cca.Cell_ID).Cell_Name
-      end
-      puts 'hierarcial get'
-      puts @model_id
-      cell_id = @cell_list.keys[0]
-      puts cell_id
-      network_cell_assoc=NetworkCellAssociation.where(:Cell_ID => cell_id.to_s)
-      cna               =NetworkCellAssociation.new
-      network_cell_assoc.each do |cna|
-        @network_list[cna.Network_ID] = Network.find_by_Network_ID(cna.Network_ID).Network_Name
-      end
-    end
-
-
-    if substring == "NMLNT"
-      network=Network.find_by_Network_ID(@model_id.to_s)
-      @name  =network.Network_Name
-      @type  ="Network"
-      @file  =network.NetworkML_File
-
-      network_cell_assoc=NetworkCellAssociation.where(:Network_ID => @model_id.to_s)
-      nca               =NetworkCellAssociation.new
-      network_cell_assoc.each do |nca|
-        @cell_list[nca.Cell_ID] = Cell.find_by_Cell_ID(nca.Cell_ID).Cell_Name
-      end
-
-      network_syn_assoc=NetworkSynapseAssociation.where(:Network_ID => @model_id.to_s)
-      nsa              =NetworkSynapseAssociation.new
-      network_syn_assoc.each do |nsa|
-        @syn_list[nsa.Synapse_ID] = Synapse.find_by_Synapse_ID(nsa.Synapse_ID).Synapse_Name
-      end
-
-      network_conc_assoc=NetworkConcentrationAssociation.where(:Network_ID => @model_id.to_s)
-      nca              =NetworkConcentrationAssociation.new
-      network_conc_assoc.each do |nca|
-        @conc_list[nca.Concentration_ID] = Concentration.find_by_Concentration_ID(nca.Concentration_ID).Concentration_Name
-      end
-    end
-
-    if substring == "NMLSY"
-      synapse=Synapse.find_by_Synapse_ID(@model_id.to_s)
-      @name  =synapse.Synapse_Name
-      @type  ="Synapse"
-      @file  =synapse.Synapse_File
-
-      cell_synapse_assoc=CellSynapseAssociation.where(:Synapse_ID => @model_id.to_s)
-      csa               =CellSynapseAssociation.new
-      cell_synapse_assoc.each do |csa|
-        @cell_list[csa.Cell_ID] = Cell.find_by_Cell_ID(csa.Cell_ID).Cell_Name
-      end
-
-
-      network_syn_assoc=NetworkSynapseAssociation.where(:Synapse_ID => @model_id.to_s)
-      sna              =NetworkSynapseAssociation.new
-      network_syn_assoc.each do |sna|
-        @network_list[sna.Network_ID] = Network.find_by_Network_ID(sna.Network_ID).Network_Name
-      end
-    end
-
-    if substring == "NMLCN"
-      concentration=Concentration.find_by_Concentration_ID(@model_id.to_s)
-      @name  =concentration.Concentration_Name
-      @type  ="Concentration"
-      @file  =concentration.Concentration_File
-
-      cell_concentration_assoc=CellConcentrationAssociation.where(:Concentration_ID => @model_id.to_s)
-      cca               =CellConcentrationAssociation.new
-      cell_concentration_assoc.each do |cca|
-        @cell_list[cca.Cell_ID] = Cell.find_by_Cell_ID(cca.Cell_ID).Cell_Name
-      end
-
-
-      network_concentration_assoc=NetworkConcentrationAssociation.where(:Concentration_ID => @model_id.to_s)
-      cna              =NetworkConcentrationAssociation.new
-      network_concentration_assoc.each do |cna|
-        @network_list[cna.Network_ID] = Network.find_by_Network_ID(cna.Network_ID).Network_Name
-      end
+    relatedModels.each do |relative|
+      @network_list << relative if relative.Type == "NT"
+      @cell_list << relative if relative.Type == "CL"
+      @channel_list << relative if relative.Type == "CH"
+      @syn_list << relative if relative.Type == "SY"
+      @conc_list << relative if relative.Type == "CN"
     end
 
     model_metadata_assoc=ModelMetadataAssociation.where(:Model_ID => @model_id.to_s)
@@ -174,9 +69,7 @@ class WelcomeController < ApplicationController
       end
     end
 
-    @model_notes = Model.find_by_Model_ID(@model_id).Notes
-
-
+    @model_notes = model.Notes
 
     @model_id=params[:model_id].to_s
     if !@file.blank?

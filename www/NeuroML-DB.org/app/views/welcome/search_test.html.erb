@@ -48,7 +48,7 @@
       findResultPosition(
               query.Keyword,
               '/search_process?all=&exact=&any=&none=&q=',
-              "#key_results > div > span",
+              "#key_results > div > a",
               function() { keywordBusy = false; },
               jQuery(".Keyword"+index+"_Pos"),
               jQuery(".Keyword"+index+"_Time")
@@ -57,7 +57,7 @@
       findResultPosition(
               query.Ontology,
               'search_python?q=',
-              "span",
+              "a",
               function() { ontologyBusy = false; },
               jQuery(".Ontology"+index+"_Pos"),
               jQuery(".Ontology"+index+"_Time")
@@ -87,7 +87,7 @@
               var position = 0;
 
               for (var i = 0; i < idSpans.length; i++) {
-                  if (idSpans[i].innerHTML == "(" + queryObject.ID + ")") {
+                  if (idSpans[i].outerHTML.includes(queryObject.ID)) {
                       found = true;
                       position = i;
                       break;

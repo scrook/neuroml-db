@@ -172,8 +172,8 @@
     def DisplayRelatedModels(modelList)
        if modelList.any? %>
             <div style="max-height:120px; overflow:auto; padding: 1px 0; width:637px;">
-            <% modelList.each do |modelId, modelName| %>
-                <div><a <%= model_atag_params(modelId) %> ><%= modelName %></a></div>
+            <% modelList.each do |model| %>
+                <div><a <%= model_atag_params(model.Model_ID) %> ><%= model.Name %></a></div>
             <% end %>
             </div>
        <% else %>
