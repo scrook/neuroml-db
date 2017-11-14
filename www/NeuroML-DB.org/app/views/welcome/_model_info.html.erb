@@ -18,55 +18,6 @@
 
     <tr>
       <td class="keyword">
-        Keywords:
-      </td>
-
-      <td class="description">
-        <% if @keywords_model.blank? %>
-            None
-        <% else %>
-            <%= @keywords_model %>
-        <% end %>
-      </td>
-    </tr>
-
-    <tr>
-      <td class="keyword">
-        Neurolex IDs:
-      </td>
-
-      <td class="description">
-        <% if @nlx_list.any? %>
-            <% @nlx_list.each do |key, value| %>
-                <a target="_blank" href="http://neurolex.org/wiki/<%= key %>"><%= value %></a><br>
-            <% end %>
-        <% else %>
-            None
-        <% end %>
-
-      </td>
-    </tr>
-
-
-    <tr>
-      <td class="keyword">
-        References:
-      </td>
-
-      <td class="description">
-        <% if @ref_list.any? %>
-            <% @ref_list.each_with_index do |(key,value),index| %>
-                <span style="display: inline-block;"><a href="<%= key %>" target="_blank" style="text-decoration: none;"><img src="<%=@resources[index].LogoUrl %>" height="45" style="vertical-align:middle;" /></a></span>
-            <% end %>
-        <% else %>
-            None
-        <% end %>
-      </td>
-    </tr>
-
-
-    <tr>
-      <td class="keyword">
         Publication:
       </td>
       <td class="description">
@@ -113,6 +64,25 @@
             None
         <% end %>
 
+      </td>
+    </tr>
+
+    <tr>
+      <td class="keyword">
+        References:
+      </td>
+
+      <td class="description">
+        <% if @ref_list.any? %>
+            <% @ref_list.each_with_index do |(key,value),index| %>
+                <span style="display: inline-block;text-align:center;">
+                  <a href="<%= key %>" target="_blank" style="text-decoration: none;"><img src="<%=@resources[index].LogoUrl %>" height="45" style="vertical-align:middle;" /></a>
+                  <a href="https://scicrunch.org/resolver/RRID:<%=@resources[index].SciCrunch_RRID %>" style="font-size: 80%;" target="_blank" >View on SciCrunch</a>
+                </span>
+            <% end %>
+        <% else %>
+            None
+        <% end %>
       </td>
     </tr>
 
@@ -366,6 +336,37 @@
       </td>
       <td class="description">
         <%= @model_id %> (<a <%= model_atag_params(@model_id) %> >Direct Link to this Model</a>)
+      </td>
+    </tr>
+
+    <tr>
+      <td class="keyword">
+        Neurolex IDs:
+      </td>
+
+      <td class="description">
+        <% if @nlx_list.any? %>
+            <% @nlx_list.each do |key, value| %>
+                <a target="_blank" href="http://neurolex.org/wiki/<%= key %>"><%= value %></a><br>
+            <% end %>
+        <% else %>
+            None
+        <% end %>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td class="keyword">
+        Keywords:
+      </td>
+
+      <td class="description">
+        <% if @keywords_model.blank? %>
+            None
+        <% else %>
+            <%= @keywords_model %>
+        <% end %>
       </td>
     </tr>
 
