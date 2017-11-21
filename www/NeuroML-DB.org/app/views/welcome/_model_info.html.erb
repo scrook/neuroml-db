@@ -15,6 +15,37 @@
       </td>
     </tr>
 
+    <tr>
+      <td class="keyword">
+        Neurolex IDs:
+      </td>
+
+      <td class="description">
+        <% if @nlx_list.any? %>
+            <% @nlx_list.each do |key, value| %>
+                <a target="_blank" href="http://neurolex.org/wiki/<%= key %>"><%= value %></a><br>
+            <% end %>
+        <% else %>
+            None
+        <% end %>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td class="keyword">
+        Keywords:
+      </td>
+
+      <td class="description">
+        <% if @keywords_model.blank? %>
+            None
+        <% else %>
+            <%= @keywords_model %>
+        <% end %>
+      </td>
+    </tr>
+
 
     <tr>
       <td class="keyword">
@@ -77,7 +108,8 @@
             <% @ref_list.each_with_index do |(key,value),index| %>
                 <span style="display: inline-block;text-align:center;">
                   <a href="<%= key %>" target="_blank" style="text-decoration: none;"><img src="<%=@resources[index].LogoUrl %>" height="45" style="vertical-align:middle;" /></a>
-                  <a href="https://scicrunch.org/resolver/RRID:<%=@resources[index].SciCrunch_RRID %>" style="font-size: 80%;" target="_blank" >View on SciCrunch</a>
+                  <a href="<%= key %>" style="display: block;font-size: 80%;text-align: center;" target="_blank" >View <%=@resources[index].Name %> Model</a>
+                  <a href="https://scicrunch.org/resolver/RRID:<%=@resources[index].SciCrunch_RRID %>" style="display: block;font-size: 80%;text-align: center;" target="_blank" >View  <%=@resources[index].Name %> on SciCrunch</a>
                 </span>
             <% end %>
         <% else %>
@@ -244,7 +276,7 @@
                 <canvas id="canvasI" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;" width="637" height="215"></canvas>
 
 
-                <div style="text-align: center; margin-top:15px;">Tip: Use the mouse wheel to zoom and drag mouse to pan. <a onclick="resetChartZooms(); return false;" href="resetZoom">Click here to reset zoom</a></div>
+                <div style="text-align: center; margin-top:15px;">Tip: Use the mouse wheel/trackpad to zoom and drag mouse to pan. On mobile devices, pinch and drag for same results. <a onclick="resetChartZooms(); return false;" href="resetZoom">Click here to reset zoom</a></div>
                 <div style="text-align: center; margin-top:15px;">Reproduce the above plots by executing <a href="/GetChannelLEMSZip?modelID=<%= @model_id %>">the simulation file</a> with <a href="https://github.com/NeuroML/jNeuroML" target="_blank">jNeuroML</a>.<a href="#" onclick="jQuery('#instructions').toggle(); return false;">More</a></div>
                 <div id="instructions" style="display:none; padding: 9px;">
                   Perform the following steps to reproduce the above plots:
@@ -335,38 +367,7 @@
         Model Id:
       </td>
       <td class="description">
-        <%= @model_id %> (<a <%= model_atag_params(@model_id) %> >Direct Link to this Model</a>)
-      </td>
-    </tr>
-
-    <tr>
-      <td class="keyword">
-        Neurolex IDs:
-      </td>
-
-      <td class="description">
-        <% if @nlx_list.any? %>
-            <% @nlx_list.each do |key, value| %>
-                <a target="_blank" href="http://neurolex.org/wiki/<%= key %>"><%= value %></a><br>
-            <% end %>
-        <% else %>
-            None
-        <% end %>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td class="keyword">
-        Keywords:
-      </td>
-
-      <td class="description">
-        <% if @keywords_model.blank? %>
-            None
-        <% else %>
-            <%= @keywords_model %>
-        <% end %>
+        <%= @model_id %>
       </td>
     </tr>
 
