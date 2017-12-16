@@ -24,6 +24,113 @@ class Model < ActiveRecord::Base
   def self.GetAllModels()
     models = ActiveRecord::Base.connection.exec_query(
         "
+          SELECT *
+          FROM models
+          ORDER BY Model_ID
+        ")
+
+    return models
+  end
+
+  def self.GetModelDetails(id)
+
+    idClean = Model.connection.quote_string(id)
+
+    model = ActiveRecord::Base.connection.exec_query(
+        "
+          SELECT m.*, mt.Name as Type
+          FROM models m
+          JOIN model_types mt ON mt.ID = m.Type
+          WHERE m.Model_ID = '#{idClean}'
+        ").first
+
+    if model == nil
+      return nil
+    end
+
+    children = ActiveRecord::Base.connection.exec_query(
+        "
+          SELECT c.*, mt.Name as Type
+          FROM model_model_associations mma
+          JOIN models p ON p.Model_ID = mma.Parent_ID
+          JOIN models c ON c.Model_ID = mma.Child_ID
+          JOIN model_types mt ON mt.ID = c.Type
+          WHERE mma.Parent_ID = '#{idClean}'
+          ORDER BY c.Model_ID
+        ")
+
+    parents = ActiveRecord::Base.connection.exec_query(
+        "
+          SELECT p.*, mt.Name as Type
+          FROM model_model_associations mma
+          JOIN models p ON p.Model_ID = mma.Parent_ID
+          JOIN models c ON c.Model_ID = mma.Child_ID
+          JOIN model_types mt ON mt.ID = p.Type
+          WHERE mma.Child_ID = '#{idClean}'
+          ORDER BY c.Model_ID
+        ")
+
+    pub = ActiveRecord::Base.connection.exec_query(
+        "
+          SELECT p.*
+          FROM publications p
+          JOIN model_metadata_associations mma ON mma.Metadata_ID = p.Publication_ID
+          WHERE mma.Model_ID = '#{idClean}'
+        ").first
+
+    authors = ActiveRecord::Base.connection.exec_query(
+        "
+          SELECT p.Person_First_Name, p.Person_Last_Name, ala.is_translator
+          FROM author_list_associations ala
+          JOIN model_metadata_associations mma ON ala.AuthorList_ID = mma.Metadata_ID
+          JOIN people p ON p.Person_ID = ala.Person_ID
+          WHERE mma.Model_ID = '#{idClean}'
+          ORDER BY is_translator, author_sequence
+        ")
+
+    references = ActiveRecord::Base.connection.exec_query(
+        "
+          SELECT rs.*, rf.Reference_URI
+          FROM refers rf
+          JOIN resources rs ON rs.Resource_ID = rf.Reference_Resource_ID
+          JOIN model_metadata_associations mma ON mma.Metadata_ID = rf.Reference_ID
+          WHERE mma.Model_ID = '#{idClean}'
+        ")
+
+    keywords = ActiveRecord::Base.connection.exec_query(
+        "
+          SELECT k.*
+          FROM other_keywords k
+          JOIN model_metadata_associations mma ON mma.Metadata_ID = k.Other_Keyword_ID
+          WHERE mma.Model_ID = '#{idClean}'
+        ")
+
+    neurolexes = ActiveRecord::Base.connection.exec_query(
+        "
+          SELECT n.*
+          FROM neurolexes n
+          JOIN model_metadata_associations mma ON mma.Metadata_ID = n.Neurolex_ID
+          WHERE mma.Model_ID = '#{idClean}'
+        ")
+
+    return {
+        model: model,
+        publication: {
+            short: GetModelShortPub(idClean),
+            record: pub,
+            authors: authors
+        },
+        references: references,
+        keywords: keywords,
+        neurolex_ids: neurolexes,
+        children: children,
+        parents: parents
+    }
+  end
+
+  def self.GetAllModelsForModelDB()
+    models = ActiveRecord::Base.connection.exec_query(
+        "
         SELECT
           CAST(
             REPLACE(

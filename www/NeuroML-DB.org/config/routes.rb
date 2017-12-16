@@ -19,4 +19,10 @@ RedmineApp::Application.routes.draw do
   match 'performance_test', :to => 'testing#performance_test', :as => 'performance_test'
   match 'GetModelZip', :to => 'model#GetModelZip', :as => 'GetModelZip'
   match 'GetChannelLEMSZip', :to => 'model#GetChannelLEMSZip', :as => 'GetChannelLEMSZip'
+
+  match 'api', :to => 'welcome#api'
+  match 'api/models', :to => 'models#models'
+  match 'api/model', :to => 'models#model'
+  match '/api/models_for_modeldb', :to => 'modeldb#model_list'
+
 end

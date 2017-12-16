@@ -588,5 +588,9 @@ class WelcomeController < ApplicationController
   def CNS_workshop
   end
 
+  def api
+
+  end
+
 # endregion
 end
