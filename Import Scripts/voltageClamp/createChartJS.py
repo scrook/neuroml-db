@@ -2,7 +2,7 @@
 # Will replace the .dat file with a
 # sub-sampled .JS file in a format usable by the Chart.js library
 
-removeDat = True
+cleanUp = False#True
 
 import csv, re, sys, os
 from decimal import Decimal
@@ -24,9 +24,9 @@ roiEnd = int(m.group(6))
 
 data = []
 
-# This shortens expression for a number (using 3 sig figs)
+# This shortens expression for a number (using 5 sig figs)
 def shortString(x):
-    return str(float('%.2E' % Decimal(x)))
+    return str(float('%.4E' % Decimal(x)))
 
 # Count the number of rows
 rowCount = 0
@@ -82,13 +82,14 @@ with open(path) as f:
 
 # Convert units time*1000, voltage*1000
 # There are 3*12+1 columns. 1 time col, and 12*3 cols for each plot type
+vsteps = 12
 rowsProcessed = 0
 try:
     for row in data:
         row[0] = float(row[0])*1000 # time
-        row[1:13] = [float(e)*1000 if e != None else None for e in row[1:13]] #voltage
-        row[13:25] = [float(e) if e != None else None for e in row[13:25]] #current
-        row[25:37] = [float(e) if e != None else None for e in row[25:37]] #conductance
+        row[1:(1+vsteps)] = [float(e)*1000 if e != None else None for e in row[1:(1+vsteps)]] #voltage
+        row[(1+vsteps):(1+2*vsteps)] = [float(e) if e != None else None for e in row[(1+vsteps):(1+2*vsteps)]] #current
+        row[(1+2*vsteps):(1+3*vsteps)] = [float(e) if e != None else None for e in row[(1+2*vsteps):(1+3*vsteps)]] #conductance
         
         rowsProcessed = rowsProcessed + 1
 except:
@@ -97,9 +98,13 @@ except:
 # Format each column as {x:t0,y:321},{x:t1,y:321}...
 dataStrings = []
 
-for col in range(1,37):
-    label = ((col-1)%12)*(vHigh-vLow)/10 + vLow
-    intensity = ((col-1)%12)*50 - 250
+for col in range(3*vsteps):
+    step = col%vsteps
+    stepSizeV = (vHigh-vLow)/(vsteps-1.0)
+    stepSizeColor = 250*2.0/(vsteps-1.0)
+
+    label = int(step*stepSizeV + vLow)
+    intensity = int(step*stepSizeColor - 250)
     if intensity < 0:
         color = 'rgba(0,0,'+ str(-intensity) +',1)'
     else:
@@ -109,11 +114,11 @@ for col in range(1,37):
 
     for row in data:
         time = row[0]
-        if col < len(row) and row[col] != None:
-            dataString = dataString + "{{x:{},y:{}}},".format(time,shortString(row[col]))
+        if col+1 < len(row) and row[col+1] != None:
+            dataString = dataString + "{{x:{},y:{}}},".format(time,shortString(row[col+1]))
 
     dataString = dataString + "]"
-    dataStrings.append([col,dataString])
+    dataStrings.append([col+1,dataString])
 
 # Write reformated file
 with open(DirName + "/vclamp_"+caConc+"_"+subProtocol+"_%s_%s"%(roiStart,roiEnd)+".js","w") as f:
@@ -122,10 +127,10 @@ with open(DirName + "/vclamp_"+caConc+"_"+subProtocol+"_%s_%s"%(roiStart,roiEnd)
 
         if col == 1:
             f.write("var voltages = { datasets: [\n")
-        if col == 13:
+        if col == vsteps+1:
             f.write("]};\n")
             f.write("var currents = { datasets: [\n")
-        if col == 25:
+        if col == 2*vsteps+1:
             f.write("]};\n")
             f.write("var conductances = { datasets: [\n")
 
@@ -133,5 +138,5 @@ with open(DirName + "/vclamp_"+caConc+"_"+subProtocol+"_%s_%s"%(roiStart,roiEnd)
 
     f.write("]};\n")
 
-if removeDat:
+if cleanUp:
     os.remove(path)

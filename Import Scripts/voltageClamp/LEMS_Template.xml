@@ -24,7 +24,7 @@
     </network>
     
     
-    <Component type="Simulation" id="sim1" length="[SimDuration]" step="0.001ms" target="net1">
+    <Component type="Simulation" id="sim1" length="[SimDuration]" step="[TimeStep] ms" target="net1">
         <Display id="V" title="V" xmin="[xmin]" xmax="[xmax]" ymin="-150" ymax="150" timeScale="1ms">
             [VoltagePlots]
         </Display>

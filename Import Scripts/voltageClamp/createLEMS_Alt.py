@@ -48,10 +48,10 @@ protocols["Na"]["Activation"] = {
     "step1Duration":        "50ms",
     "step2Duration":        "0ms",
     "restEndDuration":      "30ms",
-    "restV":                "-80mV",
-    "step1Vlow":            "-80mV",
+    "restV":                "-65mV",
+    "step1Vlow":            "-65mV",
     "step1Vhigh":           "70mV",
-    "step2V":               "-80mV",
+    "step2V":               "-65mV",
     "roiStart":             "18ms",
     "roiEnd":               "100ms"
 }
@@ -76,7 +76,7 @@ protocols["Kv"]["Inactivation"] = protocols["Kca"]["Inactivation"] = protocols["
     "step1Duration":        "1500ms",
     "step2Duration":        "50ms",
     "restEndDuration":      "100ms",
-    "restV":                "-80mV",
+    "restV":                "-65mV",
     "step1Vlow":            "-40mV",
     "step1Vhigh":           "70mV",
     "step2V":               "30mV",
@@ -117,9 +117,9 @@ protocols["Na"]["Deactivation"] = {
     "step1Duration":        "10ms",
     "step2Duration":        "30ms",
     "restEndDuration":      "20ms",
-    "restV":                "-80mV",
+    "restV":                "-65mV",
     "step1V":               "70mV",
-    "step2Vlow":            "-100mV",
+    "step2Vlow":            "-65mV",
     "step2Vhigh":           "40mV",
     "roiStart":             "29ms",
     "roiEnd":               "80ms"
@@ -194,7 +194,7 @@ for caConc in classProtocol["CaLevels"]:
     for subProtocolName in ["Activation", "Inactivation", "Deactivation"]:
         subProtocol = classProtocol[subProtocolName]
         subProtocolNameShort = subProtocolName.replace("ivation","")
-        
+
         clampLines = ""
         populationLines = ""
         vPlotLines = ""
@@ -205,7 +205,7 @@ for caConc in classProtocol["CaLevels"]:
         gOutLines = ""
 
         caConcShort = caConc.replace(" ","").replace("-","m").replace(".","p")
-        
+
         # Deactivation varies the second step, others the first
         vHigh = float(subProtocol["step1Vhigh" if subProtocolName != "Deactivation" else "step2Vhigh"].replace("mV",""))
         vLow  = float(subProtocol["step1Vlow"  if subProtocolName != "Deactivation" else "step2Vlow"].replace("mV",""))
