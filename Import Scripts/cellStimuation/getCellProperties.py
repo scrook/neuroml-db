@@ -4,7 +4,6 @@
 
 import os, sys
 
-import pydevd
 from quantities import ms, mV, nA
 from neo.core import AnalogSignal
 import numpy as np
@@ -12,7 +11,8 @@ import json
 from pprint import pprint as pp
 from matplotlib import pyplot as plt
 
-#pydevd.settrace('192.168.0.34', port=4200, stdoutToServer=True, stderrToServer=True, suspend=False)
+import pydevd
+pydevd.settrace('192.168.0.34', port=4201, suspend=True)
 
 path = sys.argv[1]
 

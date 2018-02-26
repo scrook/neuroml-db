@@ -7,8 +7,8 @@ import shutil
 
 path = sys.argv[1]
 
-#import pydevd
-#pydevd.settrace('192.168.0.34', port=4200, stdoutToServer=True, stderrToServer=True, suspend=False)
+import pydevd
+pydevd.settrace('192.168.0.34', port=4201, suspend=False)
 
 DirName = os.path.dirname(os.path.abspath(path))
 cellFileName = os.path.basename(path)
