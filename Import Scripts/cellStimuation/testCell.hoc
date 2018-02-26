@@ -1,0 +1,435 @@
+begintemplate TestCell
+
+proc celldef() {
+  topol()
+  subsets()
+  geom()
+  biophys()
+  geom_nseg()
+}
+
+create soma, dend[230]
+
+proc topol() { local i
+  connect dend(0), soma(0)
+  for i = 1, 2 connect dend[i](0), dend(1)
+  for i = 3, 4 connect dend[i](0), dend[i-1](1)
+  connect dend[5](0), dend[3](1)
+  for i = 6, 7 connect dend[i](0), dend[i-1](1)
+  connect dend[8](0), dend[6](1)
+  for i = 9, 10 connect dend[i](0), dend[i-1](1)
+  connect dend[11](0), dend[9](1)
+  connect dend[12](0), dend[1](1)
+  for i = 13, 14 connect dend[i](0), dend[12](1)
+  for i = 15, 16 connect dend[i](0), dend[i-1](1)
+  connect dend[17](0), dend[15](1)
+  connect dend[18](0), dend[13](1)
+  for i = 19, 20 connect dend[i](0), dend[i-1](1)
+  connect dend[21](0), dend[19](1)
+  for i = 22, 23 connect dend[i](0), dend[i-1](1)
+  connect dend[24](0), dend[22](1)
+  connect dend[25](0), dend[7](1)
+  for i = 26, 27 connect dend[i](0), dend[25](1)
+  for i = 28, 29 connect dend[i](0), dend[i-1](1)
+  connect dend[30](0), dend[28](1)
+  for i = 31, 32 connect dend[i](0), dend[i-1](1)
+  connect dend[33](0), dend[31](1)
+  for i = 34, 36 connect dend[i](0), dend[i-1](1)
+  connect dend[37](0), dend[35](1)
+  for i = 38, 39 connect dend[i](0), dend[i-1](1)
+  connect dend[40](0), dend[38](1)
+  for i = 41, 42 connect dend[i](0), dend[i-1](1)
+  connect dend[43](0), dend[41](1)
+  connect dend[44](0), dend[39](1)
+  for i = 45, 46 connect dend[i](0), dend[44](1)
+  for i = 47, 48 connect dend[i](0), dend[i-1](1)
+  connect dend[49](0), dend[47](1)
+  for i = 50, 51 connect dend[i](0), dend[i-1](1)
+  connect dend[52](0), dend[50](1)
+  connect dend[53](0), dend[20](1)
+  for i = 54, 55 connect dend[i](0), dend[i-1](1)
+  connect dend[56](0), dend[54](1)
+  for i = 57, 58 connect dend[i](0), dend[i-1](1)
+  connect dend[59](0), dend[57](1)
+  for i = 60, 61 connect dend[i](0), dend[i-1](1)
+  connect dend[62](0), dend[60](1)
+  connect dend[63](0), dend[58](1)
+  for i = 64, 65 connect dend[i](0), dend[63](1)
+  for i = 66, 67 connect dend[i](0), dend[i-1](1)
+  connect dend[68](0), dend[66](1)
+  for i = 69, 70 connect dend[i](0), dend[i-1](1)
+  connect dend[71](0), dend[69](1)
+  for i = 72, 74 connect dend[i](0), dend[i-1](1)
+  connect dend[75](0), dend[73](1)
+  for i = 76, 77 connect dend[i](0), dend[i-1](1)
+  connect dend[78](0), dend[76](1)
+  for i = 79, 80 connect dend[i](0), dend[i-1](1)
+  connect dend[81](0), dend[79](1)
+  connect dend[82](0), dend[77](1)
+  for i = 83, 84 connect dend[i](0), dend[82](1)
+  for i = 85, 86 connect dend[i](0), dend[i-1](1)
+  connect dend[87](0), dend[85](1)
+  for i = 88, 89 connect dend[i](0), dend[i-1](1)
+  connect dend[90](0), dend[88](1)
+  connect dend[91](0), dend[67](1)
+  for i = 92, 93 connect dend[i](0), dend[91](1)
+  for i = 94, 95 connect dend[i](0), dend[i-1](1)
+  connect dend[96](0), dend[94](1)
+  connect dend[97](0), dend[92](1)
+  for i = 98, 99 connect dend[i](0), dend[i-1](1)
+  connect dend[100](0), dend[98](1)
+  for i = 101, 102 connect dend[i](0), dend[i-1](1)
+  connect dend[103](0), dend[101](1)
+  for i = 104, 105 connect dend[i](0), dend[i-1](1)
+  connect dend[106](0), dend[104](1)
+  connect dend[107](0), dend[102](1)
+  for i = 108, 109 connect dend[i](0), dend[107](1)
+  for i = 110, 111 connect dend[i](0), dend[i-1](1)
+  connect dend[112](0), dend[110](1)
+  for i = 113, 114 connect dend[i](0), dend[i-1](1)
+  connect dend[115](0), dend[113](1)
+  for i = 116, 118 connect dend[i](0), dend[i-1](1)
+  connect dend[119](0), dend[117](1)
+  for i = 120, 121 connect dend[i](0), dend[i-1](1)
+  connect dend[122](0), dend[120](1)
+  for i = 123, 124 connect dend[i](0), dend[i-1](1)
+  connect dend[125](0), dend[123](1)
+  connect dend[126](0), dend[121](1)
+  for i = 127, 128 connect dend[i](0), dend[126](1)
+  for i = 129, 130 connect dend[i](0), dend[i-1](1)
+  connect dend[131](0), dend[129](1)
+  for i = 132, 133 connect dend[i](0), dend[i-1](1)
+  connect dend[134](0), dend[132](1)
+  connect dend[135](0), dend[111](1)
+  for i = 136, 137 connect dend[i](0), dend[135](1)
+  for i = 138, 139 connect dend[i](0), dend[i-1](1)
+  connect dend[140](0), dend[138](1)
+  connect dend[141](0), dend[136](1)
+  for i = 142, 143 connect dend[i](0), dend[i-1](1)
+  connect dend[144](0), dend[142](1)
+  for i = 145, 146 connect dend[i](0), dend[i-1](1)
+  connect dend[147](0), dend[145](1)
+  connect dend[148](0), dend[143](1)
+  for i = 149, 150 connect dend[i](0), dend[i-1](1)
+  connect dend[151](0), dend[149](1)
+  for i = 152, 153 connect dend[i](0), dend[i-1](1)
+  connect dend[154](0), dend[152](1)
+  for i = 155, 156 connect dend[i](0), dend[i-1](1)
+  connect dend[157](0), dend[155](1)
+  connect dend[158](0), dend[153](1)
+  for i = 159, 160 connect dend[i](0), dend[158](1)
+  for i = 161, 162 connect dend[i](0), dend[i-1](1)
+  connect dend[163](0), dend[161](1)
+  for i = 164, 165 connect dend[i](0), dend[i-1](1)
+  connect dend[166](0), dend[164](1)
+  for i = 167, 169 connect dend[i](0), dend[i-1](1)
+  connect dend[170](0), dend[168](1)
+  for i = 171, 172 connect dend[i](0), dend[i-1](1)
+  connect dend[173](0), dend[171](1)
+  for i = 174, 175 connect dend[i](0), dend[i-1](1)
+  connect dend[176](0), dend[174](1)
+  connect dend[177](0), dend[172](1)
+  for i = 178, 179 connect dend[i](0), dend[177](1)
+  for i = 180, 181 connect dend[i](0), dend[i-1](1)
+  connect dend[182](0), dend[180](1)
+  for i = 183, 184 connect dend[i](0), dend[i-1](1)
+  connect dend[185](0), dend[183](1)
+  connect dend[186](0), dend[162](1)
+  for i = 187, 188 connect dend[i](0), dend[186](1)
+  for i = 189, 190 connect dend[i](0), dend[i-1](1)
+  connect dend[191](0), dend[189](1)
+  connect dend[192](0), dend[187](1)
+  for i = 193, 194 connect dend[i](0), dend[i-1](1)
+  connect dend[195](0), dend[193](1)
+  for i = 196, 197 connect dend[i](0), dend[i-1](1)
+  connect dend[198](0), dend[196](1)
+  for i = 199, 200 connect dend[i](0), dend[i-1](1)
+  connect dend[201](0), dend[199](1)
+  connect dend[202](0), dend[197](1)
+  for i = 203, 204 connect dend[i](0), dend[202](1)
+  for i = 205, 206 connect dend[i](0), dend[i-1](1)
+  connect dend[207](0), dend[205](1)
+  for i = 208, 209 connect dend[i](0), dend[i-1](1)
+  connect dend[210](0), dend[208](1)
+  for i = 211, 213 connect dend[i](0), dend[i-1](1)
+  connect dend[214](0), dend[212](1)
+  for i = 215, 216 connect dend[i](0), dend[i-1](1)
+  connect dend[217](0), dend[215](1)
+  for i = 218, 219 connect dend[i](0), dend[i-1](1)
+  connect dend[220](0), dend[218](1)
+  connect dend[221](0), dend[216](1)
+  for i = 222, 223 connect dend[i](0), dend[221](1)
+  for i = 224, 225 connect dend[i](0), dend[i-1](1)
+  connect dend[226](0), dend[224](1)
+  for i = 227, 228 connect dend[i](0), dend[i-1](1)
+  connect dend[229](0), dend[227](1)
+  basic_shape()
+}
+proc basic_shape() {
+  soma {pt3dclear() pt3dadd(-30, 45, 0, 1) pt3dadd(-30, 45, 0, 1)}
+  dend {pt3dclear() pt3dadd(-29, 45, 0, 1) pt3dadd(-14, -59, 0, 1)}
+  dend[1] {pt3dclear() pt3dadd(-14, -59, 0, 1) pt3dadd(105, -74, 0, 1)}
+  dend[2] {pt3dclear() pt3dadd(-14, -59, 0, 1) pt3dadd(-59, -119, 0, 1)}
+  dend[3] {pt3dclear() pt3dadd(-59, -119, 0, 1) pt3dadd(-134, -164, 0, 1)}
+  dend[4] {pt3dclear() pt3dadd(-134, -164, 0, 1) pt3dadd(-14, -179, 0, 1)}
+  dend[5] {pt3dclear() pt3dadd(-134, -164, 0, 1) pt3dadd(-179, -224, 0, 1)}
+  dend[6] {pt3dclear() pt3dadd(-179, -224, 0, 1) pt3dadd(-134, -284, 0, 1)}
+  dend[7] {pt3dclear() pt3dadd(-134, -284, 0, 1) pt3dadd(-14, -299, 0, 1)}
+  dend[8] {pt3dclear() pt3dadd(-134, -284, 0, 1) pt3dadd(-179, -344, 0, 1)}
+  dend[9] {pt3dclear() pt3dadd(-179, -344, 0, 1) pt3dadd(-254, -389, 0, 1)}
+  dend[10] {pt3dclear() pt3dadd(-254, -389, 0, 1) pt3dadd(-134, -404, 0, 1)}
+  dend[11] {pt3dclear() pt3dadd(-254, -389, 0, 1) pt3dadd(-299, -449, 0, 1)}
+  dend[12] {pt3dclear() pt3dadd(105, -74, 0, 1) pt3dadd(225, -104, 0, 1)}
+  dend[13] {pt3dclear() pt3dadd(225, -104, 0, 1) pt3dadd(345, -119, 0, 1)}
+  dend[14] {pt3dclear() pt3dadd(225, -104, 0, 1) pt3dadd(180, -164, 0, 1)}
+  dend[15] {pt3dclear() pt3dadd(180, -164, 0, 1) pt3dadd(105, -209, 0, 1)}
+  dend[16] {pt3dclear() pt3dadd(105, -209, 0, 1) pt3dadd(225, -224, 0, 1)}
+  dend[17] {pt3dclear() pt3dadd(105, -209, 0, 1) pt3dadd(60, -269, 0, 1)}
+  dend[18] {pt3dclear() pt3dadd(345, -119, 0, 1) pt3dadd(465, -119, 0, 1)}
+  dend[19] {pt3dclear() pt3dadd(465, -119, 0, 1) pt3dadd(585, -149, 0, 1)}
+  dend[20] {pt3dclear() pt3dadd(585, -149, 0, 1) pt3dadd(705, -164, 0, 1)}
+  dend[21] {pt3dclear() pt3dadd(585, -149, 0, 1) pt3dadd(540, -209, 0, 1)}
+  dend[22] {pt3dclear() pt3dadd(540, -209, 0, 1) pt3dadd(465, -254, 0, 1)}
+  dend[23] {pt3dclear() pt3dadd(465, -254, 0, 1) pt3dadd(585, -269, 0, 1)}
+  dend[24] {pt3dclear() pt3dadd(465, -254, 0, 1) pt3dadd(420, -314, 0, 1)}
+  dend[25] {pt3dclear() pt3dadd(-14, -299, 0, 1) pt3dadd(15, -329, 0, 1)}
+  dend[26] {pt3dclear() pt3dadd(15, -329, 0, 1) pt3dadd(135, -344, 0, 1)}
+  dend[27] {pt3dclear() pt3dadd(15, -329, 0, 1) pt3dadd(-29, -389, 0, 1)}
+  dend[28] {pt3dclear() pt3dadd(-29, -389, 0, 1) pt3dadd(15, -449, 0, 1)}
+  dend[29] {pt3dclear() pt3dadd(15, -449, 0, 1) pt3dadd(135, -464, 0, 1)}
+  dend[30] {pt3dclear() pt3dadd(15, -449, 0, 1) pt3dadd(-29, -509, 0, 1)}
+  dend[31] {pt3dclear() pt3dadd(-29, -509, 0, 1) pt3dadd(-104, -554, 0, 1)}
+  dend[32] {pt3dclear() pt3dadd(-104, -554, 0, 1) pt3dadd(15, -569, 0, 1)}
+  dend[33] {pt3dclear() pt3dadd(-104, -554, 0, 1) pt3dadd(-149, -614, 0, 1)}
+  dend[34] {pt3dclear() pt3dadd(-149, -614, 0, 1) pt3dadd(-209, -644, 0, 1)}
+  dend[35] {pt3dclear() pt3dadd(-209, -644, 0, 1) pt3dadd(-284, -689, 0, 1)}
+  dend[36] {pt3dclear() pt3dadd(-284, -689, 0, 1) pt3dadd(-164, -704, 0, 1)}
+  dend[37] {pt3dclear() pt3dadd(-284, -689, 0, 1) pt3dadd(-329, -749, 0, 1)}
+  dend[38] {pt3dclear() pt3dadd(-329, -749, 0, 1) pt3dadd(-284, -809, 0, 1)}
+  dend[39] {pt3dclear() pt3dadd(-284, -809, 0, 1) pt3dadd(-164, -824, 0, 1)}
+  dend[40] {pt3dclear() pt3dadd(-284, -809, 0, 1) pt3dadd(-329, -869, 0, 1)}
+  dend[41] {pt3dclear() pt3dadd(-329, -869, 0, 1) pt3dadd(-404, -914, 0, 1)}
+  dend[42] {pt3dclear() pt3dadd(-404, -914, 0, 1) pt3dadd(-284, -929, 0, 1)}
+  dend[43] {pt3dclear() pt3dadd(-404, -914, 0, 1) pt3dadd(-449, -974, 0, 1)}
+  dend[44] {pt3dclear() pt3dadd(-164, -824, 0, 1) pt3dadd(-134, -854, 0, 1)}
+  dend[45] {pt3dclear() pt3dadd(-134, -854, 0, 1) pt3dadd(-14, -869, 0, 1)}
+  dend[46] {pt3dclear() pt3dadd(-134, -854, 0, 1) pt3dadd(-179, -914, 0, 1)}
+  dend[47] {pt3dclear() pt3dadd(-179, -914, 0, 1) pt3dadd(-134, -974, 0, 1)}
+  dend[48] {pt3dclear() pt3dadd(-134, -974, 0, 1) pt3dadd(-14, -989, 0, 1)}
+  dend[49] {pt3dclear() pt3dadd(-134, -974, 0, 1) pt3dadd(-179, -1034, 0, 1)}
+  dend[50] {pt3dclear() pt3dadd(-179, -1034, 0, 1) pt3dadd(-254, -1079, 0, 1)}
+  dend[51] {pt3dclear() pt3dadd(-254, -1079, 0, 1) pt3dadd(-134, -1094, 0, 1)}
+  dend[52] {pt3dclear() pt3dadd(-254, -1079, 0, 1) pt3dadd(-299, -1139, 0, 1)}
+  dend[53] {pt3dclear() pt3dadd(705, -164, 0, 1) pt3dadd(795, -194, 0, 1)}
+  dend[54] {pt3dclear() pt3dadd(795, -194, 0, 1) pt3dadd(720, -239, 0, 1)}
+  dend[55] {pt3dclear() pt3dadd(720, -239, 0, 1) pt3dadd(840, -254, 0, 1)}
+  dend[56] {pt3dclear() pt3dadd(720, -239, 0, 1) pt3dadd(675, -299, 0, 1)}
+  dend[57] {pt3dclear() pt3dadd(675, -299, 0, 1) pt3dadd(720, -359, 0, 1)}
+  dend[58] {pt3dclear() pt3dadd(720, -359, 0, 1) pt3dadd(840, -374, 0, 1)}
+  dend[59] {pt3dclear() pt3dadd(720, -359, 0, 1) pt3dadd(675, -419, 0, 1)}
+  dend[60] {pt3dclear() pt3dadd(675, -419, 0, 1) pt3dadd(600, -464, 0, 1)}
+  dend[61] {pt3dclear() pt3dadd(600, -464, 0, 1) pt3dadd(720, -479, 0, 1)}
+  dend[62] {pt3dclear() pt3dadd(600, -464, 0, 1) pt3dadd(555, -524, 0, 1)}
+  dend[63] {pt3dclear() pt3dadd(840, -374, 0, 1) pt3dadd(870, -404, 0, 1)}
+  dend[64] {pt3dclear() pt3dadd(870, -404, 0, 1) pt3dadd(990, -419, 0, 1)}
+  dend[65] {pt3dclear() pt3dadd(870, -404, 0, 1) pt3dadd(825, -464, 0, 1)}
+  dend[66] {pt3dclear() pt3dadd(825, -464, 0, 1) pt3dadd(870, -524, 0, 1)}
+  dend[67] {pt3dclear() pt3dadd(870, -524, 0, 1) pt3dadd(990, -539, 0, 1)}
+  dend[68] {pt3dclear() pt3dadd(870, -524, 0, 1) pt3dadd(825, -584, 0, 1)}
+  dend[69] {pt3dclear() pt3dadd(825, -584, 0, 1) pt3dadd(750, -629, 0, 1)}
+  dend[70] {pt3dclear() pt3dadd(750, -629, 0, 1) pt3dadd(870, -644, 0, 1)}
+  dend[71] {pt3dclear() pt3dadd(750, -629, 0, 1) pt3dadd(705, -689, 0, 1)}
+  dend[72] {pt3dclear() pt3dadd(705, -689, 0, 1) pt3dadd(645, -719, 0, 1)}
+  dend[73] {pt3dclear() pt3dadd(645, -719, 0, 1) pt3dadd(570, -764, 0, 1)}
+  dend[74] {pt3dclear() pt3dadd(570, -764, 0, 1) pt3dadd(690, -779, 0, 1)}
+  dend[75] {pt3dclear() pt3dadd(570, -764, 0, 1) pt3dadd(525, -824, 0, 1)}
+  dend[76] {pt3dclear() pt3dadd(525, -824, 0, 1) pt3dadd(570, -884, 0, 1)}
+  dend[77] {pt3dclear() pt3dadd(570, -884, 0, 1) pt3dadd(690, -899, 0, 1)}
+  dend[78] {pt3dclear() pt3dadd(570, -884, 0, 1) pt3dadd(525, -944, 0, 1)}
+  dend[79] {pt3dclear() pt3dadd(525, -944, 0, 1) pt3dadd(450, -989, 0, 1)}
+  dend[80] {pt3dclear() pt3dadd(450, -989, 0, 1) pt3dadd(570, -1004, 0, 1)}
+  dend[81] {pt3dclear() pt3dadd(450, -989, 0, 1) pt3dadd(405, -1049, 0, 1)}
+  dend[82] {pt3dclear() pt3dadd(690, -899, 0, 1) pt3dadd(720, -929, 0, 1)}
+  dend[83] {pt3dclear() pt3dadd(720, -929, 0, 1) pt3dadd(840, -944, 0, 1)}
+  dend[84] {pt3dclear() pt3dadd(720, -929, 0, 1) pt3dadd(675, -989, 0, 1)}
+  dend[85] {pt3dclear() pt3dadd(675, -989, 0, 1) pt3dadd(720, -1049, 0, 1)}
+  dend[86] {pt3dclear() pt3dadd(720, -1049, 0, 1) pt3dadd(840, -1064, 0, 1)}
+  dend[87] {pt3dclear() pt3dadd(720, -1049, 0, 1) pt3dadd(675, -1109, 0, 1)}
+  dend[88] {pt3dclear() pt3dadd(675, -1109, 0, 1) pt3dadd(600, -1154, 0, 1)}
+  dend[89] {pt3dclear() pt3dadd(600, -1154, 0, 1) pt3dadd(720, -1169, 0, 1)}
+  dend[90] {pt3dclear() pt3dadd(600, -1154, 0, 1) pt3dadd(555, -1214, 0, 1)}
+  dend[91] {pt3dclear() pt3dadd(990, -539, 0, 1) pt3dadd(1050, -629, 0, 1)}
+  dend[92] {pt3dclear() pt3dadd(1050, -629, 0, 1) pt3dadd(1170, -644, 0, 1)}
+  dend[93] {pt3dclear() pt3dadd(1050, -629, 0, 1) pt3dadd(1005, -689, 0, 1)}
+  dend[94] {pt3dclear() pt3dadd(1005, -689, 0, 1) pt3dadd(930, -734, 0, 1)}
+  dend[95] {pt3dclear() pt3dadd(930, -734, 0, 1) pt3dadd(1050, -749, 0, 1)}
+  dend[96] {pt3dclear() pt3dadd(930, -734, 0, 1) pt3dadd(885, -794, 0, 1)}
+  dend[97] {pt3dclear() pt3dadd(1170, -644, 0, 1) pt3dadd(1260, -674, 0, 1)}
+  dend[98] {pt3dclear() pt3dadd(1260, -674, 0, 1) pt3dadd(1185, -719, 0, 1)}
+  basic_shape_1()
+}
+proc basic_shape_1() {
+  dend[99] {pt3dclear() pt3dadd(1185, -719, 0, 1) pt3dadd(1305, -734, 0, 1)}
+  dend[100] {pt3dclear() pt3dadd(1185, -719, 0, 1) pt3dadd(1140, -779, 0, 1)}
+  dend[101] {pt3dclear() pt3dadd(1140, -779, 0, 1) pt3dadd(1185, -839, 0, 1)}
+  dend[102] {pt3dclear() pt3dadd(1185, -839, 0, 1) pt3dadd(1305, -854, 0, 1)}
+  dend[103] {pt3dclear() pt3dadd(1185, -839, 0, 1) pt3dadd(1140, -899, 0, 1)}
+  dend[104] {pt3dclear() pt3dadd(1140, -899, 0, 1) pt3dadd(1065, -944, 0, 1)}
+  dend[105] {pt3dclear() pt3dadd(1065, -944, 0, 1) pt3dadd(1185, -959, 0, 1)}
+  dend[106] {pt3dclear() pt3dadd(1065, -944, 0, 1) pt3dadd(1020, -1004, 0, 1)}
+  dend[107] {pt3dclear() pt3dadd(1305, -854, 0, 1) pt3dadd(1335, -884, 0, 1)}
+  dend[108] {pt3dclear() pt3dadd(1335, -884, 0, 1) pt3dadd(1455, -899, 0, 1)}
+  dend[109] {pt3dclear() pt3dadd(1335, -884, 0, 1) pt3dadd(1290, -944, 0, 1)}
+  dend[110] {pt3dclear() pt3dadd(1290, -944, 0, 1) pt3dadd(1335, -1004, 0, 1)}
+  dend[111] {pt3dclear() pt3dadd(1335, -1004, 0, 1) pt3dadd(1455, -1019, 0, 1)}
+  dend[112] {pt3dclear() pt3dadd(1335, -1004, 0, 1) pt3dadd(1290, -1064, 0, 1)}
+  dend[113] {pt3dclear() pt3dadd(1290, -1064, 0, 1) pt3dadd(1215, -1109, 0, 1)}
+  dend[114] {pt3dclear() pt3dadd(1215, -1109, 0, 1) pt3dadd(1335, -1124, 0, 1)}
+  dend[115] {pt3dclear() pt3dadd(1215, -1109, 0, 1) pt3dadd(1170, -1169, 0, 1)}
+  dend[116] {pt3dclear() pt3dadd(1170, -1169, 0, 1) pt3dadd(1110, -1199, 0, 1)}
+  dend[117] {pt3dclear() pt3dadd(1110, -1199, 0, 1) pt3dadd(1035, -1244, 0, 1)}
+  dend[118] {pt3dclear() pt3dadd(1035, -1244, 0, 1) pt3dadd(1155, -1259, 0, 1)}
+  dend[119] {pt3dclear() pt3dadd(1035, -1244, 0, 1) pt3dadd(990, -1304, 0, 1)}
+  dend[120] {pt3dclear() pt3dadd(990, -1304, 0, 1) pt3dadd(1035, -1364, 0, 1)}
+  dend[121] {pt3dclear() pt3dadd(1035, -1364, 0, 1) pt3dadd(1155, -1379, 0, 1)}
+  dend[122] {pt3dclear() pt3dadd(1035, -1364, 0, 1) pt3dadd(990, -1424, 0, 1)}
+  dend[123] {pt3dclear() pt3dadd(990, -1424, 0, 1) pt3dadd(915, -1469, 0, 1)}
+  dend[124] {pt3dclear() pt3dadd(915, -1469, 0, 1) pt3dadd(1035, -1484, 0, 1)}
+  dend[125] {pt3dclear() pt3dadd(915, -1469, 0, 1) pt3dadd(870, -1529, 0, 1)}
+  dend[126] {pt3dclear() pt3dadd(1155, -1379, 0, 1) pt3dadd(1185, -1409, 0, 1)}
+  dend[127] {pt3dclear() pt3dadd(1185, -1409, 0, 1) pt3dadd(1305, -1424, 0, 1)}
+  dend[128] {pt3dclear() pt3dadd(1185, -1409, 0, 1) pt3dadd(1140, -1469, 0, 1)}
+  dend[129] {pt3dclear() pt3dadd(1140, -1469, 0, 1) pt3dadd(1185, -1529, 0, 1)}
+  dend[130] {pt3dclear() pt3dadd(1185, -1529, 0, 1) pt3dadd(1305, -1544, 0, 1)}
+  dend[131] {pt3dclear() pt3dadd(1185, -1529, 0, 1) pt3dadd(1140, -1589, 0, 1)}
+  dend[132] {pt3dclear() pt3dadd(1140, -1589, 0, 1) pt3dadd(1065, -1634, 0, 1)}
+  dend[133] {pt3dclear() pt3dadd(1065, -1634, 0, 1) pt3dadd(1185, -1649, 0, 1)}
+  dend[134] {pt3dclear() pt3dadd(1065, -1634, 0, 1) pt3dadd(1020, -1694, 0, 1)}
+  dend[135] {pt3dclear() pt3dadd(1455, -1019, 0, 1) pt3dadd(1575, -1094, 0, 1)}
+  dend[136] {pt3dclear() pt3dadd(1575, -1094, 0, 1) pt3dadd(1695, -1109, 0, 1)}
+  dend[137] {pt3dclear() pt3dadd(1575, -1094, 0, 1) pt3dadd(1530, -1154, 0, 1)}
+  dend[138] {pt3dclear() pt3dadd(1530, -1154, 0, 1) pt3dadd(1455, -1199, 0, 1)}
+  dend[139] {pt3dclear() pt3dadd(1455, -1199, 0, 1) pt3dadd(1575, -1214, 0, 1)}
+  dend[140] {pt3dclear() pt3dadd(1455, -1199, 0, 1) pt3dadd(1410, -1259, 0, 1)}
+  dend[141] {pt3dclear() pt3dadd(1695, -1109, 0, 1) pt3dadd(1815, -1109, 0, 1)}
+  dend[142] {pt3dclear() pt3dadd(1815, -1109, 0, 1) pt3dadd(1935, -1139, 0, 1)}
+  dend[143] {pt3dclear() pt3dadd(1935, -1139, 0, 1) pt3dadd(2055, -1154, 0, 1)}
+  dend[144] {pt3dclear() pt3dadd(1935, -1139, 0, 1) pt3dadd(1890, -1199, 0, 1)}
+  dend[145] {pt3dclear() pt3dadd(1890, -1199, 0, 1) pt3dadd(1815, -1244, 0, 1)}
+  dend[146] {pt3dclear() pt3dadd(1815, -1244, 0, 1) pt3dadd(1935, -1259, 0, 1)}
+  dend[147] {pt3dclear() pt3dadd(1815, -1244, 0, 1) pt3dadd(1770, -1304, 0, 1)}
+  dend[148] {pt3dclear() pt3dadd(2055, -1154, 0, 1) pt3dadd(2145, -1184, 0, 1)}
+  dend[149] {pt3dclear() pt3dadd(2145, -1184, 0, 1) pt3dadd(2070, -1229, 0, 1)}
+  dend[150] {pt3dclear() pt3dadd(2070, -1229, 0, 1) pt3dadd(2190, -1244, 0, 1)}
+  dend[151] {pt3dclear() pt3dadd(2070, -1229, 0, 1) pt3dadd(2025, -1289, 0, 1)}
+  dend[152] {pt3dclear() pt3dadd(2025, -1289, 0, 1) pt3dadd(2070, -1349, 0, 1)}
+  dend[153] {pt3dclear() pt3dadd(2070, -1349, 0, 1) pt3dadd(2190, -1364, 0, 1)}
+  dend[154] {pt3dclear() pt3dadd(2070, -1349, 0, 1) pt3dadd(2025, -1409, 0, 1)}
+  dend[155] {pt3dclear() pt3dadd(2025, -1409, 0, 1) pt3dadd(1950, -1454, 0, 1)}
+  dend[156] {pt3dclear() pt3dadd(1950, -1454, 0, 1) pt3dadd(2070, -1469, 0, 1)}
+  dend[157] {pt3dclear() pt3dadd(1950, -1454, 0, 1) pt3dadd(1905, -1514, 0, 1)}
+  dend[158] {pt3dclear() pt3dadd(2190, -1364, 0, 1) pt3dadd(2220, -1394, 0, 1)}
+  dend[159] {pt3dclear() pt3dadd(2220, -1394, 0, 1) pt3dadd(2340, -1409, 0, 1)}
+  dend[160] {pt3dclear() pt3dadd(2220, -1394, 0, 1) pt3dadd(2175, -1454, 0, 1)}
+  dend[161] {pt3dclear() pt3dadd(2175, -1454, 0, 1) pt3dadd(2220, -1514, 0, 1)}
+  dend[162] {pt3dclear() pt3dadd(2220, -1514, 0, 1) pt3dadd(2340, -1529, 0, 1)}
+  dend[163] {pt3dclear() pt3dadd(2220, -1514, 0, 1) pt3dadd(2175, -1574, 0, 1)}
+  dend[164] {pt3dclear() pt3dadd(2175, -1574, 0, 1) pt3dadd(2100, -1619, 0, 1)}
+  dend[165] {pt3dclear() pt3dadd(2100, -1619, 0, 1) pt3dadd(2220, -1634, 0, 1)}
+  dend[166] {pt3dclear() pt3dadd(2100, -1619, 0, 1) pt3dadd(2055, -1679, 0, 1)}
+  dend[167] {pt3dclear() pt3dadd(2055, -1679, 0, 1) pt3dadd(1995, -1709, 0, 1)}
+  dend[168] {pt3dclear() pt3dadd(1995, -1709, 0, 1) pt3dadd(1920, -1754, 0, 1)}
+  dend[169] {pt3dclear() pt3dadd(1920, -1754, 0, 1) pt3dadd(2040, -1769, 0, 1)}
+  dend[170] {pt3dclear() pt3dadd(1920, -1754, 0, 1) pt3dadd(1875, -1814, 0, 1)}
+  dend[171] {pt3dclear() pt3dadd(1875, -1814, 0, 1) pt3dadd(1920, -1874, 0, 1)}
+  dend[172] {pt3dclear() pt3dadd(1920, -1874, 0, 1) pt3dadd(2040, -1889, 0, 1)}
+  dend[173] {pt3dclear() pt3dadd(1920, -1874, 0, 1) pt3dadd(1875, -1934, 0, 1)}
+  dend[174] {pt3dclear() pt3dadd(1875, -1934, 0, 1) pt3dadd(1800, -1979, 0, 1)}
+  dend[175] {pt3dclear() pt3dadd(1800, -1979, 0, 1) pt3dadd(1920, -1994, 0, 1)}
+  dend[176] {pt3dclear() pt3dadd(1800, -1979, 0, 1) pt3dadd(1755, -2039, 0, 1)}
+  dend[177] {pt3dclear() pt3dadd(2040, -1889, 0, 1) pt3dadd(2070, -1919, 0, 1)}
+  dend[178] {pt3dclear() pt3dadd(2070, -1919, 0, 1) pt3dadd(2190, -1934, 0, 1)}
+  dend[179] {pt3dclear() pt3dadd(2070, -1919, 0, 1) pt3dadd(2025, -1979, 0, 1)}
+  dend[180] {pt3dclear() pt3dadd(2025, -1979, 0, 1) pt3dadd(2070, -2039, 0, 1)}
+  dend[181] {pt3dclear() pt3dadd(2070, -2039, 0, 1) pt3dadd(2190, -2054, 0, 1)}
+  dend[182] {pt3dclear() pt3dadd(2070, -2039, 0, 1) pt3dadd(2025, -2099, 0, 1)}
+  dend[183] {pt3dclear() pt3dadd(2025, -2099, 0, 1) pt3dadd(1950, -2144, 0, 1)}
+  dend[184] {pt3dclear() pt3dadd(1950, -2144, 0, 1) pt3dadd(2070, -2159, 0, 1)}
+  dend[185] {pt3dclear() pt3dadd(1950, -2144, 0, 1) pt3dadd(1905, -2204, 0, 1)}
+  dend[186] {pt3dclear() pt3dadd(2340, -1529, 0, 1) pt3dadd(2400, -1619, 0, 1)}
+  dend[187] {pt3dclear() pt3dadd(2400, -1619, 0, 1) pt3dadd(2520, -1634, 0, 1)}
+  dend[188] {pt3dclear() pt3dadd(2400, -1619, 0, 1) pt3dadd(2355, -1679, 0, 1)}
+  dend[189] {pt3dclear() pt3dadd(2355, -1679, 0, 1) pt3dadd(2280, -1724, 0, 1)}
+  dend[190] {pt3dclear() pt3dadd(2280, -1724, 0, 1) pt3dadd(2400, -1739, 0, 1)}
+  dend[191] {pt3dclear() pt3dadd(2280, -1724, 0, 1) pt3dadd(2235, -1784, 0, 1)}
+  dend[192] {pt3dclear() pt3dadd(2520, -1634, 0, 1) pt3dadd(2610, -1664, 0, 1)}
+  dend[193] {pt3dclear() pt3dadd(2610, -1664, 0, 1) pt3dadd(2535, -1709, 0, 1)}
+  dend[194] {pt3dclear() pt3dadd(2535, -1709, 0, 1) pt3dadd(2655, -1724, 0, 1)}
+  dend[195] {pt3dclear() pt3dadd(2535, -1709, 0, 1) pt3dadd(2490, -1769, 0, 1)}
+  dend[196] {pt3dclear() pt3dadd(2490, -1769, 0, 1) pt3dadd(2535, -1829, 0, 1)}
+  dend[197] {pt3dclear() pt3dadd(2535, -1829, 0, 1) pt3dadd(2655, -1844, 0, 1)}
+  dend[198] {pt3dclear() pt3dadd(2535, -1829, 0, 1) pt3dadd(2490, -1889, 0, 1)}
+  basic_shape_2()
+}
+proc basic_shape_2() {
+  dend[199] {pt3dclear() pt3dadd(2490, -1889, 0, 1) pt3dadd(2415, -1934, 0, 1)}
+  dend[200] {pt3dclear() pt3dadd(2415, -1934, 0, 1) pt3dadd(2535, -1949, 0, 1)}
+  dend[201] {pt3dclear() pt3dadd(2415, -1934, 0, 1) pt3dadd(2370, -1994, 0, 1)}
+  dend[202] {pt3dclear() pt3dadd(2655, -1844, 0, 1) pt3dadd(2685, -1874, 0, 1)}
+  dend[203] {pt3dclear() pt3dadd(2685, -1874, 0, 1) pt3dadd(2805, -1889, 0, 1)}
+  dend[204] {pt3dclear() pt3dadd(2685, -1874, 0, 1) pt3dadd(2640, -1934, 0, 1)}
+  dend[205] {pt3dclear() pt3dadd(2640, -1934, 0, 1) pt3dadd(2685, -1994, 0, 1)}
+  dend[206] {pt3dclear() pt3dadd(2685, -1994, 0, 1) pt3dadd(2805, -2009, 0, 1)}
+  dend[207] {pt3dclear() pt3dadd(2685, -1994, 0, 1) pt3dadd(2640, -2054, 0, 1)}
+  dend[208] {pt3dclear() pt3dadd(2640, -2054, 0, 1) pt3dadd(2565, -2099, 0, 1)}
+  dend[209] {pt3dclear() pt3dadd(2565, -2099, 0, 1) pt3dadd(2685, -2114, 0, 1)}
+  dend[210] {pt3dclear() pt3dadd(2565, -2099, 0, 1) pt3dadd(2520, -2159, 0, 1)}
+  dend[211] {pt3dclear() pt3dadd(2520, -2159, 0, 1) pt3dadd(2460, -2189, 0, 1)}
+  dend[212] {pt3dclear() pt3dadd(2460, -2189, 0, 1) pt3dadd(2385, -2234, 0, 1)}
+  dend[213] {pt3dclear() pt3dadd(2385, -2234, 0, 1) pt3dadd(2505, -2249, 0, 1)}
+  dend[214] {pt3dclear() pt3dadd(2385, -2234, 0, 1) pt3dadd(2340, -2294, 0, 1)}
+  dend[215] {pt3dclear() pt3dadd(2340, -2294, 0, 1) pt3dadd(2385, -2354, 0, 1)}
+  dend[216] {pt3dclear() pt3dadd(2385, -2354, 0, 1) pt3dadd(2505, -2369, 0, 1)}
+  dend[217] {pt3dclear() pt3dadd(2385, -2354, 0, 1) pt3dadd(2340, -2414, 0, 1)}
+  dend[218] {pt3dclear() pt3dadd(2340, -2414, 0, 1) pt3dadd(2265, -2459, 0, 1)}
+  dend[219] {pt3dclear() pt3dadd(2265, -2459, 0, 1) pt3dadd(2385, -2474, 0, 1)}
+  dend[220] {pt3dclear() pt3dadd(2265, -2459, 0, 1) pt3dadd(2220, -2519, 0, 1)}
+  dend[221] {pt3dclear() pt3dadd(2505, -2369, 0, 1) pt3dadd(2535, -2399, 0, 1)}
+  dend[222] {pt3dclear() pt3dadd(2535, -2399, 0, 1) pt3dadd(2655, -2414, 0, 1)}
+  dend[223] {pt3dclear() pt3dadd(2535, -2399, 0, 1) pt3dadd(2490, -2459, 0, 1)}
+  dend[224] {pt3dclear() pt3dadd(2490, -2459, 0, 1) pt3dadd(2535, -2519, 0, 1)}
+  dend[225] {pt3dclear() pt3dadd(2535, -2519, 0, 1) pt3dadd(2655, -2534, 0, 1)}
+  dend[226] {pt3dclear() pt3dadd(2535, -2519, 0, 1) pt3dadd(2490, -2579, 0, 1)}
+  dend[227] {pt3dclear() pt3dadd(2490, -2579, 0, 1) pt3dadd(2415, -2624, 0, 1)}
+  dend[228] {pt3dclear() pt3dadd(2415, -2624, 0, 1) pt3dadd(2535, -2639, 0, 1)}
+  dend[229] {pt3dclear() pt3dadd(2415, -2624, 0, 1) pt3dadd(2370, -2684, 0, 1)}
+}
+
+objref all
+proc subsets() { local i
+  objref all
+  all = new SectionList()
+    soma all.append()
+    for i=0, 229 dend[i] all.append()
+
+}
+proc geom() {
+  forsec all {  L = 100  diam = 1  }
+}
+proc geom_nseg() {
+}
+proc biophys() {
+  forsec all {
+    insert hh
+      gnabar_hh = 0.12
+      gkbar_hh = 0.036
+      gl_hh = 0.0003
+      el_hh = -54.3
+    insert pas
+      g_pas = 0.001
+      e_pas = -70
+  }
+}
+access soma
+
+endtemplate TestCell
