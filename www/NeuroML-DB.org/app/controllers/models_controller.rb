@@ -1,11 +1,11 @@
 class ModelsController < ApplicationController
   caches_action :robots
 
-  def models
+  def all
     render :json => Model.GetAllModels(), :content_type => 'application/javascript'
   end
 
-  def model
+  def detail
 
     result = Model.GetModelDetails(params[:id])
 

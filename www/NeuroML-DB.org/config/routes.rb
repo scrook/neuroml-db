@@ -21,8 +21,8 @@ RedmineApp::Application.routes.draw do
   match 'GetChannelLEMSZip', :to => 'model#GetChannelLEMSZip', :as => 'GetChannelLEMSZip'
 
   match 'api', :to => 'welcome#api'
-  match 'api/models', :to => 'models#models'
-  match 'api/model', :to => 'models#model'
+  match 'api/models', :to => 'models#all'
+  match 'api/model', :to => 'models#detail'
   match '/api/models_for_modeldb', :to => 'modeldb#model_list'
 
 end
