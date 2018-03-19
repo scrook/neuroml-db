@@ -3,376 +3,694 @@
 # Usage: python getCellProperties /path/To/dir/with/.hoc
 
 import os, sys
-
 from quantities import ms, mV, nA
 from neo.core import AnalogSignal
 import numpy as np
-import json
+import json, datetime
 from pprint import pprint as pp
 from matplotlib import pyplot as plt
+from multiprocessing import Process, Value
+from threading import Timer
+import time
+from peewee import Model, CharField, FloatField, BooleanField, TextField
+from sshtunnel import SSHTunnelForwarder
+from playhouse.db_url import connect
+import random
 
-import pydevd
-pydevd.settrace('192.168.0.34', port=4201, suspend=True)
-
-path = sys.argv[1]
-
-stepsPerMs = 64
-minCurrent = -0.5
-
-# Load cell hoc and get soma
-os.chdir(path)
-from neuron import h,gui
-h.load_file("nrngui.hoc")
-
-cellHocFile = [f for f in os.listdir(path) if f.endswith(".hoc")][0]
-cellTemplate = cellHocFile.replace(".hoc","")
-
-h.load_file(cellHocFile)
-
-cell = getattr(h,cellTemplate)()
-
-for section in cell.soma_group:
-    soma = section
-
-h.tstop = 200.0
-
-# Set up recordings
-vVector = h.Vector()
-vVector.record(soma(0.5)._ref_v)
-
-tVector = h.Vector()
-tVector.record(h._ref_t)
-
-# set up stim
-current = h.IClamp(soma(0.5))
-
-current.delay = 50.0
-current.amp = 0
-current.dur = 100.0
-
-vc = h.SEClamp(soma(0.5))
-vc.dur1 = 0
-
-def init():
-    h.stdinit()
-    current.amp = 0
-
-def setDt(stepsPerMs):
-    h.steps_per_ms = stepsPerMs
-    h.dt = 1.0/stepsPerMs
-
-def runFor(time):
-    newStopTime = h.t + time
-    h.tstop = newStopTime
-    h.continuerun(newStopTime)
-
-    # Get the waveform
-    v = np.array(vVector.to_python())
-    t = np.array(tVector.to_python())
-
-    if np.isnan(v).any():
-        raise Exception("Simulation is numericaly unstable with " + str(h.steps_per_ms) + " steps per ms")
-
-    return (t,v)
-
-
-def setCurrent(amp, delay, dur):
-    current.delay = delay
-    current.amp = amp
-    current.dur = dur
-
-def getSpikeCount(voltage):
-    if np.max(voltage) < 0:
-        return 0
-
-    else:
-        return len(crossings_nonzero_pos2neg(voltage))
-
-def crossings_nonzero_pos2neg(data):
-    pos = data > 0
-    return (pos[:-1] & ~pos[1:]).nonzero()[0]
-
-def getThreshold(maxI = 1):
-    upperLevel = maxI
-    lowerLevel = minCurrent
-    upperSpikes = 0
-    lowerSpikes = 0
-
-    currentAmp = 0
-
-    iterate = True
-    iteration = 1
-    gotSpike = False
-
-    delay = 500
-    init()
-    runFor(delay)
-    nState = h.SaveState()
-    nState.save()
-
-    plt.clf()
-
-    while iterate:
-        init()
-        nState.restore()
-
-        currentAmp = (lowerLevel + upperLevel) / 2.0
-        setCurrent(amp = currentAmp, delay = delay, dur = 3)
-        print("Trying " + str(currentAmp) + " nA...")
-
-        t, v = runFor(50)
-
-        numSpikes = getSpikeCount(v)
-        print("Got " + str(numSpikes) + " spikes")
-
-        if numSpikes < 1:
-            lowerLevel = currentAmp
-            lowerSpikes = numSpikes
-        else:
-            upperLevel = currentAmp
-            upperSpikes = numSpikes
-            gotSpike = True
-
-        iteration = iteration + 1
-
-        if iteration > 10:
-            iterate = False
-
-        plt.plot(t, v, label=str(round(currentAmp, 4)) + ": " + str(numSpikes) + "APs")
-
-
-    result = (
-        (lowerLevel, upperLevel),
-        (lowerSpikes, upperSpikes)
-    )
-
-    plt.legend(loc='upper left')
-    plt.xlabel("Threshold range: " + str(result))
-    plt.savefig("threshold.png")
-
-    if not gotSpike:
-        raise Exception("Did not get any spikes with currents " + str(result))
-
-    return result
-
-def getRheobase(maxI = 1):
-    delay = 500
-    current_duration = 500
-    check_period = 10
-    first_early_stop_test = 200
-    early_stop_max_v_percent_threshold = 0.95
-    max_iterations = 17
-
-    upperLevel = maxI
-    lowerLevel = minCurrent
-    upperSpikes = 0
-    lowerSpikes = 0
-    currentAmp = 0
-
-    iterate = True
-    iteration = 1
-    gotSpike = False
-
-
-    init()
-    runFor(delay)
-    nState = h.SaveState()
-    nState.save()
-
-    plt.clf()
-
-    while iterate:
-        init()
-        nState.restore()
-
-        currentAmp = (lowerLevel + upperLevel) / 2.0
-        setCurrent(amp = currentAmp, delay = delay, dur = current_duration)
-        print("Trying " + str(currentAmp) + " nA...")
-
-        maxT = delay
-        oneOrNoneSpikes = True
-        earlyStop = False
-        while not earlyStop and maxT < delay + current_duration and oneOrNoneSpikes:
-            t, v = runFor(check_period)
-            maxT = t.max()
-
-            numSpikes = getSpikeCount(v)
-
-            oneOrNoneSpikes = numSpikes < 2
-
-            # Check for a spike-less bump in v
-            if numSpikes < 1 and maxT > delay + first_early_stop_test and v[-1] < early_stop_max_v_percent_threshold*v.max():
-                earlyStop = True
-
-        plt.plot(t, v, label=str(round(currentAmp,4)) + ": " + str(numSpikes) + "APs")
-
-        print("Got " + str(numSpikes) + " spikes")
-
-        if numSpikes < 1:
-            lowerLevel = currentAmp
-            lowerSpikes = numSpikes
-
-        else:
-            upperLevel = currentAmp
-            upperSpikes = numSpikes
-            gotSpike = True
-
-        iteration = iteration + 1
-
-        if iteration > max_iterations:
-            iterate = False
-
-
-    result = (
-        (lowerLevel, upperLevel),
-        (lowerSpikes, upperSpikes)
-    )
-
-    plt.legend(loc='upper left')
-    plt.xlabel("Rheobase range: " + str(result))
-    plt.savefig("rheobase.png")
-
-    if not gotSpike:
-        raise Exception("Did not get any spikes with currents " + str(result))
-
-    return result
-
-def getBiasCurrent(targetV):
-
-    vc.amp1 = targetV
-    vc.dur1 = 10000
-
-    iVector = h.Vector()
-    iVector.record(vc._ref_i)
-
-    init()
-
-    t,v = runFor(500)
-
-    i = np.array(iVector.to_python())
-    crossings = getSpikeCount(i)
-
-    if crossings > 2:
-        print("No bias current exists for steady state at " + str(targetV) + " mV membrane potential (only spikes)")
-        result = None
-    else:
-        result = vc.i
-
-    vc.dur1 = 0
-
-    plt.clf()
-    plt.plot(t[np.where(t > 50)], i[np.where(t > 50)], label="Bias Current for " + str(targetV) + "mV = " + str(result))
-    plt.legend(loc='upper left')
-    plt.savefig("biasCurrent" + str(targetV) + ".png")
-
-    return result
-
-def getRestingV():
-    init()
-    t,v = runFor(500)
-
-    crossings = getSpikeCount(v)
-
-    if crossings > 1:
-        print("No rest - cell produces multiple spikes without stimulation.")
-        result = None
-    else:
-        result = v[-1]
-
-    plt.clf()
-    plt.plot(t, v, label="Resting V " + str(result))
-    plt.legend()
-    plt.savefig("restingV.png")
-
-    return result
-
-def connect_to_db():
-    import os
-    pwd = os.environ["NMLDBPWD"]  # This needs to be set to "the password"
-
-    from sshtunnel import SSHTunnelForwarder
-
-    server = SSHTunnelForwarder(
-        ('149.169.30.15', 2200),  # Spike - testing server
-        ssh_username='neuromine',
-        ssh_password=pwd,
-        remote_bind_address=('127.0.0.1', 3306)
-    )
-
-    server.start()
-
-    import os
-    from playhouse.db_url import connect
-
-    db = connect('mysql://neuromldb2:' + pwd + '@127.0.0.1:' + str(server.local_bind_port) + '/neuromldb')
-    return db
-
-from peewee import *
 class Cells(Model):
     Model_ID = CharField(primary_key=True)
+    Stability_Range_Low = FloatField()
+    Stability_Range_High = FloatField()
     Is_Intrinsically_Spiking = BooleanField()
+    Rheobase_Low = FloatField()
+    Rheobase_High = FloatField()
+    Resting_Voltage = FloatField()
+    Threshold_Current_Low = FloatField()
+    Threshold_Current_High = FloatField()
     Bias_Voltage = FloatField()
+    Bias_Current = FloatField()
+    Errors = TextField()
 
     class Meta:
-        database = connect_to_db()
+        database = None
 
-def save_cell_properties(cell):
-    # Save or update
-    try:
-        Cells.get_by_id(cell.Model_ID)
-        force_insert = False
-    except:
-        force_insert = True
+class NeuronRunner:
+    def __init__(self, target, kill_slow_sims = True):
+        self.DONTKILL = False #True
+        self.sim_t = Value('d', -1)
+        self.sim_t_previous = -1
+        self.kill_slow_sims = kill_slow_sims
+        self.sim_result_file = os.getcwd() + "/sim_result_"+str(random.randint(0, 999999))+".json"
+        self.killed_process = False
 
-    # Insert on first save
-    cell.save(force_insert=force_insert)
+        def wrapper():
+            result = { "result": None, "error": None }
+
+            try:
+                if kill_slow_sims:
+                    result["result"] = target(self.sim_t)
+                else:
+                    result["result"] = target()
+            except:
+                import traceback
+                result["error"] = traceback.format_exc()
+
+            import json
+            with open(self.sim_result_file, "w") as f:
+                json.dump(result, f)
+                print("Saved result to: " + self.sim_result_file)
+
+        self.process = Process(target=wrapper);
+
+    def run(self):
+        self.reset_killer()
+        self.process.start()
+
+        while self.process.is_alive():
+            # Every so often
+            time.sleep(1)
+
+            # Check for sim time changes
+            sim_t_now = self.sim_t.value
+
+            # Display sim speed
+            self.print_speed(sim_t_now)
+
+            if sim_t_now != self.sim_t_previous:
+                self.sim_t_previous = sim_t_now
+                self.reset_killer()
+
+        self.process.join()
+        self.reset_killer(renew=False)
+
+        if self.killed_process:
+            raise NumericalInstabilityException("Stopped early because either the simulation speed was too low or the activity_flag was not updated")
+        else:
+            try:
+                with open(self.sim_result_file) as f:
+                    result = json.load(f)
+                os.remove(self.sim_result_file)
+            except:
+                raise Exception("NEURON process crashed before result or error information could be saved.")
+
+            if result["error"] is not None:
+                print(result["error"])
+                raise Exception("Error during NEURON simulation")
 
 
-setDt(stepsPerMs)
-init()
+        return result["result"]
+
+    def print_speed(self, sim_t_now):
+        clock_seconds = (datetime.datetime.now() - self.last_reset).total_seconds()
+
+        if self.sim_t_previous != -1:
+            sim_mseconds = sim_t_now - self.sim_t_previous
+            speed = sim_mseconds / clock_seconds
+            print("Simulation time: " + str(sim_t_now) + " ms. Speed: %.2f ms/s" % speed)
+
+    def reset_killer(self, renew=True):
+        if hasattr(self, "killer"):
+            self.killer.cancel()
+
+        if self.kill_slow_sims and renew:
+            self.killer = Timer(10, self.kill)
+            self.killer.start()
+
+        self.last_reset = datetime.datetime.now()
+
+    def kill(self):
+        print("NEURON did not respond within 10s, KILLING SIM...")
+
+        if self.DONTKILL or (sys.gettrace() is not None and "pydevd" in str(sys.gettrace())): # Don't terminate when debugging
+            print("DEBUGGING... KEEPING")
+        else:
+            self.process.terminate()
+            self.killed_process = True
 
 
-# restingV = getRestingV()
-#
-# # For intrinsically spiking cells, threshold is undefined for the following reasons:
-# # -A spike will result even if there is no stimulation
-# # -Depending on where the cell is in its phase (since it's not resting, it will be either
-# #  closer or further from firing, depending on time), a different current value will cause it to fire
-#
-# if restingV is None:
-#     th, thSpikes = (None, None)
-# else:
-#     th, thSpikes = getThreshold(10)
-#
-# # Intrinisicaly spiking cells will have negative rheobase
-# # Otherwise the rb will be below the threshold current
-# if restingV is None:
-#     rbMaxI = 0
-# else:
-#     rbMaxI = np.max(th)
-#
-# rb, rbSpikes = getRheobase(maxI = rbMaxI)
-#
-# bias60 = getBiasCurrent(targetV=-60)
-# bias70 = getBiasCurrent(targetV=-70) # 0.2285
-# bias80 = getBiasCurrent(targetV=-80)
-#
-# data = {
-#     "thresholdLow": np.min(th),
-#     "thresholdHigh": np.max(th),
-#     "thresholdLowSpikes": np.min(thSpikes),
-#     "thresholdHighSpikes": np.max(thSpikes),
-#     "rheobaseLow": np.min(rb),
-#     "rheobaseHigh": np.max(rb),
-#     "rheobaseLowSpikes": np.min(rbSpikes),
-#     "rheobaseHighSpikes": np.max(rbSpikes),
-#     "rest": restingV,
-#     "biasNeg60": bias60,
-#     "biasNeg70": bias70,
-#     "biasNeg80": bias80
-# }
-#
-# pp(data)
-#
-# with open("CellProperties.json", "w") as outFile:
-#     json.dump(data,outFile)
+class Collector:
+    def __init__(self, collection_period_ms, expr):
+        from neuron import h
+
+        self.collection_period_ms = collection_period_ms
+
+        self.stim = h.NetStim(0.5)
+        self.stim.start = 0
+        self.stim.number = 1e9
+        self.stim.noise = 0
+        self.stim.interval = self.collection_period_ms
+
+        self.con = h.NetCon(self.stim, None)
+        self.con.record((self.collect, expr))
+
+        self.fih = h.FInitializeHandler(self.clear)
+
+        self.clear()
+
+    def clear(self):
+        self.values = []
+
+    def collect(self, new_value):
+        self.values.append(new_value())
+
+    def get_np_values(self):
+        return np.array(self.values[1:])
+
+class NumericalInstabilityException(Exception):
+    pass
+
+class CellAssessor:
+    def __init__(self, path):
+        self.path = path
+        self.abs_tolerance = 0.001
+        self.collection_period_ms = 0.1
+
+    def build(self, restore_tolerances = True):
+        print("Getting cell properties for: " + self.path)
+
+        # Load cell hoc and get soma
+        os.chdir(self.path)
+        from neuron import h, gui
+
+        try:
+            cellHocFile = [f for f in os.listdir(self.path) if f.endswith(".hoc")][0]
+        except:
+            print("Could not find a .hoc file in: " + self.path)
+            raise
+
+        cellTemplate = cellHocFile.replace(".hoc", "")
+        h.load_file(cellHocFile)
+
+        # Create the cell
+        self.test_cell = getattr(h, cellTemplate)()
+
+        # Get the root sections and try to find the soma
+        self.roots = h.SectionList()
+        self.roots.allroots()
+        self.roots = [s for s in self.roots]
+        self.somas = [sec for sec in self.roots if "soma" in sec.name().lower()]
+        if len(self.somas) == 1:
+            self.soma = self.somas[0]
+        elif len(self.somas) == 0 and len(self.roots) == 1:
+            self.soma = self.roots[0]
+        else:
+            raise Exception("Problem finding the soma section")
+
+
+        # set up stim
+        self.current = h.IClamp(self.soma(0.5))
+        self.current.delay = 50.0
+        self.current.amp = 0
+        self.current.dur = 100.0
+
+        self.vc = h.SEClamp(self.soma(0.5))
+        self.vc.dur1 = 0
+
+        # Set up variable collectors
+        self.t_collector = Collector(self.collection_period_ms, lambda: h.t)
+        self.v_collector = Collector(self.collection_period_ms, lambda: self.soma(0.5).v)
+        self.i_collector = Collector(self.collection_period_ms, lambda: self.vc.i)
+
+        # h.nrncontrolmenu()
+        self.nState = h.SaveState()
+        self.set_abs_tolerance(self.abs_tolerance)
+        self.sim_init()
+
+        if restore_tolerances:
+            self.restore_tolerances()
+
+        return h
+
+    def start(self):
+        self.cell_record = Cells(
+            Model_ID=self.path.split("/")[-1]
+        )
+
+        print("Running tolerance tool...")
+        self.setTolerances()
+
+        print("Getting stability range...")
+        self.cell_record.Stability_Range_Low, self.cell_record.Stability_Range_High = self.getStabilityRange()
+        # self.cell_record.Stability_Range_Low, self.cell_record.Stability_Range_High = (-1.5, 76.0)
+
+        if self.cell_record.Stability_Range_Low == self.cell_record.Stability_Range_High:
+            print("Cell is not stable, skipping tests...")
+            self.save_cell_record()
+
+        print("Getting resting voltage...")
+        self.cell_record.Resting_Voltage = self.getRestingV()
+        # self.cell_record.Resting_Voltage = -76.0
+
+        # If intrinsically spiking, skip the remaining tests
+        if self.cell_record.Resting_Voltage is None:
+            print("Cell is intrinsincally spiking, skipping other tests...")
+            self.cell_record.Is_Intrinsically_Spiking = True
+            self.save_cell_record()
+        else:
+            self.cell_record.Is_Intrinsically_Spiking = False
+
+            print("Getting threshold...")
+            th = self.getThreshold(0, self.cell_record.Stability_Range_High)
+            self.cell_record.Threshold_Current_Low = np.min(th)
+            self.cell_record.Threshold_Current_High = np.max(th)
+            # self.cell_record.Threshold_Current_Low = 0.16
+            # self.cell_record.Threshold_Current_High = 0.25
+
+            print("Getting rheobase...")
+            rb = self.getRheobase(0, self.cell_record.Threshold_Current_High)
+            self.cell_record.Rheobase_Low = np.min(rb)
+            self.cell_record.Rheobase_High = np.max(rb)
+            # self.cell_record.Rheobase_Low = 0.16
+            # self.cell_record.Rheobase_High = 0.25
+
+            roundedRest = round(self.cell_record.Resting_Voltage / 10) * 10
+
+            if roundedRest == -80:
+                bias_v = -70
+            else:
+                bias_v = -80
+
+            print("Getting current for bias voltage...")
+            bias_i = self.getBiasCurrent(targetV=bias_v)
+
+            self.cell_record.Bias_Voltage = bias_v
+            self.cell_record.Bias_Current = bias_i
+
+            print("Starting validation...")
+            assert self.cell_record.Stability_Range_Low < self.cell_record.Stability_Range_High
+            assert self.cell_record.Resting_Voltage < 0
+            assert self.cell_record.Rheobase_Low < self.cell_record.Rheobase_High
+            assert self.cell_record.Rheobase_High < self.cell_record.Threshold_Current_High
+            assert self.cell_record.Threshold_Current_Low < self.cell_record.Threshold_Current_High
+            assert self.cell_record.Bias_Current < self.cell_record.Rheobase_High
+
+            if self.cell_record.Bias_Voltage < self.cell_record.Resting_Voltage:
+                assert self.cell_record.Bias_Current < 0
+            else:
+                assert self.cell_record.Bias_Current > 0
+
+            self.cell_record.Errors = ""
+
+            print("Tests finished, saving...")
+            self.save_cell_record()
+
+    def sim_init(self):
+        from neuron import h
+        h.stdinit()
+        self.clear_tvi()
+        h.tstop = 1000
+        self.current.amp = 0
+        self.vc.dur1 = 0
+
+    def clear_tvi(self):
+        self.t_collector.clear()
+        self.v_collector.clear()
+        self.i_collector.clear()
+
+    def set_abs_tolerance(self, abs_tol):
+        from neuron import h
+        h.steps_per_ms = 10
+        h.dt = 1.0 / h.steps_per_ms # NRN will ignore this using cvode
+
+        h.cvode_active(1)
+        h.cvode.condition_order(2)
+        h.cvode.atol(abs_tol)
+
+    def runFor(self, time, early_test = None):
+        from neuron import h
+        h.cvode_active(1)
+
+
+        self.activity_flag.value = h.t
+
+        h.tstop = h.t + time
+        t = h.t
+        while t < h.tstop and h.t < h.tstop:
+            t += 1.0
+
+            h.continuerun(t)
+            self.activity_flag.value = h.t
+
+            if early_test is not None:
+                t_np, v_np = self.get_tv()
+                if early_test(t_np, v_np):
+                    return (t_np, v_np)
+
+
+        # Get the waveform
+        return self.get_tv()
+
+    def get_tv(self):
+        from neuron import h
+        v_np = self.v_collector.get_np_values()
+        t_np = self.t_collector.get_np_values()
+
+        if np.isnan(v_np).any():
+            raise NumericalInstabilityException(
+                "Simulation is numericaly unstable with " + str(h.steps_per_ms) + " steps per ms")
+
+        return (t_np, v_np)
+
+    def setCurrent(self, amp, delay, dur):
+        self.current.delay = delay
+        self.current.amp = amp
+        self.current.dur = dur
+
+    def crossings_nonzero_pos2neg(self, data):
+        pos = data > 0
+        return (pos[:-1] & ~pos[1:]).nonzero()[0]
+
+    def getSpikeCount(self, voltage):
+        if np.max(voltage) < 0:
+            return 0
+        else:
+            return len(self.crossings_nonzero_pos2neg(voltage))
+
+    def getStabilityRange(self, testLow = -10, testHigh = 10):
+
+        print("Searching for UPPER boundary...")
+        current_range, found_once = self.find_border(
+            lowerLevel=0,
+            upperLevel=testHigh,
+            current_delay=500,
+            current_duration = 3,
+            run_for_after_delay= 10,
+            test_condition=lambda t,v: False,
+            on_unstable=lambda: True,
+            max_iterations = 7,
+            fig_file = "stabilityHigh.png",
+            skip_current_delay=False
+        )
+
+        high_edge = min(current_range)
+
+        print("Searching for LOWER boundary...")
+        current_range, found_once = self.find_border(
+            lowerLevel=testLow,
+            upperLevel=0,
+            current_delay=500,
+            current_duration = 3,
+            run_for_after_delay= 10,
+            test_condition=lambda t,v: True,
+            on_unstable=lambda: False,
+            max_iterations = 7,
+            fig_file = "stabilityLow.png",
+            skip_current_delay=True
+        )
+
+        low_edge = max(current_range)
+
+        return low_edge, high_edge
+
+
+
+    def getThreshold(self, minCurrent, maxI):
+
+        def test_condition(t, v):
+            num_spikes = self.getSpikeCount(v)
+            print("Got " + str(num_spikes) + " spikes")
+            return num_spikes > 0
+
+        current_range, found_once = self.find_border(
+            lowerLevel=minCurrent,
+            upperLevel=maxI,
+            current_delay=500,
+            current_duration = 3,
+            run_for_after_delay= 50,
+            test_condition=test_condition,
+            max_iterations = 10,
+            fig_file = "threshold.png",
+            skip_current_delay=True
+        )
+
+        if not found_once:
+            raise Exception("Did not find threshold with currents " + str(current_range))
+
+        return current_range
+
+    def save_state(self):
+        from neuron import h
+        ns = h.SaveState()
+        sf = h.File('state.bin')
+        ns.save()
+        ns.fwrite(sf)
+
+    def restore_state(self):
+        from neuron import h
+        ns = h.SaveState()
+        sf = h.File('state.bin')
+        h.stdinit()
+        ns.fread(sf)
+        ns.restore()
+        h.cvode_active(1)
+
+    def find_border(self, lowerLevel, upperLevel,
+                    current_delay, current_duration,
+                    run_for_after_delay, test_condition, max_iterations, fig_file,
+                    skip_current_delay = False, on_unstable = None, test_early = False):
+
+        if not skip_current_delay:
+            def reach_resting_state(activity_flag):
+                self.activity_flag = activity_flag
+                self.build()
+
+                print("Simulating till current onset...")
+                self.sim_init()
+                self.setCurrent(amp=0, delay=current_delay, dur=current_duration)
+                self.runFor(current_delay)
+                self.save_state()
+                print("Resting state reached. State saved.")
+
+            runner = NeuronRunner(reach_resting_state)
+            result = runner.run()
+
+
+        iterate = True
+        iteration = 0
+        found_once = False
+
+        upperLevel_start = upperLevel
+        lowerLevel_start = lowerLevel
+
+        while iterate:
+            if iteration == 0:
+                currentAmp = upperLevel
+            elif iteration == 1:
+                currentAmp = lowerLevel
+            else:
+                currentAmp = (lowerLevel + upperLevel) / 2.0
+
+            def simulate_iteration(activity_flag):
+                self.activity_flag = activity_flag
+                h = self.build()
+                self.restore_state()
+
+                self.setCurrent(amp = currentAmp, delay = current_delay, dur = current_duration)
+                print("Trying " + str(currentAmp) + " nA...")
+
+                if not test_early:
+                    t, v = self.runFor(run_for_after_delay)
+                    found = test_condition(t, v)
+                else:
+                    t, v = self.runFor(run_for_after_delay, test_condition)
+                    found = test_condition(t, v)
+
+                plt.plot(t, v, label=str(round(currentAmp, 4)) + ", Found: " + str(found))
+                plt.legend(loc='upper left')
+                plt.savefig(str(iteration) + " " + fig_file)
+
+                print("FOUND" if found else "NOT FOUND")
+
+                return found
+
+            runner = NeuronRunner(simulate_iteration)
+
+            try:
+                found = runner.run()
+
+            except NumericalInstabilityException:
+                if on_unstable is not None:
+                    found = on_unstable()
+                else:
+                    raise
+
+            if found:
+                upperLevel = currentAmp
+                found_once = True
+            else:
+                lowerLevel = currentAmp
+
+            iteration = iteration + 1
+
+            if iteration >= max_iterations or lowerLevel == upperLevel_start or upperLevel == lowerLevel_start:
+                iterate = False
+
+        current_range = (lowerLevel, upperLevel)
+
+        return current_range, found_once
+
+    def getRheobase(self, minCurrent, maxI):
+
+        def test_condition(t, v):
+            return self.getSpikeCount(v) > 0
+
+        current_range, found_once = self.find_border(
+            lowerLevel=minCurrent,
+            upperLevel=maxI,
+            current_delay=500,
+            current_duration = 500,
+            run_for_after_delay= 500,
+            test_condition=test_condition,
+            test_early = True,
+            max_iterations = 10,
+            fig_file = "rheobase.png",
+            skip_current_delay=True
+        )
+
+        if not found_once:
+            raise Exception("Did not find rheobase with currents " + str(current_range))
+
+        return current_range
+
+    def getBiasCurrent(self, targetV):
+        def bias_protocol(flag):
+            self.activity_flag = flag
+            self.build()
+            self.sim_init()
+
+            self.vc.amp1 = targetV
+            self.vc.dur1 = 10000
+
+            t,v = self.runFor(500)
+
+            i = self.i_collector.get_np_values()
+            crossings = self.getSpikeCount(i)
+
+            if crossings > 2:
+                print("No bias current exists for steady state at " + str(targetV) + " mV membrane potential (only spikes)")
+                result = None
+            else:
+                result = self.vc.i
+
+            self.vc.dur1 = 0
+
+            plt.clf()
+            plt.plot(t[np.where(t > 50)], i[np.where(t > 50)], label="Bias Current for " + str(targetV) + "mV = " + str(result))
+            plt.legend(loc='upper left')
+            plt.savefig("biasCurrent" + str(targetV) + ".png")
+
+            return result
+
+        runner = NeuronRunner(bias_protocol)
+        return runner.run()
+
+    def getRestingV(self):
+        def rest_protocol(flag):
+            self.activity_flag = flag
+            self.build()
+            self.sim_init()
+
+            t,v = self.runFor(500)
+
+            crossings = self.getSpikeCount(v)
+
+            if crossings > 1:
+                print("No rest - cell produces multiple spikes without stimulation.")
+                result = None
+            else:
+                result = v[-1]
+
+            plt.clf()
+            plt.plot(t, v, label="Resting V " + str(result))
+            plt.legend()
+            plt.savefig("restingV.png")
+
+            return result
+
+        runner = NeuronRunner(rest_protocol)
+        result = runner.run()
+        return result
+
+    def setTolerances(self, tstop = 100):
+        def run_atol_tool():
+            h = self.build(restore_tolerances=False)
+
+            h.NumericalMethodPanel[0].map()
+            h.NumericalMethodPanel[0].atoltool()
+            h.tstop = tstop
+
+            print("Getting error tolerances...")
+            h.AtolTool[0].anrun()
+            h.AtolTool[0].rescale()
+            h.AtolTool[0].fill_used()
+
+            h.save_session('atols.ses')
+
+            print("Error tolerances saved")
+
+            h.AtolTool[0].box.unmap()
+            h.NumericalMethodPanel[0].b1.unmap()
+
+        runner = NeuronRunner(run_atol_tool, kill_slow_sims=False)
+        runner.run()
+
+    def restore_tolerances(self):
+        from neuron import h
+        h.load_file('atols.ses')
+
+        h.NumericalMethodPanel[0].b1.unmap()
+        print("Using saved error tolerances")
+
+
+    def connect_to_db(self):
+        pwd = os.environ["NMLDBPWD"]  # This needs to be set to "the password"
+
+        if pwd == '':
+            raise Exception("The environment variable 'NMLDBPWD' needs to contain the password to the NML database")
+
+        server = SSHTunnelForwarder(
+            ('149.169.30.15', 2200),  # Spike - testing server
+            ssh_username='neuromine',
+            ssh_password=pwd,
+            remote_bind_address=('127.0.0.1', 3306)
+        )
+
+        print("Connecting to server...")
+        server.start()
+
+        print("Connecting to MySQL database...")
+        db = connect('mysql://neuromldb2:' + pwd + '@127.0.0.1:' + str(server.local_bind_port) + '/neuromldb')
+        return (db, server)
+
+    def save_cell_record(self):
+        cell = self.cell_record
+        db, server = self.connect_to_db()
+        cell._meta.database = db
+
+        # Save or update
+        try:
+            Cells.get_by_id(cell.Model_ID)
+            force_insert = False
+        except:
+            force_insert = True
+
+        print("Saving record for cell "+cell.Model_ID+" ...")
+
+        # Insert on first save
+        cell.save(force_insert=force_insert)
+
+        # Disconnect SSH
+        server.stop()
+
+        print("SAVED")
+
+assessor = CellAssessor(path = sys.argv[1])
+try:
+    assessor.start()
+except:
+    print("Encountered an error. Saving progress...")
+    import traceback
+    assessor.cell_record.Errors = traceback.format_exc()
+    assessor.save_cell_record()
+    raise
+

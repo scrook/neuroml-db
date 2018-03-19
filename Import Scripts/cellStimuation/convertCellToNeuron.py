@@ -7,8 +7,8 @@ import shutil
 
 path = sys.argv[1]
 
-import pydevd
-pydevd.settrace('192.168.0.34', port=4201, suspend=False)
+# import pydevd
+# pydevd.settrace('192.168.177.1', port=4201, stdoutToServer=True, stderrToServer=True, suspend=False)
 
 DirName = os.path.dirname(os.path.abspath(path))
 cellFileName = os.path.basename(path)
@@ -34,15 +34,28 @@ def getChannels(modelID):
 # Find the NML id of the cell
 with open(path) as f:
     nml = f.read()
-    cellID = re.search('<cell.*?id="(.*?)"', nml).groups(1)[0]
+    cellID = re.search('<cell.*?id.*?=.*?"(.*?)"', nml).groups(1)[0]
+    cellFiles = set(re.compile('<include.*?href.*?=.*?"(.*?)"').findall(nml))
 
 # Get all cell channel files from the model API
-channels = getChannels(nmlDBID)
+channelsInDB = getChannels(nmlDBID)
+
+dbFiles = set(c["File_Name"] for c in channelsInDB)
+
+if len(dbFiles - cellFiles) > 0:
+    print("Misbehaving children: The following files are in DATABASE but MISSING IN CELL: "+nmlDBID)
+    print([(c["Model_ID"],c["File_Name"]) for c in channelsInDB if c["File_Name"] in (dbFiles - cellFiles)])
+    raise Exception("Database has extra children for the cell")
+
+if len(cellFiles - dbFiles) > 0:
+    print("Misbehaving children: The following files are in CELL but MISSING IN DATABASE: "+nmlDBID)
+    print(cellFiles - dbFiles)
+    raise Exception("Database is missing children for the cell")
 
 # Create file includes for each channel
 channelIncludes = ''
 
-for c in channels:
+for c in channelsInDB:
     id = c["Model_ID"]
     file = c["File_Name"]
     path = "../"+id+"/"+file
