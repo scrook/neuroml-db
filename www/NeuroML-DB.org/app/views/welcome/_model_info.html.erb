@@ -107,9 +107,9 @@
         <% if @ref_list.any? %>
             <% @ref_list.each_with_index do |(key,value),index| %>
                 <span style="display: inline-block;text-align:center;">
-                  <a href="<%= key %>" target="_blank" style="text-decoration: none;"><img src="<%=@resources[index].LogoUrl %>" height="45" style="vertical-align:middle;" /></a>
-                  <a href="<%= key %>" style="display: block;font-size: 80%;text-align: center;" target="_blank" >View <%=@resources[index].Name %> Model</a>
-                  <a href="https://scicrunch.org/resolver/RRID:<%=@resources[index].SciCrunch_RRID %>" style="display: block;font-size: 80%;text-align: center;" target="_blank" >View  <%=@resources[index].Name %> on SciCrunch</a>
+                  <a href="<%= key %>" target="_blank" style="text-decoration: none;"><img src="<%=@resources[index]["LogoUrl"] %>" height="45" style="vertical-align:middle;" /></a>
+                  <a href="<%= key %>" style="display: block;font-size: 80%;text-align: center;" target="_blank" >View <%=@resources[index]["Name"] %> Model</a>
+                  <a href="https://scicrunch.org/resolver/RRID:<%=@resources[index]["SciCrunch_RRID"] %>" style="display: block;font-size: 80%;text-align: center;" target="_blank" >View  <%=@resources[index]["Name"] %> on SciCrunch</a>
                 </span>
             <% end %>
         <% else %>
@@ -175,7 +175,7 @@
        if modelList.any? %>
             <div style="max-height:120px; overflow:auto; padding: 1px 0; width:637px;">
             <% modelList.each do |model| %>
-                <div><a <%= model_atag_params(model.Model_ID) %> ><%= model.Name %></a></div>
+                <div><a <%= model_atag_params(model["Model_ID"]) %> ><%= model["Name"] %></a></div>
             <% end %>
             </div>
        <% else %>

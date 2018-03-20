@@ -74,18 +74,30 @@ class Model < ActiveRecord::Base
         "
           SELECT p.*
           FROM publications p
-          JOIN model_metadata_associations mma ON mma.Metadata_ID = p.Publication_ID
-          WHERE mma.Model_ID = '#{idClean}'
+          JOIN models m ON m.Publication_ID = p.Publication_ID
+          WHERE m.Model_ID = '#{idClean}'
         ").first
 
     authors = ActiveRecord::Base.connection.exec_query(
         "
-          SELECT p.Person_First_Name, p.Person_Last_Name, ala.is_translator
-          FROM author_list_associations ala
-          JOIN model_metadata_associations mma ON ala.AuthorList_ID = mma.Metadata_ID
-          JOIN people p ON p.Person_ID = ala.Person_ID
-          WHERE mma.Model_ID = '#{idClean}'
-          ORDER BY is_translator, author_sequence
+          (
+            SELECT p.Person_First_Name, p.Person_Last_Name, False as is_translator
+            FROM people p
+            JOIN publication_authors pa ON p.Person_ID = pa.Author_ID
+            JOIN models m ON m.Publication_ID = pa.Publication_ID
+            WHERE m.Model_ID = '#{idClean}'
+            ORDER BY author_sequence
+          )
+
+          UNION
+
+          (
+            SELECT p.Person_First_Name, p.Person_Last_Name, True as is_translator
+            FROM people p
+            JOIN model_translators mt ON p.Person_ID = mt.Translator_ID
+            WHERE mt.Model_ID = '#{idClean}'
+            ORDER BY translator_sequence
+          )
         ")
 
     references = ActiveRecord::Base.connection.exec_query(
@@ -93,24 +105,24 @@ class Model < ActiveRecord::Base
           SELECT rs.*, rf.Reference_URI
           FROM refers rf
           JOIN resources rs ON rs.Resource_ID = rf.Reference_Resource_ID
-          JOIN model_metadata_associations mma ON mma.Metadata_ID = rf.Reference_ID
-          WHERE mma.Model_ID = '#{idClean}'
+          JOIN model_references mr ON mr.Reference_ID = rf.Reference_ID
+          WHERE mr.Model_ID = '#{idClean}'
         ")
 
     keywords = ActiveRecord::Base.connection.exec_query(
         "
           SELECT k.*
           FROM other_keywords k
-          JOIN model_metadata_associations mma ON mma.Metadata_ID = k.Other_Keyword_ID
-          WHERE mma.Model_ID = '#{idClean}'
+          JOIN model_other_keywords mok ON mok.Other_Keyword_ID = k.Other_Keyword_ID
+          WHERE mok.Model_ID = '#{idClean}'
         ")
 
     neurolexes = ActiveRecord::Base.connection.exec_query(
         "
           SELECT n.*
           FROM neurolexes n
-          JOIN model_metadata_associations mma ON mma.Metadata_ID = n.Neurolex_ID
-          WHERE mma.Model_ID = '#{idClean}'
+          JOIN model_neurolexes mn ON mn.Neurolex_ID = n.Neurolex_ID
+          WHERE mn.Model_ID = '#{idClean}'
         ")
 
     return {
@@ -136,14 +148,14 @@ class Model < ActiveRecord::Base
             REPLACE(
             REPLACE(
             LOWER(Reference_URI),
-            'http://senselab.med.yale.edu/modeldb/showmodel.asp?model=',''),
+            'https://senselab.med.yale.edu/modeldb/showmodel.asp?model=',''),
             'https://senselab.med.yale.edu/modeldb/showmodel.cshtml?model=','')
             AS UNSIGNED) as ModelDB_ID,
-            mma.Model_ID as NeuroMLDB_ID,
-            REPLACE(REPLACE(amv.File, mma.Model_ID, ''), '/var/www/NeuroMLmodels//','') as File
-        FROM refers
-        JOIN model_metadata_associations as mma ON metadata_id = reference_ID
-        JOIN all_models_view as amv ON amv.Model_ID = mma.Model_ID
+            m.Model_ID as NeuroMLDB_ID,
+            REPLACE(REPLACE(m.File, m.Model_ID, ''), '/var/www/NeuroMLmodels//','') as File
+        FROM refers r
+        JOIN model_references mr ON mr.reference_ID = r.reference_ID
+        JOIN models m ON m.Model_ID = mr.Model_ID
         WHERE Reference_Resource_ID = 2
         ORDER BY ModelDB_ID, NeuroMLDB_ID;
         ")
@@ -154,13 +166,13 @@ class Model < ActiveRecord::Base
   def self.GetModelShortPub(modelID)
     shortPub = ActiveRecord::Base.connection.exec_query(
       "
-      SELECT p.Person_Last_Name as lastName, pub.Year as year FROM people p
-      JOIN author_list_associations ala ON ala.Person_ID = p.Person_ID
-      JOIN model_metadata_associations mma ON mma.Metadata_ID = ala.AuthorList_ID
-      JOIN model_metadata_associations mma2 ON mma2.Model_ID = mma.Model_ID
-      JOIN publications pub ON pub.Publication_ID = mma2.Metadata_ID
-      WHERE mma2.model_ID = '#{modelID}' AND mma2.Metadata_Id like '600%' AND ala.is_translator != '1'
-      ORDER BY ala.author_sequence
+      SELECT p.Person_Last_Name as lastName, pub.Year as year
+      FROM people p
+      JOIN publication_authors pa ON pa.Author_ID = p.Person_ID
+      JOIN publications pub ON pub.Publication_ID = pa.Publication_ID
+      JOIN models m ON m.Publication_ID = pub.Publication_ID
+      WHERE m.model_ID = '#{modelID}'
+      ORDER BY pa.author_sequence
       LIMIT 3
       ;
       "

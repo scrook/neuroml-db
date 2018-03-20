@@ -4,77 +4,63 @@ class WelcomeController < ApplicationController
 
   def model_info
     @model_id    =params[:model_id].to_s
-    @resources   =Array.new
-    substring    =@model_id[0..4]
+    substring    = @model_id[0..4]
+
+    @resources   = []
     @channel_list, @network_list, @cell_list, @syn_list, @conc_list = [], [], [] , [], []
-
-    @auth_list   = Array.new
-    @trans_list  = Array.new
-    @nlx_list    = Hash.new
-    @ref_list    = Hash.new
-    @pub_list    = Hash.new
+    @auth_list, @trans_list, @trans_list = [], [], [], []
+    @nlx_list, @ref_list, @pub_list = {}, {}, {}
     @shortPub    = ""
-    @trans_list  = Array.new
 
-    model =Model.find_by_Model_ID(@model_id)
-    @name=model.Name
-    @type=model.ModelType.Name
-    @file=model.File
 
-    relatedModels = model.children + model.parents
+    #model =Model.find_by_Model_ID(@model_id)
+    details = Model.GetModelDetails(@model_id)
+    model = details[:model]
+
+    @name=model["Name"]
+    @type=model["Type"]
+    @file=model["File"]
+    @filename=model["File_Name"]
+    @model_notes = model["Notes"]
+
+    relatedModels = Array(details[:children]) + Array(details[:parents])
 
     relatedModels.each do |relative|
-      @network_list << relative if relative.Type == "NT"
-      @cell_list << relative if relative.Type == "CL"
-      @channel_list << relative if relative.Type == "CH"
-      @syn_list << relative if relative.Type == "SY"
-      @conc_list << relative if relative.Type == "CN"
+      @network_list << relative if relative["Type"] == "Network"
+      @cell_list << relative if relative["Type"] == "Cell"
+      @channel_list << relative if relative["Type"] == "Channel"
+      @syn_list << relative if relative["Type"] == "Synapse"
+      @conc_list << relative if relative["Type"] == "Concentration"
     end
 
-    model_metadata_assoc=ModelMetadataAssociation.where(:Model_ID => @model_id.to_s)
-    res                 =ModelMetadataAssociation.new
 
-
-    model_metadata_assoc.each do |res|
-      @metadata_id=res.Metadata_ID.to_s
-      substring2  =@metadata_id[0..2]
-
-      if substring2 == "600"
-        publication                      =Publication.find_by_Publication_ID(@metadata_id)
-        @pub_list[publication.Pubmed_Ref]=publication.Full_Title
-        @shortPub = Model.GetModelShortPub(@model_id)
-      end
-
-      if substring2 == "500"
-        ref = Refer.find_by_Reference_ID(@metadata_id)
-        resource = Resource.find_by_Resource_ID(ref.Reference_Resource_ID)
-
-        @ref_list[ref.Reference_URI] = resource.Name
-
-        @resources.push(resource)
-      end
-
-      if substring2 == "400"
-        keyword_model  =OtherKeyword.find_by_Other_Keyword_ID(@metadata_id)
-        @keywords_model=keyword_model.Other_Keyword_term
-      end
-
-      if substring2 == "300"
-        nlx                        =Neurolex.find_by_NeuroLex_ID(@metadata_id)
-        @nlx_list[nlx.NeuroLex_URI]= nlx.NeuroLex_Term
-      end
-
-      if substring2 == "100"
-        fill_authors_translators
-      end
+    details[:references].each do |ref|
+      @ref_list[ref["Reference_URI"]] = ref["Name"]
+      @resources.push(ref)
     end
 
-    @model_notes = model.Notes
+    # Strange: Here it's treated as 1-1, in DB it's 1-many
+    details[:keywords].each do |kwd|
+      @keywords_model=kwd["Other_Keyword_term"]
+    end
 
-    @model_id=params[:model_id].to_s
-    if !@file.blank?
-      filename =@file.split('/')
-      @filename=filename.last
+    details[:neurolex_ids].each do |nlx|
+      @nlx_list[nlx["NeuroLex_URI"]]= nlx["NeuroLex_Term"]
+    end
+
+    # Strange: Here it's 1-many, in DB it's 1-1
+    pub = details[:publication]
+    @pub_list[pub[:record]["Pubmed_Ref"]] = pub[:record]["Full_Title"]
+    @shortPub = pub[:short]
+
+    pub[:authors].each do |person|
+      auth_name = person["Person_First_Name"] + " " + person["Person_Last_Name"]
+
+      if person["is_translator"] == 1
+        @trans_list.push(auth_name)
+      else
+        @auth_list.push(auth_name)
+      end
     end
 
     if params[:partial].to_s == "true"
@@ -91,39 +77,6 @@ class WelcomeController < ApplicationController
     return "href=\"/model_info?model_id=#{id}\"".html_safe
   end
 
-  def fill_authors_translators
-    authors = AuthorListAssociation
-                  .where("AuthorList_ID = " + @metadata_id.to_s + " and is_translator IN ('0','2')")
-                  .joins("INNER JOIN people ON people.Person_ID = author_list_associations.Person_ID")
-                  .order("author_sequence, people.Person_Last_Name")
-
-    translators = AuthorListAssociation
-                      .where("AuthorList_ID = " + @metadata_id.to_s + " and is_translator IN ('1','2')")
-                      .joins("INNER JOIN people ON people.Person_ID = author_list_associations.Person_ID")
-                      .order("people.Person_Last_Name")
-
-    ala =AuthorListAssociation.new
-
-    authors.each do |ala|
-
-      auth_name =String.new
-      personname=Person.find_by_Person_ID(ala.Person_ID)
-      auth_name = personname.Person_First_Name.to_s + " " +personname.Person_Middle_Name.to_s + " " + personname.Person_Last_Name.to_s
-
-      @auth_list.push(auth_name)
-
-    end
-
-    translators.each do |ala|
-
-      auth_name =String.new
-      personname=Person.find_by_Person_ID(ala.Person_ID)
-      auth_name = personname.Person_First_Name.to_s + " " +personname.Person_Middle_Name.to_s + " " + personname.Person_Last_Name.to_s
-
-      @trans_list.push(auth_name)
-
-    end
-  end
 
 #============================== Python Search
   def search_python
