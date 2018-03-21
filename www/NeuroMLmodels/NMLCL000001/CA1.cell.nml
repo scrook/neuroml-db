@@ -19480,7 +19480,7 @@
 
             <membraneProperties>
                 
-                <channelDensity condDensity="0.05 mS_per_cm2" id="hd_soma_group" ionChannel="hd__vhalflmin73" segmentGroup="soma_group" ion="hd" erev="-30.0 mV"/>
+                <channelDensity condDensity="0.05 mS_per_cm2" id="hd_soma_group" ionChannel="hd__vhalflmin73" segmentGroup="soma_group" ion="non_specific" erev="-30.0 mV"/>
                 
                 <channelDensity condDensity="30.0 mS_per_cm2" id="kap_soma_group" ionChannel="kap" segmentGroup="soma_group" ion="k" erev="-90.0 mV"/>
                 
@@ -19497,7 +19497,7 @@
 
                 <!--hd with param: gmax = f(p) = 5.0E-10 * (1 + ((3 * p) / 100)) on ParameterisedGroup: PathLengthOverDendSubset_5 on: ModelViewParmSubset_5 with metric: Path Length from root (NO_TRANSLATION, NO_NORMALISATION), var: p-->
 
-                <channelDensityNonUniform id="hd_ModelViewParmSubset_5" ionChannel="hd" ion="hd" erev="-30.0 mV">
+                <channelDensityNonUniform id="hd_ModelViewParmSubset_5" ionChannel="hd" ion="non_specific" erev="-30.0 mV">
                     <variableParameter parameter="condDensity" segmentGroup="ModelViewParmSubset_5">
                         <inhomogeneousValue inhomogeneousParameter="PathLengthOverDendSubset_5" value="1.0E9 * 5.0E-10 * (1 + ((3 * p) / 100))"/>    <!--Note: conversion factor (1.0E9 * ) included to convert to units: GENESIS SI Units-->
 
@@ -19507,7 +19507,7 @@
 
                 <!--hdmin73 with param: gmax = f(p) = 5.0E-10 * (1 + ((3 * p) / 100)) on ParameterisedGroup: PathLengthOverDendSubset_7 on: ModelViewParmSubset_7 with metric: Path Length from root (NO_TRANSLATION, NO_NORMALISATION), var: p-->
 
-                <channelDensityNonUniform id="hdmin73_ModelViewParmSubset_7" ionChannel="hdmin73" ion="hd" erev="-30.0 mV">
+                <channelDensityNonUniform id="hdmin73_ModelViewParmSubset_7" ionChannel="hdmin73" ion="non_specific" erev="-30.0 mV">
                     <variableParameter parameter="condDensity" segmentGroup="ModelViewParmSubset_7">
                         <inhomogeneousValue inhomogeneousParameter="PathLengthOverDendSubset_7" value="1.0E9 * 5.0E-10 * (1 + ((3 * p) / 100))"/>    <!--Note: conversion factor (1.0E9 * ) included to convert to units: GENESIS SI Units-->
 
