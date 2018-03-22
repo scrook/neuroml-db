@@ -4,6 +4,7 @@ import re
 import shutil
 import string
 import urllib2
+import hashlib
 import xml.etree.ElementTree as ET
 
 from playhouse.db_url import connect
@@ -14,6 +15,12 @@ from tables import *
 
 class ModelImporter:
     def __init__(self):
+        self.server_IP = '149.169.30.15'  # '149.169.30.15' - spike.asu.edu - testing server
+
+        self.pwd = os.environ["NMLDBPWD"]  # This needs to be set to the password
+
+        self.default_model_directory_parent = "../../www/NeuroMLmodels"
+
         self.out_sim_directory = 'sim'
         self.out_csv_file = 'models.csv'
 
@@ -31,6 +38,7 @@ class ModelImporter:
             'model_name',
             'model_type',
             'file_name',
+            'md5',
             'pubmed_id',
             'translators',
             'references',
@@ -44,6 +52,7 @@ class ModelImporter:
 
         self.comparison_fields = [
             'model_type',
+            'md5',
             'parents',
             'children'
         ]
@@ -61,7 +70,8 @@ class ModelImporter:
         self.tree_nodes = {}
         self.roots = []
         self.root_ids = []
-        self.model_directory_parent = ""
+        self.model_directory_parent = os.path.abspath(self.default_model_directory_parent)
+        self.valid_relationships = None
 
     def parse_csv(self, csv_path):
         with open(csv_path, "r") as f:
@@ -72,38 +82,48 @@ class ModelImporter:
             self.tree_nodes[row['file_name']] = row
 
         for node in self.tree_nodes.values():
-            if node["action"] not in self.valid_actions:
-                raise Exception("Invalid action: '" + node["action"] + \
-                                "'. Allowed actions are: " + str(self.valid_actions))
+            try:
+                if node["action"] not in self.valid_actions:
+                    raise Exception("Invalid action: '" + node["action"] + \
+                                    "'. Allowed actions are: " + str(self.valid_actions))
 
-            for val in node.values():
-                if node["action"] != 'ignore' and ("DB:" in val or "|NML:" in val):
-                    raise Exception("Unresolved conflict in CSV file: '" + val + "'")
+                for val in node.values():
+                    if node["action"] == 'ignore':
+                        raise StopIteration()  # Skip node parsing if action is ignore
 
-            for field in self.multi_value_fields:
-                self.parse_multi_value_field(node, field)
+                    elif "DB:" in val or "|NML:" in val:
+                        raise Exception("Unresolved conflict in CSV file: '" + val + "'")
 
-            node["pubmed_id"] = node["pubmed_id"].lower()
+                if node["model_type"] == "Channel" and node["channel_protocol"] == "":
+                    raise Exception("Field channel_protocol is blank for channel: " + node["file_name"])
 
-            node["translators"] = [{
-                'last_name': string.split(t, ",")[0],
-                'first_name': string.split(t, ",")[1]
+                for field in self.multi_value_fields:
+                    self.parse_multi_value_field(node, field)
+
+                node["pubmed_id"] = node["pubmed_id"].lower()
+
+                node["translators"] = [{
+                    'last_name': string.split(t, ",")[0],
+                    'first_name': string.split(t, ",")[1]
                 }
-                for t in node["translators"]]
+                    for t in node["translators"]]
 
-            node['children'] = [{'file_name': c} for c in node['children']]
+                node['children'] = [{'file_name': c} for c in node['children']]
 
-            for child in node['children']:
-                child_file = child['file_name']
-                self.tree_nodes[child_file]['parents'].append(node['file_name'])
+                for child in node['children']:
+                    child_file = child['file_name']
+                    self.tree_nodes[child_file]['parents'].append(node['file_name'])
+
+            except StopIteration:
+                continue
 
         self.get_roots()
 
     def to_csv(self, path=None):
-        print("Saving tree to: " + os.path.abspath(path) + "...")
-
         if path is None:
             path = self.out_csv_file
+
+        print("Saving tree to: " + os.path.abspath(path) + "...")
 
         with open(path, 'wb') as file:
             writer = csv.writer(file, delimiter=',')
@@ -115,8 +135,6 @@ class ModelImporter:
             for node in self.tree_nodes.values():
                 if node not in self.roots:
                     self.write_node(writer, node)
-
-
 
     def parse_db_stored(self):
         print("Parsing model tree from DB records...")
@@ -130,26 +148,27 @@ class ModelImporter:
     def to_db_stored(self):
         db = self.connect_to_db()
 
-        with db.atomic() as transation:
-            # ADDS - update or link may depend on record existing
-            adds = [n for n in self.tree_nodes.values() if n["action"] == "ADD"]
-            for model in adds:
-                self.add_model(model)
+        try:
+            with db.atomic() as transaction:
+                # ADDS - update or link may depend on record existing
+                adds = [n for n in self.tree_nodes.values() if n["action"] == "ADD"]
+                for model in adds:
+                    self.add_model(model)
 
-            for model in adds:
-                self.add_links(model)
+                for model in adds:
+                    self.add_links(model)
 
-            # UPDATES - may add or remove a link
-            updates = [n for n in self.tree_nodes.values() if n["action"] == "UPDATE"]
-            for model in updates:
-                self.update_model(model)
+                # UPDATES - may add or remove a link
+                updates = [n for n in self.tree_nodes.values() if n["action"] == "UPDATE"]
+                for model in updates:
+                    self.update_model(model)
 
-            for model in updates:
-                self.add_links(model)
+                for model in updates:
+                    self.add_links(model)
 
-            # # DEBUG
-            # self.parse_directories(['/home/justas/Repositories/neuroml-db/www/NeuroMLmodels/NMLCL000400/'])
-            # raise NotImplementedError()
+        except:
+            print("ERROR DETECTED: DB TRANSACTION ROLLED BACK - NO DB RECORDS SAVED - BUT CHECK FOR ANY ADDED FILES")
+            raise
 
     def parse_simulation(self):
         print("Parsing model tree from SIM NML files...")
@@ -166,8 +185,28 @@ class ModelImporter:
 
         self.get_roots()
 
-        for node in self.tree_nodes.values():
-            node['model_type'] = self.get_type(node)
+    def get_valid_relationships(self):
+        self.connect_to_db()
+
+        Parent_Types = Model_Types.alias()
+        Child_Types = Model_Types.alias()
+
+        allowed = Model_Model_Association_Types \
+            .select(Model_Model_Association_Types, Parent_Types, Child_Types) \
+            .join(Parent_Types, on=(Parent_Types.ID == Model_Model_Association_Types.Parent_Type)) \
+            .switch(Model_Model_Association_Types) \
+            .join(Child_Types, on=(Child_Types.ID == Model_Model_Association_Types.Child_Type))
+
+        self.valid_relationships = {}
+
+        for rel in allowed:
+            parent = rel.Parent_Type.Name
+            child = rel.Child_Type.Name
+
+            if parent not in self.valid_relationships:
+                self.valid_relationships[parent] = []
+
+            self.valid_relationships[parent].append(child)
 
     def to_simulation(self, sim_path, clear_contents=False):
         print("Creating SIM files from model tree...")
@@ -181,7 +220,6 @@ class ModelImporter:
         elif clear_contents:
             for file in os.listdir(sim_path):
                 os.remove(sim_path + "/" + file)
-
 
         for node in self.tree_nodes.values():
             shutil.copy2(node["path"], sim_path)
@@ -226,8 +264,7 @@ class ModelImporter:
             if db_val == sim_val:
                 return True, db_val
             else:
-                return False, { "db": db_val, "sim": sim_val }
-
+                return False, {"db": db_val, "sim": sim_val}
 
         for file in in_both:
             db_node = db_tree[file]
@@ -243,7 +280,7 @@ class ModelImporter:
                     db_node[key] = new_val
 
             if different_fields:
-                db_node["file_status"] = 'Different:'+string.join(different_fields, ",")
+                db_node["file_status"] = 'Different:' + string.join(different_fields, ",")
             else:
                 db_node["file_status"] = "same"
 
@@ -254,9 +291,13 @@ class ModelImporter:
             # Copy the missing node over to db tree
             db_tree[file] = sim_tree[file]
 
-            db_tree[file]["file_status"] = "Not in DB"
+            file_status = "Not in DB"
+            matching_db_models = Models.select(Models.Model_ID).where(Models.File_Name == file)
 
-        
+            if matching_db_models:
+                file_status += ". Maybe: " + string.join([m.Model_ID for m in matching_db_models], " or ") + "?"
+
+            db_tree[file]["file_status"] = file_status
 
     def parse_multi_value_field(self, node, field):
         value = node[field]
@@ -276,8 +317,6 @@ class ModelImporter:
         if self.is_existing:
             self.root_ids = self.get_root_model_ids()
             self.model_directory_parent = re.compile('(.*)/NML').search(self.model_directories[0]).groups(1)[0]
-
-        if self.is_existing:
             self.parse_db_stored()
         else:
             self.parse_simulation()
@@ -300,6 +339,7 @@ class ModelImporter:
         # Type and ID cannot be changed
         model.Name = node["model_name"]
         model.File_Name = node["file_name"]
+        model.File_MD5_Checksum = node['md5']
         model.Notes = node["notes"]
         model.Publication = self.get_or_create_publication(node["pubmed_id"])
         model.save()
@@ -329,6 +369,7 @@ class ModelImporter:
             Model_ID=new_model_id,
             Name=node["model_name"],
             File_Name=node["file_name"],
+            File_MD5_Checksum=node['md5'],
             Notes=node["notes"],
             Publication=self.get_or_create_publication(node["pubmed_id"])
         )
@@ -344,6 +385,14 @@ class ModelImporter:
                 Model=model,
                 Type=node["channel_protocol"]
             )
+
+        # Copy model file to DB model directory
+        new_dir = self.model_directory_parent + "/" + new_model_id
+
+        if not os.path.exists(new_dir):
+            os.mkdir(new_dir)
+
+        shutil.copy2(node["path"], new_dir)
 
     def add_links(self, parent_node):
 
@@ -443,6 +492,9 @@ class ModelImporter:
         if existing is not None:
             return existing
         else:
+            if pubmed_ref == "":
+                return None
+
             title, year, authors = self.get_pub_info_from_nih(pubmed_ref)
 
             pub = Publications.create(
@@ -504,6 +556,7 @@ class ModelImporter:
         node["model_name"] = model.Name
         node["model_type"] = model.Type.Name
         node["file_name"] = model.File_Name
+        node['md5'] = model.File_MD5_Checksum
         node["pubmed_id"] = model.Publication.Pubmed_Ref
 
         node["translators"] = [
@@ -544,7 +597,8 @@ class ModelImporter:
             .where(Models.Model_ID == id) \
             .first()
 
-        result.Translators = People.select().join(Model_Translators).where(Model_Translators.Model == id)
+        result.Translators = People.select().join(Model_Translators).where(Model_Translators.Model == id).order_by(
+            Model_Translators.Translator_Sequence)
         result.References = Refers.select().join(Model_References).where(Model_References.Model == id)
         result.Neurolexes = Neurolexes.select().join(Model_Neurolexes).where(Model_Neurolexes.Model == id)
         result.Keywords = Other_Keywords.select().join(Model_Other_Keywords).where(Model_Other_Keywords.Model == id)
@@ -558,11 +612,7 @@ class ModelImporter:
     def server_path_to_local_path(self, server_path):
         return server_path.replace('/var/www/NeuroMLmodels', self.model_directory_parent)
 
-    def local_path_to_server_path(self, local_path):
-        return local_path.replace(self.model_directory_parent, '/var/www/NeuroMLmodels')
-
-    def get_type(self, node):
-        path = node["path"]
+    def get_type(self, path):
 
         if path.endswith(".cell.nml"):
             return "Cell"
@@ -575,6 +625,9 @@ class ModelImporter:
 
         if path.endswith(".net.nml"):
             return "Network"
+
+        if not os.path.exists(path):
+            return "MISSING"
 
         root = self.get_xml_root(path)
 
@@ -590,6 +643,9 @@ class ModelImporter:
             if 'ionchannel' in tag:
                 return "Channel"
 
+            if 'cell' in tag:
+                return "Cell"
+
         raise Exception("Could not determine the type of:" + path)
 
     @staticmethod
@@ -602,6 +658,7 @@ class ModelImporter:
             'model_name': '',
             'model_type': '',
             'file_name': '',
+            'md5': '',
             'path': '',
             'dir': '',
             'children': [],
@@ -642,10 +699,7 @@ class ModelImporter:
 
                 return str(value)
 
-        writer.writerow([field_to_string(node, key) for key in self.csv_columns])
-
-    def file_exists(self, path):
-        return os.path.exists(path)
+        writer.writerow([unicode(field_to_string(node, key)).encode('utf-8') for key in self.csv_columns])
 
     def is_nml2_file(self, file_name):
         return file_name.endswith(".nml")
@@ -685,6 +739,8 @@ class ModelImporter:
         node['file_name'] = file
         node['dir'] = self.model_directories[0]
         node['path'] = self.model_directories[0] + file
+        node['md5'] = self.get_file_checksum(node['path'])
+        node['model_type'] = self.get_type(node["path"])
 
         if parent is not None:
             node['parents'].append(parent)
@@ -695,6 +751,7 @@ class ModelImporter:
         # Read xml - if file exists
         if os.path.exists(node['path']):
 
+            parent_type = node['model_type']
             root = self.get_xml_root(node['path'])
 
             # Get list of node children
@@ -703,11 +760,33 @@ class ModelImporter:
                     if child.attrib['href']:
                         child_rel_path = child.attrib['href']
                         child_file = os.path.basename(child_rel_path)
+
+                        child_path = self.model_directories[0] + child_file
+                        child_type = self.get_type(child_path)
+
+                        # Don't add children that have invalid relationships
+                        if child_type != "MISSING" and child_type not in self.valid_child_types(parent_type):
+                            continue
+
                         node['children'].append({'file_name': child_file})
 
             # Repeat for each child
             for child_file in node['children']:
                 self.parse_file_tree(child_file['file_name'], parent=node['file_name'])
+
+        else:
+            node["file_status"] = "File does not exist"
+
+    def valid_child_types(self, parent_type):
+
+        if self.valid_relationships is None:
+            self.get_valid_relationships()
+
+        if parent_type not in self.valid_relationships:
+            return []
+
+        else:
+            return self.valid_relationships[parent_type]
 
     def get_xml_root(self, file_path):
 
@@ -719,13 +798,13 @@ class ModelImporter:
         if hasattr(self, "db") and self.db is not None:
             return self.db
 
-        pwd = os.environ["NMLDBPWD"]  # This needs to be set to the password
+        pwd = self.pwd
 
         if pwd == '':
             raise Exception("The environment variable 'NMLDBPWD' needs to contain the password to the NML database")
 
         server = SSHTunnelForwarder(
-            ('149.169.30.15', 2200),  # '149.169.30.15' - spike.asu.edu - testing server
+            (self.server_IP, 2200),
             ssh_username='neuromine',
             ssh_password=pwd,
             remote_bind_address=('127.0.0.1', 3306)
@@ -743,6 +822,40 @@ class ModelImporter:
         self.db = db
 
         return db
+
+    def open_csv(self, file_path=None):
+
+        if file_path is None:
+            file_path = self.out_csv_file
+
+        print("Opening CSV file: " + file_path)
+
+        import subprocess, os, sys
+        if sys.platform.startswith('darwin'):
+            subprocess.call(('open', file_path))
+        elif os.name == 'nt':
+            os.startfile(file_path)
+        elif os.name == 'posix':
+            subprocess.call(('xdg-open', file_path))
+
+    def get_file_checksum(self, path):
+
+        if os.path.exists(path):
+            with open(path, 'rb') as file:
+                return hashlib.md5(file.read()).hexdigest()
+
+        return None
+
+    def update_model_checksums(self):
+        self.connect_to_db()
+
+        models = Models.select(Models.Model_ID, Models.File)
+
+        for model in models:
+            print("Updating " + model.Model_ID + "...")
+            model.File_MD5_Checksum = self.get_file_checksum(self.server_path_to_local_path(model.File))
+            model.save()
+
 
     def __enter__(self):
         return self

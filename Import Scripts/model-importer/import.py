@@ -23,6 +23,7 @@ if command == "to_csv":
     with ModelImporter() as mi:
         mi.parse_directories(params)
         mi.to_csv()
+        mi.open_csv()
 
 if command == "to_db":
     with ModelImporter() as mi:
@@ -44,3 +45,9 @@ if command == "validate":
         db_version.compare_to(sim_version)
 
         db_version.to_csv("validation_results.csv")
+
+        db_version.open_csv("validation_results.csv")
+
+if command == "update_checksums":
+    with ModelImporter() as mi:
+        mi.update_model_checksums()

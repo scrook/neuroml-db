@@ -46,6 +46,7 @@ class Models(BaseModel):
     Publication = ForeignKeyField(Publications, field="Publication_ID", backref='Models')
     Directory_Path = TextField()
     File_Name = TextField()
+    File_MD5_Checksum = TextField()
     File = TextField()
     Notes = TextField()
     ID_Helper = IntegerField()
@@ -58,6 +59,12 @@ class Model_Model_Associations(BaseModel):
     class Meta:
         primary_key = peewee.CompositeKey('Parent', 'Child')
 
+class Model_Model_Association_Types(BaseModel):
+    Parent_Type = ForeignKeyField(Model_Types, field='ID', column_name="Parent_Type")
+    Child_Type = ForeignKeyField(Model_Types, field='ID', column_name="Child_Type")
+
+    class Meta:
+        primary_key = peewee.CompositeKey('Parent_Type', 'Child_Type')
 
 class Channel_Types(BaseModel):
     ID = TextField(primary_key=True)
