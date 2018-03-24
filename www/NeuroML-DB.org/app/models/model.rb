@@ -81,23 +81,23 @@ class Model < ActiveRecord::Base
     authors = ActiveRecord::Base.connection.exec_query(
         "
           (
-            SELECT p.Person_First_Name, p.Person_Last_Name, False as is_translator
+            SELECT p.Person_First_Name, p.Person_Last_Name, False as is_translator, author_sequence as sequence
             FROM people p
             JOIN publication_authors pa ON p.Person_ID = pa.Author_ID
             JOIN models m ON m.Publication_ID = pa.Publication_ID
             WHERE m.Model_ID = '#{idClean}'
-            ORDER BY author_sequence
+
           )
 
           UNION
 
           (
-            SELECT p.Person_First_Name, p.Person_Last_Name, True as is_translator
+            SELECT p.Person_First_Name, p.Person_Last_Name, True as is_translator, translator_sequence as sequence
             FROM people p
             JOIN model_translators mt ON p.Person_ID = mt.Translator_ID
             WHERE mt.Model_ID = '#{idClean}'
-            ORDER BY translator_sequence
           )
+          ORDER BY is_translator, sequence
         ")
 
     references = ActiveRecord::Base.connection.exec_query(
