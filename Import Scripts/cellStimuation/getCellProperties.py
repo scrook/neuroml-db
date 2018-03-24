@@ -223,7 +223,18 @@ class CellAssessor:
 
     def start(self):
         self.cell_record = Cells(
-            Model_ID=self.path.split("/")[-1]
+            Model_ID=self.path.split("/")[-1],
+            Stability_Range_Low=None,
+            Stability_Range_High=None,
+            Is_Intrinsically_Spiking=False,
+            Resting_Voltage=None,
+            Rheobase_Low=None,
+            Rheobase_High=None,
+            Threshold_Current_Low=None,
+            Threshold_Current_High=None,
+            Bias_Current=None,
+            Bias_Voltage=None,
+            Errors=None
         )
 
         print("Running tolerance tool...")
@@ -590,7 +601,7 @@ class CellAssessor:
             self.build()
             self.sim_init()
 
-            t,v = self.runFor(500)
+            t,v = self.runFor(1000)
 
             crossings = self.getSpikeCount(v)
 
