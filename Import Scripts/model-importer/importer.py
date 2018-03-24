@@ -6,6 +6,7 @@ import string
 import urllib2
 import hashlib
 import xml.etree.ElementTree as ET
+from dateutil.parser import parse as parsedate
 
 from playhouse.db_url import connect
 from sshtunnel import SSHTunnelForwarder
@@ -42,6 +43,7 @@ class ModelImporter:
             'pubmed_id',
             'translators',
             'references',
+            'file_updated',
             'neurolex_terms',
             'keywords',
             'channel_protocol',
@@ -83,6 +85,10 @@ class ModelImporter:
 
         for node in self.tree_nodes.values():
             try:
+                # Skip blank lines
+                if string.join([str(v) for v in node.values()]).replace("[]","").replace(" ","") == "":
+                    continue
+
                 if node["action"] not in self.valid_actions:
                     raise Exception("Invalid action: '" + node["action"] + \
                                     "'. Allowed actions are: " + str(self.valid_actions))
@@ -99,6 +105,8 @@ class ModelImporter:
 
                 for field in self.multi_value_fields:
                     self.parse_multi_value_field(node, field)
+
+                node["file_updated"] = parsedate(node["file_updated"])
 
                 node["pubmed_id"] = node["pubmed_id"].lower()
 
@@ -341,6 +349,7 @@ class ModelImporter:
         model.File_Name = node["file_name"]
         model.File_MD5_Checksum = node['md5']
         model.Notes = node["notes"]
+        model.File_Updated = node["file_updated"]
         model.Publication = self.get_or_create_publication(node["pubmed_id"])
         model.save()
 
@@ -371,6 +380,7 @@ class ModelImporter:
             File_Name=node["file_name"],
             File_MD5_Checksum=node['md5'],
             Notes=node["notes"],
+            File_Updated=node["file_updated"],
             Publication=self.get_or_create_publication(node["pubmed_id"])
         )
 
@@ -572,6 +582,7 @@ class ModelImporter:
             node["channel_protocol"] = model.Channel[0].Channel_Type
 
         node["notes"] = model.Notes
+        node["file_updated"] = model.File_Updated
         node["path"] = self.server_path_to_local_path(model.File)
 
         if parent is not None:
@@ -658,6 +669,7 @@ class ModelImporter:
             'model_name': '',
             'model_type': '',
             'file_name': '',
+            'file_updated': '',
             'md5': '',
             'path': '',
             'dir': '',

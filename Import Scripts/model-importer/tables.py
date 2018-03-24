@@ -47,6 +47,7 @@ class Models(BaseModel):
     Directory_Path = TextField()
     File_Name = TextField()
     File_MD5_Checksum = TextField()
+    File_Updated = DateTimeField()
     File = TextField()
     Notes = TextField()
     ID_Helper = IntegerField()
