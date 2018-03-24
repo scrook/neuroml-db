@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2  https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta3.xsd" id="Granule_98_3D">
+
+    <include href="Gran_CaHVA_98.channel.nml"/>
+
+    <include href="Gran_CaPool_98.nml"/>
+
+    <include href="Gran_H_98.channel.nml"/>
+
+    <include href="Gran_KA_98.channel.nml"/>
+
+    <include href="Gran_KCa_98.channel.nml"/>
+
+    <include href="Gran_KDr_98.channel.nml"/>
+
+    <include href="Gran_NaF_98.channel.nml"/>
+
+    <include href="GranPassiveCond.channel.nml"/>
+
+    <cell id="Granule_98_3D" neuroLexId="nifext_128">
+
+        <notes>An extension to 3D of the Granule cell model from:
+
+Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a Detailed Network Model of the Cerebellar Granule Cell Layer, 1998
+
+incorporating channel mechanisms based on ChannelML</notes>
+
+        <morphology id="morphology_Granule_98_3D">
+
+            <segment id="0" name="Soma">
+                <proximal x="0.0" y="0.0" z="0.0" diameter="10.0"/>
+                <distal x="0.0" y="0.0" z="0.0" diameter="10.0"/>
+            </segment>
+
+            <segment id="1" name="AscendingSegSec">
+                <parent segment="0" fractionAlong="0.0"/>
+                <proximal x="0.0" y="0.0" z="0.0" diameter="2.0"/>
+                <distal x="0.0" y="200.0" z="0.0" diameter="2.0"/>
+            </segment>
+
+            <segment id="2" name="LeftParallelFiberSeg">
+                <parent segment="1"/>
+                <proximal x="0.0" y="200.0" z="0.0" diameter="2.0"/>
+                <distal x="-400.0" y="200.0" z="0.0" diameter="2.0"/>
+            </segment>
+
+            <segment id="3" name="RightParallelFiberSeg">
+                <parent segment="1"/>
+                <proximal x="0.0" y="200.0" z="0.0" diameter="2.0"/>
+                <distal x="400.0" y="200.0" z="0.0" diameter="2.0"/>
+            </segment>
+
+            <segmentGroup id="Soma" neuroLexId="sao864921383">    <!--
+This group contains an unbranched set of segments, and all of the segmentGroups marked with
+neuroLexId = sao864921383 form a non-overlapping set of all of the segments. 
+These segmentGroups correspond to the 'cables' of NeuroML v1.8.1-->
+
+                <member segment="0"/>
+            </segmentGroup>
+
+            <segmentGroup id="AscendingSeg" neuroLexId="sao864921383">    <!--
+This group contains an unbranched set of segments, and all of the segmentGroups marked with
+neuroLexId = sao864921383 form a non-overlapping set of all of the segments. 
+These segmentGroups correspond to the 'cables' of NeuroML v1.8.1-->
+
+                <member segment="1"/>
+            </segmentGroup>
+
+            <segmentGroup id="LeftParallelFiber" neuroLexId="sao864921383">    <!--
+This group contains an unbranched set of segments, and all of the segmentGroups marked with
+neuroLexId = sao864921383 form a non-overlapping set of all of the segments. 
+These segmentGroups correspond to the 'cables' of NeuroML v1.8.1-->
+
+                <member segment="2"/>
+            </segmentGroup>
+
+            <segmentGroup id="RightParallelFiber" neuroLexId="sao864921383">    <!--
+This group contains an unbranched set of segments, and all of the segmentGroups marked with
+neuroLexId = sao864921383 form a non-overlapping set of all of the segments. 
+These segmentGroups correspond to the 'cables' of NeuroML v1.8.1-->
+
+                <member segment="3"/>
+            </segmentGroup>
+
+            <segmentGroup id="all">
+                <include segmentGroup="Soma"/>
+                <include segmentGroup="AscendingSeg"/>
+                <include segmentGroup="LeftParallelFiber"/>
+                <include segmentGroup="RightParallelFiber"/>
+            </segmentGroup>
+
+            <segmentGroup id="soma_group" neuroLexId="GO:0043025">    <!--Soma group-->
+
+                <include segmentGroup="Soma"/>
+            </segmentGroup>
+
+            <segmentGroup id="axon_group" neuroLexId="GO:0030424">    <!--Axon group-->
+
+                <include segmentGroup="AscendingSeg"/>
+                <include segmentGroup="LeftParallelFiber"/>
+                <include segmentGroup="RightParallelFiber"/>
+            </segmentGroup>
+
+            <segmentGroup id="parallel_fibers">
+                <include segmentGroup="LeftParallelFiber"/>
+                <include segmentGroup="RightParallelFiber"/>
+            </segmentGroup>
+
+            
+        </morphology>
+
+            <!--Adding the biophysical parameters-->
+
+        <biophysicalProperties id="biophys">
+
+            <membraneProperties>
+
+                <channelDensity condDensity="0.9084216 mS_per_cm2" id="Gran_CaHVA_98_soma_group" ionChannel="Gran_CaHVA_98" segmentGroup="soma_group" ion="ca" erev="80.0 mV"/>
+
+                <channelDensity condDensity="0.03090506 mS_per_cm2" id="Gran_H_98_soma_group" ionChannel="Gran_H_98" segmentGroup="soma_group" ion="h" erev="-42.0 mV"/>
+
+                <channelDensity condDensity="1.14567 mS_per_cm2" id="Gran_KA_98_soma_group" ionChannel="Gran_KA_98" segmentGroup="soma_group" ion="k" erev="-90.0 mV"/>
+
+                <channelDensity condDensity="17.9811 mS_per_cm2" id="Gran_KCa_98_soma_group" ionChannel="Gran_KCa_98" segmentGroup="soma_group" ion="k" erev="-90.0 mV"/>
+
+                <channelDensity condDensity="8.89691 mS_per_cm2" id="Gran_KDr_98_soma_group" ionChannel="Gran_KDr_98" segmentGroup="soma_group" ion="k" erev="-90.0 mV"/>
+
+                <channelDensity condDensity="55.7227 mS_per_cm2" id="Gran_NaF_98_soma_group" ionChannel="Gran_NaF_98" segmentGroup="soma_group" ion="na" erev="55.0 mV"/>
+
+                <channelDensity condDensity="0.0330033 mS_per_cm2" id="GranPassiveCond_soma_group" ionChannel="GranPassiveCond" segmentGroup="soma_group" ion="non_specific" erev="-65.0 mV"/>
+
+                <spikeThresh value="0 mV"/>
+
+                <specificCapacitance value="1.0 uF_per_cm2"/>
+
+                <initMembPotential value="-65.0 mV"/>
+
+            </membraneProperties>
+
+            <intracellularProperties>
+
+                <species segmentGroup="soma_group" id="ca" ion="ca" concentrationModel="Gran_CaPool_98" initialConcentration="7.55E-11 mol_per_cm3" initialExtConcentration="2.4E-6 mol_per_cm3"/>
+
+                <resistivity value="0.1 kohm_cm"/>
+
+            </intracellularProperties>
+
+        </biophysicalProperties>
+
+    </cell>
+    
+</neuroml>
