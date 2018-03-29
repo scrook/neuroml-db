@@ -10,8 +10,7 @@
 
 
 import pydevd
-pydevd.settrace('192.168.177.1', port=4202, suspend=False)
-
+pydevd.settrace('192.168.0.34', port=4200, suspend=False)
 
 import sys
 from importer import ModelImporter

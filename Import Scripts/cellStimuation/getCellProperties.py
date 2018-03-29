@@ -172,17 +172,13 @@ class CellAssessor:
         os.chdir(self.path)
         from neuron import h, gui
 
-        try:
-            cellHocFile = [f for f in os.listdir(self.path) if f.endswith(".hoc")][0]
-        except:
-            print("Could not find a .hoc file in: " + self.path)
-            raise
-
-        cellTemplate = cellHocFile.replace(".hoc", "")
-        h.load_file(cellHocFile)
-
         # Create the cell
-        self.test_cell = getattr(h, cellTemplate)()
+        if len(self.get_hoc_files()) == 0 and len(self.get_mod_files()) == 1:
+            self.test_cell = self.get_abstract_cell(h)
+        elif self.get_hoc_files() > 0:
+            self.test_cell = self.get_cell_with_morphology(h)
+        else:
+            raise Exception("Could not find cell .hoc or abstract cell .mod file in: " + self.path)
 
         # Get the root sections and try to find the soma
         self.roots = h.SectionList()
@@ -195,6 +191,7 @@ class CellAssessor:
             self.soma = self.roots[0]
         else:
             raise Exception("Problem finding the soma section")
+
 
 
         # set up stim
@@ -220,6 +217,35 @@ class CellAssessor:
             self.restore_tolerances()
 
         return h
+
+    def get_abstract_cell(self, h):
+        cell_mod_file = self.get_mod_files()[0]
+        cell_mod_name = cell_mod_file.replace(".mod","")
+
+        soma = h.Section()
+        soma.L = 10
+        soma.diam = 10
+        soma.cm = 318.31927  # See: https://github.com/NeuroML/org.neuroml.export/issues/60
+
+        mod = getattr(h, cell_mod_name)(0.5, sec=soma)
+
+        self.abstract_soma = soma
+        self.abstract_mod = mod
+
+        return soma
+
+    def get_cell_with_morphology(self, h):
+        cell_hoc_file = self.get_hoc_files()[0]
+        cell_template = cell_hoc_file.replace(".hoc", "")
+        h.load_file(cell_hoc_file)
+        cell = getattr(h, cell_template)()
+        return cell
+
+    def get_hoc_files(self):
+        return [f for f in os.listdir(self.path) if f.endswith(".hoc")]
+
+    def get_mod_files(self):
+        return [f for f in os.listdir(self.path) if f.endswith(".mod")]
 
     def start(self):
         self.cell_record = Cells(

@@ -3,7 +3,7 @@ import urllib, json
 import shutil
 
 # usage: python convertCellToNeuron.py CellFile.nml
-# creates a NEURON version of the cell file by creating a LEMS file and using jnml to convert to NEURON
+# creates a NEURON version of the cell file by creating a LEMS file, copying channels, and using jnml to convert to NEURON
 
 path = sys.argv[1]
 

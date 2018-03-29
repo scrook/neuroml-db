@@ -28,7 +28,8 @@ class ModelImporter:
         self.valid_actions = [
             'ignore',
             'UPDATE',
-            'ADD'
+            'ADD',
+            'DELETE'
         ]
 
         self.csv_columns = [
@@ -106,7 +107,7 @@ class ModelImporter:
                 for field in self.multi_value_fields:
                     self.parse_multi_value_field(node, field)
 
-                node["file_updated"] = parsedate(node["file_updated"])
+                node["file_updated"] = self.parse_date(node["file_updated"])
 
                 node["pubmed_id"] = node["pubmed_id"].lower()
 
@@ -174,8 +175,13 @@ class ModelImporter:
                 for model in updates:
                     self.add_links(model)
 
+                # DELETEs - will remove any links other nodes
+                deletes = [n for n in self.tree_nodes.values() if n["action"] == "DELETE"]
+                for model in deletes:
+                    self.remove_model(model)
+
         except:
-            print("ERROR DETECTED: DB TRANSACTION ROLLED BACK - NO DB RECORDS SAVED - BUT CHECK FOR ANY ADDED FILES")
+            print("ERROR DETECTED: DB TRANSACTION ROLLED BACK - NO DB RECORDS SAVED - BUT CHECK FOR ANY ADDED/DELETED FILES")
             raise
 
     def parse_simulation(self):
@@ -192,6 +198,13 @@ class ModelImporter:
             self.parse_file_tree(root_file)
 
         self.get_roots()
+
+    def parse_date(self, csv_value):
+        if csv_value == 'None':
+            return None
+
+        else:
+            return parsedate(csv_value)
 
     def get_valid_relationships(self):
         self.connect_to_db()
@@ -318,6 +331,9 @@ class ModelImporter:
     def parse_directories(self, model_directories):
 
         for dir in model_directories:
+            if self.is_nmldb_id(dir):
+                dir = os.path.join(self.default_model_directory_parent, dir)
+
             self.model_directories.append(os.path.abspath(dir) + "/")
 
         self.is_existing = self.is_existing_model()
@@ -336,8 +352,22 @@ class ModelImporter:
         for node in self.roots:
             node["is_root"] = True
 
+    def remove_model(self, node):
+        if not self.is_nmldb_id(node["model_id"]):
+            raise Exception("When DELET'ing, model ID must not be blank: " + node["file_name"])
+
+        print("REMOVING model " + node["model_id"] + " from DB and models directory...")
+
+        # Remove db records
+        self.db.execute_sql("CALL delete_model('" + node["model_id"] + "');")
+
+        # Remove files
+        model_dir = os.path.join(self.model_directory_parent, node["model_id"])
+        print("Deleting directory: " + model_dir + " ...")
+        shutil.rmtree(model_dir)
+
     def update_model(self, node):
-        if node["model_id"] == "":
+        if not self.is_nmldb_id(node["model_id"]):
             raise Exception("When UPDATE'ing, model ID must not be blank: " + node["file_name"])
 
         print("Updating model " + node["model_id"] + " in DB...")
@@ -480,12 +510,16 @@ class ModelImporter:
             return existing
         else:
             try:
-                resource = Resources \
-                    .select(Resources, Refers) \
-                    .join(Refers) \
-                    .where(peewee.fn.LEFT(peewee.fn.LOWER(Refers.Reference_URI), 40) == peewee.fn.LEFT(
-                    peewee.fn.LOWER(ref_url), 40)) \
-                    .first()
+                if "github.com" in ref_url:
+                    resource = Resources.get(Resources.Name=="Github")
+
+                else:
+                    resource = Resources \
+                        .select(Resources, Refers) \
+                        .join(Refers) \
+                        .where(peewee.fn.LEFT(peewee.fn.LOWER(Refers.Reference_URI), 40) == peewee.fn.LEFT(
+                        peewee.fn.LOWER(ref_url), 40)) \
+                        .first()
             except:
                 raise Exception("Could not find a matching resource for reference URL:" + ref_url)
 
@@ -727,12 +761,15 @@ class ModelImporter:
                 root_dir = dir.split("/")[-2]
 
                 # Check if parent dir is named as an NML-DB ID
-                if root_dir.startswith("NML") and len(root_dir) == 11:
+                if self.is_nmldb_id(root_dir):
                     result.append(root_dir)
             except:
                 pass
 
         return result
+
+    def is_nmldb_id(self, value):
+        return value.startswith("NML") and len(value) == 11
 
     def parse_file_tree(self, file, parent=None):
         # If file already parsed
