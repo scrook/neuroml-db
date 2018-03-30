@@ -315,21 +315,6 @@
         </tr>
 
 
-        <tr>
-          <td class="keyword">
-            Notes:
-          </td>
-
-          <td class="description">
-            <% if @model_notes.blank? %>
-                None
-            <% else %>
-                <%= @model_notes %>
-            <% end %>
-          </td>
-        </tr>
-
-
     <% elsif @type == "Network" %>
 
         <tr>
@@ -373,6 +358,20 @@
 
 
     <% end %>
+
+    <tr>
+      <td class="keyword">
+        Notes:
+      </td>
+
+      <td class="description">
+        <% if @model_notes.blank? %>
+            None
+        <% else %>
+            <%= @model_notes %>
+        <% end %>
+      </td>
+    </tr>
 
     <tr>
       <td class="keyword">
