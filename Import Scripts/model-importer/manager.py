@@ -16,9 +16,9 @@ from playhouse.db_url import connect
 from sshtunnel import SSHTunnelForwarder
 
 from tables import *
+from cellassessor import CellAssessor
 
-
-class ModelImporter:
+class ModelManager:
     def __init__(self):
         self.webserver = 'spike.asu.edu:5000'
         self.server_IP = '149.169.30.15'  # '149.169.30.15' - spike.asu.edu - testing server
@@ -81,6 +81,54 @@ class ModelImporter:
         self.root_ids = []
         self.model_directory_parent = os.path.abspath(self.default_model_directory_parent)
         self.valid_relationships = None
+
+    def validate_db_model(self, dirs):
+
+            # Build node tree from the DB data
+            self.parse_directories(dirs)
+
+            # Convert the DB tree to single-folder simulation
+            self.to_simulation("temp/sim", clear_contents=True)
+
+            with ModelManager() as sim_version:
+
+                # Build the tree from the simulation files
+                sim_version.parse_directories(["temp/sim"])
+
+                # Compare the db tree to the simulation tree - generate comparison CSV
+                self.compare_to(sim_version)
+
+            self.to_csv("temp/validation_results.csv")
+
+            if any(node["file_status"] != "same" for node in self.tree_nodes.values()):
+                self.open_csv("temp/validation_results.csv")
+            else:
+                print("Valid: DB records and simulation files are all SAME")
+
+    def model_to_csv(self, dirs):
+        self.parse_directories(dirs)
+        self.to_csv()
+        self.open_csv()
+
+    def csv_to_db(self, csv_file):
+        self.parse_csv(csv_file)
+        self.to_db_stored()
+
+    def get_cell_model_properties(self, model_dir):
+        NEURON_folder = self.cell_model_to_neuron(model_dir)
+
+        assessor = CellAssessor(path=NEURON_folder)
+
+        try:
+            assessor.get_cell_properties()
+
+        except:
+            print("Encountered an error. Saving progress...")
+            import traceback
+
+            assessor.cell_record.Errors = traceback.format_exc()
+            assessor.save_cell_record()
+            raise
 
     def parse_csv(self, csv_path):
         with open(csv_path, "r") as f:
@@ -253,7 +301,7 @@ class ModelImporter:
     def compare_to(self, simulation_importer):
         """
 
-        :type simulation_importer: ModelImporter
+        :type simulation_importer: ModelManager
         """
 
         print("Comparing DB records to NML SIM files...")
@@ -900,15 +948,20 @@ class ModelImporter:
 
         return None
 
+
     def update_model_checksums(self):
         self.connect_to_db()
 
-        models = Models.select(Models.Model_ID, Models.File)
+        models = Models.select(Models.Model_ID, Models.File, Models.File_MD5_Checksum)
 
         for model in models:
             print("Updating " + model.Model_ID + "...")
-            model.File_MD5_Checksum = self.get_file_checksum(self.server_path_to_local_path(model.File))
-            model.save()
+            new_checksum = self.get_file_checksum(self.server_path_to_local_path(model.File))
+
+            if model.File_MD5_Checksum != new_checksum:
+                print("Checksum different, saving...")
+                model.File_MD5_Checksum = new_checksum
+                model.save()
 
     def replace_tokens(self, target, reps):
         result = target

@@ -3,16 +3,15 @@
 # Usage: python getCellProperties /path/To/dir/with/.hoc
 
 import os
-import sys
 
 import numpy as np
 from matplotlib import pyplot as plt
 from playhouse.db_url import connect
 from sshtunnel import SSHTunnelForwarder
 
+from collector import Collector
 from neuronrunner import NeuronRunner, NumericalInstabilityException
 from tables import Cells, db_proxy
-from collector import Collector
 
 
 class CellAssessor:
@@ -26,7 +25,7 @@ class CellAssessor:
 
         # Load cell hoc and get soma
         os.chdir(self.path)
-        from neuron import h, gui
+        from neuron import h
 
         # Create the cell
         if self.is_abstract_cell():
@@ -104,7 +103,7 @@ class CellAssessor:
     def get_mod_files(self):
         return [f for f in os.listdir(self.path) if f.endswith(".mod")]
 
-    def start(self):
+    def get_cell_properties(self):
         self.cell_record = Cells(
             Model_ID=self.path.split("/")[-1],
             Stability_Range_Low=None,
@@ -203,7 +202,7 @@ class CellAssessor:
         self.i_collector.clear()
 
     def set_abs_tolerance(self, abs_tol):
-        from neuron import h
+        from neuron import h, gui
         h.steps_per_ms = 10
         h.dt = 1.0 / h.steps_per_ms  # NRN will ignore this using cvode
 
