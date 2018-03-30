@@ -76,6 +76,19 @@ class Channels(BaseModel):
     Model = ForeignKeyField(Models, field='Model_ID', backref="Channel", primary_key=True)
     Type = ForeignKeyField(Channel_Types, field="ID", column_name="Channel_Type")
 
+class Cells(BaseModel):
+    Model_ID = CharField(primary_key=True)
+    Stability_Range_Low = FloatField()
+    Stability_Range_High = FloatField()
+    Is_Intrinsically_Spiking = BooleanField()
+    Rheobase_Low = FloatField()
+    Rheobase_High = FloatField()
+    Resting_Voltage = FloatField()
+    Threshold_Current_Low = FloatField()
+    Threshold_Current_High = FloatField()
+    Bias_Voltage = FloatField()
+    Bias_Current = FloatField()
+    Errors = TextField()
 
 class Model_Translators(BaseModel):
     Model = ForeignKeyField(Models, field='Model_ID', backref="Translators")

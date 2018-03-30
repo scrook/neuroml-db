@@ -2,162 +2,18 @@
 # steady state v of a cell defined in a hoc file in the given directory.
 # Usage: python getCellProperties /path/To/dir/with/.hoc
 
-import os, sys
-from quantities import ms, mV, nA
-from neo.core import AnalogSignal
+import os
+import sys
+
 import numpy as np
-import json, datetime
-from pprint import pprint as pp
 from matplotlib import pyplot as plt
-from multiprocessing import Process, Value
-from threading import Timer
-import time
-from peewee import Model, CharField, FloatField, BooleanField, TextField
-from sshtunnel import SSHTunnelForwarder
 from playhouse.db_url import connect
-import random
+from sshtunnel import SSHTunnelForwarder
 
-class Cells(Model):
-    Model_ID = CharField(primary_key=True)
-    Stability_Range_Low = FloatField()
-    Stability_Range_High = FloatField()
-    Is_Intrinsically_Spiking = BooleanField()
-    Rheobase_Low = FloatField()
-    Rheobase_High = FloatField()
-    Resting_Voltage = FloatField()
-    Threshold_Current_Low = FloatField()
-    Threshold_Current_High = FloatField()
-    Bias_Voltage = FloatField()
-    Bias_Current = FloatField()
-    Errors = TextField()
+from neuronrunner import NeuronRunner, NumericalInstabilityException
+from tables import Cells, db_proxy
+from collector import Collector
 
-    class Meta:
-        database = None
-
-class NeuronRunner:
-    def __init__(self, target, kill_slow_sims = True):
-        self.DONTKILL = False #True
-        self.sim_t = Value('d', -1)
-        self.sim_t_previous = -1
-        self.kill_slow_sims = kill_slow_sims
-        self.sim_result_file = os.getcwd() + "/sim_result_"+str(random.randint(0, 999999))+".json"
-        self.killed_process = False
-
-        def wrapper():
-            result = { "result": None, "error": None }
-
-            try:
-                if kill_slow_sims:
-                    result["result"] = target(self.sim_t)
-                else:
-                    result["result"] = target()
-            except:
-                import traceback
-                result["error"] = traceback.format_exc()
-
-            import json
-            with open(self.sim_result_file, "w") as f:
-                json.dump(result, f)
-                print("Saved result to: " + self.sim_result_file)
-
-        self.process = Process(target=wrapper);
-
-    def run(self):
-        self.reset_killer()
-        self.process.start()
-
-        while self.process.is_alive():
-            # Every so often
-            time.sleep(1)
-
-            # Check for sim time changes
-            sim_t_now = self.sim_t.value
-
-            # Display sim speed
-            self.print_speed(sim_t_now)
-
-            if sim_t_now != self.sim_t_previous:
-                self.sim_t_previous = sim_t_now
-                self.reset_killer()
-
-        self.process.join()
-        self.reset_killer(renew=False)
-
-        if self.killed_process:
-            raise NumericalInstabilityException("Stopped early because either the simulation speed was too low or the activity_flag was not updated")
-        else:
-            try:
-                with open(self.sim_result_file) as f:
-                    result = json.load(f)
-                os.remove(self.sim_result_file)
-            except:
-                raise Exception("NEURON process crashed before result or error information could be saved.")
-
-            if result["error"] is not None:
-                print(result["error"])
-                raise Exception("Error during NEURON simulation")
-
-
-        return result["result"]
-
-    def print_speed(self, sim_t_now):
-        clock_seconds = (datetime.datetime.now() - self.last_reset).total_seconds()
-
-        if self.sim_t_previous != -1:
-            sim_mseconds = sim_t_now - self.sim_t_previous
-            speed = sim_mseconds / clock_seconds
-            print("Simulation time: " + str(sim_t_now) + " ms. Speed: %.2f ms/s" % speed)
-
-    def reset_killer(self, renew=True):
-        if hasattr(self, "killer"):
-            self.killer.cancel()
-
-        if self.kill_slow_sims and renew:
-            self.killer = Timer(10, self.kill)
-            self.killer.start()
-
-        self.last_reset = datetime.datetime.now()
-
-    def kill(self):
-        print("NEURON did not respond within 10s, KILLING SIM...")
-
-        if self.DONTKILL or (sys.gettrace() is not None and "pydevd" in str(sys.gettrace())): # Don't terminate when debugging
-            print("DEBUGGING... KEEPING")
-        else:
-            self.process.terminate()
-            self.killed_process = True
-
-
-class Collector:
-    def __init__(self, collection_period_ms, expr):
-        from neuron import h
-
-        self.collection_period_ms = collection_period_ms
-
-        self.stim = h.NetStim(0.5)
-        self.stim.start = 0
-        self.stim.number = 1e9
-        self.stim.noise = 0
-        self.stim.interval = self.collection_period_ms
-
-        self.con = h.NetCon(self.stim, None)
-        self.con.record((self.collect, expr))
-
-        self.fih = h.FInitializeHandler(self.clear)
-
-        self.clear()
-
-    def clear(self):
-        self.values = []
-
-    def collect(self, new_value):
-        self.values.append(new_value())
-
-    def get_np_values(self):
-        return np.array(self.values[1:])
-
-class NumericalInstabilityException(Exception):
-    pass
 
 class CellAssessor:
     def __init__(self, path):
@@ -165,7 +21,7 @@ class CellAssessor:
         self.abs_tolerance = 0.001
         self.collection_period_ms = 0.1
 
-    def build(self, restore_tolerances = True):
+    def build(self, restore_tolerances=True):
         print("Getting cell properties for: " + self.path)
 
         # Load cell hoc and get soma
@@ -173,9 +29,9 @@ class CellAssessor:
         from neuron import h, gui
 
         # Create the cell
-        if len(self.get_hoc_files()) == 0 and len(self.get_mod_files()) == 1:
+        if self.is_abstract_cell():
             self.test_cell = self.get_abstract_cell(h)
-        elif self.get_hoc_files() > 0:
+        elif len(self.get_hoc_files()) > 0:
             self.test_cell = self.get_cell_with_morphology(h)
         else:
             raise Exception("Could not find cell .hoc or abstract cell .mod file in: " + self.path)
@@ -191,8 +47,6 @@ class CellAssessor:
             self.soma = self.roots[0]
         else:
             raise Exception("Problem finding the soma section")
-
-
 
         # set up stim
         self.current = h.IClamp(self.soma(0.5))
@@ -213,19 +67,22 @@ class CellAssessor:
         self.set_abs_tolerance(self.abs_tolerance)
         self.sim_init()
 
-        if restore_tolerances:
+        if not self.is_abstract_cell() and restore_tolerances:
             self.restore_tolerances()
 
         return h
 
+    def is_abstract_cell(self):
+        return len(self.get_hoc_files()) == 0 and len(self.get_mod_files()) == 1
+
     def get_abstract_cell(self, h):
         cell_mod_file = self.get_mod_files()[0]
-        cell_mod_name = cell_mod_file.replace(".mod","")
+        cell_mod_name = cell_mod_file.replace(".mod", "")
 
         soma = h.Section()
         soma.L = 10
         soma.diam = 10
-        soma.cm = 318.31927  # See: https://github.com/NeuroML/org.neuroml.export/issues/60
+        soma.cm = 318.31927  # Magic number, see: https://github.com/NeuroML/org.neuroml.export/issues/60
 
         mod = getattr(h, cell_mod_name)(0.5, sec=soma)
 
@@ -263,8 +120,9 @@ class CellAssessor:
             Errors=None
         )
 
-        print("Running tolerance tool...")
-        self.setTolerances()
+        if not self.is_abstract_cell():
+            print("Running tolerance tool...")
+            self.setTolerances()
 
         print("Getting stability range...")
         self.cell_record.Stability_Range_Low, self.cell_record.Stability_Range_High = self.getStabilityRange()
@@ -347,16 +205,15 @@ class CellAssessor:
     def set_abs_tolerance(self, abs_tol):
         from neuron import h
         h.steps_per_ms = 10
-        h.dt = 1.0 / h.steps_per_ms # NRN will ignore this using cvode
+        h.dt = 1.0 / h.steps_per_ms  # NRN will ignore this using cvode
 
         h.cvode_active(1)
         h.cvode.condition_order(2)
         h.cvode.atol(abs_tol)
 
-    def runFor(self, time, early_test = None):
+    def runFor(self, time, early_test=None):
         from neuron import h
         h.cvode_active(1)
-
 
         self.activity_flag.value = h.t
 
@@ -372,7 +229,6 @@ class CellAssessor:
                 t_np, v_np = self.get_tv()
                 if early_test(t_np, v_np):
                     return (t_np, v_np)
-
 
         # Get the waveform
         return self.get_tv()
@@ -403,19 +259,19 @@ class CellAssessor:
         else:
             return len(self.crossings_nonzero_pos2neg(voltage))
 
-    def getStabilityRange(self, testLow = -10, testHigh = 10):
+    def getStabilityRange(self, testLow=-10, testHigh=15):
 
         print("Searching for UPPER boundary...")
         current_range, found_once = self.find_border(
             lowerLevel=0,
             upperLevel=testHigh,
             current_delay=500,
-            current_duration = 3,
-            run_for_after_delay= 10,
-            test_condition=lambda t,v: False,
+            current_duration=3,
+            run_for_after_delay=10,
+            test_condition=lambda t, v: False,
             on_unstable=lambda: True,
-            max_iterations = 7,
-            fig_file = "stabilityHigh.png",
+            max_iterations=7,
+            fig_file="stabilityHigh.png",
             skip_current_delay=False
         )
 
@@ -426,20 +282,18 @@ class CellAssessor:
             lowerLevel=testLow,
             upperLevel=0,
             current_delay=500,
-            current_duration = 3,
-            run_for_after_delay= 10,
-            test_condition=lambda t,v: True,
+            current_duration=3,
+            run_for_after_delay=10,
+            test_condition=lambda t, v: True,
             on_unstable=lambda: False,
-            max_iterations = 7,
-            fig_file = "stabilityLow.png",
+            max_iterations=7,
+            fig_file="stabilityLow.png",
             skip_current_delay=True
         )
 
         low_edge = max(current_range)
 
         return low_edge, high_edge
-
-
 
     def getThreshold(self, minCurrent, maxI):
 
@@ -452,11 +306,11 @@ class CellAssessor:
             lowerLevel=minCurrent,
             upperLevel=maxI,
             current_delay=500,
-            current_duration = 3,
-            run_for_after_delay= 50,
+            current_duration=3,
+            run_for_after_delay=50,
             test_condition=test_condition,
-            max_iterations = 10,
-            fig_file = "threshold.png",
+            max_iterations=10,
+            fig_file="threshold.png",
             skip_current_delay=True
         )
 
@@ -484,7 +338,7 @@ class CellAssessor:
     def find_border(self, lowerLevel, upperLevel,
                     current_delay, current_duration,
                     run_for_after_delay, test_condition, max_iterations, fig_file,
-                    skip_current_delay = False, on_unstable = None, test_early = False):
+                    skip_current_delay=False, on_unstable=None, test_early=False):
 
         if not skip_current_delay:
             def reach_resting_state(activity_flag):
@@ -500,7 +354,6 @@ class CellAssessor:
 
             runner = NeuronRunner(reach_resting_state)
             result = runner.run()
-
 
         iterate = True
         iteration = 0
@@ -522,7 +375,7 @@ class CellAssessor:
                 h = self.build()
                 self.restore_state()
 
-                self.setCurrent(amp = currentAmp, delay = current_delay, dur = current_duration)
+                self.setCurrent(amp=currentAmp, delay=current_delay, dur=current_duration)
                 print("Trying " + str(currentAmp) + " nA...")
 
                 if not test_early:
@@ -575,12 +428,12 @@ class CellAssessor:
             lowerLevel=minCurrent,
             upperLevel=maxI,
             current_delay=500,
-            current_duration = 500,
-            run_for_after_delay= 500,
+            current_duration=500,
+            run_for_after_delay=500,
             test_condition=test_condition,
-            test_early = True,
-            max_iterations = 10,
-            fig_file = "rheobase.png",
+            test_early=True,
+            max_iterations=10,
+            fig_file="rheobase.png",
             skip_current_delay=True
         )
 
@@ -598,13 +451,14 @@ class CellAssessor:
             self.vc.amp1 = targetV
             self.vc.dur1 = 10000
 
-            t,v = self.runFor(500)
+            t, v = self.runFor(500)
 
             i = self.i_collector.get_np_values()
             crossings = self.getSpikeCount(i)
 
             if crossings > 2:
-                print("No bias current exists for steady state at " + str(targetV) + " mV membrane potential (only spikes)")
+                print(
+                "No bias current exists for steady state at " + str(targetV) + " mV membrane potential (only spikes)")
                 result = None
             else:
                 result = self.vc.i
@@ -612,7 +466,8 @@ class CellAssessor:
             self.vc.dur1 = 0
 
             plt.clf()
-            plt.plot(t[np.where(t > 50)], i[np.where(t > 50)], label="Bias Current for " + str(targetV) + "mV = " + str(result))
+            plt.plot(t[np.where(t > 50)], i[np.where(t > 50)],
+                     label="Bias Current for " + str(targetV) + "mV = " + str(result))
             plt.legend(loc='upper left')
             plt.savefig("biasCurrent" + str(targetV) + ".png")
 
@@ -627,7 +482,7 @@ class CellAssessor:
             self.build()
             self.sim_init()
 
-            t,v = self.runFor(1000)
+            t, v = self.runFor(1000)
 
             crossings = self.getSpikeCount(v)
 
@@ -648,8 +503,11 @@ class CellAssessor:
         result = runner.run()
         return result
 
-    def setTolerances(self, tstop = 100):
+    def setTolerances(self, tstop=100):
         def run_atol_tool():
+            import pydevd
+            pydevd.settrace('192.168.0.34', port=4200, suspend=False)
+
             h = self.build(restore_tolerances=False)
 
             h.NumericalMethodPanel[0].map()
@@ -678,7 +536,6 @@ class CellAssessor:
         h.NumericalMethodPanel[0].b1.unmap()
         print("Using saved error tolerances")
 
-
     def connect_to_db(self):
         pwd = os.environ["NMLDBPWD"]  # This needs to be set to "the password"
 
@@ -697,12 +554,12 @@ class CellAssessor:
 
         print("Connecting to MySQL database...")
         db = connect('mysql://neuromldb2:' + pwd + '@127.0.0.1:' + str(server.local_bind_port) + '/neuromldb')
+        db_proxy.initialize(db)
         return (db, server)
 
     def save_cell_record(self):
         cell = self.cell_record
         db, server = self.connect_to_db()
-        cell._meta.database = db
 
         # Save or update
         try:
@@ -711,7 +568,7 @@ class CellAssessor:
         except:
             force_insert = True
 
-        print("Saving record for cell "+cell.Model_ID+" ...")
+        print("Saving record for cell " + cell.Model_ID + " ...")
 
         # Insert on first save
         cell.save(force_insert=force_insert)
@@ -720,14 +577,3 @@ class CellAssessor:
         server.stop()
 
         print("SAVED")
-
-assessor = CellAssessor(path = sys.argv[1])
-try:
-    assessor.start()
-except:
-    print("Encountered an error. Saving progress...")
-    import traceback
-    assessor.cell_record.Errors = traceback.format_exc()
-    assessor.save_cell_record()
-    raise
-

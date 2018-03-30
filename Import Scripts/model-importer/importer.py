@@ -1,12 +1,16 @@
+import subprocess
 import csv
 import os
 import re
 import shutil
 import string
+import json
+import urllib
 import urllib2
 import hashlib
 import xml.etree.ElementTree as ET
 from dateutil.parser import parse as parsedate
+
 
 from playhouse.db_url import connect
 from sshtunnel import SSHTunnelForwarder
@@ -16,14 +20,16 @@ from tables import *
 
 class ModelImporter:
     def __init__(self):
+        self.webserver = 'spike.asu.edu:5000'
         self.server_IP = '149.169.30.15'  # '149.169.30.15' - spike.asu.edu - testing server
 
-        self.pwd = os.environ["NMLDBPWD"]  # This needs to be set to the password
+        self.pwd = os.environ['NMLDBPWD']  # This needs to be set to the password
 
-        self.default_model_directory_parent = "../../www/NeuroMLmodels"
+        self.default_model_directory_parent = '../../www/NeuroMLmodels'
 
-        self.out_sim_directory = 'sim'
-        self.out_csv_file = 'models.csv'
+        self.NEURON_models_folder = 'temp'
+        self.out_sim_directory = 'temp/sim'
+        self.out_csv_file = 'temp/models.csv'
 
         self.valid_actions = [
             'ignore',
@@ -235,12 +241,11 @@ class ModelImporter:
         if sim_path is None:
             sim_path = self.out_sim_directory
 
-        if not os.path.exists(sim_path):
-            os.mkdir(sim_path)
+        if os.path.exists(sim_path) and clear_contents:
+            shutil.rmtree(sim_path)
 
-        elif clear_contents:
-            for file in os.listdir(sim_path):
-                os.remove(sim_path + "/" + file)
+        if clear_contents:
+            os.makedirs(sim_path)
 
         for node in self.tree_nodes.values():
             shutil.copy2(node["path"], sim_path)
@@ -905,6 +910,136 @@ class ModelImporter:
             model.File_MD5_Checksum = self.get_file_checksum(self.server_path_to_local_path(model.File))
             model.save()
 
+    def replace_tokens(self, target, reps):
+        result = target
+        for r in reps.keys():
+            result = result.replace(r, str(reps[r]))
+        return result
+
+    def get_cell_children(self, modelID):
+        url = "http://"+self.webserver+"/api/model?id=" + modelID
+        response = urllib.urlopen(url)
+        model = json.loads(response.read())
+        channels = [m for m in model["children"] if m["Type"] == "Channel" or m["Type"] == "Concentration"]
+        return channels
+
+    def cell_model_to_neuron(self, path):
+
+        print("Converting cell NML model to NEURON...")
+
+        # Get the parent folder of the model
+        if self.is_nmldb_id(path):
+            model_dir_name = os.path.abspath(os.path.join(self.default_model_directory_parent, path))
+
+            dir_nml_files = [f for f in os.listdir(model_dir_name) if self.is_nml2_file(f)]
+
+            if len(dir_nml_files) != 1:
+                raise Exception("There should be exactly one NML file in the model directory: " + str(dir_nml_files))
+
+            cell_file_name = dir_nml_files[0]
+
+        else:
+            model_dir_name = os.path.dirname(os.path.abspath(path))
+            cell_file_name = os.path.basename(path)
+
+
+        nml_db_id = model_dir_name.split("/")[-1]
+
+        if not self.is_nmldb_id(nml_db_id):
+            raise Exception("The name of the parent folder of the model should be a NeuroML-DB id: " + nml_db_id)
+
+        # Templates
+        include_file_template = '	<Include file="[File]"/>'
+
+        # Find the NML id of the cell
+        with open(os.path.join(model_dir_name,cell_file_name)) as f:
+            nml = f.read()
+            cell_id = re.search('<.*cell.*?id.*?=.*?"(.*?)"', nml, re.IGNORECASE).groups(1)[0]
+            cell_files = set(re.compile('<include.*?href.*?=.*?"(.*?)"').findall(nml))
+
+        # Get all cell channel files from the model API
+        children_in_db = self.get_cell_children(nml_db_id)
+
+        db_files = set(c["File_Name"] for c in children_in_db)
+
+        if len(db_files - cell_files) > 0:
+            print("Misbehaving children: The following files are in DATABASE but MISSING IN CELL: " + nml_db_id)
+            print([(c["Model_ID"], c["File_Name"]) for c in children_in_db if c["File_Name"] in (db_files - cell_files)])
+            raise Exception("Database has extra children for the cell")
+
+        if len(cell_files - db_files) > 0:
+            print("Misbehaving children: The following files are in CELL but MISSING IN DATABASE: " + nml_db_id)
+            print(cell_files - db_files)
+            raise Exception("Database is missing children for the cell")
+
+        # Set the location where the NEURON files will be stored
+        NEURON_folder = os.path.join(os.path.abspath(self.NEURON_models_folder), nml_db_id)
+
+        # Clear it if exists or create it
+        if os.path.exists(NEURON_folder):
+            shutil.rmtree(NEURON_folder)
+
+        os.makedirs(NEURON_folder)
+
+        # Copy the model to the temp folder
+        shutil.copy2(os.path.join(model_dir_name, cell_file_name), NEURON_folder)
+
+        # Create file includes for each channel
+        child_includes = ''
+
+        for c in children_in_db:
+            id = c["Model_ID"]
+            file = c["File_Name"]
+            child_path = "../" + id + "/" + file
+
+            # Copy the children to the NEURON temp files folder
+            shutil.copy2(os.path.join(model_dir_name, child_path), NEURON_folder)
+            child_includes = child_includes + include_file_template.replace("[File]", file) + "\n"
+
+        replacements = {
+            "[CellInclude]": include_file_template.replace("[File]", cell_file_name),
+            "[ChannelIncludes]": child_includes,
+            "[Cell_ID]": cell_id
+        }
+
+        with open("templates/LEMS_single_cell_template.xml") as t:
+            template = t.read()
+
+        for r in replacements:
+            template = template.replace(r, str(replacements[r]))
+
+        out_file = NEURON_folder + "/LEMS_" + cell_file_name
+
+        with open(out_file, "w") as outF:
+            outF.write(template)
+
+        # Convert LEMS to NEURON with JNML
+        os.chdir(NEURON_folder)
+
+        self.run_command("jnml LEMS_" + cell_file_name + " -neuron")
+
+        # Compile mod files
+        self.run_command("nrnivmodl")
+
+        return NEURON_folder
+
+
+    def run_command(self, command):
+        print("Running command: '"+command+"'...")
+
+        result = subprocess.check_output(
+            command + "; exit 0",
+            stderr=subprocess.STDOUT,
+            shell=True)
+
+        print(result)  # Output and errors will be in string
+
+        if any(x in result.lower() for x in ["error", "not found", "missing"]):
+            raise Exception("Errors found while running command: " + command)
+
+        print("SUCCESS")
+
+        return result
 
     def __enter__(self):
         return self
