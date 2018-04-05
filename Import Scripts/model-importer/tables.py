@@ -90,6 +90,20 @@ class Cells(BaseModel):
     Bias_Current = FloatField()
     Errors = TextField()
 
+class Protocols(BaseModel):
+    ID = CharField(primary_key=True)
+    Description = TextField()
+
+class Model_Waveforms(BaseModel):
+    ID = PrimaryKeyField()
+    Model = ForeignKeyField(Models, field='Model_ID', backref="Waveforms")
+    Protocol = ForeignKeyField(Protocols, backref="Waveforms")
+    Meta_Protocol = ForeignKeyField(Protocols)
+    Waveform_Label = TextField()
+    Times = TextField()
+    Variable_Name = TextField()
+    Variable_Values = TextField()
+
 class Model_Translators(BaseModel):
     Model = ForeignKeyField(Models, field='Model_ID', backref="Translators")
     Translator = ForeignKeyField(People, field='Person_ID', backref="Translations")
