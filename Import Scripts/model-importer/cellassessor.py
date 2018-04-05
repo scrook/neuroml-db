@@ -2,7 +2,7 @@
 # steady state v of a cell defined in a hoc file in the given directory.
 # Usage: python getCellProperties /path/To/dir/with/.hoc
 
-import os
+import os, string
 
 import numpy as np
 from matplotlib import pyplot as plt
@@ -11,7 +11,7 @@ from sshtunnel import SSHTunnelForwarder
 
 from collector import Collector
 from neuronrunner import NeuronRunner, NumericalInstabilityException
-from tables import Cells, db_proxy
+from tables import Cells, Model_Waveforms, Protocols, db_proxy
 
 
 class CellAssessor:
@@ -20,92 +20,12 @@ class CellAssessor:
         self.abs_tolerance = 0.001
         self.collection_period_ms = 0.1
 
-    def build(self, restore_tolerances=True):
-        print("Getting cell properties for: " + self.path)
-
-        # Load cell hoc and get soma
-        os.chdir(self.path)
-        from neuron import h
-
-        # Create the cell
-        if self.is_abstract_cell():
-            self.test_cell = self.get_abstract_cell(h)
-        elif len(self.get_hoc_files()) > 0:
-            self.test_cell = self.get_cell_with_morphology(h)
-        else:
-            raise Exception("Could not find cell .hoc or abstract cell .mod file in: " + self.path)
-
-        # Get the root sections and try to find the soma
-        self.roots = h.SectionList()
-        self.roots.allroots()
-        self.roots = [s for s in self.roots]
-        self.somas = [sec for sec in self.roots if "soma" in sec.name().lower()]
-        if len(self.somas) == 1:
-            self.soma = self.somas[0]
-        elif len(self.somas) == 0 and len(self.roots) == 1:
-            self.soma = self.roots[0]
-        else:
-            raise Exception("Problem finding the soma section")
-
-        # set up stim
-        self.current = h.IClamp(self.soma(0.5))
-        self.current.delay = 50.0
-        self.current.amp = 0
-        self.current.dur = 100.0
-
-        self.vc = h.SEClamp(self.soma(0.5))
-        self.vc.dur1 = 0
-
-        # Set up variable collectors
-        self.t_collector = Collector(self.collection_period_ms, lambda: h.t)
-        self.v_collector = Collector(self.collection_period_ms, lambda: self.soma(0.5).v)
-        self.i_collector = Collector(self.collection_period_ms, lambda: self.vc.i)
-
-        # h.nrncontrolmenu()
-        self.nState = h.SaveState()
-        self.set_abs_tolerance(self.abs_tolerance)
-        self.sim_init()
-
-        if not self.is_abstract_cell() and restore_tolerances:
-            self.restore_tolerances()
-
-        return h
-
-    def is_abstract_cell(self):
-        return len(self.get_hoc_files()) == 0 and len(self.get_mod_files()) == 1
-
-    def get_abstract_cell(self, h):
-        cell_mod_file = self.get_mod_files()[0]
-        cell_mod_name = cell_mod_file.replace(".mod", "")
-
-        soma = h.Section()
-        soma.L = 10
-        soma.diam = 10
-        soma.cm = 318.31927  # Magic number, see: https://github.com/NeuroML/org.neuroml.export/issues/60
-
-        mod = getattr(h, cell_mod_name)(0.5, sec=soma)
-
-        self.abstract_soma = soma
-        self.abstract_mod = mod
-
-        return soma
-
-    def get_cell_with_morphology(self, h):
-        cell_hoc_file = self.get_hoc_files()[0]
-        cell_template = cell_hoc_file.replace(".hoc", "")
-        h.load_file(cell_hoc_file)
-        cell = getattr(h, cell_template)()
-        return cell
-
-    def get_hoc_files(self):
-        return [f for f in os.listdir(self.path) if f.endswith(".hoc")]
-
-    def get_mod_files(self):
-        return [f for f in os.listdir(self.path) if f.endswith(".mod")]
+    def get_model_nml_id(self):
+        return self.path.split("/")[-1]
 
     def get_cell_properties(self):
         self.cell_record = Cells(
-            Model_ID=self.path.split("/")[-1],
+            Model_ID=self.get_model_nml_id(),
             Stability_Range_Low=None,
             Stability_Range_High=None,
             Is_Intrinsically_Spiking=False,
@@ -119,9 +39,7 @@ class CellAssessor:
             Errors=None
         )
 
-        if not self.is_abstract_cell():
-            print("Running tolerance tool...")
-            self.setTolerances()
+        self.setTolerances()
 
         print("Getting stability range...")
         self.cell_record.Stability_Range_Low, self.cell_record.Stability_Range_High = self.getStabilityRange()
@@ -187,6 +105,178 @@ class CellAssessor:
 
             print("Tests finished, saving...")
             self.save_cell_record()
+
+    def get_cell_model_responses(self):
+        self.setTolerances()
+
+        self.connect_to_db()
+
+        t, v = self.get_ramp_response()
+        self.create_or_update_waveform("RAMP", None, None, t, "Voltage", v)
+
+
+
+    def create_or_update_waveform(self, protocol, label, meta_protocol, times, variable, values):
+        model_id = self.get_model_nml_id()
+
+        waveform = Model_Waveforms.get_or_none((Model_Waveforms.Model == model_id) &
+                                               (Model_Waveforms.Protocol == protocol) &
+                                               (Model_Waveforms.Meta_Protocol == meta_protocol) &
+                                               (Model_Waveforms.Waveform_Label == label))
+
+        if waveform is None:
+            waveform = Model_Waveforms()
+            waveform.Model = model_id
+            waveform.Protocol = protocol
+            waveform.Meta_Protocol = meta_protocol
+            waveform.Waveform_Label = label
+
+        waveform.Times = string.join([str(v) for v in times], ',')
+        waveform.Variable_Name = variable
+        waveform.Variable_Values = string.join([str(v) for v in values], ',')
+
+        waveform.save()
+
+    def get_ramp_response(self):
+        ramp_delay = 500
+        ramp_max_duration = 5000
+        ramp_increase_rate_per_second = 25
+        stop_after_n_spikes_found = 10
+
+        def test_condition(t, v):
+            num_spikes = self.getSpikeCount(v)
+
+            if num_spikes >= stop_after_n_spikes_found:
+                print("Got " + str(num_spikes) + " spikes at " + str(t[-1]) + " ms. Stopping ramp current injection.")
+                return True
+
+            return False
+
+        def ramp_protocol(flag):
+            # import pydevd
+            # pydevd.settrace('192.168.0.34', port=4200, suspend=False)
+
+            self.activity_flag = flag
+            h = self.build()
+            self.sim_init()
+
+            # Set up IClamp for arbitrary current
+            self.current.dur = 1e9
+            self.current.delay = 0
+
+            # Create ramp waveform
+            ramp_i = [0, 0, ramp_max_duration / 1000.0 * ramp_increase_rate_per_second, 0]
+            ramp_t = [0, ramp_delay, ramp_delay + ramp_max_duration, ramp_delay + ramp_max_duration]
+
+            rv = h.Vector(ramp_i)
+            tv = h.Vector(ramp_t)
+
+            # Play ramp waveform into the IClamp (last param is continuous=True)
+            rv.play(self.current._ref_amp, tv, 1)
+            h.stdinit()
+
+            t, v = self.runFor(ramp_delay + ramp_max_duration, test_condition)
+
+            result = {"t": t.tolist(), "v": v.tolist()}  # needs a list conversion
+
+            plt.clf()
+            plt.plot(t, v, label="Ramp Response")
+            plt.legend()
+            plt.savefig("rampResponse.png")
+
+            return result
+
+        runner = NeuronRunner(ramp_protocol)
+        runner.DONTKILL = True
+        result = runner.run()
+        return result["t"], result["v"]
+
+    def load_cell(self):
+        # Load cell hoc and get soma
+        os.chdir(self.path)
+        from neuron import h
+
+        # Create the cell
+        if self.is_abstract_cell():
+            self.test_cell = self.get_abstract_cell(h)
+        elif len(self.get_hoc_files()) > 0:
+            self.test_cell = self.get_cell_with_morphology(h)
+        else:
+            raise Exception("Could not find cell .hoc or abstract cell .mod file in: " + self.path)
+
+        # Get the root sections and try to find the soma
+        self.roots = h.SectionList()
+        self.roots.allroots()
+        self.roots = [s for s in self.roots]
+        self.somas = [sec for sec in self.roots if "soma" in sec.name().lower()]
+        if len(self.somas) == 1:
+            self.soma = self.somas[0]
+        elif len(self.somas) == 0 and len(self.roots) == 1:
+            self.soma = self.roots[0]
+        else:
+            raise Exception("Problem finding the soma section")
+
+        return h
+
+    def build(self, restore_tolerances=True):
+        print("Loading cell: " + self.path)
+        h = self.load_cell()
+
+        # set up stim
+        self.current = h.IClamp(self.soma(0.5))
+        self.current.delay = 50.0
+        self.current.amp = 0
+        self.current.dur = 100.0
+
+        self.vc = h.SEClamp(self.soma(0.5))
+        self.vc.dur1 = 0
+
+        # Set up variable collectors
+        self.t_collector = Collector(self.collection_period_ms, lambda: h.t)
+        self.v_collector = Collector(self.collection_period_ms, lambda: self.soma(0.5).v)
+        self.i_collector = Collector(self.collection_period_ms, lambda: self.vc.i)
+
+        # h.nrncontrolmenu()
+        self.nState = h.SaveState()
+        self.set_abs_tolerance(self.abs_tolerance)
+        self.sim_init()
+
+        if not self.is_abstract_cell() and restore_tolerances:
+            self.restore_tolerances()
+
+        return h
+
+    def is_abstract_cell(self):
+        return len(self.get_hoc_files()) == 0 and len(self.get_mod_files()) == 1
+
+    def get_abstract_cell(self, h):
+        cell_mod_file = self.get_mod_files()[0]
+        cell_mod_name = cell_mod_file.replace(".mod", "")
+
+        soma = h.Section()
+        soma.L = 10
+        soma.diam = 10
+        soma.cm = 318.31927  # Magic number, see: https://github.com/NeuroML/org.neuroml.export/issues/60
+
+        mod = getattr(h, cell_mod_name)(0.5, sec=soma)
+
+        self.abstract_soma = soma
+        self.abstract_mod = mod
+
+        return soma
+
+    def get_cell_with_morphology(self, h):
+        cell_hoc_file = self.get_hoc_files()[0]
+        cell_template = cell_hoc_file.replace(".hoc", "")
+        h.load_file(cell_hoc_file)
+        cell = getattr(h, cell_template)()
+        return cell
+
+    def get_hoc_files(self):
+        return [f for f in os.listdir(self.path) if f.endswith(".hoc")]
+
+    def get_mod_files(self):
+        return [f for f in os.listdir(self.path) if f.endswith(".mod")]
 
     def sim_init(self):
         from neuron import h
@@ -457,7 +547,8 @@ class CellAssessor:
 
             if crossings > 2:
                 print(
-                "No bias current exists for steady state at " + str(targetV) + " mV membrane potential (only spikes)")
+                    "No bias current exists for steady state at " + str(
+                        targetV) + " mV membrane potential (only spikes)")
                 result = None
             else:
                 result = self.vc.i
@@ -503,9 +594,15 @@ class CellAssessor:
         return result
 
     def setTolerances(self, tstop=100):
+
+        print("Running tolerance tool...")
+        if self.is_abstract_cell():
+            print("Cell is abstract, skipping tolerance tool")
+            return
+
         def run_atol_tool():
-            import pydevd
-            pydevd.settrace('192.168.0.34', port=4200, suspend=False)
+            # import pydevd
+            # pydevd.settrace('192.168.0.34', port=4200, suspend=False)
 
             h = self.build(restore_tolerances=False)
 

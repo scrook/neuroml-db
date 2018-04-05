@@ -130,6 +130,22 @@ class ModelManager:
             assessor.save_cell_record()
             raise
 
+    def get_cell_model_responses(self, model_dir):
+        NEURON_folder = self.cell_model_to_neuron(model_dir)
+
+        assessor = CellAssessor(path=NEURON_folder)
+
+        try:
+            assessor.get_cell_model_responses()
+
+        except:
+            # print("Encountered an error. Saving progress...")
+            # import traceback
+            #
+            # assessor.cell_record.Errors = traceback.format_exc()
+            # assessor.save_cell_record()
+            raise
+
     def parse_csv(self, csv_path):
         with open(csv_path, "r") as f:
             rows = list(csv.DictReader(f))
