@@ -4,7 +4,7 @@ rm x*.sh
 
 dos2unix simrun.sh
 
-split -d --additional-suffix=.sh -l  $(expr `wc simrun.sh | cut -d ' ' -f3` / $1 + `expr $1 - 1`) simrun.sh
+split -d --additional-suffix=.sh -l $(expr `wc -l simrun.sh | cut -d ' ' -f1` / $1 + `expr $1 - 1`) simrun.sh
 
 chmod -R +x .
 

@@ -50,7 +50,7 @@ class CellAssessor:
             self.save_cell_record()
 
         print("Getting resting voltage...")
-        self.cell_record.Resting_Voltage = self.getRestingV()
+        self.cell_record.Resting_Voltage = self.getRestingV()["rest"]
         # self.cell_record.Resting_Voltage = -76.0
 
         # If intrinsically spiking, skip the remaining tests
@@ -106,23 +106,81 @@ class CellAssessor:
             print("Tests finished, saving...")
             self.save_cell_record()
 
-    def get_cell_model_responses(self):
+    def get_cell_model_responses(self, protocols = ["STEADY_STATE", "RAMP", "LONG_SQUARE"]):
         self.setTolerances()
 
-        self.connect_to_db()
+        steady_state_delay = 1000 # 1000
 
-        t, v = self.get_ramp_response()
-        self.create_or_update_waveform("RAMP", None, None, t, "Voltage", v)
+        db, server = self.connect_to_db()
+
+        try:
+
+            id = self.get_model_nml_id()
+
+            import pydevd
+            pydevd.settrace('192.168.0.34', port=4200, suspend=False)
+
+            print("Removing existing model waveforms: " + str(protocols))
+            Model_Waveforms.delete().where((Model_Waveforms.Model == id) & (Model_Waveforms.Protocol.in_(protocols))).execute()
+
+            cell_props = Cells.get(Cells.Model_ID == id)
+
+        finally:
+            server.stop()
+
+        if "STEADY_STATE" in protocols:
+            # Reach steady state and save model state
+            result = self.getRestingV(save_resting_state=True, run_time=steady_state_delay)
+            self.save_vi_waveforms(protocol="STEADY_STATE", label=None, meta_protocol=None, times=result["t"], voltage=result["v"], current=result["i"])
+
+        if "RAMP" in protocols:
+            # # From steady state, run ramp injection
+            result = self.get_ramp_response(ramp_delay=steady_state_delay,
+                                             ramp_max_duration=5*1000,
+                                             ramp_increase_rate_per_second=cell_props.Rheobase_High,
+                                             stop_after_n_spikes_found=10,
+                                             restore_state=True)
+
+            self.save_vi_waveforms(protocol="RAMP", label=None, meta_protocol=None, times=result["t"], voltage=result["v"], current=result["i"])
+
+
+        if "LONG_SQUARE" in protocols:
+            # From steady state, run long square current protocol
+            square_low = -cell_props.Rheobase_High
+            square_high = cell_props.Rheobase_High * 2.0
+            square_steps = 11
+
+            amps = np.linspace(square_low,square_high,num=square_steps).tolist()
+
+            for amp in amps:
+                result = self.get_square_response(delay=steady_state_delay, duration=1000, post_delay=250, amp=amp, restore_state=True)
+                self.save_vi_waveforms(protocol="LONG_SQUARE", label="%.3f nA"%amp, meta_protocol=None, times=result["t"], voltage=result["v"], current=result["i"])
 
 
 
-    def create_or_update_waveform(self, protocol, label, meta_protocol, times, variable, values):
+
+    def save_vi_waveforms(self, protocol, label, meta_protocol, times, voltage, current):
+        db, server = self.connect_to_db()
+
+        try:
+
+            with db.atomic() as transaction:
+                self.create_or_update_waveform(protocol, label, meta_protocol, times, "Voltage", voltage)
+                self.create_or_update_waveform(protocol, label, meta_protocol, times, "Current", current)
+
+        finally:
+            server.stop()
+
+    def create_or_update_waveform(self, protocol, label, meta_protocol, times, variable_name, values):
+        print("Saving waveform...")
+
         model_id = self.get_model_nml_id()
 
         waveform = Model_Waveforms.get_or_none((Model_Waveforms.Model == model_id) &
                                                (Model_Waveforms.Protocol == protocol) &
                                                (Model_Waveforms.Meta_Protocol == meta_protocol) &
-                                               (Model_Waveforms.Waveform_Label == label))
+                                               (Model_Waveforms.Waveform_Label == label) &
+                                               (Model_Waveforms.Variable_Name == variable_name))
 
         if waveform is None:
             waveform = Model_Waveforms()
@@ -130,18 +188,66 @@ class CellAssessor:
             waveform.Protocol = protocol
             waveform.Meta_Protocol = meta_protocol
             waveform.Waveform_Label = label
+            waveform.Variable_Name = variable_name
 
         waveform.Times = string.join([str(v) for v in times], ',')
-        waveform.Variable_Name = variable
         waveform.Variable_Values = string.join([str(v) for v in values], ',')
 
         waveform.save()
+        print("SAVED")
 
-    def get_ramp_response(self):
-        ramp_delay = 500
-        ramp_max_duration = 5000
-        ramp_increase_rate_per_second = 25
-        stop_after_n_spikes_found = 10
+    def get_square_response(self,
+                            delay,
+                            duration,
+                            post_delay,
+                            amp,
+                            restore_state=False):
+
+        def square_protocol(flag):
+            # import pydevd
+            # pydevd.settrace('192.168.0.34', port=4200, suspend=False)
+
+            self.activity_flag = flag
+            h = self.build()
+
+            # Set the sqauare current injector
+            self.current.dur = duration
+            self.current.delay = delay
+            self.current.amp = amp
+
+            if restore_state:
+                self.restore_state()
+                t, v = self.runFor(duration+post_delay)
+            else:
+                h.stdinit()
+                t, v = self.runFor(delay+duration+post_delay)
+
+            result = {"t": t.tolist(), "v": v.tolist(), "i": self.ic_i_collector.get_values_list()}
+
+            plt.clf()
+            plt.plot(t, v, label="Long Square Response V @ " + str(amp) + " nA")
+            plt.legend()
+            plt.savefig("longSquareResponseV" + str(amp) + "nA.png")
+
+            plt.clf()
+            plt.plot(t, result["i"], label="Long Square Response I @ " + str(amp) + " nA")
+            plt.legend()
+            plt.savefig("longSquareResponseI" + str(amp) + "nA.png")
+
+            return result
+
+        runner = NeuronRunner(square_protocol)
+        runner.DONTKILL = True
+        result = runner.run()
+        print("GOT RESULT FROM RUNNER")
+        return result
+
+    def get_ramp_response(self,
+                          ramp_delay,
+                          ramp_max_duration,
+                          ramp_increase_rate_per_second,
+                          stop_after_n_spikes_found,
+                          restore_state=False):
 
         def test_condition(t, v):
             num_spikes = self.getSpikeCount(v)
@@ -158,7 +264,6 @@ class CellAssessor:
 
             self.activity_flag = flag
             h = self.build()
-            self.sim_init()
 
             # Set up IClamp for arbitrary current
             self.current.dur = 1e9
@@ -173,28 +278,40 @@ class CellAssessor:
 
             # Play ramp waveform into the IClamp (last param is continuous=True)
             rv.play(self.current._ref_amp, tv, 1)
-            h.stdinit()
 
-            t, v = self.runFor(ramp_delay + ramp_max_duration, test_condition)
+            if restore_state:
+                self.restore_state(keep_events=True)  # Keep events ensures .play() works
+                t, v = self.runFor(ramp_max_duration, test_condition)
+            else:
+                h.stdinit()
+                t, v = self.runFor(ramp_delay + ramp_max_duration, test_condition)
 
-            result = {"t": t.tolist(), "v": v.tolist()}  # needs a list conversion
+            i = self.ic_i_collector.get_values_list()
+
+            result = {"t": t.tolist(), "v": v.tolist(), "i": i}
 
             plt.clf()
             plt.plot(t, v, label="Ramp Response")
             plt.legend()
-            plt.savefig("rampResponse.png")
+            plt.savefig("rampResponseV.png")
+
+            plt.clf()
+            plt.plot(t, i, label="Ramp Response")
+            plt.legend()
+            plt.savefig("rampResponseI.png")
 
             return result
 
         runner = NeuronRunner(ramp_protocol)
         runner.DONTKILL = True
         result = runner.run()
-        return result["t"], result["v"]
+        print("GOT RESULT FROM RUNNER")
+        return result
 
     def load_cell(self):
         # Load cell hoc and get soma
         os.chdir(self.path)
-        from neuron import h
+        from neuron import h, gui
 
         # Create the cell
         if self.is_abstract_cell():
@@ -234,7 +351,8 @@ class CellAssessor:
         # Set up variable collectors
         self.t_collector = Collector(self.collection_period_ms, lambda: h.t)
         self.v_collector = Collector(self.collection_period_ms, lambda: self.soma(0.5).v)
-        self.i_collector = Collector(self.collection_period_ms, lambda: self.vc.i)
+        self.vc_i_collector = Collector(self.collection_period_ms, lambda: self.vc.i)
+        self.ic_i_collector = Collector(self.collection_period_ms, lambda: self.current.i)
 
         # h.nrncontrolmenu()
         self.nState = h.SaveState()
@@ -279,7 +397,7 @@ class CellAssessor:
         return [f for f in os.listdir(self.path) if f.endswith(".mod")]
 
     def sim_init(self):
-        from neuron import h
+        from neuron import h, gui
         h.stdinit()
         self.clear_tvi()
         h.tstop = 1000
@@ -289,7 +407,8 @@ class CellAssessor:
     def clear_tvi(self):
         self.t_collector.clear()
         self.v_collector.clear()
-        self.i_collector.clear()
+        self.vc_i_collector.clear()
+        self.ic_i_collector.clear()
 
     def set_abs_tolerance(self, abs_tol):
         from neuron import h, gui
@@ -324,8 +443,8 @@ class CellAssessor:
 
     def get_tv(self):
         from neuron import h
-        v_np = self.v_collector.get_np_values()
-        t_np = self.t_collector.get_np_values()
+        v_np = self.v_collector.get_values_np()
+        t_np = self.t_collector.get_values_np()
 
         if np.isnan(v_np).any():
             raise NumericalInstabilityException(
@@ -408,20 +527,34 @@ class CellAssessor:
 
         return current_range
 
-    def save_state(self):
+    def save_state(self, state_file='state.bin'):
         from neuron import h
         ns = h.SaveState()
-        sf = h.File('state.bin')
+        sf = h.File(state_file)
         ns.save()
         ns.fwrite(sf)
 
-    def restore_state(self):
+    def restore_state(self, state_file='state.bin', keep_events=False):
         from neuron import h
         ns = h.SaveState()
-        sf = h.File('state.bin')
-        h.stdinit()
+        sf = h.File(state_file)
         ns.fread(sf)
-        ns.restore()
+
+        # Workaround, see: https://www.neuron.yale.edu/phpBB/viewtopic.php?f=2&t=3845&p=16542#p16542
+        if keep_events:
+            ns.restore(1)
+            self.t_collector.stim.start = h.t
+            self.v_collector.stim.start = h.t
+            self.vc_i_collector.stim.start = h.t
+            self.ic_i_collector.stim.start = h.t
+
+        h.stdinit()
+
+        if keep_events:
+            ns.restore(1)
+        else:
+            ns.restore()
+
         h.cvode_active(1)
 
     def find_border(self, lowerLevel, upperLevel,
@@ -542,7 +675,7 @@ class CellAssessor:
 
             t, v = self.runFor(500)
 
-            i = self.i_collector.get_np_values()
+            i = self.vc_i_collector.get_values_np()
             crossings = self.getSpikeCount(i)
 
             if crossings > 2:
@@ -566,26 +699,34 @@ class CellAssessor:
         runner = NeuronRunner(bias_protocol)
         return runner.run()
 
-    def getRestingV(self):
+    def getRestingV(self, run_time=1000, save_resting_state=False):
         def rest_protocol(flag):
             self.activity_flag = flag
             self.build()
             self.sim_init()
 
-            t, v = self.runFor(1000)
+            # import pydevd
+            # pydevd.settrace('192.168.0.34', port=4200, suspend=False)
+
+            t, v = self.runFor(run_time)
+
+            result = { "t": t.tolist(), "v":v.tolist(), "i":self.ic_i_collector.get_values_list() }
 
             crossings = self.getSpikeCount(v)
 
             if crossings > 1:
                 print("No rest - cell produces multiple spikes without stimulation.")
-                result = None
+                result["rest"] = None
             else:
-                result = v[-1]
+                result["rest"] = v[-1]
 
             plt.clf()
-            plt.plot(t, v, label="Resting V " + str(result))
+            plt.plot(t, v, label="Resting V " + str(result["rest"]))
             plt.legend()
             plt.savefig("restingV.png")
+
+            if save_resting_state:
+                self.save_state()
 
             return result
 
@@ -611,6 +752,11 @@ class CellAssessor:
             h.tstop = tstop
 
             print("Getting error tolerances...")
+
+            h.nrncontrolmenu()
+            h.newPlotV()
+
+
             h.AtolTool[0].anrun()
             h.AtolTool[0].rescale()
             h.AtolTool[0].fill_used()

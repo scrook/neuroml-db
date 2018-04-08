@@ -26,5 +26,8 @@ class Collector:
     def collect(self, new_value):
         self.values.append(new_value())
 
-    def get_np_values(self):
-        return np.array(self.values[1:])
+    def get_values_np(self):
+        return np.array(self.get_values_list())
+
+    def get_values_list(self):
+        return self.values[1:]

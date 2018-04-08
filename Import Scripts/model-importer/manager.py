@@ -119,15 +119,19 @@ class ModelManager:
 
         assessor = CellAssessor(path=NEURON_folder)
 
+        id = assessor.get_model_nml_id()
+
         try:
             assessor.get_cell_properties()
+            self.update_model_simulation_status(id, status="CURRENT")
 
         except:
             print("Encountered an error. Saving progress...")
-            import traceback
 
-            assessor.cell_record.Errors = traceback.format_exc()
             assessor.save_cell_record()
+
+            self.update_model_simulation_status(id, status="ERROR")
+
             raise
 
     def get_cell_model_responses(self, model_dir):
@@ -135,16 +139,35 @@ class ModelManager:
 
         assessor = CellAssessor(path=NEURON_folder)
 
+        id = assessor.get_model_nml_id()
+
         try:
             assessor.get_cell_model_responses()
 
+            self.update_model_simulation_status(id, status="CURRENT")
+
         except:
-            # print("Encountered an error. Saving progress...")
-            # import traceback
-            #
-            # assessor.cell_record.Errors = traceback.format_exc()
-            # assessor.save_cell_record()
+            print("Encountered an error. Saving progress...")
+            self.update_model_simulation_status(id, status="ERROR")
+
             raise
+
+    def update_model_simulation_status(self, id, status):
+
+        print("Updating model simulation status...")
+        self.connect_to_db()
+
+        model = Models.get(Models.Model_ID == id)
+        model.Simulation_Status = status
+
+        if status == "ERROR":
+            import traceback
+            model.Errors = traceback.format_exc()
+
+        if status == "CURRENT":
+            model.Errors = None
+
+        model.save()
 
     def parse_csv(self, csv_path):
         with open(csv_path, "r") as f:

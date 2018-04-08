@@ -49,6 +49,8 @@ class Models(BaseModel):
     File_MD5_Checksum = TextField()
     File_Updated = DateTimeField()
     File = TextField()
+    Simulation_Status = TextField()
+    Errors = TextField()
     Notes = TextField()
     ID_Helper = IntegerField()
 
@@ -88,7 +90,6 @@ class Cells(BaseModel):
     Threshold_Current_High = FloatField()
     Bias_Voltage = FloatField()
     Bias_Current = FloatField()
-    Errors = TextField()
 
 class Protocols(BaseModel):
     ID = CharField(primary_key=True)

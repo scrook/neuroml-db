@@ -37,8 +37,8 @@ files = []
 includes = {}
 
 def main():
-    import pydevd
-    pydevd.settrace('10.211.55.3', port=4200, stdoutToServer=True, stderrToServer=True)
+    # import pydevd
+    # pydevd.settrace('10.211.55.3', port=4200, stdoutToServer=True, stderrToServer=True)
 
     # Read the XML files and their includes, using depth-first traversal
     getFilesAndTheirDependencies(startFile)

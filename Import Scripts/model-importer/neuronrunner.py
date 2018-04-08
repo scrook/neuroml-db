@@ -14,10 +14,11 @@ class NumericalInstabilityException(Exception):
 
 class NeuronRunner:
     def __init__(self, target, kill_slow_sims=True):
-        self.DONTKILL = False  # True
+        self.DONTKILL = False  # Set this to True when debugging
         self.sim_t = Value('d', -1)
         self.sim_t_previous = -1
         self.kill_slow_sims = kill_slow_sims
+        self.max_clock_wait_time_s_for_1ms_of_sim_time = 10
         self.sim_result_file = os.getcwd() + "/sim_result_" + str(random.randint(0, 999999)) + ".json"
         self.killed_process = False
 
@@ -34,6 +35,7 @@ class NeuronRunner:
                 result["error"] = traceback.format_exc()
 
             import json
+            print("OPENING FILE FOR SAVING...")
             with open(self.sim_result_file, "w") as f:
                 json.dump(result, f)
                 print("Saved result to: " + self.sim_result_file)
@@ -66,9 +68,13 @@ class NeuronRunner:
                 "Stopped early because either the simulation speed was too low or the activity_flag was not updated")
         else:
             try:
+                print("OPENING FILE FOR READING...")
                 with open(self.sim_result_file) as f:
                     result = json.load(f)
+
+                print("REMOVING FILE...")
                 os.remove(self.sim_result_file)
+                print("REMOVED")
             except:
                 raise Exception("NEURON process crashed before result or error information could be saved.")
 
@@ -83,15 +89,20 @@ class NeuronRunner:
 
         if self.sim_t_previous != -1:
             sim_mseconds = sim_t_now - self.sim_t_previous
-            speed = sim_mseconds / clock_seconds
-            print("Simulation time: " + str(sim_t_now) + " ms. Speed: %.2f ms/s" % speed)
+            if sim_mseconds > 0:
+                speed = sim_mseconds / clock_seconds
+                print("Simulation time: " + str(sim_t_now) + " ms. Speed: %.4f ms/s" % speed)
+            else:
+                speed = 1.0 / clock_seconds
+                print("Simulation time: " + str(sim_t_now) + " ms. Speed: <%.4f ms/s" % speed)
+
 
     def reset_killer(self, renew=True):
         if hasattr(self, "killer"):
             self.killer.cancel()
 
         if self.kill_slow_sims and renew:
-            self.killer = Timer(10, self.kill)
+            self.killer = Timer(self.max_clock_wait_time_s_for_1ms_of_sim_time, self.kill)
             self.killer.start()
 
         self.last_reset = datetime.datetime.now()

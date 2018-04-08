@@ -70,9 +70,8 @@ def check_install_dependencies():
 
 
 if __name__ == "__main__":
-    import pydevd
-
-    pydevd.settrace('192.168.0.34', port=4200, suspend=False)
+    # import pydevd
+    # pydevd.settrace('192.168.0.34', port=4200, suspend=False)
 
     check_install_dependencies()
 
@@ -83,3 +82,5 @@ if __name__ == "__main__":
     params = sys.argv[2:]
 
     eval(command + "()")
+
+    print("EXITING...")

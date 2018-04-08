@@ -1,5 +1,5 @@
-import pydevd
-pydevd.settrace('10.211.55.3', port=4200, stdoutToServer=True, stderrToServer=True)
+# import pydevd
+# pydevd.settrace('10.211.55.3', port=4200, stdoutToServer=True, stderrToServer=True)
 
 db_server = "spike.asu.edu"
 db_name = "neuroml_dev"
