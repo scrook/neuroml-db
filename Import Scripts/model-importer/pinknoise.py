@@ -50,8 +50,8 @@ import cPickle
 
 np.random.seed(0)
 
-import pydevd
-pydevd.settrace('192.168.0.34', port=4200, suspend=False)
+# import pydevd
+# pydevd.settrace('192.168.0.34', port=4200, suspend=False)
 
 #--------------------------------------------------------------------
 #--------Set these parameters----------------------------------------
