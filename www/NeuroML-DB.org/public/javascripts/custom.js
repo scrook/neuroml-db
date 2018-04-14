@@ -83,9 +83,6 @@ function getProtocolData(doneCallback) {
     }
 
 
-	//Reset state
-    //clearCharts();
-    //$("#plotsLoading").hide();
     $("#loadingImage").show();
     $("#plotError").hide();
 

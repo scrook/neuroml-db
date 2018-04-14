@@ -21,19 +21,19 @@
           end
           %>
 
-          <div><a <%= model_atag_params(ont_ids[count]) %> title="Model Information for <%=ont_ids[count]%>" ><b><%= ont_names[count] %></b></a>
-            <div style="color:gray; margin-left:20px;font-size:90%;">From: <%=Model.GetModelShortPub(ont_ids[count])%></div>
+          <div><a <%= model_atag_params(ont_ids[count]) %> title="Model Information for <%=ont_ids[count]%>" ><span style="font-weight:bold"><%= ont_names[count] %></span></a>
+            <div style="color:gray; margin-left:20px;font-size:14px;">From: <%=Model.GetModelShortPub(ont_ids[count])%></div>
           </div>
 
           <% if ont_relations && ont_relations.length > 0 && ont_relations[count] %>
             <% if ont_relations[count][:Type] == :Gap %>
 
-              <div style="padding-left: 20px; font-size: 90%;"><%= ont_relations[count][:End1][:Property] %> <b><%= ont_relations[count][:End1][:Subject] %></b></div>
-              <div style="padding-left: 20px; font-size: 90%; margin-bottom: 15px;"><%= ont_relations[count][:End2][:Property] %> <b><%= ont_relations[count][:End2][:Subject] %></b></div>
+              <div style="padding-left: 20px; font-size: 14px;"><%= ont_relations[count][:End1][:Property] %> <span style="font-weight:bold"><%= ont_relations[count][:End1][:Subject] %></span></div>
+              <div style="padding-left: 20px; font-size: 14px; margin-bottom: 15px;"><%= ont_relations[count][:End2][:Property] %> <span style="font-weight:bold"><%= ont_relations[count][:End2][:Subject] %></span></div>
 
             <% elsif ont_relations[count][:Type] == :Direct || ont_relations[count][:Type] == :Keyword %>
 
-              <div style="padding-left: 20px; font-size: 90%; margin-bottom: 15px;"><%= ont_relations[count][:Property] %> <b><%= ont_relations[count][:Subject] %></b></div>
+              <div style="padding-left: 20px; font-size: 14px; margin-bottom: 15px;"><%= ont_relations[count][:Property] %> <span style="font-weight:bold"><%= ont_relations[count][:Subject] %></span></div>
 
             <% end %>
 

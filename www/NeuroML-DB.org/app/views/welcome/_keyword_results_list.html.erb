@@ -10,7 +10,7 @@
           type = model_types[count]
         end
     %>
-    <div style="margin-bottom: 1em;"><a title="Model Information for <%=model_id%>" <%= model_atag_params(model_id) %>><b><%= model_names[count] %> <%= type %></b></a> <div style="color:gray; margin-left:12px;font-size:90%;">From: <%=Model.GetModelShortPub(model_id)%></div></div>
+    <div style="margin-bottom: 1em;"><a title="Model Information for <%=model_id%>" <%= model_atag_params(model_id) %>><b><%= model_names[count] %> <%= type %></b></a> <div style="color:gray; margin-left:12px;font-size:14px;">From: <%=Model.GetModelShortPub(model_id)%></div></div>
 
     <% count = count + 1 %>
 <% end %>

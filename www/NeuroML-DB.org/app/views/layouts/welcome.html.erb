@@ -44,27 +44,19 @@
 
 <body class="home">
 
-<!-- HEADER -->
+
 <div id="header">
   <div class="wrapper">
-    <a href="/"><%= image_tag "neuro_1.png", :id => 'logo', :alt => 'NeuroML', :width => '380px', :height => '115px' %></a>
-    <div id="caption-text">
-      <span>Description Language for Models in Neuroscience</span>
+    <div class="logo">
+      <a href="/"><img alt="NeuroML" height="115px" id="logo" src="/images/neuro_1.png" width="380px"></a>
+      <div id="alpha">Database</div>
     </div>
-    <div id="alpha">
-      Database
-    </div>
-
-
-    <!--===== End of Search ====== -->
-
-
   </div>
-  <!-- ENDS search -->
 </div>
-<!-- ENDS wrapper-header -->
+
+
 </div>
-<!-- ENDS HEADER -->
+
 
 <!-- Menu -->
 <div id="menu">
@@ -89,20 +81,24 @@
 
 
 
-<div id="bottom">
-  <div class="wrapper">
-    <div id="bottom-text">Website & Images Copyright NeuroML &copy; <%= Time.now.year %>.<br/> All rights reserved.</div>
-    <div id="bottom-middle-text">
-      <ul>
-        <li>For questions about the NeuroML Database, contact:</li>
-        <li><a href="mailto:neuroml.info@gmail.com"><b>neuroml.info@gmail.com</b></a></li>
-      </ul>
-    </div>
-    <div id="bottom-middle-text">
-      <ul>
-        <li>Links:</li>
-        <li><a href="/search_test">Search Test</a>&nbsp;|&nbsp;<a href="/modeldb_model_list">ModelDB WS</a> </li>
-      </ul>
+
+<div class="wrapper">
+  <div id="bottom">
+    <div id="bottom-container">
+      <div id="bottom-text">Website & Images Copyright NeuroML &copy; <%= Time.now.year %><br/> All rights reserved</div>
+      <div id="bottom-middle-text">
+        <ul>
+          <li>For questions about the NeuroML Database</li>
+          <li>Contact: <a href="mailto:neuroml.info@gmail.com"><b>neuroml.info@gmail.com</b></a></li>
+        </ul>
+      </div>
+      <div id="bottom-middle-text">
+        <ul>
+          <li>Links:</li>
+          <li><a href="/search_test">Search Test</a>&nbsp;|&nbsp;<a href="/modeldb_model_list">ModelDB WS</a> </li>
+        </ul>
+      </div>
+      <div style="clear:both;"></div>
     </div>
   </div>
 </div>

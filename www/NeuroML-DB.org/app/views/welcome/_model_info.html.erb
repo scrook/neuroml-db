@@ -2,21 +2,16 @@
 
   <!-- title -->
   <div id="page-title">
-    <h4>Model Information</h4><!--<div id="close_model" onclick="closemodel()">X</div>-->
+    <% if @name.downcase.include? @type.downcase %>
+        <h4><%= @name %></h4>
+    <% else %>
+        <h4><%= @name %> <%= @type %></h4>
+    <% end %>
   </div>
   <table id="model_info">
     <tr>
-      <td class="keyword" style="width:120px;">
-        Model Name:
-      </td>
-
-      <td class="description" id="modelName">
-        <%= @name %>
-      </td>
-    </tr>
-
-    <tr>
       <td class="keyword">
+        <div style="width:116px"></div>
         Model Type:
       </td>
 
@@ -79,7 +74,7 @@
       </td>
 
       <td class="description">
-        <div style="max-height:120px; overflow:auto; padding: 1px 0; width:637px;">
+        <div class="scroll-list">
         <% if @auth_list.any? %>
             <% @auth_list.each do |author| %>
                 <%= author %> &nbsp;
@@ -140,7 +135,7 @@
             <% path="NetworkML" %>
         <% else %>
         <% end %>
-        NeuroML Files
+        NeuroML Files:
       </td>
 
       <td class="description">
@@ -150,7 +145,7 @@
             DOWNLOAD MODEL FILES
           </div>
         </a>
-        <div style="max-height:200px; overflow: auto; width:637px;">
+        <div class="scroll-list">
           <table>
             <thead>
             <tr>
@@ -185,7 +180,7 @@
     <%
     def DisplayRelatedModels(modelList)
        if modelList.any? %>
-            <div style="max-height:120px; overflow:auto; padding: 1px 0; width:637px;">
+            <div class="scroll-list">
             <% modelList.each do |model| %>
                 <div><a <%= model_atag_params(model["Model_ID"]) %> ><%= model["Name"] %></a></div>
             <% end %>
@@ -276,16 +271,16 @@
                 <input type="hidden" id="caConc" value="<%= caConcLevels.last[:Name] %>"/>
                 <input type="hidden" id="subProtocol" value="Activation"/>
                 <div id="plotsLoading" style="display:none;">
-                  <div style="width: 637px;position: absolute; display: flex;height: 645px;align-items: center;justify-content: center;background: #DDDDDD;">
+                  <div style="width: 738px;position: absolute; display: flex;height: 645px;align-items: center;justify-content: center;background: #DDDDDD;">
                     <img id="loadingImage" src="../images/loading.gif" style="height: 25px;width: 25px;">
                     <div id="plotError" style="display: none; padding: 30px;">There was a problem loading plots for this protocol. See Notes below for more information.</div>
                   </div>
                 </div>
 
                 <!--Render voltage clamp charts using chart.js library-->
-                <canvas id="canvasV" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;" width="637" height="215"></canvas>
-                <canvas id="canvasG" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;" width="637" height="215"></canvas>
-                <canvas id="canvasI" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;" width="637" height="215"></canvas>
+                <canvas id="canvasV" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;" width="738" height="215"></canvas>
+                <canvas id="canvasG" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;" width="738" height="215"></canvas>
+                <canvas id="canvasI" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;" width="738" height="215"></canvas>
 
 
                 <div style="text-align: center; margin-top:15px;">Tip: Use the mouse wheel/trackpad to zoom and drag mouse to pan. On mobile devices, pinch and drag for same results. <a onclick="resetChartZooms(); return false;" href="resetZoom">Click here to reset zoom</a></div>

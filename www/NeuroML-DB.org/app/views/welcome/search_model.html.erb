@@ -38,7 +38,7 @@
             </fieldset>
           </div>
         </form>
-        <div style="color: gray; font-size: 90%; text-align: center;">Hint: Use quotes for exact matches (e.g. "layer 2/3" bipolar cell irregular burst)</div>
+        <div id="search-hint">Hint: Use quotes for exact matches (e.g. "layer 2/3" bipolar cell irregular burst)</div>
       </div>
 
       <div id="search_container" style="display: none;">
@@ -49,10 +49,6 @@
           <div id="keyword_results">
           </div>
         </div>
-        <!--
-        <br />
-        <hr/><br />
-        -->
         <div id="ontology_search_results">
           <div id="ontology_header">
             <h2>Ontology Based Recommendations</h2>
@@ -60,17 +56,16 @@
           <div id="ontology_results">
           </div>
         </div>
-
         <div id="ontology_search_results_error_template" style="display: none;">
           <!--Defines template for ontology results errors-->
           <p>Sorry, there was a problem getting the results.</p>
           <p><b>[statusText]</b> while calling:</p>
           <p><a href="[url]" target="_blank">[url]</a></p>
         </div>
-
         <div id="loadingView" style="display:none;">
-          <image src="../images/loading.gif" style="height: 25px; width: 25px; margin-top: 50px;" />
+          <image src="../images/loading.gif" style="height: 25px; width: 25px; margin-top: 50px; margin-bottom: 50px;" />
         </div>
+        <div style="clear:both"></div>
       </div>
 
 
