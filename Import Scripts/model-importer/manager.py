@@ -11,12 +11,12 @@ import hashlib
 import xml.etree.ElementTree as ET
 from dateutil.parser import parse as parsedate
 
-
 from playhouse.db_url import connect
 from sshtunnel import SSHTunnelForwarder
 
 from tables import *
 from cellassessor import CellAssessor
+
 
 class ModelManager:
     def __init__(self):
@@ -84,26 +84,26 @@ class ModelManager:
 
     def validate_db_model(self, dirs):
 
-            # Build node tree from the DB data
-            self.parse_directories(dirs)
+        # Build node tree from the DB data
+        self.parse_directories(dirs)
 
-            # Convert the DB tree to single-folder simulation
-            self.to_simulation("temp/sim", clear_contents=True)
+        # Convert the DB tree to single-folder simulation
+        self.to_simulation("temp/sim", clear_contents=True)
 
-            with ModelManager() as sim_version:
+        with ModelManager() as sim_version:
 
-                # Build the tree from the simulation files
-                sim_version.parse_directories(["temp/sim"])
+            # Build the tree from the simulation files
+            sim_version.parse_directories(["temp/sim"])
 
-                # Compare the db tree to the simulation tree - generate comparison CSV
-                self.compare_to(sim_version)
+            # Compare the db tree to the simulation tree - generate comparison CSV
+            self.compare_to(sim_version)
 
-            self.to_csv("temp/validation_results.csv")
+        self.to_csv("temp/validation_results.csv")
 
-            if any(node["file_status"] != "same" for node in self.tree_nodes.values()):
-                self.open_csv("temp/validation_results.csv")
-            else:
-                print("Valid: DB records and simulation files are all SAME")
+        if any(node["file_status"] != "same" for node in self.tree_nodes.values()):
+            self.open_csv("temp/validation_results.csv")
+        else:
+            print("Valid: DB records and simulation files are all SAME")
 
     def model_to_csv(self, dirs):
         self.parse_directories(dirs)
@@ -169,6 +169,106 @@ class ModelManager:
 
         model.save()
 
+    def model_json_vclamp_data_to_db(self, model_id):
+        print("Converting VC waveforms of model: " + model_id + "...")
+
+        model_dir = self.get_model_directory(model_id)
+        vc_files = [f for f in os.listdir(model_dir) if f.startswith('vclamp_') and f.endswith('.js')]
+
+        for json_file in vc_files:
+            print("Converting " + json_file + "...")
+            filename_groups = re.compile('vclamp_(.+)_(.+)_(.+)_(.+).js').search(json_file)
+
+            protocol = filename_groups.groups()[1]
+            ca_conc = "Ca2+ " + filename_groups.groups()[0].replace("p", ".").replace("m", "-") + " mM"
+
+            with open(os.path.join(model_dir,json_file)) as f:
+                json_str = f.read()
+
+            import PyV8
+            javascript = PyV8.JSContext()
+            javascript.enter()
+            javascript.eval(json_str)
+
+            def extract_waveforms(waveforms, var, protocol, ca_conc, variable_name):
+                for ds in var["datasets"]:
+                    waveform = {
+                        "protocol": protocol,
+                        "variable_name": variable_name,
+                        "meta_protocol": ca_conc,
+                        "label": ds["label"],
+                        "times": [],
+                        "values": []
+                    }
+
+                    for dp in ds["data"]:
+                        waveform["times"].append(dp["x"])
+                        waveform["values"].append(dp["y"])
+
+                    waveform["time_step"] = (waveform["times"][-1] - waveform["times"][0]) / (len(waveform["times"])-1)
+
+                    waveforms.append(waveform)
+
+            voltages = []
+            extract_waveforms(waveforms=voltages,
+                              var=javascript.eval("voltages"),
+                              variable_name="Voltage",
+                              protocol=protocol,
+                              ca_conc=ca_conc)
+
+            currents = []
+            extract_waveforms(waveforms=currents,
+                              var=javascript.eval("currents"),
+                              variable_name="Current",
+                              protocol=protocol,
+                              ca_conc=ca_conc)
+
+            conductances = []
+            extract_waveforms(waveforms=conductances,
+                              var=javascript.eval("conductances"),
+                              variable_name="Conductance",
+                              protocol=protocol,
+                              ca_conc=ca_conc)
+
+            ca = CellAssessor(path=model_dir)
+            db, server = ca.connect_to_db()
+
+            try:
+                with db.atomic():
+                    for i in range(len(voltages)):
+                        wave = voltages[i]
+                        ca.create_or_update_waveform(protocol=protocol,
+                                                     label=wave["label"],
+                                                     meta_protocol=wave["meta_protocol"],
+                                                     times=wave["times"],
+                                                     time_step=wave["time_step"],
+                                                     variable_name=wave["variable_name"],
+                                                     values=wave["values"],
+                                                     run_time=None)
+
+                        wave = conductances[i]
+                        ca.create_or_update_waveform(protocol=protocol,
+                                                     label=wave["label"],
+                                                     meta_protocol=wave["meta_protocol"],
+                                                     times=wave["times"],
+                                                     time_step=wave["time_step"],
+                                                     variable_name=wave["variable_name"],
+                                                     values=wave["values"],
+                                                     run_time=None)
+
+                        wave = currents[i]
+                        ca.create_or_update_waveform(protocol=protocol,
+                                                     label=wave["label"],
+                                                     meta_protocol=wave["meta_protocol"],
+                                                     times=wave["times"],
+                                                     time_step=wave["time_step"],
+                                                     variable_name=wave["variable_name"],
+                                                     values=wave["values"],
+                                                     run_time=None)
+
+            finally:
+                server.close()
+
     def parse_csv(self, csv_path):
         with open(csv_path, "r") as f:
             rows = list(csv.DictReader(f))
@@ -180,7 +280,7 @@ class ModelManager:
         for node in self.tree_nodes.values():
             try:
                 # Skip blank lines
-                if string.join([str(v) for v in node.values()]).replace("[]","").replace(" ","") == "":
+                if string.join([str(v) for v in node.values()]).replace("[]", "").replace(" ", "") == "":
                     continue
 
                 if node["action"] not in self.valid_actions:
@@ -274,7 +374,8 @@ class ModelManager:
                     self.remove_model(model)
 
         except:
-            print("ERROR DETECTED: DB TRANSACTION ROLLED BACK - NO DB RECORDS SAVED - BUT CHECK FOR ANY ADDED/DELETED FILES")
+            print(
+            "ERROR DETECTED: DB TRANSACTION ROLLED BACK - NO DB RECORDS SAVED - BUT CHECK FOR ANY ADDED/DELETED FILES")
             raise
 
     def parse_simulation(self):
@@ -526,6 +627,8 @@ class ModelManager:
 
         shutil.copy2(node["path"], new_dir)
 
+        print("Added " + new_model_id)
+
     def add_links(self, parent_node):
 
         # Clear the existing child list first
@@ -603,7 +706,7 @@ class ModelManager:
         else:
             try:
                 if "github.com" in ref_url:
-                    resource = Resources.get(Resources.Name=="Github")
+                    resource = Resources.get(Resources.Name == "Github")
 
                 else:
                     resource = Resources \
@@ -733,6 +836,9 @@ class ModelManager:
             .join(Publications) \
             .where(Models.Model_ID == id) \
             .first()
+
+        if result is None:
+            raise Exception("Model with id %s not found" % id)
 
         result.Translators = People.select().join(Model_Translators).where(Model_Translators.Model == id).order_by(
             Model_Translators.Translator_Sequence)
@@ -948,11 +1054,23 @@ class ModelManager:
             (self.server_IP, 2200),
             ssh_username='neuromine',
             ssh_password=pwd,
-            remote_bind_address=('127.0.0.1', 3306)
+            remote_bind_address=('127.0.0.1', 3306),
+            set_keepalive=5.0
         )
 
-        print("Connecting to server...")
-        server.start()
+        connected = False
+        while not connected:
+            try:
+                print("Connecting to server...")
+                server.start()
+                connected = True
+
+            except:
+                print("Could not connect to server. Retrying in 30-60s...")
+                import time
+                from random import randint
+                time.sleep(randint(30, 60))
+                print("Retrying...")
 
         print("Connecting to MySQL database...")
         db = connect('mysql://neuromldb2:' + pwd + '@127.0.0.1:' + str(server.local_bind_port) + '/neuromldb')
@@ -987,7 +1105,6 @@ class ModelManager:
 
         return None
 
-
     def update_model_checksums(self):
         self.connect_to_db()
 
@@ -1009,7 +1126,7 @@ class ModelManager:
         return result
 
     def get_cell_children(self, modelID):
-        url = "http://"+self.webserver+"/api/model?id=" + modelID
+        url = "http://" + self.webserver + "/api/model?id=" + modelID
         response = urllib.urlopen(url)
         model = json.loads(response.read())
         channels = [m for m in model["children"] if m["Type"] == "Channel" or m["Type"] == "Concentration"]
@@ -1021,7 +1138,7 @@ class ModelManager:
 
         # Get the parent folder of the model
         if self.is_nmldb_id(path):
-            model_dir_name = os.path.abspath(os.path.join(self.default_model_directory_parent, path))
+            model_dir_name = self.get_model_directory(path)
 
             dir_nml_files = [f for f in os.listdir(model_dir_name) if self.is_nml2_file(f)]
 
@@ -1034,7 +1151,6 @@ class ModelManager:
             model_dir_name = os.path.dirname(os.path.abspath(path))
             cell_file_name = os.path.basename(path)
 
-
         nml_db_id = model_dir_name.split("/")[-1]
 
         if not self.is_nmldb_id(nml_db_id):
@@ -1044,7 +1160,7 @@ class ModelManager:
         include_file_template = '	<Include file="[File]"/>'
 
         # Find the NML id of the cell
-        with open(os.path.join(model_dir_name,cell_file_name)) as f:
+        with open(os.path.join(model_dir_name, cell_file_name)) as f:
             nml = f.read()
             cell_id = re.search('<.*cell.*?id.*?=.*?"(.*?)"', nml, re.IGNORECASE).groups(1)[0]
             cell_files = set(re.compile('<include.*?href.*?=.*?"(.*?)"').findall(nml))
@@ -1056,7 +1172,8 @@ class ModelManager:
 
         if len(db_files - cell_files) > 0:
             print("Misbehaving children: The following files are in DATABASE but MISSING IN CELL: " + nml_db_id)
-            print([(c["Model_ID"], c["File_Name"]) for c in children_in_db if c["File_Name"] in (db_files - cell_files)])
+            print(
+            [(c["Model_ID"], c["File_Name"]) for c in children_in_db if c["File_Name"] in (db_files - cell_files)])
             raise Exception("Database has extra children for the cell")
 
         if len(cell_files - db_files) > 0:
@@ -1115,9 +1232,11 @@ class ModelManager:
 
         return NEURON_folder
 
+    def get_model_directory(self, model_id):
+        return os.path.abspath(os.path.join(self.default_model_directory_parent, model_id))
 
     def run_command(self, command):
-        print("Running command: '"+command+"'...")
+        print("Running command: '" + command + "'...")
 
         result = subprocess.check_output(
             command + "; exit 0",

@@ -101,7 +101,10 @@ class Model_Waveforms(BaseModel):
     Protocol = ForeignKeyField(Protocols, backref="Waveforms")
     Meta_Protocol = ForeignKeyField(Protocols)
     Waveform_Label = TextField()
-    Times = TextField()
+    Time_Start = FloatField()
+    Time_End = FloatField()
+    Time_Step = FloatField()
+    Run_Time = FloatField()
     Variable_Name = TextField()
     Variable_Values = TextField()
 

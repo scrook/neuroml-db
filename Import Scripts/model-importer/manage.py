@@ -33,15 +33,23 @@ def get_cell_properties():
     with ModelManager() as mm:
         mm.get_cell_model_properties(model_dir=params[0])
 
+
 def get_cell_model_responses():
     with ModelManager() as mm:
         mm.get_cell_model_responses(model_dir=params[0])
+
+
+def model_json_vclamp_data_to_db():
+    with ModelManager() as mm:
+        mm.model_json_vclamp_data_to_db(model_id=params[0])
+
+
 
 def check_install_dependencies():
     import os
 
     # Check for missing installable dependencies
-    deps = ["pydevd", "peewee", "pymysql", "sshtunnel", "numpy", "matplotlib"]
+    deps = ["pydevd", "peewee", "pymysql", "sshtunnel", "numpy", "matplotlib", "cPickle"]
 
     for dep in deps:
         try:
@@ -67,6 +75,12 @@ def check_install_dependencies():
         raise Exception("Neuron+Python module must be compiled to run this script. For steps, "
                         "see: https://neurojustas.wordpress.com/2018/03/27/tutorial-installing-neuron-simulator-with"
                         "-python-on-ubuntu-linux/")
+
+    # Extract noise stimulation files
+    for file in ["noise1.pickle", "noise2.pickle", "noisyRamp.pickle"]:
+        if not os.path.exists(file):
+            os.system("tar -xzf noisyStims.tar.gz")
+            break
 
 
 if __name__ == "__main__":
