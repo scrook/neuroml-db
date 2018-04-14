@@ -2,14 +2,16 @@
 # steady state v of a cell defined in a hoc file in the given directory.
 # Usage: python getCellProperties /path/To/dir/with/.hoc
 
-import os, string
+import os, string, cPickle
 
 import numpy as np
 from matplotlib import pyplot as plt
 from playhouse.db_url import connect
 from sshtunnel import SSHTunnelForwarder
-
+from decimal import Decimal
+from runtimer import RunTimer
 from collector import Collector
+
 from neuronrunner import NeuronRunner, NumericalInstabilityException
 from tables import Cells, Model_Waveforms, Protocols, db_proxy
 
@@ -18,7 +20,10 @@ class CellAssessor:
     def __init__(self, path):
         self.path = path
         self.abs_tolerance = 0.001
-        self.collection_period_ms = 0.1
+        self.collection_period_ms = 0.25
+        self.pickle_file_cache = {}
+        self.server = None
+        self.db = None
 
     def get_model_nml_id(self):
         return self.path.split("/")[-1]
@@ -106,72 +111,186 @@ class CellAssessor:
             print("Tests finished, saving...")
             self.save_cell_record()
 
-    def get_cell_model_responses(self, protocols = ["STEADY_STATE", "RAMP", "LONG_SQUARE"]):
+    def get_cell_model_responses(self, protocols=["STEADY_STATE",
+                                                  "RAMP",
+                                                  "SQUARE",
+                                                  "SHORT_SQUARE",
+                                                  "LONG_SQUARE",
+                                                  "SHORT_SQUARE_HOLD",
+                                                  "SQUARE_SUBTHRESHOLD"
+                                                  ]):
         self.setTolerances()
 
-        steady_state_delay = 1000 # 1000
+        steady_state_delay = 1000  # 1000
 
         db, server = self.connect_to_db()
 
         try:
-
             id = self.get_model_nml_id()
 
-            import pydevd
-            pydevd.settrace('192.168.0.34', port=4200, suspend=False)
-
             print("Removing existing model waveforms: " + str(protocols))
-            Model_Waveforms.delete().where((Model_Waveforms.Model == id) & (Model_Waveforms.Protocol.in_(protocols))).execute()
+            Model_Waveforms.delete().where(
+                (Model_Waveforms.Model == id) & (Model_Waveforms.Protocol.in_(protocols))).execute()
 
             cell_props = Cells.get(Cells.Model_ID == id)
 
-        finally:
-            server.stop()
 
-        if "STEADY_STATE" in protocols:
             # Reach steady state and save model state
-            result = self.getRestingV(save_resting_state=True, run_time=steady_state_delay)
-            self.save_vi_waveforms(protocol="STEADY_STATE", label=None, meta_protocol=None, times=result["t"], voltage=result["v"], current=result["i"])
+            if "STEADY_STATE" in protocols:
+                result = self.getRestingV(save_resting_state=True, run_time=steady_state_delay)
+                self.save_tvi_plot(label="STEADY STATE", tvi_dict=result)
+                self.save_vi_waveforms(protocol="STEADY_STATE", tvi_dict=result)
 
-        if "RAMP" in protocols:
-            # # From steady state, run ramp injection
-            result = self.get_ramp_response(ramp_delay=steady_state_delay,
-                                             ramp_max_duration=5*1000,
-                                             ramp_increase_rate_per_second=cell_props.Rheobase_High,
-                                             stop_after_n_spikes_found=10,
+            # From steady state, run ramp injection
+            if "RAMP" in protocols:
+                result = self.get_ramp_response(ramp_delay=steady_state_delay,
+                                                ramp_max_duration=5 * 1000,
+                                                ramp_increase_rate_per_second=cell_props.Rheobase_High,
+                                                stop_after_n_spikes_found=10,
+                                                restore_state=True)
+
+                self.save_tvi_plot(label="RAMP", tvi_dict=result)
+                self.save_vi_waveforms(protocol="RAMP", tvi_dict=result)
+
+            # Short square is a brief, threshold current pulse after steady state
+            if "SHORT_SQUARE" in protocols:
+                self.save_square_current_set(protocol="SHORT_SQUARE",
+                                             square_low=cell_props.Threshold_Current_Low,
+                                             square_high=cell_props.Threshold_Current_High,
+                                             square_steps=2,
+                                             delay=steady_state_delay,
+                                             duration=3)
+
+            if "SQUARE" in protocols:
+                self.save_square_current_set(protocol="SQUARE",
+                                             square_low=-cell_props.Rheobase_High * 0.5,  # Note the "-"
+                                             square_high=cell_props.Rheobase_High * 1.5,
+                                             square_steps=11,
+                                             delay=steady_state_delay,
+                                             duration=1000)
+
+            # Long square is a 2s current pulse after steady state
+            if "LONG_SQUARE" in protocols:
+                self.save_square_current_set(protocol="LONG_SQUARE",
+                                             square_low=cell_props.Rheobase_High,
+                                             square_high=cell_props.Rheobase_High * 1.5,
+                                             square_steps=3,
+                                             delay=steady_state_delay,
+                                             duration=2000)
+
+            if "SHORT_SQUARE_HOLD" in protocols:
+                def get_current_ti():
+                    ramp_t = [
+                        0,
+                        steady_state_delay,
+                        steady_state_delay,
+                        steady_state_delay + 3.0,
+                        steady_state_delay + 3.0,
+                        steady_state_delay + 250
+                    ]
+                    ramp_i = [
+                        cell_props.Bias_Current,
+                        cell_props.Bias_Current,
+                        -cell_props.Bias_Current + cell_props.Threshold_Current_High,
+                        -cell_props.Bias_Current + cell_props.Threshold_Current_High,
+                        cell_props.Bias_Current,
+                        cell_props.Bias_Current
+                    ]
+
+                    return ramp_t, ramp_i
+
+                self.save_arb_current(protocol="SHORT_SQUARE_HOLD",
+                                      delay=steady_state_delay,
+                                      duration=250,
+                                      get_current_ti=get_current_ti,
+                                      restore_state=False)  # Holding v, not resting
+
+            # Subthreshold pulses to measure capacitance
+            if "SQUARE_SUBTHRESHOLD" in protocols:
+                self.save_square_current_set(protocol="SQUARE_SUBTHRESHOLD",
+                                             square_low=-cell_props.Threshold_Current_Low,
+                                             square_high=cell_props.Threshold_Current_Low,
+                                             square_steps=2,
+                                             delay=steady_state_delay,
+                                             duration=0.5)
+
+            if "NOISE1" in protocols:
+                self.save_noise_response_set(protocol="NOISE",
+                                             meta_protocol="SEED1",
+                                             delay=steady_state_delay,
+                                             duration=3000,
+                                             post_delay=250,
+                                             rheobase=cell_props.Rheobase_High,
+                                             multiples=[0.75, 1.0, 1.25],
+                                             noise_pickle_file="noise1.pickle",
                                              restore_state=True)
 
-            self.save_vi_waveforms(protocol="RAMP", label=None, meta_protocol=None, times=result["t"], voltage=result["v"], current=result["i"])
+            if "NOISE2" in protocols:
+                self.save_noise_response_set(protocol="NOISE",
+                                             meta_protocol="SEED2",
+                                             delay=steady_state_delay,
+                                             duration=3000,
+                                             post_delay=250,
+                                             rheobase=cell_props.Rheobase_High,
+                                             multiples=[0.75, 1.0, 1.25],
+                                             noise_pickle_file="noise2.pickle",
+                                             restore_state=True)
 
+            if "NOISE_RAMP" in protocols:
+                self.save_noise_response_set(protocol="NOISE_RAMP",
+                                             delay=steady_state_delay,
+                                             duration=32000,
+                                             post_delay=250,
+                                             rheobase=cell_props.Rheobase_High,
+                                             multiples=[1.0],
+                                             noise_pickle_file="noisyRamp.pickle",
+                                             restore_state=True)
+        finally:
+            if self.server is not None:
+                self.server.close()
 
-        if "LONG_SQUARE" in protocols:
-            # From steady state, run long square current protocol
-            square_low = -cell_props.Rheobase_High
-            square_high = cell_props.Rheobase_High * 2.0
-            square_steps = 11
+            if self.db is not None:
+                self.db.close()
 
-            amps = np.linspace(square_low,square_high,num=square_steps).tolist()
+    def save_square_current_set(self, protocol, square_low, square_high, square_steps, delay, duration):
 
-            for amp in amps:
-                result = self.get_square_response(delay=steady_state_delay, duration=1000, post_delay=250, amp=amp, restore_state=True)
-                self.save_vi_waveforms(protocol="LONG_SQUARE", label="%.3f nA"%amp, meta_protocol=None, times=result["t"], voltage=result["v"], current=result["i"])
+        # Create current amplitude set
+        amps = np.linspace(square_low, square_high, num=square_steps).tolist()
 
+        # Run each injection as a separate simulation, resuming from steady state
+        for amp in amps:
+            result = self.get_square_response(delay=delay,
+                                              duration=duration,
+                                              post_delay=250,
+                                              amp=amp,
+                                              restore_state=True)
 
+            self.save_tvi_plot(label=protocol, case=self.short_string(amp) + " nA", tvi_dict=result)
 
+            self.save_vi_waveforms(protocol=protocol,
+                                   label=self.short_string(amp) + " nA",
+                                   tvi_dict=result)
 
-    def save_vi_waveforms(self, protocol, label, meta_protocol, times, voltage, current):
+    def save_vi_waveforms(self, protocol, tvi_dict, label=None, meta_protocol=None):
+        times = tvi_dict["t"]
+        voltage = tvi_dict["v"]
+        current = tvi_dict["i"]
+        run_time = tvi_dict["run_time"]
+
         db, server = self.connect_to_db()
 
-        try:
 
-            with db.atomic() as transaction:
-                self.create_or_update_waveform(protocol, label, meta_protocol, times, "Voltage", voltage)
-                self.create_or_update_waveform(protocol, label, meta_protocol, times, "Current", current)
+        with db.atomic() as transaction:
+            self.create_or_update_waveform(protocol, label, meta_protocol, times, self.collection_period_ms, "Voltage", voltage, run_time)
+            self.create_or_update_waveform(protocol, label, meta_protocol, times, self.collection_period_ms, "Current", current, run_time)
 
-        finally:
-            server.stop()
 
-    def create_or_update_waveform(self, protocol, label, meta_protocol, times, variable_name, values):
+
+    @staticmethod
+    def short_string(x):
+        return str(float('%.4E' % Decimal(x)))
+
+    def create_or_update_waveform(self, protocol, label, meta_protocol, times, time_step, variable_name, values, run_time):
         print("Saving waveform...")
 
         model_id = self.get_model_nml_id()
@@ -190,11 +309,28 @@ class CellAssessor:
             waveform.Waveform_Label = label
             waveform.Variable_Name = variable_name
 
-        waveform.Times = string.join([str(v) for v in times], ',')
-        waveform.Variable_Values = string.join([str(v) for v in values], ',')
+        waveform.Time_Start = min(times)
+        waveform.Time_End = max(times)
+        waveform.Time_Step = time_step
+        waveform.Run_Time = run_time
+        waveform.Variable_Values = string.join([self.short_string(v) for v in values], ',')
 
         waveform.save()
         print("SAVED")
+
+    def save_tvi_plot(self, label, tvi_dict, case=""):
+        plt.clf()
+
+        plt.figure(1)
+        plt.subplot(211)
+        plt.plot(tvi_dict["t"], tvi_dict["v"], label="Voltage - " + label + (" @ " + case if case != "" else ""))
+        plt.ylim(-80, 30)
+        plt.legend()
+
+        plt.subplot(212)
+        plt.plot(tvi_dict["t"], tvi_dict["i"], label="Current - " + label + (" @ " + case if case != "" else ""))
+        plt.legend()
+        plt.savefig(label + ("(" + case + ")" if case != "" else "") + ".png")
 
     def get_square_response(self,
                             delay,
@@ -215,31 +351,26 @@ class CellAssessor:
             self.current.delay = delay
             self.current.amp = amp
 
-            if restore_state:
-                self.restore_state()
-                t, v = self.runFor(duration+post_delay)
-            else:
-                h.stdinit()
-                t, v = self.runFor(delay+duration+post_delay)
+            with RunTimer() as timer:
+                if restore_state:
+                    self.restore_state()
+                    t, v = self.runFor(duration + post_delay)
+                else:
+                    h.stdinit()
+                    t, v = self.runFor(delay + duration + post_delay)
 
-            result = {"t": t.tolist(), "v": v.tolist(), "i": self.ic_i_collector.get_values_list()}
-
-            plt.clf()
-            plt.plot(t, v, label="Long Square Response V @ " + str(amp) + " nA")
-            plt.legend()
-            plt.savefig("longSquareResponseV" + str(amp) + "nA.png")
-
-            plt.clf()
-            plt.plot(t, result["i"], label="Long Square Response I @ " + str(amp) + " nA")
-            plt.legend()
-            plt.savefig("longSquareResponseI" + str(amp) + "nA.png")
+            result = {
+                "t": t.tolist(),
+                "v": v.tolist(),
+                "i": self.ic_i_collector.get_values_list(),
+                "run_time": timer.get_run_time()
+            }
 
             return result
 
         runner = NeuronRunner(square_protocol)
         runner.DONTKILL = True
         result = runner.run()
-        print("GOT RESULT FROM RUNNER")
         return result
 
     def get_ramp_response(self,
@@ -258,9 +389,94 @@ class CellAssessor:
 
             return False
 
-        def ramp_protocol(flag):
-            # import pydevd
-            # pydevd.settrace('192.168.0.34', port=4200, suspend=False)
+        def get_current_ti():
+            ramp_i = [0, 0, ramp_max_duration / 1000.0 * ramp_increase_rate_per_second, 0]
+            ramp_t = [0, ramp_delay, ramp_delay + ramp_max_duration, ramp_delay + ramp_max_duration]
+            return ramp_t, ramp_i
+
+        return self.get_arb_current_response(delay=ramp_delay,
+                                             duration=ramp_max_duration,
+                                             get_current_ti=get_current_ti,
+                                             test_condition=test_condition,
+                                             restore_state=restore_state)
+
+    def save_noise_response_set(self,
+                                protocol,
+                                delay,
+                                duration,
+                                post_delay,
+                                rheobase,
+                                noise_pickle_file,
+                                multiples,
+                                meta_protocol=None,
+                                restore_state=False):
+
+        # Cache the files - they're slow to load
+        if noise_pickle_file not in self.pickle_file_cache:
+            with open(os.path.join("..", "..", noise_pickle_file), "r") as f:
+                self.pickle_file_cache[noise_pickle_file] = cPickle.load(f)
+
+        def get_current_ti():
+            noise = self.pickle_file_cache[noise_pickle_file]
+
+            ramp_t = [0, delay] + (np.array(noise["t"]) + delay).tolist() + [delay + duration,
+                                                                             delay + duration + post_delay]
+            ramp_i = [0, 0] + (np.array(noise["i"]) * rheobase * multiple).tolist() + [0, 0]
+
+            return ramp_t, ramp_i
+
+        for multiple in multiples:
+            result = self.get_arb_current_response(delay=delay,
+                                                   duration=duration,
+                                                   post_delay=post_delay,
+                                                   get_current_ti=get_current_ti,
+                                                   restore_state=restore_state)
+
+            multiple_str = str(multiple) + "xRB"
+
+            self.save_tvi_plot(label=protocol,
+                               case=(meta_protocol if meta_protocol is not None else "") + " " + multiple_str,
+                               tvi_dict=result)
+
+            self.save_vi_waveforms(protocol=protocol,
+                                   label=multiple_str,
+                                   meta_protocol=meta_protocol,
+                                   tvi_dict=result)
+
+        # Clear the cache for this file
+        self.pickle_file_cache.pop(noise_pickle_file)
+
+    def save_arb_current(self,
+                         protocol,
+                         delay,
+                         duration,
+                         get_current_ti,
+                         meta_protocol=None,
+                         label=None,
+                         restore_state=False):
+
+        result = self.get_arb_current_response(delay=delay,
+                                               duration=duration,
+                                               get_current_ti=get_current_ti,
+                                               restore_state=restore_state)
+
+        self.save_tvi_plot(label=protocol,
+                           case=(meta_protocol if meta_protocol is not None else "") + " " + (label if label is not None else ""),
+                           tvi_dict=result)
+
+        self.save_vi_waveforms(protocol=protocol,
+                               label=label,
+                               tvi_dict=result)
+
+    def get_arb_current_response(self,
+                                 delay,
+                                 duration,
+                                 get_current_ti,
+                                 post_delay=0,
+                                 test_condition=None,
+                                 restore_state=False):
+
+        def arb_current_protocol(flag):
 
             self.activity_flag = flag
             h = self.build()
@@ -270,8 +486,7 @@ class CellAssessor:
             self.current.delay = 0
 
             # Create ramp waveform
-            ramp_i = [0, 0, ramp_max_duration / 1000.0 * ramp_increase_rate_per_second, 0]
-            ramp_t = [0, ramp_delay, ramp_delay + ramp_max_duration, ramp_delay + ramp_max_duration]
+            ramp_t, ramp_i = get_current_ti()
 
             rv = h.Vector(ramp_i)
             tv = h.Vector(ramp_t)
@@ -279,33 +494,26 @@ class CellAssessor:
             # Play ramp waveform into the IClamp (last param is continuous=True)
             rv.play(self.current._ref_amp, tv, 1)
 
-            if restore_state:
-                self.restore_state(keep_events=True)  # Keep events ensures .play() works
-                t, v = self.runFor(ramp_max_duration, test_condition)
-            else:
-                h.stdinit()
-                t, v = self.runFor(ramp_delay + ramp_max_duration, test_condition)
+            with RunTimer() as timer:
+                if restore_state:
+                    self.restore_state(keep_events=True)  # Keep events ensures .play() works
+                    t, v = self.runFor(duration + post_delay, test_condition)
+                else:
+                    h.stdinit()
+                    t, v = self.runFor(delay + duration + post_delay, test_condition)
 
-            i = self.ic_i_collector.get_values_list()
-
-            result = {"t": t.tolist(), "v": v.tolist(), "i": i}
-
-            plt.clf()
-            plt.plot(t, v, label="Ramp Response")
-            plt.legend()
-            plt.savefig("rampResponseV.png")
-
-            plt.clf()
-            plt.plot(t, i, label="Ramp Response")
-            plt.legend()
-            plt.savefig("rampResponseI.png")
+            result = {
+                "t": t.tolist(),
+                "v": v.tolist(),
+                "i": self.ic_i_collector.get_values_list(),
+                "run_time": timer.get_run_time()
+            }
 
             return result
 
-        runner = NeuronRunner(ramp_protocol)
+        runner = NeuronRunner(arb_current_protocol)
         runner.DONTKILL = True
         result = runner.run()
-        print("GOT RESULT FROM RUNNER")
         return result
 
     def load_cell(self):
@@ -457,15 +665,15 @@ class CellAssessor:
         self.current.amp = amp
         self.current.dur = dur
 
-    def crossings_nonzero_pos2neg(self, data):
-        pos = data > 0
+    def crossings_nonzero_pos2neg(self, data, theshold):
+        pos = data > theshold
         return (pos[:-1] & ~pos[1:]).nonzero()[0]
 
-    def getSpikeCount(self, voltage):
-        if np.max(voltage) < 0:
+    def getSpikeCount(self, voltage, threshold=-20.0):
+        if np.max(voltage) < threshold:
             return 0
         else:
-            return len(self.crossings_nonzero_pos2neg(voltage))
+            return len(self.crossings_nonzero_pos2neg(voltage, threshold))
 
     def getStabilityRange(self, testLow=-10, testHigh=15):
 
@@ -705,12 +913,15 @@ class CellAssessor:
             self.build()
             self.sim_init()
 
-            # import pydevd
-            # pydevd.settrace('192.168.0.34', port=4200, suspend=False)
+            with RunTimer() as timer:
+                t, v = self.runFor(run_time)
 
-            t, v = self.runFor(run_time)
-
-            result = { "t": t.tolist(), "v":v.tolist(), "i":self.ic_i_collector.get_values_list() }
+            result = {
+                "t": t.tolist(),
+                "v": v.tolist(),
+                "i": self.ic_i_collector.get_values_list(),
+                "run_time": timer.get_run_time()
+            }
 
             crossings = self.getSpikeCount(v)
 
@@ -719,11 +930,6 @@ class CellAssessor:
                 result["rest"] = None
             else:
                 result["rest"] = v[-1]
-
-            plt.clf()
-            plt.plot(t, v, label="Resting V " + str(result["rest"]))
-            plt.legend()
-            plt.savefig("restingV.png")
 
             if save_resting_state:
                 self.save_state()
@@ -753,9 +959,8 @@ class CellAssessor:
 
             print("Getting error tolerances...")
 
-            h.nrncontrolmenu()
-            h.newPlotV()
-
+            # h.nrncontrolmenu()
+            # h.newPlotV()
 
             h.AtolTool[0].anrun()
             h.AtolTool[0].rescale()
@@ -779,25 +984,41 @@ class CellAssessor:
         print("Using saved error tolerances")
 
     def connect_to_db(self):
+        if self.server is not None and self.db is not None and self.server.is_active:
+            return (self.db, self.server)
+
         pwd = os.environ["NMLDBPWD"]  # This needs to be set to "the password"
 
         if pwd == '':
             raise Exception("The environment variable 'NMLDBPWD' needs to contain the password to the NML database")
 
-        server = SSHTunnelForwarder(
+        self.server = SSHTunnelForwarder(
             ('149.169.30.15', 2200),  # Spike - testing server
             ssh_username='neuromine',
             ssh_password=pwd,
-            remote_bind_address=('127.0.0.1', 3306)
+            remote_bind_address=('127.0.0.1', 3306),
+            set_keepalive=5.0
         )
 
-        print("Connecting to server...")
-        server.start()
+
+        connected = False
+        while not connected:
+            try:
+                print("Connecting to server...")
+                self.server.start()
+                connected = True
+
+            except:
+                print("Could not connect to server. Retrying in 30-60s...")
+                import time
+                from random import randint
+                time.sleep(randint(30, 60))
+                print("Retrying...")
 
         print("Connecting to MySQL database...")
-        db = connect('mysql://neuromldb2:' + pwd + '@127.0.0.1:' + str(server.local_bind_port) + '/neuromldb')
-        db_proxy.initialize(db)
-        return (db, server)
+        self.db = connect('mysql://neuromldb2:' + pwd + '@127.0.0.1:' + str(self.server.local_bind_port) + '/neuromldb')
+        db_proxy.initialize(self.db)
+        return (self.db, self.server)
 
     def save_cell_record(self):
         cell = self.cell_record

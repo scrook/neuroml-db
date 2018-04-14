@@ -35,10 +35,10 @@ class NeuronRunner:
                 result["error"] = traceback.format_exc()
 
             import json
-            print("OPENING FILE FOR SAVING...")
+
             with open(self.sim_result_file, "w") as f:
                 json.dump(result, f)
-                print("Saved result to: " + self.sim_result_file)
+
 
         self.process = Process(target=wrapper)
 
@@ -68,13 +68,13 @@ class NeuronRunner:
                 "Stopped early because either the simulation speed was too low or the activity_flag was not updated")
         else:
             try:
-                print("OPENING FILE FOR READING...")
+
                 with open(self.sim_result_file) as f:
                     result = json.load(f)
 
-                print("REMOVING FILE...")
+
                 os.remove(self.sim_result_file)
-                print("REMOVED")
+
             except:
                 raise Exception("NEURON process crashed before result or error information could be saved.")
 
