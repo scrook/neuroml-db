@@ -17,6 +17,32 @@ class ModelsController < ApplicationController
 
   end
 
+  def waveform
+
+    result = Model.GetModelWaveForm(params[:id])
+
+    if result != nil
+      render :json => result, :content_type => 'application/javascript', :status => 500
+    else
+      render :json => "Waveform not found", :content_type => 'application/javascript', :status => 404
+    end
+
+  end
+
+  def search
+
+    result = Model.SearchKeyword(params[:q].to_s)
+
+    if result != nil
+      render :json => result, :content_type => 'application/javascript', :status => 500
+    else
+      render :json => "No search results", :content_type => 'application/javascript', :status => 404
+    end
+
+  end
+
+
+
   def GetModelZip
 
     modelID =params[:modelID].to_s

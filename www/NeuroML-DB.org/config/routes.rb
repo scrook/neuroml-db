@@ -28,5 +28,7 @@ RedmineApp::Application.routes.draw do
   match '/api/models', :to => 'models#all'
   match '/api/model', :to => 'models#detail'
   match '/api/models_for_modeldb', :to => 'modeldb#model_list'
+  match '/api/waveform', :to => 'models#waveform'
+  match '/api/search', :to => 'models#search'
 
 end

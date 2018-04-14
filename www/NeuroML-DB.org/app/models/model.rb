@@ -21,6 +21,84 @@ class Model < ActiveRecord::Base
                           join_table: "model_model_associations",
                           association_foreign_key: "Child_ID"
 
+  def self.SearchKeyword(search_text)
+    @search_text = search_text
+
+    connection           = ActiveRecord::Base.connection
+
+    # use regex to find " surrounded phares: / ?"(.*?)" ?/ the group in all matches will contain just the phrases
+    # all other text is unquoted
+    quotedRegex = / ?"(.*?)" ?/
+    phrases = Array.new
+
+    quotedMatches = @search_text.to_enum(:scan, quotedRegex).map { Regexp.last_match }
+
+
+    if quotedMatches.length == 0
+
+      words = @search_text.split(' ')
+      phrases.push(*words)
+
+    else
+
+      # Scan from the begginging of the query
+      index = 0
+
+      for match in quotedMatches
+        # Get the unquoted text before the match
+        matchStart, matchFinish = match.offset(0)
+
+        if matchStart > 0
+          unquoted = @search_text[index..matchStart-1]
+          words = unquoted.split(' ')
+          phrases.push(*words)
+
+        end
+
+        index = matchFinish # will contain the index of char just after the match
+
+        # Get the text inside the quotes
+        capture = match.captures[0]
+
+        phrases.push(capture)
+      end
+
+      # Till the end of the query
+      if index < @search_text.length-1
+        unquoted = @search_text[index..@search_text.length-1]
+        words = unquoted.split(' ')
+        phrases.push(*words)
+
+      end
+
+    end
+
+    # Remove any blank phrases
+    phrases.reject! {|p| p.nil? || p.length == 0}
+
+    # Escape each phrase
+    phrases.map! {|p| connection.quote_string(p)}
+
+    # Use the sql syntax to construct the query, using +s and putting qoutes around everything "" even single terms
+    phrases.map! do |p|
+      if p.length >= 4
+        '+"' + p +  '"' # add +s and quotes
+      else
+        '"' + p +  '"' # don't add the plus for <4 char phrases
+      end
+    end
+
+    fullTextSearchString = phrases.join(" ")
+
+    sql = "call keyword_search('#{fullTextSearchString}')"
+
+    @dbResult = connection.exec_query(sql);
+
+    ActiveRecord::Base.clear_active_connections!
+
+    return @dbResult
+  end
+
   def self.GetAllModels()
     models = ActiveRecord::Base.connection.exec_query(
         "
@@ -42,11 +120,14 @@ class Model < ActiveRecord::Base
           FROM models m
           JOIN model_types mt ON mt.ID = m.Type
           WHERE m.Model_ID = '#{idClean}'
+          LIMIT 1
         ").first
 
     if model == nil
       return nil
     end
+
+    waveform_list = self.GetModelWaveFormList(id)
 
     children = ActiveRecord::Base.connection.exec_query(
         "
@@ -136,9 +217,77 @@ class Model < ActiveRecord::Base
         keywords: keywords,
         neurolex_ids: neurolexes,
         children: children,
-        parents: parents
+        parents: parents,
+        waveform_list: waveform_list
     }
   end
+
+  def self.GetModelWaveFormProtocolSet(id)
+
+    idClean = Model.connection.quote_string(id)
+
+    return ActiveRecord::Base.connection.exec_query(
+        "
+          SELECT DISTINCT mw.Protocol_ID, mw.Meta_Protocol_ID, p.Display_Order as Protocol_Order, mp.Display_Order as Meta_Protocol_Order
+          FROM model_waveforms mw
+          LEFT JOIN protocols p ON p.ID = mw.Protocol_ID
+          LEFT JOIN protocols mp ON mp.ID = mw.Meta_Protocol_ID
+          WHERE mw.Model_ID = '#{idClean}'
+          ORDER BY p.Display_Order, mp.Display_Order
+        ")
+
+  end
+
+  def self.GetModelWaveFormList(id)
+
+    idClean = Model.connection.quote_string(id)
+
+    return ActiveRecord::Base.connection.exec_query(
+        "
+          SELECT mw.ID, mw.Protocol_ID, mw.Meta_Protocol_ID, mw.Waveform_Label, mw.Time_Start, mw.Time_End, mw.Time_Step, mw.Variable_Name
+          FROM model_waveforms mw
+          WHERE mw.Model_ID = '#{idClean}'
+          ORDER BY mw.Protocol_ID, mw.Meta_Protocol_ID, CONCAT(mw.ID,mw.Waveform_Label), mw.Variable_Name
+        ")
+
+  end
+
+  def self.GetModelWaveForm(waveform_id)
+
+    idClean = Model.connection.quote_string(waveform_id)
+
+    waveform = ActiveRecord::Base.connection.exec_query(
+      "
+          SELECT mw.*
+          FROM model_waveforms mw
+          WHERE mw.ID = '#{idClean}'
+          LIMIT 1
+        ").first
+
+    return waveform
+  end
+
+
+
+  def self.GetModelWaveFormSet(model_id, protcol_id, meta_protocol_id)
+
+    model_id = Model.connection.quote_string(model_id)
+    protcol_id = Model.connection.quote_string(protcol_id)
+    meta_protocol_id = Model.connection.quote_string(meta_protocol_id)
+
+    waveforms = ActiveRecord::Base.connection.exec_query(
+        "
+          SELECT mw.*
+          FROM model_waveforms mw
+          WHERE mw.Model_ID = '#{model_id}' AND
+                mw.Protocol_ID = '#{protcol_id}' AND
+                mw.Meta_Protocol_ID = '#{meta_protocol_id}'
+          ORDER BY mw.Protocol_ID, mw.Meta_Protocol_ID, CONCAT(mw.ID,mw.Waveform_Label), mw.Variable_Name
+        ")
+
+    return waveforms
+  end
+
 
   def self.GetAllModelsForModelDB()
     models = ActiveRecord::Base.connection.exec_query(
@@ -197,7 +346,7 @@ class Model < ActiveRecord::Base
       return firstAuthor + ", et. al." + year
     end
 
-    return "MISSING REF"
+    return "N/A (missing publication)"
   end
 
   def self.GetFile(modelID)
