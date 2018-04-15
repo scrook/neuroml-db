@@ -1119,6 +1119,28 @@ class ModelManager:
                 model.File_MD5_Checksum = new_checksum
                 model.save()
 
+    def model_waveforms_to_csvs(self):
+        self.connect_to_db()
+
+        waveforms = Model_Waveforms.select(Model_Waveforms.ID, Model_Waveforms.Model)
+
+        for waveform in waveforms:
+            print("Updating Model:" + waveform.Model_id + ", Waveform:" + str(waveform.ID) + "...")
+
+            full_waveform = Model_Waveforms.get(Model_Waveforms.ID == waveform.ID)
+
+            waveforms_dir = os.path.join(self.model_directory_parent, waveform.Model_id, "waveforms")
+
+            if not os.path.exists(waveforms_dir):
+                os.mkdir(waveforms_dir)
+
+            waveform_csv = os.path.join(waveforms_dir, str(waveform.ID) + ".csv")
+
+            with open(waveform_csv, "w") as f:
+                f.write(full_waveform.Variable_Values)
+
+
+
     def replace_tokens(self, target, reps):
         result = target
         for r in reps.keys():

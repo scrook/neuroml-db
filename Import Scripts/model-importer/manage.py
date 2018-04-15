@@ -43,7 +43,9 @@ def model_json_vclamp_data_to_db():
     with ModelManager() as mm:
         mm.model_json_vclamp_data_to_db(model_id=params[0])
 
-
+def model_waveforms_to_csvs():
+    with ModelManager() as mm:
+        mm.model_waveforms_to_csvs()
 
 def check_install_dependencies():
     import os
@@ -84,8 +86,8 @@ def check_install_dependencies():
 
 
 if __name__ == "__main__":
-    # import pydevd
-    # pydevd.settrace('192.168.0.34', port=4200, suspend=False)
+    import pydevd
+    pydevd.settrace('192.168.0.34', port=4200, suspend=False)
 
     check_install_dependencies()
 
