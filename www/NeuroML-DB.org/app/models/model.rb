@@ -222,32 +222,18 @@ class Model < ActiveRecord::Base
     }
   end
 
-  def self.GetModelWaveFormProtocolSet(id)
-
-    idClean = Model.connection.quote_string(id)
-
-    return ActiveRecord::Base.connection.exec_query(
-        "
-          SELECT DISTINCT mw.Protocol_ID, mw.Meta_Protocol_ID, p.Display_Order as Protocol_Order, mp.Display_Order as Meta_Protocol_Order
-          FROM model_waveforms mw
-          LEFT JOIN protocols p ON p.ID = mw.Protocol_ID
-          LEFT JOIN protocols mp ON mp.ID = mw.Meta_Protocol_ID
-          WHERE mw.Model_ID = '#{idClean}'
-          ORDER BY p.Display_Order, mp.Display_Order
-        ")
-
-  end
-
   def self.GetModelWaveFormList(id)
 
     idClean = Model.connection.quote_string(id)
 
     return ActiveRecord::Base.connection.exec_query(
         "
-          SELECT mw.ID, mw.Protocol_ID, mw.Meta_Protocol_ID, mw.Waveform_Label, mw.Time_Start, mw.Time_End, mw.Time_Step, mw.Variable_Name
+          SELECT mw.ID, mw.Protocol_ID, p.Pretty_Name as Protocol, mw.Meta_Protocol_ID, mp.Pretty_Name as Meta_Protocol, mw.Waveform_Label, mw.Time_Start, mw.Time_End, mw.Time_Step, mw.Variable_Name
           FROM model_waveforms mw
+          LEFT JOIN protocols p ON p.ID = mw.Protocol_ID
+          LEFT JOIN protocols mp ON mp.ID = mw.Meta_Protocol_ID
           WHERE mw.Model_ID = '#{idClean}'
-          ORDER BY mw.Protocol_ID, mw.Meta_Protocol_ID, CONCAT(mw.ID,mw.Waveform_Label), mw.Variable_Name
+          ORDER BY p.Display_Order, mp.Display_Order, mw.ID
         ")
 
   end
@@ -264,12 +250,20 @@ class Model < ActiveRecord::Base
           LIMIT 1
         ").first
 
+
+    # Get values from waveform .csv file
+    waveform["Variable_Values"] = GetWaveformValues(waveform["Model_ID"], waveform["ID"])
+
     return waveform
   end
 
+  def self.GetWaveformValues(model_id, waveform_id)
+      file = "/var/www/NeuroMLmodels/"+model_id+"/waveforms/"+waveform_id.to_s+".csv"
+      contents = File.read(file)
+      return contents
+  end
 
-
-  def self.GetModelWaveFormSet(model_id, protcol_id, meta_protocol_id)
+  def self.GetModelPlotWaveForms(model_id, protcol_id, meta_protocol_id)
 
     model_id = Model.connection.quote_string(model_id)
     protcol_id = Model.connection.quote_string(protcol_id)
@@ -282,8 +276,12 @@ class Model < ActiveRecord::Base
           WHERE mw.Model_ID = '#{model_id}' AND
                 mw.Protocol_ID = '#{protcol_id}' AND
                 mw.Meta_Protocol_ID = '#{meta_protocol_id}'
-          ORDER BY mw.Protocol_ID, mw.Meta_Protocol_ID, CONCAT(mw.ID,mw.Waveform_Label), mw.Variable_Name
+          ORDER BY mw.Protocol_ID, mw.Meta_Protocol_ID, mw.ID
         ")
+
+    waveforms.each do |waveform|
+      waveform["Variable_Values"] = GetWaveformValues(waveform["Model_ID"], waveform["ID"])
+    end
 
     return waveforms
   end

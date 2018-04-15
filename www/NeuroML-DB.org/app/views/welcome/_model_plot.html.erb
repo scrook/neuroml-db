@@ -1,0 +1,179 @@
+<%
+  if @meta_protocol_type == nil
+    @meta_protocol_type = "Meta Protocol"
+  end
+
+  if @clamp_type == nil
+    @clamp_type = "Current"
+  end
+
+  waveforms = Model.GetModelWaveFormList(@model_id)
+
+%>
+<div id="model-plots">
+
+  <% if waveforms != nil and waveforms.rows.length > 0 %>
+      <style>
+        sup { vertical-align: super; font-size: 12px; }
+        .protocolButton { text-decoration:none; padding: 1px; border: 1px solid transparent; font-size: 14px; height: 40px; text-align: center; vertical-align: middle; cursor:pointer; }
+        .protocolButton:first-child { margin-left: -2px; }
+        .conditions .selected { border-color:#1376c4; }
+        .protocols, .meta-protocols { margin-bottom: 10px; }
+        .meta-protocol { display:none; }
+        canvas { -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; }
+        table { border: 0px; }
+      </style>
+      <script>
+          var waveforms = <%= waveforms.to_json.html_safe  %>;
+          var model_type = '<%= @type %>';
+          var waveform_selection = { 'protocol': null, 'meta_protocol': null, 'label': null };
+
+          function plotsInit() {
+              // Create protocol buttons
+              Enumerable
+                  .from(waveforms)
+                  .select(function(w) { return { "ID": w["Protocol_ID"], "Name":w["Protocol"]} })
+                  .distinct(function(p) { return p["ID"]+p["Name"] })
+                  .forEach(function(p) {
+                      jQuery('<td id="'+p['ID']+'" class="protocolButton">'+p['Name']+'</td>')
+                          .on('click', onProtocolSelected)
+                          .appendTo('.protocols');
+                  });
+
+              jQuery('.protocols .protocolButton').first().click()
+          }
+          function onProtocolSelected() {
+              element = this;
+              protocol_id = this.id;
+
+              waveform_selection = { 'protocol': protocol_id, 'meta_protocol': null, 'label': null };
+
+              jQuery(".protocols .selected").removeClass("selected");
+              jQuery(element).addClass("selected");
+
+              jQuery('#meta-protocol-container').hide();
+              jQuery('#label-container').hide();
+
+              jQuery('.meta-protocols').empty();
+              jQuery('.labels').empty();
+
+              // Create meta protocol buttons
+              metas = Enumerable
+                  .from(waveforms)
+                  .where(function(w) { return w["Protocol_ID"] == protocol_id })
+                  .select(function(w) { return { "ID": w["Meta_Protocol_ID"], "Name": w["Meta_Protocol"]} })
+                  .distinct(function(p) { return p["ID"]+p["Name"] });
+
+              if (metas.first()["ID"] != null) { // If there are meta protocols
+                  metas
+                      .forEach(function (p) {
+                          jQuery('<td id="' + p['ID'] + '" class="protocolButton">' + p['Name'] + '</td>')
+                              .on('mouseover', onMetaProtocolSelected)
+                              .on('click',     onMetaProtocolSelected)
+                              .appendTo('.meta-protocols');
+                      });
+
+                  jQuery('#meta-protocol-container').show();
+
+                  if (model_type == "Channel") {
+                      jQuery('.meta-protocols .protocolButton').last().click()
+                  }
+                  else {
+                      jQuery('.meta-protocols .protocolButton').first().click()
+                  }
+              }
+              else { // If no meta protocol
+                  jQuery('#meta-protocol-container').hide();
+                  waveform_selection["meta_protocol"] = null;
+                  updateLabels();
+              }
+
+          }
+
+          function onMetaProtocolSelected() {
+              element = this;
+              meta_protocol_id = this.id;
+
+              jQuery(".meta-protocols .selected").removeClass("selected");
+              jQuery(element).addClass("selected");
+
+              waveform_selection["meta_protocol"] = meta_protocol_id;
+              waveform_selection["label"] = null;
+
+              updateLabels();
+              updatePlots();
+          }
+
+          function updateLabels() {
+              jQuery('.labels').empty();
+
+              // Create protocol buttons
+              labels = Enumerable
+                  .from(waveforms)
+                  .where(function(w) { return w["Protocol_ID"] == waveform_selection["protocol"] && w["Meta_Protocol_ID"] == waveform_selection["meta_protocol"] })
+                  .select(function(w) { return { "ID": w["Waveform_Label"], "Name": w["Waveform_Label"]} })
+                  .distinct(function(p) { return p["ID"]+p["Name"] })
+
+              if (labels.first()["ID"] != null) { // If there are labels
+                labels
+                  .forEach(function (p) {
+                      jQuery('<td id="' + p['ID'] + '" class="protocolButton">' + p['Name'] + '</td>')
+                          .on('mouseover', onLabelSelected)
+                          .on('click',     onLabelSelected)
+                          .appendTo('.labels');
+                  });
+
+                jQuery('#label-container').show();
+              }
+              else { // If no labels
+                  jQuery('#label-container').hide();
+                  waveform_selection["label"] = null;
+                  updatePlots();
+              }
+          }
+          function onLabelSelected() {
+              element = this;
+              label = this.id;
+
+              jQuery(".labels .selected").removeClass("selected");
+              jQuery(element).addClass("selected");
+
+              waveform_selection["label"] = label;
+
+              updatePlots()
+          }
+          function updatePlots() {
+              jQuery("#label").html(JSON.stringify(waveform_selection))
+
+              setupChart("canvasV", "Voltage (mV)", voltages);
+          }
+      </script>
+      <div id="protocol-container">
+        <div>Select Stimulation Protocol:</div>
+        <table><tr class="protocols"></tr></table>
+      </div>
+
+      <div id="meta-protocol-container">
+        <div>Select <%= @meta_protocol_type %>:</div>
+        <table><tr class="meta-protocols"></tr></table>
+      </div>
+
+      <div id="label-container">
+        <div>Select stimulus:</div>
+        <table><tr class="labels"></tr></table>
+      </div>
+
+      <div id="label"></div>
+
+      <!--Render plots using chart.js library-->
+      <canvas id="canvasV"></canvas>
+      <canvas id="canvasI"></canvas>
+
+      <script>
+          plotsInit();
+      </script>
+
+  <% else %>
+      <%= @clamp_type %> clamp data not available for this <%= @type.downcase %>.
+  <% end %>
+</div>

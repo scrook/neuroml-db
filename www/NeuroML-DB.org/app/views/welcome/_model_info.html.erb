@@ -221,6 +221,19 @@
           </td>
         </tr>
 
+        <tr>
+          <td class="keyword" style="vertical-align: top; text-align:left;" colspan="2">
+            Current Clamp Response:
+          </td>
+        </tr>
+        <tr>
+          <td class="description conditions" colspan="2">
+
+          <%= render 'model_plot' %>
+
+          </td>
+        </tr>
+
     <% elsif @type == "Channel" %>
 
         <tr>
@@ -233,13 +246,30 @@
         </tr>
 
         <tr>
+          <td class="keyword" style="vertical-align: top; text-align:left;" colspan="2">
+            Current Clamp Response:
+          </td>
+        </tr>
+        <tr>
+          <td class="description conditions" colspan="2">
+
+            <%
+              @meta_protocol_type = "[Ca<sup>2+</sup>] level (mM)".html_safe
+              @clamp_type = "Voltage"
+            %>
+            <%= render 'model_plot' %>
+
+          </td>
+        </tr>
+
+        <tr>
           <td class="keyword" style="vertical-align: top;">
             Voltage Clamp Response:
           </td>
           <td class="description conditions">
 
-            <% jsFiles = controller.GetVclampFiles() %>
-            <% if jsFiles.length > 0 %>
+            <% protocols = controller.GetVclampFiles() %>
+            <% if protocols.length > 0 %>
                 <style>
                     sup { vertical-align: super; font-size: 12px; }
                     .protocolButton { text-decoration:none; padding: 5px; border: 1px solid transparent; }
