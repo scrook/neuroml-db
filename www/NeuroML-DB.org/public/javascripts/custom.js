@@ -23,7 +23,7 @@ function setupChart(id, title, data) {
 						display: true,
 						labelString: "Time (ms)"
 					},
-                    ticks: { maxRotation: 0 }
+                    ticks: { maxRotation: 0, stepSize:10, maxTicksLimit: 11  }
 				}],
 				yAxes: [{
 					scaleLabel: {
@@ -149,13 +149,16 @@ function getProtocolData(doneCallback) {
         }
 	});
 }
-function updateChart(id, data)
+function updateChart(id, data, min_y, max_y)
 {
     window[id].data.datasets.length = 0;
 
 	for (d = 0; d < data.datasets.length; d++) {
 		window[id].data.datasets.push(data.datasets[d]);
 	}
+
+    window[id]["options"]["scales"]["yAxes"][0]["ticks"]["suggestedMax"] = max_y
+    window[id]["options"]["scales"]["yAxes"][0]["ticks"]["suggestedMin"] = min_y
 
     window[id].resetZoom();
 }

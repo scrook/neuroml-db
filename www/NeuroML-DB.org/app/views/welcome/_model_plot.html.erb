@@ -299,16 +299,7 @@
                   max_y += 0.05 * range;
                   min_y -= 0.05 * range;
 
-
-
-                  updateChart(
-                      canvasID,
-                      { "datasets": chart_waveforms.toArray()},
-                      min_y,
-                      max_y,
-                      chart_waveforms.min(w => w["min_x"]),
-                      chart_waveforms.max(w => w["max_x"])
-                  );
+                  updateChart(canvasID, { "datasets": chart_waveforms.toArray()}, min_y, max_y);
               });
 
           }
