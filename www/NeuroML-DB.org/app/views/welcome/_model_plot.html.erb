@@ -41,8 +41,8 @@
 
           variables = Enumerable
                   .from(waveforms)
-                  .select(w => w["Variable_Name"])
-                  .distinct()
+                  .select(function(w) { return { "Name": w["Variable_Name"], "Units": w["Units"] } })
+                  .distinct(v => v["Name"])
                   .toArray();
 
           function plotsInit() {
@@ -55,9 +55,10 @@
 
               //Create canvases for each variable
               Enumerable.from(variables).forEach(v => {
-                  canvasID = "canvas"+v;
+                  canvasID = "canvas"+v["Name"];
+                  title = v["Name"] + " (" + v["Units"] + ")";
                   jQuery('<canvas id="'+canvasID+'" width="874" height="219"></canvas>').appendTo("#canvases");
-                  setupChart(canvasID, v, { "datasets": []});
+                  setupChart(canvasID, title, { "datasets": []});
               });
 
               // Create protocol dropdown
@@ -129,6 +130,19 @@
 
               var max_x = Enumerable.from(chart_data).max(dp => dp["x"]);
               var min_x = Enumerable.from(chart_data).min(dp => dp["x"]);
+
+              //Simplify the waveform with Ramer Douglas Peucker algo. From: http://karthaus.nl/rdp/
+              //Waveform changes less than % of the Y range are linearized
+              var simplification_epsilon = (max_y - min_y) * 0.01;
+
+              chart_data = Enumerable
+                  .from(RDPsd(Enumerable
+                          .from(chart_data)
+                          .select(dp => [dp["x"], dp["y"]])
+                          .toArray(), simplification_epsilon))
+                  .select(function(dp) { return {"x": dp[0], "y": dp[1] } } )
+                  .toArray();
+
 
               wave["Variable_Values"] = null; //Remove old format
               wave["data"] = chart_data;
@@ -283,7 +297,8 @@
                           .where(w=>w["Waveform_Label"] == label)
               //}
 
-              Enumerable.from(variables).forEach(v => {
+              Enumerable.from(variables).forEach(variable => {
+                  var v = variable["Name"];
                   var canvasID = "canvas"+v;
 
                   var chart_waveforms = label_waveforms
