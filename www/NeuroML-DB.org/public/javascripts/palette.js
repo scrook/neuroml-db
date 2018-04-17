@@ -1,3 +1,49 @@
+blindnessFilters = {
+    green: {
+        name: 'Green-blindness (6% of men, 0.4% of women)',
+        func: function(r, g, b) {
+            r = Math.pow(r, 2.2);
+            g = Math.pow(g, 2.2);
+            b = Math.pow(b, 2.2);
+            var R = Math.pow(0.02138 + 0.677 * g + 0.2802 * r, 1 / 2.2);
+            var B = Math.pow(0.02138 * (1 + g - r) + 0.9572 * b, 1 / 2.2);
+            return [R, R, B];
+        }
+    },
+    red: {
+        name: 'Red-blindness (2.5% of men)',
+        func: function(r, g, b) {
+            r = Math.pow(r, 2.2);
+            g = Math.pow(g, 2.2);
+            b = Math.pow(b, 2.2);
+            var R = Math.pow(0.003974 + 0.8806 * g + 0.1115 * r, 1 / 2.2);
+            var B = Math.pow(0.003974 * (1 - g + r) + 0.9921 * b, 1 / 2.2);
+            return [R, R, B];
+        }
+    },
+    gray: {
+        name: 'Grayscale',
+        func: function(r, g, b) {
+            g = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+            return [g, g, g];
+        }
+    }
+};
+
+transformColors = function(colors, callback) {
+    if (!callback) {
+        return colors;
+    }
+    return colors.map(function(color) {
+        var c = parseInt(color, 16);
+        return callback(c >> 16, (c >> 8) & 255, c & 255).map(function(v) {
+            v = Math.floor(v);
+            v = Number(v > 0 ? (v < 255 ? v : 255) : 0).toString(16);
+            return v.length == 1 ? '0' + v : v;
+        }).join('');
+    });
+};
+
 /** @license
  *
  *     Colour Palette Generator script.
