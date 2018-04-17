@@ -8,6 +8,7 @@
   end
 
   waveforms = Model.GetModelWaveFormList(@model_id)
+  steady_states = Model.GetModelPlotWaveForms(@model_id, "STEADY_STATE", "null")
 
 %>
 <div id="model-plots">
@@ -31,6 +32,7 @@
       </style>
       <script>
           var waveforms = <%= waveforms.to_json.html_safe  %>;
+          var steady_state_waveforms = <%= steady_states.to_json.html_safe %>;
           var model_type = '<%= @type %>';
           var model_id = '<%= @model_id %>';
           var waveform_selection = { 'protocol': null, 'meta_protocol': null, 'label': null };
@@ -44,6 +46,12 @@
                   .toArray();
 
           function plotsInit() {
+
+              //Prepare steady states
+              steady_state_waveforms = Enumerable
+                      .from(steady_state_waveforms)
+                      .select(w => to_chartjs_format(w))
+                      .toArray();
 
               //Create canvases for each variable
               Enumerable.from(variables).forEach(v => {
@@ -87,6 +95,53 @@
               //Wire up the dropdown and trigger it
               jQuery("#protocols select").on("change", onProtocolSelected)
               jQuery("#protocols select").change()
+          }
+
+          function to_chartjs_format(wave) {
+              starts_from_SS = Enumerable
+                      .from(waveforms)
+                      .first(w => w["ID"] == wave["ID"])
+                      ["Starts_From_Steady_State"] == 1;
+
+              var chart_data = [];
+
+              //Prefix steady state data to the waveform
+              if(starts_from_SS) {
+                  chart_data = chart_data.concat(Enumerable
+                          .from(steady_state_waveforms)
+                          .first(w => w["Variable_Name"] == wave["Variable_Name"])
+                          ["data"])
+              }
+
+              var values = wave["Variable_Values"].split(',').map(v => parseFloat(v));
+
+              var chart_x = wave["Time_Start"];
+              var chart_x_step = wave["Time_Step"];
+
+              for (v = 0; v < values.length; v++) {
+                  var chart_dp = {"x": chart_x, "y": values[v]};
+                  chart_data.push(chart_dp);
+                  chart_x += chart_x_step;
+              }
+
+              var max_y = Enumerable.from(chart_data).max(dp => dp["y"]);
+              var min_y = Enumerable.from(chart_data).min(dp => dp["y"]);
+
+              var max_x = Enumerable.from(chart_data).max(dp => dp["x"]);
+              var min_x = Enumerable.from(chart_data).min(dp => dp["x"]);
+
+              wave["Variable_Values"] = null; //Remove old format
+              wave["data"] = chart_data;
+              wave["min_y"] = min_y;
+              wave["max_y"] = max_y;
+              wave["min_x"] = min_x;
+              wave["max_x"] = max_x;
+
+              wave["label"] = wave["Waveform_Label"];
+              wave["backgroundColor"] = 'rgba(0,0,250,1)';
+              wave["borderColor"] = 'rgba(0,0,250,1)';
+
+              return wave
           }
           function onProtocolSelected() {
               protocol_id = this.value;
@@ -180,51 +235,32 @@
 
               updatePlots()
           }
+
           function updatePlots() {
-              url = "http://spike.asu.edu:5000/api/plot_waveforms?model_id=" + encodeURIComponent(model_id) +
+              var url = "http://spike.asu.edu:5000/api/plot_waveforms?" +
+                    "model_id=" + encodeURIComponent(model_id) +
                     "&protocol_id=" + encodeURIComponent(waveform_selection["protocol"]) +
                     "&meta_protocol_id=" + encodeURIComponent(waveform_selection["meta_protocol"])
 
               if (!(url in waveform_cached_urls)) {
+                  waveform_cached_urls[url] = true;
+
                   jQuery.ajax(url, {
                       success: function (data) {
-                          waveforms_full = eval(data);
+                          var waveforms_full = eval(data);
 
+                          // Transform to chart.js format and cache
                           for (w = 0; w < waveforms_full.length; w++) {
-                              wave = waveforms_full[w];
-
-                              // Transform to chart.js format
-                              chart_data = [];
-                              values = wave["Variable_Values"].split(',').map(v => parseFloat(v));
-
-                              chart_x = wave["Time_Start"]
-                              chart_x_step = wave["Time_Step"]
-
-                              for (v = 0; v < values.length; v++) {
-                                  chart_dp = { "x": chart_x, "y": values[v] };
-                                  chart_data.push(chart_dp);
-                                  chart_x += chart_x_step;
-                              }
-
-
-                              wave["Variable_Values"] = null //Remove old format
-                              wave["data"] = chart_data;
-
-                              wave["label"] = wave["Waveform_Label"]
-                              wave["backgroundColor"] = 'rgba(0,0,250,1)'
-                              wave["borderColor"] = 'rgba(0,0,250,1)'
-
-                              waveform_cache.push(wave)
+                              var wave = waveforms_full[w];
+                              var transformed = to_chartjs_format(wave);
+                              waveform_cache.push(transformed);
                           }
 
-                          waveforms_full = null;
-                          waveform_cached_urls[url] = true;
-
-                          plotSelected()
+                          plotSelected();
 
                       },
                       error: function (jqXHR, status, error) {
-
+                        alert(error);
                       }
                   });
               }
@@ -248,12 +284,31 @@
               //}
 
               Enumerable.from(variables).forEach(v => {
-                  canvasID = "canvas"+v;
+                  var canvasID = "canvas"+v;
 
-                  waveform = label_waveforms
+                  var chart_waveforms = label_waveforms
                       .where(w => w["Variable_Name"] == v);
 
-                  updateChart(canvasID, { "datasets": waveform.toArray()});
+                  var variable_waveforms = Enumerable
+                          .from(waveform_cache)
+                          .where(w => w["Protocol_ID"] == protocol && w["Variable_Name"] == v);
+
+                  var max_y = variable_waveforms.max(w => w["max_y"]);
+                  var min_y = variable_waveforms.min(w => w["min_y"]);
+                  var range = max_y - min_y;
+                  max_y += 0.05 * range;
+                  min_y -= 0.05 * range;
+
+
+
+                  updateChart(
+                      canvasID,
+                      { "datasets": chart_waveforms.toArray()},
+                      min_y,
+                      max_y,
+                      chart_waveforms.min(w => w["min_x"]),
+                      chart_waveforms.max(w => w["max_x"])
+                  );
               });
 
           }
