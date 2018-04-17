@@ -16,12 +16,17 @@
   <%= call_hook :view_layouts_base_html_head %>
 
   <%= stylesheet_link_tag 'style', :media => 'screen' %>
-  <%= javascript_include_tag 'jquery-1.5.1.min' %>
+  <%= stylesheet_link_tag 'jquery-ui.min', :media => 'screen' %>
+  <%= stylesheet_link_tag 'jquery-ui.structure.min', :media => 'screen' %>
+  <%= stylesheet_link_tag 'jquery-ui.theme.min', :media => 'screen' %>
+
+  <%= javascript_include_tag 'jquery-ui.min' %>
   <%= javascript_include_tag 'custom' %>
   <%= javascript_include_tag 'Chart.bundle' %>
   <%= javascript_include_tag 'hammer.min' %>
   <%= javascript_include_tag 'chartjs-plugin-zoom.min' %>
   <%= javascript_include_tag 'linq.min' %>
+  <%= javascript_include_tag 'palette' %>
 
 
   <script>

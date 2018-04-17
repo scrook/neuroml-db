@@ -10,7 +10,7 @@ class ModelsController < ApplicationController
     result = Model.GetModelDetails(params[:id])
 
     if result != nil
-      render :json => result, :content_type => 'application/javascript', :status => 500
+      render :json => result, :content_type => 'application/javascript', :status => 200
     else
       render :json => "Model not found", :content_type => 'application/javascript', :status => 404
     end
@@ -22,7 +22,19 @@ class ModelsController < ApplicationController
     result = Model.GetModelWaveForm(params[:id])
 
     if result != nil
-      render :json => result, :content_type => 'application/javascript', :status => 500
+      render :json => result, :content_type => 'application/javascript', :status => 200
+    else
+      render :json => "Waveform not found", :content_type => 'application/javascript', :status => 404
+    end
+
+  end
+
+  def plot_waveforms
+
+    result = Model.GetModelPlotWaveForms(params[:model_id], params[:protocol_id], params[:meta_protocol_id])
+
+    if result != nil
+      render :json => result, :content_type => 'application/javascript', :status => 200
     else
       render :json => "Waveform not found", :content_type => 'application/javascript', :status => 404
     end
@@ -34,7 +46,7 @@ class ModelsController < ApplicationController
     result = Model.SearchKeyword(params[:q].to_s)
 
     if result != nil
-      render :json => result, :content_type => 'application/javascript', :status => 500
+      render :json => result, :content_type => 'application/javascript', :status => 200
     else
       render :json => "No search results", :content_type => 'application/javascript', :status => 404
     end

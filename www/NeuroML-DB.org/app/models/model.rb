@@ -263,21 +263,26 @@ class Model < ActiveRecord::Base
       return contents
   end
 
-  def self.GetModelPlotWaveForms(model_id, protcol_id, meta_protocol_id)
+  def self.GetModelPlotWaveForms(model_id, protocol_id, meta_protocol_id)
 
     model_id = Model.connection.quote_string(model_id)
-    protcol_id = Model.connection.quote_string(protcol_id)
+    protocol_id = Model.connection.quote_string(protocol_id)
     meta_protocol_id = Model.connection.quote_string(meta_protocol_id)
 
-    waveforms = ActiveRecord::Base.connection.exec_query(
-        "
-          SELECT mw.*
-          FROM model_waveforms mw
-          WHERE mw.Model_ID = '#{model_id}' AND
-                mw.Protocol_ID = '#{protcol_id}' AND
-                mw.Meta_Protocol_ID = '#{meta_protocol_id}'
-          ORDER BY mw.Protocol_ID, mw.Meta_Protocol_ID, mw.ID
-        ")
+    query = "
+      SELECT mw.*
+      FROM model_waveforms mw
+      WHERE mw.Model_ID = '#{model_id}' AND
+            mw.Protocol_ID = '#{protocol_id}' AND
+            mw.Meta_Protocol_ID = '#{meta_protocol_id}'
+      ORDER BY mw.Protocol_ID, mw.Meta_Protocol_ID, mw.ID
+    "
+
+    query = query.gsub("= 'null'","is NULL")
+
+    #logger.warn(query)
+
+    waveforms = ActiveRecord::Base.connection.exec_query(query)
 
     waveforms.each do |waveform|
       waveform["Variable_Values"] = GetWaveformValues(waveform["Model_ID"], waveform["ID"])

@@ -22,40 +22,76 @@
         .meta-protocol { display:none; }
         canvas { -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; }
         table { border: 0px; }
+        #plot-selectors { margin-bottom: 15px; }
+        .selector { width: 261px; float:left; margin-left: 30px; font-size: 16px; }
+        .selector select { margin: 0; border: 1px solid #c5c5c5; font-size: 16px; width: 100%; margin-top: -11px; }
+        .selector .caption { text-align: center; height: 28px; }
+        .selector .slider {  }
+        .selector .value { font-weight: bold; }
       </style>
       <script>
           var waveforms = <%= waveforms.to_json.html_safe  %>;
           var model_type = '<%= @type %>';
+          var model_id = '<%= @model_id %>';
           var waveform_selection = { 'protocol': null, 'meta_protocol': null, 'label': null };
+          var waveform_cached_urls = {};
+          var waveform_cache = [];
+
+          variables = Enumerable
+                  .from(waveforms)
+                  .select(w => w["Variable_Name"])
+                  .distinct()
+                  .toArray();
 
           function plotsInit() {
-              // Create protocol buttons
+
+              //Create canvases for each variable
+              Enumerable.from(variables).forEach(v => {
+                  canvasID = "canvas"+v;
+                  jQuery('<canvas id="'+canvasID+'" width="874" height="219"></canvas>').appendTo("#canvases");
+                  setupChart(canvasID, v, { "datasets": []});
+              });
+
+              // Create protocol dropdown
               Enumerable
                   .from(waveforms)
                   .select(function(w) { return { "ID": w["Protocol_ID"], "Name":w["Protocol"]} })
                   .distinct(function(p) { return p["ID"]+p["Name"] })
                   .forEach(function(p) {
-                      jQuery('<td id="'+p['ID']+'" class="protocolButton">'+p['Name']+'</td>')
-                          .on('click', onProtocolSelected)
-                          .appendTo('.protocols');
+                      jQuery('<option value="'+p['ID']+'">'+p['Name']+'</option>')
+                          .appendTo('#protocols select');
                   });
 
-              jQuery('.protocols .protocolButton').first().click()
+              //Create meta-protocols slider
+              jQuery("#meta-protocols .slider")
+                  .slider({
+                      slide: function( event, ui ) {
+                          onMetaProtocolSelected(ui.value);
+                      },
+                      change: function( event, ui ) {
+                          onMetaProtocolSelected(ui.value);
+                      }
+                  });
+
+              //Create meta-protocols slider
+              jQuery("#labels .slider")
+                  .slider({
+                      slide: function( event, ui ) {
+                          onLabelSelected(ui.value);
+                      },
+                      change: function( event, ui ) {
+                          onLabelSelected(ui.value);
+                      }
+                  });
+
+              //Wire up the dropdown and trigger it
+              jQuery("#protocols select").on("change", onProtocolSelected)
+              jQuery("#protocols select").change()
           }
           function onProtocolSelected() {
-              element = this;
-              protocol_id = this.id;
+              protocol_id = this.value;
 
               waveform_selection = { 'protocol': protocol_id, 'meta_protocol': null, 'label': null };
-
-              jQuery(".protocols .selected").removeClass("selected");
-              jQuery(element).addClass("selected");
-
-              jQuery('#meta-protocol-container').hide();
-              jQuery('#label-container').hide();
-
-              jQuery('.meta-protocols').empty();
-              jQuery('.labels').empty();
 
               // Create meta protocol buttons
               metas = Enumerable
@@ -64,48 +100,47 @@
                   .select(function(w) { return { "ID": w["Meta_Protocol_ID"], "Name": w["Meta_Protocol"]} })
                   .distinct(function(p) { return p["ID"]+p["Name"] });
 
-              if (metas.first()["ID"] != null) { // If there are meta protocols
-                  metas
-                      .forEach(function (p) {
-                          jQuery('<td id="' + p['ID'] + '" class="protocolButton">' + p['Name'] + '</td>')
-                              .on('mouseover', onMetaProtocolSelected)
-                              .on('click',     onMetaProtocolSelected)
-                              .appendTo('.meta-protocols');
-                      });
+              meta_count = metas.count()
 
+              if (meta_count > 0) { // If there are meta protocols
+
+                  //Update their array
+                  meta_protocols_lookup = metas.toArray()
+
+                  //Show the slider
                   jQuery('#meta-protocol-container').show();
 
+                  var slider = jQuery("#meta-protocols .slider").slider('option','max', meta_count-1);
+
                   if (model_type == "Channel") {
-                      jQuery('.meta-protocols .protocolButton').last().click()
+                      slider.slider('value',slider.slider('value'))
                   }
                   else {
-                      jQuery('.meta-protocols .protocolButton').first().click()
+                      slider.slider('value',0)
                   }
               }
               else { // If no meta protocol
-                  jQuery('#meta-protocol-container').hide();
+                  jQuery('#meta-protocols').hide();
                   waveform_selection["meta_protocol"] = null;
                   updateLabels();
               }
 
           }
 
-          function onMetaProtocolSelected() {
-              element = this;
-              meta_protocol_id = this.id;
+          function onMetaProtocolSelected(slider_value) {
+              meta_protocol = meta_protocols_lookup[slider_value]
 
-              jQuery(".meta-protocols .selected").removeClass("selected");
-              jQuery(element).addClass("selected");
+              jQuery( "#meta-protocols .value" ).html(meta_protocol["Name"]);
+              waveform_selection["meta_protocol"] = meta_protocol["ID"];
 
-              waveform_selection["meta_protocol"] = meta_protocol_id;
-              waveform_selection["label"] = null;
+              if (model_type != "Channel") {
+                  waveform_selection["label"] = null;
+              }
 
               updateLabels();
-              updatePlots();
           }
 
           function updateLabels() {
-              jQuery('.labels').empty();
 
               // Create protocol buttons
               labels = Enumerable
@@ -114,60 +149,139 @@
                   .select(function(w) { return { "ID": w["Waveform_Label"], "Name": w["Waveform_Label"]} })
                   .distinct(function(p) { return p["ID"]+p["Name"] })
 
-              if (labels.first()["ID"] != null) { // If there are labels
-                labels
-                  .forEach(function (p) {
-                      jQuery('<td id="' + p['ID'] + '" class="protocolButton">' + p['Name'] + '</td>')
-                          .on('mouseover', onLabelSelected)
-                          .on('click',     onLabelSelected)
-                          .appendTo('.labels');
-                  });
+              label_count = labels.count()
 
-                jQuery('#label-container').show();
+              if (label_count > 0) { // If there are labels
+                  labels_lookup = labels.toArray()
+
+                  //Show the slider
+                  jQuery('#labels').show();
+                  slider = jQuery("#labels .slider").slider('option','max', label_count-1);
+
+                  if (model_type == "Channel") {
+                      slider.slider('value',slider.slider('value'))
+                  }
+                  else {
+                      jQuery("#labels .slider").slider('value',0)
+                  }
               }
               else { // If no labels
-                  jQuery('#label-container').hide();
+                  jQuery('#labels').hide();
                   waveform_selection["label"] = null;
                   updatePlots();
               }
           }
-          function onLabelSelected() {
-              element = this;
-              label = this.id;
+          function onLabelSelected(slider_value) {
+              label = labels_lookup[slider_value]
 
-              jQuery(".labels .selected").removeClass("selected");
-              jQuery(element).addClass("selected");
+              jQuery( "#labels .value" ).html( label["Name"] );
 
-              waveform_selection["label"] = label;
+              waveform_selection["label"] = label["ID"];
 
               updatePlots()
           }
           function updatePlots() {
-              jQuery("#label").html(JSON.stringify(waveform_selection))
+              url = "http://spike.asu.edu:5000/api/plot_waveforms?model_id=" + encodeURIComponent(model_id) +
+                    "&protocol_id=" + encodeURIComponent(waveform_selection["protocol"]) +
+                    "&meta_protocol_id=" + encodeURIComponent(waveform_selection["meta_protocol"])
 
-              setupChart("canvasV", "Voltage (mV)", voltages);
+              if (!(url in waveform_cached_urls)) {
+                  jQuery.ajax(url, {
+                      success: function (data) {
+                          waveforms_full = eval(data);
+
+                          for (w = 0; w < waveforms_full.length; w++) {
+                              wave = waveforms_full[w];
+
+                              // Transform to chart.js format
+                              chart_data = [];
+                              values = wave["Variable_Values"].split(',').map(v => parseFloat(v));
+
+                              chart_x = wave["Time_Start"]
+                              chart_x_step = wave["Time_Step"]
+
+                              for (v = 0; v < values.length; v++) {
+                                  chart_dp = { "x": chart_x, "y": values[v] };
+                                  chart_data.push(chart_dp);
+                                  chart_x += chart_x_step;
+                              }
+
+
+                              wave["Variable_Values"] = null //Remove old format
+                              wave["data"] = chart_data;
+
+                              wave["label"] = wave["Waveform_Label"]
+                              wave["backgroundColor"] = 'rgba(0,0,250,1)'
+                              wave["borderColor"] = 'rgba(0,0,250,1)'
+
+                              waveform_cache.push(wave)
+                          }
+
+                          waveforms_full = null;
+                          waveform_cached_urls[url] = true;
+
+                          plotSelected()
+
+                      },
+                      error: function (jqXHR, status, error) {
+
+                      }
+                  });
+              }
+              else {
+                  plotSelected();
+              }
           }
+
+          function plotSelected() {
+              protocol = waveform_selection["protocol"];
+              meta_protocol = waveform_selection["meta_protocol"];
+              label = waveform_selection["label"];
+
+              label_waveforms = Enumerable
+                      .from(waveform_cache)
+                      .where(w=>w["Meta_Protocol_ID"] == meta_protocol && w["Protocol_ID"] == protocol)
+
+              //if (model_type != "Channel") {
+                  label_waveforms = label_waveforms
+                          .where(w=>w["Waveform_Label"] == label)
+              //}
+
+              Enumerable.from(variables).forEach(v => {
+                  canvasID = "canvas"+v;
+
+                  waveform = label_waveforms
+                      .where(w => w["Variable_Name"] == v);
+
+                  updateChart(canvasID, { "datasets": waveform.toArray()});
+              });
+
+          }
+
       </script>
-      <div id="protocol-container">
-        <div>Select Stimulation Protocol:</div>
-        <table><tr class="protocols"></tr></table>
-      </div>
+      <div id="plot-selectors">
 
-      <div id="meta-protocol-container">
-        <div>Select <%= @meta_protocol_type %>:</div>
-        <table><tr class="meta-protocols"></tr></table>
-      </div>
+        <div id="protocols" class="selector">
+          <div class="caption">Protocol:</div>
+          <select></select>
+        </div>
 
-      <div id="label-container">
-        <div>Select stimulus:</div>
-        <table><tr class="labels"></tr></table>
-      </div>
+        <div id="meta-protocols" class="selector">
+          <div class="caption"><span><%= @meta_protocol_type %>:</span> <span class="value">-</span></div>
+          <div class="slider"></div>
+        </div>
 
-      <div id="label"></div>
+        <div id="labels" class="selector">
+          <div class="caption"><span>Stimulus:</span> <span class="value">-</span></div>
+          <div class="slider"></div>
+        </div>
+
+        <div style="clear:both;"></div>
+      </div>
 
       <!--Render plots using chart.js library-->
-      <canvas id="canvasV"></canvas>
-      <canvas id="canvasI"></canvas>
+      <div id="canvases">
+      </div>
 
       <script>
           plotsInit();

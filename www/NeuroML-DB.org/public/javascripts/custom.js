@@ -151,8 +151,10 @@ function getProtocolData(doneCallback) {
 }
 function updateChart(id, data)
 {
-	for (d = 0; d < window[id].data.datasets.length; d++) {
-		window[id].data.datasets[d] = data.datasets[d];
+    window[id].data.datasets.length = 0;
+
+	for (d = 0; d < data.datasets.length; d++) {
+		window[id].data.datasets.push(data.datasets[d]);
 	}
 
     window[id].resetZoom();
@@ -171,4 +173,9 @@ function changeSubProtocol(element, subProt) {
 	getProtocolData(updateCharts);
 }
 
+function range(start, stop, step){
+    var a=[start], b=start;
+    while(b<stop){b+=step;a.push(b)}
+    return a;
+};
 
