@@ -158,53 +158,52 @@
               return wave
           }
           function onProtocolSelected() {
-              protocol_id = this.value;
+              var protocol_id = this.value;
 
               waveform_selection = { 'protocol': protocol_id, 'meta_protocol': null, 'label': null };
 
               // Create meta protocol buttons
-              metas = Enumerable
+              var metas = Enumerable
                   .from(waveforms)
                   .where(function(w) { return w["Protocol_ID"] == protocol_id })
                   .select(function(w) { return { "ID": w["Meta_Protocol_ID"], "Name": w["Meta_Protocol"]} })
                   .distinct(function(p) { return p["ID"]+p["Name"] });
 
-              meta_count = metas.count()
+              var metas_slider_div = jQuery("#meta-protocols .slider");
 
-              if (meta_count > 0) { // If there are meta protocols
+              //Update their array
+              meta_protocols_lookup = metas.toArray()
 
-                  //Update their array
-                  meta_protocols_lookup = metas.toArray()
+              if (meta_protocols_lookup.length > 1) {
+                  metas_slider_div.slider('option','max', meta_protocols_lookup.length - 1);
 
-                  //Show the slider
-                  jQuery('#meta-protocol-container').show();
-
-                  var slider = jQuery("#meta-protocols .slider").slider('option','max', meta_count-1);
-
+                  //For channels, keep same meta-protocol, across protocols (all same)
                   if (model_type == "Channel") {
-                      slider.slider('value',slider.slider('value'))
-                  }
-                  else {
-                      slider.slider('value',0)
-                  }
-              }
-              else { // If no meta protocol
-                  jQuery('#meta-protocols').hide();
-                  waveform_selection["meta_protocol"] = null;
-                  updateLabels();
-              }
+                      var current_value = metas_slider_div.slider('value');
 
+                      //Trigger slider change event, to update protocol stimuli
+                      metas_slider_div.slider('value', current_value)
+                  }
+                  //For other models, select the first meta-protocol
+                  else {
+                      metas_slider_div.slider('value', 0)
+                  }
+
+                  jQuery("#meta-protocols").show();
+              }
+              else {
+                  onMetaProtocolSelected(0);
+
+                  jQuery("#meta-protocols").hide();
+              }
           }
 
           function onMetaProtocolSelected(slider_value) {
               meta_protocol = meta_protocols_lookup[slider_value]
 
+              //Update the value
               jQuery( "#meta-protocols .value" ).html(meta_protocol["Name"]);
               waveform_selection["meta_protocol"] = meta_protocol["ID"];
-
-              if (model_type != "Channel") {
-                  waveform_selection["label"] = null;
-              }
 
               updateLabels();
           }
@@ -212,32 +211,31 @@
           function updateLabels() {
 
               // Create protocol buttons
-              labels = Enumerable
+              var labels = Enumerable
                   .from(waveforms)
                   .where(function(w) { return w["Protocol_ID"] == waveform_selection["protocol"] && w["Meta_Protocol_ID"] == waveform_selection["meta_protocol"] })
                   .select(function(w) { return { "ID": w["Waveform_Label"], "Name": w["Waveform_Label"]} })
                   .distinct(function(p) { return p["ID"]+p["Name"] })
 
-              label_count = labels.count()
+              labels_lookup = labels.toArray();
+              var label_count = labels_lookup.length;
 
-              if (label_count > 0) { // If there are labels
-                  labels_lookup = labels.toArray()
+              if (label_count > 1) { // If there is more than one label
 
-                  //Show the slider
-                  jQuery('#labels').show();
-                  slider = jQuery("#labels .slider").slider('option','max', label_count-1);
+                  var labels_slider_div = jQuery("#labels .slider");
 
-                  if (model_type == "Channel") {
-                      slider.slider('value',slider.slider('value'))
-                  }
-                  else {
-                      jQuery("#labels .slider").slider('value',0)
-                  }
+                  //Set the upper selection limit on the slider
+                  labels_slider_div.slider('option','max', label_count-1);
+
+                  //Trigger change event on slider, to update the plots. Keeping the same value
+                  labels_slider_div.slider('value', labels_slider_div.slider('value'))
+
+                  jQuery("#labels").show();
               }
               else { // If no labels
-                  jQuery('#labels').hide();
-                  waveform_selection["label"] = null;
-                  updatePlots();
+                  onLabelSelected(0);
+
+                  jQuery("#labels").hide();
               }
           }
           function onLabelSelected(slider_value) {
