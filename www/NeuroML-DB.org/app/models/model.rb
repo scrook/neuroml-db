@@ -228,7 +228,8 @@ class Model < ActiveRecord::Base
 
     return ActiveRecord::Base.connection.exec_query(
         "
-          SELECT mw.ID, mw.Protocol_ID, p.Pretty_Name as Protocol, mw.Meta_Protocol_ID, mp.Pretty_Name as Meta_Protocol, mw.Waveform_Label, mw.Time_Start, mw.Time_End, mw.Time_Step, mw.Variable_Name
+          SELECT mw.ID, mw.Protocol_ID, p.Pretty_Name as Protocol, mw.Meta_Protocol_ID, mp.Pretty_Name as Meta_Protocol,
+                 mw.Waveform_Label, mw.Time_Start, mw.Time_End, mw.Time_Step, mw.Variable_Name, p.Starts_From_Steady_State
           FROM model_waveforms mw
           LEFT JOIN protocols p ON p.ID = mw.Protocol_ID
           LEFT JOIN protocols mp ON mp.ID = mw.Meta_Protocol_ID
