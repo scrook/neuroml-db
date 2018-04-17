@@ -218,6 +218,11 @@
                   .distinct(function(p) { return p["ID"]+p["Name"] })
 
               labels_lookup = labels.toArray();
+
+              if(model_type == "Channel") {
+                  labels_lookup.unshift({ "ID": "ALL", "Name": "ALL"});
+              }
+
               var label_count = labels_lookup.length;
 
               if (label_count > 1) { // If there is more than one label
@@ -232,7 +237,7 @@
 
                   jQuery("#labels").show();
               }
-              else { // If no labels
+              else { // If <2 labels
                   onLabelSelected(0);
 
                   jQuery("#labels").hide();
@@ -290,10 +295,10 @@
                       .from(waveform_cache)
                       .where(w=>w["Meta_Protocol_ID"] == meta_protocol && w["Protocol_ID"] == protocol)
 
-              //if (model_type != "Channel") {
+              if (label != "ALL") {
                   label_waveforms = label_waveforms
                           .where(w=>w["Waveform_Label"] == label)
-              //}
+              }
 
               Enumerable.from(variables).forEach(variable => {
                   var v = variable["Name"];
