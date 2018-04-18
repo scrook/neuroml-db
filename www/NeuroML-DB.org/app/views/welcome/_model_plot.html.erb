@@ -133,7 +133,7 @@
 
               //Simplify the waveform with Ramer Douglas Peucker algo. From: http://karthaus.nl/rdp/
               //Waveform changes less than % of the Y range are linearized
-              var simplification_epsilon = (max_y - min_y) * 0.01;
+              var simplification_epsilon = (max_y - min_y) * 0.005;
 
               chart_data = Enumerable
                   .from(RDPsd(Enumerable
@@ -158,7 +158,7 @@
           function onProtocolSelected() {
               var protocol_id = this.value;
 
-              waveform_selection = { 'protocol': protocol_id, 'meta_protocol': null, 'label': null };
+              waveform_selection = { 'protocol': protocol_id, 'meta_protocol': null, 'label': null, 'reset_zoom': true };
 
               // Create meta protocol buttons
               var metas = Enumerable
@@ -284,9 +284,13 @@
           }
 
           function plotSelected() {
-              protocol = waveform_selection["protocol"];
-              meta_protocol = waveform_selection["meta_protocol"];
-              label = waveform_selection["label"];
+              var protocol = waveform_selection["protocol"];
+              var meta_protocol = waveform_selection["meta_protocol"];
+              var label = waveform_selection["label"];
+
+              var reset_zoom = waveform_selection["reset_zoom"];
+
+              waveform_selection["reset_zoom"] = false;
 
               label_waveforms = Enumerable
                       .from(waveform_cache)
@@ -333,7 +337,7 @@
                       wave["backgroundColor"] = wave["borderColor"] = '#1376c4';
                   }
 
-                  updateChart(canvasID, { "datasets": chart_waveforms}, min_y, max_y);
+                  updateChart(canvasID, { "datasets": chart_waveforms}, min_y, max_y, reset_zoom);
               });
 
           }

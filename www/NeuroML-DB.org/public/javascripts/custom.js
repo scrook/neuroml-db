@@ -11,9 +11,9 @@ function setupChart(id, title, data) {
 			title: { display: false },
 			elements: {
 				point: { radius: 0, hitRadius:10, borderWidth: 0 },
-				line: { fill: false, cubicInterpolationMode: 'monotone', borderWidth:1.5, borderJoinStyle:'round' },
+                line: { fill: false, borderWidth:1.5, cubicInterpolationMode: 'default', tension: 0, borderJoinStyle:'round' },
 			},
-			hover: { mode: 'nearest' },
+			hover: { mode: 'nearest', animationDuration: 0 },
 			legend: { display: false, },
 			scales: {
 				xAxes: [{
@@ -149,7 +149,7 @@ function getProtocolData(doneCallback) {
         }
 	});
 }
-function updateChart(id, data, min_y, max_y)
+function updateChart(id, data, min_y, max_y, reset_zoom)
 {
     window[id].data.datasets.length = 0;
 
@@ -160,7 +160,12 @@ function updateChart(id, data, min_y, max_y)
     window[id]["options"]["scales"]["yAxes"][0]["ticks"]["suggestedMax"] = max_y
     window[id]["options"]["scales"]["yAxes"][0]["ticks"]["suggestedMin"] = min_y
 
-    window[id].resetZoom();
+    if(reset_zoom){
+        window[id].resetZoom();
+    }
+    else {
+        window[id].update();
+    }
 }
 function changeCaConc(element, name) {
 	jQuery("#caConc").val(name);
