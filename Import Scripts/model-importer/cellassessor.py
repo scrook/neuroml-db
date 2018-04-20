@@ -20,10 +20,11 @@ class CellAssessor:
     def __init__(self, path):
         self.path = path
         self.abs_tolerance = 0.001
-        self.collection_period_ms = 0.25
+        self.collection_period_ms = 0.025
         self.pickle_file_cache = {}
         self.server = None
         self.db = None
+        self.actual_model_parent_dir = "../../../../www/NeuroMLmodels"
 
     def get_model_nml_id(self):
         return self.path.split("/")[-1]
@@ -113,11 +114,11 @@ class CellAssessor:
 
     def get_cell_model_responses(self, protocols=["STEADY_STATE",
                                                   "RAMP",
-                                                  "SQUARE",
-                                                  "SHORT_SQUARE",
-                                                  "LONG_SQUARE",
-                                                  "SHORT_SQUARE_HOLD",
-                                                  "SQUARE_SUBTHRESHOLD"
+                                                  # "SQUARE",
+                                                  # "SHORT_SQUARE",
+                                                  # "LONG_SQUARE",
+                                                  # "SHORT_SQUARE_HOLD",
+                                                  # "SQUARE_SUBTHRESHOLD"
                                                   ]):
         self.setTolerances()
 
@@ -313,10 +314,23 @@ class CellAssessor:
         waveform.Time_End = max(times)
         waveform.Time_Step = time_step
         waveform.Run_Time = run_time
-        waveform.Variable_Values = string.join([self.short_string(v) for v in values], ',')
 
         waveform.save()
-        print("SAVED")
+        print("WAVE RECORD SAVED")
+
+        waveforms_dir = os.path.abspath(os.path.join(self.actual_model_parent_dir, model_id, "waveforms"))
+
+        if not os.path.exists(waveforms_dir):
+            os.mkdir(waveforms_dir)
+
+        waveform_csv = os.path.join(waveforms_dir, str(waveform.ID) + ".csv")
+
+        Variable_Values = string.join([self.short_string(v) for v in values], ',')
+
+        with open(waveform_csv, "w") as f:
+            f.write(Variable_Values)
+
+        print("WAVE VALUES SAVED")
 
     def save_tvi_plot(self, label, tvi_dict, case=""):
         plt.clf()
