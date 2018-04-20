@@ -38,7 +38,7 @@ function setupChart(id, title, data) {
                 mode: "x"
             },
             zoom: {
-                enabled: true,
+                enabled: false,
                 mode: "x"
             }
 		}
@@ -149,23 +149,40 @@ function getProtocolData(doneCallback) {
         }
 	});
 }
-function updateChart(id, data, min_y, max_y, reset_zoom)
+function updateChart(id, data, min_y, max_y, min_x, max_x, reset_zoom)
 {
-    window[id].data.datasets.length = 0;
+    var chart = window[id];
+
+    chart.data.datasets.length = 0;
 
 	for (d = 0; d < data.datasets.length; d++) {
-		window[id].data.datasets.push(data.datasets[d]);
+		chart.data.datasets.push(data.datasets[d]);
 	}
 
-    window[id]["options"]["scales"]["yAxes"][0]["ticks"]["suggestedMax"] = max_y
-    window[id]["options"]["scales"]["yAxes"][0]["ticks"]["suggestedMin"] = min_y
+    var y_ticks = chart["options"]["scales"]["yAxes"][0]["ticks"];
+	var x_ticks = chart["options"]["scales"]["xAxes"][0]["ticks"];
+
+	y_ticks["suggestedMax"] = max_y
+    y_ticks["suggestedMin"] = min_y
+
+    x_ticks["data-max"] = max_x
+    x_ticks["data-min"] = min_x
 
     if(reset_zoom){
-        window[id].resetZoom();
+        x_ticks["max"] = max_x;
+        x_ticks["min"] = min_x;
+
+        x_ticks["suggestedMax"] = max_x;
+        x_ticks["suggestedMin"] = min_x;
+
+        chart.update();
     }
     else {
-        window[id].update();
+        chart.update();
     }
+
+    // chart["options"]["scales"]["xAxes"][0]["ticks"]["suggestedMax"] = max_x
+    // chart["options"]["scales"]["xAxes"][0]["ticks"]["suggestedMin"] = min_x
 }
 function changeCaConc(element, name) {
 	jQuery("#caConc").val(name);
