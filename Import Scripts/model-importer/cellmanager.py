@@ -3,6 +3,8 @@
 # Usage: python getCellProperties /path/To/dir/with/.hoc
 
 import os, string, cPickle
+import re
+import shutil
 
 import numpy as np
 from matplotlib import pyplot as plt
@@ -15,10 +17,14 @@ from collector import Collector
 from neuronrunner import NeuronRunner, NumericalInstabilityException
 from tables import Cells, Model_Waveforms, Protocols, db_proxy
 
+from manager import ModelManager
 
-class CellAssessor:
+
+class CellManager(ModelManager):
     def __init__(self, path):
-        self.path = path
+        super(CellManager, self).__init__()
+
+        self.NEURON_model_path = path
         self.abs_tolerance = 0.001
         self.collection_period_ms = 0.025
         self.pickle_file_cache = {}
@@ -27,7 +33,27 @@ class CellAssessor:
         self.actual_model_parent_dir = "../../../../www/NeuroMLmodels"
 
     def get_model_nml_id(self):
-        return self.path.split("/")[-1]
+        return self.NEURON_model_path.split("/")[-1]
+
+    def get_cell_model_properties(self, model_dir):
+        NEURON_folder = self.cell_model_to_neuron(model_dir)
+
+        assessor = CellManager(path=NEURON_folder)
+
+        id = assessor.get_model_nml_id()
+
+        try:
+            assessor.get_cell_properties()
+            self.update_model_simulation_status(id, status="CURRENT")
+
+        except:
+            print("Encountered an error. Saving progress...")
+
+            assessor.save_cell_record()
+
+            self.update_model_simulation_status(id, status="ERROR")
+
+            raise
 
     def get_cell_properties(self):
         self.cell_record = Cells(
@@ -111,6 +137,76 @@ class CellAssessor:
 
             print("Tests finished, saving...")
             self.save_cell_record()
+
+    def save_3D_image(self):
+        self.cell_model_to_neuron(self.NEURON_model_path)
+
+        h = self.build(restore_tolerances=False)
+
+        sections = [s for s in h.allsec()]
+
+
+        coords = [[h.x3d(0, sec=s),
+                 h.y3d(0, sec=s),
+                 h.z3d(0, sec=s)] for s in sections]\
+                 + \
+                 [[h.x3d(h.n3d(sec=s) - 1, sec=s),
+                  h.y3d(h.n3d(sec=s) - 1, sec=s),
+                  h.z3d(h.n3d(sec=s) - 1, sec=s)] for s in sections]
+
+        coords = np.array(coords)
+
+        from sklearn.decomposition import PCA
+        pca = PCA()
+        pca.fit(coords)
+
+        for sec in sections:
+            for i in range(int(h.n3d(sec=sec))):
+                transformed = pca.transform([[h.x3d(i, sec=sec), h.y3d(i, sec=sec), h.z3d(i, sec=sec)]])
+
+                x = transformed[0][2]
+                y = transformed[0][1]
+                z = transformed[0][0]
+                diam = h.diam3d(i, sec=sec)
+
+                h.pt3dchange(i, x, y, z, diam, sec=sec)
+
+        import sys
+        sys.path.append('/home/justas/Repositories/BlenderNEURON/ForNEURON')
+        from blenderneuron import BlenderNEURON
+        bl = BlenderNEURON(h)
+        bl.send_model()
+
+
+        # id = assessor.get_model_nml_id()
+        #
+        # try:
+        #     assessor.get_cell_model_responses()
+        #     self.update_model_simulation_status(id, status="CURRENT")
+        #
+        # except:
+        #     print("Encountered an error. Saving progress...")
+        #     self.update_model_simulation_status(id, status="ERROR")
+        #
+        #     raise
+
+
+    def save_cell_model_responses(self, model_dir):
+        NEURON_folder = self.cell_model_to_neuron(model_dir)
+
+        assessor = CellManager(path=NEURON_folder)
+
+        id = assessor.get_model_nml_id()
+
+        try:
+            assessor.get_cell_model_responses()
+            self.update_model_simulation_status(id, status="CURRENT")
+
+        except:
+            print("Encountered an error. Saving progress...")
+            self.update_model_simulation_status(id, status="ERROR")
+
+            raise
 
     def get_cell_model_responses(self, protocols=["STEADY_STATE",
                                                   "RAMP",
@@ -532,7 +628,7 @@ class CellAssessor:
 
     def load_cell(self):
         # Load cell hoc and get soma
-        os.chdir(self.path)
+        os.chdir(self.NEURON_model_path)
         from neuron import h, gui
 
         # Create the cell
@@ -541,7 +637,7 @@ class CellAssessor:
         elif len(self.get_hoc_files()) > 0:
             self.test_cell = self.get_cell_with_morphology(h)
         else:
-            raise Exception("Could not find cell .hoc or abstract cell .mod file in: " + self.path)
+            raise Exception("Could not find cell .hoc or abstract cell .mod file in: " + self.NEURON_model_path)
 
         # Get the root sections and try to find the soma
         self.roots = h.SectionList()
@@ -558,7 +654,7 @@ class CellAssessor:
         return h
 
     def build(self, restore_tolerances=True):
-        print("Loading cell: " + self.path)
+        print("Loading cell: " + self.NEURON_model_path)
         h = self.load_cell()
 
         # set up stim
@@ -578,8 +674,8 @@ class CellAssessor:
 
         # h.nrncontrolmenu()
         self.nState = h.SaveState()
-        self.set_abs_tolerance(self.abs_tolerance)
         self.sim_init()
+        self.set_abs_tolerance(self.abs_tolerance)
 
         if not self.is_abstract_cell() and restore_tolerances:
             self.restore_tolerances()
@@ -613,10 +709,10 @@ class CellAssessor:
         return cell
 
     def get_hoc_files(self):
-        return [f for f in os.listdir(self.path) if f.endswith(".hoc")]
+        return [f for f in os.listdir(self.NEURON_model_path) if f.endswith(".hoc")]
 
     def get_mod_files(self):
-        return [f for f in os.listdir(self.path) if f.endswith(".mod")]
+        return [f for f in os.listdir(self.NEURON_model_path) if f.endswith(".mod")]
 
     def sim_init(self):
         from neuron import h, gui
@@ -1054,3 +1150,105 @@ class CellAssessor:
         server.stop()
 
         print("SAVED")
+
+    def cell_model_to_neuron(self, path):
+
+        print("Converting cell NML model to NEURON...")
+
+        # Get the parent folder of the model
+        if self.is_nmldb_id(path):
+            model_dir_name = self.get_model_directory(path)
+
+            dir_nml_files = [f for f in os.listdir(model_dir_name) if self.is_nml2_file(f)]
+
+            if len(dir_nml_files) != 1:
+                raise Exception("There should be exactly one NML file in the model directory: " + str(dir_nml_files))
+
+            cell_file_name = dir_nml_files[0]
+
+        else:
+            model_dir_name = os.path.dirname(os.path.abspath(path))
+            cell_file_name = os.path.basename(path)
+
+        nml_db_id = model_dir_name.split("/")[-1]
+
+        if not self.is_nmldb_id(nml_db_id):
+            raise Exception("The name of the parent folder of the model should be a NeuroML-DB id: " + nml_db_id)
+
+        # Templates
+        include_file_template = '	<Include file="[File]"/>'
+
+        # Find the NML id of the cell
+        with open(os.path.join(model_dir_name, cell_file_name)) as f:
+            nml = f.read()
+            cell_id = re.search('<.*cell.*?id.*?=.*?"(.*?)"', nml, re.IGNORECASE).groups(1)[0]
+            cell_files = set(re.compile('<include.*?href.*?=.*?"(.*?)"').findall(nml))
+
+        # Get all cell channel files from the model API
+        children_in_db = self.get_cell_children(nml_db_id)
+
+        db_files = set(c["File_Name"] for c in children_in_db)
+
+        if len(db_files - cell_files) > 0:
+            print("Misbehaving children: The following files are in DATABASE but MISSING IN CELL: " + nml_db_id)
+            print(
+            [(c["Model_ID"], c["File_Name"]) for c in children_in_db if c["File_Name"] in (db_files - cell_files)])
+            raise Exception("Database has extra children for the cell")
+
+        if len(cell_files - db_files) > 0:
+            print("Misbehaving children: The following files are in CELL but MISSING IN DATABASE: " + nml_db_id)
+            print(cell_files - db_files)
+            raise Exception("Database is missing children for the cell")
+
+        # Set the location where the NEURON files will be stored
+        NEURON_folder = os.path.join(os.path.abspath(self.NEURON_models_folder), nml_db_id)
+
+        # Clear it if exists or create it
+        if os.path.exists(NEURON_folder):
+            shutil.rmtree(NEURON_folder)
+
+        os.makedirs(NEURON_folder)
+
+        # Copy the model to the temp folder
+        shutil.copy2(os.path.join(model_dir_name, cell_file_name), NEURON_folder)
+
+        # Create file includes for each channel
+        child_includes = ''
+
+        for c in children_in_db:
+            id = c["Model_ID"]
+            file = c["File_Name"]
+            child_path = "../" + id + "/" + file
+
+            # Copy the children to the NEURON temp files folder
+            shutil.copy2(os.path.join(model_dir_name, child_path), NEURON_folder)
+            child_includes = child_includes + include_file_template.replace("[File]", file) + "\n"
+
+        replacements = {
+            "[CellInclude]": include_file_template.replace("[File]", cell_file_name),
+            "[ChannelIncludes]": child_includes,
+            "[Cell_ID]": cell_id
+        }
+
+        with open("templates/LEMS_single_cell_template.xml") as t:
+            template = t.read()
+
+        for r in replacements:
+            template = template.replace(r, str(replacements[r]))
+
+        out_file = NEURON_folder + "/LEMS_" + cell_file_name
+
+        with open(out_file, "w") as outF:
+            outF.write(template)
+
+        # Convert LEMS to NEURON with JNML
+        os.chdir(NEURON_folder)
+
+        self.run_command("jnml LEMS_" + cell_file_name + " -neuron")
+
+        # Compile mod files
+        self.run_command("nrnivmodl")
+
+        self.NEURON_model_path = NEURON_folder
+
+        return NEURON_folder

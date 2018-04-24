@@ -30,22 +30,18 @@ def update_checksums():
 
 
 def get_cell_properties():
-    with ModelManager() as mm:
+    with CellManager(params[0]) as mm:
         mm.get_cell_model_properties(model_dir=params[0])
 
 
-def get_cell_model_responses():
-    with ModelManager() as mm:
-        mm.get_cell_model_responses(model_dir=params[0])
+def save_cell_model_responses():
+    with CellManager(params[0]) as mm:
+        mm.save_cell_model_responses(model_dir=params[0])
 
+def save_cell_3D_image():
+    with CellManager(params[0]) as mm:
+        mm.save_3D_image()
 
-def model_json_vclamp_data_to_db():
-    with ModelManager() as mm:
-        mm.model_json_vclamp_data_to_db(model_id=params[0])
-
-def model_waveforms_to_csvs():
-    with ModelManager() as mm:
-        mm.model_waveforms_to_csvs()
 
 def check_install_dependencies():
     import os
@@ -93,9 +89,15 @@ if __name__ == "__main__":
 
     import sys
     from manager import ModelManager
+    from cellmanager import CellManager
 
     command = sys.argv[1]
     params = sys.argv[2:]
+
+    available_commands = [i for i in locals().keys() if not i.startswith("__") and hasattr(locals()[i],"__class__") and locals()[i].__class__.__name__ == "function"]
+
+    if command not in available_commands:
+        raise Exception("Command after 'python manage.py' must be one of: " + str(available_commands))
 
     eval(command + "()")
 
