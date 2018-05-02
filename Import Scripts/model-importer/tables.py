@@ -91,6 +91,22 @@ class Cells(BaseModel):
     Bias_Voltage = FloatField()
     Bias_Current = FloatField()
 
+class Morphometrics(BaseModel):
+    ID = CharField(primary_key=True)
+    Function_ID = IntegerField()
+
+class Cell_Morphometrics(BaseModel):
+    ID = PrimaryKeyField()
+    Cell = ForeignKeyField(Cells, field='Model_ID')
+    Metric = ForeignKeyField(Morphometrics, field='ID')
+    Total = FloatField()
+    Compartments_Considered = IntegerField()
+    Compartments_Discarded = IntegerField()
+    Minimum = FloatField()
+    Average = FloatField()
+    Maximum = FloatField()
+    StDev = FloatField()
+
 class Protocols(BaseModel):
     ID = CharField(primary_key=True)
     Description = TextField()

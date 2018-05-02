@@ -5,6 +5,7 @@
 import os, string, cPickle
 import re
 import shutil
+import csv
 
 import numpy as np
 from matplotlib import pyplot as plt
@@ -15,7 +16,7 @@ from runtimer import RunTimer
 from collector import Collector
 
 from neuronrunner import NeuronRunner, NumericalInstabilityException
-from tables import Cells, Model_Waveforms, Protocols, db_proxy
+from tables import Cells, Model_Waveforms, Morphometrics, Cell_Morphometrics, db_proxy, Models
 
 from manager import ModelManager
 
@@ -138,13 +139,192 @@ class CellManager(ModelManager):
             print("Tests finished, saving...")
             self.save_cell_record()
 
+    def get_number_of_compartments(self, h):
+        return sum(s.nseg for s in h.allsec())
+
+    def get_surface_area(self, h):
+        return sum(sum(h.area(seg.x) for seg in sec) for sec in h.allsec())
+
+    def save_to_SWC(self, h):
+        import xml.etree.ElementTree
+
+        self.connect_to_db()
+        model = Models.get_by_id(self.get_model_nml_id())
+        root = xml.etree.ElementTree.parse(model.File_Name).getroot()
+
+        seg_tags = root.findall(".//{http://www.neuroml.org/schema/neuroml2}segment")
+
+        point_ids = {}
+        self.current_id = 1
+
+        def add_point(prox_dist):
+            if len(prox_dist) > 0:
+                point_str = str(prox_dist[0].attrib)
+
+                if point_str not in point_ids:
+                    point_ids[point_str] = str(self.current_id)
+                    self.current_id += 1
+
+        for seg_tag in seg_tags:
+            proximal = seg_tag.findall('{http://www.neuroml.org/schema/neuroml2}proximal')
+            distal   = seg_tag.findall('{http://www.neuroml.org/schema/neuroml2}distal')
+
+            add_point(proximal)
+            add_point(distal)
+
+        segment_distal_point_ids = {}
+
+        for seg_tag in seg_tags:
+            distal = seg_tag.findall('{http://www.neuroml.org/schema/neuroml2}distal')
+            point_id = point_ids[str(distal[0].attrib)]
+            segment_distal_point_ids[seg_tag.attrib["id"]] = point_id
+
+        swc_points = []
+
+        for tag in seg_tags:
+            parent_tag = tag.findall('{http://www.neuroml.org/schema/neuroml2}parent')
+            proximal = tag.findall('{http://www.neuroml.org/schema/neuroml2}proximal')
+            distal   = tag.findall('{http://www.neuroml.org/schema/neuroml2}distal')
+
+            if parent_tag:
+
+                # parent - with prox - use proximal as parent id
+                if proximal:
+                    parent_id = point_ids[str(proximal[0].attrib)]
+
+                    # If diameter of proximal is not the same as parent's distal - add as separate point
+                    if parent_id not in [pt["id"] for pt in swc_points]:
+                        swc_point = {
+                            "id": parent_id,
+                            "type": "1" if "soma" in tag.attrib["name"].lower() else "0",
+                            "parent": segment_distal_point_ids[parent_tag[0].attrib["segment"]],
+                            "x": proximal[0].attrib["x"],
+                            "y": proximal[0].attrib["y"],
+                            "z": proximal[0].attrib["z"],
+                            "radius": str(float(proximal[0].attrib["diameter"]) / 2.0)
+                        }
+
+                        swc_points.append(swc_point)
+
+                # parent - no prox - use parent's distal as parent id
+                else:
+                    parent_id = segment_distal_point_ids[parent_tag[0].attrib["segment"]]
+
+            # no parent - add proximal - will become distal's parent
+            else:
+                swc_point = {
+                    "id": point_ids[str(proximal[0].attrib)],
+                    "type": "1" if "soma" in tag.attrib["name"].lower() else "0",
+                    "parent": "-1",
+                    "x": proximal[0].attrib["x"],
+                    "y": proximal[0].attrib["y"],
+                    "z": proximal[0].attrib["z"],
+                    "radius": str(float(proximal[0].attrib["diameter"]) / 2.0)
+                }
+
+                parent_id = swc_point["id"]
+
+                swc_points.append(swc_point)
+
+
+            # Always add distal
+            swc_point = {
+                "id": point_ids[str(distal[0].attrib)],
+                "type": "1" if "soma" in tag.attrib["name"].lower() else "0",
+                "parent": str(parent_id),
+                "x": distal[0].attrib["x"],
+                "y": distal[0].attrib["y"],
+                "z": distal[0].attrib["z"],
+                "radius": str(float(distal[0].attrib["diameter"]) / 2.0)
+            }
+
+            swc_points.append(swc_point)
+
+        try:
+            os.makedirs("morphology")
+        except:
+            pass
+
+        swc_file_path = "morphology/cell.swc"
+
+        with open(swc_file_path, "w") as file:
+            for point in swc_points:
+                file.write(
+                    point["id"] + " " +
+                    point["type"] + " " +
+                    point["x"] + " " +
+                    point["y"] + " " +
+                    point["z"] + " " +
+                    point["radius"] + " " +
+                    point["parent"] + "\n")
+
+        actual_morph_dir = os.path.join(self.actual_model_parent_dir,self.get_model_nml_id(),"morphology")
+
+        try:
+            os.makedirs(actual_morph_dir)
+        except:
+            pass
+
+        shutil.copy2(swc_file_path, actual_morph_dir)
+
+        return os.path.abspath(swc_file_path)
+
+    def save_LMeasure_metrics(self, swc_file):
+
+        db, server = self.connect_to_db()
+        cell_id = self.get_model_nml_id()
+
+        # Do all the work within a transaction
+        with db.atomic():
+            # Clear out existing cell metrics
+            Cell_Morphometrics.delete().where(Cell_Morphometrics.Cell == cell_id).execute()
+
+            # Get a list of metrics
+            metrics = Morphometrics.select()
+
+            for metric in metrics:
+                # Compute the metric with lmeasure
+                f = metric.Function_ID
+                swc_file = swc_file.replace(os.path.abspath(os.getcwd()) + "/", "")
+                os.system('../../lmeasure -f'+str(f)+',0,0,10.0 -slmeasure_out.csv '+swc_file)
+
+                # Read the result
+                with open('lmeasure_out.csv') as f:
+                    line = list(csv.reader(f, delimiter="\t"))[0]
+
+                    # Make sure the db function id corresponds to the Lmeasure function name
+                    assert line[1].startswith(metric.ID)
+
+                    # Save to DB
+                    record = Cell_Morphometrics(
+                        Cell=cell_id,
+                        Metric=metric,
+                        Total = float(line[2]),
+                        Compartments_Considered=int(line[3]),
+                        Compartments_Discarded=int(line[4].replace("(", "").replace(")", "")),
+                        Minimum = float(line[5]),
+                        Average = float(line[6]),
+                        Maximum = float(line[7]),
+                        StDev = float(line[8])
+                    )
+
+                    record.save()
+
+            # Cleanup lmeasure files
+            os.system("rm lmeasure_out.csv")
+
     def save_3D_image(self):
         self.cell_model_to_neuron(self.NEURON_model_path)
 
         h = self.build(restore_tolerances=False)
 
+        swc = self.save_to_SWC(h)
+        self.save_LMeasure_metrics(swc)
+
         sections = [s for s in h.allsec()]
 
+        num_states = self.get_number_of_model_state_variables(h)
+        num_compartments = self.get_number_of_compartments(h)
 
         coords = [[h.x3d(0, sec=s),
                  h.y3d(0, sec=s),
@@ -175,8 +355,39 @@ class CellManager(ModelManager):
         sys.path.append('/home/justas/Repositories/BlenderNEURON/ForNEURON')
         from blenderneuron import BlenderNEURON
         bl = BlenderNEURON(h)
-        bl.send_model()
 
+        bl.prepare_for_collection()
+
+        db, server = self.connect_to_db()
+
+
+        cell = Cells.get_or_none(self.get_model_nml_id())
+
+        # Skip simulation if no basic properties are present
+        if cell is not None:
+            # Inject continous threshold current into non-intrinisic-spikers
+            if not cell.Is_Intrinsically_Spiking:
+                self.current.delay = 0
+                self.current.dur = 100
+                self.current.amp = cell.Threshold_Current_High
+
+            # No additional stim for intrinisic spikers
+            h.tstop = 100.0
+            h.run()
+
+        bl.enqueue_method("clear")
+        bl.enqueue_method('set_render_params', file_format="JPEG2000")
+        bl.send_model()
+        bl.enqueue_method('link_objects')
+        bl.enqueue_method('show_full_scene')
+        bl.enqueue_method('color_by_unique_materials')
+        bl.run_method('orbit_camera_around_model')
+
+        # Wait till prev tasks and rendering is finished
+        bl.run_method('render_animation', destination_path="R:/neuroml-db/www/NeuroMLmodels/"+self.get_model_nml_id()+"/morphology/")
+
+        self.make_gif_from_frames()
+        pass
 
         # id = assessor.get_model_nml_id()
         #
@@ -190,6 +401,24 @@ class CellManager(ModelManager):
         #
         #     raise
 
+    def make_gif_from_frames(self):
+        # generate gif with ffmpeg
+        current_cwd = os.getcwd()
+
+        # Go to the render output dir
+        os.chdir(os.path.join(self.model_directory_parent, self.get_model_nml_id(), "morphology"))
+
+        # Create a palette for the gif using 0-padding-numbered jp2 files
+        os.system('ffmpeg -y -i "%04d.jp2" -vf palettegen palette.png ')
+
+        # Use the palette and jp2 files to create color-corrected animated gif
+        os.system('ffmpeg -y -i "%04d.jp2" -i palette.png -lavfi "fps=24, paletteuse" cell.gif')
+
+        # Remove the palette and the frame files
+        os.system('rm *.jp2')
+        os.system('rm *.png')
+
+        os.chdir(current_cwd)
 
     def save_cell_model_responses(self, model_dir):
         NEURON_folder = self.cell_model_to_neuron(model_dir)

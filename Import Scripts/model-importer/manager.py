@@ -885,6 +885,11 @@ class ModelManager(object):
         else:
             node["file_status"] = "File does not exist"
 
+    def get_number_of_model_state_variables(self, h):
+        result = h.Vector()
+        h.cvode.spike_stat(result)
+        return result[0]
+
     def valid_child_types(self, parent_type):
 
         if self.valid_relationships is None:

@@ -63,6 +63,15 @@ class ModelsController < ApplicationController
 
   end
 
+  def GetModelGif
+
+    modelID = params[:modelID].to_s
+    gifPath = '/var/www/NeuroMLmodels/' + modelID + '/morphology/model.gif'
+
+    send_data(File.read(gifPath), :type => 'image/gif')
+
+  end
+
   def GetChannelLEMSZip
 
     modelID =params[:modelID].to_s

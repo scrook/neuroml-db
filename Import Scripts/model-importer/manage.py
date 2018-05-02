@@ -46,6 +46,7 @@ def save_cell_3D_image():
 def check_install_dependencies():
     import os
 
+
     # Check for missing installable dependencies
     deps = ["pydevd", "peewee", "pymysql", "sshtunnel", "numpy", "matplotlib", "cPickle"]
 
@@ -62,23 +63,45 @@ def check_install_dependencies():
         os.system("pip install python-dateutil")
 
     # Check if NEURON package has been installed
-    import subprocess
-    neuron_check = subprocess.check_output(
-        "python -c 'from neuron import h, gui'; exit 0",
-        stderr=subprocess.STDOUT,
-        shell=True)
+    check_output_for(command = "python -c 'from neuron import h, gui'; exit 0",
+                     dissalowed_text="No module",
+                     error_to_show="Neuron+Python module must be compiled to run this script. For steps, "
+                                   "see: https://neurojustas.wordpress.com/2018/03/27/tutorial-installing-neuron-simulator-with"
+                                   "-python-on-ubuntu-linux/")
 
-    if "No module" in neuron_check:
-        print(neuron_check)
-        raise Exception("Neuron+Python module must be compiled to run this script. For steps, "
-                        "see: https://neurojustas.wordpress.com/2018/03/27/tutorial-installing-neuron-simulator-with"
-                        "-python-on-ubuntu-linux/")
+    # Check if ffmpeg is installed
+    check_output_for(command="ffmpeg -h",
+                     dissalowed_text="currently not installed",
+                     error_to_show="ffmpeg ubuntu package must be installed to run this script. "
+                                   "Install it with: sudo apt install ffmpeg")
+
+    # Make sure lmeasure can run - has exec permissions
+    try:
+        check_output_for("./lmeasure", "Permission denied", "Make sure lmeasure can run with: chmod +x lmeasure")
+    except:
+        os.system("chmod +x lmeasure")
 
     # Extract noise stimulation files
     for file in ["noise1.pickle", "noise2.pickle", "noisyRamp.pickle"]:
         if not os.path.exists(file):
             os.system("tar -xzf noisyStims.tar.gz")
             break
+
+
+def check_output_for(command, dissalowed_text, error_to_show):
+    import subprocess
+
+    try:
+        neuron_check = subprocess.check_output(
+        command,
+        stderr=subprocess.STDOUT,
+        shell=True)
+    except:
+        raise Exception(error_to_show)
+
+    if dissalowed_text in neuron_check:
+        print(neuron_check)
+        raise Exception(error_to_show)
 
 
 if __name__ == "__main__":

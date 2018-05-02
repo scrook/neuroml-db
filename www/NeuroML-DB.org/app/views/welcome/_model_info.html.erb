@@ -198,6 +198,44 @@
 
         <%= render 'model_plot' %>
 
+        <script>
+          function init_morphology() {
+              jQuery("#morphology-full-image-dialog").dialog({
+                  autoOpen: false,
+                  resizable: false,
+                  width: 525,
+                  maxHeight: 545
+              });
+
+              jQuery(".morphology .thumbnail").on("click", function () {
+                  jQuery("#morphology-full-image-dialog").dialog("open");
+              });
+          }
+        </script>
+        <style>
+          .morphology .image { border-radius: 10px; }
+          .morphology .thumbnail { width: 200px; float: left; margin-right: 15px !important; cursor:pointer; }
+          #morphology-full-image-dialog { display:none; }
+          #morphology-full-image-dialog .image { margin: 6px 11px; }
+          .morphology-prop-name { width: 120px; font-weight: bold; text-align: right; padding-right: 5px; vertical-align: bottom; }
+        </style>
+        <tr class="morphology">
+          <td class="keyword">
+            Morphology:
+          </td>
+          <td class="description">
+            <img class="image thumbnail" src="/images/cell.gif">
+            <div id="morphology-full-image-dialog" class="morphology"><img class="image" src="/images/cell.gif"></div>
+            <table style="width: 523px;"><tbody>
+              <tr><td class="morphology-prop-name">Compartments</td><td class="morphology-prop-value">1,236</td></tr>
+              <tr><td class="morphology-prop-name">Surface Area</td><td class="morphology-prop-value">6,5213 &#181;m<sup>2</sup></td></tr>
+            </tbody></table>
+          </td>
+        </tr>
+        <script>
+            init_morphology()
+        </script>
+
         <tr>
           <td class="keyword">
             Associated Channels:
