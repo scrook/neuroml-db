@@ -1,0 +1,94 @@
+<%
+  metrics = Model.GetMorphometrics(@model_id)
+%>
+<script>
+    function init_morphology() {
+        jQuery("#morphology-full-image-dialog").dialog({
+            autoOpen: false,
+            resizable: false,
+            width: 525,
+            maxHeight: 545
+        });
+
+        jQuery(".morphology .thumbnail").on("click", function () {
+            jQuery("#morphology-full-image-dialog").dialog("open");
+        });
+    }
+    function shortenMorphometrics() {
+        vals = jQuery(".morphology-prop-value")
+
+        for(v in vals) {
+            old = parseFloat(vals[v].innerText)
+
+            if (!isNaN(old)) {
+                exp = old.toExponential(3)
+                std = old.toString()
+
+                if(exp.length < std.length) {
+                    vals[v].innerText = exp
+                }
+                else {
+                    vals[v].innerText = std
+                }
+            }
+        }
+    }
+</script>
+<style>
+  .morphology .image { border-radius: 10px; }
+  .morphology .thumbnail { width: 200px; float: left; margin-right: 15px !important; cursor:pointer; }
+  #morphology-full-image-dialog { display:none; }
+  #morphology-full-image-dialog .image { margin: 6px 11px; }
+  .morphology-prop-name { width: 120px; text-align: right; padding-right: 5px; vertical-align: bottom; }
+  #morphology-morphometrics { height: 200px; overflow: auto; }
+  #morphology-morphometrics table { width: 523px; }
+  .morphology thead td { text-align: center; color: #1376c4; font-weight: bold; }
+  .morphology thead td:first-child { text-align: right; }
+  .morphology table td { padding-right: 7px; text-align: right; }
+</style>
+<tr>
+  <td class="keyword" style="vertical-align: top; text-align:left;"  colspan="2">
+    Morphology:
+  </td>
+</tr>
+<tr class="morphology">
+  <td class="description" colspan="2">
+    <img class="image thumbnail" src="/images/cell.gif">
+    <div id="morphology-full-image-dialog" class="morphology"><img class="image" src="/images/cell.gif"></div>
+    <div id="morphology-morphometrics">
+      <table>
+        <thead>
+          <tr>
+            <td>L-Measure Metric</td>
+            <td>Sum</td>
+            <td>Mean</td>
+            <td>STD</td>
+            <td>Min</td>
+            <td>Max</td>
+            <td>N</td>
+          </tr>
+        </thead>
+        <tbody>
+        <% metrics.each do |metric| %>
+            <tr>
+              <td class="morphology-prop-name">
+                <a target="_blank" href="http://cng.gmu.edu:8080/Lm/help/<%= metric["Metric_ID"] %>.htm"><%= metric["Metric_ID"] %> </a>
+                 <%= metric["Units"] == nil ? "" : ("(" + metric["Units"] + ")").html_safe %>
+              </td>
+              <td class="morphology-prop-value"><%= metric["Total"] %></td>
+              <td class="morphology-prop-value"><%= metric["Average"] %></td>
+              <td class="morphology-prop-value"><%= metric["StDev"] %></td>
+              <td class="morphology-prop-value"><%= metric["Minimum"] %></td>
+              <td class="morphology-prop-value"><%= metric["Maximum"] %></td>
+              <td class="morphology-prop-value"><%= metric["Compartments_Considered"] %></td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+  </td>
+</tr>
+<script>
+    init_morphology()
+    shortenMorphometrics()
+</script>

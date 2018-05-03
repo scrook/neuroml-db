@@ -285,11 +285,29 @@ class Model < ActiveRecord::Base
 
     waveforms = ActiveRecord::Base.connection.exec_query(query)
 
+    # Fetch .csv waveform values
     waveforms.each do |waveform|
       waveform["Variable_Values"] = GetWaveformValues(waveform["Model_ID"], waveform["ID"])
     end
 
     return waveforms
+  end
+
+  def self.GetMorphometrics(id)
+
+    id = Model.connection.quote_string(id)
+
+    query = "
+      SELECT cm.*, m.Function_ID, m.Units
+      FROM neuromldb.cell_morphometrics cm
+      JOIN morphometrics m ON m.ID = cm.Metric_ID
+      WHERE cm.Cell_ID = '#{id}'
+      ORDER BY Function_ID
+    "
+
+    metrics = ActiveRecord::Base.connection.exec_query(query)
+
+    return metrics
   end
 
 

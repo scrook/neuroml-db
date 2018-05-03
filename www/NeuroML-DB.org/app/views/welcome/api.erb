@@ -16,19 +16,22 @@
         <p>NeuroML Database provides the following <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">RESTful</a> API. HTTP requests can be made to the following URLs and will return results in <a href="https://en.wikipedia.org/wiki/JSON">JSON</a> format.</p>
         <style>
           table td { vertical-align: top; }
+          .method-desc {  }
+          .method-call { width: 230px; }
+          .method-params {  }
         </style>
         <table>
           <tr>
             <td><h4>Search/List Models</h4></td>
           </tr>
           <tr>
-            <td width="300">Search models by keywords</td>
-            <td width="200"><a href="/api/search?q=traub">/api/search?q=[query]</a></td>
-            <td>q: keyword search string</td>
+            <td class="method-desc">Search models by keywords</td>
+            <td class="method-call"><a href="/api/search?q=traub">/api/search?q=[query]</a></td>
+            <td class="method-params">q: keyword search string</td>
           </tr>
           <tr>
-            <td width="300">Get all models in the database</td>
-            <td width="200"><a href="/api/models">/api/models</a></td>
+            <td>Get all models in the database</td>
+            <td><a href="/api/models">/api/models</a></td>
             <td></td>
           </tr>
           <tr>
@@ -46,6 +49,11 @@
             <td>Get a waveform of a model</td>
             <td><a href="/api/waveform?id=5924">/api/waveform?id=[id]</a></td>
             <td>id: Waveform ID from <a href="/api/model?id=NMLCL001129">/api/model?id=[NMLID]</a></td>
+          </tr>
+          <tr>
+            <td>Get <a href="http://cng.gmu.edu:8080/Lm/">cell morphometrics</a></td>
+            <td><a href="/api/morphometrics?id=NMLCL000001">/api/morphometrics?id=[NMLID]</a></td>
+            <td>id: Model ID from <a href="/api/models">/api/models</a></td>
           </tr>
           <tr>
             <td>&nbsp;</td>

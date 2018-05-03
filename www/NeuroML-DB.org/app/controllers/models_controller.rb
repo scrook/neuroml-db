@@ -41,6 +41,20 @@ class ModelsController < ApplicationController
 
   end
 
+  def morphometrics
+
+    result = Model.GetMorphometrics(params[:id])
+
+    if result != nil
+      render :json => result, :content_type => 'application/javascript', :status => 200
+    else
+      render :json => "Model not found", :content_type => 'application/javascript', :status => 404
+    end
+
+  end
+
+
+
   def search
 
     result = Model.SearchKeyword(params[:q].to_s)
