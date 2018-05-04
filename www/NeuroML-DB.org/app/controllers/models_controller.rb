@@ -53,7 +53,17 @@ class ModelsController < ApplicationController
 
   end
 
+  def gif
 
+    path = Model.GetModelGifPath(params[:id])
+
+    if path != nil
+      send_file path, :type => 'image/gif', :disposition => 'inline'
+    else
+      render :json => "Model not found", :content_type => 'application/javascript', :status => 404
+    end
+
+  end
 
   def search
 

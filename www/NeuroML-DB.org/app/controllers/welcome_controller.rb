@@ -22,6 +22,8 @@ class WelcomeController < ApplicationController
     @file=model["File"]
     @filename=model["File_Name"]
     @model_notes = model["Notes"]
+    @morphometrics_status = model["Morphometrics_Status"]
+    @GIF_status = model["GIF_Status"]
 
     relatedModels = Array(details[:children]) + Array(details[:parents])
 
@@ -255,58 +257,6 @@ class WelcomeController < ApplicationController
     end
 
     return type
-  end
-
-# This will return a sorted list of vclamp*.js files in the model directory
-  def GetVclampFiles
-    modelID = @model_id
-
-    # Get the list of vcamp js files in the model folder
-    files = Dir["/var/www/NeuroMLmodels/"+modelID+"/vclamp*.js"].sort
-
-    return files
-  end
-
-  def GetVclampCaConcentrations
-    files = GetVclampFiles()
-
-    # Find out which Ca concentrations are present by inspecting the vclamp file names
-    caConcs = Array.new
-    for file in files
-      # Find concentration stored between the first and second underscore
-      matches = /vclamp_(.*?)_/.match(file)
-      if matches.length > 0
-        # Decode p as . and m as - (these were used to avoid variable names containing -'s and .'s )
-        concString = matches[1].sub("m","-").sub("p",".")
-
-        # Replace the encoded 1E-N notation with ruby interpretable version
-        concFloat = eval(concString.sub("1E","10**")).to_f
-        caConcs.push({Name:concString,Value:concFloat})
-      end
-    end
-
-    # Discard duplicates & sort by descending float value
-    caConcs = caConcs.uniq.sort_by {|e| e[:Value]}
-
-    return caConcs
-  end
-
-  def GetModelProtocolData
-
-    modelID =params[:modelID].to_s
-    caConc =params[:caConc].to_s.sub("-","m").sub(".","p")
-    subProtocol =params[:subProtocol].to_s
-
-    file = Dir["/var/www/NeuroMLmodels/"+modelID+"/vclamp_"+caConc+"_"+subProtocol+"*.js"][0]
-    matches = /.*_(.*?)_(.*?).js/.match(file)
-    xmin = matches[1]
-    xmax = matches[2]
-
-    contents = File.read(file)
-    contents = contents + "; var vxmin=#{xmin}; var vxmax=#{xmax};"
-
-    send_data(contents, :type => 'application/javascript')
-
   end
 
   def submission

@@ -14,7 +14,9 @@
 <tr>
   <td class="keyword" style="vertical-align: top; text-align:left;" colspan="2">
     <%=@clamp_type%> Clamp Response:
-    <div id="chart-help-btn">Instructions<span class="ui-icon ui-icon-info"></span></div>
+    <% if waveforms != nil and waveforms.rows.length > 0 %>
+      <div id="chart-help-btn">Instructions<span class="ui-icon ui-icon-info"></span></div>
+    <% end %>
   </td>
 </tr>
 <tr>

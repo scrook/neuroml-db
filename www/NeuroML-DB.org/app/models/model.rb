@@ -293,16 +293,45 @@ class Model < ActiveRecord::Base
     return waveforms
   end
 
+  def self.GetModelGifPath(id)
+
+    id = Model.connection.quote_string(id)
+
+    query = "
+      SELECT Model_ID
+      FROM models m
+      WHERE m.Model_ID = '#{id}'
+      LIMIT 1
+    "
+
+    records = ActiveRecord::Base.connection.exec_query(query)
+
+    if records.rows.length > 0
+      model_id = records.first()["Model_ID"]
+
+      file = "/var/www/NeuroMLmodels/"+model_id+"/morphology/cell.gif"
+      if File.exist?(file)
+        return file
+      else
+        return nill
+      end
+
+    else
+      return nil
+    end
+
+  end
+
   def self.GetMorphometrics(id)
 
     id = Model.connection.quote_string(id)
 
     query = "
-      SELECT cm.*, m.Function_ID, m.Units
+      SELECT cm.*, m.Description, m.Shown_Statistic, IF(m.Units is NULL,'',m.Units) as Units
       FROM neuromldb.cell_morphometrics cm
       JOIN morphometrics m ON m.ID = cm.Metric_ID
-      WHERE cm.Cell_ID = '#{id}'
-      ORDER BY Function_ID
+      WHERE cm.Cell_ID = '#{id}' AND m.Display = 1
+      ORDER BY m.Display_Order
     "
 
     metrics = ActiveRecord::Base.connection.exec_query(query)

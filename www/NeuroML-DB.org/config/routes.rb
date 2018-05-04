@@ -19,7 +19,6 @@ RedmineApp::Application.routes.draw do
   match 'modeldb_model_list', :to => 'modeldb#model_list', :as => 'model_list'
   match 'render_xml_file', :to => 'xml#render_xml_file', :as => 'render_xml_file'
   match 'render_xml_as_html', :to => 'xml#render_xml_as_html', :as => 'render_xml_as_html'
-  match 'GetModelProtocolData', :to => 'welcome#GetModelProtocolData', :as => 'GetModelProtocolData'
 
   match 'GetModelZip', :to => 'models#GetModelZip', :as => 'GetModelZip'
   match 'GetChannelLEMSZip', :to => 'models#GetChannelLEMSZip', :as => 'GetChannelLEMSZip'
@@ -32,6 +31,7 @@ RedmineApp::Application.routes.draw do
   match '/api/plot_waveforms', :to => 'models#plot_waveforms'
   match '/api/search', :to => 'models#search'
   match '/api/morphometrics', :to => 'models#morphometrics'
+  match '/api/gif', :to => 'models#gif'
 
 
 end

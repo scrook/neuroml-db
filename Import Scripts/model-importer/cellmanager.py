@@ -181,6 +181,20 @@ class CellManager(ModelManager):
 
         swc_points = []
 
+        def get_type(seg_tag):
+            seg_name = seg_tag.attrib["name"].lower()
+
+            if "dend" in seg_name:
+                return "3"
+
+            if "axon" in seg_name:
+                return "2"
+
+            if "soma" in seg_name:
+                return "1"
+
+            return "5"
+
         for tag in seg_tags:
             parent_tag = tag.findall('{http://www.neuroml.org/schema/neuroml2}parent')
             proximal = tag.findall('{http://www.neuroml.org/schema/neuroml2}proximal')
@@ -196,7 +210,7 @@ class CellManager(ModelManager):
                     if parent_id not in [pt["id"] for pt in swc_points]:
                         swc_point = {
                             "id": parent_id,
-                            "type": "1" if "soma" in tag.attrib["name"].lower() else "0",
+                            "type": get_type(tag),
                             "parent": segment_distal_point_ids[parent_tag[0].attrib["segment"]],
                             "x": proximal[0].attrib["x"],
                             "y": proximal[0].attrib["y"],
@@ -214,7 +228,7 @@ class CellManager(ModelManager):
             else:
                 swc_point = {
                     "id": point_ids[str(proximal[0].attrib)],
-                    "type": "1" if "soma" in tag.attrib["name"].lower() else "0",
+                    "type": get_type(tag),
                     "parent": "-1",
                     "x": proximal[0].attrib["x"],
                     "y": proximal[0].attrib["y"],
@@ -230,7 +244,7 @@ class CellManager(ModelManager):
             # Always add distal
             swc_point = {
                 "id": point_ids[str(distal[0].attrib)],
-                "type": "1" if "soma" in tag.attrib["name"].lower() else "0",
+                "type": get_type(tag),
                 "parent": str(parent_id),
                 "x": distal[0].attrib["x"],
                 "y": distal[0].attrib["y"],

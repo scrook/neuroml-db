@@ -44,111 +44,7 @@ function setupChart(id, title, data) {
 		}
 	});
 };
-function createCharts(){
-	getProtocolData(function(){
-		setupChart("canvasG", "Conductance (pS)", conductances);
-		setupChart("canvasI", "Current (pA)", currents);
-		setupChart("canvasV", "Voltage (mV)", voltages);
-	});
-}
-function updateCharts() {
-	updateChart("canvasG", conductances);
-	updateChart("canvasI", currents);
-	updateChart("canvasV", voltages);
-}
-function clearCharts() {
-    if(window["canvasG"].clear != null) {
-        window["canvasG"].clear();
-        window["canvasI"].clear();
-        window["canvasV"].clear();
-    }
-}
-function resetChartZooms() {
-    window["canvasG"].resetZoom();
-    window["canvasI"].resetZoom();
-    window["canvasV"].resetZoom();
-}
-function getProtocolData(doneCallback) {
 
-    url = "/GetModelProtocolData?"+
-	"modelID="+jQuery("#modelID").val()+
-	"&caConc="+jQuery("#caConc").val()+
-	"&subProtocol="+jQuery("#subProtocol").val();
-
-    if(window.mostRecentChartUrl != url) {
-        window.mostRecentChartUrl = url;
-    }
-    else {
-        return;
-    }
-
-
-    $("#loadingImage").show();
-    $("#plotError").hide();
-
-    //Show loading indicator after a delay
-    var loadingTimer = setTimeout(function() { $("#plotsLoading").show(); }, 500);
-
-	jQuery.ajax(url, {
-		success: function (data) {
-			eval.call(window,data);
-
-			//For voltage plots, add a "series"  that,
-			//when drawn, will result in a dashed ROI box
-			//vxmin, vxmax vars will have the ROI tmin/tmax values
-
-			//Find the y min/max values from the data
-			firstY = voltages.datasets[0].data[0].y;
-			var vymax = firstY;
-			var vymin = firstY;
-
-			for (var d in voltages.datasets) {
-				ds = voltages.datasets[d]
-				for (var p in ds.data) {
-					y = ds.data[p].y
-
-					if (y > vymax)
-						vymax = y
-
-					if (y < vymin)
-						vymin = y
-				}
-			}
-
-			//Add some vertical padding
-			var padding = 0.1 * (vymax - vymin);
-			vymin = vymin - padding;
-			vymax = vymax + padding;
-
-			//Add a "series" that, when drawn, will result in the dashed ROI box
-			voltages.datasets.push({
-				borderColor: "black",
-				borderDash: [5],
-				label: "Region of Interest shown in the Current and Conductance plots below",
-				data: [
-					{x: vxmin, y: vymin},
-					{x: vxmin, y: vymax},
-					{x: vxmax, y: vymax},
-					{x: vxmax, y: vymin},
-					{x: vxmin, y: vymin},
-				]
-			});
-
-            //Hide any ongoing indicators
-            clearTimeout(loadingTimer);
-            $("#plotsLoading").hide();
-
-			doneCallback();
-		},
-        error: function (jqXHR, status, error) {
-            //Hide any ongoing indicators
-            clearTimeout(loadingTimer);
-            $("#plotsLoading").show();
-            $("#loadingImage").hide();
-            $("#plotError").show();
-        }
-	});
-}
 function updateChart(id, data, min_y, max_y, min_x, max_x, reset_zoom)
 {
     var chart = window[id];
@@ -180,22 +76,6 @@ function updateChart(id, data, min_y, max_y, min_x, max_x, reset_zoom)
     else {
         chart.update();
     }
-
-    // chart["options"]["scales"]["xAxes"][0]["ticks"]["suggestedMax"] = max_x
-    // chart["options"]["scales"]["xAxes"][0]["ticks"]["suggestedMin"] = min_x
-}
-function changeCaConc(element, name) {
-	jQuery("#caConc").val(name);
-	jQuery("#caConcLevels .selected").removeClass("selected");
-	jQuery(element).addClass("selected");
-
-	getProtocolData(updateCharts);
-}
-function changeSubProtocol(element, subProt) {
-	jQuery("#subProtocol").val(subProt);
-	jQuery("#protocols .selected").removeClass("selected");
-	jQuery(element).addClass("selected");
-	getProtocolData(updateCharts);
 }
 
 function range(start, stop, step){
