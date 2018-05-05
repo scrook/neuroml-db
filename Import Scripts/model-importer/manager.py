@@ -26,7 +26,7 @@ class ModelManager(object):
 
         self.default_model_directory_parent = '../../www/NeuroMLmodels'
 
-        self.NEURON_models_folder = 'temp'
+        self.temp_models_folder = 'temp'
         self.out_sim_directory = 'temp/sim'
         self.out_csv_file = 'temp/models.csv'
 

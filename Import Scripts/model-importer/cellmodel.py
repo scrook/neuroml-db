@@ -2,44 +2,318 @@
 # steady state v of a cell defined in a hoc file in the given directory.
 # Usage: python getCellProperties /path/To/dir/with/.hoc
 
-import os, string, cPickle
+import cPickle
+import csv
+import os
 import re
 import shutil
-import csv
+import string
+from abc import abstractmethod, ABCMeta
+from decimal import Decimal
 
 import numpy as np
 from matplotlib import pyplot as plt
 from playhouse.db_url import connect
 from sshtunnel import SSHTunnelForwarder
-from decimal import Decimal
-from runtimer import RunTimer
-from collector import Collector
 
+from collector import Collector
+from manager import ModelManager
 from neuronrunner import NeuronRunner, NumericalInstabilityException
+from runtimer import RunTimer
 from tables import Cells, Model_Waveforms, Morphometrics, Cell_Morphometrics, db_proxy, Models
 
-from manager import ModelManager
 
+# from rdp import rdp
 
-class CellManager(ModelManager):
+class NMLDB_Model(ModelManager):
+    __metaclass__ = ABCMeta
+
     def __init__(self, path):
-        super(CellManager, self).__init__()
+        super(NMLDB_Model, self).__init__()
 
-        self.NEURON_model_path = path
+        self.temp_model_path = path
         self.abs_tolerance = 0.001
-        self.collection_period_ms = 0.025
-        self.pickle_file_cache = {}
+        self.collection_period_ms = 0.01 #0.015
         self.server = None
         self.db = None
-        self.actual_model_parent_dir = "../../../../www/NeuroMLmodels"
+        self.permanent_model_parent_dir = "../../../../www/NeuroMLmodels"
 
     def get_model_nml_id(self):
-        return self.NEURON_model_path.split("/")[-1]
+        return self.temp_model_path.split("/")[-1]
+
+    def make_gif_from_frames(self):
+        # generate gif with ffmpeg
+        current_cwd = os.getcwd()
+
+        # Go to the render output dir
+        os.chdir(os.path.join(self.model_directory_parent, self.get_model_nml_id(), "morphology"))
+
+        # Create a palette for the gif using 0-padding-numbered jp2 files
+        os.system('ffmpeg -y -i "%04d.jp2" -vf palettegen palette.png ')
+
+        # Use the palette and jp2 files to create color-corrected animated gif
+        os.system('ffmpeg -y -i "%04d.jp2" -i palette.png -lavfi "fps=24, paletteuse" cell.gif')
+
+        # Remove the palette and the frame files
+        os.system('rm *.jp2')
+        os.system('rm *.png')
+
+        os.chdir(current_cwd)
+
+    @staticmethod
+    def short_string(x):
+        return str(float('%.4E' % Decimal(x)))
+
+    def get_waveforms_dir(self):
+        result = os.path.abspath(os.path.join(self.permanent_model_parent_dir, self.get_model_nml_id(), "waveforms"))
+
+        if not os.path.exists(result):
+            os.mkdir(result)
+
+        return result
+
+    def create_or_update_waveform(self, protocol, label, meta_protocol, times, variable_name, values, units, run_time):
+        print("Saving waveform...")
+
+        model_id = self.get_model_nml_id()
+
+        waveform = Model_Waveforms.get_or_none((Model_Waveforms.Model == model_id) &
+                                               (Model_Waveforms.Protocol == protocol) &
+                                               (Model_Waveforms.Meta_Protocol == meta_protocol) &
+                                               (Model_Waveforms.Waveform_Label == label) &
+                                               (Model_Waveforms.Variable_Name == variable_name))
+
+        if waveform is None:
+            waveform = Model_Waveforms()
+            waveform.Model = model_id
+            waveform.Protocol = protocol
+            waveform.Meta_Protocol = meta_protocol
+            waveform.Waveform_Label = label
+            waveform.Variable_Name = variable_name
+
+        waveform.Time_Start = min(times)
+        waveform.Time_End = max(times)
+        waveform.Run_Time = run_time
+        waveform.Units = units
+
+        waveform.save()
+        print("WAVE RECORD SAVED")
+
+        # Create a waveform csv file in actual model waveforms dir as WaveID.csv
+        waveforms_dir = self.get_waveforms_dir()
+
+        waveform_csv = os.path.join(waveforms_dir, str(waveform.ID) + ".csv")
+
+        # Use RCP algorithm to simplify the waveform (using 0.5% of value range as tolerance)
+        print("Simplifying waveform...")
+        times, values = zip(*self.rdp(zip(times, values), epsilon=(max(values) - min(values)) * 0.005))
+
+        Times = string.join([str(v) for v in times], ',')
+        Variable_Values = string.join([self.short_string(v) for v in values], ',')
+
+        # The file will have two lines: line 1 - times, line 2 - values
+        with open(waveform_csv, "w") as f:
+            f.write(Times + '\n')
+            f.write(Variable_Values + '\n')
+
+        print("WAVE VALUES SAVED")
+
+    def line_dists(self, points, start, end):
+        if np.all(start == end):
+            return np.linalg.norm(points - start, axis=1)
+
+        vec = end - start
+        cross = np.cross(vec, start - points)
+        return np.divide(abs(cross), np.linalg.norm(vec))
+
+    def rdp(self, M, epsilon=0.0):
+        M = np.array(M)
+        start, end = M[0], M[-1]
+        dists = self.line_dists(M, start, end)
+
+        index = np.argmax(dists)
+        dmax = dists[index]
+
+        if dmax > epsilon:
+            result1 = self.rdp(M[:index + 1], epsilon)
+            result2 = self.rdp(M[index:], epsilon)
+
+            result = np.vstack((result1[:-1], result2))
+        else:
+            result = np.array([start, end])
+
+        return result
+
+    def cleanup_waveforms(self):
+        print("Removing orphan wave files...")
+        waveforms_dir = self.get_waveforms_dir()
+        wave_files = set(f.replace(".csv", "") for f in os.listdir(waveforms_dir))
+        wave_records = set(str(r.ID) for r in Model_Waveforms.select(Model_Waveforms.ID).where(Model_Waveforms.Model == self.get_model_nml_id()))
+        extra_waves = wave_files-wave_records
+
+        for wave in extra_waves:
+            os.remove(os.path.join(waveforms_dir, wave + ".csv"))
+
+    def save_vi_waveforms(self, protocol, tvi_dict, label=None, meta_protocol=None):
+        times = tvi_dict["t"]
+        voltage = tvi_dict["v"]
+        current = tvi_dict["i"]
+        run_time = tvi_dict["run_time"]
+
+        db = self.connect_to_db()
+
+
+        with db.atomic() as transaction:
+            self.create_or_update_waveform(protocol, label, meta_protocol, times, "Voltage", voltage, "mV", run_time)
+            self.create_or_update_waveform(protocol, label, meta_protocol, times, "Current", current, "nA", run_time)
+
+    def save_tvi_plot(self, label, tvi_dict, case=""):
+        plt.clf()
+
+        plt.figure(1)
+        plt.subplot(211)
+        plt.plot(tvi_dict["t"], tvi_dict["v"], label="Voltage - " + label + (" @ " + case if case != "" else ""))
+        plt.ylim(-80, 30)
+        plt.legend()
+
+        plt.subplot(212)
+        plt.plot(tvi_dict["t"], tvi_dict["i"], label="Current - " + label + (" @ " + case if case != "" else ""))
+        plt.legend()
+        plt.savefig(label + ("(" + case + ")" if case != "" else "") + ".png")
+
+    @abstractmethod
+    def load_model(self):
+        pass
+
+    def get_hoc_files(self):
+        return [f for f in os.listdir(self.temp_model_path) if f.endswith(".hoc")]
+
+    def get_mod_files(self):
+        return [f for f in os.listdir(self.temp_model_path) if f.endswith(".mod")]
+
+    def set_abs_tolerance(self, abs_tol):
+        from neuron import h
+        h.steps_per_ms = 10
+        h.dt = 1.0 / h.steps_per_ms  # NRN will ignore this using cvode
+
+        h.cvode_active(1)
+        h.cvode.condition_order(2)
+        h.cvode.atol(abs_tol)
+
+    def get_tv(self):
+        from neuron import h
+        v_np = self.v_collector.get_values_np()
+        t_np = self.t_collector.get_values_np()
+
+        if np.isnan(v_np).any():
+            raise NumericalInstabilityException(
+                "Simulation is numericaly unstable with " + str(h.steps_per_ms) + " steps per ms")
+
+        return (t_np, v_np)
+
+    def runFor(self, time, early_test=None):
+        from neuron import h
+        h.cvode_active(1)
+
+        self.time_flag.value = h.t
+
+        h.tstop = h.t + time
+        t = h.t
+        while t < h.tstop and h.t < h.tstop:
+            t += 1.0
+
+            h.continuerun(t)
+
+            if early_test is not None:
+                # Notify sim is paused during test eval
+                self.time_flag.value = -1
+
+                t_np, v_np = self.get_tv()
+                if early_test(t_np, v_np):
+                    return (t_np, v_np)
+
+            # Notify change in sim time
+            self.time_flag.value = h.t
+
+        # -1 indicates simulation stopped
+        self.time_flag.value = -1
+
+        # Get the waveform
+        return self.get_tv()
+
+    def crossings_nonzero_pos2neg(self, data, theshold):
+        pos = data > theshold
+        return (pos[:-1] & ~pos[1:]).nonzero()[0]
+
+    def getSpikeCount(self, voltage, threshold=-20.0):
+        if np.max(voltage) < threshold:
+            return 0
+        else:
+            return len(self.crossings_nonzero_pos2neg(voltage, threshold))
+
+    def save_state(self, state_file='state.bin'):
+        from neuron import h
+        ns = h.SaveState()
+        sf = h.File(state_file)
+        ns.save()
+        ns.fwrite(sf)
+
+    @abstractmethod
+    def restore_state(self, state_file, keep_events):
+        pass
+
+    @abstractmethod
+    def build_model(self, restore_tolerances):
+        pass
+
+    def setTolerances(self, tstop=100):
+
+        def run_atol_tool():
+            # import pydevd
+            # pydevd.settrace('192.168.0.34', port=4200, suspend=False)
+
+            h = self.build_model(restore_tolerances=False)
+
+            h.NumericalMethodPanel[0].map()
+            h.NumericalMethodPanel[0].atoltool()
+            h.tstop = tstop
+
+            print("Getting error tolerances...")
+
+            # h.nrncontrolmenu()
+            # h.newPlotV()
+
+            h.AtolTool[0].anrun()
+            h.AtolTool[0].rescale()
+            h.AtolTool[0].fill_used()
+
+            h.save_session('atols.ses')
+
+            print("Error tolerances saved")
+
+            h.AtolTool[0].box.unmap()
+            h.NumericalMethodPanel[0].b1.unmap()
+
+        runner = NeuronRunner(run_atol_tool, kill_slow_sims=False)
+        runner.run()
+
+    def restore_tolerances(self):
+        from neuron import h
+        h.load_file('atols.ses')
+
+        h.NumericalMethodPanel[0].b1.unmap()
+        print("Using saved error tolerances")
+
+
+class CellModel(NMLDB_Model):
+    def __init__(self, path):
+        super(CellModel, self).__init__(path)
+        self.pickle_file_cache = {}
 
     def get_cell_model_properties(self, model_dir):
         NEURON_folder = self.cell_model_to_neuron(model_dir)
 
-        assessor = CellManager(path=NEURON_folder)
+        assessor = CellModel(path=NEURON_folder)
 
         id = assessor.get_model_nml_id()
 
@@ -141,9 +415,6 @@ class CellManager(ModelManager):
 
     def get_number_of_compartments(self, h):
         return sum(s.nseg for s in h.allsec())
-
-    def get_surface_area(self, h):
-        return sum(sum(h.area(seg.x) for seg in sec) for sec in h.allsec())
 
     def save_to_SWC(self, h):
         import xml.etree.ElementTree
@@ -272,20 +543,20 @@ class CellManager(ModelManager):
                     point["radius"] + " " +
                     point["parent"] + "\n")
 
-        actual_morph_dir = os.path.join(self.actual_model_parent_dir,self.get_model_nml_id(),"morphology")
+        permanent_morphology_dir = os.path.join(self.permanent_model_parent_dir, self.get_model_nml_id(), "morphology")
 
         try:
-            os.makedirs(actual_morph_dir)
+            os.makedirs(permanent_morphology_dir)
         except:
             pass
 
-        shutil.copy2(swc_file_path, actual_morph_dir)
+        shutil.copy2(swc_file_path, permanent_morphology_dir)
 
         return os.path.abspath(swc_file_path)
 
     def save_LMeasure_metrics(self, swc_file):
 
-        db, server = self.connect_to_db()
+        db = self.connect_to_db()
         cell_id = self.get_model_nml_id()
 
         # Do all the work within a transaction
@@ -328,9 +599,9 @@ class CellManager(ModelManager):
             os.system("rm lmeasure_out.csv")
 
     def save_3D_image(self):
-        self.cell_model_to_neuron(self.NEURON_model_path)
+        self.cell_model_to_neuron(self.temp_model_path)
 
-        h = self.build(restore_tolerances=False)
+        h = self.build_model(restore_tolerances=False)
 
         swc = self.save_to_SWC(h)
         self.save_LMeasure_metrics(swc)
@@ -372,7 +643,7 @@ class CellManager(ModelManager):
 
         bl.prepare_for_collection()
 
-        db, server = self.connect_to_db()
+        db = self.connect_to_db()
 
 
         cell = Cells.get_or_none(self.get_model_nml_id())
@@ -415,29 +686,10 @@ class CellManager(ModelManager):
         #
         #     raise
 
-    def make_gif_from_frames(self):
-        # generate gif with ffmpeg
-        current_cwd = os.getcwd()
-
-        # Go to the render output dir
-        os.chdir(os.path.join(self.model_directory_parent, self.get_model_nml_id(), "morphology"))
-
-        # Create a palette for the gif using 0-padding-numbered jp2 files
-        os.system('ffmpeg -y -i "%04d.jp2" -vf palettegen palette.png ')
-
-        # Use the palette and jp2 files to create color-corrected animated gif
-        os.system('ffmpeg -y -i "%04d.jp2" -i palette.png -lavfi "fps=24, paletteuse" cell.gif')
-
-        # Remove the palette and the frame files
-        os.system('rm *.jp2')
-        os.system('rm *.png')
-
-        os.chdir(current_cwd)
-
     def save_cell_model_responses(self, model_dir):
         NEURON_folder = self.cell_model_to_neuron(model_dir)
 
-        assessor = CellManager(path=NEURON_folder)
+        assessor = CellModel(path=NEURON_folder)
 
         id = assessor.get_model_nml_id()
 
@@ -453,17 +705,21 @@ class CellManager(ModelManager):
 
     def get_cell_model_responses(self, protocols=["STEADY_STATE",
                                                   "RAMP",
-                                                  # "SQUARE",
-                                                  # "SHORT_SQUARE",
-                                                  # "LONG_SQUARE",
-                                                  # "SHORT_SQUARE_HOLD",
-                                                  # "SQUARE_SUBTHRESHOLD"
+                                                  "SHORT_SQUARE",
+                                                  "SQUARE",
+                                                  "LONG_SQUARE",
+                                                  "SHORT_SQUARE_HOLD",
+                                                  "SHORT_SQUARE_TRIPPLE",
+                                                  "SQUARE_SUBTHRESHOLD",
+                                                  "NOISE1",
+                                                  "NOISE2",
+                                                  "NOISE_RAMP"
                                                   ]):
         self.setTolerances()
 
         steady_state_delay = 1000  # 1000
 
-        db, server = self.connect_to_db()
+        db = self.connect_to_db()
 
         try:
             id = self.get_model_nml_id()
@@ -545,6 +801,12 @@ class CellManager(ModelManager):
                                       get_current_ti=get_current_ti,
                                       restore_state=False)  # Holding v, not resting
 
+
+            if "SHORT_SQUARE_TRIPPLE" in protocols:
+                self.save_square_tuple_set(delay=steady_state_delay,
+                                           threshold_current=cell_props.Threshold_Current_High
+                                           )
+
             # Subthreshold pulses to measure capacitance
             if "SQUARE_SUBTHRESHOLD" in protocols:
                 self.save_square_current_set(protocol="SQUARE_SUBTHRESHOLD",
@@ -585,12 +847,42 @@ class CellManager(ModelManager):
                                              multiples=[1.0],
                                              noise_pickle_file="noisyRamp.pickle",
                                              restore_state=True)
+
         finally:
+            self.cleanup_waveforms()
+
             if self.server is not None:
                 self.server.close()
 
             if self.db is not None:
                 self.db.close()
+
+    def save_square_tuple_set(self, delay, threshold_current,
+                              intervals=[7, 11, 15, 19, 23, 27, 31, 35], stim_width=3, tuples=3):
+
+        # Create a short square triple waveform
+        def get_current_ti(interval):
+            ramp_ti = [(0, 0)]
+
+            for ti in range(tuples):
+                ramp_ti.append((delay + interval * ti,              0))
+                ramp_ti.append((delay + interval * ti,              threshold_current))
+                ramp_ti.append((delay + interval * ti + stim_width, threshold_current))
+                ramp_ti.append((delay + interval * ti + stim_width, 0))
+
+            ramp_ti.append((delay + interval * tuples + 100, 0))
+
+            # Split the tuple list into t and i lists
+            return zip(*ramp_ti)
+
+        for interval in intervals:
+            freq = round(1000.0 / interval)
+            self.save_arb_current(protocol="SHORT_SQUARE_TRIPPLE",
+                                  label=str(freq) + " Hz",
+                                  delay=delay,
+                                  duration=interval * tuples + 100,
+                                  get_current_ti=lambda: get_current_ti(interval),
+                                  restore_state=True)
 
     def save_square_current_set(self, protocol, square_low, square_high, square_steps, delay, duration):
 
@@ -611,80 +903,6 @@ class CellManager(ModelManager):
                                    label=self.short_string(amp) + " nA",
                                    tvi_dict=result)
 
-    def save_vi_waveforms(self, protocol, tvi_dict, label=None, meta_protocol=None):
-        times = tvi_dict["t"]
-        voltage = tvi_dict["v"]
-        current = tvi_dict["i"]
-        run_time = tvi_dict["run_time"]
-
-        db, server = self.connect_to_db()
-
-
-        with db.atomic() as transaction:
-            self.create_or_update_waveform(protocol, label, meta_protocol, times, self.collection_period_ms, "Voltage", voltage, run_time)
-            self.create_or_update_waveform(protocol, label, meta_protocol, times, self.collection_period_ms, "Current", current, run_time)
-
-
-
-    @staticmethod
-    def short_string(x):
-        return str(float('%.4E' % Decimal(x)))
-
-    def create_or_update_waveform(self, protocol, label, meta_protocol, times, time_step, variable_name, values, run_time):
-        print("Saving waveform...")
-
-        model_id = self.get_model_nml_id()
-
-        waveform = Model_Waveforms.get_or_none((Model_Waveforms.Model == model_id) &
-                                               (Model_Waveforms.Protocol == protocol) &
-                                               (Model_Waveforms.Meta_Protocol == meta_protocol) &
-                                               (Model_Waveforms.Waveform_Label == label) &
-                                               (Model_Waveforms.Variable_Name == variable_name))
-
-        if waveform is None:
-            waveform = Model_Waveforms()
-            waveform.Model = model_id
-            waveform.Protocol = protocol
-            waveform.Meta_Protocol = meta_protocol
-            waveform.Waveform_Label = label
-            waveform.Variable_Name = variable_name
-
-        waveform.Time_Start = min(times)
-        waveform.Time_End = max(times)
-        waveform.Time_Step = time_step
-        waveform.Run_Time = run_time
-
-        waveform.save()
-        print("WAVE RECORD SAVED")
-
-        waveforms_dir = os.path.abspath(os.path.join(self.actual_model_parent_dir, model_id, "waveforms"))
-
-        if not os.path.exists(waveforms_dir):
-            os.mkdir(waveforms_dir)
-
-        waveform_csv = os.path.join(waveforms_dir, str(waveform.ID) + ".csv")
-
-        Variable_Values = string.join([self.short_string(v) for v in values], ',')
-
-        with open(waveform_csv, "w") as f:
-            f.write(Variable_Values)
-
-        print("WAVE VALUES SAVED")
-
-    def save_tvi_plot(self, label, tvi_dict, case=""):
-        plt.clf()
-
-        plt.figure(1)
-        plt.subplot(211)
-        plt.plot(tvi_dict["t"], tvi_dict["v"], label="Voltage - " + label + (" @ " + case if case != "" else ""))
-        plt.ylim(-80, 30)
-        plt.legend()
-
-        plt.subplot(212)
-        plt.plot(tvi_dict["t"], tvi_dict["i"], label="Current - " + label + (" @ " + case if case != "" else ""))
-        plt.legend()
-        plt.savefig(label + ("(" + case + ")" if case != "" else "") + ".png")
-
     def get_square_response(self,
                             delay,
                             duration,
@@ -692,12 +910,14 @@ class CellManager(ModelManager):
                             amp,
                             restore_state=False):
 
-        def square_protocol(flag):
+        def square_protocol(time_flag):
+            print('Starting SQUARE PROTOCOL...' + str(amp))
             # import pydevd
             # pydevd.settrace('192.168.0.34', port=4200, suspend=False)
 
-            self.activity_flag = flag
-            h = self.build()
+            self.time_flag = time_flag
+            h = self.build_model()
+            print('Cell model built, starting current injection...')
 
             # Set the sqauare current injector
             self.current.dur = duration
@@ -722,7 +942,7 @@ class CellManager(ModelManager):
             return result
 
         runner = NeuronRunner(square_protocol)
-        runner.DONTKILL = True
+        # runner.DONTKILL = True
         result = runner.run()
         return result
 
@@ -831,8 +1051,8 @@ class CellManager(ModelManager):
 
         def arb_current_protocol(flag):
 
-            self.activity_flag = flag
-            h = self.build()
+            self.time_flag = flag
+            h = self.build_model()
 
             # Set up IClamp for arbitrary current
             self.current.dur = 1e9
@@ -865,22 +1085,27 @@ class CellManager(ModelManager):
             return result
 
         runner = NeuronRunner(arb_current_protocol)
-        runner.DONTKILL = True
+        # runner.DONTKILL = True
         result = runner.run()
         return result
 
-    def load_cell(self):
+    def load_model(self):
         # Load cell hoc and get soma
-        os.chdir(self.NEURON_model_path)
-        from neuron import h, gui
+        os.chdir(self.temp_model_path)
+        print("Loading NEURON...")
+        from neuron import h
+        print("DONE")
 
         # Create the cell
+        print('Determining cell model type...')
         if self.is_abstract_cell():
+            print('Building abstract cell...')
             self.test_cell = self.get_abstract_cell(h)
         elif len(self.get_hoc_files()) > 0:
+            print('Building cell with compartment(s)...')
             self.test_cell = self.get_cell_with_morphology(h)
         else:
-            raise Exception("Could not find cell .hoc or abstract cell .mod file in: " + self.NEURON_model_path)
+            raise Exception("Could not find cell .hoc or abstract cell .mod file in: " + self.temp_model_path)
 
         # Get the root sections and try to find the soma
         self.roots = h.SectionList()
@@ -896,11 +1121,12 @@ class CellManager(ModelManager):
 
         return h
 
-    def build(self, restore_tolerances=True):
-        print("Loading cell: " + self.NEURON_model_path)
-        h = self.load_cell()
+    def build_model(self, restore_tolerances=True):
+        print("Loading cell: " + self.temp_model_path)
+        h = self.load_model()
 
         # set up stim
+        print('Setting up vi clamps...')
         self.current = h.IClamp(self.soma(0.5))
         self.current.delay = 50.0
         self.current.amp = 0
@@ -909,7 +1135,9 @@ class CellManager(ModelManager):
         self.vc = h.SEClamp(self.soma(0.5))
         self.vc.dur1 = 0
 
+
         # Set up variable collectors
+        print('Setting up tvi collectors...')
         self.t_collector = Collector(self.collection_period_ms, lambda: h.t)
         self.v_collector = Collector(self.collection_period_ms, lambda: self.soma(0.5).v)
         self.vc_i_collector = Collector(self.collection_period_ms, lambda: self.vc.i)
@@ -921,6 +1149,7 @@ class CellManager(ModelManager):
         self.set_abs_tolerance(self.abs_tolerance)
 
         if not self.is_abstract_cell() and restore_tolerances:
+            print('Restoring cvode tolerances...')
             self.restore_tolerances()
 
         return h
@@ -951,14 +1180,8 @@ class CellManager(ModelManager):
         cell = getattr(h, cell_template)()
         return cell
 
-    def get_hoc_files(self):
-        return [f for f in os.listdir(self.NEURON_model_path) if f.endswith(".hoc")]
-
-    def get_mod_files(self):
-        return [f for f in os.listdir(self.NEURON_model_path) if f.endswith(".mod")]
-
     def sim_init(self):
-        from neuron import h, gui
+        from neuron import h
         h.stdinit()
         self.clear_tvi()
         h.tstop = 1000
@@ -971,62 +1194,10 @@ class CellManager(ModelManager):
         self.vc_i_collector.clear()
         self.ic_i_collector.clear()
 
-    def set_abs_tolerance(self, abs_tol):
-        from neuron import h, gui
-        h.steps_per_ms = 10
-        h.dt = 1.0 / h.steps_per_ms  # NRN will ignore this using cvode
-
-        h.cvode_active(1)
-        h.cvode.condition_order(2)
-        h.cvode.atol(abs_tol)
-
-    def runFor(self, time, early_test=None):
-        from neuron import h
-        h.cvode_active(1)
-
-        self.activity_flag.value = h.t
-
-        h.tstop = h.t + time
-        t = h.t
-        while t < h.tstop and h.t < h.tstop:
-            t += 1.0
-
-            h.continuerun(t)
-            self.activity_flag.value = h.t
-
-            if early_test is not None:
-                t_np, v_np = self.get_tv()
-                if early_test(t_np, v_np):
-                    return (t_np, v_np)
-
-        # Get the waveform
-        return self.get_tv()
-
-    def get_tv(self):
-        from neuron import h
-        v_np = self.v_collector.get_values_np()
-        t_np = self.t_collector.get_values_np()
-
-        if np.isnan(v_np).any():
-            raise NumericalInstabilityException(
-                "Simulation is numericaly unstable with " + str(h.steps_per_ms) + " steps per ms")
-
-        return (t_np, v_np)
-
     def setCurrent(self, amp, delay, dur):
         self.current.delay = delay
         self.current.amp = amp
         self.current.dur = dur
-
-    def crossings_nonzero_pos2neg(self, data, theshold):
-        pos = data > theshold
-        return (pos[:-1] & ~pos[1:]).nonzero()[0]
-
-    def getSpikeCount(self, voltage, threshold=-20.0):
-        if np.max(voltage) < threshold:
-            return 0
-        else:
-            return len(self.crossings_nonzero_pos2neg(voltage, threshold))
 
     def getStabilityRange(self, testLow=-10, testHigh=15):
 
@@ -1088,13 +1259,6 @@ class CellManager(ModelManager):
 
         return current_range
 
-    def save_state(self, state_file='state.bin'):
-        from neuron import h
-        ns = h.SaveState()
-        sf = h.File(state_file)
-        ns.save()
-        ns.fwrite(sf)
-
     def restore_state(self, state_file='state.bin', keep_events=False):
         from neuron import h
         ns = h.SaveState()
@@ -1124,9 +1288,9 @@ class CellManager(ModelManager):
                     skip_current_delay=False, on_unstable=None, test_early=False):
 
         if not skip_current_delay:
-            def reach_resting_state(activity_flag):
-                self.activity_flag = activity_flag
-                self.build()
+            def reach_resting_state(time_flag):
+                self.time_flag = time_flag
+                self.build_model()
 
                 print("Simulating till current onset...")
                 self.sim_init()
@@ -1153,9 +1317,9 @@ class CellManager(ModelManager):
             else:
                 currentAmp = (lowerLevel + upperLevel) / 2.0
 
-            def simulate_iteration(activity_flag):
-                self.activity_flag = activity_flag
-                h = self.build()
+            def simulate_iteration(time_flag):
+                self.time_flag = time_flag
+                h = self.build_model()
                 self.restore_state()
 
                 self.setCurrent(amp=currentAmp, delay=current_delay, dur=current_duration)
@@ -1227,8 +1391,8 @@ class CellManager(ModelManager):
 
     def getBiasCurrent(self, targetV):
         def bias_protocol(flag):
-            self.activity_flag = flag
-            self.build()
+            self.time_flag = flag
+            self.build_model()
             self.sim_init()
 
             self.vc.amp1 = targetV
@@ -1262,8 +1426,8 @@ class CellManager(ModelManager):
 
     def getRestingV(self, run_time=1000, save_resting_state=False):
         def rest_protocol(flag):
-            self.activity_flag = flag
-            self.build()
+            self.time_flag = flag
+            self.build_model()
             self.sim_init()
 
             with RunTimer() as timer:
@@ -1300,82 +1464,11 @@ class CellManager(ModelManager):
             print("Cell is abstract, skipping tolerance tool")
             return
 
-        def run_atol_tool():
-            # import pydevd
-            # pydevd.settrace('192.168.0.34', port=4200, suspend=False)
-
-            h = self.build(restore_tolerances=False)
-
-            h.NumericalMethodPanel[0].map()
-            h.NumericalMethodPanel[0].atoltool()
-            h.tstop = tstop
-
-            print("Getting error tolerances...")
-
-            # h.nrncontrolmenu()
-            # h.newPlotV()
-
-            h.AtolTool[0].anrun()
-            h.AtolTool[0].rescale()
-            h.AtolTool[0].fill_used()
-
-            h.save_session('atols.ses')
-
-            print("Error tolerances saved")
-
-            h.AtolTool[0].box.unmap()
-            h.NumericalMethodPanel[0].b1.unmap()
-
-        runner = NeuronRunner(run_atol_tool, kill_slow_sims=False)
-        runner.run()
-
-    def restore_tolerances(self):
-        from neuron import h
-        h.load_file('atols.ses')
-
-        h.NumericalMethodPanel[0].b1.unmap()
-        print("Using saved error tolerances")
-
-    def connect_to_db(self):
-        if self.server is not None and self.db is not None and self.server.is_active:
-            return (self.db, self.server)
-
-        pwd = os.environ["NMLDBPWD"]  # This needs to be set to "the password"
-
-        if pwd == '':
-            raise Exception("The environment variable 'NMLDBPWD' needs to contain the password to the NML database")
-
-        self.server = SSHTunnelForwarder(
-            ('149.169.30.15', 2200),  # Spike - testing server
-            ssh_username='neuromine',
-            ssh_password=pwd,
-            remote_bind_address=('127.0.0.1', 3306),
-            set_keepalive=5.0
-        )
-
-
-        connected = False
-        while not connected:
-            try:
-                print("Connecting to server...")
-                self.server.start()
-                connected = True
-
-            except:
-                print("Could not connect to server. Retrying in 30-60s...")
-                import time
-                from random import randint
-                time.sleep(randint(30, 60))
-                print("Retrying...")
-
-        print("Connecting to MySQL database...")
-        self.db = connect('mysql://neuromldb2:' + pwd + '@127.0.0.1:' + str(self.server.local_bind_port) + '/neuromldb')
-        db_proxy.initialize(self.db)
-        return (self.db, self.server)
+        super(CellModel, self).setTolerances(tstop)
 
     def save_cell_record(self):
         cell = self.cell_record
-        db, server = self.connect_to_db()
+        db = self.connect_to_db()
 
         # Save or update
         try:
@@ -1444,16 +1537,16 @@ class CellManager(ModelManager):
             raise Exception("Database is missing children for the cell")
 
         # Set the location where the NEURON files will be stored
-        NEURON_folder = os.path.join(os.path.abspath(self.NEURON_models_folder), nml_db_id)
+        temp_model_folder = os.path.join(os.path.abspath(self.temp_models_folder), nml_db_id)
 
         # Clear it if exists or create it
-        if os.path.exists(NEURON_folder):
-            shutil.rmtree(NEURON_folder)
+        if os.path.exists(temp_model_folder):
+            shutil.rmtree(temp_model_folder)
 
-        os.makedirs(NEURON_folder)
+        os.makedirs(temp_model_folder)
 
         # Copy the model to the temp folder
-        shutil.copy2(os.path.join(model_dir_name, cell_file_name), NEURON_folder)
+        shutil.copy2(os.path.join(model_dir_name, cell_file_name), temp_model_folder)
 
         # Create file includes for each channel
         child_includes = ''
@@ -1464,7 +1557,7 @@ class CellManager(ModelManager):
             child_path = "../" + id + "/" + file
 
             # Copy the children to the NEURON temp files folder
-            shutil.copy2(os.path.join(model_dir_name, child_path), NEURON_folder)
+            shutil.copy2(os.path.join(model_dir_name, child_path), temp_model_folder)
             child_includes = child_includes + include_file_template.replace("[File]", file) + "\n"
 
         replacements = {
@@ -1479,19 +1572,19 @@ class CellManager(ModelManager):
         for r in replacements:
             template = template.replace(r, str(replacements[r]))
 
-        out_file = NEURON_folder + "/LEMS_" + cell_file_name
+        out_file = temp_model_folder + "/LEMS_" + cell_file_name
 
         with open(out_file, "w") as outF:
             outF.write(template)
 
         # Convert LEMS to NEURON with JNML
-        os.chdir(NEURON_folder)
+        os.chdir(temp_model_folder)
 
         self.run_command("jnml LEMS_" + cell_file_name + " -neuron")
 
         # Compile mod files
         self.run_command("nrnivmodl")
 
-        self.NEURON_model_path = NEURON_folder
+        self.temp_model_path = temp_model_folder
 
-        return NEURON_folder
+        return temp_model_folder

@@ -119,9 +119,9 @@ class Model_Waveforms(BaseModel):
     Waveform_Label = TextField()
     Time_Start = FloatField()
     Time_End = FloatField()
-    Time_Step = FloatField()
     Run_Time = FloatField()
     Variable_Name = TextField()
+    Units = TextField()
 
 class Model_Translators(BaseModel):
     Model = ForeignKeyField(Models, field='Model_ID', backref="Translators")

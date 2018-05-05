@@ -30,16 +30,16 @@ def update_checksums():
 
 
 def get_cell_properties():
-    with CellManager(params[0]) as mm:
+    with CellModel(params[0]) as mm:
         mm.get_cell_model_properties(model_dir=params[0])
 
 
 def save_cell_model_responses():
-    with CellManager(params[0]) as mm:
+    with CellModel(params[0]) as mm:
         mm.save_cell_model_responses(model_dir=params[0])
 
 def save_cell_3D_image():
-    with CellManager(params[0]) as mm:
+    with CellModel(params[0]) as mm:
         mm.save_3D_image()
 
 
@@ -48,7 +48,7 @@ def check_install_dependencies():
 
 
     # Check for missing installable dependencies
-    deps = ["pydevd", "peewee", "pymysql", "sshtunnel", "numpy", "matplotlib", "cPickle"]
+    deps = ["pydevd", "peewee", "pymysql", "sshtunnel", "numpy", "matplotlib", "cPickle", "rdp"]
 
     for dep in deps:
         try:
@@ -105,14 +105,18 @@ def check_output_for(command, dissalowed_text, error_to_show):
 
 
 if __name__ == "__main__":
-    import pydevd
-    pydevd.settrace('192.168.0.34', port=4200, suspend=False)
+    # import pydevd
+    # pydevd.settrace('192.168.0.34', port=4200, suspend=False)
 
     check_install_dependencies()
 
     import sys
     from manager import ModelManager
-    from cellmanager import CellManager
+    from cellmodel import CellModel
+    eval(command + "()")
+
+    print("EXITING...")
+
 
     command = sys.argv[1]
     params = sys.argv[2:]
@@ -121,7 +125,3 @@ if __name__ == "__main__":
 
     if command not in available_commands:
         raise Exception("Command after 'python manage.py' must be one of: " + str(available_commands))
-
-    eval(command + "()")
-
-    print("EXITING...")

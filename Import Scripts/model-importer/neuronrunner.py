@@ -15,6 +15,8 @@ class NumericalInstabilityException(Exception):
 class NeuronRunner:
     def __init__(self, target, kill_slow_sims=True):
         self.DONTKILL = False  # Set this to True when debugging
+        # Time flag - set it's value to a positive number to indicate running simulation time
+        # Negative number indicates simulation not running (e.g. building model or post-processing)
         self.sim_t = Value('d', -1)
         self.sim_t_previous = -1
         self.kill_slow_sims = kill_slow_sims
@@ -41,6 +43,7 @@ class NeuronRunner:
 
 
         self.process = Process(target=wrapper)
+        self.process.daemon = True
 
     def run(self):
         self.reset_killer()
@@ -53,19 +56,25 @@ class NeuronRunner:
             # Check for sim time changes
             sim_t_now = self.sim_t.value
 
-            # Display sim speed
-            self.print_speed(sim_t_now)
-
-            if sim_t_now != self.sim_t_previous:
-                self.sim_t_previous = sim_t_now
+            # If simulation is not running, don't kill
+            if sim_t_now < 0:
                 self.reset_killer()
+
+            # If simulation is running, check if it's too slow
+            else:
+                # Display sim speed
+                self.print_speed(sim_t_now)
+
+                if sim_t_now != self.sim_t_previous:
+                    self.sim_t_previous = sim_t_now
+                    self.reset_killer()
 
         self.process.join()
         self.reset_killer(renew=False)
 
         if self.killed_process:
             raise NumericalInstabilityException(
-                "Stopped early because either the simulation speed was too low or the activity_flag was not updated")
+                "Stopped early because either the simulation speed was too low or the time_flag was not updated")
         else:
             try:
 
@@ -114,4 +123,6 @@ class NeuronRunner:
             print("DONTKILL flag set... KEEPING")
         else:
             self.process.terminate()
+            self.process.join()
             self.killed_process = True
+            print('NEURON PROCESS KILLED')
