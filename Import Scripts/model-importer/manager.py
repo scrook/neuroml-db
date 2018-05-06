@@ -1,34 +1,22 @@
 import csv
 import hashlib
-import json
 import os
 import re
 import shutil
 import string
-import subprocess
-import urllib
 import urllib2
 import xml.etree.ElementTree as ET
 
 from dateutil.parser import parse as parsedate
-from playhouse.db_url import connect
-from sshtunnel import SSHTunnelForwarder
 
+from database import NMLDB
 from tables import *
-
+from config import Config
 
 class ModelManager(object):
     def __init__(self):
-        self.webserver = 'spike.asu.edu:5000'
-        self.server_IP = '149.169.30.15'  # '149.169.30.15' - spike.asu.edu - testing server
-
-        self.pwd = os.environ['NMLDBPWD']  # This needs to be set to the password
-
-        self.default_model_directory_parent = '../../www/NeuroMLmodels'
-
-        self.temp_models_folder = 'temp'
-        self.out_sim_directory = 'temp/sim'
-        self.out_csv_file = 'temp/models.csv'
+        self.config = Config()
+        self.server = NMLDB()
 
         self.valid_actions = [
             'ignore',
@@ -78,8 +66,14 @@ class ModelManager(object):
         self.tree_nodes = {}
         self.roots = []
         self.root_ids = []
-        self.model_directory_parent = os.path.abspath(self.default_model_directory_parent)
+        self.model_directory_parent = os.path.abspath(self.config.default_model_directory_parent)
         self.valid_relationships = None
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.server.close()
 
     def validate_db_model(self, dirs):
 
@@ -102,7 +96,7 @@ class ModelManager(object):
         if any(node["file_status"] != "same" for node in self.tree_nodes.values()):
             self.open_csv("temp/validation_results.csv")
         else:
-            print("Valid: DB records and simulation files are all SAME")
+            print("Valid: DB records and simulation files are identical")
 
     def model_to_csv(self, dirs):
         self.parse_directories(dirs)
@@ -112,23 +106,6 @@ class ModelManager(object):
     def csv_to_db(self, csv_file):
         self.parse_csv(csv_file)
         self.to_db_stored()
-
-    def update_model_simulation_status(self, id, status):
-
-        print("Updating model simulation status...")
-        self.connect_to_db()
-
-        model = Models.get(Models.Model_ID == id)
-        model.Simulation_Status = status
-
-        if status == "ERROR":
-            import traceback
-            model.Errors = traceback.format_exc()
-
-        if status == "CURRENT":
-            model.Errors = None
-
-        model.save()
 
     def parse_csv(self, csv_path):
         with open(csv_path, "r") as f:
@@ -184,7 +161,7 @@ class ModelManager(object):
 
     def to_csv(self, path=None):
         if path is None:
-            path = self.out_csv_file
+            path = self.config.default_out_csv_file
 
         print("Saving tree to: " + os.path.abspath(path) + "...")
 
@@ -202,14 +179,14 @@ class ModelManager(object):
     def parse_db_stored(self):
         print("Parsing model tree from DB records...")
 
-        self.connect_to_db()
+        self.server.connect()
         self.tree_nodes = {}
         for root_id in self.root_ids:
             self.fetch_model_tree(root_id)
         self.get_roots()
 
     def to_db_stored(self):
-        db = self.connect_to_db()
+        db = self.server.connect()
 
         try:
             with db.atomic() as transaction:
@@ -262,7 +239,7 @@ class ModelManager(object):
             return parsedate(csv_value)
 
     def get_valid_relationships(self):
-        self.connect_to_db()
+        self.server.connect()
 
         Parent_Types = Model_Types.alias()
         Child_Types = Model_Types.alias()
@@ -284,11 +261,13 @@ class ModelManager(object):
 
             self.valid_relationships[parent].append(child)
 
+        return self.valid_relationships
+
     def to_simulation(self, sim_path, clear_contents=False):
         print("Creating SIM files from model tree...")
 
         if sim_path is None:
-            sim_path = self.out_sim_directory
+            sim_path = self.config.out_sim_directory
 
         if os.path.exists(sim_path) and clear_contents:
             shutil.rmtree(sim_path)
@@ -386,7 +365,7 @@ class ModelManager(object):
 
         for dir in model_directories:
             if self.is_nmldb_id(dir):
-                dir = os.path.join(self.default_model_directory_parent, dir)
+                dir = os.path.join(self.config.default_model_directory_parent, dir)
 
             self.model_directories.append(os.path.abspath(dir) + "/")
 
@@ -413,7 +392,7 @@ class ModelManager(object):
         print("REMOVING model " + node["model_id"] + " from DB and models directory...")
 
         # Remove db records
-        self.db.execute_sql("CALL delete_model('" + node["model_id"] + "');")
+        self.server.db.execute_sql("CALL delete_model('" + node["model_id"] + "');")
 
         # Remove files
         model_dir = os.path.join(self.model_directory_parent, node["model_id"])
@@ -701,20 +680,36 @@ class ModelManager(object):
         if result is None:
             raise Exception("Model with id %s not found" % id)
 
-        result.Translators = People.select().join(Model_Translators).where(Model_Translators.Model == id).order_by(
-            Model_Translators.Translator_Sequence)
-        result.References = Refers.select().join(Model_References).where(Model_References.Model == id)
-        result.Neurolexes = Neurolexes.select().join(Model_Neurolexes).where(Model_Neurolexes.Model == id)
-        result.Keywords = Other_Keywords.select().join(Model_Other_Keywords).where(Model_Other_Keywords.Model == id)
+        result.Translators = People\
+            .select()\
+            .join(Model_Translators)\
+            .where(Model_Translators.Model == id)\
+            .order_by(Model_Translators.Translator_Sequence)
 
-        result.Children = Models.select(Models.Model_ID, Models.File, Models.File_Name) \
+        result.References = Refers\
+            .select()\
+            .join(Model_References)\
+            .where(Model_References.Model == id)
+
+        result.Neurolexes = Neurolexes\
+            .select()\
+            .join(Model_Neurolexes)\
+            .where(Model_Neurolexes.Model == id)
+
+        result.Keywords = Other_Keywords\
+            .select()\
+            .join(Model_Other_Keywords)\
+            .where(Model_Other_Keywords.Model == id)
+
+        result.Children = Models\
+            .select(Models.Model_ID, Models.File, Models.File_Name) \
             .join(Model_Model_Associations, on=(Model_Model_Associations.Child == Models.Model_ID)) \
             .where(Model_Model_Associations.Parent == id)
 
         return result
 
     def server_path_to_local_path(self, server_path):
-        return server_path.replace('/var/www/NeuroMLmodels', self.model_directory_parent)
+        return server_path.replace(self.config.server_model_path, self.model_directory_parent)
 
     def get_type(self, path):
 
@@ -885,11 +880,6 @@ class ModelManager(object):
         else:
             node["file_status"] = "File does not exist"
 
-    def get_number_of_model_state_variables(self, h):
-        result = h.Vector()
-        h.cvode.spike_stat(result)
-        return result[0]
-
     def valid_child_types(self, parent_type):
 
         if self.valid_relationships is None:
@@ -907,51 +897,10 @@ class ModelManager(object):
         root = tree.getroot()
         return root
 
-    def connect_to_db(self):
-        if hasattr(self, "db") and self.db is not None:
-            return self.db
-
-        pwd = self.pwd
-
-        if pwd == '':
-            raise Exception("The environment variable 'NMLDBPWD' needs to contain the password to the NML database")
-
-        server = SSHTunnelForwarder(
-            (self.server_IP, 2200),
-            ssh_username='neuromine',
-            ssh_password=pwd,
-            remote_bind_address=('127.0.0.1', 3306),
-            set_keepalive=5.0
-        )
-
-        connected = False
-        while not connected:
-            try:
-                print("Connecting to server...")
-                server.start()
-                connected = True
-
-            except:
-                print("Could not connect to server. Retrying in 30-60s...")
-                import time
-                from random import randint
-                time.sleep(randint(30, 60))
-                print("Retrying...")
-
-        print("Connecting to MySQL database...")
-        db = connect('mysql://neuromldb2:' + pwd + '@127.0.0.1:' + str(server.local_bind_port) + '/neuromldb')
-
-        db_proxy.initialize(db)
-
-        self.server = server
-        self.db = db
-
-        return db
-
     def open_csv(self, file_path=None):
 
         if file_path is None:
-            file_path = self.out_csv_file
+            file_path = self.config.default_out_csv_file
 
         print("Opening CSV file: " + file_path)
 
@@ -972,7 +921,7 @@ class ModelManager(object):
         return None
 
     def update_model_checksums(self):
-        self.connect_to_db()
+        self.server.connect()
 
         models = Models.select(Models.Model_ID, Models.File, Models.File_MD5_Checksum)
 
@@ -991,39 +940,5 @@ class ModelManager(object):
             result = result.replace(r, str(reps[r]))
         return result
 
-    def get_cell_children(self, modelID):
-        url = "http://" + self.webserver + "/api/model?id=" + modelID
-        response = urllib.urlopen(url)
-        model = json.loads(response.read())
-        channels = [m for m in model["children"] if m["Type"] == "Channel" or m["Type"] == "Concentration"]
-        return channels
-
     def get_model_directory(self, model_id):
-        return os.path.abspath(os.path.join(self.default_model_directory_parent, model_id))
-
-    def run_command(self, command):
-        print("Running command: '" + command + "'...")
-
-        result = subprocess.check_output(
-            command + "; exit 0",
-            stderr=subprocess.STDOUT,
-            shell=True)
-
-        print(result)  # Output and errors will be in string
-
-        if any(x in result.lower() for x in ["error", "not found", "missing"]):
-            raise Exception("Errors found while running command: " + command)
-
-        print("SUCCESS")
-
-        return result
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, exc_type, exc_value, traceback):
-        if hasattr(self, "server") and self.server is not None:
-            self.server.close()
-
-        if hasattr(self, "db") and self.db is not None:
-            self.db.close()
+        return os.path.abspath(os.path.join(self.config.default_model_directory_parent, model_id))

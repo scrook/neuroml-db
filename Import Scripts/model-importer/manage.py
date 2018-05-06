@@ -10,42 +10,39 @@
 
 
 def to_csv():
-    with ModelManager() as mm:
-        mm.model_to_csv(dirs=params)
+    ModelManager().model_to_csv(dirs=params)
 
 
 def to_db():
-    with ModelManager() as mm:
-        mm.csv_to_db(csv_file=params[0])
+    ModelManager().csv_to_db(csv_file=params[0])
 
 
 def validate():
-    with ModelManager() as db_version:
-        db_version.validate_db_model(dirs=params)
+    ModelManager().validate_db_model(dirs=params)
 
 
 def update_checksums():
-    with ModelManager() as mm:
-        mm.update_model_checksums()
+    ModelManager().update_model_checksums()
 
 
-def get_cell_properties():
-    with CellModel(params[0]) as mm:
-        mm.get_cell_model_properties(model_dir=params[0])
+def save_cell_properties():
+    CellModel(params[0]).save_cell_model_properties(model_dir=params[0])
 
 
 def save_cell_model_responses():
     with CellModel(params[0]) as mm:
-        mm.save_cell_model_responses(model_dir=params[0])
+        mm.save_cell_model_responses(model_dir=params[0], protocols=Config().cell_protocols_to_run)
 
-def save_cell_3D_image():
-    with CellModel(params[0]) as mm:
-        mm.save_3D_image()
+
+def save_morphology_data():
+    CellModel(params[0]).save_morphology_data()
 
 
 def check_install_dependencies():
     import os
 
+    if 'NMLDBPWD' not in os.environ or os.environ['NMLDBPWD'] == '':
+        raise Exception("Set the value of environment variable 'NMLDBPWD' to the NMLDB password")
 
     # Check for missing installable dependencies
     deps = ["pydevd", "peewee", "pymysql", "sshtunnel", "numpy", "matplotlib", "cPickle", "rdp"]
@@ -69,15 +66,24 @@ def check_install_dependencies():
                                    "see: https://neurojustas.wordpress.com/2018/03/27/tutorial-installing-neuron-simulator-with"
                                    "-python-on-ubuntu-linux/")
 
+    # Check if blender is installed
+    check_output_for(command="blender -v; exit 0;",
+                     dissalowed_text="command not found",
+                     error_to_show="Could not find blender. Blender can be downloaded from: "
+                                   "http://download.blender.org/release/Blender2.79/blender-2.79b-linux-glibc219-x86_64.tar.bz2 "
+                                   "After download and extraction, add the blender directory to the PATH environment variable. "
+                                   "This script will allow proceeding if the following command can run 'blender -v'"
+                     )
+
     # Check if ffmpeg is installed
-    check_output_for(command="ffmpeg -h",
+    check_output_for(command="ffmpeg -h; exit 0;",
                      dissalowed_text="currently not installed",
                      error_to_show="ffmpeg ubuntu package must be installed to run this script. "
                                    "Install it with: sudo apt install ffmpeg")
 
     # Make sure lmeasure can run - has exec permissions
     try:
-        check_output_for("./lmeasure", "Permission denied", "Make sure lmeasure can run with: chmod +x lmeasure")
+        check_output_for("./lmeasure", "Permission denied", "Allow lmeasure to run with: chmod +x lmeasure")
     except:
         os.system("chmod +x lmeasure")
 
@@ -105,18 +111,14 @@ def check_output_for(command, dissalowed_text, error_to_show):
 
 
 if __name__ == "__main__":
-    # import pydevd
-    # pydevd.settrace('192.168.0.34', port=4200, suspend=False)
-
     check_install_dependencies()
 
     import sys
     from manager import ModelManager
     from cellmodel import CellModel
-    eval(command + "()")
+    from config import Config
 
-    print("EXITING...")
-
+    Config().start_debugging_if_enabled('MANAGER')
 
     command = sys.argv[1]
     params = sys.argv[2:]
@@ -125,3 +127,7 @@ if __name__ == "__main__":
 
     if command not in available_commands:
         raise Exception("Command after 'python manage.py' must be one of: " + str(available_commands))
+
+    eval(command + "()")
+
+    print("EXITING...")

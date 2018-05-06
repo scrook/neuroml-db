@@ -6,7 +6,7 @@ import sys
 import time
 from multiprocessing import Process, Value
 from threading import Timer
-
+from config import Config
 
 class NumericalInstabilityException(Exception):
     pass
@@ -25,6 +25,8 @@ class NeuronRunner:
         self.killed_process = False
 
         def wrapper():
+            Config().start_debugging_if_enabled('RUNNER')
+
             result = {"result": None, "error": None}
 
             try:
