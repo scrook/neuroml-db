@@ -26,6 +26,20 @@ function setupChart(id, title, data) {
                     ticks: { maxRotation: 0, stepSize:10, maxTicksLimit: 11  }
 				}],
 				yAxes: [{
+					fontFamily: '"Lucida Console", Monaco, monospace',
+                    afterTickToLabelConversion: function(e) {
+                        //Ensure the tick labels are same length
+						for(t in e.ticks) {
+							label = e.ticks[t]
+
+							if(label.indexOf(".") < 0){
+                                label += "."
+							}
+                            label = label.padEnd(5,"0")
+
+                            e.ticks[t] = label
+						}
+					},
 					scaleLabel: {
 						display: true,
 						labelString: title,
