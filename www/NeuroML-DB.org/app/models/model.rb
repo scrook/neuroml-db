@@ -116,9 +116,10 @@ class Model < ActiveRecord::Base
 
     model = ActiveRecord::Base.connection.exec_query(
         "
-          SELECT m.*, mt.Name as Type
+          SELECT m.*, mt.Name as Type, c.Compartments
           FROM models m
           JOIN model_types mt ON mt.ID = m.Type
+          LEFT JOIN cells c on c.Model_ID = m.Model_ID
           WHERE m.Model_ID = '#{idClean}'
           LIMIT 1
         ").first
@@ -229,7 +230,7 @@ class Model < ActiveRecord::Base
     return ActiveRecord::Base.connection.exec_query(
         "
           SELECT mw.ID, mw.Protocol_ID, p.Pretty_Name as Protocol, mw.Meta_Protocol_ID, mp.Pretty_Name as Meta_Protocol,
-                 mw.Waveform_Label, mw.Time_Start, mw.Time_End, mw.Time_Step, mw.Variable_Name, p.Starts_From_Steady_State, mw.Units
+                 mw.Waveform_Label, mw.Time_Start, mw.Time_End, mw.Variable_Name, p.Starts_From_Steady_State, mw.Units
           FROM model_waveforms mw
           LEFT JOIN protocols p ON p.ID = mw.Protocol_ID
           LEFT JOIN protocols mp ON mp.ID = mw.Meta_Protocol_ID
@@ -253,15 +254,20 @@ class Model < ActiveRecord::Base
 
 
     # Get values from waveform .csv file
-    waveform["Variable_Values"] = GetWaveformValues(waveform["Model_ID"], waveform["ID"])
+    waveform["Times"], waveform["Variable_Values"] = GetWaveformValues(waveform["Model_ID"], waveform["ID"])
 
     return waveform
   end
 
   def self.GetWaveformValues(model_id, waveform_id)
       file = "/var/www/NeuroMLmodels/"+model_id+"/waveforms/"+waveform_id.to_s+".csv"
-      contents = File.read(file)
-      return contents
+
+      lines = File.readlines(file)
+
+      times = lines[0]
+      values = lines[1]
+
+      return times, values
   end
 
   def self.GetModelPlotWaveForms(model_id, protocol_id, meta_protocol_id)
@@ -287,7 +293,7 @@ class Model < ActiveRecord::Base
 
     # Fetch .csv waveform values
     waveforms.each do |waveform|
-      waveform["Variable_Values"] = GetWaveformValues(waveform["Model_ID"], waveform["ID"])
+      waveform["Times"], waveform["Variable_Values"] = GetWaveformValues(waveform["Model_ID"], waveform["ID"])
     end
 
     return waveforms

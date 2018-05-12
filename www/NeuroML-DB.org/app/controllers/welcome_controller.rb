@@ -24,6 +24,7 @@ class WelcomeController < ApplicationController
     @model_notes = model["Notes"]
     @morphometrics_status = model["Morphometrics_Status"]
     @GIF_status = model["GIF_Status"]
+    @compartments = model["Compartments"]
 
     relatedModels = Array(details[:children]) + Array(details[:parents])
 

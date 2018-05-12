@@ -31,7 +31,11 @@
   <td class="keyword" style="vertical-align: top;">
     Morphology:
   </td>
-  <% if @morphometrics_status != 'CURRENT' and @GIF_status != 'CURRENT' %>
+  <% if @compartments.present? and @compartments <= 1 %>
+      <td class="description">
+        Single compartment, abstract, or point cells do not have morphology data.
+      </td>
+  <% elsif @morphometrics_status != 'CURRENT' and @GIF_status != 'CURRENT' %>
     <td class="description">
       No morphology data available for this model.
     </td>
