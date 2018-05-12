@@ -22,8 +22,7 @@ class NMLDB_Model(object):
         self.server = NMLDB()
         self.config = Config()
         self.model_manager = ModelManager()
-
-        self.temp_model_path = path
+        self.path = path
 
     def __enter__(self):
         return self
@@ -33,20 +32,20 @@ class NMLDB_Model(object):
         self.model_manager.server.close()
 
     def get_model_nml_id(self):
-        return self.temp_model_path.split("/")[-1]
+        return self.path.split("/")[-1]
 
-    def make_gif_from_frames(self):
+    def make_gif_from_frames(self, gif_path, gif_name="cell.gif", frame_naming_scheme='"%04d.jp2"', ):
         # generate gif with ffmpeg
         current_cwd = os.getcwd()
 
         # Go to the render output dir
-        os.chdir(os.path.join(self.config.default_model_directory_parent, self.get_model_nml_id(), "morphology"))
+        os.chdir(gif_path)
 
         # Create a palette for the gif using 0-padding-numbered jp2 files
-        os.system('ffmpeg -y -i "%04d.jp2" -vf palettegen palette.png ')
+        os.system('ffmpeg -y -i '+frame_naming_scheme+' -vf palettegen palette.png ')
 
         # Use the palette and jp2 files to create color-corrected animated gif
-        os.system('ffmpeg -y -i "%04d.jp2" -i palette.png -lavfi "fps=24, paletteuse" cell.gif')
+        os.system('ffmpeg -y -i '+frame_naming_scheme+' -i palette.png -lavfi "fps=24, paletteuse" ' + gif_name)
 
         # Remove the palette and the frame files
         os.system('rm *.jp2')
@@ -59,7 +58,15 @@ class NMLDB_Model(object):
         return str(float('%.4E' % Decimal(x)))
 
     def get_waveforms_dir(self):
-        result = os.path.abspath(os.path.join(self.config.permanent_model_parent_dir, self.get_model_nml_id(), "waveforms"))
+        result = os.path.abspath(os.path.join(self.config.permanent_models_dir, self.get_model_nml_id(), "waveforms"))
+
+        if not os.path.exists(result):
+            os.mkdir(result)
+
+        return result
+
+    def get_morphology_dir(self):
+        result = os.path.abspath(os.path.join(self.config.permanent_models_dir, self.get_model_nml_id(), "morphology"))
 
         if not os.path.exists(result):
             os.mkdir(result)
@@ -255,8 +262,6 @@ class NMLDB_Model(object):
     def setTolerances(self, tstop=100):
 
         def run_atol_tool():
-            # import pydevd
-            # pydevd.settrace('192.168.0.34', port=4200, suspend=False)
 
             h = self.build_model(restore_tolerances=False)
 
@@ -296,12 +301,15 @@ class NMLDB_Model(object):
         return result[0]
 
     def update_model_simulation_status(self, id, status):
+        self.update_model_status(id, "Simulation", status)
 
-        print("Updating model simulation status...")
+    def update_model_status(self, id, status_type, status):
+
+        print("Updating model "+status_type+" status...")
         self.server.connect()
 
         model = Models.get(Models.Model_ID == id)
-        model.Simulation_Status = status
+        setattr(model, status_type + "_Status", status)
 
         if status == "ERROR":
             import traceback
