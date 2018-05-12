@@ -47,8 +47,9 @@
             #chart-help-contents { padding: 10px; overflow:auto;}
             #chart-help-contents h3 { font-size: 16px; font-weight: bold; }
             #chart-help-contents p { margin-bottom: 10px; }
-            .ui-dialog .ui-button { float: right }
-            .ui-dialog .ui-dialog-title { line-height: 22px; margin-left: 3px; }
+            .ui-dialog .ui-button { float: right; margin: 5px; }
+            .ui-dialog .ui-dialog-title { line-height: 32px; padding-left: 7px; margin-left: 3px; }
+            .ui-widget-header { cursor: move; }
           </style>
           <script>
               var waveforms = <%= waveforms.to_json.html_safe  %>;
@@ -194,15 +195,11 @@
                               ["data"])
                   }
 
+                  var times = wave["Times"].split(',').map(v => parseFloat(v));
                   var values = wave["Variable_Values"].split(',').map(v => parseFloat(v));
 
-                  var chart_x = wave["Time_Start"];
-                  var chart_x_step = wave["Time_Step"];
-
                   for (v = 0; v < values.length; v++) {
-                      var chart_dp = {"x": chart_x, "y": values[v]};
-                      chart_data.push(chart_dp);
-                      chart_x += chart_x_step;
+                      chart_data.push({"x": times[v], "y": values[v]});
                   }
 
                   var max_y = Enumerable.from(chart_data).max(dp => dp["y"]);
@@ -211,17 +208,17 @@
                   var max_x = Enumerable.from(chart_data).max(dp => dp["x"]);
                   var min_x = Enumerable.from(chart_data).min(dp => dp["x"]);
 
-                  //Simplify the waveform with Ramer Douglas Peucker algo. From: http://karthaus.nl/rdp/
-                  //Waveform changes less than % of the Y range are linearized
-                  var simplification_epsilon = (max_y - min_y) * 0.005;
-
-                  chart_data = Enumerable
-                      .from(RDPsd(Enumerable
-                              .from(chart_data)
-                              .select(dp => [dp["x"], dp["y"]])
-                              .toArray(), simplification_epsilon))
-                      .select(function(dp) { return {"x": dp[0], "y": dp[1] } } )
-                      .toArray();
+//                  //Simplify the waveform with Ramer Douglas Peucker algo. From: http://karthaus.nl/rdp/
+//                  //Waveform changes less than % of the Y range are linearized
+//                  var simplification_epsilon = (max_y - min_y) * 0.005;
+//
+//                  chart_data = Enumerable
+//                      .from(RDPsd(Enumerable
+//                              .from(chart_data)
+//                              .select(dp => [dp["x"], dp["y"]])
+//                              .toArray(), simplification_epsilon))
+//                      .select(function(dp) { return {"x": dp[0], "y": dp[1] } } )
+//                      .toArray();
 
 
                   wave["Variable_Values"] = null; //Remove old format
@@ -466,7 +463,7 @@
             <h3>Zoom</h3>
             <p>The plots can be zoomed in/out to see plot details. On the right side of the plot, use the [+] and [-] buttons to zoom in/out on the center of the plot.</p>
             <h3>Pan</h3>
-            <p>Once zoomed, the plots can be panned by dragging the mouse sideways or swiping fingers.</p>
+            <p>Once zoomed, the plots can be panned by dragging the mouse or swiping fingers sideways.</p>
             <h3>Reset Plot</h3>
             <p>Once a zoom/pan position is set, it will be maintained when the stimulus/meta-protocol parameter is changed. To reset the zoom/pan,
             click the circular arrow button below the zoom out button. Plot zoom will also be reset when the protocol is changed.</p>
