@@ -10,32 +10,43 @@
 
 
 def to_csv():
-    ModelManager().model_to_csv(dirs=params)
+    with ModelManager() as mm:
+        mm.model_to_csv(dirs=params)
 
 
 def to_db():
-    ModelManager().csv_to_db(csv_file=params[0])
+    with ModelManager() as mm:
+        mm.csv_to_db(csv_file=params[0])
 
 
 def validate():
-    ModelManager().validate_db_model(dirs=params)
+    with ModelManager() as mm:
+        mm.validate_db_model(dirs=params)
 
 
 def update_checksums():
-    ModelManager().update_model_checksums()
+    with ModelManager() as mm:
+        mm.update_model_checksums()
+
+
+def save_structural_metrics():
+    with CellModel(params[0]) as cm:
+        cm.save_structural_metrics()
 
 
 def save_cell_properties():
-    CellModel(params[0]).save_cell_model_properties(model_dir=params[0])
+    with CellModel(params[0]) as cm:
+        cm.save_cell_model_properties(model_dir=params[0])
 
 
 def save_cell_model_responses():
-    with CellModel(params[0]) as mm:
-        mm.save_cell_model_responses(model_dir=params[0], protocols=Config().cell_protocols_to_run)
+    with CellModel(params[0]) as cm:
+        cm.save_cell_model_responses(model_dir=params[0], protocols=Config().cell_protocols_to_run)
 
 
 def save_morphology_data():
-    CellModel(params[0]).save_morphology_data()
+    with CellModel(params[0]) as cm:
+        cm.save_morphology_data()
 
 
 def check_install_dependencies():

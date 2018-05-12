@@ -17,9 +17,10 @@ import numpy as np
 from matplotlib import pyplot as plt
 from playhouse.db_url import connect
 from sshtunnel import SSHTunnelForwarder
+from sklearn.decomposition import PCA
 
 from collector import Collector
-from manager import ModelManager
+
 from neuronrunner import NeuronRunner, NumericalInstabilityException
 from runtimer import RunTimer
 from tables import Cells, Model_Waveforms, Morphometrics, Cell_Morphometrics, db_proxy, Models
@@ -30,27 +31,37 @@ class CellModel(NMLDB_Model):
         super(CellModel, self).__init__(path)
         self.pickle_file_cache = {}
 
+
+    def __enter__(self):
+        return self
+
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        self.server.close()
+
+
     def save_cell_model_properties(self, model_dir):
-        NEURON_folder = self.cell_model_to_neuron(model_dir)
+        self.convert_to_NEURON(model_dir)
 
-        assessor = CellModel(path=NEURON_folder)
-
-        id = assessor.get_model_nml_id()
+        id = self.get_model_nml_id()
 
         try:
-            assessor.get_cell_properties()
+            self.get_cell_properties()
             self.update_model_simulation_status(id, status="CURRENT")
 
         except:
             print("Encountered an error. Saving progress...")
-
-            assessor.save_cell_record()
-
+            self.save_cell_record()
             self.update_model_simulation_status(id, status="ERROR")
 
             raise
 
+
     def get_cell_properties(self):
+
+        # Structural metrics
+        self.save_structural_metrics()
+
         self.cell_record = Cells(
             Model_ID=self.get_model_nml_id(),
             Stability_Range_Low=None,
@@ -134,6 +145,9 @@ class CellModel(NMLDB_Model):
             self.save_cell_record()
 
     def get_number_of_compartments(self, h):
+        if self.is_abstract_cell():
+            return 1
+
         return sum(s.nseg for s in h.allsec())
 
     def save_to_SWC(self, h):
@@ -263,14 +277,12 @@ class CellModel(NMLDB_Model):
                     point["radius"] + " " +
                     point["parent"] + "\n")
 
-        permanent_morphology_dir = os.path.join(self.config.permanent_model_parent_dir, self.get_model_nml_id(), "morphology")
-
         try:
-            os.makedirs(permanent_morphology_dir)
+            os.makedirs(self.get_morphology_dir())
         except:
             pass
 
-        shutil.copy2(swc_file_path, permanent_morphology_dir)
+        shutil.copy2(swc_file_path, self.get_morphology_dir())
 
         return os.path.abspath(swc_file_path)
 
@@ -320,53 +332,62 @@ class CellModel(NMLDB_Model):
 
     def save_morphology_data(self):
         # Convert NML to NEURON
-        self.cell_model_to_neuron(self.temp_model_path)
+        self.convert_to_NEURON(self.path)
+
+        if self.is_abstract_cell():
+            print("Cell is ABSTRACT, skipping morphometrics and 3D visualization...")
+            self.update_model_status(self.get_model_nml_id(), "Morphometrics", "CURRENT")
+            self.update_model_status(self.get_model_nml_id(), "GIF", "CURRENT")
+            return
 
         # Load the model
         h = self.build_model(restore_tolerances=False)
 
         # Compute morphometrics
-        self.save_morphometrics(h)
+        try:
+            self.save_morphometrics(h)
+            self.update_model_status(self.get_model_nml_id(), "Morphometrics", "CURRENT")
+        except:
+            self.update_model_status(self.get_model_nml_id(), "Morphometrics", "ERROR")
+            raise
 
-        # Rotate the cell to be upright along the x,y,z coord PCA axes
-        self.rotate_cell_along_PCA_axes(h)
+        # Render 3D GIF
+        try:
+            # Rotate the cell to be upright along the x,y,z coord PCA axes
+            self.rotate_cell_along_PCA_axes(h)
 
-        import sys
-        sys.path.append('/home/justas/Repositories/BlenderNEURON/ForNEURON')
-        from blenderneuron import BlenderNEURON
+            import sys
+            sys.path.append('/home/justas/Repositories/BlenderNEURON/ForNEURON')
+            from blenderneuron import BlenderNEURON
 
-        bl = BlenderNEURON(h)
-        bl.prepare_for_collection()
+            bl = BlenderNEURON(h)
+            bl.prepare_for_collection()
 
-        self.server.connect()
+            self.server.connect()
 
-        cell = Cells.get_or_none(self.get_model_nml_id())
+            cell = Cells.get_or_none(Cells.Model_ID==self.get_model_nml_id())
 
-        # Skip simulation if no basic properties are present
-        if cell is not None:
-            # Inject continous threshold current into non-intrinisic-spikers
-            if not cell.Is_Intrinsically_Spiking:
-                self.current.delay = 0
-                self.current.dur = 100
-                self.current.amp = cell.Threshold_Current_High
+            # Skip simulation if no basic properties are present
+            if cell is not None:
+                # Inject continous threshold current into non-intrinisic-spikers
+                if not cell.Is_Intrinsically_Spiking:
+                    self.current.delay = 0
+                    self.current.dur = 100
+                    self.current.amp = cell.Threshold_Current_High
 
-            # No additional stim for intrinisic spikers
-            h.tstop = 100.0
-            h.run()
+                # No additional stim for intrinisic spikers
+                print("Simulating current injection...")
+                h.tstop = 100.0
+                h.newPlotV()
+                h.run()
 
-        self.save_rotating_gif(bl)
+            self.save_rotating_gif(bl)
 
-        # id = assessor.get_model_nml_id()
-        #
-        # try:
-        #     assessor.get_cell_model_responses()
-        #     self.update_model_simulation_status(id, status="CURRENT")
-        #
-        # except:
-        #     print("Encountered an error. Saving progress...")
-        #     self.update_model_simulation_status(id, status="ERROR")
-        #
-        #     raise
+            self.update_model_status(self.get_model_nml_id(), "GIF", "CURRENT")
+        except:
+            self.update_model_status(self.get_model_nml_id(), "GIF", "ERROR")
+            raise
+
 
     def save_rotating_gif(self, bl):
         bl.enqueue_method("clear")
@@ -377,9 +398,8 @@ class CellModel(NMLDB_Model):
         bl.enqueue_method('color_by_unique_materials')
         bl.run_method('orbit_camera_around_model')
         # Wait till prev tasks and rendering is finished
-        bl.run_method('render_animation',
-                      destination_path="R:/neuroml-db/www/NeuroMLmodels/" + self.get_model_nml_id() + "/morphology/")
-        self.make_gif_from_frames()
+        bl.run_method('render_animation', destination_path=self.get_morphology_dir())
+        self.make_gif_from_frames(self.get_morphology_dir())
 
     def save_morphometrics(self, h):
         swc = self.save_to_SWC(h)
@@ -416,15 +436,12 @@ class CellModel(NMLDB_Model):
                 h.pt3dchange(i, x, y, z, diam, sec=sec)
 
     def save_cell_model_responses(self, model_dir, protocols):
-        NEURON_folder = self.cell_model_to_neuron(model_dir)
+        self.convert_to_NEURON(model_dir)
 
-        assessor = CellModel(path=NEURON_folder)
-
-        id = assessor.get_model_nml_id()
+        id = self.get_model_nml_id()
 
         try:
-            assessor.get_cell_model_responses(protocols)
-            return
+            self.get_cell_model_responses(protocols)
             self.update_model_simulation_status(id, status="CURRENT")
 
         except:
@@ -439,18 +456,17 @@ class CellModel(NMLDB_Model):
         steady_state_delay = 1000  # 1000
 
         self.server.connect()
-        #self.server.close()
-        return
 
         try:
             id = self.get_model_nml_id()
 
             print("Removing existing model waveforms: " + str(protocols))
-            Model_Waveforms.delete().where(
-                (Model_Waveforms.Model == id) & (Model_Waveforms.Protocol.in_(protocols))).execute()
+            Model_Waveforms\
+                .delete()\
+                .where((Model_Waveforms.Model == id) & (Model_Waveforms.Protocol.in_(protocols)))\
+                .execute()
 
             cell_props = Cells.get(Cells.Model_ID == id)
-
 
             # Reach steady state and save model state
             if "STEADY_STATE" in protocols:
@@ -1181,28 +1197,66 @@ class CellModel(NMLDB_Model):
 
         super(CellModel, self).setTolerances(tstop)
 
+    def get_structural_metrics(self):
+
+        def run_struct_analysis():
+            h = self.build_model(restore_tolerances=False)
+
+            result = {}
+
+            if self.is_abstract_cell():
+                result["section_count"] = 1
+                result["compartment_count"] = 1
+
+            else:
+                result["section_count"] = len([sec for sec in h.allsec()])
+                result["compartment_count"] = self.get_number_of_compartments(h)
+
+            return result
+
+        runner = NeuronRunner(run_struct_analysis, kill_slow_sims=False)
+        metrics = runner.run()
+
+        return metrics
+
+    def save_structural_metrics(self):
+        self.convert_to_NEURON()
+
+        metrics = self.get_structural_metrics()
+
+        self.cell_record = Cells(
+            Model_ID=self.get_model_nml_id(),
+            Sections=metrics["section_count"],
+            Compartments=metrics["compartment_count"]
+        )
+
+        self.save_cell_record()
+
     def save_cell_record(self):
         cell = self.cell_record
-        db = self.server.connect()
+        self.server.connect()
 
-        # Save or update
+        # Check if record exists
         try:
             Cells.get_by_id(cell.Model_ID)
             force_insert = False
         except:
+            # Create new record if not
             force_insert = True
 
         print("Saving record for cell " + cell.Model_ID + " ...")
 
-        # Insert on first save
+        # Create record on first save
         cell.save(force_insert=force_insert)
 
         # Disconnect SSH
-        server.stop()
+        self.server.close()
 
         print("SAVED")
 
-    def cell_model_to_neuron(self, path):
+    def convert_to_NEURON(self, path=None):
+        if path is None:
+            path = self.path
 
         print("Converting cell NML model to NEURON...")
 
