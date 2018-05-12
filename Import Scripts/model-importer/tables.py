@@ -50,6 +50,8 @@ class Models(BaseModel):
     File_Updated = DateTimeField()
     File = TextField()
     Simulation_Status = TextField()
+    GIF_Status = TextField()
+    Morphometrics_Status = TextField()
     Errors = TextField()
     Notes = TextField()
     ID_Helper = IntegerField()
@@ -80,6 +82,8 @@ class Channels(BaseModel):
 
 class Cells(BaseModel):
     Model_ID = CharField(primary_key=True)
+    Sections = IntegerField()
+    Compartments = IntegerField()
     Stability_Range_Low = FloatField()
     Stability_Range_High = FloatField()
     Is_Intrinsically_Spiking = BooleanField()
