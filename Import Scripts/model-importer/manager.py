@@ -66,7 +66,7 @@ class ModelManager(object):
         self.tree_nodes = {}
         self.roots = []
         self.root_ids = []
-        self.model_directory_parent = os.path.abspath(self.config.default_model_directory_parent)
+        self.model_directory_parent = os.path.abspath(self.config.temp_models_dir)
         self.valid_relationships = None
 
     def __enter__(self):
@@ -365,7 +365,7 @@ class ModelManager(object):
 
         for dir in model_directories:
             if self.is_nmldb_id(dir):
-                dir = os.path.join(self.config.default_model_directory_parent, dir)
+                dir = os.path.join(self.config.temp_models_dir, dir)
 
             self.model_directories.append(os.path.abspath(dir) + "/")
 
@@ -745,7 +745,10 @@ class ModelManager(object):
             if 'cell' in tag:
                 return "Cell"
 
-        raise Exception("Could not determine the type of:" + path)
+            if 'generator' in tag or "clamp" in tag:
+                return "Input"
+
+        return "UNKNOWN"
 
     @staticmethod
     def get_blank_node():
@@ -860,8 +863,9 @@ class ModelManager(object):
             # Get list of node children
             for child in root:
                 if child.tag == "{http://www.neuroml.org/schema/neuroml2}include":
-                    if child.attrib['href']:
-                        child_rel_path = child.attrib['href']
+                    link_attrib = 'href' if 'href' in child.attrib else 'file'
+                    if child.attrib[link_attrib]:
+                        child_rel_path = child.attrib[link_attrib]
                         child_file = os.path.basename(child_rel_path)
 
                         child_path = self.model_directories[0] + child_file
@@ -941,4 +945,4 @@ class ModelManager(object):
         return result
 
     def get_model_directory(self, model_id):
-        return os.path.abspath(os.path.join(self.config.default_model_directory_parent, model_id))
+        return os.path.abspath(os.path.join(self.config.temp_models_dir, model_id))
