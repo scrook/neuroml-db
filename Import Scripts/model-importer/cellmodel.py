@@ -303,7 +303,7 @@ class CellModel(NMLDB_Model):
                 # Compute the metric with lmeasure
                 f = metric.Function_ID
                 swc_file = swc_file.replace(os.path.abspath(os.getcwd()) + "/", "")
-                os.system('../../lmeasure -f'+str(f)+',0,0,10.0 -slmeasure_out.csv '+swc_file)
+                os.system('../../lmeasure -f'+str(f)+',0,0,10.0 -slmeasure_out.csv '+swc_file+' -C')
 
                 # Read the result
                 with open('lmeasure_out.csv') as f:
@@ -368,7 +368,7 @@ class CellModel(NMLDB_Model):
             cell = Cells.get_or_none(Cells.Model_ID==self.get_model_nml_id())
 
             # Skip simulation if no basic properties are present
-            if cell is not None:
+            if cell.Is_Intrinsically_Spiking is not None:
                 # Inject continous threshold current into non-intrinisic-spikers
                 if not cell.Is_Intrinsically_Spiking:
                     self.current.delay = 0
@@ -397,8 +397,13 @@ class CellModel(NMLDB_Model):
         bl.enqueue_method('show_full_scene')
         bl.enqueue_method('color_by_unique_materials')
         bl.run_method('orbit_camera_around_model')
+
+        print("RENDERING...")
+
         # Wait till prev tasks and rendering is finished
         bl.run_method('render_animation', destination_path=self.get_morphology_dir())
+
+        print("Creating GIF from rendered frames...")
         self.make_gif_from_frames(self.get_morphology_dir())
 
     def save_morphometrics(self, h):
@@ -673,7 +678,7 @@ class CellModel(NMLDB_Model):
             return result
 
         runner = NeuronRunner(square_protocol)
-        # runner.DONTKILL = True
+        runner.DONTKILL = True
         result = runner.run()
         return result
 
@@ -816,7 +821,7 @@ class CellModel(NMLDB_Model):
             return result
 
         runner = NeuronRunner(arb_current_protocol)
-        # runner.DONTKILL = True
+        runner.DONTKILL = True
         result = runner.run()
         return result
 
@@ -869,10 +874,10 @@ class CellModel(NMLDB_Model):
 
         # Set up variable collectors
         print('Setting up tvi collectors...')
-        self.t_collector = Collector(self.config.collection_period_ms, lambda: h.t)
-        self.v_collector = Collector(self.config.collection_period_ms, lambda: self.soma(0.5).v)
-        self.vc_i_collector = Collector(self.config.collection_period_ms, lambda: self.vc.i)
-        self.ic_i_collector = Collector(self.config.collection_period_ms, lambda: self.current.i)
+        self.t_collector = Collector(self.config.collection_period_ms, h._ref_t)
+        self.v_collector = Collector(self.config.collection_period_ms, self.soma(0.5)._ref_v)
+        self.vc_i_collector = Collector(self.config.collection_period_ms, self.vc._ref_i)
+        self.ic_i_collector = Collector(self.config.collection_period_ms, self.current._ref_i)
 
         # h.nrncontrolmenu()
         self.nState = h.SaveState()
@@ -920,10 +925,11 @@ class CellModel(NMLDB_Model):
         self.vc.dur1 = 0
 
     def clear_tvi(self):
-        self.t_collector.clear()
-        self.v_collector.clear()
-        self.vc_i_collector.clear()
-        self.ic_i_collector.clear()
+        # self.t_collector.clear()
+        # self.v_collector.clear()
+        # self.vc_i_collector.clear()
+        # self.ic_i_collector.clear()
+        pass
 
     def setCurrent(self, amp, delay, dur):
         self.current.delay = delay
@@ -996,18 +1002,20 @@ class CellModel(NMLDB_Model):
         sf = h.File(state_file)
         ns.fread(sf)
 
-        # Workaround, see: https://www.neuron.yale.edu/phpBB/viewtopic.php?f=2&t=3845&p=16542#p16542
-        if keep_events:
-            ns.restore(1)
-            self.t_collector.stim.start = h.t
-            self.v_collector.stim.start = h.t
-            self.vc_i_collector.stim.start = h.t
-            self.ic_i_collector.stim.start = h.t
-
         h.stdinit()
 
         if keep_events:
             ns.restore(1)
+
+            # Workaround - without the fixed step cycle, NEURON crashes with same error as in:
+            # https://www.neuron.yale.edu/phpBB/viewtopic.php?f=2&t=3845&p=16542#p16542
+            # Only happens when there is a vector.play added after a state restore
+            # Running one cycle using the fixed integration method addresses the problem
+            h.cvode_active(0)
+            h.dt = 0.000001
+            h.steprun()
+            # END Workaround
+
         else:
             ns.restore()
 
@@ -1185,6 +1193,7 @@ class CellModel(NMLDB_Model):
             return result
 
         runner = NeuronRunner(rest_protocol)
+        runner.DONTKILL = True
         result = runner.run()
         return result
 
