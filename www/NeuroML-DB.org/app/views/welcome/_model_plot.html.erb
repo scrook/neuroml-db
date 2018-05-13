@@ -349,7 +349,7 @@
               }
 
               function updatePlots() {
-                  var url = "http://spike.asu.edu:5000/api/plot_waveforms?" +
+                  var url = "/api/plot_waveforms?" +
                         "model_id=" + encodeURIComponent(model_id) +
                         "&protocol_id=" + encodeURIComponent(waveform_selection["protocol"]) +
                         "&meta_protocol_id=" + encodeURIComponent(waveform_selection["meta_protocol"])
