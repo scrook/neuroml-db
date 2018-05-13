@@ -1,5 +1,5 @@
 import datetime
-import json
+import cPickle
 import os
 import random
 import sys
@@ -21,7 +21,7 @@ class NeuronRunner:
         self.sim_t_previous = -1
         self.kill_slow_sims = kill_slow_sims
         self.max_clock_wait_time_s_for_1ms_of_sim_time = 10
-        self.sim_result_file = os.getcwd() + "/sim_result_" + str(random.randint(0, 999999)) + ".json"
+        self.sim_result_file = os.getcwd() + "/sim_result_" + str(random.randint(0, 999999)) + ".pickle"
         self.killed_process = False
 
         def wrapper():
@@ -38,10 +38,10 @@ class NeuronRunner:
                 import traceback
                 result["error"] = traceback.format_exc()
 
-            import json
+            import cPickle
 
-            with open(self.sim_result_file, "w") as f:
-                json.dump(result, f)
+            with open(self.sim_result_file, "wb") as f:
+                cPickle.dump(result, f)
 
 
         self.process = Process(target=wrapper)
@@ -81,7 +81,7 @@ class NeuronRunner:
             try:
 
                 with open(self.sim_result_file) as f:
-                    result = json.load(f)
+                    result = cPickle.load(f)
 
 
                 os.remove(self.sim_result_file)
