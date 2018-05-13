@@ -189,17 +189,38 @@
 
                   //Prefix steady state data to the waveform
                   if(starts_from_SS) {
-                      chart_data = chart_data.concat(Enumerable
+                      ss_data = Enumerable
                               .from(steady_state_waveforms)
                               .first(w => w["Variable_Name"] == wave["Variable_Name"])
-                              ["data"])
+                              ["data"]
+
+                      chart_data = chart_data.concat(ss_data)
                   }
 
-                  var times = wave["Times"].split(',').map(v => parseFloat(v));
                   var values = wave["Variable_Values"].split(',').map(v => parseFloat(v));
 
+                  if(wave["Times"] != null) {
+                      var times = wave["Times"].split(',').map(v => parseFloat(v));
+                  }
+                  else {
+                      var start = wave["Time_Start"]
+                      var end = wave["Time_End"]
+                      var count = values.length
+                      var step = (end - start) / (count - 1.0)
+                      var times = []
+                      for(var i = start; i <= end; i+=step) {
+                          times.push(i)
+                      }
+                  }
+
+                  if(chart_data.length > 0) {
+                      var last_ss_time = chart_data[chart_data.length-1]["x"]
+                  }
+
                   for (v = 0; v < values.length; v++) {
-                      chart_data.push({"x": times[v], "y": values[v]});
+                      if(typeof last_ss_time == 'undefined' || times[v] >= last_ss_time) {
+                          chart_data.push({"x": times[v], "y": values[v]});
+                      }
                   }
 
                   var max_y = Enumerable.from(chart_data).max(dp => dp["y"]);

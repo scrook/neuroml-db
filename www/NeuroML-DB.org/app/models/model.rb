@@ -264,8 +264,14 @@ class Model < ActiveRecord::Base
 
       lines = File.readlines(file)
 
-      times = lines[0]
-      values = lines[1]
+      if lines.length == 2
+        times = lines[0]
+        values = lines[1]
+      else
+        times = nil
+        values = lines[0]
+      end
+
 
       return times, values
   end
