@@ -4,30 +4,15 @@ import numpy as np
 class Collector:
     def __init__(self, collection_period_ms, expr):
         from neuron import h
-
         self.collection_period_ms = collection_period_ms
-
-        self.stim = h.NetStim(0.5)
-        self.stim.start = 0
-        self.stim.number = 1e9
-        self.stim.noise = 0
-        self.stim.interval = self.collection_period_ms
-
-        self.con = h.NetCon(self.stim, None)
-        self.con.record((self.collect, expr))
-
-        self.fih = h.FInitializeHandler(self.clear)
-
-        self.clear()
-
-    def clear(self):
-        self.values = []
-
-    def collect(self, new_value):
-        self.values.append(new_value())
+        self.rvec = h.Vector()
+        self.rvec.record(expr, collection_period_ms)
 
     def get_values_np(self):
-        return np.array(self.get_values_list())
+        result = np.empty([int(self.rvec.size())], dtype=float)
+        self.rvec.to_python(result)
+        return result
 
     def get_values_list(self):
-        return self.values[1:]
+        return self.rvec.to_python()
+
