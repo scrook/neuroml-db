@@ -1,25 +1,10 @@
 <%
   metrics = Model.GetMorphometrics(@model_id)
 %>
-<script>
-    function init_morphology() {
-        jQuery("#morphology-full-image-dialog").dialog({
-            autoOpen: false,
-            resizable: false,
-            width: 525,
-            maxHeight: 545
-        });
-
-        jQuery(".morphology .thumbnail").on("click", function () {
-            jQuery("#morphology-full-image-dialog").dialog("open");
-        });
-    }
-</script>
 <style>
   .morphology .image { border-radius: 10px; }
   .morphology .thumbnail { width: 200px; height: 200px; background-color: #002c39; float: left; margin-right: 15px !important; cursor:pointer; }
   #morphology-full-image-dialog { display:none; }
-  #morphology-full-image-dialog .image { margin: 6px 11px; }
   .morphology-prop-name { text-align: right; padding-right: 15px; vertical-align: bottom; }
   #morphology-morphometrics { height: 200px; overflow: auto; }
   #morphology-morphometrics table { width: 380px; }
@@ -27,6 +12,20 @@
   .morphology thead td:first-child { text-align: right; padding-right: 15px;  }
   .morphology table td {  }
 </style>
+<script>
+    function init_morphology() {
+        jQuery("#morphology-full-image-dialog").dialog({
+            autoOpen: false,
+            resizable: false,
+            width: 532,
+            maxHeight: 565
+        });
+
+        jQuery(".morphology .thumbnail").on("click", function () {
+            jQuery("#morphology-full-image-dialog").dialog("open");
+        });
+    }
+</script>
 <tr class="morphology">
   <td class="keyword" style="vertical-align: top;">
     Morphology:
@@ -43,7 +42,7 @@
     <td class="description">
       <% if @GIF_status == 'CURRENT' %>
         <img class="image thumbnail" src="/api/gif?id=<%= @model_id %>">
-        <div id="morphology-full-image-dialog" class="morphology"><img class="image" src="/api/gif?id=<%= @model_id %>"></div>
+        <div id="morphology-full-image-dialog" class="morphology" title="<%= @type %> Morphology"><img class="image" src="/api/gif?id=<%= @model_id %>"></div>
       <% else %>
           <div class="image thumbnail" style="color: lightblue; line-height: 200px; cursor: default; text-align: center;">3D image not available</div>
       <% end %>

@@ -126,6 +126,7 @@ class Model_Waveforms(BaseModel):
     Run_Time = FloatField()
     Variable_Name = TextField()
     Units = TextField()
+    Timestamp = DateTimeField()
 
 class Model_Translators(BaseModel):
     Model = ForeignKeyField(Models, field='Model_ID', backref="Translators")

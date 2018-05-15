@@ -1012,14 +1012,16 @@ class CellModel(NMLDB_Model):
             # Only happens when there is a vector.play added after a state restore
             # Running one cycle using the fixed integration method addresses the problem
             h.cvode_active(0)
+            prev_dt = h.dt
             h.dt = 0.000001
             h.steprun()
+            h.dt = prev_dt
             # END Workaround
 
         else:
             ns.restore()
 
-        h.cvode_active(1)
+        h.cvode_active(self.config.cvode_active)
 
     def find_border(self, lowerLevel, upperLevel,
                     current_delay, current_duration,
