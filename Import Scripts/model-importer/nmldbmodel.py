@@ -3,6 +3,7 @@ import string
 import subprocess
 from abc import abstractmethod, ABCMeta
 from decimal import Decimal
+import datetime
 
 import numpy as np
 from matplotlib import pyplot as plt
@@ -96,6 +97,7 @@ class NMLDB_Model(object):
         waveform.Time_End = max(times)
         waveform.Run_Time = run_time
         waveform.Units = units
+        waveform.Timestamp = datetime.datetime.now()
 
         waveform.save()
         print("WAVE RECORD SAVED")
@@ -197,13 +199,16 @@ class NMLDB_Model(object):
         h.steps_per_ms = 10
         h.dt = 1.0 / h.steps_per_ms  # NRN will ignore this using cvode
 
-        h.cvode_active(1)
+        if h.dt > self.config.dt:
+            h.dt = self.config.dt
+
+        h.cvode_active(self.config.cvode_active)
         h.cvode.condition_order(2)
         h.cvode.atol(abs_tol)
 
     def runFor(self, time, early_test=None):
         from neuron import h
-        h.cvode_active(1)
+        h.cvode_active(self.config.cvode_active)
 
         if not hasattr(self, "time_flag"):
             raise Exception("self.time_flag must be set to NeuronRunner parameter")
@@ -261,6 +266,9 @@ class NMLDB_Model(object):
 
     def setTolerances(self, tstop=100):
 
+        if self.config.cvode_active == 0:
+            return
+
         def run_atol_tool():
 
             h = self.build_model(restore_tolerances=False)
@@ -289,6 +297,10 @@ class NMLDB_Model(object):
         runner.run()
 
     def restore_tolerances(self):
+
+        if self.config.cvode_active == 0:
+            return
+
         from neuron import h
         h.load_file('atols.ses')
 
