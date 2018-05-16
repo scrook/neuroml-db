@@ -34,9 +34,9 @@ class Config(object):
             "SHORT_SQUARE_HOLD",
             "SHORT_SQUARE_TRIPPLE",
             "SQUARE_SUBTHRESHOLD",
-            "NOISE1",
-            "NOISE2",
-            "NOISE_RAMP"
+            # "NOISE1",
+            # "NOISE2",
+            # "NOISE_RAMP"
         ]
 
     def start_debugging_if_enabled(self, scope):
