@@ -213,6 +213,9 @@ class CellModel(NMLDB_Model):
 
                     # If diameter of proximal is not the same as parent's distal - add as separate point
                     if parent_id not in [pt["id"] for pt in swc_points]:
+                        if parent_tag[0].attrib["segment"] not in segment_distal_point_ids:
+                            raise Exception("Segment refers to non-existent parent segment: " + str(parent_tag[0].attrib["segment"]))
+
                         swc_point = {
                             "id": parent_id,
                             "type": get_type(tag),
