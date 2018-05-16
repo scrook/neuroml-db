@@ -1,10 +1,1 @@
-python manage.py save_cell_model_responses NMLCL000004
-python manage.py save_cell_model_responses NMLCL000085
-python manage.py save_cell_model_responses NMLCL000346
-python manage.py save_cell_model_responses NMLCL001134
-python manage.py save_cell_model_responses NMLCL001135
-python manage.py save_cell_model_responses NMLCL001137
-python manage.py save_cell_model_responses NMLCL001143
-python manage.py save_cell_model_responses NMLCL001144
-python manage.py save_cell_model_responses NMLCL001409
-python manage.py save_cell_model_responses NMLCL001420
+ 
