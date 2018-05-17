@@ -176,7 +176,7 @@ class NMLDB_Model(object):
         plt.figure(1)
         plt.subplot(211)
         plt.plot(tvi_dict["t"], tvi_dict["v"], label="Voltage - " + label + (" @ " + case if case != "" else ""))
-        plt.ylim(-80, 30)
+        plt.ylim(-80, 50)
         plt.legend()
 
         plt.subplot(212)
