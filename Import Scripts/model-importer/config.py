@@ -1,5 +1,6 @@
 import os, socket
 
+
 class Config(object):
     def __init__(self):
         self.debug = 'NONE'  # One of 'NONE', 'MANAGER', 'RUNNER'
@@ -20,8 +21,8 @@ class Config(object):
 
         self.temp_models_folder = 'temp'
         self.abs_tolerance = 0.001
-        self.dt = 1/128.0
-        self.cvode_active = 0
+        self.dt = 1/256.0
+        self.cvode_active = 1
         self.collection_period_ms = 1/128.0 #0.01
         self.permanent_models_dir = "../../../../www/NeuroMLmodels"
 

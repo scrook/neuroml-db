@@ -1,4 +1,4 @@
-import os
+import os, sys
 import string
 import subprocess
 from abc import abstractmethod, ABCMeta
@@ -24,6 +24,8 @@ class NMLDB_Model(object):
         self.config = Config()
         self.model_manager = ModelManager()
         self.path = path
+
+        sys.setrecursionlimit(10000)
 
     def __enter__(self):
         return self

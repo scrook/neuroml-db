@@ -337,14 +337,14 @@ class CellModel(NMLDB_Model):
         # Convert NML to NEURON
         self.convert_to_NEURON(self.path)
 
-        if self.is_abstract_cell():
-            print("Cell is ABSTRACT, skipping morphometrics and 3D visualization...")
+        # Load the model
+        h = self.build_model(restore_tolerances=False)
+
+        if self.is_abstract_cell() or self.get_number_of_compartments(h) <= 1:
+            print("Cell is ABSTRACT or SINGLE COMPARTMENT, skipping morphometrics and 3D visualization...")
             self.update_model_status(self.get_model_nml_id(), "Morphometrics", "CURRENT")
             self.update_model_status(self.get_model_nml_id(), "GIF", "CURRENT")
             return
-
-        # Load the model
-        h = self.build_model(restore_tolerances=False)
 
         # Compute morphometrics
         try:
@@ -481,6 +481,10 @@ class CellModel(NMLDB_Model):
                 result = self.getRestingV(save_resting_state=True, run_time=steady_state_delay)
                 self.save_tvi_plot(label="STEADY STATE", tvi_dict=result)
                 self.save_vi_waveforms(protocol="STEADY_STATE", tvi_dict=result)
+
+            if cell_props.Is_Intrinsically_Spiking:
+                print("Cell is intrinsically spiking. Skipping other protocols.")
+                return
 
             # From steady state, run ramp injection
             if "RAMP" in protocols:
