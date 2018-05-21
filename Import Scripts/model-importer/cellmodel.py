@@ -39,6 +39,11 @@ class CellModel(NMLDB_Model):
     def __exit__(self, exc_type, exc_value, traceback):
         self.server.close()
 
+        if self.config.cleanup_temp:
+            print("Cleaning up temp files in: " + self.temp_model_path + " ...")
+            os.system('rm -rf "' + self.temp_model_path + '"')
+            print("Cleanup done")
+
 
     def save_cell_model_properties(self, model_dir):
         self.convert_to_NEURON(model_dir)

@@ -18,26 +18,27 @@ class Config(object):
 
         self.out_sim_directory = 'temp/sim'
         self.default_out_csv_file = 'temp/models.csv'
+        self.cleanup_temp = True  # use False to leave the files in temp folder (e.g. for debugging)
 
         self.temp_models_folder = 'temp'
         self.abs_tolerance = 0.001
-        self.dt = 1/256.0
-        self.cvode_active = 1
+        self.dt = 1/128.0 + 1/256.0
+        self.cvode_active = 0
         self.collection_period_ms = 1/128.0 #0.01
         self.permanent_models_dir = "../../../../www/NeuroMLmodels"
 
         self.cell_protocols_to_run = [
             "STEADY_STATE",
-            "RAMP",
-            "SHORT_SQUARE",
-            "SQUARE",
-            "LONG_SQUARE",
-            "SHORT_SQUARE_HOLD",
-            "SHORT_SQUARE_TRIPPLE",
-            "SQUARE_SUBTHRESHOLD",
-            # "NOISE1",
-            # "NOISE2",
-            # "NOISE_RAMP"
+            # "RAMP",
+            # "SHORT_SQUARE",
+            # "SQUARE",
+            # "LONG_SQUARE",
+            # "SHORT_SQUARE_HOLD",
+            # "SHORT_SQUARE_TRIPPLE",
+            # "SQUARE_SUBTHRESHOLD",
+            "NOISE1",
+            "NOISE2",
+            "NOISE_RAMP"
         ]
 
     def start_debugging_if_enabled(self, scope):
