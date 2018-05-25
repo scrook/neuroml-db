@@ -1,0 +1,51 @@
+objectvar save_window_, rvp_
+objectvar scene_vector_[2]
+objectvar ocbox_, ocbox_list_, scene_, scene_list_
+{ocbox_list_ = new List()  scene_list_ = new List()}
+{pwman_place(0,0,0)}
+
+//Begin VariableTimeStep
+{
+ocbox_ = NumericalMethodPanel[0]
+}
+{object_push(ocbox_)}
+{
+atol_ = 0.001  CVode[0].atol(atol_)
+restore(301, 2)
+ atoltool_ = new AtolTool()
+    ats("v", 10)
+    ats("concentration_Golgi_CALC", 0.001)
+    ats("s_q_Golgi_Ca_HVA", 0.1)
+    ats("u_q_Golgi_Ca_HVA", 0.1)
+    ats("m_q_Golgi_Ca_LVA", 0.1)
+    ats("h_q_Golgi_Ca_LVA", 0.01)
+    ats("a_q_Golgi_KA", 0.1)
+    ats("b_q_Golgi_KA", 0.1)
+    ats("n_c1_occupancy_Golgi_KAHP", 0.1)
+    ats("n_c2_occupancy_Golgi_KAHP", 0.1)
+    ats("n_c3_occupancy_Golgi_KAHP", 0.01)
+    ats("n_c4_occupancy_Golgi_KAHP", 0.001)
+    ats("n_o1_occupancy_Golgi_KAHP", 0.001)
+    ats("n_o2_occupancy_Golgi_KAHP", 0.001)
+    ats("c_q_Golgi_KC", 0.1)
+    ats("n_q_Golgi_KV", 0.1)
+    ats("n_q_Golgi_Kslow", 0.01)
+    ats("m_q_Golgi_NaP", 0.1)
+    ats("s_q_Golgi_NaR", 0.01)
+    ats("f_q_Golgi_NaR", 0.1)
+    ats("f_q_Golgi_hcn1f", 0.1)
+    ats("s_q_Golgi_hcn1s", 0.01)
+    ats("f_q_Golgi_hcn2f", 0.001)
+    ats("s_q_Golgi_hcn2s", 0.01)
+    ats("Vector", -1)
+ atoltool_.scales()
+}
+{object_pop()}
+{
+ocbox_.map("VariableTimeStep", 119, 52, 264.96, 113.28)
+}
+objref ocbox_
+//End VariableTimeStep
+
+objectvar scene_vector_[1]
+{doNotify()}

@@ -39,7 +39,7 @@ class CellModel(NMLDB_Model):
     def __exit__(self, exc_type, exc_value, traceback):
         self.server.close()
 
-        if self.config.cleanup_temp:
+        if self.config.cleanup_temp and hasattr(self, "temp_model_path"):
             print("Cleaning up temp files in: " + self.temp_model_path + " ...")
             os.system('rm -rf "' + self.temp_model_path + '"')
             print("Cleanup done")
@@ -449,9 +449,15 @@ class CellModel(NMLDB_Model):
                 h.pt3dchange(i, x, y, z, diam, sec=sec)
 
     def save_cell_model_responses(self, model_dir, protocols):
-        self.convert_to_NEURON(model_dir)
-
         id = self.get_model_nml_id()
+
+        self.server.connect()
+
+        if Models.get(Models.Model_ID == id).Simulation_Status == 'NOSIM':
+            print("Model " + id + " has simulation status NOSIM. Skipping...")
+            return
+
+        self.convert_to_NEURON(model_dir)
 
         try:
             self.get_cell_model_responses(protocols)
@@ -469,8 +475,9 @@ class CellModel(NMLDB_Model):
         id = self.get_model_nml_id()
 
         self.server.connect()
+
         cell_props = Cells.get(Cells.Model_ID == id)
-        self.setTolerances(current_amp=cell_props.Threshold_Current_High)
+        self.setTolerances(current_amp=0 if cell_props.Is_Intrinsically_Spiking else cell_props.Threshold_Current_High)
 
         if self.config.skip_steady_state_if_exists and os.path.exists(os.path.join(self.get_permanent_model_directory(), 'state.bin')):
             print('Steady state file exists. Will skip STEADY_STATE protocol...')
