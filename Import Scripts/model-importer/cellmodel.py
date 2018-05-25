@@ -464,14 +464,19 @@ class CellModel(NMLDB_Model):
             raise
 
     def get_cell_model_responses(self, protocols):
-        self.setTolerances()
-
         steady_state_delay = 1000  # 1000
 
+        id = self.get_model_nml_id()
+
         self.server.connect()
+        cell_props = Cells.get(Cells.Model_ID == id)
+        self.setTolerances(current_amp=cell_props.Threshold_Current_High)
+
+        if self.config.skip_steady_state_if_exists and os.path.exists(os.path.join(self.get_permanent_model_directory(), 'state.bin')):
+            print('Steady state file exists. Will skip STEADY_STATE protocol...')
+            protocols = [p for p in protocols if p != 'STEADY_STATE']
 
         try:
-            id = self.get_model_nml_id()
 
             print("Removing existing model waveforms: " + str(protocols))
             Model_Waveforms\
@@ -479,7 +484,7 @@ class CellModel(NMLDB_Model):
                 .where((Model_Waveforms.Model == id) & (Model_Waveforms.Protocol.in_(protocols)))\
                 .execute()
 
-            cell_props = Cells.get(Cells.Model_ID == id)
+
 
             # Reach steady state and save model state
             if "STEADY_STATE" in protocols:
@@ -602,6 +607,9 @@ class CellModel(NMLDB_Model):
                                              noise_pickle_file="noisyRamp.pickle",
                                              restore_state=True)
 
+            if "DT_SENSITIVITY" in protocols:
+                self.save_dt_sensitivity_set(rheobase=cell_props.Rheobase_High)
+
         finally:
             self.cleanup_waveforms()
 
@@ -721,6 +729,103 @@ class CellModel(NMLDB_Model):
                                              test_condition=test_condition,
                                              restore_state=restore_state)
 
+    def save_dt_sensitivity_set(self, rheobase):
+
+        protocol = "DT_SENSITIVITY"
+        noise_pickle_file = "dtSensitivity.pickle"
+        steps_per_ms_set = [1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1]
+
+        # Cache the files - they're slow to load
+        if noise_pickle_file not in self.pickle_file_cache:
+            with open(os.path.join("..", "..", noise_pickle_file), "r") as f:
+                self.pickle_file_cache[noise_pickle_file] = cPickle.load(f)
+
+        def get_current_ti():
+            noise = self.pickle_file_cache[noise_pickle_file]
+
+            # 100 ms of rest with 50 ms of 0.75 RB square
+            ramp_ti = [
+                (0,     0),
+                (100,   0),
+                (100,   0.75 * rheobase),
+                (150,   0.75 * rheobase)
+            ]
+
+            # 50 ms of pink noise at 0.75 RB
+            ramp_ti += zip((np.array(noise["t"]) + 150.0).tolist(), (np.array(noise["i"]) * rheobase * 0.75).tolist())
+
+            # 100 ms of square at 1.5 RB
+            ramp_ti += [
+                (200, 1.5 * rheobase),
+                (300, 1.5 * rheobase),
+            ]
+
+            # Another 50 ms of pink noise at 1.5 RB
+            ramp_ti += zip((np.array(noise["t"]) + 300.0).tolist(), (np.array(noise["i"]) * rheobase * 1.5).tolist())
+            ramp_ti += zip((np.array(noise["t"]) + 350.0).tolist(), (np.array(noise["i"]) * rheobase * 1.5).tolist())
+
+            # 50 ms of square at -0.25 RB
+            ramp_ti += [
+                (400, -0.25 * rheobase),
+                (450, -0.25 * rheobase),
+            ]
+
+            # Another 50 ms of pink noise at -0.25 RB
+            ramp_ti += zip((np.array(noise["t"]) + 350.0).tolist(), (np.array(noise["i"]) * rheobase * -0.25).tolist())
+
+            # Finally a 100ms recovery
+            ramp_ti += [
+                (500, 0),
+                (600, 0),
+            ]
+
+            return zip(*ramp_ti)
+
+        smalest_dt_result = None
+        max_stable_dt = 0
+
+        for steps_per_ms in steps_per_ms_set:
+            try:
+                result = self.get_arb_current_response(delay=0,
+                                                       duration=600,
+                                                       post_delay=0,
+                                                       get_current_ti=get_current_ti,
+                                                       restore_state=False,
+                                                       dt=1.0/steps_per_ms,
+                                                       sampling_period=1.0)
+
+                max_stable_dt = 1.0/steps_per_ms
+
+                if steps_per_ms == max(steps_per_ms_set):
+                    result["error"] = 0
+                    smalest_dt_result = result
+                    smalest_dt_result["range"] = max(result["v"]) - min(result["v"])
+
+                else:
+                    result["error"] = np.average(np.abs(np.array(result["v"]) - np.array(smalest_dt_result["v"])) / smalest_dt_result["range"] * 100.0)
+
+
+                dt_str = str(1.0/steps_per_ms) + " ms"
+
+                self.save_tvi_plot(label=protocol,
+                                   case=dt_str,
+                                   tvi_dict=result)
+
+                self.save_vi_waveforms(protocol=protocol,
+                                       label=dt_str,
+                                       tvi_dict=result)
+
+            except Exception:
+                break
+
+        print("Saving max stable time step " + str(max_stable_dt))
+        model = Models.get(Models.Model_ID == self.get_model_nml_id())
+        model.Max_Stable_DT = max_stable_dt
+        model.save()
+
+        # Clear the cache for this file
+        self.pickle_file_cache.pop(noise_pickle_file)
+
     def save_noise_response_set(self,
                                 protocol,
                                 delay,
@@ -795,11 +900,20 @@ class CellModel(NMLDB_Model):
                                  get_current_ti,
                                  post_delay=0,
                                  test_condition=None,
-                                 restore_state=False):
+                                 restore_state=False,
+                                 dt=None,
+                                 sampling_period=None):
 
         def arb_current_protocol(flag):
-
             self.time_flag = flag
+
+            if dt is not None:
+                self.config.cvode_active = 0
+                self.config.dt = dt
+
+            if sampling_period is not None:
+                self.config.collection_period_ms = sampling_period
+
             h = self.build_model()
 
             # Set up IClamp for arbitrary current
@@ -1011,7 +1125,7 @@ class CellModel(NMLDB_Model):
     def restore_state(self, state_file='state.bin', keep_events=False):
         from neuron import h
         ns = h.SaveState()
-        sf = h.File(state_file)
+        sf = h.File(os.path.join(self.get_permanent_model_directory(), state_file))
         ns.fread(sf)
 
         h.stdinit()
@@ -1211,14 +1325,14 @@ class CellModel(NMLDB_Model):
         result = runner.run()
         return result
 
-    def setTolerances(self, tstop=100):
+    def setTolerances(self, tstop=100, current_amp=0):
 
         print("Running tolerance tool...")
         if self.is_abstract_cell():
             print("Cell is abstract, skipping tolerance tool")
             return
 
-        super(CellModel, self).setTolerances(tstop)
+        super(CellModel, self).setTolerances(tstop, current_amp)
 
     def get_structural_metrics(self):
 
@@ -1235,6 +1349,8 @@ class CellModel(NMLDB_Model):
                 result["section_count"] = len([sec for sec in h.allsec()])
                 result["compartment_count"] = self.get_number_of_compartments(h)
 
+            result["equation_count"] = self.get_number_of_model_state_variables(h)
+
             return result
 
         runner = NeuronRunner(run_struct_analysis, kill_slow_sims=False)
@@ -1246,6 +1362,12 @@ class CellModel(NMLDB_Model):
         self.convert_to_NEURON()
 
         metrics = self.get_structural_metrics()
+
+        self.server.connect()
+
+        model = Models.get(Models.Model_ID == self.get_model_nml_id())
+        model.Equations = metrics["equation_count"]
+        model.save()
 
         self.cell_record = Cells(
             Model_ID=self.get_model_nml_id(),
@@ -1285,7 +1407,7 @@ class CellModel(NMLDB_Model):
 
         # Get the parent folder of the model
         if self.model_manager.is_nmldb_id(path):
-            model_dir_name = self.model_manager.get_model_directory(path)
+            model_dir_name = self.get_permanent_model_directory()
 
             dir_nml_files = [f for f in os.listdir(model_dir_name) if self.model_manager.is_nml2_file(f)]
 
@@ -1395,6 +1517,6 @@ class CellModel(NMLDB_Model):
 
         if np.isnan(v_np).any():
             raise NumericalInstabilityException(
-                "Simulation is numericaly unstable with " + str(h.steps_per_ms) + " steps per ms")
+                "Simulation is numericaly unstable with dt of " + str(h.dt) + " ms")
 
         return (t_np, v_np)

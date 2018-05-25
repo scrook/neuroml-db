@@ -11,8 +11,8 @@ class Collector:
     def get_values_np(self):
         result = np.empty([int(self.rvec.size())], dtype=float)
         self.rvec.to_python(result)
-        return result
+        return result[1:]  # NEURON adds an extra first element
 
     def get_values_list(self):
-        return self.rvec.to_python()
+        return self.rvec.to_python()[1:]
 

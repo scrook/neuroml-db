@@ -66,7 +66,7 @@ class ModelManager(object):
         self.tree_nodes = {}
         self.roots = []
         self.root_ids = []
-        self.model_directory_parent = os.path.abspath(self.config.temp_models_dir)
+        self.model_directory_parent = self.config.permanent_models_dir
         self.valid_relationships = None
 
     def __enter__(self):
@@ -365,7 +365,7 @@ class ModelManager(object):
 
         for dir in model_directories:
             if self.is_nmldb_id(dir):
-                dir = os.path.join(self.config.temp_models_dir, dir)
+                dir = os.path.join(self.config.permanent_models_dir, dir)
 
             self.model_directories.append(os.path.abspath(dir) + "/")
 
@@ -938,11 +938,34 @@ class ModelManager(object):
                 model.File_MD5_Checksum = new_checksum
                 model.save()
 
+    def save_spike_counts(self):
+        self.server.connect()
+
+        waves = Model_Waveforms\
+                    .select(Cells.Model_ID, Model_Waveforms.ID, Model_Waveforms.Protocol)\
+                    .join(Cells, on=(Cells.Model_ID == Model_Waveforms.Model))\
+                    .where((Model_Waveforms.Variable_Name == 'Voltage') & (Model_Waveforms.Spikes.is_null(True)))
+
+        from cellmodel import CellModel
+        import numpy as np
+
+        for wave in waves:
+            print("Counting spikes for wave " + str(wave.ID) + "...")
+
+            model = CellModel(wave.cells.Model_ID)
+
+            with open(os.path.join(model.get_waveforms_dir(), str(wave.ID) + ".csv")) as f:
+                lines = f.readlines()
+
+                #times = lines[0]
+                values = np.fromstring(lines[1], dtype=float, sep=',')
+                spike_count = model.getSpikeCount(values)
+
+                wave.Spikes = spike_count
+                wave.save()
+
     def replace_tokens(self, target, reps):
         result = target
         for r in reps.keys():
             result = result.replace(r, str(reps[r]))
         return result
-
-    def get_model_directory(self, model_id):
-        return os.path.abspath(os.path.join(self.config.temp_models_dir, model_id))

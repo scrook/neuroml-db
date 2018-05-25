@@ -33,6 +33,9 @@ def save_structural_metrics():
     with CellModel(params[0]) as cm:
         cm.save_structural_metrics()
 
+def save_spike_counts():
+    with ModelManager() as mm:
+        mm.save_spike_counts()
 
 def save_cell_properties():
     with CellModel(params[0]) as cm:

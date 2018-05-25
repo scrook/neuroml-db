@@ -76,7 +76,7 @@ class NMLDB_Model(object):
 
         return result
 
-    def create_or_update_waveform(self, protocol, label, meta_protocol, times, variable_name, values, units, run_time):
+    def create_or_update_waveform(self, protocol, label, meta_protocol, times, variable_name, values, units, run_time, error):
         print("Saving waveform...")
 
         model_id = self.get_model_nml_id()
@@ -101,6 +101,9 @@ class NMLDB_Model(object):
         waveform.Units = units
         waveform.Timestamp = datetime.datetime.now()
 
+        if error is not None:
+            waveform.Percent_Error = error
+
         waveform.save()
         print("WAVE RECORD SAVED")
 
@@ -122,6 +125,9 @@ class NMLDB_Model(object):
             f.write(Variable_Values + '\n')
 
         print("WAVE VALUES SAVED")
+
+    def get_permanent_model_directory(self):
+        return os.path.join(self.config.permanent_models_dir, self.get_model_nml_id())
 
     def line_dists(self, points, start, end):
         if np.all(start == end):
@@ -164,13 +170,13 @@ class NMLDB_Model(object):
         voltage = tvi_dict["v"]
         current = tvi_dict["i"]
         run_time = tvi_dict["run_time"]
+        error = tvi_dict["error"] if "error" in tvi_dict else None
 
         self.server.connect()
 
-
         with self.server.db.atomic() as transaction:
-            self.create_or_update_waveform(protocol, label, meta_protocol, times, "Voltage", voltage, "mV", run_time)
-            self.create_or_update_waveform(protocol, label, meta_protocol, times, "Current", current, "nA", run_time)
+            self.create_or_update_waveform(protocol, label, meta_protocol, times, "Voltage", voltage, "mV", run_time, error)
+            self.create_or_update_waveform(protocol, label, meta_protocol, times, "Current", current, "nA", run_time, None)
 
     def save_tvi_plot(self, label, tvi_dict, case=""):
         plt.clf()
@@ -186,7 +192,6 @@ class NMLDB_Model(object):
         plt.legend()
         plt.savefig(label + ("(" + case + ")" if case != "" else "") + ".png")
 
-    @abstractmethod
     def load_model(self):
         pass
 
@@ -198,11 +203,10 @@ class NMLDB_Model(object):
 
     def set_abs_tolerance(self, abs_tol):
         from neuron import h
-        h.steps_per_ms = 10
-        h.dt = 1.0 / h.steps_per_ms  # NRN will ignore this using cvode
 
-        if h.dt > self.config.dt:
-            h.dt = self.config.dt
+        # NRN will ignore this using cvode
+        h.steps_per_ms = 1.0/self.config.collection_period_ms
+        h.dt = self.config.dt
 
         h.cvode_active(self.config.cvode_active)
         h.cvode.condition_order(2)
@@ -254,21 +258,23 @@ class NMLDB_Model(object):
     def save_state(self, state_file='state.bin'):
         from neuron import h
         ns = h.SaveState()
-        sf = h.File(state_file)
+        sf = h.File(os.path.join(self.get_permanent_model_directory(), state_file))
         ns.save()
         ns.fwrite(sf)
 
-    @abstractmethod
     def restore_state(self, state_file, keep_events):
         pass
 
-    @abstractmethod
     def build_model(self, restore_tolerances):
         pass
 
-    def setTolerances(self, tstop=100):
+    def setTolerances(self, tstop=100, current_amp=0.0):
 
         if self.config.cvode_active == 0:
+            return
+
+        if os.path.exists(os.path.join(self.get_permanent_model_directory(), 'atols.ses')) and self.config.skip_tolerance_setting_if_exists:
+            print("Previous tolerance file exists. Skipping...")
             return
 
         def run_atol_tool():
@@ -284,11 +290,15 @@ class NMLDB_Model(object):
             # h.nrncontrolmenu()
             # h.newPlotV()
 
+            self.current.delay = 0
+            self.current.amp = current_amp
+            self.current.dur = tstop
+
             h.AtolTool[0].anrun()
             h.AtolTool[0].rescale()
             h.AtolTool[0].fill_used()
 
-            h.save_session('atols.ses')
+            h.save_session(os.path.join(self.get_permanent_model_directory(), 'atols.ses'))
 
             print("Error tolerances saved")
 
@@ -304,15 +314,18 @@ class NMLDB_Model(object):
             return
 
         from neuron import h
-        h.load_file('atols.ses')
+        h.load_file(os.path.join(self.get_permanent_model_directory(), 'atols.ses'))
 
         h.NumericalMethodPanel[0].b1.unmap()
         print("Using saved error tolerances")
 
     def get_number_of_model_state_variables(self, h):
+        print("Turning on CVODE to compute number of equations...")
+        h.cvode_active(1)
+
         result = h.Vector()
         h.cvode.spike_stat(result)
-        return result[0]
+        return int(result[0])
 
     def update_model_simulation_status(self, id, status):
         self.update_model_status(id, "Simulation", status)

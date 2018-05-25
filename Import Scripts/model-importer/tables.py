@@ -41,6 +41,8 @@ class Publication_Authors(BaseModel):
 
 class Models(BaseModel):
     Model_ID = CharField(primary_key=True)
+    Equations = IntegerField()
+    Max_Stable_DT = FloatField()
     Type = ForeignKeyField(Model_Types, field="ID", column_name="Type")
     Name = TextField()
     Publication = ForeignKeyField(Publications, field="Publication_ID", backref='Models')
@@ -127,6 +129,8 @@ class Model_Waveforms(BaseModel):
     Variable_Name = TextField()
     Units = TextField()
     Timestamp = DateTimeField()
+    Spikes = IntegerField()
+    Percent_Error = FloatField()
 
 class Model_Translators(BaseModel):
     Model = ForeignKeyField(Models, field='Model_ID', backref="Translators")
