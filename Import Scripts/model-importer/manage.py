@@ -47,6 +47,11 @@ def save_cell_model_responses():
         cm.save_cell_model_responses(model_dir=params[0], protocols=Config().cell_protocols_to_run)
 
 
+def save_optimal_time_steps():
+    with ModelManager() as mm:
+        mm.save_optimal_time_steps()
+
+
 def save_morphology_data():
     with CellModel(params[0]) as cm:
         cm.save_morphology_data()
@@ -59,7 +64,7 @@ def check_install_dependencies():
         raise Exception("Set the value of environment variable 'NMLDBPWD' to the NMLDB password")
 
     # Check for missing installable dependencies
-    deps = ["pydevd", "peewee", "pymysql", "sshtunnel", "numpy", "matplotlib", "cPickle", "rdp"]
+    deps = ["pydevd", "peewee", "pymysql", "sshtunnel", "numpy", "matplotlib", "cPickle", "rdp", "scipy"]
 
     for dep in deps:
         try:

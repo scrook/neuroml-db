@@ -24,7 +24,9 @@ class Config(object):
             # "NOISE1",
             # "NOISE2",
             # "NOISE_RAMP",
-            "DT_SENSITIVITY"
+            "DT_SENSITIVITY",
+            # "OPTIMAL_DT",
+            "OPTIMAL_DT_BENCHMARK"
         ]
 
         self.skip_tolerance_setting_if_exists = True

@@ -6,7 +6,6 @@ import shutil
 import string
 import urllib2
 import xml.etree.ElementTree as ET
-
 from dateutil.parser import parse as parsedate
 
 from database import NMLDB
@@ -937,6 +936,23 @@ class ModelManager(object):
                 print("Checksum different, saving...")
                 model.File_MD5_Checksum = new_checksum
                 model.save()
+
+    def save_optimal_time_steps(self):
+
+        self.server.connect()
+
+        models = Models\
+            .select(Models.Model_ID)\
+            .join(Cells, on=(Cells.Model_ID == Models.Model_ID))\
+            .where((Models.Optimal_DT.is_null(True)))
+
+        from nmldbmodel import NMLDB_Model
+
+        with NMLDB_Model() as db_model:
+            for model in models:
+                db_model.path = model.Model_ID
+                db_model.save_optimal_time_step()
+
 
     def save_spike_counts(self):
         self.server.connect()

@@ -4,7 +4,8 @@ import subprocess
 from abc import abstractmethod, ABCMeta
 from decimal import Decimal
 import datetime
-
+from scipy.optimize import curve_fit
+from math import sqrt
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -19,7 +20,7 @@ from tables import *
 class NMLDB_Model(object):
     __metaclass__ = ABCMeta
 
-    def __init__(self, path):
+    def __init__(self, path = ""):
         self.server = NMLDB()
         self.config = Config()
         self.model_manager = ModelManager()
@@ -346,6 +347,77 @@ class NMLDB_Model(object):
             model.Errors = None
 
         model.save()
+
+    def save_optimal_time_step(self):
+        print("Getting optimal time step for " + self.get_model_nml_id()+ "...")
+
+        # Run time ~ 1/dt
+        def time_func(dt, a):
+            return a / np.array(dt)
+
+        # Error ~ dt
+        def error_func(dt, b, c):
+            return b * np.array(dt) + c
+
+        self.server.connect()
+
+        model = Models.get(Models.Model_ID == self.get_model_nml_id())
+
+        waves = Model_Waveforms \
+            .select() \
+            .where((Model_Waveforms.Model == model) & (Model_Waveforms.Protocol == 'DT_SENSITIVITY') & (Model_Waveforms.Variable_Name == 'Voltage')) \
+            .order_by(Model_Waveforms.Model, Model_Waveforms.Waveform_Label)
+
+        if len(waves) == 0:
+            print("Model " + self.get_model_nml_id() + " does not have any 'DT_SENSITIVITY' waveforms. Skipping...")
+            return
+
+        if len(waves) == 1:
+            print("Model " + self.get_model_nml_id() + " has one 'DT_SENSITIVITY' waveform. Using waveform dt as optimal...")
+            optimal_dt = float(waves[0].Waveform_Label.replace(" ms", ""))
+            print("Saving optimal time step 1/" + str(1 / optimal_dt) + "...")
+            model.Optimal_DT = optimal_dt
+            model.save()
+
+        else:
+            print("Computing optimal time step for " + model.Model_ID + "...")
+
+            time_max = max([w.Run_Time for w in waves])
+            error_max = max([w.Percent_Error for w in waves])
+
+            time_norm = [w.Run_Time / time_max for w in waves]
+            error_norm = [w.Percent_Error / error_max for w in waves]
+            dts = [float(w.Waveform_Label.replace(" ms", "")) for w in waves]
+
+            time_params, _ = curve_fit(time_func, dts, time_norm)
+            error_params, _ = curve_fit(error_func, dts, error_norm)
+
+            # Find the dt at minimum total cost
+            # Total cost = normalized time cost + normalized error cost
+            # Time cost is in the 1/dt form
+            # Error cost is in slope*dt+constant form
+            # Total cost = a/x+(b*x+c)
+            # dt of minimum total cost is where total cost derivative = 0
+            # Total cost derivative is b-a/x^2
+            # The positive root of which is at sqrt(a/b) when a,b > 0
+            a = time_params[0]
+            b = error_params[0]
+            c = error_params[1]
+            optimal_dt = sqrt(a / b)
+
+            # plt.plot(dts, np.array(time_norm))
+            # plt.plot(dts, np.array(error_norm))
+            # plt.plot(dts, np.array(time_norm)+np.array(error_norm))
+            # plt.plot(dts, time_func(dts, *time_params) + error_func(dts, *error_params))
+            # plt.plot([optimal_dt, optimal_dt], [0, 1])
+            # plt.show()
+
+            print("Saving optimal time step 1/" + str(1 / optimal_dt) + "...")
+            model.Optimal_DT = optimal_dt
+            model.Optimal_DT_a = a
+            model.Optimal_DT_b = b
+            model.Optimal_DT_c = c
+            model.save()
 
     def run_command(self, command):
         print("Running command: '" + command + "'...")

@@ -617,6 +617,22 @@ class CellModel(NMLDB_Model):
             if "DT_SENSITIVITY" in protocols:
                 self.save_dt_sensitivity_set(rheobase=cell_props.Rheobase_High)
 
+            if "OPTIMAL_DT" in protocols:
+                self.save_optimal_time_step()
+
+            if "OPTIMAL_DT_BENCHMARK" in protocols:
+                optimal_dt = Models.get(Models.Model_ID == id).Optimal_DT
+
+                if optimal_dt is not None:
+                    print('Starting OPTIMAL_DT_BENCHMARK protocol...')
+
+                    self.save_dt_sensitivity_set(
+                        rheobase=cell_props.Rheobase_High,
+                        protocol="OPTIMAL_DT_BENCHMARK",
+                        steps_per_ms_set=[1.0/optimal_dt],
+                        save_max_stable_dt=False
+                    )
+
         finally:
             self.cleanup_waveforms()
 
@@ -736,11 +752,13 @@ class CellModel(NMLDB_Model):
                                              test_condition=test_condition,
                                              restore_state=restore_state)
 
-    def save_dt_sensitivity_set(self, rheobase):
+    def save_dt_sensitivity_set(self,
+                                rheobase,
+                                protocol="DT_SENSITIVITY",
+                                steps_per_ms_set=[1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1],
+                                save_max_stable_dt=True):
 
-        protocol = "DT_SENSITIVITY"
         noise_pickle_file = "dtSensitivity.pickle"
-        steps_per_ms_set = [1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1]
 
         # Cache the files - they're slow to load
         if noise_pickle_file not in self.pickle_file_cache:
@@ -799,17 +817,19 @@ class CellModel(NMLDB_Model):
                                                        get_current_ti=get_current_ti,
                                                        restore_state=False,
                                                        dt=1.0/steps_per_ms,
-                                                       sampling_period=1.0)
+                                                       sampling_period=1.0/steps_per_ms)
 
-                max_stable_dt = 1.0/steps_per_ms
+                if save_max_stable_dt:
+                    max_stable_dt = 1.0/steps_per_ms
 
-                if steps_per_ms == max(steps_per_ms_set):
-                    result["error"] = 0
-                    smalest_dt_result = result
-                    smalest_dt_result["range"] = max(result["v"]) - min(result["v"])
+                    if steps_per_ms == max(steps_per_ms_set):
+                        result["error"] = 0
+                        smalest_dt_result = result
+                        smalest_dt_result["range"] = max(result["v"]) - min(result["v"])
+                        smalest_dt_result["v_sub"] = np.array(smalest_dt_result["v"])[::max(steps_per_ms_set)]
 
-                else:
-                    result["error"] = np.average(np.abs(np.array(result["v"]) - np.array(smalest_dt_result["v"])) / smalest_dt_result["range"] * 100.0)
+                    else:
+                        result["error"] = np.average(np.abs(np.array(result["v"])[::steps_per_ms] - smalest_dt_result["v_sub"]) / smalest_dt_result["range"] * 100.0)
 
 
                 dt_str = str(1.0/steps_per_ms) + " ms"
@@ -825,10 +845,11 @@ class CellModel(NMLDB_Model):
             except Exception:
                 break
 
-        print("Saving max stable time step " + str(max_stable_dt))
-        model = Models.get(Models.Model_ID == self.get_model_nml_id())
-        model.Max_Stable_DT = max_stable_dt
-        model.save()
+        if save_max_stable_dt:
+            print("Saving max stable time step " + str(max_stable_dt))
+            model = Models.get(Models.Model_ID == self.get_model_nml_id())
+            model.Max_Stable_DT = max_stable_dt
+            model.save()
 
         # Clear the cache for this file
         self.pickle_file_cache.pop(noise_pickle_file)
