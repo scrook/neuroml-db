@@ -13,7 +13,7 @@ class Config(object):
         self.collection_period_ms = 1 / 128.0  # 0.01
 
         self.cell_protocols_to_run = [
-            # "STEADY_STATE",
+            "STEADY_STATE",
             # "RAMP",
             # "SHORT_SQUARE",
             # "SQUARE",
@@ -24,9 +24,11 @@ class Config(object):
             # "NOISE1",
             # "NOISE2",
             # "NOISE_RAMP",
-            "DT_SENSITIVITY",
+            # "DT_SENSITIVITY",
             # "OPTIMAL_DT",
-            "OPTIMAL_DT_BENCHMARK"
+            # "OPTIMAL_DT_BENCHMARK",
+            # "CVODE_STEP_FREQUENCIES",
+            "CVODE_RUNTIME_COMPLEXITY"
         ]
 
         self.skip_tolerance_setting_if_exists = True

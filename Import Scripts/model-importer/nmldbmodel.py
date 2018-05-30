@@ -77,7 +77,8 @@ class NMLDB_Model(object):
 
         return result
 
-    def create_or_update_waveform(self, protocol, label, meta_protocol, times, variable_name, values, units, run_time, error):
+    def create_or_update_waveform(self, protocol, label, meta_protocol, times, variable_name, values, units,
+                                  run_time, error, dt_or_atol, cvode_active, steps):
         print("Saving waveform...")
 
         model_id = self.get_model_nml_id()
@@ -99,6 +100,10 @@ class NMLDB_Model(object):
         waveform.Time_Start = min(times)
         waveform.Time_End = max(times)
         waveform.Run_Time = run_time
+        waveform.Steps = steps
+        waveform.dt_or_atol = dt_or_atol
+        waveform.CVODE_active = cvode_active
+
         waveform.Units = units
         waveform.Timestamp = datetime.datetime.now()
 
@@ -171,13 +176,17 @@ class NMLDB_Model(object):
         voltage = tvi_dict["v"]
         current = tvi_dict["i"]
         run_time = tvi_dict["run_time"]
+
         error = tvi_dict["error"] if "error" in tvi_dict else None
+        dt_or_atol = tvi_dict["dt_or_atol"]
+        cvode_active = tvi_dict["cvode_active"]
+        steps = tvi_dict["steps"]
 
         self.server.connect()
 
         with self.server.db.atomic() as transaction:
-            self.create_or_update_waveform(protocol, label, meta_protocol, times, "Voltage", voltage, "mV", run_time, error)
-            self.create_or_update_waveform(protocol, label, meta_protocol, times, "Current", current, "nA", run_time, None)
+            self.create_or_update_waveform(protocol, label, meta_protocol, times, "Voltage", voltage, "mV", run_time, error, dt_or_atol, cvode_active, steps)
+            self.create_or_update_waveform(protocol, label, meta_protocol, times, "Current", current, "nA", run_time, None, dt_or_atol, cvode_active, steps)
 
     def save_tvi_plot(self, label, tvi_dict, case=""):
         plt.clf()
@@ -348,6 +357,59 @@ class NMLDB_Model(object):
 
         model.save()
 
+    def save_cvode_runtime_complexity_metrics(self):
+        print("Variable step complexity metrics for " + self.get_model_nml_id()+ "...")
+
+        # CVODE Steps ~ a*spikes + b
+        def steps_vs_spikes_func(spikes, a, b):
+            return a * np.array(spikes) + b
+
+        self.server.connect()
+
+        model = Models.get(Models.Model_ID == self.get_model_nml_id())
+
+        waves = Model_Waveforms \
+            .select() \
+            .where(
+                (Model_Waveforms.Model == model) &
+                (Model_Waveforms.Protocol == 'CVODE_STEP_FREQUENCIES') &
+                (Model_Waveforms.Variable_Name == 'Voltage') &
+                (Model_Waveforms.Waveform_Label != '0.0 nA')) \
+            .order_by(Model_Waveforms.Model, Model_Waveforms.Waveform_Label)
+
+        if len(waves) == 0:
+            print("Model " + self.get_model_nml_id() + " does not have any 'CVODE_STEP_FREQUENCIES' waveforms. Skipping...")
+            return
+
+        else:
+            print("Computing baseline steps/s and steps per spike for " + model.Model_ID + "...")
+
+            # Don't exclude the 0-current if no 0-spike waveforms exist
+            if len([w.Spikes for w in waves if w.Spikes == 0]) == 0:
+                waves = Model_Waveforms \
+                    .select() \
+                    .where(
+                        (Model_Waveforms.Model == model) &
+                        (Model_Waveforms.Protocol == 'CVODE_STEP_FREQUENCIES') &
+                        (Model_Waveforms.Variable_Name == 'Voltage')) \
+                    .order_by(Model_Waveforms.Model, Model_Waveforms.Waveform_Label)
+
+            spikes = [w.Spikes for w in waves]
+            steps = [w.Steps for w in waves]
+
+            steps_params, _ = curve_fit(steps_vs_spikes_func, spikes, steps)
+
+            a = steps_params[0]
+            b = steps_params[1]
+
+            # plt.scatter(spikes, np.array(steps))
+            # plt.plot(spikes, steps_vs_spikes_func(spikes, *steps_params))
+            # plt.show()
+
+            model.CVODE_steps_per_spike = a
+            model.CVODE_baseline_step_frequency = b
+            model.save()
+
     def save_optimal_time_step(self):
         print("Getting optimal time step for " + self.get_model_nml_id()+ "...")
 
@@ -383,9 +445,11 @@ class NMLDB_Model(object):
             print("Computing optimal time step for " + model.Model_ID + "...")
 
             time_max = max([w.Run_Time for w in waves])
+            time_min = max([w.Run_Time for w in waves])
             error_max = max([w.Percent_Error for w in waves])
+            #Error min is always 0
 
-            time_norm = [w.Run_Time / time_max for w in waves]
+            time_norm = [(w.Run_Time-time_min) / (time_max-time_min) for w in waves]
             error_norm = [w.Percent_Error / error_max for w in waves]
             dts = [float(w.Waveform_Label.replace(" ms", "")) for w in waves]
 

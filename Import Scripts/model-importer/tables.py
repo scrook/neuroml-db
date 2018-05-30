@@ -47,6 +47,8 @@ class Models(BaseModel):
     Optimal_DT_a = FloatField()
     Optimal_DT_b = FloatField()
     Optimal_DT_c = FloatField()
+    CVODE_baseline_step_frequency = FloatField()
+    CVODE_steps_per_spike = FloatField()
     Type = ForeignKeyField(Model_Types, field="ID", column_name="Type")
     Name = TextField()
     Publication = ForeignKeyField(Publications, field="Publication_ID", backref='Models')
@@ -135,6 +137,9 @@ class Model_Waveforms(BaseModel):
     Timestamp = DateTimeField()
     Spikes = IntegerField()
     Percent_Error = FloatField()
+    Steps = IntegerField()
+    dt_or_atol = FloatField()
+    CVODE_active = BooleanField()
 
 class Model_Translators(BaseModel):
     Model = ForeignKeyField(Models, field='Model_ID', backref="Translators")

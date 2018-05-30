@@ -633,6 +633,15 @@ class CellModel(NMLDB_Model):
                         save_max_stable_dt=False
                     )
 
+            if "CVODE_STEP_FREQUENCIES" in protocols:
+                self.save_cvode_step_frequencies(protocol="CVODE_STEP_FREQUENCIES",
+                                                 delay=steady_state_delay,
+                                                 sub_rheobase=cell_props.Rheobase_Low,
+                                                 rheobase=cell_props.Rheobase_High)
+
+            if "CVODE_RUNTIME_COMPLEXITY" in protocols:
+                self.save_cvode_runtime_complexity_metrics()
+
         finally:
             self.cleanup_waveforms()
 
@@ -663,7 +672,7 @@ class CellModel(NMLDB_Model):
                                   get_current_ti=lambda: get_current_ti(interval),
                                   restore_state=True)
 
-    def save_square_current_set(self, protocol, square_low, square_high, square_steps, delay, duration):
+    def save_square_current_set(self, protocol, square_low, square_high, square_steps, delay, duration, post_delay=250):
 
         # Create current amplitude set
         amps = np.linspace(square_low, square_high, num=square_steps).tolist()
@@ -672,7 +681,7 @@ class CellModel(NMLDB_Model):
         for amp in amps:
             result = self.get_square_response(delay=delay,
                                               duration=duration,
-                                              post_delay=250,
+                                              post_delay=post_delay,
                                               amp=amp,
                                               restore_state=True)
 
@@ -715,7 +724,10 @@ class CellModel(NMLDB_Model):
                 "t": t.tolist(),
                 "v": v.tolist(),
                 "i": self.ic_i_collector.get_values_list(),
-                "run_time": timer.get_run_time()
+                "run_time": timer.get_run_time(),
+                "steps": int(self.tvec.size()),
+                "cvode_active": int(self.config.cvode_active),
+                "dt_or_atol": self.config.abs_tolerance if self.config.cvode_active else self.config.dt
             }
 
             return result
@@ -751,6 +763,33 @@ class CellModel(NMLDB_Model):
                                              get_current_ti=get_current_ti,
                                              test_condition=test_condition,
                                              restore_state=restore_state)
+
+    def save_cvode_step_frequencies(self, protocol, delay, sub_rheobase, rheobase):
+        # Ensure this is run using the variable step method
+        orig_cvode = self.config.cvode_active
+        self.config.cvode_active = 1
+
+        # First two evaluate no stim and sub-threshold current CVODE step frequencies
+        self.save_square_current_set(protocol=protocol,
+                                     square_low=0,
+                                     square_high=sub_rheobase,
+                                     square_steps=2,
+                                     delay=delay,
+                                     post_delay=0,
+                                     duration=1000)
+
+        # The rest are used to quantify CVODE step frequency per spike
+        self.save_square_current_set(protocol=protocol,
+                                     square_low=rheobase,
+                                     square_high=rheobase*1.5,
+                                     square_steps=11,
+                                     delay=delay,
+                                     post_delay=0,
+                                     duration=1000)
+
+        # Restore the integration method to as it was before
+        self.config.cvode_active = orig_cvode
+
 
     def save_dt_sensitivity_set(self,
                                 rheobase,
@@ -969,7 +1008,10 @@ class CellModel(NMLDB_Model):
                 "t": t.tolist(),
                 "v": v.tolist(),
                 "i": self.ic_i_collector.get_values_list(),
-                "run_time": timer.get_run_time()
+                "run_time": timer.get_run_time(),
+                "steps": int(self.tvec.size()),
+                "cvode_active": int(self.config.cvode_active),
+                "dt_or_atol": self.config.abs_tolerance if self.config.cvode_active else self.config.dt
             }
 
             return result
@@ -1032,6 +1074,9 @@ class CellModel(NMLDB_Model):
         self.v_collector = Collector(self.config.collection_period_ms, self.soma(0.5)._ref_v)
         self.vc_i_collector = Collector(self.config.collection_period_ms, self.vc._ref_i)
         self.ic_i_collector = Collector(self.config.collection_period_ms, self.current._ref_i)
+
+        self.tvec = h.Vector()
+        self.tvec.record(h._ref_t)
 
         # h.nrncontrolmenu()
         self.nState = h.SaveState()
@@ -1332,7 +1377,10 @@ class CellModel(NMLDB_Model):
                 "t": t.tolist(),
                 "v": v.tolist(),
                 "i": self.ic_i_collector.get_values_list(),
-                "run_time": timer.get_run_time()
+                "run_time": timer.get_run_time(),
+                "steps": int(self.tvec.size()),
+                "cvode_active": int(self.config.cvode_active),
+                "dt_or_atol": self.config.abs_tolerance if self.config.cvode_active else self.config.dt
             }
 
             crossings = self.getSpikeCount(v)

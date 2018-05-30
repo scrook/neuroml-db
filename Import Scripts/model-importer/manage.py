@@ -52,6 +52,10 @@ def save_optimal_time_steps():
         mm.save_optimal_time_steps()
 
 
+def save_cvode_runtime_complexity_metrics():
+    with ModelManager() as mm:
+        mm.save_cvode_runtime_complexity_metrics()
+
 def save_morphology_data():
     with CellModel(params[0]) as cm:
         cm.save_morphology_data()
