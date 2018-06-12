@@ -599,7 +599,7 @@ class ModelManager(object):
         return author
 
     def get_pub_info_from_nih(self, pubmed_ref):
-        pmid = pubmed_ref.lower().replace("pubmed/", "")  # Comes in as e.g. "pubmed/16293591"
+        pmid = pubmed_ref.lower().replace("pubmed/", "")  # Comes in as e.g. "pubmed/16293591" or "16293591"
 
         url = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml&id=' + pmid
         pm_Tree = ET.ElementTree(file=urllib2.urlopen(url))
