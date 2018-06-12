@@ -612,7 +612,14 @@ class ModelManager(object):
             "first_name": author.find('ForeName').text}
             for author in author_list]
 
-        year = int(pm_Tree.findall('.//PubDate')[0].find('Year').text)
+        try:
+            year = int(pm_Tree.findall('.//PubDate')[0].find('Year').text)
+        except:
+            try:
+                import re
+                year = int(re.findall(r'\d+', pm_Tree.findall('.//PubDate')[0].find('MedlineDate').text)[0])
+            except:
+                raise
 
         return title, year, authors
 
