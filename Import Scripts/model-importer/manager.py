@@ -210,6 +210,8 @@ class ModelManager(object):
                 for model in deletes:
                     self.remove_model(model)
 
+                print('Committing transaction to DB...')
+
         except:
             print(
             "ERROR DETECTED: DB TRANSACTION ROLLED BACK - NO DB RECORDS SAVED - BUT CHECK FOR ANY ADDED/DELETED FILES")
@@ -960,7 +962,7 @@ class ModelManager(object):
         models = Models\
             .select(Models.Model_ID)\
             .join(Cells, on=(Cells.Model_ID == Models.Model_ID))\
-            .where((Models.CVODE_baseline_step_frequency.is_null(True)))
+            .where((Models.CVODE_baseline_step_frequency.is_null(True)) | (Models.CVODE_steps_per_spike < 0))
 
         from nmldbmodel import NMLDB_Model
 

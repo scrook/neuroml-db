@@ -1,0 +1,61 @@
+<neuroml>
+
+    <ComponentType name="glifAscCell"
+        extends="baseIafCapCell"
+        description="GLIF...">
+
+        <Parameter name="leakConductance" dimension="conductance"/>
+        <Parameter name="leakReversal" dimension="voltage"/>
+        
+        <Parameter name="tau1" dimension="time"/>
+        <Parameter name="tau2" dimension="time"/>
+        <Parameter name="amp1" dimension="current"/>
+        <Parameter name="amp2" dimension="current"/>
+        
+        <Exposure name="asc1" dimension="current" description="After-spike current 1"/>
+        <Exposure name="asc2" dimension="current" description="After-spike current 2"/>
+
+        <Attachments name="synapses" type="basePointCurrent"/>
+
+        <Dynamics>
+
+            <StateVariable name="v" exposure="v" dimension="voltage"/>
+            
+            <StateVariable name="asc1" exposure="asc1" dimension="current"/>
+            <StateVariable name="asc2" exposure="asc2" dimension="current"/>
+
+            <DerivedVariable name="iSyn" dimension="current" exposure="iSyn" select="synapses[*]/i" reduce="add" />
+            <DerivedVariable name="iMemb" dimension="current" exposure="iMemb" value="leakConductance * (leakReversal - v) + asc1 + asc2 + iSyn"/>
+
+            <TimeDerivative variable="v" value="iMemb / C"/>
+            <TimeDerivative variable="asc1" value="-1 * asc1 / tau1"/>
+            <TimeDerivative variable="asc2" value="-1 * asc2 / tau2"/>
+
+            <OnStart>
+                <StateAssignment variable="v" value="leakReversal"/>
+            </OnStart>
+
+            <OnCondition test="v .gt. thresh">
+                <StateAssignment variable="asc1" value="asc1 + amp1"/>
+                <StateAssignment variable="asc2" value="asc2 + amp2"/>
+                <StateAssignment variable="v" value="reset"/>
+                <EventOut port="spike"/>
+            </OnCondition>
+
+        </Dynamics>
+
+    </ComponentType>
+
+      <glifAscCell  id="GLIF_480629475"
+            C="4.94677750121e-11 F"
+            leakReversal="0.0 V"
+            reset="0.0 V"
+            thresh="0.0165358335317 V"
+            leakConductance="2.28336783681e-09 S"
+            tau1="0.0333333333333 s"
+            tau2="0.00333333333333 s"
+            amp1="-3.84700128782e-11 A"
+            amp2="2.05898916436e-10 A"/>
+
+    </neuroml>
+    

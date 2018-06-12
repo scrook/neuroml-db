@@ -1,0 +1,60 @@
+<neuroml>
+
+    <ComponentType name="glifRCell"
+        extends="baseIafCapCell"
+        description="GLIF...">
+
+        <Parameter name="leakConductance" dimension="conductance"/>
+        <Parameter name="leakReversal" dimension="voltage"/>
+        
+        <Parameter name="bs" dimension="per_time"/>
+        <Parameter  name="deltaThresh" dimension="voltage"/>
+        <Parameter  name="deltaV" dimension="voltage"/>
+        <Parameter name="fv" dimension="none"/>
+        
+        <Exposure  name="threshTotal" dimension="voltage"/>
+        
+        <Attachments name="synapses" type="basePointCurrent"/>
+
+        <Dynamics>
+
+            <StateVariable name="v" exposure="v" dimension="voltage"/>
+            
+            <StateVariable name="threshS" dimension="voltage"/>
+
+            <DerivedVariable name="iSyn" dimension="current" exposure="iSyn" select="synapses[*]/i" reduce="add" />
+            <DerivedVariable name="iMemb" dimension="current" exposure="iMemb" value="leakConductance * (leakReversal - v)  + iSyn"/>
+            
+            <DerivedVariable name="threshTotal" dimension="voltage" exposure="threshTotal" value="thresh + threshS" />
+
+            <TimeDerivative variable="v" value="iMemb / C"/>
+            <TimeDerivative variable="threshS" value="-1 * bs * threshS "/>
+
+            <OnStart>
+                <StateAssignment variable="v" value="leakReversal"/>
+            </OnStart>
+
+            <OnCondition test="v .gt. threshTotal">
+                
+                <StateAssignment variable="v" value="leakReversal + fv * (v - leakReversal) + deltaV"/>
+                <StateAssignment variable="threshS" value="threshS + deltaThresh"/>
+                <EventOut port="spike"/>
+            </OnCondition>
+
+        </Dynamics>
+
+    </ComponentType>
+
+      <glifRCell  id="GLIF_480633674"
+            C="5.37319209429e-11 F"
+            leakReversal="0.0 V"
+            reset="0.0 V"
+            thresh="0.0238325377048 V"
+            leakConductance="3.81981210092e-09 S"
+            bs="145.98245284 per_s"
+            deltaThresh="0.00195478373738 V"
+            fv="0.0457146156465"
+            deltaV="0.00951842667285 V"/>
+
+    </neuroml>
+    

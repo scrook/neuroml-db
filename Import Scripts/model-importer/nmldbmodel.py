@@ -385,7 +385,7 @@ class NMLDB_Model(object):
             print("Computing baseline steps/s and steps per spike for " + model.Model_ID + "...")
 
             # Don't exclude the 0-current if no 0-spike waveforms exist
-            if len([w.Spikes for w in waves if w.Spikes == 0]) == 0:
+            if len([w.Spikes for w in waves if w.Spikes == 0]) == 0 and max([w.Spikes for w in waves]) == 1:
                 waves = Model_Waveforms \
                     .select() \
                     .where(
