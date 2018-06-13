@@ -536,7 +536,7 @@ class ModelManager(object):
             return Neurolexes.get(Neurolexes.NeuroLex_Term == term_string)
         except:
             raise Exception(
-                "Neurolexes must exist and match exactly the value of NeuroLex_Term field: '" + term_string + "'")
+                "Could not find Neurolex term '" + term_string + "'. Make sure that a) the neurolex term exists in the database and b) neurolex Term and not the URI are used in the .csv file.")
 
     def get_or_create_reference(self, ref_url):
         # Create if dont exist, detect from url which resource to use - show error if can't find one

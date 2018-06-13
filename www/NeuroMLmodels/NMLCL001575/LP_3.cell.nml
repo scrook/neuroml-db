@@ -1,0 +1,58 @@
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="LP_3">
+    <include href="CaPool_STG.nml"></include>
+    <include href="CaS_STG.channel.nml"></include>
+    <include href="CaT_STG.channel.nml"></include>
+    <include href="H_STG.channel.nml"></include>
+    <include href="KA_STG.channel.nml"></include>
+    <include href="KCa_STG.channel.nml"></include>
+    <include href="Kd_STG.channel.nml"></include>
+    <include href="LeakConductance.channel.nml"></include>
+    <include href="Na_STG.channel.nml"></include>
+    <cell id="LP">
+        <notes>Stomatogastric Ganglion (STG) neuron
+From: Alternative to Hand-Tuning Conductance-Based Models: Construction and Analysis of Databases of Model Neurons
+Astrid A. Prinz, Cyrus P. Billimoria, and Eve Marder,
+J Neurophysiol 90: 3998-4015, 2003.
+
+The LP cell is an STG neuron with channel densities corresponding to LP neuron #5 from Table 2 of:
+Similar network activity from disparate circuit parameters
+Astrid A Prinz, Dirk Bucher and Eve Marder
+Nature Neuroscience, 2004.
+
+Converted to neuroConstruct from details in above two papers by Aditya Gilra, NCBS, Bangalore, India.</notes>
+        <morphology id="morphology_LP">
+            <segment id="0" name="Soma">
+                <proximal y="0.000000e+00" x="0.000000e+00" z="0.000000e+00" diameter="1.413855e+02"/>
+                <distal y="0.000000e+00" x="0.000000e+00" z="0.000000e+00" diameter="1.413855e+02"/>
+            </segment>
+            <segmentGroup neuroLexId="sao864921383" id="Soma">
+                <member segment="0"/>
+            </segmentGroup>
+            <segmentGroup id="all">
+                <include segmentGroup="Soma"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="GO:0043025" id="soma_group">
+                <include segmentGroup="Soma"/>
+            </segmentGroup>
+        </morphology>
+        <biophysicalProperties id="biophys">
+            <membraneProperties>
+                <channelDensity id="H_STG_all" segmentGroup="all" ion="h" ionChannel="H_STG" erev="-20.0 mV" condDensity="0.0 mS_per_cm2"/>
+                <channelDensity id="KA_STG_all" segmentGroup="all" ion="k" ionChannel="KA_STG" erev="-80.0 mV" condDensity="50 mS_per_cm2"/>
+                <channelDensity id="KCa_STG_all" segmentGroup="all" ion="k" ionChannel="KCa_STG" erev="-80.0 mV" condDensity="5 mS_per_cm2"/>
+                <channelDensity id="Kd_STG_all" segmentGroup="all" ion="k" ionChannel="Kd_STG" erev="-80.0 mV" condDensity="100 mS_per_cm2"/>
+                <channelDensity id="LeakConductance_all" segmentGroup="all" ion="non_specific" ionChannel="LeakConductance" erev="-50.0 mV" condDensity="0.03 mS_per_cm2"/>
+                <channelDensity id="Na_STG_all" segmentGroup="all" ion="na" ionChannel="Na_STG" erev="50.0 mV" condDensity="100 mS_per_cm2"/>
+                <channelDensityNernst id="CaS_STG_all" ionChannel="CaS_STG" condDensity="10 mS_per_cm2" segmentGroup="all" ion="ca"/>
+                <channelDensityNernst id="CaT_STG_all" ionChannel="CaT_STG" condDensity="0.0 mS_per_cm2" segmentGroup="all" ion="ca"/>
+                <spikeThresh segmentGroup="all" value="0 mV"/>
+                <specificCapacitance segmentGroup="all" value="1.0 uF_per_cm2"/>
+                <initMembPotential segmentGroup="all" value="-50.0 mV"/>
+            </membraneProperties>
+            <intracellularProperties>
+                <species segmentGroup="all" ion="ca" initialExtConcentration="3.0E-6 mol_per_cm3" concentrationModel="CaPool_STG" id="ca" initialConcentration="5.0E-11 mol_per_cm3"/>
+                <resistivity segmentGroup="all" value="0.03 kohm_cm"/>
+            </intracellularProperties>
+        </biophysicalProperties>
+    </cell>
+</neuroml>
