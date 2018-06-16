@@ -79,14 +79,14 @@ class Model_Model_Association_Types(BaseModel):
     class Meta:
         primary_key = peewee.CompositeKey('Parent_Type', 'Child_Type')
 
-class Channel_Types(BaseModel):
+class Channel_Classes(BaseModel):
     ID = TextField(primary_key=True)
     Name = TextField()
 
 
 class Channels(BaseModel):
     Model = ForeignKeyField(Models, field='Model_ID', backref="Channel", primary_key=True)
-    Type = ForeignKeyField(Channel_Types, field="ID", column_name="Channel_Type")
+    Type = ForeignKeyField(Channel_Classes, field="ID", column_name="Channel_Class")
 
 class Cells(BaseModel):
     Model_ID = CharField(primary_key=True)
@@ -169,6 +169,7 @@ class Resources(BaseModel):
     Name = TextField()
     LogoUrl = TextField()
     HomePageUrl = TextField()
+    Identifying_URL_Snippet = TextField()
     SciCrunch_RRID = TextField()
 
 
@@ -176,6 +177,7 @@ class Refers(BaseModel):
     Reference_ID = PrimaryKeyField()
     Resource = ForeignKeyField(Resources, field='Resource_ID', backref="Resources", column_name='Reference_Resource_ID')
     Reference_URI = TextField()
+
 
 
 class Model_References(BaseModel):

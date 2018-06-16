@@ -24,18 +24,13 @@ def validate():
         mm.validate_db_model(dirs=params)
 
 
-def update_checksums():
+def save_model_properties():
     with ModelManager() as mm:
-        mm.update_model_checksums()
+        models = params[0].split(',')
+        properties = params[1].split(',')
+        mm.save_model_properties(models, properties)
 
 
-def save_structural_metrics():
-    with CellModel(params[0]) as cm:
-        cm.save_structural_metrics()
-
-def save_spike_counts():
-    with ModelManager() as mm:
-        mm.save_spike_counts()
 
 def save_cell_properties():
     with CellModel(params[0]) as cm:
@@ -143,10 +138,13 @@ if __name__ == "__main__":
 
     Config().start_debugging_if_enabled('MANAGER')
 
-    command = sys.argv[1]
-    params = sys.argv[2:]
+    available_commands = [i for i in locals().keys() if
+                          not i.startswith("__") and
+                          hasattr(locals()[i], "__class__") and
+                          locals()[i].__class__.__name__ == "function"]
 
-    available_commands = [i for i in locals().keys() if not i.startswith("__") and hasattr(locals()[i],"__class__") and locals()[i].__class__.__name__ == "function"]
+    command = sys.argv[1] if len(sys.argv) >= 2 else None
+    params = sys.argv[2:]
 
     if command not in available_commands:
         raise Exception("Command after 'python manage.py' must be one of: " + str(available_commands))

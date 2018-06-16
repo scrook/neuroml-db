@@ -1,3 +1,4 @@
+import nmldbutils
 import csv
 import hashlib
 import os
@@ -11,6 +12,7 @@ from dateutil.parser import parse as parsedate
 from database import NMLDB
 from tables import *
 from config import Config
+
 
 class ModelManager(object):
     def __init__(self):
@@ -75,7 +77,15 @@ class ModelManager(object):
         self.server.close()
 
     def validate_db_model(self, dirs):
+        """
+        Compares the parent-child relationships defined in the database to the
+        parent-child relationships defined within individual NML files
+        (based on the <include> statements).
 
+        Generates a .csv file, which indicates any differences between the tree
+        structures of DB and NML files.
+        :rtype: None
+        """
         # Build node tree from the DB data
         self.parse_directories(dirs)
 
@@ -214,7 +224,7 @@ class ModelManager(object):
 
         except:
             print(
-            "ERROR DETECTED: DB TRANSACTION ROLLED BACK - NO DB RECORDS SAVED - BUT CHECK FOR ANY ADDED/DELETED FILES")
+                "ERROR DETECTED: DB TRANSACTION ROLLED BACK - NO DB RECORDS SAVED - BUT CHECK FOR ANY ADDED/DELETED FILES")
             raise
 
     def parse_simulation(self):
@@ -223,7 +233,7 @@ class ModelManager(object):
         # Start with NML Files directly in the directory
         root_files = [file
                       for file in os.listdir(self.model_directories[0])
-                      if self.is_nml2_file(file)]
+                      if nmldbutils.is_nml2_file(file)]
 
         self.tree_nodes = {}
 
@@ -365,7 +375,7 @@ class ModelManager(object):
     def parse_directories(self, model_directories):
 
         for dir in model_directories:
-            if self.is_nmldb_id(dir):
+            if nmldbutils.is_nmldb_id(dir):
                 dir = os.path.join(self.config.permanent_models_dir, dir)
 
             self.model_directories.append(os.path.abspath(dir) + "/")
@@ -387,7 +397,7 @@ class ModelManager(object):
             node["is_root"] = True
 
     def remove_model(self, node):
-        if not self.is_nmldb_id(node["model_id"]):
+        if not nmldbutils.is_nmldb_id(node["model_id"]):
             raise Exception("When DELET'ing, model ID must not be blank: " + node["file_name"])
 
         print("REMOVING model " + node["model_id"] + " from DB and models directory...")
@@ -401,7 +411,7 @@ class ModelManager(object):
         shutil.rmtree(model_dir)
 
     def update_model(self, node):
-        if not self.is_nmldb_id(node["model_id"]):
+        if not nmldbutils.is_nmldb_id(node["model_id"]):
             raise Exception("When UPDATE'ing, model ID must not be blank: " + node["file_name"])
 
         print("Updating model " + node["model_id"] + " in DB...")
@@ -425,7 +435,7 @@ class ModelManager(object):
             channel = Channels.get(Channels.Model == model)
 
             # ok to change - though simulation has to be rerun - need a way to mark simulations to be rerun in general - perhaps at model table level
-            channel.Channel_Type = node["channel_protocol"]
+            channel.Channel_Class = node["channel_protocol"]
             channel.save()
 
     def add_model(self, node):
@@ -545,19 +555,13 @@ class ModelManager(object):
         if existing is not None:
             return existing
         else:
-            try:
-                if "github.com" in ref_url:
-                    resource = Resources.get(Resources.Name == "Github")
+            resource = Resources \
+                .select() \
+                .where(ref_url.contains(Resources.Identifying_URL_Snippet)) \
+                .first()
 
-                else:
-                    resource = Resources \
-                        .select(Resources, Refers) \
-                        .join(Refers) \
-                        .where(peewee.fn.LEFT(peewee.fn.LOWER(Refers.Reference_URI), 40) == peewee.fn.LEFT(
-                        peewee.fn.LOWER(ref_url), 40)) \
-                        .first()
-            except:
-                raise Exception("Could not find a matching resource for reference URL:" + ref_url)
+            if resource is None:
+                raise Exception("Could not find a matching record in Resources table for reference URL:" + ref_url)
 
             ref = Refers()
             ref.Reference_URI = ref_url
@@ -656,7 +660,7 @@ class ModelManager(object):
         node["keywords"] = [r.Other_Keyword_Term for r in model.Keywords]
 
         if model.Type.Name == "Channel":
-            node["channel_protocol"] = model.Channel[0].Channel_Type
+            node["channel_protocol"] = model.Channel[0].Channel_Class
 
         node["notes"] = model.Notes
         node["file_updated"] = model.File_Updated
@@ -688,28 +692,28 @@ class ModelManager(object):
         if result is None:
             raise Exception("Model with id %s not found" % id)
 
-        result.Translators = People\
-            .select()\
-            .join(Model_Translators)\
-            .where(Model_Translators.Model == id)\
+        result.Translators = People \
+            .select() \
+            .join(Model_Translators) \
+            .where(Model_Translators.Model == id) \
             .order_by(Model_Translators.Translator_Sequence)
 
-        result.References = Refers\
-            .select()\
-            .join(Model_References)\
+        result.References = Refers \
+            .select() \
+            .join(Model_References) \
             .where(Model_References.Model == id)
 
-        result.Neurolexes = Neurolexes\
-            .select()\
-            .join(Model_Neurolexes)\
+        result.Neurolexes = Neurolexes \
+            .select() \
+            .join(Model_Neurolexes) \
             .where(Model_Neurolexes.Model == id)
 
-        result.Keywords = Other_Keywords\
-            .select()\
-            .join(Model_Other_Keywords)\
+        result.Keywords = Other_Keywords \
+            .select() \
+            .join(Model_Other_Keywords) \
             .where(Model_Other_Keywords.Model == id)
 
-        result.Children = Models\
+        result.Children = Models \
             .select(Models.Model_ID, Models.File, Models.File_Name) \
             .join(Model_Model_Associations, on=(Model_Model_Associations.Child == Models.Model_ID)) \
             .where(Model_Model_Associations.Parent == id)
@@ -732,6 +736,9 @@ class ModelManager(object):
 
         if path.endswith(".net.nml"):
             return "Network"
+
+        if path.endswith(".component.nml"):
+            return "Component"
 
         if not os.path.exists(path):
             return "MISSING"
@@ -812,9 +819,6 @@ class ModelManager(object):
 
         writer.writerow([unicode(field_to_string(node, key)).encode('utf-8') for key in self.csv_columns])
 
-    def is_nml2_file(self, file_name):
-        return file_name.endswith(".nml")
-
     def is_existing_model(self):
         return len(self.get_root_model_ids()) > 0
 
@@ -826,15 +830,12 @@ class ModelManager(object):
                 root_dir = dir.split("/")[-2]
 
                 # Check if parent dir is named as an NML-DB ID
-                if self.is_nmldb_id(root_dir):
+                if nmldbutils.is_nmldb_id(root_dir):
                     result.append(root_dir)
             except:
                 pass
 
         return result
-
-    def is_nmldb_id(self, value):
-        return value.startswith("NML") and len(value) == 11
 
     def parse_file_tree(self, file, parent=None):
         # If file already parsed
@@ -853,7 +854,7 @@ class ModelManager(object):
         node['file_name'] = file
         node['dir'] = self.model_directories[0]
         node['path'] = self.model_directories[0] + file
-        node['md5'] = self.get_file_checksum(node['path'])
+        node['md5'] = nmldbutils.get_file_checksum(node['path'])
         node['model_type'] = self.get_type(node["path"])
 
         if parent is not None:
@@ -924,35 +925,48 @@ class ModelManager(object):
         elif os.name == 'posix':
             subprocess.call(('xdg-open', file_path))
 
-    def get_file_checksum(self, path):
-
-        if os.path.exists(path):
-            with open(path, 'rb') as file:
-                return hashlib.md5(file.read()).hexdigest()
-
-        return None
-
-    def update_model_checksums(self):
+    def save_model_properties(self, models, properties):
         self.server.connect()
 
-        models = Models.select(Models.Model_ID, Models.File, Models.File_MD5_Checksum)
+        if models == ['ALL']:
+            models = [model for model in Models.select(Models)]
 
         for model in models:
-            print("Updating " + model.Model_ID + "...")
-            new_checksum = self.get_file_checksum(self.server_path_to_local_path(model.File))
+            model_id = model.Model_ID if model.__class__.__name__ == "Models" else model
 
-            if model.File_MD5_Checksum != new_checksum:
-                print("Checksum different, saving...")
-                model.File_MD5_Checksum = new_checksum
-                model.save()
+            if model_id.startswith("NMLCL"):
+                from cellmodel import CellModel as TargetModel
+
+            elif model_id.startswith("NMLCH"):
+                from channelmodel import ChannelModel as TargetModel
+
+            else:
+                from nmldbmodel import NMLDB_Model as TargetModel
+
+            with TargetModel(model, server=self.server) as m:
+                m.save_properties(properties)
+
+    def update_model_checksums(self):
+        """
+        Computes the MD5 hash of each model in the database. Updates DB record if different.
+        """
+        self.server.connect()
+
+        models = Models.select(Models.Model_ID)
+        from nmldbmodel import NMLDB_Model
+
+        for model in models:
+            with NMLDB_Model(model.Model_ID, server=self.server) as m:
+                m.save_property('checksum')
+
 
     def save_optimal_time_steps(self):
 
         self.server.connect()
 
-        models = Models\
-            .select(Models.Model_ID)\
-            .join(Cells, on=(Cells.Model_ID == Models.Model_ID))\
+        models = Models \
+            .select(Models.Model_ID) \
+            .join(Cells, on=(Cells.Model_ID == Models.Model_ID)) \
             .where((Models.Optimal_DT.is_null(True)))
 
         from nmldbmodel import NMLDB_Model
@@ -966,9 +980,9 @@ class ModelManager(object):
 
         self.server.connect()
 
-        models = Models\
-            .select(Models.Model_ID)\
-            .join(Cells, on=(Cells.Model_ID == Models.Model_ID))\
+        models = Models \
+            .select(Models.Model_ID) \
+            .join(Cells, on=(Cells.Model_ID == Models.Model_ID)) \
             .where((Models.CVODE_baseline_step_frequency.is_null(True)) | (Models.CVODE_steps_per_spike < 0))
 
         from nmldbmodel import NMLDB_Model
@@ -977,33 +991,6 @@ class ModelManager(object):
             for model in models:
                 db_model.path = model.Model_ID
                 db_model.save_cvode_runtime_complexity_metrics()
-
-
-    def save_spike_counts(self):
-        self.server.connect()
-
-        waves = Model_Waveforms\
-                    .select(Cells.Model_ID, Model_Waveforms.ID, Model_Waveforms.Protocol)\
-                    .join(Cells, on=(Cells.Model_ID == Model_Waveforms.Model))\
-                    .where((Model_Waveforms.Variable_Name == 'Voltage') & (Model_Waveforms.Spikes.is_null(True)))
-
-        from cellmodel import CellModel
-        import numpy as np
-
-        for wave in waves:
-            print("Counting spikes for wave " + str(wave.ID) + "...")
-
-            model = CellModel(wave.cells.Model_ID)
-
-            with open(os.path.join(model.get_waveforms_dir(), str(wave.ID) + ".csv")) as f:
-                lines = f.readlines()
-
-                #times = lines[0]
-                values = np.fromstring(lines[1], dtype=float, sep=',')
-                spike_count = model.getSpikeCount(values)
-
-                wave.Spikes = spike_count
-                wave.save()
 
     def replace_tokens(self, target, reps):
         result = target

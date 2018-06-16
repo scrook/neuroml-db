@@ -12,6 +12,7 @@ import string
 import urllib
 from abc import abstractmethod, ABCMeta
 from decimal import Decimal
+import nmldbutils
 
 import numpy as np
 from matplotlib import pyplot as plt
@@ -27,9 +28,16 @@ from tables import Cells, Model_Waveforms, Morphometrics, Cell_Morphometrics, db
 from nmldbmodel import NMLDB_Model
 
 class CellModel(NMLDB_Model):
-    def __init__(self, path):
-        super(CellModel, self).__init__(path)
+    def __init__(self, *args, **kwargs):
+        super(CellModel, self).__init__(*args, **kwargs)
+
         self.pickle_file_cache = {}
+
+        self.all_properties.extend([
+            'structural_metrics',
+            'spike_counts',
+            'cell_model_properties'
+        ])
 
 
     def __enter__(self):
@@ -45,7 +53,10 @@ class CellModel(NMLDB_Model):
             print("Cleanup done")
 
 
-    def save_cell_model_properties(self, model_dir):
+    def save_cell_model_properties(self, model_dir = None):
+        if model_dir is None:
+            model_dir = self.get_model_nml_id()
+
         self.convert_to_NEURON(model_dir)
 
         id = self.get_model_nml_id()
@@ -63,9 +74,6 @@ class CellModel(NMLDB_Model):
 
 
     def get_cell_properties(self):
-
-        # Structural metrics
-        self.save_structural_metrics()
 
         self.cell_record = Cells(
             Model_ID=self.get_model_nml_id(),
@@ -1410,6 +1418,17 @@ class CellModel(NMLDB_Model):
 
         super(CellModel, self).setTolerances(tstop, current_amp)
 
+    def get_equation_count(self):
+        def run_eq_counter():
+            h = self.build_model(restore_tolerances=False)
+
+            return self.get_number_of_model_state_variables(h)
+
+        runner = NeuronRunner(run_eq_counter, kill_slow_sims=False)
+        eq_count = runner.run()
+
+        return eq_count
+
     def get_structural_metrics(self):
 
         def run_struct_analysis():
@@ -1425,8 +1444,6 @@ class CellModel(NMLDB_Model):
                 result["section_count"] = len([sec for sec in h.allsec()])
                 result["compartment_count"] = self.get_number_of_compartments(h)
 
-            result["equation_count"] = self.get_number_of_model_state_variables(h)
-
             return result
 
         runner = NeuronRunner(run_struct_analysis, kill_slow_sims=False)
@@ -1441,10 +1458,6 @@ class CellModel(NMLDB_Model):
 
         self.server.connect()
 
-        model = Models.get(Models.Model_ID == self.get_model_nml_id())
-        model.Equations = metrics["equation_count"]
-        model.save()
-
         self.cell_record = Cells(
             Model_ID=self.get_model_nml_id(),
             Sections=metrics["section_count"],
@@ -1452,6 +1465,31 @@ class CellModel(NMLDB_Model):
         )
 
         self.save_cell_record()
+
+    def save_spike_counts(self):
+        self.server.connect()
+
+        waves = Model_Waveforms \
+            .select(Cells.Model_ID, Model_Waveforms.ID, Model_Waveforms.Protocol) \
+            .join(Cells, on=(Cells.Model_ID == Model_Waveforms.Model)) \
+            .where(
+                (Model_Waveforms.Variable_Name == 'Voltage') &
+                (Model_Waveforms.Spikes.is_null(True)) &
+                (Cells.Model_ID == self.get_model_nml_id())
+            )
+
+        for wave in waves:
+            print("Counting spikes for wave " + str(wave.ID) + "...")
+
+            with open(os.path.join(self.get_waveforms_dir(), str(wave.ID) + ".csv")) as f:
+                lines = f.readlines()
+
+                # times = lines[0]
+                values = np.fromstring(lines[1], dtype=float, sep=',')
+                spike_count = self.getSpikeCount(values)
+
+                wave.Spikes = spike_count
+                wave.save()
 
     def save_cell_record(self):
         cell = self.cell_record
@@ -1482,10 +1520,10 @@ class CellModel(NMLDB_Model):
         print("Converting cell NML model to NEURON...")
 
         # Get the parent folder of the model
-        if self.model_manager.is_nmldb_id(path):
+        if nmldbutils.is_nmldb_id(path):
             model_dir_name = self.get_permanent_model_directory()
 
-            dir_nml_files = [f for f in os.listdir(model_dir_name) if self.model_manager.is_nml2_file(f)]
+            dir_nml_files = [f for f in os.listdir(model_dir_name) if nmldbutils.is_nml2_file(f)]
 
             if len(dir_nml_files) != 1:
                 raise Exception("There should be exactly one NML file in the model directory: " + str(dir_nml_files))
@@ -1498,7 +1536,7 @@ class CellModel(NMLDB_Model):
 
         nml_db_id = model_dir_name.split("/")[-1]
 
-        if not self.model_manager.is_nmldb_id(nml_db_id):
+        if not nmldbutils.is_nmldb_id(nml_db_id):
             raise Exception("The name of the parent folder of the model should be a NeuroML-DB id: " + nml_db_id)
 
         # Templates

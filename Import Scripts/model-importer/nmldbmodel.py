@@ -7,6 +7,8 @@ import datetime
 from scipy.optimize import curve_fit
 from math import sqrt
 import numpy as np
+import nmldbutils
+
 from matplotlib import pyplot as plt
 
 from config import Config
@@ -20,20 +22,92 @@ from tables import *
 class NMLDB_Model(object):
     __metaclass__ = ABCMeta
 
-    def __init__(self, path = ""):
-        self.server = NMLDB()
+    def __init__(self, model="", server=None):
+        if server is None:
+            self.server = NMLDB()
+            self.server_passed_in = False
+
+        else:
+            self.server = server
+            self.server_passed_in = True
+
         self.config = Config()
-        self.model_manager = ModelManager()
-        self.path = path
+
+        # If passing in a pre-retrieved Model DB record, re-use it
+        if model.__class__.__name__ == "Models":
+            self.path = model.Model_ID
+            self.model_record = model
+
+        # Otherwise, retrieve a fresh copy
+        else:
+            self.path = model
+            self.server.connect()
+            self.model_record = Models.get(Models.Model_ID == self.get_model_nml_id())
 
         sys.setrecursionlimit(10000)
+
+        self.all_properties = [
+            'checksum',
+            'equation_count',
+        ]
 
     def __enter__(self):
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
-        self.server.close()
-        self.model_manager.server.close()
+        if not self.server_passed_in:
+            self.server.close()
+
+    def save_properties(self, properties=['ALL']):
+        if properties == ['ALL']:
+            properties = self.all_properties
+
+        for property in properties:
+            self.save_property(property)
+
+    def save_property(self, property):
+        print("Saving " + self.get_model_nml_id() + " " + property + "...")
+
+        # Call save_[property] method eg. save_checksum()
+        method = "save_" + property
+        if not hasattr(self, method):
+            print(self.__class__.__name__ + " does not have a method called '" + method + "()'. Skipping property...")
+            return
+
+        getattr(self, method)()
+
+    def save_checksum(self):
+        file_path = os.path.join(self.get_permanent_model_directory(), self.model_record.File_Name)
+
+        new_checksum = nmldbutils.get_file_checksum(file_path)
+
+        if new_checksum is None:
+            raise Exception("File " + file_path + " does not exist to compute checksum")
+
+        if self.model_record.File_MD5_Checksum != new_checksum:
+            print("Checksum different, saving...")
+            self.model_record.File_MD5_Checksum = new_checksum
+            self.model_record.save()
+
+    def save_equation_count(self):
+        self.convert_to_NEURON()
+
+        count = self.get_equation_count()
+
+        if count is not None:
+            self.server.connect()
+            self.model_record.Equations = count
+            self.model_record.save()
+
+    def get_equation_count(self):
+        """
+        When overriden in a sub-class, counts the number of model differential equations
+        :return: The total count of differential equation states in the model
+        """
+        return None
+
+    def convert_to_NEURON(selfs):
+        pass
 
     def get_model_nml_id(self):
         return self.path.split("/")[-1]
