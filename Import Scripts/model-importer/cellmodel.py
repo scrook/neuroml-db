@@ -56,6 +56,7 @@ class CellModel(NMLDB_Model):
             'SQUARE_SUBTHRESHOLD',
             'NOISE',
             'NOISE_RAMP',
+            'morphology_data'
         ])
 
         self.init_cell_record()
@@ -188,9 +189,7 @@ class CellModel(NMLDB_Model):
     def save_to_SWC(self, h):
         import xml.etree.ElementTree
 
-        self.server.connect()
-        model = Models.get_by_id(self.get_model_nml_id())
-        root = xml.etree.ElementTree.parse(model.File_Name).getroot()
+        root = xml.etree.ElementTree.parse(self.model_record.File_Name).getroot()
 
         seg_tags = root.findall(".//{http://www.neuroml.org/schema/neuroml2}segment")
 
@@ -369,62 +368,43 @@ class CellModel(NMLDB_Model):
             os.system("rm lmeasure_out.csv")
 
     def save_morphology_data(self):
-        # Convert NML to NEURON
-        self.convert_to_NEURON(self.path)
 
         # Load the model
         h = self.build_model(restore_tolerances=False)
 
         if self.is_abstract_cell() or self.get_number_of_compartments(h) <= 1:
             print("Cell is ABSTRACT or SINGLE COMPARTMENT, skipping morphometrics and 3D visualization...")
-            self.update_model_status(self.get_model_nml_id(), "Morphometrics", "CURRENT")
-            self.update_model_status(self.get_model_nml_id(), "GIF", "CURRENT")
             return
 
         # Compute morphometrics
-        try:
-            self.save_morphometrics(h)
-            self.update_model_status(self.get_model_nml_id(), "Morphometrics", "CURRENT")
-        except:
-            self.update_model_status(self.get_model_nml_id(), "Morphometrics", "ERROR")
-            raise
+        self.save_morphometrics(h)
 
         # Render 3D GIF
-        try:
-            # Rotate the cell to be upright along the x,y,z coord PCA axes
-            self.rotate_cell_along_PCA_axes(h)
+        # Rotate the cell to be upright along the x,y,z coord PCA axes
+        self.rotate_cell_along_PCA_axes(h)
 
-            import sys
-            sys.path.append('/home/justas/Repositories/BlenderNEURON/ForNEURON')
-            from blenderneuron import BlenderNEURON
+        import sys
+        sys.path.append('/home/justas/Repositories/BlenderNEURON/ForNEURON')
+        from blenderneuron import BlenderNEURON
 
-            bl = BlenderNEURON(h)
-            bl.prepare_for_collection()
+        bl = BlenderNEURON(h)
+        bl.prepare_for_collection()
 
-            self.server.connect()
+        # Skip simulation if no basic properties are present
+        if self.cell_record.Is_Intrinsically_Spiking is not None:
+            # Inject continuous threshold current into non-intrinsic-spikers
+            if not self.cell_record.Is_Intrinsically_Spiking:
+                self.current.delay = 0
+                self.current.dur = 100
+                self.current.amp = self.cell_record.Threshold_Current_High
 
-            cell = Cells.get_or_none(Cells.Model_ID==self.get_model_nml_id())
+            # No additional stim for intrinsic spikers
+            print("Simulating current injection...")
+            h.tstop = 100.0
+            h.newPlotV()
+            h.run()
 
-            # Skip simulation if no basic properties are present
-            if cell.Is_Intrinsically_Spiking is not None:
-                # Inject continous threshold current into non-intrinisic-spikers
-                if not cell.Is_Intrinsically_Spiking:
-                    self.current.delay = 0
-                    self.current.dur = 100
-                    self.current.amp = cell.Threshold_Current_High
-
-                # No additional stim for intrinisic spikers
-                print("Simulating current injection...")
-                h.tstop = 100.0
-                h.newPlotV()
-                h.run()
-
-            self.save_rotating_gif(bl)
-
-            self.update_model_status(self.get_model_nml_id(), "GIF", "CURRENT")
-        except:
-            self.update_model_status(self.get_model_nml_id(), "GIF", "ERROR")
-            raise
+        self.save_rotating_gif(bl)
 
 
     def save_rotating_gif(self, bl):
@@ -436,7 +416,7 @@ class CellModel(NMLDB_Model):
         bl.enqueue_method('color_by_unique_materials')
         bl.run_method('orbit_camera_around_model')
 
-        print("RENDERING...")
+        print("RENDERING... Check progress in Blender command line window...")
 
         # Wait till prev tasks and rendering is finished
         bl.run_method('render_animation', destination_path=self.get_morphology_dir())
@@ -966,9 +946,8 @@ class CellModel(NMLDB_Model):
 
         if save_max_stable_dt:
             print("Saving max stable time step " + str(max_stable_dt))
-            model = Models.get(Models.Model_ID == self.get_model_nml_id())
-            model.Max_Stable_DT = max_stable_dt
-            model.save()
+            self.model_record.Max_Stable_DT = max_stable_dt
+            self.model_record.save()
 
         # Clear the cache for this file
         self.pickle_file_cache.pop(noise_pickle_file)
@@ -1104,7 +1083,7 @@ class CellModel(NMLDB_Model):
     def load_model(self):
         # Load cell hoc and get soma
         os.chdir(self.temp_model_path)
-        print("Loading NEURON...")
+        print("Loading NEURON... If this step 'freezes', ensure there are no hung NEURON processes with 'pkill -9 nrn*'")
         from neuron import h, gui
         print("DONE")
 
@@ -1524,19 +1503,12 @@ class CellModel(NMLDB_Model):
         return metrics
 
     def save_structural_metrics(self):
-        self.convert_to_NEURON()
-
         metrics = self.get_structural_metrics()
 
-        self.server.connect()
+        self.cell_record.Sections = metrics["section_count"]
+        self.cell_record.Compartments = metrics["compartment_count"]
 
-        self.cell_record = Cells(
-            Model_ID=self.get_model_nml_id(),
-            Sections=metrics["section_count"],
-            Compartments=metrics["compartment_count"]
-        )
-
-        self.save_cell_record()
+        self.cell_record.save()
 
     def save_spike_counts(self):
         self.server.connect()
@@ -1562,28 +1534,6 @@ class CellModel(NMLDB_Model):
 
                 wave.Spikes = spike_count
                 wave.save()
-
-    def save_cell_record(self):
-        cell = self.cell_record
-        self.server.connect()
-
-        # Check if record exists
-        try:
-            Cells.get_by_id(cell.Model_ID)
-            force_insert = False
-        except:
-            # Create new record if not
-            force_insert = True
-
-        print("Saving record for cell " + cell.Model_ID + " ...")
-
-        # Create record on first save
-        cell.save(force_insert=force_insert)
-
-        # Disconnect SSH
-        self.server.close()
-
-        print("SAVED")
 
     def convert_to_NEURON(self, path=None):
         if path is None:

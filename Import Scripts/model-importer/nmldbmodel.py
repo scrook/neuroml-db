@@ -91,7 +91,7 @@ class NMLDB_Model(object):
         getattr(self, method)()
 
     def is_nosim(self):
-        if self.model_record.Simulation_Status == 'NOSIM':
+        if self.model_record.Status == 'NOSIM':
             print("Model " + id + " has simulation status NOSIM...")
             return True
 
@@ -125,8 +125,6 @@ class NMLDB_Model(object):
             self.model_record.save()
 
     def save_equation_count(self):
-        self.convert_to_NEURON(self.get_model_nml_id())
-
         count = self.get_equation_count()
 
         if count is not None:
@@ -456,18 +454,17 @@ class NMLDB_Model(object):
         print("Updating model status...")
         self.server.connect()
 
-        model = Models.get(Models.Model_ID == id)
-        model.Status = status
-        model.Status_Timestamp = datetime.datetime.now()
+        self.model_record.Status = status
+        self.model_record.Status_Timestamp = datetime.datetime.now()
 
         if status == "ERROR":
             import traceback
-            model.Errors = "Error while updating property: '" + str(property) + "'\n" + traceback.format_exc()
+            self.model_record.Errors = "Error while updating property: '" + str(property) + "'\n" + traceback.format_exc()
 
         if status == "CURRENT":
-            model.Errors = None
+            self.model_record.Errors = None
 
-        model.save()
+            self.model_record.save()
 
     def save_cvode_runtime_complexity_metrics(self):
         print("Variable step complexity metrics for " + self.get_model_nml_id()+ "...")
@@ -476,14 +473,10 @@ class NMLDB_Model(object):
         def steps_vs_spikes_func(spikes, a, b):
             return a * np.array(spikes) + b
 
-        self.server.connect()
-
-        model = Models.get(Models.Model_ID == self.get_model_nml_id())
-
         waves = Model_Waveforms \
             .select() \
             .where(
-                (Model_Waveforms.Model == model) &
+                (Model_Waveforms.Model == self.model_record) &
                 (Model_Waveforms.Protocol == 'CVODE_STEP_FREQUENCIES') &
                 (Model_Waveforms.Variable_Name == 'Voltage') &
                 (Model_Waveforms.Waveform_Label != '0.0 nA')) \
@@ -494,14 +487,14 @@ class NMLDB_Model(object):
             return
 
         else:
-            print("Computing baseline steps/s and steps per spike for " + model.Model_ID + "...")
+            print("Computing baseline steps/s and steps per spike for " + self.model_record.Model_ID + "...")
 
             # Don't exclude the 0-current if no 0-spike waveforms exist
             if len([w.Spikes for w in waves if w.Spikes == 0]) == 0 and max([w.Spikes for w in waves]) == 1:
                 waves = Model_Waveforms \
                     .select() \
                     .where(
-                        (Model_Waveforms.Model == model) &
+                        (Model_Waveforms.Model == self.model_record) &
                         (Model_Waveforms.Protocol == 'CVODE_STEP_FREQUENCIES') &
                         (Model_Waveforms.Variable_Name == 'Voltage')) \
                     .order_by(Model_Waveforms.Model, Model_Waveforms.Waveform_Label)
@@ -518,12 +511,12 @@ class NMLDB_Model(object):
             # plt.plot(spikes, steps_vs_spikes_func(spikes, *steps_params))
             # plt.show()
 
-            model.CVODE_steps_per_spike = a
-            model.CVODE_baseline_step_frequency = b
-            model.save()
+            self.model_record.CVODE_steps_per_spike = a
+            self.model_record.CVODE_baseline_step_frequency = b
+            self.model_record.save()
 
     def save_optimal_time_step(self):
-        print("Getting optimal time step for " + self.get_model_nml_id()+ "...")
+        print("Getting optimal time step for " + self.get_model_nml_id() + "...")
 
         # Run time ~ 1/dt
         def time_func(dt, a):
@@ -533,13 +526,11 @@ class NMLDB_Model(object):
         def error_func(dt, b, c):
             return b * np.array(dt) + c
 
-        self.server.connect()
-
-        model = Models.get(Models.Model_ID == self.get_model_nml_id())
-
         waves = Model_Waveforms \
             .select() \
-            .where((Model_Waveforms.Model == model) & (Model_Waveforms.Protocol == 'DT_SENSITIVITY') & (Model_Waveforms.Variable_Name == 'Voltage')) \
+            .where((Model_Waveforms.Model == self.model_record) &
+                   (Model_Waveforms.Protocol == 'DT_SENSITIVITY') &
+                   (Model_Waveforms.Variable_Name == 'Voltage')) \
             .order_by(Model_Waveforms.Model, Model_Waveforms.Waveform_Label)
 
         if len(waves) == 0:
@@ -550,14 +541,15 @@ class NMLDB_Model(object):
             print("Model " + self.get_model_nml_id() + " has one 'DT_SENSITIVITY' waveform. Using waveform dt as optimal...")
             optimal_dt = float(waves[0].Waveform_Label.replace(" ms", ""))
             print("Saving optimal time step 1/" + str(1 / optimal_dt) + "...")
-            model.Optimal_DT = optimal_dt
-            model.save()
+            self.model_record.Optimal_DT = optimal_dt
+            self.model_record.save()
 
         else:
-            print("Computing optimal time step for " + model.Model_ID + "...")
+            print("Computing optimal time step for " + self.model_record.Model_ID + "...")
 
             time_max = max([w.Run_Time for w in waves])
-            time_min = max([w.Run_Time for w in waves])
+            time_min = min([w.Run_Time for w in waves])
+
             error_max = max([w.Percent_Error for w in waves])
             #Error min is always 0
 
@@ -589,11 +581,11 @@ class NMLDB_Model(object):
             # plt.show()
 
             print("Saving optimal time step 1/" + str(1 / optimal_dt) + "...")
-            model.Optimal_DT = optimal_dt
-            model.Optimal_DT_a = a
-            model.Optimal_DT_b = b
-            model.Optimal_DT_c = c
-            model.save()
+            self.model_record.Optimal_DT = optimal_dt
+            self.model_record.Optimal_DT_a = a
+            self.model_record.Optimal_DT_b = b
+            self.model_record.Optimal_DT_c = c
+            self.model_record.save()
 
         return optimal_dt
 

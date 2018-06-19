@@ -30,10 +30,6 @@ def save_model_properties():
         properties = params[1].split(',')
         mm.save_model_properties(models, properties)
 
-def save_morphology_data():
-    with CellModel(params[0]) as cm:
-        cm.save_morphology_data()
-
 
 def check_install_dependencies():
     import os
