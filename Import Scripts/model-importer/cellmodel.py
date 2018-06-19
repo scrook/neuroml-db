@@ -13,6 +13,7 @@ import urllib
 from abc import abstractmethod, ABCMeta
 from decimal import Decimal
 import nmldbutils
+import inspect
 
 import numpy as np
 from matplotlib import pyplot as plt
@@ -31,13 +32,33 @@ class CellModel(NMLDB_Model):
     def __init__(self, *args, **kwargs):
         super(CellModel, self).__init__(*args, **kwargs)
 
+        self.steady_state_delay = 1000
         self.pickle_file_cache = {}
 
         self.all_properties.extend([
             'structural_metrics',
-            'spike_counts',
-            'cell_model_properties'
+            'tolerances',
+            'stability_range',
+            'resting_voltage',
+            'threshold',
+            'rheobase',
+            'bias_current',
+            'tolerances_with_stim',
+            'DT_SENSITIVITY',
+            'CVODE_RUNTIME_COMPLEXITY',
+            'STEADY_STATE',
+            'RAMP',
+            'SHORT_SQUARE',
+            'SQUARE',
+            'LONG_SQUARE',
+            'SHORT_SQUARE_HOLD',
+            'SHORT_SQUARE_TRIPPLE',
+            'SQUARE_SUBTHRESHOLD',
+            'NOISE',
+            'NOISE_RAMP',
         ])
+
+        self.init_cell_record()
 
 
     def __enter__(self):
@@ -52,110 +73,111 @@ class CellModel(NMLDB_Model):
             os.system('rm -rf "' + self.temp_model_path + '"')
             print("Cleanup done")
 
+    def init_cell_record(self):
+        self.server.connect()
 
-    def save_cell_model_properties(self, model_dir = None):
-        if model_dir is None:
-            model_dir = self.get_model_nml_id()
+        self.cell_record = Cells.get_or_none(Cells.Model_ID == self.get_model_nml_id())
 
-        self.convert_to_NEURON(model_dir)
+        if self.cell_record is None:
+            self.cell_record = Cells(
+                Model_ID=self.get_model_nml_id(),
+                Stability_Range_Low=None,
+                Stability_Range_High=None,
+                Is_Intrinsically_Spiking=False,
+                Resting_Voltage=None,
+                Rheobase_Low=None,
+                Rheobase_High=None,
+                Threshold_Current_Low=None,
+                Threshold_Current_High=None,
+                Bias_Current=None,
+                Bias_Voltage=None,
+                Errors=None
+            )
 
-        id = self.get_model_nml_id()
+            # Create cell record if it doesn't exist (using the NMLDB ID as the pkey)
+            self.cell_record.save(force_insert=True)
 
-        try:
-            self.get_cell_properties()
-            self.update_model_simulation_status(id, status="CURRENT")
+            # Retrieve the freshly created record
+            self.cell_record = Cells.get_or_none(Cells.Model_ID == self.get_model_nml_id())
 
-        except:
-            print("Encountered an error. Saving progress...")
-            self.save_cell_record()
-            self.update_model_simulation_status(id, status="ERROR")
-
-            raise
-
-
-    def get_cell_properties(self):
-
-        self.cell_record = Cells(
-            Model_ID=self.get_model_nml_id(),
-            Stability_Range_Low=None,
-            Stability_Range_High=None,
-            Is_Intrinsically_Spiking=False,
-            Resting_Voltage=None,
-            Rheobase_Low=None,
-            Rheobase_High=None,
-            Threshold_Current_Low=None,
-            Threshold_Current_High=None,
-            Bias_Current=None,
-            Bias_Voltage=None,
-            Errors=None
-        )
-
-        self.setTolerances()
-
+    def save_stability_range(self):
         print("Getting stability range...")
         self.cell_record.Stability_Range_Low, self.cell_record.Stability_Range_High = self.getStabilityRange()
         # self.cell_record.Stability_Range_Low, self.cell_record.Stability_Range_High = (-1.5, 76.0)
 
-        if self.cell_record.Stability_Range_Low == self.cell_record.Stability_Range_High:
-            print("Cell is not stable, skipping tests...")
-            self.save_cell_record()
+        assert self.cell_record.Stability_Range_Low < self.cell_record.Stability_Range_High
 
+        self.cell_record.save()
+
+    def save_resting_voltage(self):
         print("Getting resting voltage...")
         self.cell_record.Resting_Voltage = self.getRestingV()["rest"]
         # self.cell_record.Resting_Voltage = -76.0
 
-        # If intrinsically spiking, skip the remaining tests
-        if self.cell_record.Resting_Voltage is None:
-            print("Cell is intrinsincally spiking, skipping other tests...")
-            self.cell_record.Is_Intrinsically_Spiking = True
-            self.save_cell_record()
-        else:
-            self.cell_record.Is_Intrinsically_Spiking = False
+        # No resting v means cell is intrinsically spiking
+        self.cell_record.Is_Intrinsically_Spiking = self.cell_record.Resting_Voltage is None
 
-            print("Getting threshold...")
-            th = self.getThreshold(0, self.cell_record.Stability_Range_High)
-            self.cell_record.Threshold_Current_Low = np.min(th)
-            self.cell_record.Threshold_Current_High = np.max(th)
-            # self.cell_record.Threshold_Current_Low = 0.16
-            # self.cell_record.Threshold_Current_High = 0.25
-
-            print("Getting rheobase...")
-            rb = self.getRheobase(0, self.cell_record.Threshold_Current_High)
-            self.cell_record.Rheobase_Low = np.min(rb)
-            self.cell_record.Rheobase_High = np.max(rb)
-            # self.cell_record.Rheobase_Low = 0.16
-            # self.cell_record.Rheobase_High = 0.25
-
-            roundedRest = round(self.cell_record.Resting_Voltage / 10) * 10
-
-            if roundedRest == -80:
-                bias_v = -70
-            else:
-                bias_v = -80
-
-            print("Getting current for bias voltage...")
-            bias_i = self.getBiasCurrent(targetV=bias_v)
-
-            self.cell_record.Bias_Voltage = bias_v
-            self.cell_record.Bias_Current = bias_i
-
-            print("Starting validation...")
-            assert self.cell_record.Stability_Range_Low < self.cell_record.Stability_Range_High
+        if not self.cell_record.Is_Intrinsically_Spiking:
             assert self.cell_record.Resting_Voltage < 0
-            assert self.cell_record.Rheobase_Low < self.cell_record.Rheobase_High
-            assert self.cell_record.Rheobase_High < self.cell_record.Threshold_Current_High
-            assert self.cell_record.Threshold_Current_Low < self.cell_record.Threshold_Current_High
-            assert self.cell_record.Bias_Current < self.cell_record.Rheobase_High
 
-            if self.cell_record.Bias_Voltage < self.cell_record.Resting_Voltage:
-                assert self.cell_record.Bias_Current < 0
-            else:
-                assert self.cell_record.Bias_Current > 0
+        self.cell_record.save()
 
-            self.cell_record.Errors = ""
 
-            print("Tests finished, saving...")
-            self.save_cell_record()
+    def save_threshold(self):
+        if self.cell_record.Is_Intrinsically_Spiking:
+            return
+
+        print("Getting threshold...")
+
+        th = self.getThreshold(0, self.cell_record.Stability_Range_High)
+        self.cell_record.Threshold_Current_Low = np.min(th)
+        self.cell_record.Threshold_Current_High = np.max(th)
+        # self.cell_record.Threshold_Current_Low = 0.16
+        # self.cell_record.Threshold_Current_High = 0.25
+
+        assert self.cell_record.Threshold_Current_Low < self.cell_record.Threshold_Current_High
+
+        self.cell_record.save()
+
+
+    def save_rheobase(self):
+        if self.cell_record.Is_Intrinsically_Spiking:
+            return
+
+        print("Getting rheobase...")
+        rb = self.getRheobase(0, self.cell_record.Threshold_Current_High)
+        self.cell_record.Rheobase_Low = np.min(rb)
+        self.cell_record.Rheobase_High = np.max(rb)
+        # self.cell_record.Rheobase_Low = 0.16
+        # self.cell_record.Rheobase_High = 0.25
+
+        assert self.cell_record.Rheobase_Low < self.cell_record.Rheobase_High
+        assert self.cell_record.Rheobase_High < self.cell_record.Threshold_Current_High
+
+        self.cell_record.save()
+
+    def save_bias_current(self):
+        print("Getting current for bias voltage...")
+        roundedRest = round(self.cell_record.Resting_Voltage / 10) * 10
+
+        if roundedRest == -80:
+            bias_v = -70
+        else:
+            bias_v = -80
+
+        bias_i = self.getBiasCurrent(targetV=bias_v)
+
+        self.cell_record.Bias_Voltage = bias_v
+        self.cell_record.Bias_Current = bias_i
+
+        assert self.cell_record.Bias_Current < self.cell_record.Rheobase_High
+
+        if self.cell_record.Bias_Voltage < self.cell_record.Resting_Voltage:
+            assert self.cell_record.Bias_Current < 0
+        else:
+            assert self.cell_record.Bias_Current > 0
+
+        self.cell_record.save()
 
     def get_number_of_compartments(self, h):
         if self.is_abstract_cell():
@@ -456,202 +478,252 @@ class CellModel(NMLDB_Model):
 
                 h.pt3dchange(i, x, y, z, diam, sec=sec)
 
-    def save_cell_model_responses(self, model_dir, protocols):
-        id = self.get_model_nml_id()
-
-        self.server.connect()
-
-        if Models.get(Models.Model_ID == id).Simulation_Status == 'NOSIM':
-            print("Model " + id + " has simulation status NOSIM. Skipping...")
+    def save_tolerances_with_stim(self):
+        if self.is_nosim():
             return
 
-        self.convert_to_NEURON(model_dir)
+        self.save_tolerances(current_amp=0 if self.cell_record.Is_Intrinsically_Spiking else self.cell_record.Threshold_Current_High)
 
-        try:
-            self.get_cell_model_responses(protocols)
-            self.update_model_simulation_status(id, status="CURRENT")
+    def save_STEADY_STATE(self):
+        """
+        Reach steady state and save model state
+        :return: None
+        """
 
-        except:
-            print("Encountered an error. Saving progress...")
-            self.update_model_simulation_status(id, status="ERROR")
+        if self.can_skip_steady_state():
+            return
 
-            raise
+        self.remove_protocol_waveforms("STEADY_STATE")
 
-    def get_cell_model_responses(self, protocols):
-        steady_state_delay = 1000  # 1000
-
-        id = self.get_model_nml_id()
-
-        self.server.connect()
-
-        cell_props = Cells.get(Cells.Model_ID == id)
-        self.setTolerances(current_amp=0 if cell_props.Is_Intrinsically_Spiking else cell_props.Threshold_Current_High)
-
-        if self.config.skip_steady_state_if_exists and os.path.exists(os.path.join(self.get_permanent_model_directory(), 'state.bin')):
-            print('Steady state file exists. Will skip STEADY_STATE protocol...')
-            protocols = [p for p in protocols if p != 'STEADY_STATE']
-
-        try:
-
-            print("Removing existing model waveforms: " + str(protocols))
-            Model_Waveforms\
-                .delete()\
-                .where((Model_Waveforms.Model == id) & (Model_Waveforms.Protocol.in_(protocols)))\
-                .execute()
+        result = self.getRestingV(save_resting_state=True, run_time=self.steady_state_delay)
+        self.save_tvi_plot(label="STEADY STATE", tvi_dict=result)
+        self.save_vi_waveforms(protocol="STEADY_STATE", tvi_dict=result)
 
 
+    def save_RAMP(self):
+        """
+        From steady state, run ramp injection
+        :return: None
+        """
 
-            # Reach steady state and save model state
-            if "STEADY_STATE" in protocols:
-                result = self.getRestingV(save_resting_state=True, run_time=steady_state_delay)
-                self.save_tvi_plot(label="STEADY STATE", tvi_dict=result)
-                self.save_vi_waveforms(protocol="STEADY_STATE", tvi_dict=result)
+        if self.cell_record.Is_Intrinsically_Spiking:
+            print("Cell is intrinsically spiking. Skipping RAMP...")
+            return
 
-            if cell_props.Is_Intrinsically_Spiking:
-                print("Cell is intrinsically spiking. Skipping other protocols.")
-                return
+        self.remove_protocol_waveforms("RAMP")
 
-            # From steady state, run ramp injection
-            if "RAMP" in protocols:
-                result = self.get_ramp_response(ramp_delay=steady_state_delay,
-                                                ramp_max_duration=5 * 1000,
-                                                ramp_increase_rate_per_second=cell_props.Rheobase_High,
-                                                stop_after_n_spikes_found=10,
-                                                restore_state=True)
+        result = self.get_ramp_response(ramp_delay=self.steady_state_delay,
+                                        ramp_max_duration=5 * 1000,
+                                        ramp_increase_rate_per_second=self.cell_record.Rheobase_High,
+                                        stop_after_n_spikes_found=10,
+                                        restore_state=True)
 
-                self.save_tvi_plot(label="RAMP", tvi_dict=result)
-                self.save_vi_waveforms(protocol="RAMP", tvi_dict=result)
+        self.save_tvi_plot(label="RAMP", tvi_dict=result)
+        self.save_vi_waveforms(protocol="RAMP", tvi_dict=result)
 
-            # Short square is a brief, threshold current pulse after steady state
-            if "SHORT_SQUARE" in protocols:
-                self.save_square_current_set(protocol="SHORT_SQUARE",
-                                             square_low=cell_props.Threshold_Current_Low,
-                                             square_high=cell_props.Threshold_Current_High,
-                                             square_steps=2,
-                                             delay=steady_state_delay,
-                                             duration=3)
+    def save_SHORT_SQUARE(self):
+        """
+        # Short square is a brief, threshold current pulse after steady state
+        :return: None
+        """
 
-            if "SQUARE" in protocols:
-                self.save_square_current_set(protocol="SQUARE",
-                                             square_low=-cell_props.Rheobase_High * 0.5,  # Note the "-"
-                                             square_high=cell_props.Rheobase_High * 1.5,
-                                             square_steps=11,
-                                             delay=steady_state_delay,
-                                             duration=1000)
+        if self.cell_record.Is_Intrinsically_Spiking:
+            print("Cell is intrinsically spiking. Skipping SHORT_SQUARE.")
+            return
 
-            # Long square is a 2s current pulse after steady state
-            if "LONG_SQUARE" in protocols:
-                self.save_square_current_set(protocol="LONG_SQUARE",
-                                             square_low=cell_props.Rheobase_High,
-                                             square_high=cell_props.Rheobase_High * 1.5,
-                                             square_steps=3,
-                                             delay=steady_state_delay,
-                                             duration=2000)
+        self.remove_protocol_waveforms("SHORT_SQUARE")
 
-            if "SHORT_SQUARE_HOLD" in protocols:
-                def get_current_ti():
-                    ramp_t = [
-                        0,
-                        steady_state_delay,
-                        steady_state_delay,
-                        steady_state_delay + 3.0,
-                        steady_state_delay + 3.0,
-                        steady_state_delay + 250
-                    ]
-                    ramp_i = [
-                        cell_props.Bias_Current,
-                        cell_props.Bias_Current,
-                        -cell_props.Bias_Current + cell_props.Threshold_Current_High,
-                        -cell_props.Bias_Current + cell_props.Threshold_Current_High,
-                        cell_props.Bias_Current,
-                        cell_props.Bias_Current
-                    ]
-
-                    return ramp_t, ramp_i
-
-                self.save_arb_current(protocol="SHORT_SQUARE_HOLD",
-                                      delay=steady_state_delay,
-                                      duration=250,
-                                      get_current_ti=get_current_ti,
-                                      restore_state=False)  # Holding v, not resting
+        self.save_square_current_set(protocol="SHORT_SQUARE",
+                                     square_low=self.cell_record.Threshold_Current_Low,
+                                     square_high=self.cell_record.Threshold_Current_High,
+                                     square_steps=2,
+                                     delay=self.steady_state_delay,
+                                     duration=3)
 
 
-            if "SHORT_SQUARE_TRIPPLE" in protocols:
-                self.save_square_tuple_set(delay=steady_state_delay,
-                                           threshold_current=cell_props.Threshold_Current_High
-                                           )
+    def save_SQUARE(self):
+        if self.cell_record.Is_Intrinsically_Spiking:
+            print("Cell is intrinsically spiking. Skipping SQUARE.")
+            return
 
-            # Subthreshold pulses to measure capacitance
-            if "SQUARE_SUBTHRESHOLD" in protocols:
-                self.save_square_current_set(protocol="SQUARE_SUBTHRESHOLD",
-                                             square_low=-cell_props.Threshold_Current_Low,
-                                             square_high=cell_props.Threshold_Current_Low,
-                                             square_steps=2,
-                                             delay=steady_state_delay,
-                                             duration=0.5)
+        self.remove_protocol_waveforms("SQUARE")
 
-            if "NOISE1" in protocols:
-                self.save_noise_response_set(protocol="NOISE",
-                                             meta_protocol="SEED1",
-                                             delay=steady_state_delay,
-                                             duration=3000,
-                                             post_delay=250,
-                                             rheobase=cell_props.Rheobase_High,
-                                             multiples=[0.75, 1.0, 1.25],
-                                             noise_pickle_file="noise1.pickle",
-                                             restore_state=True)
+        self.save_square_current_set(protocol="SQUARE",
+                                     square_low=-self.cell_record.Rheobase_High * 0.5,  # Note the "-"
+                                     square_high=self.cell_record.Rheobase_High * 1.5,
+                                     square_steps=11,
+                                     delay=self.steady_state_delay,
+                                     duration=1000)
 
-            if "NOISE2" in protocols:
-                self.save_noise_response_set(protocol="NOISE",
-                                             meta_protocol="SEED2",
-                                             delay=steady_state_delay,
-                                             duration=3000,
-                                             post_delay=250,
-                                             rheobase=cell_props.Rheobase_High,
-                                             multiples=[0.75, 1.0, 1.25],
-                                             noise_pickle_file="noise2.pickle",
-                                             restore_state=True)
 
-            if "NOISE_RAMP" in protocols:
-                self.save_noise_response_set(protocol="NOISE_RAMP",
-                                             delay=steady_state_delay,
-                                             duration=32000,
-                                             post_delay=250,
-                                             rheobase=cell_props.Rheobase_High,
-                                             multiples=[1.0],
-                                             noise_pickle_file="noisyRamp.pickle",
-                                             restore_state=True)
+    def save_LONG_SQUARE(self):
+        """
+        Long square is a 2s current pulse after steady state
+        :return: None
+        """
 
-            if "DT_SENSITIVITY" in protocols:
-                self.save_dt_sensitivity_set(rheobase=cell_props.Rheobase_High)
+        if self.cell_record.Is_Intrinsically_Spiking:
+            print("Cell is intrinsically spiking. Skipping LONG_SQUARE.")
+            return
 
-            if "OPTIMAL_DT" in protocols:
-                self.save_optimal_time_step()
+        self.remove_protocol_waveforms("LONG_SQUARE")
 
-            if "OPTIMAL_DT_BENCHMARK" in protocols:
-                optimal_dt = Models.get(Models.Model_ID == id).Optimal_DT
+        self.save_square_current_set(protocol="LONG_SQUARE",
+                                         square_low=self.cell_record.Rheobase_High,
+                                         square_high=self.cell_record.Rheobase_High * 1.5,
+                                         square_steps=3,
+                                         delay=self.steady_state_delay,
+                                         duration=2000)
 
-                if optimal_dt is not None:
-                    print('Starting OPTIMAL_DT_BENCHMARK protocol...')
 
-                    self.save_dt_sensitivity_set(
-                        rheobase=cell_props.Rheobase_High,
-                        protocol="OPTIMAL_DT_BENCHMARK",
-                        steps_per_ms_set=[1.0/optimal_dt],
-                        save_max_stable_dt=False
-                    )
+    def save_SHORT_SQUARE_HOLD(self):
+        """
+        SHORT_SQUARE_HOLD is a short threshold stimulus, while under bias current
+        :return:
+        """
+        if self.cell_record.Is_Intrinsically_Spiking:
+            print("Cell is intrinsically spiking. Skipping SHORT_SQUARE_HOLD.")
+            return
 
-            if "CVODE_STEP_FREQUENCIES" in protocols:
-                self.save_cvode_step_frequencies(protocol="CVODE_STEP_FREQUENCIES",
-                                                 delay=steady_state_delay,
-                                                 sub_rheobase=cell_props.Rheobase_Low,
-                                                 rheobase=cell_props.Rheobase_High)
+        self.remove_protocol_waveforms("SHORT_SQUARE_HOLD")
 
-            if "CVODE_RUNTIME_COMPLEXITY" in protocols:
-                self.save_cvode_runtime_complexity_metrics()
+        def get_current_ti():
+            ramp_t = [
+                0,
+                self.steady_state_delay,
+                self.steady_state_delay,
+                self.steady_state_delay + 3.0,
+                self.steady_state_delay + 3.0,
+                self.steady_state_delay + 250
+            ]
+            ramp_i = [
+                self.cell_record.Bias_Current,
+                self.cell_record.Bias_Current,
+                -self.cell_record.Bias_Current + self.cell_record.Threshold_Current_High,
+                -self.cell_record.Bias_Current + self.cell_record.Threshold_Current_High,
+                self.cell_record.Bias_Current,
+                self.cell_record.Bias_Current
+            ]
 
-        finally:
-            self.cleanup_waveforms()
+            return ramp_t, ramp_i
+
+        self.save_arb_current(protocol="SHORT_SQUARE_HOLD",
+                              delay=self.steady_state_delay,
+                              duration=250,
+                              get_current_ti=get_current_ti,
+                              restore_state=False)  # Holding v, not resting
+
+
+    def save_SHORT_SQUARE_TRIPPLE(self):
+        if self.cell_record.Is_Intrinsically_Spiking:
+            print("Cell is intrinsically spiking. Skipping SHORT_SQUARE_TRIPPLE.")
+            return
+
+        self.remove_protocol_waveforms("SHORT_SQUARE_TRIPPLE")
+
+        self.save_square_tuple_set(delay=self.steady_state_delay,
+                                   threshold_current=self.cell_record.Threshold_Current_High)
+
+    def save_SQUARE_SUBTHRESHOLD(self):
+        """
+        Subthreshold pulses to measure capacitance
+        :return: None
+        """
+
+        if self.cell_record.Is_Intrinsically_Spiking:
+            print("Cell is intrinsically spiking. Skipping SQUARE_SUBTHRESHOLD.")
+            return
+
+        self.remove_protocol_waveforms("SQUARE_SUBTHRESHOLD")
+
+        self.save_square_current_set(protocol="SQUARE_SUBTHRESHOLD",
+                                     square_low=-self.cell_record.Threshold_Current_Low,
+                                     square_high=self.cell_record.Threshold_Current_Low,
+                                     square_steps=2,
+                                     delay=self.steady_state_delay,
+                                     duration=0.5)
+
+    def save_NOISE(self):
+        if self.cell_record.Is_Intrinsically_Spiking:
+            print("Cell is intrinsically spiking. Skipping NOISE.")
+            return
+
+        self.remove_protocol_waveforms("NOISE")
+
+        self.save_noise_response_set(protocol="NOISE",
+                                     meta_protocol="SEED1",
+                                     delay=self.steady_state_delay,
+                                     duration=3000,
+                                     post_delay=250,
+                                     rheobase=self.cell_record.Rheobase_High,
+                                     multiples=[0.75, 1.0, 1.25],
+                                     noise_pickle_file="noise1.pickle",
+                                     restore_state=True)
+
+        self.save_noise_response_set(protocol="NOISE",
+                                     meta_protocol="SEED2",
+                                     delay=self.steady_state_delay,
+                                     duration=3000,
+                                     post_delay=250,
+                                     rheobase=self.cell_record.Rheobase_High,
+                                     multiples=[0.75, 1.0, 1.25],
+                                     noise_pickle_file="noise2.pickle",
+                                     restore_state=True)
+
+    def save_NOISE_RAMP(self):
+        if self.cell_record.Is_Intrinsically_Spiking:
+            print("Cell is intrinsically spiking. Skipping NOISE_RAMP.")
+            return
+
+        self.remove_protocol_waveforms("NOISE_RAMP")
+
+        self.save_noise_response_set(protocol="NOISE_RAMP",
+                                     delay=self.steady_state_delay,
+                                     duration=32000,
+                                     post_delay=250,
+                                     rheobase=self.cell_record.Rheobase_High,
+                                     multiples=[1.0],
+                                     noise_pickle_file="noisyRamp.pickle",
+                                     restore_state=True)
+
+
+    def save_DT_SENSITIVITY(self):
+        if self.cell_record.Is_Intrinsically_Spiking:
+            print("Cell is intrinsically spiking. Skipping DT_SENSITIVITY.")
+            return
+
+        self.remove_protocol_waveforms("DT_SENSITIVITY")
+        self.remove_protocol_waveforms("OPTIMAL_DT_BENCHMARK")
+
+        self.save_dt_sensitivity_set(rheobase=self.cell_record.Rheobase_High)
+        optimal_dt = self.save_optimal_time_step()
+
+        if optimal_dt is not None:
+            print('Starting OPTIMAL_DT_BENCHMARK protocol...')
+
+            self.save_dt_sensitivity_set(
+                rheobase=self.cell_record.Rheobase_High,
+                protocol="OPTIMAL_DT_BENCHMARK",
+                steps_per_ms_set=[1.0 / optimal_dt],
+                save_max_stable_dt=False
+            )
+
+    def save_CVODE_RUNTIME_COMPLEXITY(self):
+        if self.cell_record.Is_Intrinsically_Spiking:
+            print("Cell is intrinsically spiking. Skipping CVODE_RUNTIME_COMPLEXITY.")
+            return
+
+        self.remove_protocol_waveforms("CVODE_STEP_FREQUENCIES")
+
+        self.save_cvode_step_frequencies(protocol="CVODE_STEP_FREQUENCIES",
+                                         delay=self.steady_state_delay,
+                                         sub_rheobase=self.cell_record.Rheobase_Low,
+                                         rheobase=self.cell_record.Rheobase_High)
+
+        self.save_spike_counts()
+
+        self.save_cvode_runtime_complexity_metrics()
+
 
     def save_square_tuple_set(self, delay, threshold_current,
                               intervals=[7, 11, 15, 19, 23, 27, 31, 35], stim_width=3, tuples=3):
@@ -1409,14 +1481,14 @@ class CellModel(NMLDB_Model):
         result = runner.run()
         return result
 
-    def setTolerances(self, tstop=100, current_amp=0):
+    def save_tolerances(self, tstop=100, current_amp=0):
 
         print("Running tolerance tool...")
         if self.is_abstract_cell():
             print("Cell is abstract, skipping tolerance tool")
             return
 
-        super(CellModel, self).setTolerances(tstop, current_amp)
+        super(CellModel, self).save_tolerances(tstop, current_amp)
 
     def get_equation_count(self):
         def run_eq_counter():

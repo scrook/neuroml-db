@@ -936,15 +936,18 @@ class ModelManager(object):
 
             if model_id.startswith("NMLCL"):
                 from cellmodel import CellModel as TargetModel
+                skip_NEURON = False
 
             elif model_id.startswith("NMLCH"):
                 from channelmodel import ChannelModel as TargetModel
+                skip_NEURON = False
 
             else:
                 from nmldbmodel import NMLDB_Model as TargetModel
+                skip_NEURON = True
 
             with TargetModel(model, server=self.server) as m:
-                m.save_properties(properties)
+                m.save_properties(properties, skip_conversion_to_NEURON=skip_NEURON)
 
     def update_model_checksums(self):
         """
@@ -959,38 +962,6 @@ class ModelManager(object):
             with NMLDB_Model(model.Model_ID, server=self.server) as m:
                 m.save_property('checksum')
 
-
-    def save_optimal_time_steps(self):
-
-        self.server.connect()
-
-        models = Models \
-            .select(Models.Model_ID) \
-            .join(Cells, on=(Cells.Model_ID == Models.Model_ID)) \
-            .where((Models.Optimal_DT.is_null(True)))
-
-        from nmldbmodel import NMLDB_Model
-
-        with NMLDB_Model() as db_model:
-            for model in models:
-                db_model.path = model.Model_ID
-                db_model.save_optimal_time_step()
-
-    def save_cvode_runtime_complexity_metrics(self):
-
-        self.server.connect()
-
-        models = Models \
-            .select(Models.Model_ID) \
-            .join(Cells, on=(Cells.Model_ID == Models.Model_ID)) \
-            .where((Models.CVODE_baseline_step_frequency.is_null(True)) | (Models.CVODE_steps_per_spike < 0))
-
-        from nmldbmodel import NMLDB_Model
-
-        with NMLDB_Model() as db_model:
-            for model in models:
-                db_model.path = model.Model_ID
-                db_model.save_cvode_runtime_complexity_metrics()
 
     def replace_tokens(self, target, reps):
         result = target

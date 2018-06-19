@@ -58,12 +58,26 @@ class NMLDB_Model(object):
         if not self.server_passed_in:
             self.server.close()
 
-    def save_properties(self, properties=['ALL']):
+    def save_properties(self, properties=['ALL'], skip_conversion_to_NEURON=False):
         if properties == ['ALL']:
             properties = self.all_properties
 
-        for property in properties:
-            self.save_property(property)
+        try:
+            if not skip_conversion_to_NEURON:
+                self.convert_to_NEURON(self.get_model_nml_id())
+
+            for property in properties:
+                self.save_property(property)
+
+            self.update_model_status(id, status="CURRENT")
+
+        except:
+            print("Encountered an error. Saving error message...")
+            self.update_model_status(id, status="ERROR")
+            raise
+
+        finally:
+            self.cleanup_waveforms()
 
     def save_property(self, property):
         print("Saving " + self.get_model_nml_id() + " " + property + "...")
@@ -75,6 +89,27 @@ class NMLDB_Model(object):
             return
 
         getattr(self, method)()
+
+    def is_nosim(self):
+        if self.model_record.Simulation_Status == 'NOSIM':
+            print("Model " + id + " has simulation status NOSIM...")
+            return True
+
+        return False
+
+    def can_skip_steady_state(self):
+        if self.config.skip_steady_state_if_exists and os.path.exists(os.path.join(self.get_permanent_model_directory(), 'state.bin')):
+            print('Steady state file exists. Will skip STEADY_STATE protocol...')
+            return True
+
+        return False
+
+    def remove_protocol_waveforms(self, protocol):
+        print("Removing existing model waveforms: " + str(protocol))
+        Model_Waveforms \
+            .delete() \
+            .where((Model_Waveforms.Model == id) & (Model_Waveforms.Protocol == protocol)) \
+            .execute()
 
     def save_checksum(self):
         file_path = os.path.join(self.get_permanent_model_directory(), self.model_record.File_Name)
@@ -90,7 +125,7 @@ class NMLDB_Model(object):
             self.model_record.save()
 
     def save_equation_count(self):
-        self.convert_to_NEURON()
+        self.convert_to_NEURON(self.get_model_nml_id())
 
         count = self.get_equation_count()
 
@@ -104,10 +139,15 @@ class NMLDB_Model(object):
         When overriden in a sub-class, counts the number of model differential equations
         :return: The total count of differential equation states in the model
         """
-        return None
+        raise NotImplementedError()
 
-    def convert_to_NEURON(selfs):
-        pass
+    def convert_to_NEURON(self, path):
+        """
+        When overriden in a sub-class, converts the model to NEURON, storing files in config.temp_models_folder.
+        :param path: NML ID or path to NeuroML file
+        :return: None
+        """
+        raise NotImplementedError()
 
     def get_model_nml_id(self):
         return self.path.split("/")[-1]
@@ -352,7 +392,7 @@ class NMLDB_Model(object):
     def build_model(self, restore_tolerances):
         pass
 
-    def setTolerances(self, tstop=100, current_amp=0.0):
+    def save_tolerances(self, tstop=100, current_amp=0.0):
 
         if self.config.cvode_active == 0:
             return
@@ -411,20 +451,18 @@ class NMLDB_Model(object):
         h.cvode.spike_stat(result)
         return int(result[0])
 
-    def update_model_simulation_status(self, id, status):
-        self.update_model_status(id, "Simulation", status)
+    def update_model_status(self, id, status, property=None):
 
-    def update_model_status(self, id, status_type, status):
-
-        print("Updating model "+status_type+" status...")
+        print("Updating model status...")
         self.server.connect()
 
         model = Models.get(Models.Model_ID == id)
-        setattr(model, status_type + "_Status", status)
+        model.Status = status
+        model.Status_Timestamp = datetime.datetime.now()
 
         if status == "ERROR":
             import traceback
-            model.Errors = traceback.format_exc()
+            model.Errors = "Error while updating property: '" + str(property) + "'\n" + traceback.format_exc()
 
         if status == "CURRENT":
             model.Errors = None
@@ -556,6 +594,8 @@ class NMLDB_Model(object):
             model.Optimal_DT_b = b
             model.Optimal_DT_c = c
             model.save()
+
+        return optimal_dt
 
     def run_command(self, command):
         print("Running command: '" + command + "'...")

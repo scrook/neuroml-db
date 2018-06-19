@@ -30,27 +30,6 @@ def save_model_properties():
         properties = params[1].split(',')
         mm.save_model_properties(models, properties)
 
-
-
-def save_cell_properties():
-    with CellModel(params[0]) as cm:
-        cm.save_cell_model_properties(model_dir=params[0])
-
-
-def save_cell_model_responses():
-    with CellModel(params[0]) as cm:
-        cm.save_cell_model_responses(model_dir=params[0], protocols=Config().cell_protocols_to_run)
-
-
-def save_optimal_time_steps():
-    with ModelManager() as mm:
-        mm.save_optimal_time_steps()
-
-
-def save_cvode_runtime_complexity_metrics():
-    with ModelManager() as mm:
-        mm.save_cvode_runtime_complexity_metrics()
-
 def save_morphology_data():
     with CellModel(params[0]) as cm:
         cm.save_morphology_data()
