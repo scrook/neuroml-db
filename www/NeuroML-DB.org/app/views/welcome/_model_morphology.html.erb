@@ -1,13 +1,12 @@
-<%
-  metrics = Model.GetMorphometrics(@model_id)
-%>
 <style>
-  .morphology .image { border-radius: 10px; }
-  .morphology .thumbnail { width: 200px; height: 200px; background-color: #002c39; float: left; margin-right: 15px !important; cursor:pointer; }
+  .morphology .image {  border-radius: 10px; }
+  .morphology .thumbnail { position: relative; border-radius: 10px; width: 200px; height: 200px; background-color: #002c39; float: left; margin-right: 15px !important; cursor:pointer; }
+  .morphology .thumbnail .image { width: 200px; height: 200px; }
+  .morphology .thumbnail .enlarge { position: absolute; bottom: 10px; right: 10px; background-color: white; border: 1px solid #1376c4; border-radius: 5px; }
   #morphology-full-image-dialog { display:none; }
   .morphology-prop-name { text-align: right; padding-right: 15px; vertical-align: bottom; }
   #morphology-morphometrics { height: 200px; overflow: auto; }
-  #morphology-morphometrics table { width: 380px; }
+  #morphology-morphometrics table { width: 100%; }
   .morphology thead td { text-align: left; color: #1376c4; font-weight: bold; }
   .morphology thead td:first-child { text-align: right; padding-right: 15px;  }
   .morphology table td {  }
@@ -34,19 +33,22 @@
       <td class="description">
         Single compartment, abstract, or point cells do not have morphology data.
       </td>
-  <% elsif @morphometrics_status != 'CURRENT' and @GIF_status != 'CURRENT' %>
+  <% elsif @morphometrics.rows.length <= 0 and @gif_path == nil %>
     <td class="description">
       No morphology data available for this model.
     </td>
   <% else %>
     <td class="description">
-      <% if @GIF_status == 'CURRENT' %>
-        <img class="image thumbnail" src="/api/gif?id=<%= @model_id %>">
+      <% if @gif_path != nil %>
+        <div class="thumbnail">
+          <img class="image " src="/api/gif?id=<%= @model_id %>">
+          <div class="enlarge ui-icon ui-icon-arrowthick-2-ne-sw" title="Enlarge Image"></div>
+        </div>
         <div id="morphology-full-image-dialog" class="morphology" title="<%= @type %> Morphology"><img class="image" src="/api/gif?id=<%= @model_id %>"></div>
       <% else %>
           <div class="image thumbnail" style="color: lightblue; line-height: 200px; cursor: default; text-align: center;">3D image not available</div>
       <% end %>
-      <% if @morphometrics_status == 'CURRENT' %>
+      <% if @morphometrics.rows.length > 0 %>
         <div id="morphology-morphometrics">
         <table>
           <thead>
@@ -56,7 +58,7 @@
             </tr>
           </thead>
           <tbody>
-          <% metrics.each do |metric| %>
+          <% @morphometrics.each do |metric| %>
               <tr>
                 <td class="morphology-prop-name">
                   <a target="_blank" href="http://cng.gmu.edu:8080/Lm/help/<%= metric["Metric_ID"] %>.htm"><%= metric["Description"] %></a>

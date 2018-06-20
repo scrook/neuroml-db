@@ -1,0 +1,44 @@
+objectvar save_window_, rvp_
+objectvar scene_vector_[2]
+objectvar ocbox_, ocbox_list_, scene_, scene_list_
+{ocbox_list_ = new List()  scene_list_ = new List()}
+{pwman_place(0,0,0)}
+
+//Begin VariableTimeStep
+{
+ocbox_ = NumericalMethodPanel[0]
+}
+{object_push(ocbox_)}
+{
+atol_ = 0.001  CVode[0].atol(atol_)
+restore(301, 2)
+ atoltool_ = new AtolTool()
+    ats("v", 10)
+    ats("concentration_CaDynamics", 1e-05)
+    ats("m_q_Ca_HVA", 0.0001)
+    ats("h_q_Ca_HVA", 0.1)
+    ats("m_q_Ca_LVA", 0.01)
+    ats("h_q_Ca_LVA", 0.1)
+    ats("m_q_Ih", 0.01)
+    ats("m_q_Im", 0.001)
+    ats("m_q_K_P", 0.01)
+    ats("h_q_K_P", 0.1)
+    ats("m_q_K_T", 0.1)
+    ats("h_q_K_T", 0.1)
+    ats("m_q_Kv3_1", 0.0001)
+    ats("m_q_NaTs", 0.01)
+    ats("h_q_NaTs", 0.1)
+    ats("h_q_Nap", 0.1)
+    ats("z_q_SK", 1e-05)
+    ats("Vector", -1)
+ atoltool_.scales()
+}
+{object_pop()}
+{
+ocbox_.map("VariableTimeStep", 797, 52, 264.96, 113.28)
+}
+objref ocbox_
+//End VariableTimeStep
+
+objectvar scene_vector_[1]
+{doNotify()}

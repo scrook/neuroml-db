@@ -22,9 +22,10 @@ class WelcomeController < ApplicationController
     @file=model["File"]
     @filename=model["File_Name"]
     @model_notes = model["Notes"]
-    @morphometrics_status = model["Morphometrics_Status"]
-    @GIF_status = model["GIF_Status"]
     @compartments = model["Compartments"]
+
+    @morphometrics = Model.GetMorphometrics(@model_id)
+    @gif_path = Model.GetModelGifPath(@model_id)
 
     relatedModels = Array(details[:children]) + Array(details[:parents])
 

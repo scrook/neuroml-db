@@ -325,7 +325,7 @@ class Model < ActiveRecord::Base
       if File.exist?(file)
         return file
       else
-        return nill
+        return nil
       end
 
     else

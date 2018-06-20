@@ -54,9 +54,9 @@ class CellModel(NMLDB_Model):
             'SHORT_SQUARE_HOLD',
             'SHORT_SQUARE_TRIPPLE',
             'SQUARE_SUBTHRESHOLD',
-            'NOISE',
-            'NOISE_RAMP',
-            'morphology_data'
+            # 'NOISE',
+            # 'NOISE_RAMP',
+            # 'morphology_data'
         ])
 
         self.init_cell_record()
@@ -112,7 +112,7 @@ class CellModel(NMLDB_Model):
 
     def save_resting_voltage(self):
         print("Getting resting voltage...")
-        self.cell_record.Resting_Voltage = self.getRestingV()["rest"]
+        self.cell_record.Resting_Voltage = self.getRestingV(self.steady_state_delay, save_resting_state=True)["rest"]
         # self.cell_record.Resting_Voltage = -76.0
 
         # No resting v means cell is intrinsically spiking
@@ -158,6 +158,9 @@ class CellModel(NMLDB_Model):
         self.cell_record.save()
 
     def save_bias_current(self):
+        if self.cell_record.Is_Intrinsically_Spiking:
+            return
+
         print("Getting current for bias voltage...")
         roundedRest = round(self.cell_record.Resting_Voltage / 10) * 10
 
@@ -760,9 +763,6 @@ class CellModel(NMLDB_Model):
 
         def square_protocol(time_flag):
             print('Starting SQUARE PROTOCOL...' + str(amp))
-            # import pydevd
-            # pydevd.settrace('192.168.0.34', port=4200, suspend=False)
-
             self.time_flag = time_flag
             h = self.build_model()
             print('Cell model built, starting current injection...')
@@ -1286,6 +1286,8 @@ class CellModel(NMLDB_Model):
                     run_for_after_delay, test_condition, max_iterations, fig_file,
                     skip_current_delay=False, on_unstable=None, test_early=False):
 
+        state_file = 'border_state.bin'
+
         if not skip_current_delay:
             def reach_resting_state(time_flag):
                 self.time_flag = time_flag
@@ -1295,7 +1297,7 @@ class CellModel(NMLDB_Model):
                 self.sim_init()
                 self.setCurrent(amp=0, delay=current_delay, dur=current_duration)
                 self.runFor(current_delay)
-                self.save_state()
+                self.save_state(state_file=state_file)
                 print("Resting state reached. State saved.")
 
             runner = NeuronRunner(reach_resting_state)
@@ -1319,7 +1321,7 @@ class CellModel(NMLDB_Model):
             def simulate_iteration(time_flag):
                 self.time_flag = time_flag
                 h = self.build_model()
-                self.restore_state()
+                self.restore_state(state_file=state_file)
 
                 self.setCurrent(amp=currentAmp, delay=current_delay, dur=current_duration)
                 print("Trying " + str(currentAmp) + " nA...")
@@ -1423,7 +1425,7 @@ class CellModel(NMLDB_Model):
         runner = NeuronRunner(bias_protocol)
         return runner.run()
 
-    def getRestingV(self, run_time=1000, save_resting_state=False):
+    def getRestingV(self, run_time, save_resting_state=False):
         def rest_protocol(flag):
             self.time_flag = flag
             self.build_model()

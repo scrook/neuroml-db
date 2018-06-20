@@ -59,6 +59,8 @@ class NMLDB_Model(object):
             self.server.close()
 
     def save_properties(self, properties=['ALL'], skip_conversion_to_NEURON=False):
+        property = None
+
         if properties == ['ALL']:
             properties = self.all_properties
 
@@ -73,7 +75,7 @@ class NMLDB_Model(object):
 
         except:
             print("Encountered an error. Saving error message...")
-            self.update_model_status(id, status="ERROR")
+            self.update_model_status(id, status="ERROR", property=property)
             raise
 
         finally:
@@ -98,8 +100,8 @@ class NMLDB_Model(object):
         return False
 
     def can_skip_steady_state(self):
-        if self.config.skip_steady_state_if_exists and os.path.exists(os.path.join(self.get_permanent_model_directory(), 'state.bin')):
-            print('Steady state file exists. Will skip STEADY_STATE protocol...')
+        if self.config.skip_obtaining_steady_state_if_state_file_exists and os.path.exists(os.path.join(self.get_permanent_model_directory(), 'state.bin')):
+            print('Steady state file exists. Skipping STEADY_STATE protocol...')
             return True
 
         return False
@@ -108,7 +110,7 @@ class NMLDB_Model(object):
         print("Removing existing model waveforms: " + str(protocol))
         Model_Waveforms \
             .delete() \
-            .where((Model_Waveforms.Model == id) & (Model_Waveforms.Protocol == protocol)) \
+            .where((Model_Waveforms.Model == self.model_record) & (Model_Waveforms.Protocol == protocol)) \
             .execute()
 
     def save_checksum(self):
@@ -464,7 +466,7 @@ class NMLDB_Model(object):
         if status == "CURRENT":
             self.model_record.Errors = None
 
-            self.model_record.save()
+        self.model_record.save()
 
     def save_cvode_runtime_complexity_metrics(self):
         print("Variable step complexity metrics for " + self.get_model_nml_id()+ "...")

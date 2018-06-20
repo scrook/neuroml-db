@@ -19,24 +19,22 @@ class ModelsController < ApplicationController
 
   def waveform
 
-    result = Model.GetModelWaveForm(params[:id])
-
-    if result != nil
+    begin
+      result = Model.GetModelWaveForm(params[:id])
       render :json => result, :content_type => 'application/javascript', :status => 200
-    else
-      render :json => "Waveform not found", :content_type => 'application/javascript', :status => 404
+    rescue
+      render :json => "Waveform not in DB or not in file system", :content_type => 'application/javascript', :status => 404
     end
 
   end
 
   def plot_waveforms
 
-    result = Model.GetModelPlotWaveForms(params[:model_id], params[:protocol_id], params[:meta_protocol_id])
-
-    if result != nil
+    begin
+      result = Model.GetModelPlotWaveForms(params[:model_id], params[:protocol_id], params[:meta_protocol_id])
       render :json => result, :content_type => 'application/javascript', :status => 200
-    else
-      render :json => "Waveform not found", :content_type => 'application/javascript', :status => 404
+    rescue
+      render :json => "One of the model protocol waveforms is not in DB or not in file system", :content_type => 'application/javascript', :status => 404
     end
 
   end
