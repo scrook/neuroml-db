@@ -1,5 +1,7 @@
 import peewee
 from peewee import *
+from peewee import PrimaryKeyField, ForeignKeyField, DateTimeField, TextField, CharField, IntegerField, FloatField, BooleanField
+
 db_proxy = peewee.Proxy()
 
 
@@ -71,6 +73,7 @@ class Model_Model_Associations(BaseModel):
     class Meta:
         primary_key = peewee.CompositeKey('Parent', 'Child')
 
+
 class Model_Model_Association_Types(BaseModel):
     Parent_Type = ForeignKeyField(Model_Types, field='ID', column_name="Parent_Type")
     Child_Type = ForeignKeyField(Model_Types, field='ID', column_name="Child_Type")
@@ -78,14 +81,29 @@ class Model_Model_Association_Types(BaseModel):
     class Meta:
         primary_key = peewee.CompositeKey('Parent_Type', 'Child_Type')
 
+
+class Channel_Class_Protocols(BaseModel):
+    ID = PrimaryKeyField()
+    Times = CharField()
+    Voltages = CharField()
+    Low_Voltage = FloatField()
+    High_Voltage = FloatField()
+
+
 class Channel_Classes(BaseModel):
     ID = TextField(primary_key=True)
     Name = TextField()
+    Activation_Protocol = ForeignKeyField(Channel_Class_Protocols, column_name="Activation_Protocol_ID")
+    Inactivation_Protocol = ForeignKeyField(Channel_Class_Protocols, column_name="Inactivation_Protocol_ID")
+    Deactivation_Protocol = ForeignKeyField(Channel_Class_Protocols, column_name="Deactivation_Protocol_ID")
 
 
 class Channels(BaseModel):
-    Model = ForeignKeyField(Models, field='Model_ID', backref="Channel", primary_key=True)
-    Type = ForeignKeyField(Channel_Classes, field="ID", column_name="Channel_Class")
+    Model_ID = CharField(primary_key=True)
+    Type = ForeignKeyField(Channel_Classes, field="ID", column_name="Channel_Type")
+    Stability_Range_Low = FloatField()
+    Stability_Range_High = FloatField()
+
 
 class Cells(BaseModel):
     Model_ID = CharField(primary_key=True)
@@ -102,9 +120,11 @@ class Cells(BaseModel):
     Bias_Voltage = FloatField()
     Bias_Current = FloatField()
 
+
 class Morphometrics(BaseModel):
     ID = CharField(primary_key=True)
     Function_ID = IntegerField()
+
 
 class Cell_Morphometrics(BaseModel):
     ID = PrimaryKeyField()
@@ -118,9 +138,11 @@ class Cell_Morphometrics(BaseModel):
     Maximum = FloatField()
     StDev = FloatField()
 
+
 class Protocols(BaseModel):
     ID = CharField(primary_key=True)
     Description = TextField()
+
 
 class Model_Waveforms(BaseModel):
     ID = PrimaryKeyField()
@@ -139,6 +161,7 @@ class Model_Waveforms(BaseModel):
     Steps = IntegerField()
     dt_or_atol = FloatField()
     CVODE_active = BooleanField()
+
 
 class Model_Translators(BaseModel):
     Model = ForeignKeyField(Models, field='Model_ID', backref="Translators")
@@ -176,7 +199,6 @@ class Refers(BaseModel):
     Reference_ID = PrimaryKeyField()
     Resource = ForeignKeyField(Resources, field='Resource_ID', backref="Resources", column_name='Reference_Resource_ID')
     Reference_URI = TextField()
-
 
 
 class Model_References(BaseModel):

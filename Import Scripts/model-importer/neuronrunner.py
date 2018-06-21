@@ -102,7 +102,7 @@ class NeuronRunner:
             sim_mseconds = sim_t_now - self.sim_t_previous
             if sim_mseconds > 0:
                 speed = sim_mseconds / clock_seconds
-                print("Simulation time: " + str(sim_t_now) + " ms. Speed: %.4f ms/s" % speed)
+                print("Simulation time: " + str(sim_t_now) + " ms. Speed:  %.4f ms/s" % speed)
             else:
                 speed = 1.0 / clock_seconds
                 print("Simulation time: " + str(sim_t_now) + " ms. Speed: <%.4f ms/s" % speed)

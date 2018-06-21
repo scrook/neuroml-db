@@ -1,6 +1,9 @@
+import json
 import os, sys
+import re
 import string
 import subprocess
+import urllib
 from abc import abstractmethod, ABCMeta
 from decimal import Decimal
 import datetime
@@ -8,6 +11,7 @@ from scipy.optimize import curve_fit
 from math import sqrt
 import numpy as np
 import nmldbutils
+import shutil
 
 from matplotlib import pyplot as plt
 
@@ -58,6 +62,11 @@ class NMLDB_Model(object):
         if not self.server_passed_in:
             self.server.close()
 
+        if self.config.cleanup_temp and hasattr(self, "temp_model_path"):
+            print("Cleaning up temp files in: " + self.temp_model_path + " ...")
+            os.system('rm -rf "' + self.temp_model_path + '"')
+            print("Cleanup done")
+
     def save_properties(self, properties=['ALL'], skip_conversion_to_NEURON=False):
         property = None
 
@@ -71,11 +80,11 @@ class NMLDB_Model(object):
             for property in properties:
                 self.save_property(property)
 
-            self.update_model_status(id, status="CURRENT")
+            self.update_model_status(status="CURRENT")
 
         except:
             print("Encountered an error. Saving error message...")
-            self.update_model_status(id, status="ERROR", property=property)
+            self.update_model_status(status="ERROR", property=property)
             raise
 
         finally:
@@ -141,13 +150,137 @@ class NMLDB_Model(object):
         """
         raise NotImplementedError()
 
-    def convert_to_NEURON(self, path):
+    def convert_to_NEURON(self, path=None):
         """
-        When overriden in a sub-class, converts the model to NEURON, storing files in config.temp_models_folder.
+        Converts the model to NEURON, storing files in config.temp_models_folder.
         :param path: NML ID or path to NeuroML file
         :return: None
         """
+        if path is None:
+            path = self.path
+
+        print("Converting NML model to NEURON...")
+
+        # Get the parent folder of the model
+        if nmldbutils.is_nmldb_id(path):
+            model_dir_name = self.get_permanent_model_directory()
+
+            dir_nml_files = [f for f in os.listdir(model_dir_name) if nmldbutils.is_nml2_file(f)]
+
+            if len(dir_nml_files) != 1:
+                raise Exception("There should be exactly one NML file in the model directory: " + str(dir_nml_files))
+
+            model_file_name = dir_nml_files[0]
+
+        else:
+            model_dir_name = os.path.dirname(os.path.abspath(path))
+            model_file_name = os.path.basename(path)
+
+        nml_db_id = model_dir_name.split("/")[-1]
+
+        if not nmldbutils.is_nmldb_id(nml_db_id):
+            raise Exception("The name of the parent folder of the model should be a NeuroML-DB id: " + nml_db_id)
+
+        # Templates
+        with open("templates/LEMS_single_model_template.xml") as t:
+            template = t.read()
+
+        include_file_template = '	<Include file="[File]"/>'
+
+        # Find the NML id of the cell
+        with open(os.path.join(model_dir_name, model_file_name)) as f:
+            nml = f.read()
+            model_nml_id = self.get_id_from_nml_file(nml)
+            model_child_filenames = self.get_children_from_nml_file(nml)
+
+        # Get all cell channel files from the model API
+        children_in_db = self.get_model_children_from_DB(nml_db_id)
+
+        db_child_filenames = set(c["File_Name"] for c in children_in_db)
+
+        if len(db_child_filenames - model_child_filenames) > 0:
+            print("Misbehaving children: The following files are in DATABASE but MISSING IN MODEL: " + nml_db_id)
+            print([(c["Model_ID"], c["File_Name"]) for c in children_in_db if c["File_Name"] in (db_child_filenames - model_child_filenames)])
+            raise Exception("Database has extra children for the model")
+
+        if len(model_child_filenames - db_child_filenames) > 0:
+            print("Misbehaving children: The following files are in model but MISSING IN DATABASE: " + nml_db_id)
+            print(model_child_filenames - db_child_filenames)
+            raise Exception("Database is missing children for the model")
+
+        # Set the location where the NEURON files will be stored
+        temp_model_folder = os.path.join(os.path.abspath(self.config.temp_models_folder), nml_db_id)
+
+        # Clear it if exists or create it
+        if os.path.exists(temp_model_folder):
+            shutil.rmtree(temp_model_folder)
+
+        os.makedirs(temp_model_folder)
+
+        # Copy the model to the temp folder
+        shutil.copy2(os.path.join(model_dir_name, model_file_name), temp_model_folder)
+
+        # Create file includes for each child model
+        child_includes = ''
+
+        for c in children_in_db:
+            id = c["Model_ID"]
+            file = c["File_Name"]
+            child_path = "../" + id + "/" + file
+
+            # Copy the children to the NEURON temp files folder
+            shutil.copy2(os.path.join(model_dir_name, child_path), temp_model_folder)
+            child_includes = child_includes + include_file_template.replace("[File]", file) + "\n"
+
+        replacements = {
+            "[ParentInclude]": include_file_template.replace("[File]", model_file_name),
+            "[ChildIncludes]": child_includes,
+            "[Parent_ID]": model_nml_id
+        }
+
+        for r in replacements:
+            template = template.replace(r, str(replacements[r]))
+
+        out_file = temp_model_folder + "/LEMS_" + model_file_name
+
+        with open(out_file, "w") as outF:
+            outF.write(template)
+
+        # Convert LEMS to NEURON with JNML
+        os.chdir(temp_model_folder)
+
+        self.run_command("jnml LEMS_" + model_file_name + " -neuron")
+
+        # Compile mod files
+        self.run_command("nrnivmodl")
+
+        self.temp_model_path = temp_model_folder
+
+        return temp_model_folder
+
+    def get_children_from_nml_file(self, nml):
+        return set(re.compile('<include.*?href.*?=.*?"(.*?)"').findall(nml))
+
+
+    def get_id_from_nml_file(self, nml):
+        """
+        When implemented in a sub-class, returns the id attribute of the top-level parent model's NML element
+        :param nml: Contents of the NML file of the model
+        :return: A string with the value of the model's element's id attribute
+        """
         raise NotImplementedError()
+
+
+    def get_model_children_from_DB(self, modelID):
+        url = "http://" + self.config.webserver + "/api/model?id=" + modelID
+        response = urllib.urlopen(url)
+        model = json.loads(response.read())
+
+        # restrict to cell children
+        #channels = [m for m in model["children"] if m["Type"] == "Channel" or m["Type"] == "Concentration"]
+
+        children = model["children"]
+        return children
 
     def get_model_nml_id(self):
         return self.path.split("/")[-1]
@@ -341,7 +474,7 @@ class NMLDB_Model(object):
         h.cvode_active(self.config.cvode_active)
 
         if not hasattr(self, "time_flag"):
-            raise Exception("self.time_flag must be set to NeuronRunner parameter")
+            raise Exception("self.time_flag must be set to the parameter passed into NeuronRunner call")
 
         self.time_flag.value = h.t
 
@@ -369,6 +502,9 @@ class NMLDB_Model(object):
         # Get the waveform
         return self.get_tv()
 
+    def get_tv(self):
+        raise NotImplementedError()
+
     def crossings_nonzero_pos2neg(self, data, theshold):
         pos = data > theshold
         return (pos[:-1] & ~pos[1:]).nonzero()[0]
@@ -386,8 +522,32 @@ class NMLDB_Model(object):
         ns.save()
         ns.fwrite(sf)
 
-    def restore_state(self, state_file, keep_events):
-        pass
+    def restore_state(self, state_file='state.bin', keep_events=False):
+        from neuron import h
+        ns = h.SaveState()
+        sf = h.File(os.path.join(self.get_permanent_model_directory(), state_file))
+        ns.fread(sf)
+
+        h.stdinit()
+
+        if keep_events:
+            ns.restore(1)
+
+            # Workaround - without the fixed step cycle, NEURON crashes with same error as in:
+            # https://www.neuron.yale.edu/phpBB/viewtopic.php?f=2&t=3845&p=16542#p16542
+            # Only happens when there is a vector.play added after a state restore
+            # Running one cycle using the fixed integration method addresses the problem
+            h.cvode_active(0)
+            prev_dt = h.dt
+            h.dt = 0.000001
+            h.steprun()
+            h.dt = prev_dt
+            # END Workaround
+
+        else:
+            ns.restore()
+
+        h.cvode_active(self.config.cvode_active)
 
     def build_model(self, restore_tolerances):
         pass
@@ -451,7 +611,7 @@ class NMLDB_Model(object):
         h.cvode.spike_stat(result)
         return int(result[0])
 
-    def update_model_status(self, id, status, property=None):
+    def update_model_status(self, status, property=None):
 
         print("Updating model status...")
         self.server.connect()

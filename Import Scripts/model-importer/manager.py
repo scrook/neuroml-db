@@ -432,7 +432,7 @@ class ModelManager(object):
 
         # channel protocol
         if model.Type_id == "CH":
-            channel = Channels.get(Channels.Model == model)
+            channel = Channels.get(Channels.Model_ID == model.Model_ID)
 
             # ok to change - though simulation has to be rerun - need a way to mark simulations to be rerun in general - perhaps at model table level
             channel.Channel_Class = node["channel_protocol"]

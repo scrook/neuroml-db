@@ -61,19 +61,6 @@ class CellModel(NMLDB_Model):
 
         self.init_cell_record()
 
-
-    def __enter__(self):
-        return self
-
-
-    def __exit__(self, exc_type, exc_value, traceback):
-        self.server.close()
-
-        if self.config.cleanup_temp and hasattr(self, "temp_model_path"):
-            print("Cleaning up temp files in: " + self.temp_model_path + " ...")
-            os.system('rm -rf "' + self.temp_model_path + '"')
-            print("Cleanup done")
-
     def init_cell_record(self):
         self.server.connect()
 
@@ -103,7 +90,7 @@ class CellModel(NMLDB_Model):
 
     def save_stability_range(self):
         print("Getting stability range...")
-        self.cell_record.Stability_Range_Low, self.cell_record.Stability_Range_High = self.getStabilityRange()
+        self.cell_record.Stability_Range_Low, self.cell_record.Stability_Range_High = self.get_stability_range()
         # self.cell_record.Stability_Range_Low, self.cell_record.Stability_Range_High = (-1.5, 76.0)
 
         assert self.cell_record.Stability_Range_Low < self.cell_record.Stability_Range_High
@@ -1177,24 +1164,16 @@ class CellModel(NMLDB_Model):
     def sim_init(self):
         from neuron import h
         h.stdinit()
-        self.clear_tvi()
         h.tstop = 1000
         self.current.amp = 0
         self.vc.dur1 = 0
-
-    def clear_tvi(self):
-        # self.t_collector.clear()
-        # self.v_collector.clear()
-        # self.vc_i_collector.clear()
-        # self.ic_i_collector.clear()
-        pass
 
     def setCurrent(self, amp, delay, dur):
         self.current.delay = delay
         self.current.amp = amp
         self.current.dur = dur
 
-    def getStabilityRange(self, testLow=-10, testHigh=15):
+    def get_stability_range(self, testLow=-10, testHigh=15):
 
         print("Searching for UPPER boundary...")
         current_range, found_once = self.find_border(
@@ -1253,33 +1232,6 @@ class CellModel(NMLDB_Model):
             raise Exception("Did not find threshold with currents " + str(current_range))
 
         return current_range
-
-    def restore_state(self, state_file='state.bin', keep_events=False):
-        from neuron import h
-        ns = h.SaveState()
-        sf = h.File(os.path.join(self.get_permanent_model_directory(), state_file))
-        ns.fread(sf)
-
-        h.stdinit()
-
-        if keep_events:
-            ns.restore(1)
-
-            # Workaround - without the fixed step cycle, NEURON crashes with same error as in:
-            # https://www.neuron.yale.edu/phpBB/viewtopic.php?f=2&t=3845&p=16542#p16542
-            # Only happens when there is a vector.play added after a state restore
-            # Running one cycle using the fixed integration method addresses the problem
-            h.cvode_active(0)
-            prev_dt = h.dt
-            h.dt = 0.000001
-            h.steprun()
-            h.dt = prev_dt
-            # END Workaround
-
-        else:
-            ns.restore()
-
-        h.cvode_active(self.config.cvode_active)
 
     def find_border(self, lowerLevel, upperLevel,
                     current_delay, current_duration,
@@ -1537,116 +1489,10 @@ class CellModel(NMLDB_Model):
                 wave.Spikes = spike_count
                 wave.save()
 
-    def convert_to_NEURON(self, path=None):
-        if path is None:
-            path = self.path
 
-        print("Converting cell NML model to NEURON...")
 
-        # Get the parent folder of the model
-        if nmldbutils.is_nmldb_id(path):
-            model_dir_name = self.get_permanent_model_directory()
-
-            dir_nml_files = [f for f in os.listdir(model_dir_name) if nmldbutils.is_nml2_file(f)]
-
-            if len(dir_nml_files) != 1:
-                raise Exception("There should be exactly one NML file in the model directory: " + str(dir_nml_files))
-
-            cell_file_name = dir_nml_files[0]
-
-        else:
-            model_dir_name = os.path.dirname(os.path.abspath(path))
-            cell_file_name = os.path.basename(path)
-
-        nml_db_id = model_dir_name.split("/")[-1]
-
-        if not nmldbutils.is_nmldb_id(nml_db_id):
-            raise Exception("The name of the parent folder of the model should be a NeuroML-DB id: " + nml_db_id)
-
-        # Templates
-        include_file_template = '	<Include file="[File]"/>'
-
-        # Find the NML id of the cell
-        with open(os.path.join(model_dir_name, cell_file_name)) as f:
-            nml = f.read()
-            cell_id = re.search('<.*cell.*?id.*?=.*?"(.*?)"', nml, re.IGNORECASE).groups(1)[0]
-            cell_files = set(re.compile('<include.*?href.*?=.*?"(.*?)"').findall(nml))
-
-        # Get all cell channel files from the model API
-        children_in_db = self.get_cell_children(nml_db_id)
-
-        db_files = set(c["File_Name"] for c in children_in_db)
-
-        if len(db_files - cell_files) > 0:
-            print("Misbehaving children: The following files are in DATABASE but MISSING IN CELL: " + nml_db_id)
-            print(
-            [(c["Model_ID"], c["File_Name"]) for c in children_in_db if c["File_Name"] in (db_files - cell_files)])
-            raise Exception("Database has extra children for the cell")
-
-        if len(cell_files - db_files) > 0:
-            print("Misbehaving children: The following files are in CELL but MISSING IN DATABASE: " + nml_db_id)
-            print(cell_files - db_files)
-            raise Exception("Database is missing children for the cell")
-
-        # Set the location where the NEURON files will be stored
-        temp_model_folder = os.path.join(os.path.abspath(self.config.temp_models_folder), nml_db_id)
-
-        # Clear it if exists or create it
-        if os.path.exists(temp_model_folder):
-            shutil.rmtree(temp_model_folder)
-
-        os.makedirs(temp_model_folder)
-
-        # Copy the model to the temp folder
-        shutil.copy2(os.path.join(model_dir_name, cell_file_name), temp_model_folder)
-
-        # Create file includes for each channel
-        child_includes = ''
-
-        for c in children_in_db:
-            id = c["Model_ID"]
-            file = c["File_Name"]
-            child_path = "../" + id + "/" + file
-
-            # Copy the children to the NEURON temp files folder
-            shutil.copy2(os.path.join(model_dir_name, child_path), temp_model_folder)
-            child_includes = child_includes + include_file_template.replace("[File]", file) + "\n"
-
-        replacements = {
-            "[CellInclude]": include_file_template.replace("[File]", cell_file_name),
-            "[ChannelIncludes]": child_includes,
-            "[Cell_ID]": cell_id
-        }
-
-        with open("templates/LEMS_single_cell_template.xml") as t:
-            template = t.read()
-
-        for r in replacements:
-            template = template.replace(r, str(replacements[r]))
-
-        out_file = temp_model_folder + "/LEMS_" + cell_file_name
-
-        with open(out_file, "w") as outF:
-            outF.write(template)
-
-        # Convert LEMS to NEURON with JNML
-        os.chdir(temp_model_folder)
-
-        self.run_command("jnml LEMS_" + cell_file_name + " -neuron")
-
-        # Compile mod files
-        self.run_command("nrnivmodl")
-
-        self.temp_model_path = temp_model_folder
-
-        return temp_model_folder
-
-    def get_cell_children(self, modelID):
-        url = "http://" + self.config.webserver + "/api/model?id=" + modelID
-        response = urllib.urlopen(url)
-        model = json.loads(response.read())
-        channels = [m for m in model["children"] if m["Type"] == "Channel" or m["Type"] == "Concentration"]
-        return channels
+    def get_id_from_nml_file(self, nml):
+        return re.search('<.*cell.*?id.*?=.*?"(.*?)"', nml, re.IGNORECASE).groups(1)[0]
 
     def get_tv(self):
         from neuron import h
