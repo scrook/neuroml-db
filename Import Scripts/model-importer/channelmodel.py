@@ -1,6 +1,6 @@
 import os
 import re
-
+from runtimer import RunTimer
 import numpy as np
 from matplotlib import pyplot as plt
 from nmldbmodel import NMLDB_Model
@@ -31,6 +31,9 @@ class ChannelModel(NMLDB_Model):
         # Pre-retrieve the resting v of the channel type (the first voltage level of a protocol)
         self.rest_v = float(self.channel_record.Type.Activation_Protocol.Voltages.split(',')[0])
 
+        self.ion = self.channel_record.Type.Species
+        self.erev = self.channel_record.Type.Reversal_Potential
+
 
         if self.channel_record is None:
             raise Exception("No records found in Channels table for model: " + self.get_model_nml_id())
@@ -44,18 +47,27 @@ class ChannelModel(NMLDB_Model):
     def save_DEACTIVATION(self):
         raise NotImplementedError()
 
-    def save_vclamp_set(self, protocol, square_low, square_high, square_steps, delay, duration,
-                        post_delay=250):
+    def save_vclamp_set(self, protocol,
+                        durations_ss, voltages_ss,
+                        durations_stim, voltages_stim,
+                        voltage_low, voltage_high,
+                        steps):
+
+        # Reach the desired steady-state
+        result_ss = self.get_vclamp_response(durations=durations_ss,
+                                          voltages=voltages_ss,
+                                          save_state=True)
 
         # Create current amplitude set
-        amps = np.linspace(square_low, square_high, num=square_steps).tolist()
+        steps = np.linspace(voltage_low, voltage_high, num=steps).tolist()
 
-        # Run each injection as a separate simulation, resuming from steady state
-        for amp in amps:
-            result = self.get_vclamp_response(durations=duration,
-                                              post_delay=post_delay,
-                                              amp=amp,
-                                              restore_state=True)
+        # Run each vclamp as a separate simulation, resuming from desired steady state
+        for step_v in steps:
+            voltages = [step_v if v == 'LOWHIGH' else v for v in voltages_stim]
+
+            result_stim = self.get_vclamp_response(durations=durations_stim,
+                                              voltages=voltages,
+                                              save_state=False)
 
             self.save_tvi_plot(label=protocol, case=self.short_string(amp) + " nA", tvi_dict=result)
 
@@ -66,16 +78,11 @@ class ChannelModel(NMLDB_Model):
     def get_vclamp_response(self,
                             durations,
                             voltages,
-                            restore_state):
+                            restore_state=False, save_state=False):
 
         def vclamp_protocol(time_flag):
             self.time_flag = time_flag
             h = self.build_model()
-
-            # Set the sqauare current injector
-            self.current.dur = durations
-            self.current.delay = delay
-            self.current.amp = amp
 
             t = []
             v = []
@@ -85,19 +92,30 @@ class ChannelModel(NMLDB_Model):
             with RunTimer() as timer:
                 if restore_state:
                     self.restore_state()
-                    t, v = self.runFor(durations + post_delay)
                 else:
                     h.stdinit()
-                    t, v = self.runFor(delay + durations + post_delay)
 
-                for v in range(len(voltages)):
-                    t, v = self.runFor(durations + post_delay)
 
+
+                for s in range(len(voltages)):
+                    self.vc.dur1 = 1e9
+                    self.vc.amp1 = voltages[s]
+
+                    self.runFor(durations[s])
+
+                    t.extend(self.t_collector.get_values_list())
+                    v.extend(self.v_collector.get_values_list())
+                    i.extend(self.i_collector.get_values_list())
+                    g.extend(self.g_collector.get_values_list())
+
+            if save_state:
+                self.save_state()
 
             result = {
-                "t": t.tolist(),
-                "v": v.tolist(),
-                "i": self.ic_i_collector.get_values_list(),
+                "t": t,
+                "v": v,
+                "g": g,
+                "i": i,
                 "run_time": timer.get_run_time(),
                 "steps": int(self.tvec.size()),
                 "cvode_active": int(self.config.cvode_active),
@@ -270,14 +288,20 @@ class ChannelModel(NMLDB_Model):
             raise Exception("Did not find any .mod files in " + self.temp_model_path)
 
         mod_file = mod_files[0]
-        mod_name = mod_file.replace(".mod", "")
+        self.mod_name = mod_file.replace(".mod", "")
 
         self.soma = h.Section()
         self.soma.L = 10
         self.soma.diam = 10
         self.soma.cm = 1000.0/pi
 
-        self.soma.insert(mod_name)
+        self.soma.insert(self.mod_name)
+
+        # Set max conductance
+        setattr(self.soma, "gmax_" + self.mod_name, 10.0)
+
+        # Set reversal pot
+        setattr(self.soma, "e" + self.ion, self.erev)
 
         return h
 
@@ -294,8 +318,10 @@ class ChannelModel(NMLDB_Model):
         print('Setting up tvi collectors...')
         self.t_collector = Collector(self.config.collection_period_ms, h._ref_t)
         self.v_collector = Collector(self.config.collection_period_ms, self.soma(0.5)._ref_v)
-        self.vc_i_collector = Collector(self.config.collection_period_ms, self.vc._ref_i)
+        self.g_collector = Collector(self.config.collection_period_ms, getattr(self.soma(0.5), "_ref_gion_"+self.mod_name))
+        self.i_collector = Collector(self.config.collection_period_ms, getattr(self.soma(0.5), "_ref_i"+self.ion))
 
+        # Keep track of all time steps taken
         self.tvec = h.Vector()
         self.tvec.record(h._ref_t)
 

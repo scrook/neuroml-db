@@ -96,7 +96,8 @@ class Channel_Classes(BaseModel):
     Activation_Protocol = ForeignKeyField(Channel_Class_Protocols, column_name="Activation_Protocol_ID")
     Inactivation_Protocol = ForeignKeyField(Channel_Class_Protocols, column_name="Inactivation_Protocol_ID")
     Deactivation_Protocol = ForeignKeyField(Channel_Class_Protocols, column_name="Deactivation_Protocol_ID")
-
+    Species = CharField()
+    Reversal_Potential = FloatField()
 
 class Channels(BaseModel):
     Model_ID = CharField(primary_key=True)

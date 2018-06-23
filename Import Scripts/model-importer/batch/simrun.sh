@@ -58,4 +58,30 @@ python manage.py save_model_properties NMLCL001447 morphology_data
 python manage.py save_model_properties NMLCL001449 morphology_data
 python manage.py save_model_properties NMLCL001495 morphology_data
 python manage.py save_model_properties NMLCL001502 morphology_data
+python manage.py save_model_properties NMLCL001476 morphology_data
+python manage.py save_model_properties NMLCL001453 morphology_data
+python manage.py save_model_properties NMLCL001501 morphology_data
+python manage.py save_model_properties NMLCL001519 morphology_data
+python manage.py save_model_properties NMLCL001470 morphology_data
+python manage.py save_model_properties NMLCL001530 morphology_data
+python manage.py save_model_properties NMLCL001475 morphology_data
+python manage.py save_model_properties NMLCL001479 morphology_data
+python manage.py save_model_properties NMLCL001510 morphology_data
+python manage.py save_model_properties NMLCL001512 morphology_data
+python manage.py save_model_properties NMLCL001458 morphology_data
+python manage.py save_model_properties NMLCL001504 morphology_data
+python manage.py save_model_properties NMLCL001481 morphology_data
+python manage.py save_model_properties NMLCL001497 morphology_data
+python manage.py save_model_properties NMLCL00k1 morphology_data
+python manage.py save_model_properties NMLCL001533 morphology_data
+python manage.py save_model_properties NMLCL001542 morphology_data
+python manage.py save_model_properties NMLCL001621 morphology_data
+python manage.py save_model_properties NMLCL001624 morphology_data
+python manage.py save_model_properties NMLCL001631 morphology_data
+python manage.py save_model_properties NMLCL001633 morphology_data
+python manage.py save_model_properties NMLCL001642 morphology_data
+python manage.py save_model_properties NMLCL001617 morphology_data
+python manage.py save_model_properties NMLCL001630 morphology_data
+python manage.py save_model_properties NMLCL001620 morphology_data
+
 
