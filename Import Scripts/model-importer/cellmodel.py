@@ -1074,6 +1074,8 @@ class CellModel(NMLDB_Model):
         from neuron import h, gui
         print("DONE")
 
+        h.celsius = self.config.temperature
+
         # Create the cell
         print('Determining cell model type...')
         if self.is_abstract_cell():
@@ -1422,17 +1424,6 @@ class CellModel(NMLDB_Model):
             return
 
         super(CellModel, self).save_tolerances(tstop, current_amp)
-
-    def get_equation_count(self):
-        def run_eq_counter():
-            h = self.build_model(restore_tolerances=False)
-
-            return self.get_number_of_model_state_variables(h)
-
-        runner = NeuronRunner(run_eq_counter, kill_slow_sims=False)
-        eq_count = runner.run()
-
-        return eq_count
 
     def get_structural_metrics(self):
 

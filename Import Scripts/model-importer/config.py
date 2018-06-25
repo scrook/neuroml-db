@@ -12,6 +12,9 @@ class Config(object):
         self.dt = 1 / 128.0 + 1 / 256.0
         self.collection_period_ms = 1 / 128.0  # 0.01
 
+        self.temperature = 36.0
+        self.simplification_constant = 1e-4  # fraction of waveform's max-min range. 0 - only remove perfectly colinear points
+
         self.skip_tolerance_setting_if_exists = True
         self.skip_obtaining_steady_state_if_state_file_exists = True
 

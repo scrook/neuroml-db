@@ -117,10 +117,13 @@ class NMLDB_Model(object):
 
     def remove_protocol_waveforms(self, protocol):
         print("Removing existing model waveforms: " + str(protocol))
+
         Model_Waveforms \
             .delete() \
             .where((Model_Waveforms.Model == self.model_record) & (Model_Waveforms.Protocol == protocol)) \
             .execute()
+
+        print("DONE")
 
     def save_checksum(self):
         file_path = os.path.join(self.get_permanent_model_directory(), self.model_record.File_Name)
@@ -145,10 +148,18 @@ class NMLDB_Model(object):
 
     def get_equation_count(self):
         """
-        When overriden in a sub-class, counts the number of model differential equations
+        Counts the number of model differential equations
         :return: The total count of differential equation states in the model
         """
-        raise NotImplementedError()
+        def run_eq_counter():
+            h = self.build_model(restore_tolerances=False)
+
+            return self.get_number_of_model_state_variables(h)
+
+        runner = NeuronRunner(run_eq_counter, kill_slow_sims=False)
+        eq_count = runner.run()
+
+        return eq_count
 
     def convert_to_NEURON(self, path=None):
         """
@@ -365,9 +376,9 @@ class NMLDB_Model(object):
 
         waveform_csv = os.path.join(waveforms_dir, str(waveform.ID) + ".csv")
 
-        # Use RCP algorithm to simplify the waveform (using 0.5% of value range as tolerance)
+        # Use RCP algorithm to simplify the waveform (using x% of value range as tolerance)
         print("Simplifying waveform...")
-        times, values = zip(*self.rdp(zip(times, values), epsilon=(max(values) - min(values)) * 0.005))
+        times, values = zip(*self.rdp(zip(times, values), epsilon=(max(values) - min(values)) * self.config.simplification_constant))
 
         Times = string.join([str(v) for v in times], ',')
         Variable_Values = string.join([self.short_string(v) for v in values], ',')
@@ -450,7 +461,7 @@ class NMLDB_Model(object):
         plt.savefig(label + ("(" + case + ")" if case != "" else "") + ".png")
 
     def load_model(self):
-        pass
+        raise NotImplementedError()
 
     def get_hoc_files(self):
         return [f for f in os.listdir(self.temp_model_path) if f.endswith(".hoc")]
@@ -550,7 +561,7 @@ class NMLDB_Model(object):
         h.cvode_active(self.config.cvode_active)
 
     def build_model(self, restore_tolerances):
-        pass
+        raise NotImplementedError()
 
     def save_tolerances(self, tstop=100, current_amp=0.0):
 

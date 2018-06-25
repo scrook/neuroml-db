@@ -98,12 +98,14 @@ class Channel_Classes(BaseModel):
     Deactivation_Protocol = ForeignKeyField(Channel_Class_Protocols, column_name="Deactivation_Protocol_ID")
     Species = CharField()
     Reversal_Potential = FloatField()
+    Ca_Levels = CharField()
 
 class Channels(BaseModel):
     Model_ID = CharField(primary_key=True)
     Type = ForeignKeyField(Channel_Classes, field="ID", column_name="Channel_Type")
     Stability_Range_Low = FloatField()
     Stability_Range_High = FloatField()
+
 
 
 class Cells(BaseModel):

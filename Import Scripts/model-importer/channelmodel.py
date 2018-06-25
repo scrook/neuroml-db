@@ -8,6 +8,7 @@ from tables import Channels
 from collector import Collector
 from neuronrunner import NeuronRunner, NumericalInstabilityException
 from math import pi
+from scipy.ndimage.filters import median_filter
 
 class ChannelModel(NMLDB_Model):
     def __init__(self, *args, **kwargs):
@@ -20,13 +21,13 @@ class ChannelModel(NMLDB_Model):
             'INACTIVATION'
         ])
 
-        self.init_channel_record()
-
-    def init_channel_record(self):
         self.server.connect()
 
         # Fetch channel record
         self.channel_record = Channels.get_or_none(Channels.Model_ID == self.get_model_nml_id())
+
+        if self.channel_record is None:
+            raise Exception("No records found in Channels table for model: " + self.get_model_nml_id())
 
         # Pre-retrieve the resting v of the channel type (the first voltage level of a protocol)
         self.rest_v = float(self.channel_record.Type.Activation_Protocol.Voltages.split(',')[0])
@@ -34,60 +35,173 @@ class ChannelModel(NMLDB_Model):
         self.ion = self.channel_record.Type.Species
         self.erev = self.channel_record.Type.Reversal_Potential
 
+        self.is_passive = self.channel_record.Type.ID == 'pas'
 
-        if self.channel_record is None:
-            raise Exception("No records found in Channels table for model: " + self.get_model_nml_id())
+        self.ca_levels = self.channel_record.Type.Ca_Levels.split(',') \
+            if self.channel_record.Type.Ca_Levels is not None \
+            else None
 
     def save_ACTIVATION(self):
-        raise NotImplementedError()
+        self.save_channel_protocol(self.channel_record.Type.Activation_Protocol, "ACTIVATION")
 
     def save_INACTIVATION(self):
-        raise NotImplementedError()
+        self.save_channel_protocol(self.channel_record.Type.Inactivation_Protocol, "INACTIVATION")
 
     def save_DEACTIVATION(self):
-        raise NotImplementedError()
+        self.save_channel_protocol(self.channel_record.Type.Deactivation_Protocol, "DEACTIVATION")
+
+    def save_channel_protocol(self, protocol_record, protocol_name):
+        self.remove_protocol_waveforms(protocol_name)
+
+        durations_ss, voltages_ss, durations_stim, voltages_stim = self.get_durations_voltages(protocol_record)
+
+        self.save_vclamp_set(protocol_name,
+                             durations_ss, voltages_ss,
+                             durations_stim, voltages_stim,
+                             protocol_record.Low_Voltage, protocol_record.High_Voltage,
+                             steps=11,
+                             ca_concentrations=self.ca_levels)
+
+    def get_durations_voltages(self, protocol):
+        times = protocol.Times.split(',')
+        voltages = protocol.Voltages.split(',')
+
+        durations = []
+        steps = []
+        prev_time = None
+
+        for t, time in enumerate(times):
+            if prev_time == time:
+                continue
+
+            if prev_time is not None:
+                duration = float(time) - float(prev_time)
+                durations.append(duration)
+                steps.append(voltages[t])
+
+            prev_time = time
+
+        durations_ss = []
+        voltages_ss = []
+        durations_stim = []
+        voltages_stim = []
+
+        for v, voltage in enumerate(steps):
+            # SS is before the steps begin
+            if len(durations_stim) == 0 and voltage != 'LOWHIGH':
+                durations_ss.append(durations[v])
+                voltages_ss.append(voltage)
+
+            # Stim is after SS
+            else:
+                durations_stim.append(durations[v])
+                voltages_stim.append(voltage)
+
+        return durations_ss, voltages_ss, durations_stim, voltages_stim
 
     def save_vclamp_set(self, protocol,
                         durations_ss, voltages_ss,
                         durations_stim, voltages_stim,
                         voltage_low, voltage_high,
-                        steps):
+                        steps, ca_concentrations=None):
 
-        # Reach the desired steady-state
-        result_ss = self.get_vclamp_response(durations=durations_ss,
-                                          voltages=voltages_ss,
-                                          save_state=True)
+        if ca_concentrations is None:
+            ca_concentrations = [None]
 
-        # Create current amplitude set
-        steps = np.linspace(voltage_low, voltage_high, num=steps).tolist()
+        # Run the same protocol at different Ca concentrations
+        for ca_conc in ca_concentrations:
 
-        # Run each vclamp as a separate simulation, resuming from desired steady state
-        for step_v in steps:
-            voltages = [step_v if v == 'LOWHIGH' else v for v in voltages_stim]
+            # Reach the desired steady-state
+            result_ss = self.get_vclamp_response(durations=durations_ss,
+                                                 voltages=voltages_ss,
+                                                 ca_conc=ca_conc,
+                                                 save_state=True)
 
-            result_stim = self.get_vclamp_response(durations=durations_stim,
-                                              voltages=voltages,
-                                              save_state=False)
+            # Create current amplitude set
+            steps = np.linspace(
+                max(voltage_low,self.channel_record.Stability_Range_Low),
+                min(voltage_high, self.channel_record.Stability_Range_High),
+                num=steps)\
+                .tolist()
 
-            self.save_tvi_plot(label=protocol, case=self.short_string(amp) + " nA", tvi_dict=result)
+            # Run each vclamp as a separate simulation, resuming from desired steady state
+            for step_v in steps:
+                voltages = [step_v if v == 'LOWHIGH' else v for v in voltages_stim]
 
-            self.save_vi_waveforms(protocol=protocol,
-                                   label=self.short_string(amp) + " nA",
-                                   tvi_dict=result)
+                result_stim = self.get_vclamp_response(durations=durations_stim,
+                                                       voltages=voltages,
+                                                       ca_conc=ca_conc,
+                                                       restore_state=True)
+
+                result = self.concat_tvig_dicts(result_ss, result_stim)
+
+                self.save_tvig_plot(label=protocol, case=str(step_v) + " mV @ " + str(ca_conc) + " mM",
+                                    tvig_dict=result)
+
+                meta_protocol = None if ca_conc is None else "Ca2+ " + str(ca_conc) + " mM"
+
+                self.save_tvig_waveforms(protocol=protocol,
+                                         label=str(step_v) + " mV",
+                                         tvig_dict=result,
+                                         meta_protocol=meta_protocol)
+
+    def concat_tvig_dicts(self, dict1, dict2):
+        result = {
+            "t": dict1['t'] + dict2['t'],
+            "v": dict1['v'] + dict2['v'],
+            "g": dict1['g'] + dict2['g'],
+            "i": dict1['i'] + dict2['i'],
+            "run_time": dict1['run_time'] + dict2['run_time'],
+            "steps": dict1['steps'] + dict2['steps'],
+            "cvode_active": dict1['cvode_active'],
+            "dt_or_atol": dict1['dt_or_atol'],
+        }
+
+        return result
+
+    def save_tvig_plot(self, label, tvig_dict, case=""):
+        plt.clf()
+
+        plt.figure(1)
+        plt.subplot(311)
+        plt.plot(tvig_dict["t"], tvig_dict["v"], label="Voltage - " + label + (" @ " + case if case != "" else ""))
+        plt.ylim(-160, 80)
+        plt.legend()
+
+        plt.subplot(312)
+        plt.plot(tvig_dict["t"], tvig_dict["g"], label="Conductance - " + label + (" @ " + case if case != "" else ""))
+        plt.legend()
+
+        plt.subplot(313)
+        plt.plot(tvig_dict["t"], tvig_dict["i"], label="Current - " + label + (" @ " + case if case != "" else ""))
+        plt.legend()
+        plt.savefig(label + ("(" + case + ")" if case != "" else "") + ".png")
+
+    def save_tvig_waveforms(self, protocol, label, tvig_dict, meta_protocol):
+        self.server.connect()
+
+        with self.server.db.atomic() as transaction:
+            self.create_or_update_waveform(protocol, label, meta_protocol, tvig_dict["t"], "Voltage", tvig_dict["v"], "mV",
+                                           tvig_dict["run_time"], None, tvig_dict["dt_or_atol"], tvig_dict["cvode_active"], tvig_dict["steps"])
+            self.create_or_update_waveform(protocol, label, meta_protocol, tvig_dict["t"], "Conductance", tvig_dict["g"], "pS",
+                                           tvig_dict["run_time"], None, tvig_dict["dt_or_atol"], tvig_dict["cvode_active"], tvig_dict["steps"])
+            self.create_or_update_waveform(protocol, label, meta_protocol, tvig_dict["t"], "Current", tvig_dict["i"], "pA",
+                                           tvig_dict["run_time"], None, tvig_dict["dt_or_atol"], tvig_dict["cvode_active"], tvig_dict["steps"])
+
+
 
     def get_vclamp_response(self,
                             durations,
                             voltages,
+                            ca_conc,
                             restore_state=False, save_state=False):
 
         def vclamp_protocol(time_flag):
             self.time_flag = time_flag
             h = self.build_model()
 
-            t = []
-            v = []
-            i = []
-            g = []
+            if ca_conc is not None:
+                self.soma.cai = float(ca_conc)
 
             with RunTimer() as timer:
                 if restore_state:
@@ -95,27 +209,23 @@ class ChannelModel(NMLDB_Model):
                 else:
                     h.stdinit()
 
-
-
                 for s in range(len(voltages)):
                     self.vc.dur1 = 1e9
-                    self.vc.amp1 = voltages[s]
+                    self.vc.amp1 = float(voltages[s])
 
                     self.runFor(durations[s])
-
-                    t.extend(self.t_collector.get_values_list())
-                    v.extend(self.v_collector.get_values_list())
-                    i.extend(self.i_collector.get_values_list())
-                    g.extend(self.g_collector.get_values_list())
 
             if save_state:
                 self.save_state()
 
+            # Filter out transient spikelets seen when using CVODE
+            from scipy.ndimage.filters import median_filter
+
             result = {
-                "t": t,
-                "v": v,
-                "g": g,
-                "i": i,
+                "t": self.t_collector.get_values_list(),
+                "v": self.v_collector.get_values_list(),
+                "g": median_filter(self.g_collector.get_values_np(), 3).tolist(),
+                "i": median_filter(self.i_collector.get_values_np(), 3).tolist(),
                 "run_time": timer.get_run_time(),
                 "steps": int(self.tvec.size()),
                 "cvode_active": int(self.config.cvode_active),
@@ -128,7 +238,6 @@ class ChannelModel(NMLDB_Model):
         runner.DONTKILL = True
         result = runner.run()
         return result
-
 
     def save_stability_range(self):
         print("Getting stability range...")
@@ -277,9 +386,12 @@ class ChannelModel(NMLDB_Model):
     def load_model(self):
         # Load cell hoc and get soma
         os.chdir(self.temp_model_path)
-        print("Loading NEURON... If this step 'freezes', ensure there are no hung NEURON processes with 'pkill -9 nrn*'")
+        print(
+            "Loading NEURON... If this step 'freezes', ensure there are no hung NEURON processes with 'pkill -9 nrn*'")
         from neuron import h, gui
         print("DONE")
+
+        h.celsius = self.config.temperature
 
         # Create a test cell with the channel
         mod_files = self.get_mod_files()
@@ -293,7 +405,7 @@ class ChannelModel(NMLDB_Model):
         self.soma = h.Section()
         self.soma.L = 10
         self.soma.diam = 10
-        self.soma.cm = 1000.0/pi
+        self.soma.cm = 1000.0 / pi
 
         self.soma.insert(self.mod_name)
 
@@ -312,14 +424,17 @@ class ChannelModel(NMLDB_Model):
         # set up stim
         print('Setting up vi clamps...')
         self.vc = h.SEClamp(self.soma(0.5))
+        self.vc.amp1 = 0
         self.vc.dur1 = 0
+        self.vc.rs = 1e-6
 
         # Set up variable collectors
         print('Setting up tvi collectors...')
         self.t_collector = Collector(self.config.collection_period_ms, h._ref_t)
         self.v_collector = Collector(self.config.collection_period_ms, self.soma(0.5)._ref_v)
-        self.g_collector = Collector(self.config.collection_period_ms, getattr(self.soma(0.5), "_ref_gion_"+self.mod_name))
-        self.i_collector = Collector(self.config.collection_period_ms, getattr(self.soma(0.5), "_ref_i"+self.ion))
+        self.g_collector = Collector(self.config.collection_period_ms,
+                                     getattr(self.soma(0.5), "_ref_gion_" + self.mod_name))
+        self.i_collector = Collector(self.config.collection_period_ms, getattr(self.soma(0.5), "_ref_i" + self.ion))
 
         # Keep track of all time steps taken
         self.tvec = h.Vector()
