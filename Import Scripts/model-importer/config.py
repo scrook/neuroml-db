@@ -6,7 +6,7 @@ class Config(object):
         self.debug = 'NONE'  # One of 'NONE', 'MANAGER', 'RUNNER'
         self.cleanup_temp = False # use False to leave the files in temp folder (e.g. for debugging)
 
-        self.cvode_active = 1
+        self.cvode_active = 0
         self.abs_tolerance = 0.001
 
         self.dt = 1 / 128.0 + 1 / 256.0

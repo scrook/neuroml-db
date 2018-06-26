@@ -262,10 +262,12 @@ class NMLDB_Model(object):
 
         self.run_command("jnml LEMS_" + model_file_name + " -neuron")
 
+        self.temp_model_path = temp_model_folder
+
+        self.on_before_mod_compile()
+
         # Compile mod files
         self.run_command("nrnivmodl")
-
-        self.temp_model_path = temp_model_folder
 
         return temp_model_folder
 
@@ -779,3 +781,10 @@ class NMLDB_Model(object):
 
         return result
 
+    def on_before_mod_compile(self):
+        """
+        When overwritten by a sub-class, this method can be used to execute additional
+        steps after the model has been converted to NEURON, but before mod files are compiled
+        :return:
+        """
+        pass

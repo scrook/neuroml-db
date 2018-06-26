@@ -1,3 +1,4 @@
+import shutil
 import os
 import re
 from runtimer import RunTimer
@@ -9,6 +10,7 @@ from collector import Collector
 from neuronrunner import NeuronRunner, NumericalInstabilityException
 from math import pi
 from scipy.ndimage.filters import median_filter
+
 
 class ChannelModel(NMLDB_Model):
     def __init__(self, *args, **kwargs):
@@ -59,7 +61,7 @@ class ChannelModel(NMLDB_Model):
                              durations_ss, voltages_ss,
                              durations_stim, voltages_stim,
                              protocol_record.Low_Voltage, protocol_record.High_Voltage,
-                             steps=11,
+                             step_count=11,
                              ca_concentrations=self.ca_levels)
 
     def get_durations_voltages(self, protocol):
@@ -103,7 +105,7 @@ class ChannelModel(NMLDB_Model):
                         durations_ss, voltages_ss,
                         durations_stim, voltages_stim,
                         voltage_low, voltage_high,
-                        steps, ca_concentrations=None):
+                        step_count, ca_concentrations=None):
 
         if ca_concentrations is None:
             ca_concentrations = [None]
@@ -119,9 +121,9 @@ class ChannelModel(NMLDB_Model):
 
             # Create current amplitude set
             steps = np.linspace(
-                max(voltage_low,self.channel_record.Stability_Range_Low),
+                max(voltage_low, self.channel_record.Stability_Range_Low),
                 min(voltage_high, self.channel_record.Stability_Range_High),
-                num=steps)\
+                num=step_count) \
                 .tolist()
 
             # Run each vclamp as a separate simulation, resuming from desired steady state
@@ -181,14 +183,18 @@ class ChannelModel(NMLDB_Model):
         self.server.connect()
 
         with self.server.db.atomic() as transaction:
-            self.create_or_update_waveform(protocol, label, meta_protocol, tvig_dict["t"], "Voltage", tvig_dict["v"], "mV",
-                                           tvig_dict["run_time"], None, tvig_dict["dt_or_atol"], tvig_dict["cvode_active"], tvig_dict["steps"])
-            self.create_or_update_waveform(protocol, label, meta_protocol, tvig_dict["t"], "Conductance", tvig_dict["g"], "pS",
-                                           tvig_dict["run_time"], None, tvig_dict["dt_or_atol"], tvig_dict["cvode_active"], tvig_dict["steps"])
-            self.create_or_update_waveform(protocol, label, meta_protocol, tvig_dict["t"], "Current", tvig_dict["i"], "pA",
-                                           tvig_dict["run_time"], None, tvig_dict["dt_or_atol"], tvig_dict["cvode_active"], tvig_dict["steps"])
-
-
+            self.create_or_update_waveform(protocol, label, meta_protocol, tvig_dict["t"], "Voltage", tvig_dict["v"],
+                                           "mV",
+                                           tvig_dict["run_time"], None, tvig_dict["dt_or_atol"],
+                                           tvig_dict["cvode_active"], tvig_dict["steps"])
+            self.create_or_update_waveform(protocol, label, meta_protocol, tvig_dict["t"], "Conductance",
+                                           tvig_dict["g"], "pS",
+                                           tvig_dict["run_time"], None, tvig_dict["dt_or_atol"],
+                                           tvig_dict["cvode_active"], tvig_dict["steps"])
+            self.create_or_update_waveform(protocol, label, meta_protocol, tvig_dict["t"], "Current", tvig_dict["i"],
+                                           "pA",
+                                           tvig_dict["run_time"], None, tvig_dict["dt_or_atol"],
+                                           tvig_dict["cvode_active"], tvig_dict["steps"])
 
     def get_vclamp_response(self,
                             durations,
@@ -394,13 +400,7 @@ class ChannelModel(NMLDB_Model):
         h.celsius = self.config.temperature
 
         # Create a test cell with the channel
-        mod_files = self.get_mod_files()
-
-        if len(mod_files) <= 0:
-            raise Exception("Did not find any .mod files in " + self.temp_model_path)
-
-        mod_file = mod_files[0]
-        self.mod_name = mod_file.replace(".mod", "")
+        self.mod_name = self.get_mod_name()
 
         # Passive channels use a different naming scheme
         if self.is_passive:
@@ -446,14 +446,16 @@ class ChannelModel(NMLDB_Model):
         self.g_collector = Collector(self.config.collection_period_ms,
                                      getattr(self.soma(0.5), "_ref_gion_" + self.mod_name))
 
-        if hasattr(self.soma(0.5), "i"+self.ion):
+        if hasattr(self.soma(0.5), "i" + self.ion):
             self.i_collector = Collector(self.config.collection_period_ms, getattr(self.soma(0.5), "_ref_i" + self.ion))
 
-        elif hasattr(self.soma(0.5), "i"+self.ion+"2"):
-            self.i_collector = Collector(self.config.collection_period_ms, getattr(self.soma(0.5), "_ref_i" + self.ion+"2"))
+        elif hasattr(self.soma(0.5), "i" + self.ion + "2"):
+            self.i_collector = Collector(self.config.collection_period_ms,
+                                         getattr(self.soma(0.5), "_ref_i" + self.ion + "2"))
 
         else:
-            self.i_collector = Collector(self.config.collection_period_ms, getattr(self.soma(0.5), "_ref_i_" + self.mod_name))
+            self.i_collector = Collector(self.config.collection_period_ms,
+                                         getattr(self.soma(0.5), "_ref_i_" + self.mod_name))
 
         # Keep track of all time steps taken
         self.tvec = h.Vector()
@@ -479,3 +481,27 @@ class ChannelModel(NMLDB_Model):
                 "Simulation is numericaly unstable with dt of " + str(h.dt) + " ms")
 
         return (t_np, v_np)
+
+    def get_mod_name(self):
+        mod_files = self.get_mod_files()
+
+        if len(mod_files) != 1:
+            raise Exception("There should be exactly one .mod file in: " + self.temp_model_path)
+
+        mod_file = mod_files[0]
+
+        return mod_file.replace(".mod", "")
+
+    def on_before_mod_compile(self):
+        if self.channel_record.Type.ID == 'KCa':
+            mod_name = self.get_mod_name()
+
+            with open(mod_name + ".mod", "r") as f:
+                mod_file = f.read()
+
+            mod_file = mod_file.replace("    SUFFIX " + mod_name,
+                                        "    SUFFIX " + mod_name + "\n" +
+                                        "    USEION ca READ cai")
+
+            with open(mod_name + ".mod", "w") as f:
+                f.write(mod_file)
