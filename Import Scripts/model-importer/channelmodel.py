@@ -29,13 +29,13 @@ class ChannelModel(NMLDB_Model):
         if self.channel_record is None:
             raise Exception("No records found in Channels table for model: " + self.get_model_nml_id())
 
+        self.is_passive = self.channel_record.Type.ID == 'pas'
+
         # Pre-retrieve the resting v of the channel type (the first voltage level of a protocol)
         self.rest_v = float(self.channel_record.Type.Activation_Protocol.Voltages.split(',')[0])
 
         self.ion = self.channel_record.Type.Species
         self.erev = self.channel_record.Type.Reversal_Potential
-
-        self.is_passive = self.channel_record.Type.ID == 'pas'
 
         self.ca_levels = self.channel_record.Type.Ca_Levels.split(',') \
             if self.channel_record.Type.Ca_Levels is not None \
@@ -402,6 +402,10 @@ class ChannelModel(NMLDB_Model):
         mod_file = mod_files[0]
         self.mod_name = mod_file.replace(".mod", "")
 
+        # Passive channels use a different naming scheme
+        if self.is_passive:
+            self.ion = "_" + self.mod_name
+
         self.soma = h.Section()
         self.soma.L = 10
         self.soma.diam = 10
@@ -413,7 +417,14 @@ class ChannelModel(NMLDB_Model):
         setattr(self.soma, "gmax_" + self.mod_name, 10.0)
 
         # Set reversal pot
-        setattr(self.soma, "e" + self.ion, self.erev)
+        if hasattr(self.soma, "e" + self.ion):
+            setattr(self.soma, "e" + self.ion, self.erev)
+
+        elif hasattr(self.soma, "e" + self.ion + "2"):
+            setattr(self.soma, "e" + self.ion + "2", self.erev)
+
+        else:
+            setattr(self.soma, "e_" + self.mod_name, self.erev)
 
         return h
 
@@ -434,7 +445,15 @@ class ChannelModel(NMLDB_Model):
         self.v_collector = Collector(self.config.collection_period_ms, self.soma(0.5)._ref_v)
         self.g_collector = Collector(self.config.collection_period_ms,
                                      getattr(self.soma(0.5), "_ref_gion_" + self.mod_name))
-        self.i_collector = Collector(self.config.collection_period_ms, getattr(self.soma(0.5), "_ref_i" + self.ion))
+
+        if hasattr(self.soma(0.5), "i"+self.ion):
+            self.i_collector = Collector(self.config.collection_period_ms, getattr(self.soma(0.5), "_ref_i" + self.ion))
+
+        elif hasattr(self.soma(0.5), "i"+self.ion+"2"):
+            self.i_collector = Collector(self.config.collection_period_ms, getattr(self.soma(0.5), "_ref_i" + self.ion+"2"))
+
+        else:
+            self.i_collector = Collector(self.config.collection_period_ms, getattr(self.soma(0.5), "_ref_i_" + self.mod_name))
 
         # Keep track of all time steps taken
         self.tvec = h.Vector()
