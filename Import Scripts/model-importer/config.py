@@ -4,9 +4,9 @@ import os, socket
 class Config(object):
     def __init__(self):
         self.debug = 'NONE'  # One of 'NONE', 'MANAGER', 'RUNNER'
-        self.cleanup_temp = False # use False to leave the files in temp folder (e.g. for debugging)
+        self.cleanup_temp = True # use False to leave the files in temp folder (e.g. for debugging)
 
-        self.cvode_active = 0
+        self.cvode_active = 1
         self.abs_tolerance = 0.001
 
         self.dt = 1 / 128.0 + 1 / 256.0

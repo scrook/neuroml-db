@@ -109,7 +109,9 @@ class NMLDB_Model(object):
         return False
 
     def can_skip_steady_state(self):
-        if self.config.skip_obtaining_steady_state_if_state_file_exists and os.path.exists(os.path.join(self.get_permanent_model_directory(), 'state.bin')):
+        if self.config.skip_obtaining_steady_state_if_state_file_exists and \
+                os.path.exists(os.path.join(self.get_permanent_model_directory(), 'state.bin')) and \
+                len([w for w in self.model_record.Waveforms if w.Protocol_id == "STEADY_STATE"]) > 0:
             print('Steady state file exists. Skipping STEADY_STATE protocol...')
             return True
 
