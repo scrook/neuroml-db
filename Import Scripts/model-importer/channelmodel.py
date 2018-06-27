@@ -17,6 +17,7 @@ class ChannelModel(NMLDB_Model):
         super(ChannelModel, self).__init__(*args, **kwargs)
 
         self.all_properties.extend([
+            'tolerances',
             'stability_range',
             'ACTIVATION',
             'DEACTIVATION',
@@ -397,7 +398,7 @@ class ChannelModel(NMLDB_Model):
         from neuron import h, gui
         print("DONE")
 
-        h.celsius = self.config.temperature
+        h.celsius = self.config.default_temperature
 
         # Create a test cell with the channel
         self.mod_name = self.get_mod_name()
@@ -465,6 +466,9 @@ class ChannelModel(NMLDB_Model):
         self.nState = h.SaveState()
         self.sim_init()
         self.set_abs_tolerance(self.config.abs_tolerance)
+
+        if restore_tolerances:
+            self.restore_tolerances()
 
         return h
 

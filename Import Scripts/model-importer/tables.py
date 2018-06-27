@@ -21,6 +21,7 @@ class Publications(BaseModel):
     Pubmed_Ref = TextField()
     Year = IntegerField()
     Full_Title = TextField()
+    Temperature = FloatField()
 
 
 class People(BaseModel):
@@ -44,8 +45,11 @@ class Publication_Authors(BaseModel):
 class Models(BaseModel):
     Model_ID = CharField(primary_key=True)
     Equations = IntegerField()
+    Runtime_Per_Step = FloatField()
     Max_Stable_DT = FloatField()
+    Max_Stable_DT_Error = FloatField()
     Optimal_DT = FloatField()
+    Optimal_DT_Error = FloatField()
     Optimal_DT_a = FloatField()
     Optimal_DT_b = FloatField()
     Optimal_DT_c = FloatField()

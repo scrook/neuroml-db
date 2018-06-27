@@ -1,0 +1,34 @@
+objectvar save_window_, rvp_
+objectvar scene_vector_[2]
+objectvar ocbox_, ocbox_list_, scene_, scene_list_
+{ocbox_list_ = new List()  scene_list_ = new List()}
+{pwman_place(0,0,0)}
+
+//Begin VariableTimeStep
+{
+ocbox_ = NumericalMethodPanel[0]
+}
+{object_push(ocbox_)}
+{
+atol_ = 0.001  CVode[0].atol(atol_)
+restore(301, 2)
+ atoltool_ = new AtolTool()
+    ats("v", 10)
+    ats("n_c1_occupancy_Golgi_KAHP", 0.1)
+    ats("n_c2_occupancy_Golgi_KAHP", 0.01)
+    ats("n_c3_occupancy_Golgi_KAHP", 0.001)
+    ats("n_c4_occupancy_Golgi_KAHP", 1e-06)
+    ats("n_o1_occupancy_Golgi_KAHP", 0.0001)
+    ats("n_o2_occupancy_Golgi_KAHP", 0.0001)
+    ats("Vector", -1)
+ atoltool_.scales()
+}
+{object_pop()}
+{
+ocbox_.map("VariableTimeStep", 0, 861, 264.96, 113.28)
+}
+objref ocbox_
+//End VariableTimeStep
+
+objectvar scene_vector_[1]
+{doNotify()}

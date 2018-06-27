@@ -657,6 +657,7 @@ class CellModel(NMLDB_Model):
                                      restore_state=True)
 
 
+
     def save_DT_SENSITIVITY(self):
         if self.cell_record.Is_Intrinsically_Spiking:
             print("Cell is intrinsically spiking. Skipping DT_SENSITIVITY.")
@@ -665,18 +666,34 @@ class CellModel(NMLDB_Model):
         self.remove_protocol_waveforms("DT_SENSITIVITY")
         self.remove_protocol_waveforms("OPTIMAL_DT_BENCHMARK")
 
-        self.save_dt_sensitivity_set(rheobase=self.cell_record.Rheobase_High)
+        smallest_dt_result = self.save_dt_sensitivity_set(rheobase=self.cell_record.Rheobase_High)
+
+        # Compute the optimal dt based on runtime and error costs
         optimal_dt = self.save_optimal_time_step()
 
+        # Get the waveform at the optimal dt and its error
         if optimal_dt is not None:
             print('Starting OPTIMAL_DT_BENCHMARK protocol...')
 
-            self.save_dt_sensitivity_set(
+            optimal_dt_result = self.save_dt_sensitivity_set(
                 rheobase=self.cell_record.Rheobase_High,
                 protocol="OPTIMAL_DT_BENCHMARK",
                 steps_per_ms_set=[1.0 / optimal_dt],
                 save_max_stable_dt=False
             )
+
+            # Interpolate the values of the optimal dt waveform to compare to the 0-error waveform
+            from scipy.interpolate import interp1d
+            optimal_interpolated = interp1d(optimal_dt_result["t"], optimal_dt_result["v"], kind="cubic", fill_value='extrapolate')
+            optimal_v_sub = optimal_interpolated(smallest_dt_result["t_sub"])
+
+            optimal_dt_error = self.compute_waveform_error(smallest_dt_result["v_sub"],
+                                                           smallest_dt_result["range"],
+                                                           optimal_v_sub)
+
+            self.model_record.Optimal_DT_Error = optimal_dt_error
+            self.model_record.save()
+
 
     def save_CVODE_RUNTIME_COMPLEXITY(self):
         if self.cell_record.Is_Intrinsically_Spiking:
@@ -843,6 +860,13 @@ class CellModel(NMLDB_Model):
                                 protocol="DT_SENSITIVITY",
                                 steps_per_ms_set=[1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1],
                                 save_max_stable_dt=True):
+        """
+        :param rheobase: Cell rheobase current
+        :param protocol: The label of the protocol to use when saving the waveform to DB
+        :param steps_per_ms_set: A sequence (power of 2 works well to ensure values can be compared at same time points
+        :param save_max_stable_dt: Record the largest dt that does not blow up the simulation
+        :return: Nothing
+        """
 
         noise_pickle_file = "dtSensitivity.pickle"
 
@@ -905,18 +929,30 @@ class CellModel(NMLDB_Model):
                                                        dt=1.0/steps_per_ms,
                                                        sampling_period=1.0/steps_per_ms)
 
+
+                # Save the smallest dt waveform
+                if steps_per_ms == max(steps_per_ms_set):
+                    # Comparing everything to smallest dt waveform - its error is 0
+                    result["error"] = 0
+                    smalest_dt_result = result
+
+                    # Compute the range of the waveform voltages
+                    smalest_dt_result["range"] = max(result["v"]) - min(result["v"])
+
+                    # Subsample the waveform using largest dt interval (1ms)
+                    # (these values will be compared across waveforms)
+                    smalest_dt_result["v_sub"] = np.array(smalest_dt_result["v"])[::max(steps_per_ms_set)]
+                    smalest_dt_result["t_sub"] = np.array(smalest_dt_result["t"])[::max(steps_per_ms_set)]
+
+                else:
+                    # Error is average of differences from baseline waveform expressed as percentages of the waveform range
+                    result["error"] = self.compute_waveform_error(smalest_dt_result["v_sub"],
+                                                                  smalest_dt_result["range"],
+                                                                  np.array(result["v"])[::steps_per_ms])
+
                 if save_max_stable_dt:
                     max_stable_dt = 1.0/steps_per_ms
-
-                    if steps_per_ms == max(steps_per_ms_set):
-                        result["error"] = 0
-                        smalest_dt_result = result
-                        smalest_dt_result["range"] = max(result["v"]) - min(result["v"])
-                        smalest_dt_result["v_sub"] = np.array(smalest_dt_result["v"])[::max(steps_per_ms_set)]
-
-                    else:
-                        result["error"] = np.average(np.abs(np.array(result["v"])[::steps_per_ms] - smalest_dt_result["v_sub"]) / smalest_dt_result["range"] * 100.0)
-
+                    max_stable_dt_error = result["error"]
 
                 dt_str = str(1.0/steps_per_ms) + " ms"
 
@@ -934,10 +970,16 @@ class CellModel(NMLDB_Model):
         if save_max_stable_dt:
             print("Saving max stable time step " + str(max_stable_dt))
             self.model_record.Max_Stable_DT = max_stable_dt
+            self.model_record.Max_Stable_DT_Error = max_stable_dt_error
             self.model_record.save()
 
         # Clear the cache for this file
         self.pickle_file_cache.pop(noise_pickle_file)
+
+        return smalest_dt_result
+
+    def compute_waveform_error(self, lowest_error_v, lowest_error_range, v):
+        return np.average(np.abs(v - lowest_error_v) / lowest_error_range * 100.0)
 
     def save_noise_response_set(self,
                                 protocol,
@@ -1074,7 +1116,12 @@ class CellModel(NMLDB_Model):
         from neuron import h, gui
         print("DONE")
 
-        h.celsius = self.config.temperature
+        if self.model_record.Publication.Temperature is None:
+            print("Using default temperature " + str(self.config.default_temperature))
+            h.celsius = self.config.default_temperature
+        else:
+            print("Using temperature from publication " + str(self.model_record.Publication.Temperature))
+            h.celsius = self.model_record.Publication.Temperature
 
         # Create the cell
         print('Determining cell model type...')
@@ -1418,10 +1465,10 @@ class CellModel(NMLDB_Model):
 
     def save_tolerances(self, tstop=100, current_amp=0):
 
-        print("Running tolerance tool...")
-        if self.is_abstract_cell():
-            print("Cell is abstract, skipping tolerance tool")
-            return
+        # print("Running tolerance tool...")
+        # if self.is_abstract_cell():
+        #     print("Cell is abstract, skipping tolerance tool")
+        #     return
 
         super(CellModel, self).save_tolerances(tstop, current_amp)
 

@@ -1,3 +1,4 @@
+import math
 import json
 import os, sys
 import re
@@ -12,7 +13,7 @@ from math import sqrt
 import numpy as np
 import nmldbutils
 import shutil
-
+from runtimer import RunTimer
 from matplotlib import pyplot as plt
 
 from config import Config
@@ -53,6 +54,7 @@ class NMLDB_Model(object):
         self.all_properties = [
             'checksum',
             'equation_count',
+            'runtime_per_step'
         ]
 
     def __enter__(self):
@@ -162,6 +164,49 @@ class NMLDB_Model(object):
         eq_count = runner.run()
 
         return eq_count
+
+    def save_runtime_per_step(self):
+        def step_timer(time_flag):
+            print('Starting Step Runtime protocol...')
+            self.time_flag = time_flag
+
+            # Extremely light setup - to minimize impact on run-time
+            h = self.load_model()
+            h.cvode_active(0)
+            h.dt = 1/128.0
+            h.steps_per_ms = 1.0
+
+            # Obtain a rough estimate of the model speed - from a 100ms sample
+            with RunTimer() as timer:
+                h.tstop = 100
+                h.run()
+
+            sample_time = timer.get_run_time()
+
+            # Use the estimate to run the simulation for about ~60 seconds
+            runtime_approx_60s = 60.0/sample_time*100.0
+
+            with RunTimer() as timer:
+                h.tstop = runtime_approx_60s
+                h.run()
+
+            full_time = timer.get_run_time()
+
+            # Get the actual number of steps taken
+            full_steps = int(round(h.t / h.dt))
+
+            result = {
+                "runtime_per_step": full_time / full_steps
+            }
+
+            return result
+
+        runner = NeuronRunner(step_timer)
+        runner.DONTKILL = True
+        result = runner.run()
+
+        self.model_record.Runtime_Per_Step = result["runtime_per_step"]
+        self.model_record.save()
 
     def convert_to_NEURON(self, path=None):
         """
@@ -589,9 +634,10 @@ class NMLDB_Model(object):
             # h.nrncontrolmenu()
             # h.newPlotV()
 
-            self.current.delay = 0
-            self.current.amp = current_amp
-            self.current.dur = tstop
+            if current_amp != 0.0:
+                self.current.delay = 0
+                self.current.amp = current_amp
+                self.current.dur = tstop
 
             h.AtolTool[0].anrun()
             h.AtolTool[0].rescale()
@@ -724,13 +770,16 @@ class NMLDB_Model(object):
         else:
             print("Computing optimal time step for " + self.model_record.Model_ID + "...")
 
-            time_max = max([w.Run_Time for w in waves])
-            time_min = min([w.Run_Time for w in waves])
+            # Compute the runtime based on steps taken and the more accurate estimate of runtime/step
+            # The actual runtime of a waveform for very fast models is very noisy
+            time_max = max([w.Steps for w in waves]) * self.model_record.Runtime_Per_Step
+            time_min = min([w.Steps for w in waves]) * self.model_record.Runtime_Per_Step
+            time_range = time_max-time_min
 
             error_max = max([w.Percent_Error for w in waves])
             #Error min is always 0
 
-            time_norm = [(w.Run_Time-time_min) / (time_max-time_min) for w in waves]
+            time_norm = [((w.Steps * self.model_record.Runtime_Per_Step)-time_min) / time_range for w in waves]
             error_norm = [w.Percent_Error / error_max for w in waves]
             dts = [float(w.Waveform_Label.replace(" ms", "")) for w in waves]
 
@@ -738,7 +787,7 @@ class NMLDB_Model(object):
             error_params, _ = curve_fit(error_func, dts, error_norm)
 
             # Find the dt at minimum total cost
-            # Total cost = normalized time cost + normalized error cost
+            # Total cost = normalized time cost + normalized error cost (here weighed equally)
             # Time cost is in the 1/dt form
             # Error cost is in slope*dt+constant form
             # Total cost = a/x+(b*x+c)
