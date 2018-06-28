@@ -89,6 +89,10 @@ class CellModel(NMLDB_Model):
             self.cell_record = Cells.get_or_none(Cells.Model_ID == self.get_model_nml_id())
 
     def save_stability_range(self):
+
+        if self.is_nosim():
+            return
+
         print("Getting stability range...")
         self.cell_record.Stability_Range_Low, self.cell_record.Stability_Range_High = self.get_stability_range()
         # self.cell_record.Stability_Range_Low, self.cell_record.Stability_Range_High = (-1.5, 76.0)
@@ -98,6 +102,10 @@ class CellModel(NMLDB_Model):
         self.cell_record.save()
 
     def save_resting_voltage(self):
+
+        if self.is_nosim():
+            return
+
         print("Getting resting voltage...")
         self.cell_record.Resting_Voltage = self.getRestingV(self.steady_state_delay, save_resting_state=True)["rest"]
         # self.cell_record.Resting_Voltage = -76.0
@@ -106,13 +114,17 @@ class CellModel(NMLDB_Model):
         self.cell_record.Is_Intrinsically_Spiking = self.cell_record.Resting_Voltage is None
 
         if not self.cell_record.Is_Intrinsically_Spiking:
-            assert self.cell_record.Resting_Voltage < 0
+            assert self.cell_record.Resting_Voltage < 1.0 # Allen Glif models rest at 0
 
         self.cell_record.save()
 
 
     def save_threshold(self):
-        if self.cell_record.Is_Intrinsically_Spiking:
+
+        if self.is_nosim():
+            return
+
+        if self.cell_record.Is_Intrinsically_Spiking or self.cell_record.Is_Passive:
             return
 
         print("Getting threshold...")
@@ -129,7 +141,10 @@ class CellModel(NMLDB_Model):
 
 
     def save_rheobase(self):
-        if self.cell_record.Is_Intrinsically_Spiking:
+        if self.is_nosim():
+            return
+
+        if self.cell_record.Is_Intrinsically_Spiking or self.cell_record.Is_Passive:
             return
 
         print("Getting rheobase...")
@@ -145,7 +160,10 @@ class CellModel(NMLDB_Model):
         self.cell_record.save()
 
     def save_bias_current(self):
-        if self.cell_record.Is_Intrinsically_Spiking:
+        if self.is_nosim():
+            return
+
+        if self.cell_record.Is_Intrinsically_Spiking or self.cell_record.Is_Passive:
             return
 
         print("Getting current for bias voltage...")
@@ -460,10 +478,12 @@ class CellModel(NMLDB_Model):
         :return: None
         """
 
-        if self.can_skip_steady_state():
+        self.remove_protocol_waveforms("STEADY_STATE")
+
+        if self.is_nosim():
             return
 
-        self.remove_protocol_waveforms("STEADY_STATE")
+        self.use_optimal_dt_if_available()
 
         result = self.getRestingV(save_resting_state=True, run_time=self.steady_state_delay)
         self.save_tvi_plot(label="STEADY STATE", tvi_dict=result)
@@ -476,11 +496,15 @@ class CellModel(NMLDB_Model):
         :return: None
         """
 
-        if self.cell_record.Is_Intrinsically_Spiking:
-            print("Cell is intrinsically spiking. Skipping RAMP...")
+        self.remove_protocol_waveforms("RAMP")
+
+        if self.is_nosim():
             return
 
-        self.remove_protocol_waveforms("RAMP")
+        if self.cell_record.Is_Intrinsically_Spiking or self.cell_record.Is_Passive:
+            return
+
+        self.use_optimal_dt_if_available()
 
         result = self.get_ramp_response(ramp_delay=self.steady_state_delay,
                                         ramp_max_duration=5 * 1000,
@@ -497,11 +521,15 @@ class CellModel(NMLDB_Model):
         :return: None
         """
 
-        if self.cell_record.Is_Intrinsically_Spiking:
-            print("Cell is intrinsically spiking. Skipping SHORT_SQUARE.")
+        self.remove_protocol_waveforms("SHORT_SQUARE")
+
+        if self.is_nosim():
             return
 
-        self.remove_protocol_waveforms("SHORT_SQUARE")
+        if self.cell_record.Is_Intrinsically_Spiking or self.cell_record.Is_Passive:
+            return
+
+        self.use_optimal_dt_if_available()
 
         self.save_square_current_set(protocol="SHORT_SQUARE",
                                      square_low=self.cell_record.Threshold_Current_Low,
@@ -512,11 +540,16 @@ class CellModel(NMLDB_Model):
 
 
     def save_SQUARE(self):
-        if self.cell_record.Is_Intrinsically_Spiking:
-            print("Cell is intrinsically spiking. Skipping SQUARE.")
-            return
 
         self.remove_protocol_waveforms("SQUARE")
+
+        if self.is_nosim():
+            return
+
+        if self.cell_record.Is_Intrinsically_Spiking or self.cell_record.Is_Passive:
+            return
+
+        self.use_optimal_dt_if_available()
 
         self.save_square_current_set(protocol="SQUARE",
                                      square_low=-self.cell_record.Rheobase_High * 0.5,  # Note the "-"
@@ -532,11 +565,15 @@ class CellModel(NMLDB_Model):
         :return: None
         """
 
-        if self.cell_record.Is_Intrinsically_Spiking:
-            print("Cell is intrinsically spiking. Skipping LONG_SQUARE.")
+        self.remove_protocol_waveforms("LONG_SQUARE")
+
+        if self.is_nosim():
             return
 
-        self.remove_protocol_waveforms("LONG_SQUARE")
+        if self.cell_record.Is_Intrinsically_Spiking or self.cell_record.Is_Passive:
+            return
+
+        self.use_optimal_dt_if_available()
 
         self.save_square_current_set(protocol="LONG_SQUARE",
                                          square_low=self.cell_record.Rheobase_High,
@@ -551,11 +588,16 @@ class CellModel(NMLDB_Model):
         SHORT_SQUARE_HOLD is a short threshold stimulus, while under bias current
         :return:
         """
-        if self.cell_record.Is_Intrinsically_Spiking:
-            print("Cell is intrinsically spiking. Skipping SHORT_SQUARE_HOLD.")
-            return
 
         self.remove_protocol_waveforms("SHORT_SQUARE_HOLD")
+
+        if self.is_nosim():
+            return
+
+        if self.cell_record.Is_Intrinsically_Spiking or self.cell_record.Is_Passive:
+            return
+
+        self.use_optimal_dt_if_available()
 
         def get_current_ti():
             ramp_t = [
@@ -585,11 +627,16 @@ class CellModel(NMLDB_Model):
 
 
     def save_SHORT_SQUARE_TRIPPLE(self):
-        if self.cell_record.Is_Intrinsically_Spiking:
-            print("Cell is intrinsically spiking. Skipping SHORT_SQUARE_TRIPPLE.")
-            return
 
         self.remove_protocol_waveforms("SHORT_SQUARE_TRIPPLE")
+
+        if self.is_nosim():
+            return
+
+        if self.cell_record.Is_Intrinsically_Spiking or self.cell_record.Is_Passive:
+            return
+
+        self.use_optimal_dt_if_available()
 
         self.save_square_tuple_set(delay=self.steady_state_delay,
                                    threshold_current=self.cell_record.Threshold_Current_High)
@@ -600,11 +647,15 @@ class CellModel(NMLDB_Model):
         :return: None
         """
 
-        if self.cell_record.Is_Intrinsically_Spiking:
-            print("Cell is intrinsically spiking. Skipping SQUARE_SUBTHRESHOLD.")
+        self.remove_protocol_waveforms("SQUARE_SUBTHRESHOLD")
+
+        if self.is_nosim():
             return
 
-        self.remove_protocol_waveforms("SQUARE_SUBTHRESHOLD")
+        if self.cell_record.Is_Intrinsically_Spiking or self.cell_record.Is_Passive:
+            return
+
+        self.use_optimal_dt_if_available()
 
         self.save_square_current_set(protocol="SQUARE_SUBTHRESHOLD",
                                      square_low=-self.cell_record.Threshold_Current_Low,
@@ -614,11 +665,16 @@ class CellModel(NMLDB_Model):
                                      duration=0.5)
 
     def save_NOISE(self):
-        if self.cell_record.Is_Intrinsically_Spiking:
-            print("Cell is intrinsically spiking. Skipping NOISE.")
-            return
 
         self.remove_protocol_waveforms("NOISE")
+
+        if self.is_nosim():
+            return
+
+        if self.cell_record.Is_Intrinsically_Spiking or self.cell_record.Is_Passive:
+            return
+
+        self.use_optimal_dt_if_available()
 
         self.save_noise_response_set(protocol="NOISE",
                                      meta_protocol="SEED1",
@@ -641,11 +697,16 @@ class CellModel(NMLDB_Model):
                                      restore_state=True)
 
     def save_NOISE_RAMP(self):
-        if self.cell_record.Is_Intrinsically_Spiking:
-            print("Cell is intrinsically spiking. Skipping NOISE_RAMP.")
-            return
 
         self.remove_protocol_waveforms("NOISE_RAMP")
+
+        if self.is_nosim():
+            return
+
+        if self.cell_record.Is_Intrinsically_Spiking or self.cell_record.Is_Passive:
+            return
+
+        self.use_optimal_dt_if_available()
 
         self.save_noise_response_set(protocol="NOISE_RAMP",
                                      delay=self.steady_state_delay,
@@ -659,12 +720,15 @@ class CellModel(NMLDB_Model):
 
 
     def save_DT_SENSITIVITY(self):
-        if self.cell_record.Is_Intrinsically_Spiking:
-            print("Cell is intrinsically spiking. Skipping DT_SENSITIVITY.")
-            return
 
         self.remove_protocol_waveforms("DT_SENSITIVITY")
         self.remove_protocol_waveforms("OPTIMAL_DT_BENCHMARK")
+
+        if self.is_nosim():
+            return
+
+        if self.cell_record.Is_Intrinsically_Spiking or self.cell_record.Is_Passive:
+            return
 
         smallest_dt_result = self.save_dt_sensitivity_set(rheobase=self.cell_record.Rheobase_High)
 
@@ -696,11 +760,14 @@ class CellModel(NMLDB_Model):
 
 
     def save_CVODE_RUNTIME_COMPLEXITY(self):
-        if self.cell_record.Is_Intrinsically_Spiking:
-            print("Cell is intrinsically spiking. Skipping CVODE_RUNTIME_COMPLEXITY.")
-            return
 
         self.remove_protocol_waveforms("CVODE_STEP_FREQUENCIES")
+
+        if self.is_nosim():
+            return
+
+        if self.cell_record.Is_Intrinsically_Spiking or self.cell_record.Is_Passive:
+            return
 
         self.save_cvode_step_frequencies(protocol="CVODE_STEP_FREQUENCIES",
                                          delay=self.steady_state_delay,
@@ -941,8 +1008,11 @@ class CellModel(NMLDB_Model):
 
                     # Subsample the waveform using largest dt interval (1ms)
                     # (these values will be compared across waveforms)
-                    smalest_dt_result["v_sub"] = np.array(smalest_dt_result["v"])[::max(steps_per_ms_set)]
-                    smalest_dt_result["t_sub"] = np.array(smalest_dt_result["t"])[::max(steps_per_ms_set)]
+                    try:
+                        smalest_dt_result["v_sub"] = np.array(smalest_dt_result["v"])[::max(steps_per_ms_set)]
+                        smalest_dt_result["t_sub"] = np.array(smalest_dt_result["t"])[::max(steps_per_ms_set)]
+                    except:
+                        pass
 
                 else:
                     # Error is average of differences from baseline waveform expressed as percentages of the waveform range
@@ -1124,12 +1194,9 @@ class CellModel(NMLDB_Model):
             h.celsius = self.model_record.Publication.Temperature
 
         # Create the cell
-        print('Determining cell model type...')
         if self.is_abstract_cell():
-            print('Building abstract cell...')
             self.test_cell = self.get_abstract_cell(h)
         elif len(self.get_hoc_files()) > 0:
-            print('Building cell with compartment(s)...')
             self.test_cell = self.get_cell_with_morphology(h)
         else:
             raise Exception("Could not find cell .hoc or abstract cell .mod file in: " + self.temp_model_path)
@@ -1153,7 +1220,6 @@ class CellModel(NMLDB_Model):
         h = self.load_model()
 
         # set up stim
-        print('Setting up vi clamps...')
         self.current = h.IClamp(self.soma(0.5))
         self.current.delay = 50.0
         self.current.amp = 0
@@ -1164,7 +1230,6 @@ class CellModel(NMLDB_Model):
 
 
         # Set up variable collectors
-        print('Setting up tvi collectors...')
         self.t_collector = Collector(self.config.collection_period_ms, h._ref_t)
         self.v_collector = Collector(self.config.collection_period_ms, self.soma(0.5)._ref_v)
         self.vc_i_collector = Collector(self.config.collection_period_ms, self.vc._ref_i)
@@ -1179,7 +1244,6 @@ class CellModel(NMLDB_Model):
         self.set_abs_tolerance(self.config.abs_tolerance)
 
         if not self.is_abstract_cell() and restore_tolerances:
-            print('Restoring cvode tolerances...')
             self.restore_tolerances()
 
         return h
@@ -1463,15 +1527,6 @@ class CellModel(NMLDB_Model):
         result = runner.run()
         return result
 
-    def save_tolerances(self, tstop=100, current_amp=0):
-
-        # print("Running tolerance tool...")
-        # if self.is_abstract_cell():
-        #     print("Cell is abstract, skipping tolerance tool")
-        #     return
-
-        super(CellModel, self).save_tolerances(tstop, current_amp)
-
     def get_structural_metrics(self):
 
         def run_struct_analysis():
@@ -1517,15 +1572,19 @@ class CellModel(NMLDB_Model):
         for wave in waves:
             print("Counting spikes for wave " + str(wave.ID) + "...")
 
-            with open(os.path.join(self.get_waveforms_dir(), str(wave.ID) + ".csv")) as f:
-                lines = f.readlines()
+            file = os.path.join(self.get_waveforms_dir(), str(wave.ID) + ".csv")
 
-                # times = lines[0]
-                values = np.fromstring(lines[1], dtype=float, sep=',')
-                spike_count = self.getSpikeCount(values)
+            if os.path.exists(file):
+                with open(file) as f:
+                    lines = f.readlines()
 
-                wave.Spikes = spike_count
-                wave.save()
+                    # times = lines[0]
+                    values = np.fromstring(lines[1], dtype=float, sep=',')
+                    spike_count = self.getSpikeCount(values)
+
+                    wave.Spikes = spike_count
+                    wave.save()
+
 
 
 
@@ -1542,3 +1601,9 @@ class CellModel(NMLDB_Model):
                 "Simulation is numericaly unstable with dt of " + str(h.dt) + " ms")
 
         return (t_np, v_np)
+
+    def use_optimal_dt_if_available(self):
+        if self.model_record.Optimal_DT is not None:
+            print("Using optimal DT " + str(self.model_record.Optimal_DT))
+            self.config.cvode_active = 0
+            self.dt = self.model_record.Optimal_DT

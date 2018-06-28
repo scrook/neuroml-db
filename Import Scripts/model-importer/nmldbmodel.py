@@ -105,16 +105,7 @@ class NMLDB_Model(object):
 
     def is_nosim(self):
         if self.model_record.Status == 'NOSIM':
-            print("Model " + id + " has simulation status NOSIM...")
-            return True
-
-        return False
-
-    def can_skip_steady_state(self):
-        if self.config.skip_obtaining_steady_state_if_state_file_exists and \
-                os.path.exists(os.path.join(self.get_permanent_model_directory(), 'state.bin')) and \
-                len([w for w in self.model_record.Waveforms if w.Protocol_id == "STEADY_STATE"]) > 0:
-            print('Steady state file exists. Skipping STEADY_STATE protocol...')
+            print("Model " + self.model_record.Model_ID + " has simulation status NOSIM...")
             return True
 
         return False
@@ -186,6 +177,7 @@ class NMLDB_Model(object):
             # Use the estimate to run the simulation for about ~60 seconds
             runtime_approx_60s = 60.0/sample_time*100.0
 
+            print("Estimating runtime per step with a ~60 sec run...")
             with RunTimer() as timer:
                 h.tstop = runtime_approx_60s
                 h.run()
@@ -677,7 +669,10 @@ class NMLDB_Model(object):
         print("Updating model status...")
         self.server.connect()
 
-        self.model_record.Status = status
+        # Don't change the status of NOSIM models
+        if self.model_record.Status != "NOSIM":
+            self.model_record.Status = status
+
         self.model_record.Status_Timestamp = datetime.datetime.now()
 
         if status == "ERROR":

@@ -205,14 +205,26 @@ class ChannelModel(NMLDB_Model):
 
         def vclamp_protocol(time_flag):
             self.time_flag = time_flag
+
+            # Run channels using fixed step
+            print('Running channel protocol using FIXED DT:' + str(self.config.dt))
+            self.config.cvode_active = 0
+
             h = self.build_model()
+
 
             if ca_conc is not None:
                 self.soma.cai = float(ca_conc)
 
             with RunTimer() as timer:
                 if restore_state:
-                    self.restore_state()
+                    self.restore_state() # False to avoid the 1-step workaround
+
+                    # HACK/workaround for 0-currents/conductances on restore
+                    h.cvode_active(1)
+                    h.cvode_active(0)
+                    # End HACK
+
                 else:
                     h.stdinit()
 
@@ -415,7 +427,7 @@ class ChannelModel(NMLDB_Model):
         self.soma.insert(self.mod_name)
 
         # Set max conductance
-        setattr(self.soma, "gmax_" + self.mod_name, 10.0)
+        setattr(self.soma, "gmax_" + self.mod_name, 1.0)
 
         # Set reversal pot
         if hasattr(self.soma, "e" + self.ion):
@@ -436,9 +448,10 @@ class ChannelModel(NMLDB_Model):
         # set up stim
         print('Setting up vi clamps...')
         self.vc = h.SEClamp(self.soma(0.5))
+        self.vc.rs = 1e-6
         self.vc.amp1 = 0
         self.vc.dur1 = 0
-        self.vc.rs = 1e-6
+
 
         # Set up variable collectors
         print('Setting up tvi collectors...')
