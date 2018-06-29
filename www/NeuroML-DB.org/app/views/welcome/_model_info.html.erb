@@ -200,6 +200,8 @@
 
         <%= render 'model_morphology' %>
 
+        <%= render 'model_properties' %>
+
         <tr>
           <td class="keyword">
             Associated Channels:
@@ -231,7 +233,10 @@
           @meta_protocol_type = "[Ca<sup>2+</sup>] level (mM)".html_safe
           @clamp_type = "Voltage"
         %>
+
         <%= render 'model_plot' %>
+
+        <%= render 'model_properties' %>
 
         <tr>
           <td class="keyword">

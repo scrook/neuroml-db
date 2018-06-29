@@ -119,6 +119,7 @@ class Cells(BaseModel):
     Stability_Range_Low = FloatField()
     Stability_Range_High = FloatField()
     Is_Intrinsically_Spiking = BooleanField()
+    Is_Passive = BooleanField()
     Rheobase_Low = FloatField()
     Rheobase_High = FloatField()
     Resting_Voltage = FloatField()
