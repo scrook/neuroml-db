@@ -228,3 +228,5 @@ class Model_Other_Keywords(BaseModel):
 
     class Meta:
         primary_key = peewee.CompositeKey('Model', 'Other_Keyword')
+
+

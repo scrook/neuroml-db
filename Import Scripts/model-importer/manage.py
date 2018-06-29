@@ -31,6 +31,60 @@ def save_model_properties():
         mm.save_model_properties(models, properties)
 
 
+def process_batch():
+    # check queue for tasks,
+    # if got one, process it, in a separate process
+    # else quit
+
+
+    """
+    we dont want to get too many tasks ahead of time
+    want to keep getting tasks until: 1) no more tasks 2) all cpus busy
+    once a task completes, get another task
+    launch a thread for each cpu
+    each thread checks the queue and retrieves tasks, if none available quits
+
+    :return:
+    """
+    from multiprocessing import Pool, cpu_count
+
+    threads = cpu_count() - 1
+
+    print("Starting batch in " + str(threads) + " parallel processes...")
+    pool = Pool(processes=threads)
+    pool.map(single_cpu_job, range(threads))
+
+
+def single_cpu_job(ignore):
+    import os
+
+    keep_working = True
+
+    while keep_working:
+
+        with ModelManager() as mm:
+            mm.server.connect()
+
+            cursor = mm.server.db.cursor()
+            cursor.callproc("get_next_task")
+            tasks = cursor.fetchall()
+
+        if len(tasks) > 0:
+            task_id, command = tasks[0]
+            print("Working on task: " + str(task_id) + " '" + command + "'")
+
+            try:
+                os.system(command)
+            finally:
+                with ModelManager() as mm:
+                    mm.server.connect()
+                    mm.server.db.execute_sql('call finish_task(%s)',(task_id))
+
+        else:
+            print('No more tasks, exiting...')
+            keep_working = False
+
+
 def check_install_dependencies():
     import os
 
