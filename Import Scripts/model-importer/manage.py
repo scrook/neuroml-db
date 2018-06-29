@@ -49,6 +49,9 @@ def process_batch():
     from multiprocessing import Pool, cpu_count
 
     threads = cpu_count() - 1
+    
+    if threads == 0:
+        threads = 1
 
     print("Starting batch in " + str(threads) + " parallel processes...")
     pool = Pool(processes=threads)
@@ -92,7 +95,7 @@ def check_install_dependencies():
         raise Exception("Set the value of environment variable 'NMLDBPWD' to the NMLDB password")
 
     # Check for missing installable dependencies
-    deps = ["pydevd", "peewee", "pymysql", "sshtunnel", "numpy", "matplotlib", "cPickle", "rdp", "scipy"]
+    deps = ["pydevd", "peewee", "pymysql", "sshtunnel", "numpy", "matplotlib", "cPickle", "rdp", "scipy", "sklearn"]
 
     for dep in deps:
         try:
