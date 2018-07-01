@@ -60,22 +60,22 @@
         steady_state_waveforms = Enumerable
                 .from(steady_state_waveforms)
                 .select(w => to_chartjs_format(w))
-    .toArray();
+                .toArray();
 
         //Create canvases for each variable
         Enumerable.from(variables).forEach(v => {
             canvasID = "canvas"+v["Name"];
-        title = v["Name"] + " (" + v["Units"] + ")";
-        var container = jQuery('<div class="plot-container"></div>').appendTo("#canvases");
+            title = v["Name"] + " (" + v["Units"] + ")";
+            var container = jQuery('<div class="plot-container"></div>').appendTo("#canvases");
 
-        jQuery('<div class="zoom-in ui-icon ui-icon-plus" title="Zoom IN" data-id="'+canvasID+'"></div>').appendTo(container);
-        jQuery('<div class="zoom-out ui-icon ui-icon-minus" title="Zoom OUT" data-id="'+canvasID+'"></div>').appendTo(container);
-        jQuery('<div class="zoom-reset ui-icon ui-icon-arrowrefresh-1-n" title="Reset Zoom/Pan" data-id="'+canvasID+'"></div></div>').appendTo(container);
+            jQuery('<div class="zoom-in ui-icon ui-icon-plus" title="Zoom IN" data-id="'+canvasID+'"></div>').appendTo(container);
+            jQuery('<div class="zoom-out ui-icon ui-icon-minus" title="Zoom OUT" data-id="'+canvasID+'"></div>').appendTo(container);
+            jQuery('<div class="zoom-reset ui-icon ui-icon-arrowrefresh-1-n" title="Reset Zoom/Pan" data-id="'+canvasID+'"></div></div>').appendTo(container);
 
-        jQuery('<canvas id="'+canvasID+'" width="874" height="219"></canvas>').appendTo(container);
+            jQuery('<canvas id="'+canvasID+'" width="874" height="219"></canvas>').appendTo(container);
 
-        setupChart(canvasID, title, { "datasets": []});
-    });
+            setupChart(canvasID, title, { "datasets": []});
+        });
 
         jQuery(".zoom-in").on("click", function() {
             var chart = window[jQuery(this).data("id")];

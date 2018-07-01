@@ -116,10 +116,12 @@ class Model < ActiveRecord::Base
 
     model = ActiveRecord::Base.connection.exec_query(
         "
-          SELECT m.*, mt.Name as Type, c.Compartments
+          SELECT m.*, mt.Name as Type, c.*, ch.*, mrc.*
           FROM models m
           JOIN model_types mt ON mt.ID = m.Type
           LEFT JOIN cells c on c.Model_ID = m.Model_ID
+          LEFT JOIN channels ch on ch.Model_ID = m.Model_ID
+          LEFT JOIN model_relative_complexity mrc on mrc.Model_ID = m.Model_ID
           WHERE m.Model_ID = '#{idClean}'
           LIMIT 1
         ").first
@@ -262,7 +264,12 @@ class Model < ActiveRecord::Base
   def self.GetWaveformValues(model_id, waveform_id)
       file = "/var/www/NeuroMLmodels/"+model_id+"/waveforms/"+waveform_id.to_s+".csv"
 
-      lines = File.readlines(file)
+      if File.exists?(file)
+        lines = File.readlines(file)
+      else
+        raise "Waveform was not found in the sever's file system. Make sure 'git pull' has been performed on the server."
+      end
+
 
       if lines.length == 2
         times = lines[0]

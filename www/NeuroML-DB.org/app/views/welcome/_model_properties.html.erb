@@ -21,31 +21,31 @@
         <tbody>
         <tr>
           <td class="property-name">Is Passive</td>
-          <td class="property-value">0.23 nA</td>
+          <td class="property-value"><%= @model["Is_Passive"] == 1 ? "Yes" : "No" %></td>
         </tr>
         <tr>
           <td class="property-name">Is Intrinsically Spiking</td>
-          <td class="property-value">0.23 nA</td>
+          <td class="property-value"><%= @model["Is_Intrinsically_Spiking"] == 1 ? "Yes" : "No" %></td>
         </tr>
         <tr>
           <td class="property-name">Resting Voltage</td>
-          <td class="property-value">0.23 nA</td>
+          <td class="property-value"><%= display_field(@model, "Resting_Voltage", "%.2f", "N/A") %> mV</td>
         </tr>
         <tr>
-          <td class="property-name">Rheobase Interval Low-High</td>
-          <td class="property-value">0.23 nA</td>
+          <td class="property-name">Rheobase Current Interval</td>
+          <td class="property-value">(<%= display_field(@model, "Rheobase_Low", "%.4f", "N/A") %>, <%= display_field(@model, "Rheobase_High", "%.4f", "N/A") %>] nA</td>
         </tr>
         <tr>
-          <td class="property-name">Threshold Current Interval Low-High</td>
-          <td class="property-value">0.23 nA</td>
+          <td class="property-name">Threshold Current Interval</td>
+          <td class="property-value">(<%= display_field(@model, "Threshold_Current_Low", "%.4f", "N/A") %>, <%= display_field(@model, "Threshold_Current_High", "%.4f", "N/A") %>] nA</td>
         </tr>
         <tr>
-          <td class="property-name">Bias Current (to Bias Voltage)</td>
-          <td class="property-value">0.23 nA</td>
+          <td class="property-name">Bias Current (to <%= display_field(@model, "Bias_Voltage", "%.2f", "N/A") %> mV)</td>
+          <td class="property-value"><%= display_field(@model, "Bias_Current", "%.4f", "N/A") %> nA</td>
         </tr>
         <tr>
           <td class="property-name">Testing Temperature</td>
-          <td class="property-value">0.23 nA</td>
+          <td class="property-value"><%= @publication["Temperature"] != nil ? @publication["Temperature"] : "36" %> &#176;C</td>
         </tr>
         </tbody>
       </table>
@@ -67,59 +67,55 @@
         <tbody>
         <tr>
           <td class="property-name">Sections</td>
-          <td class="property-value">0.23 nA</td>
+          <td class="property-value"><%= display_field(@model, "Sections", "%d", "N/A") %></td>
         </tr>
         <tr>
           <td class="property-name">Compartments</td>
-          <td class="property-value">0.23 nA</td>
+          <td class="property-value"><%= display_field(@model, "Compartments", "%d", "N/A") %></td>
         </tr>
         <tr>
           <td class="property-name">State Equations</td>
-          <td class="property-value">1,453</td>
+          <td class="property-value"><%= display_field(@model, "Equations", "%d", "N/A") %></td>
         </tr>
         <tr>
           <td class="property-name">Maximum Stable Time Step</td>
-          <td class="property-value">0.5 ms</td>
+          <td class="property-value"><%= display_field(@model, "Max_Stable_DT", "%s", "N/A") %> ms</td>
         </tr>
         <tr>
           <td class="property-name">Maximum Stable Time Step Error</td>
-          <td class="property-value">0.23 %</td>
+          <td class="property-value"><%= display_field(@model, "Max_Stable_DT_Error", '%.2f', "N/A") %> %</td>
         </tr>
         <tr>
-          <td class="property-name">Single Step Run-time (mean)</td>
-          <td class="property-value">12.0 times slower than HH</td>
+          <td class="property-name">Benchmark Run-time @ Max. Stable Step</td>
+          <td class="property-value"><%= display_field(@model, "Max_Stable_DT_Benchmark_RunTime_HH", "%.2f", "N/A") %> HH</td>
         </tr>
         <tr>
           <td class="property-name">Run-time-vs-Error Optimal Time Step</td>
-          <td class="property-value">0.23 ms</td>
+          <td class="property-value"><%= display_field(@model, "Optimal_DT", "%.5f", "N/A") %> ms</td>
         </tr>
         <tr>
           <td class="property-name">Run-time-vs-Error Optimal Time Step Error</td>
-          <td class="property-value">0.23 %</td>
+          <td class="property-value"><%= display_field(@model, "Optimal_DT_Error", "%.2f", "N/A") %> %</td>
         </tr>
         <tr>
           <td class="property-name">Benchmark Run-time @ Optimal Time Step</td>
-          <td class="property-value">12.0 times faster than HH</td>
+          <td class="property-value"><%= display_field(@model, "Optimal_DT_Benchmark_RunTime_HH", "%.2f", "N/A") %> HH</td>
         </tr>
         <tr>
           <td class="property-name">CVODE Steady State Step Frequency</td>
-          <td class="property-value">10,312 steps per simulation second</td>
+          <td class="property-value"><%= display_field(@model, "CVODE_baseline_step_frequency", "%d", "N/A") %> steps/sim. sec.</td>
         </tr>
         <tr>
           <td class="property-name">CVODE Steps Per Spike</td>
-          <td class="property-value">543 steps per spike</td>
+          <td class="property-value"><%= display_field(@model, "CVODE_steps_per_spike", "%d", "N/A") %> steps/spike</td>
         </tr>
         <tr>
-          <td class="property-name">CVODE Runtime @ 10 Spikes/s</td>
-          <td class="property-value">12.0 times faster than HH</td>
+          <td class="property-name">CVODE Benchmark Run-time @ 10 Spikes/s</td>
+          <td class="property-value"><%= display_field(@model, "CVODE_Benchmark_RunTime_HH", "%.2f", "N/A") %> HH</td>
         </tr>
         <tr>
-          <td class="property-name">Stability Interval Low-High</td>
-          <td class="property-value">0.23 nA</td>
-        </tr>
-        <tr>
-          <td class="property-name">Stability Interval Low-High</td>
-          <td class="property-value">0.23 nA</td>
+          <td class="property-name">Stability Interval</td>
+          <td class="property-value">[<%= display_field(@model, "Stability_Range_Low", "%s", "N/A") %>, <%= display_field(@model, "Stability_Range_High", "%s", "N/A") %>] <%= @type == "Cell" ? "nA" : "mV" %></td>
         </tr>
         </tbody>
       </table>

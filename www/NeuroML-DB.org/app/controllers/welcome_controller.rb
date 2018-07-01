@@ -23,6 +23,7 @@ class WelcomeController < ApplicationController
     @filename=model["File_Name"]
     @model_notes = model["Notes"]
     @compartments = model["Compartments"]
+    @model = model
 
     @morphometrics = Model.GetMorphometrics(@model_id)
     @gif_path = Model.GetModelGifPath(@model_id)
@@ -54,6 +55,7 @@ class WelcomeController < ApplicationController
 
     # Strange: Here it's 1-many, in DB it's 1-1
     pub = details[:publication]
+    @publication = pub
     @pub_list[pub[:record]["Pubmed_Ref"]] = pub[:record]["Full_Title"]
     @shortPub = pub[:short]
 
@@ -79,6 +81,16 @@ class WelcomeController < ApplicationController
 
   def model_atag_params(id)
     return "href=\"/model_info?model_id=#{id}\"".html_safe
+  end
+
+  helper_method :display_field
+
+  def display_field(structure, field, format, nilValue)
+    if structure[field] == nil
+      return nilValue
+    else
+      return format % structure[field]
+    end
   end
 
 
