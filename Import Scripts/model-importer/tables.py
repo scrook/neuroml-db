@@ -109,8 +109,7 @@ class Channels(BaseModel):
     Type = ForeignKeyField(Channel_Classes, field="ID", column_name="Channel_Type")
     Stability_Range_Low = FloatField()
     Stability_Range_High = FloatField()
-
-
+    Time_Step = FloatField()
 
 class Cells(BaseModel):
     Model_ID = CharField(primary_key=True)
@@ -127,6 +126,7 @@ class Cells(BaseModel):
     Threshold_Current_High = FloatField()
     Bias_Voltage = FloatField()
     Bias_Current = FloatField()
+    CVODE_Active = BooleanField()
 
 
 class Morphometrics(BaseModel):
@@ -228,5 +228,6 @@ class Model_Other_Keywords(BaseModel):
 
     class Meta:
         primary_key = peewee.CompositeKey('Model', 'Other_Keyword')
+
 
 

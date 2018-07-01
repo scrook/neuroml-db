@@ -36,6 +36,8 @@ class CellModel(NMLDB_Model):
         self.pickle_file_cache = {}
 
         self.all_properties.extend([
+            'equation_count',
+            'runtime_per_step',
             'structural_metrics',
             'tolerances',
             'stability_range',
@@ -95,7 +97,7 @@ class CellModel(NMLDB_Model):
 
         print("Getting stability range...")
         self.cell_record.Stability_Range_Low, self.cell_record.Stability_Range_High = self.get_stability_range()
-        # self.cell_record.Stability_Range_Low, self.cell_record.Stability_Range_High = (-1.5, 76.0)
+
 
         assert self.cell_record.Stability_Range_Low < self.cell_record.Stability_Range_High
 
@@ -108,7 +110,7 @@ class CellModel(NMLDB_Model):
 
         print("Getting resting voltage...")
         self.cell_record.Resting_Voltage = self.getRestingV(self.steady_state_delay, save_resting_state=True)["rest"]
-        # self.cell_record.Resting_Voltage = -76.0
+
 
         # No resting v means cell is intrinsically spiking
         self.cell_record.Is_Intrinsically_Spiking = self.cell_record.Resting_Voltage is None
@@ -132,8 +134,8 @@ class CellModel(NMLDB_Model):
         th = self.getThreshold(0, self.cell_record.Stability_Range_High)
         self.cell_record.Threshold_Current_Low = np.min(th)
         self.cell_record.Threshold_Current_High = np.max(th)
-        # self.cell_record.Threshold_Current_Low = 0.16
-        # self.cell_record.Threshold_Current_High = 0.25
+
+
 
         assert self.cell_record.Threshold_Current_Low < self.cell_record.Threshold_Current_High
 
@@ -151,8 +153,8 @@ class CellModel(NMLDB_Model):
         rb = self.getRheobase(0, self.cell_record.Threshold_Current_High)
         self.cell_record.Rheobase_Low = np.min(rb)
         self.cell_record.Rheobase_High = np.max(rb)
-        # self.cell_record.Rheobase_Low = 0.16
-        # self.cell_record.Rheobase_High = 0.25
+
+
 
         assert self.cell_record.Rheobase_Low < self.cell_record.Rheobase_High
         assert self.cell_record.Rheobase_High < self.cell_record.Threshold_Current_High
@@ -809,7 +811,10 @@ class CellModel(NMLDB_Model):
     def save_square_current_set(self, protocol, square_low, square_high, square_steps, delay, duration, post_delay=250):
 
         # Create current amplitude set
-        amps = np.linspace(square_low, square_high, num=square_steps).tolist()
+        amps = np.linspace(
+                    max(square_low, self.cell_record.Stability_Range_Low), 
+                    min(square_high, self.cell_record.Stability_Range_High), 
+                    num=square_steps).tolist()
 
         # Run each injection as a separate simulation, resuming from steady state
         for amp in amps:
@@ -1603,7 +1608,7 @@ class CellModel(NMLDB_Model):
         return (t_np, v_np)
 
     def use_optimal_dt_if_available(self):
-        if self.model_record.Optimal_DT is not None:
+        if (self.cell_record.CVODE_Active is None or self.cell_record.CVODE_Active == 0) and self.model_record.Optimal_DT is not None:
             print("Using optimal DT " + str(self.model_record.Optimal_DT))
             self.config.cvode_active = 0
             self.dt = self.model_record.Optimal_DT

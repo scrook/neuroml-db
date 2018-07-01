@@ -52,9 +52,7 @@ class NMLDB_Model(object):
         sys.setrecursionlimit(10000)
 
         self.all_properties = [
-            'checksum',
-            'equation_count',
-            'runtime_per_step'
+            'checksum'
         ]
 
     def __enter__(self):
@@ -557,15 +555,15 @@ class NMLDB_Model(object):
     def get_tv(self):
         raise NotImplementedError()
 
-    def crossings_nonzero_pos2neg(self, data, theshold):
-        pos = data > theshold
-        return (pos[:-1] & ~pos[1:]).nonzero()[0]
+    def crossings_nonzero_neg2pos(self, data, threshold):
+        pos = data > threshold
+        return (~pos[:-1] & pos[1:]).nonzero()[0]
 
-    def getSpikeCount(self, voltage, threshold=-20.0):
+    def getSpikeCount(self, voltage, threshold=0):
         if np.max(voltage) < threshold:
             return 0
         else:
-            return len(self.crossings_nonzero_pos2neg(voltage, threshold))
+            return len(self.crossings_nonzero_neg2pos(voltage, threshold))
 
     def save_state(self, state_file='state.bin'):
         from neuron import h

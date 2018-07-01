@@ -17,6 +17,8 @@ class ChannelModel(NMLDB_Model):
         super(ChannelModel, self).__init__(*args, **kwargs)
 
         self.all_properties.extend([
+            'equation_count',
+            'runtime_per_step',
             'tolerances',
             'stability_range',
             'ACTIVATION',
@@ -114,6 +116,8 @@ class ChannelModel(NMLDB_Model):
         # Run the same protocol at different Ca concentrations
         for ca_conc in ca_concentrations:
 
+            voltages_ss = self.stable_voltages(voltages_ss)
+
             # Reach the desired steady-state
             result_ss = self.get_vclamp_response(durations=durations_ss,
                                                  voltages=voltages_ss,
@@ -131,6 +135,9 @@ class ChannelModel(NMLDB_Model):
             for step_v in steps:
                 voltages = [step_v if v == 'LOWHIGH' else v for v in voltages_stim]
 
+                # Ensure voltages are within stability range
+                voltages = self.stable_voltages(voltages)
+
                 result_stim = self.get_vclamp_response(durations=durations_stim,
                                                        voltages=voltages,
                                                        ca_conc=ca_conc,
@@ -147,6 +154,11 @@ class ChannelModel(NMLDB_Model):
                                          label=str(step_v) + " mV",
                                          tvig_dict=result,
                                          meta_protocol=meta_protocol)
+
+    def stable_voltages(self, steps):
+        min_v = self.channel_record.Stability_Range_Low
+        max_v = self.channel_record.Stability_Range_High
+        return [max(min(float(v), max_v), min_v) for v in steps]
 
     def concat_tvig_dicts(self, dict1, dict2):
         result = {
@@ -207,8 +219,12 @@ class ChannelModel(NMLDB_Model):
             self.time_flag = time_flag
 
             # Run channels using fixed step
-            print('Running channel protocol using FIXED DT:' + str(self.config.dt))
+            print('Running channel protocol using FIXED DT:' + str(self.config.dt) + ' and voltages: ' + str(voltages))
             self.config.cvode_active = 0
+
+            # Use dt from the record or default if not specified
+            if self.channel_record.Time_Step is not None:
+                self.config.dt = self.channel_record.Time_Step
 
             h = self.build_model()
 
@@ -522,3 +538,4 @@ class ChannelModel(NMLDB_Model):
 
             with open(mod_name + ".mod", "w") as f:
                 f.write(mod_file)
+

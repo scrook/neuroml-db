@@ -466,7 +466,7 @@ class ModelManager(object):
         # channel protocol
         if type_id == "CH":
             Channels.create(
-                Model=model,
+                Model_ID=model.Model_ID,
                 Type=node["channel_protocol"]
             )
 
@@ -660,7 +660,8 @@ class ModelManager(object):
         node["keywords"] = [r.Other_Keyword_Term for r in model.Keywords]
 
         if model.Type.Name == "Channel":
-            node["channel_protocol"] = model.Channel[0].Channel_Class
+            channel = Channels.get(Channels.Model_ID == model.Model_ID)
+            node["channel_protocol"] = channel.Channel_Type
 
         node["notes"] = model.Notes
         node["file_updated"] = model.File_Updated
