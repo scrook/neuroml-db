@@ -116,7 +116,9 @@ class Model < ActiveRecord::Base
 
     model = ActiveRecord::Base.connection.exec_query(
         "
-          SELECT m.*, mt.Name as Type, c.*, ch.*, mrc.*
+          SELECT m.*, mt.Name as Type, c.*, ch.*, mrc.*,
+            IF(c.Stability_Range_Low is NULL, ch.Stability_Range_Low, c.Stability_Range_Low) as Stability_Range_Low_Corr,
+            IF(c.Stability_Range_High is NULL, ch.Stability_Range_High, c.Stability_Range_High) as Stability_Range_High_Corr
           FROM models m
           JOIN model_types mt ON mt.ID = m.Type
           LEFT JOIN cells c on c.Model_ID = m.Model_ID

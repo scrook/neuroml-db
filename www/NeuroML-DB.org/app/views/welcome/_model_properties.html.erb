@@ -115,7 +115,7 @@
         </tr>
         <tr>
           <td class="property-name">Stability Interval</td>
-          <td class="property-value">[<%= display_field(@model, "Stability_Range_Low", "%s", "N/A") %>, <%= display_field(@model, "Stability_Range_High", "%s", "N/A") %>] <%= @type == "Cell" ? "nA" : "mV" %></td>
+          <td class="property-value">[<%= display_field(@model, "Stability_Range_Low_Corr", "%s", "N/A") %>, <%= display_field(@model, "Stability_Range_High_Corr", "%s", "N/A") %>] <%= @type == "Cell" ? "nA" : "mV" %></td>
         </tr>
         </tbody>
       </table>

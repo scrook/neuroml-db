@@ -55,7 +55,7 @@ class WelcomeController < ApplicationController
 
     # Strange: Here it's 1-many, in DB it's 1-1
     pub = details[:publication]
-    @publication = pub
+    @publication = pub[:record]
     @pub_list[pub[:record]["Pubmed_Ref"]] = pub[:record]["Full_Title"]
     @shortPub = pub[:short]
 
