@@ -374,6 +374,13 @@ class NMLDB_Model(object):
 
         return result
 
+    def set_wave_metrics(self, wave, values):
+        wave.Spikes = self.getSpikeCount(values)
+        wave.Min = np.min(values)
+        wave.Max = np.max(values)
+        wave.Mean = np.mean(values)
+        wave.STD = np.std(values)
+
     def create_or_update_waveform(self, protocol, label, meta_protocol, times, variable_name, values, units,
                                   run_time, error, dt_or_atol, cvode_active, steps):
         print("Saving waveform...")
@@ -400,6 +407,8 @@ class NMLDB_Model(object):
         waveform.Steps = steps
         waveform.dt_or_atol = dt_or_atol
         waveform.CVODE_active = cvode_active
+
+        self.set_wave_metrics(waveform, np.array(values))
 
         waveform.Units = units
         waveform.Timestamp = datetime.datetime.now()
@@ -832,3 +841,30 @@ class NMLDB_Model(object):
         :return:
         """
         pass
+    
+    def save_wave_stats(self):
+        self.server.connect()
+
+        waves = Model_Waveforms \
+            .select(Cells.Model_ID, Model_Waveforms.ID, Model_Waveforms.Protocol) \
+            .join(Cells, on=(Cells.Model_ID == Model_Waveforms.Model)) \
+            .where(
+                (Model_Waveforms.Variable_Name == 'Voltage') &
+                (Cells.Model_ID == self.get_model_nml_id())
+            )
+
+        for wave in waves:
+            print("Getting stats for wave " + str(wave.ID) + "...")
+
+            file = os.path.join(self.get_waveforms_dir(), str(wave.ID) + ".csv")
+
+            if os.path.exists(file):
+                with open(file) as f:
+                    lines = f.readlines()
+
+                    # times = lines[0]
+                    values = np.fromstring(lines[1], dtype=float, sep=',')
+
+                    self.set_wave_metrics(wave, values)
+
+                    wave.save()

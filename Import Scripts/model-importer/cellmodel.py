@@ -44,9 +44,12 @@ class CellModel(NMLDB_Model):
             'resting_voltage',
             'threshold',
             'rheobase',
+            'DT_SENSITIVITY',
+            'stability_range',
+            'threshold',
+            'rheobase',
             'bias_current',
             'tolerances_with_stim',
-            'DT_SENSITIVITY',
             'CVODE_RUNTIME_COMPLEXITY',
             'STEADY_STATE',
             'RAMP',
@@ -55,7 +58,7 @@ class CellModel(NMLDB_Model):
             'LONG_SQUARE',
             'SHORT_SQUARE_HOLD',
             'SHORT_SQUARE_TRIPPLE',
-            'SQUARE_SUBTHRESHOLD',
+            'SQUARE_SUBTHRESHOLD'
             # 'NOISE',
             # 'NOISE_RAMP',
             # 'morphology_data'
@@ -95,6 +98,8 @@ class CellModel(NMLDB_Model):
         if self.is_nosim():
             return
 
+        self.use_optimal_dt_if_available()
+
         print("Getting stability range...")
         self.cell_record.Stability_Range_Low, self.cell_record.Stability_Range_High = self.get_stability_range()
 
@@ -107,6 +112,8 @@ class CellModel(NMLDB_Model):
 
         if self.is_nosim():
             return
+
+        self.use_optimal_dt_if_available()
 
         print("Getting resting voltage...")
         self.cell_record.Resting_Voltage = self.getRestingV(self.steady_state_delay, save_resting_state=True)["rest"]
@@ -129,6 +136,8 @@ class CellModel(NMLDB_Model):
         if self.cell_record.Is_Intrinsically_Spiking or self.cell_record.Is_Passive:
             return
 
+        self.use_optimal_dt_if_available()
+
         print("Getting threshold...")
 
         th = self.getThreshold(0, self.cell_record.Stability_Range_High)
@@ -149,6 +158,8 @@ class CellModel(NMLDB_Model):
         if self.cell_record.Is_Intrinsically_Spiking or self.cell_record.Is_Passive:
             return
 
+        self.use_optimal_dt_if_available()
+
         print("Getting rheobase...")
         rb = self.getRheobase(0, self.cell_record.Threshold_Current_High)
         self.cell_record.Rheobase_Low = np.min(rb)
@@ -167,6 +178,8 @@ class CellModel(NMLDB_Model):
 
         if self.cell_record.Is_Intrinsically_Spiking or self.cell_record.Is_Passive:
             return
+
+        self.use_optimal_dt_if_available()
 
         print("Getting current for bias voltage...")
         roundedRest = round(self.cell_record.Resting_Voltage / 10) * 10
@@ -776,8 +789,6 @@ class CellModel(NMLDB_Model):
                                          sub_rheobase=self.cell_record.Rheobase_Low,
                                          rheobase=self.cell_record.Rheobase_High)
 
-        self.save_spike_counts()
-
         self.save_cvode_runtime_complexity_metrics()
 
 
@@ -1300,7 +1311,7 @@ class CellModel(NMLDB_Model):
             current_delay=500,
             current_duration=3,
             run_for_after_delay=10,
-            test_condition=lambda t, v: False,
+            test_condition=lambda t, v: False if np.max(np.abs(v)) < 150 else True,
             on_unstable=lambda: True,
             max_iterations=7,
             fig_file="stabilityHigh.png",
@@ -1316,7 +1327,7 @@ class CellModel(NMLDB_Model):
             current_delay=500,
             current_duration=3,
             run_for_after_delay=10,
-            test_condition=lambda t, v: True,
+            test_condition=lambda t, v: True if np.max(np.abs(v)) < 150 else False,
             on_unstable=lambda: False,
             max_iterations=7,
             fig_file="stabilityLow.png",
@@ -1561,36 +1572,6 @@ class CellModel(NMLDB_Model):
         self.cell_record.Compartments = metrics["compartment_count"]
 
         self.cell_record.save()
-
-    def save_spike_counts(self):
-        self.server.connect()
-
-        waves = Model_Waveforms \
-            .select(Cells.Model_ID, Model_Waveforms.ID, Model_Waveforms.Protocol) \
-            .join(Cells, on=(Cells.Model_ID == Model_Waveforms.Model)) \
-            .where(
-                (Model_Waveforms.Variable_Name == 'Voltage') &
-                (Model_Waveforms.Spikes.is_null(True)) &
-                (Cells.Model_ID == self.get_model_nml_id())
-            )
-
-        for wave in waves:
-            print("Counting spikes for wave " + str(wave.ID) + "...")
-
-            file = os.path.join(self.get_waveforms_dir(), str(wave.ID) + ".csv")
-
-            if os.path.exists(file):
-                with open(file) as f:
-                    lines = f.readlines()
-
-                    # times = lines[0]
-                    values = np.fromstring(lines[1], dtype=float, sep=',')
-                    spike_count = self.getSpikeCount(values)
-
-                    wave.Spikes = spike_count
-                    wave.save()
-
-
 
 
     def get_id_from_nml_file(self, nml):

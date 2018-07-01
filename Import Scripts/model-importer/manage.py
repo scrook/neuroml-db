@@ -61,31 +61,28 @@ def process_batch():
 def single_cpu_job(ignore):
     import os
 
-    keep_working = True
+    with ModelManager() as mm:
+        mm.server.connect()
 
-    while keep_working:
-
-        with ModelManager() as mm:
-            mm.server.connect()
+        keep_working = True
+        while keep_working:
 
             cursor = mm.server.db.cursor()
             cursor.callproc("get_next_task")
             tasks = cursor.fetchall()
 
-        if len(tasks) > 0:
-            task_id, command = tasks[0]
-            print("Working on task: " + str(task_id) + " '" + command + "'")
+            if len(tasks) > 0:
+                task_id, command = tasks[0]
+                print("Working on task: " + str(task_id) + " '" + command + "'")
 
-            try:
-                os.system(command)
-            finally:
-                with ModelManager() as mm:
-                    mm.server.connect()
+                try:
+                    os.system(command)
+                finally:
                     mm.server.db.execute_sql('call finish_task(%s)',(task_id))
 
-        else:
-            print('No more tasks, exiting...')
-            keep_working = False
+            else:
+                print('No more tasks, exiting...')
+                keep_working = False
 
 
 def check_install_dependencies():
