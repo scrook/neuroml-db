@@ -90,11 +90,13 @@ def single_cpu_job(ignore):
                     mm.server.db.execute_sql('call finish_task(%s)',(task_id))
                     print("Task finished: " + str(task_id))
 
+                time.sleep(randint(0, 15))
+
             else:
                 print('No more tasks, stopping worker process...')
-                keep_working = False
+                return
 
-            time.sleep(randint(0, 15))
+
 
 
 def check_install_dependencies():

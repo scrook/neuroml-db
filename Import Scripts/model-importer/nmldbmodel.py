@@ -568,7 +568,15 @@ class NMLDB_Model(object):
         pos = data > threshold
         return (~pos[:-1] & pos[1:]).nonzero()[0]
 
-    def getSpikeCount(self, voltage, threshold=0):
+    def getSpikeCount(self, voltage, threshold=None):
+
+        if threshold is None:
+            # If not specified, get it from cell record, if any
+            if hasattr(self, "cell_record"):
+                threshold = self.cell_record.Threshold if self.cell_record.Threshold is not None else 0
+            else:
+                threshold = 0
+
         if np.max(voltage) < threshold:
             return 0
         else:

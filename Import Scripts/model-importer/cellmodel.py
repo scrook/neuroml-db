@@ -1483,7 +1483,7 @@ class CellModel(NMLDB_Model):
             t, v = self.runFor(500)
 
             i = self.vc_i_collector.get_values_np()
-            crossings = self.getSpikeCount(i)
+            crossings = self.getSpikeCount(i, threshold=0)
 
             if crossings > 2:
                 print(

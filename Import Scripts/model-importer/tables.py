@@ -127,6 +127,7 @@ class Cells(BaseModel):
     Bias_Voltage = FloatField()
     Bias_Current = FloatField()
     CVODE_Active = BooleanField()
+    Threshold = FloatField()
 
 
 class Morphometrics(BaseModel):
