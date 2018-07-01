@@ -53,6 +53,9 @@ def process_batch():
     if threads == 0:
         threads = 1
 
+    if len(params) == 1:
+        threads = int(params[0])
+
     print("Starting batch in " + str(threads) + " parallel processes...")
     pool = Pool(processes=threads)
     pool.map(single_cpu_job, range(threads))
@@ -60,6 +63,12 @@ def process_batch():
 
 def single_cpu_job(ignore):
     import os
+
+    import time
+    from random import randint
+
+    print("Checking for tasks...")
+    time.sleep(randint(0, 15))
 
     with ModelManager() as mm:
         mm.server.connect()
@@ -79,10 +88,13 @@ def single_cpu_job(ignore):
                     os.system(command)
                 finally:
                     mm.server.db.execute_sql('call finish_task(%s)',(task_id))
+                    print("Task finished: " + str(task_id))
 
             else:
-                print('No more tasks, exiting...')
+                print('No more tasks, stopping worker process...')
                 keep_working = False
+
+            time.sleep(randint(0, 15))
 
 
 def check_install_dependencies():

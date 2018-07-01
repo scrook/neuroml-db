@@ -841,7 +841,7 @@ class NMLDB_Model(object):
         :return:
         """
         pass
-    
+
     def save_wave_stats(self):
         self.server.connect()
 
