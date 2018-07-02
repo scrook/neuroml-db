@@ -32,7 +32,13 @@ class CellModel(NMLDB_Model):
     def __init__(self, *args, **kwargs):
         super(CellModel, self).__init__(*args, **kwargs)
 
-        self.steady_state_delay = 1000
+        self.init_cell_record()
+
+        if self.cell_record.Steady_State_Delay is None:
+            self.steady_state_delay = 1000
+        else:
+            self.steady_state_delay = self.cell_record.Steady_State_Delay
+
         self.pickle_file_cache = {}
 
         self.all_properties.extend([
@@ -1247,7 +1253,11 @@ class CellModel(NMLDB_Model):
 
         # Set up variable collectors
         self.t_collector = Collector(self.config.collection_period_ms, h._ref_t)
-        self.v_collector = Collector(self.config.collection_period_ms, self.soma(0.5)._ref_v)
+        if self.cell_record.V_Variable is None:
+            self.v_collector = Collector(self.config.collection_period_ms, self.soma(0.5)._ref_v)
+        else:
+            self.v_collector = Collector(self.config.collection_period_ms, getattr(self.abstract_mod,"_ref_" + self.cell_record.V_Variable))
+
         self.vc_i_collector = Collector(self.config.collection_period_ms, self.vc._ref_i)
         self.ic_i_collector = Collector(self.config.collection_period_ms, self.current._ref_i)
 

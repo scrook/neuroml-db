@@ -129,6 +129,8 @@ class Cells(BaseModel):
     CVODE_Active = BooleanField()
     Threshold = FloatField()
     Is_GLIF = BooleanField()
+    V_Variable = CharField()
+    Steady_State_Delay = FloatField()
 
 
 class Morphometrics(BaseModel):
