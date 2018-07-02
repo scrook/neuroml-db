@@ -90,8 +90,10 @@ class NeuronRunner:
                 raise Exception("NEURON process crashed before result or error information could be saved.")
 
             if result["error"] is not None:
-                print(result["error"])
-                raise Exception("Error during NEURON simulation")
+                if "NumericalInstabilityException" in result["error"]:
+                    raise NumericalInstabilityException(result["error"])
+                else:
+                    raise Exception("Error during NEURON simulation\n"+result["error"])
 
         return result["result"]
 

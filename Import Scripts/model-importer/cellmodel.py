@@ -1308,7 +1308,7 @@ class CellModel(NMLDB_Model):
         current_range, found_once = self.find_border(
             lowerLevel=0,
             upperLevel=testHigh,
-            current_delay=500,
+            current_delay=self.steady_state_delay,
             current_duration=3,
             run_for_after_delay=10,
             test_condition=lambda t, v: False if np.max(np.abs(v)) < 150 else True,
@@ -1324,7 +1324,7 @@ class CellModel(NMLDB_Model):
         current_range, found_once = self.find_border(
             lowerLevel=testLow,
             upperLevel=0,
-            current_delay=500,
+            current_delay=self.steady_state_delay,
             current_duration=3,
             run_for_after_delay=10,
             test_condition=lambda t, v: True if np.max(np.abs(v)) < 150 else False,
@@ -1348,7 +1348,7 @@ class CellModel(NMLDB_Model):
         current_range, found_once = self.find_border(
             lowerLevel=minCurrent,
             upperLevel=maxI,
-            current_delay=500,
+            current_delay=self.steady_state_delay,
             current_duration=3,
             run_for_after_delay=50,
             test_condition=test_condition,
@@ -1456,8 +1456,8 @@ class CellModel(NMLDB_Model):
         current_range, found_once = self.find_border(
             lowerLevel=minCurrent,
             upperLevel=maxI,
-            current_delay=500,
-            current_duration=500,
+            current_delay=self.steady_state_delay,
+            current_duration=1000,
             run_for_after_delay=500,
             test_condition=test_condition,
             test_early=True,
@@ -1480,7 +1480,7 @@ class CellModel(NMLDB_Model):
             self.vc.amp1 = targetV
             self.vc.dur1 = 10000
 
-            t, v = self.runFor(500)
+            t, v = self.runFor(1000)
 
             i = self.vc_i_collector.get_values_np()
             crossings = self.getSpikeCount(i, threshold=0)

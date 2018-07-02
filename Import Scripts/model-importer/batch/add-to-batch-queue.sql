@@ -18,10 +18,12 @@ SELECT * FROM neuromldb.batch_task_queue WHERE Status = 0;
 #call finish_task(5);
 
 #Pause
-UPDATE batch_task_queue SET Status = 4
-
-# Pause unstarted
 UPDATE batch_task_queue SET Status = 4 WHERE Status = 0
+
+#Resume
+UPDATE batch_task_queue SET Status = 0 WHERE Status = 4
 
 # Reset
 UPDATE batch_task_queue SET Status = 0
+
+UPDATE batch_task_queue SET Command = REPLACE(Command, "spike_counts", "wave_stats")
