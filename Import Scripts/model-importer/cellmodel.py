@@ -50,7 +50,7 @@ class CellModel(NMLDB_Model):
             'rheobase',
             'bias_current',
             'tolerances_with_stim',
-            'CVODE_RUNTIME_COMPLEXITY',
+            'CVODE_STEP_FREQUENCIES',
             'STEADY_STATE',
             'RAMP',
             'SHORT_SQUARE',
@@ -774,7 +774,7 @@ class CellModel(NMLDB_Model):
             self.model_record.save()
 
 
-    def save_CVODE_RUNTIME_COMPLEXITY(self):
+    def save_CVODE_STEP_FREQUENCIES(self):
 
         self.remove_protocol_waveforms("CVODE_STEP_FREQUENCIES")
 
