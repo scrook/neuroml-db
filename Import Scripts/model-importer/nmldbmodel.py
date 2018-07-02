@@ -854,11 +854,9 @@ class NMLDB_Model(object):
         self.server.connect()
 
         waves = Model_Waveforms \
-            .select(Cells.Model_ID, Model_Waveforms.ID, Model_Waveforms.Protocol) \
-            .join(Cells, on=(Cells.Model_ID == Model_Waveforms.Model)) \
+            .select(Model_Waveforms.Model, Model_Waveforms.ID, Model_Waveforms.Protocol) \
             .where(
-                (Model_Waveforms.Variable_Name == 'Voltage') &
-                (Cells.Model_ID == self.get_model_nml_id())
+                (Model_Waveforms.Model == self.get_model_nml_id())
             )
 
         for wave in waves:
