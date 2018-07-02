@@ -215,18 +215,6 @@
         var max_x = Enumerable.from(chart_data).max(dp => dp["x"]);
         var min_x = Enumerable.from(chart_data).min(dp => dp["x"]);
 
-//                  //Simplify the waveform with Ramer Douglas Peucker algo. From: http://karthaus.nl/rdp/
-//                  //Waveform changes less than % of the Y range are linearized
-//                  var simplification_epsilon = (max_y - min_y) * 0.005;
-//
-//                  chart_data = Enumerable
-//                      .from(RDPsd(Enumerable
-//                              .from(chart_data)
-//                              .select(dp => [dp["x"], dp["y"]])
-//                              .toArray(), simplification_epsilon))
-//                      .select(function(dp) { return {"x": dp[0], "y": dp[1] } } )
-//                      .toArray();
-
 
         wave["Variable_Values"] = null; //Remove old format
         wave["data"] = chart_data;
@@ -254,8 +242,17 @@
         var metas_slider_div = jQuery("#meta-protocols .slider");
 
         //Update their array
-        meta_protocols_lookup = metas.toArray()
+        //For channels, show the highest Ca concentration first
+        if (model_type == "Channel") {
+            meta_protocols_lookup = metas.reverse().toArray()
+        }
+        else
+        {
+            meta_protocols_lookup = metas.toArray()
+        }
 
+
+        //If there are any meta-protocols, show their slider
         if (meta_protocols_lookup.length > 1) {
             metas_slider_div.slider('option','max', meta_protocols_lookup.length - 1);
 
@@ -273,6 +270,7 @@
 
             jQuery("#meta-protocols").show();
         }
+        //Otherwise, hide the meta protocol slider
         else {
             onMetaProtocolSelected(0);
 

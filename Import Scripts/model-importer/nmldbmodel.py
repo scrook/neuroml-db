@@ -379,7 +379,11 @@ class NMLDB_Model(object):
         wave.Min = np.min(values)
         wave.Max = np.max(values)
         wave.Mean = np.mean(values)
+
         wave.STD = np.std(values)
+
+        if not np.isfinite(wave.STD):
+            wave.STD = None
 
     def create_or_update_waveform(self, protocol, label, meta_protocol, times, variable_name, values, units,
                                   run_time, error, dt_or_atol, cvode_active, steps):
