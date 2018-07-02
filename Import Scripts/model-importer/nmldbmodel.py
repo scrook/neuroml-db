@@ -252,12 +252,12 @@ class NMLDB_Model(object):
         if len(db_child_filenames - model_child_filenames) > 0:
             print("Misbehaving children: The following files are in DATABASE but MISSING IN MODEL: " + nml_db_id)
             print([(c["Model_ID"], c["File_Name"]) for c in children_in_db if c["File_Name"] in (db_child_filenames - model_child_filenames)])
-            raise Exception("Database has extra children for the model")
+            raise Exception("Database has extra children for the model. Run 'python manage.py validate_relationships " + nml_db_id + "' for details.")
 
         if len(model_child_filenames - db_child_filenames) > 0:
             print("Misbehaving children: The following files are in model but MISSING IN DATABASE: " + nml_db_id)
             print(model_child_filenames - db_child_filenames)
-            raise Exception("Database is missing children for the model")
+            raise Exception("Database is missing children for the model. Run 'python manage.py validate_relationships " + nml_db_id + "' for details.")
 
         # Set the location where the NEURON files will be stored
         temp_model_folder = os.path.join(os.path.abspath(self.config.temp_models_folder), nml_db_id)
@@ -274,14 +274,11 @@ class NMLDB_Model(object):
         # Create file includes for each child model
         child_includes = ''
 
-        for c in children_in_db:
-            id = c["Model_ID"]
-            file = c["File_Name"]
-            child_path = "../" + id + "/" + file
-
-            # Copy the children to the NEURON temp files folder
-            shutil.copy2(os.path.join(model_dir_name, child_path), temp_model_folder)
-            child_includes = child_includes + include_file_template.replace("[File]", file) + "\n"
+        child_includes = self.copy_submodels_to_temp(child_includes,
+                                                     children_in_db,
+                                                     include_file_template,
+                                                     model_dir_name,
+                                                     temp_model_folder)
 
         replacements = {
             "[ParentInclude]": include_file_template.replace("[File]", model_file_name),
@@ -310,6 +307,29 @@ class NMLDB_Model(object):
         self.run_command("nrnivmodl")
 
         return temp_model_folder
+
+    def copy_submodels_to_temp(self, child_includes, sub_models, include_file_template, model_dir_name,
+                               temp_model_folder):
+        for sub_model in sub_models:
+            id = sub_model["Model_ID"]
+            file = sub_model["File_Name"]
+            child_path = "../" + id + "/" + file
+
+            # Copy the children to the NEURON temp files folder
+            shutil.copy2(os.path.join(model_dir_name, child_path), temp_model_folder)
+            child_includes = child_includes + include_file_template.replace("[File]", file) + "\n"
+
+            # get and copy the submodel's children
+            sub_models = self.get_model_children_from_DB(sub_model["Model_ID"])
+
+            if len(sub_models) > 0:
+                child_includes = self.copy_submodels_to_temp(child_includes,
+                                                             sub_models,
+                                                             include_file_template,
+                                                             model_dir_name,
+                                                             temp_model_folder)
+
+        return child_includes
 
     def get_children_from_nml_file(self, nml):
         return set(re.compile('<include.*?href.*?=.*?"(.*?)"').findall(nml))
