@@ -76,7 +76,7 @@ class ModelManager(object):
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.server.close()
 
-    def validate_db_model(self, dirs):
+    def validate_model_relationships(self, dirs):
         """
         Compares the parent-child relationships defined in the database to the
         parent-child relationships defined within individual NML files
@@ -962,6 +962,49 @@ class ModelManager(object):
         for model in models:
             with NMLDB_Model(model.Model_ID, server=self.server) as m:
                 m.save_property('checksum')
+
+    def find_waveforms_without_files(self):
+        """
+        Finds waveforms that are in DB but not in file system
+        """
+        self.server.connect()
+        print('Getting records...')
+
+        from nmldbmodel import NMLDB_Model
+        import logging, peewee
+        logger = logging.getLogger('peewee')
+        logger.addHandler(logging.StreamHandler())
+        logger.setLevel(logging.DEBUG)
+
+        waves = Model_Waveforms\
+            .select(Model_Waveforms.ID, Model_Waveforms.Model)
+
+
+        missing = []
+        curr_model_id = None
+        m = None
+        for wave in waves:
+            if wave.Model_id != curr_model_id:
+                model_id = wave.Model_id
+                curr_model_id = model_id
+                print('Checking model: ' + model_id)
+
+                m = NMLDB_Model(model_id, server=self.server, skip_model_record=True)
+
+            file = m.get_waveform_path(wave.ID)
+
+            if not os.path.exists(file):
+                missing.append(wave.ID)
+
+        print('The following waveforms are missing in file system:')
+
+        if len(missing) == 0:
+            print("NONE -- all DB waves present in file system")
+
+        else:
+            print("SELECT * FROM model_waveforms mw WHERE mw.ID IN (")
+            print(string.join([str(w) for w in missing], ','))
+            print(")")
 
 
     def replace_tokens(self, target, reps):

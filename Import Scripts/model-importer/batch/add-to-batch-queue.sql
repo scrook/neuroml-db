@@ -1,15 +1,18 @@
 TRUNCATE TABLE batch_task_queue;
 
 INSERT INTO batch_task_queue (Command)
-SELECT CONCAT('python manage.py save_model_properties ', Model_ID, ' spike_counts') FROM neuromldb.models
-WHERE Type in ('CL')
+SELECT CONCAT('python manage.py save_model_properties ', Model_ID, ' wave_stats'), m.* FROM neuromldb.models m
+WHERE Type in ('CH')
 ;
+
+
+
 
 # All tasks
 SELECT * FROM neuromldb.batch_task_queue;
 
 # Remaining tasks
-SELECT * FROM neuromldb.batch_task_queue WHERE Status = 0;
+SELECT * FROM neuromldb.batch_task_queue WHERE Status in (0,1);
 
 
 #call get_next_task();

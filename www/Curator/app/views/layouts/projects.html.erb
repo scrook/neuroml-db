@@ -170,7 +170,7 @@ active_class="current-menu-item"
 elsif ['neuromlv2','extend_neuroml','lems','relevant_publications','workshops','compatibility','specifications','examples','lems_dev','libnml'].include? controller.action_name
 documents=1
 active_class="current-menu-item"
-elsif ['tool_support','validate','neuron_tools','pynn','x3dtools'].include? controller.action_name
+elsif ['tool_support','validate_relationships','neuron_tools','pynn','x3dtools'].include? controller.action_name
 tools=1
 active_class="current-menu-item"
 elsif ['browse_models','search_result','model_submit'].include? controller.action_name
@@ -208,7 +208,7 @@ end
 								<ul>
 									
 									<li><a href="/tool_support"><span>Tool Support</span></a></li>
-									<li><a href="/validate"><span>NML Validator</span></a></li>
+									<li><a href="/validate_relationships"><span>NML Validator</span></a></li>
 									<li><a href="/neuron_tools"><span>Neuron Tools</span></a></li>
 									<li><a href="/pynn"><span>PyNN</span></a></li>
 									<li><a href="/x3dtools"><span>X3D Tools</span></a></li>
@@ -307,7 +307,7 @@ end
                                                         <h6>Tools</h6>
                                                         <ul>
                                                                 <li class="page_item"><a href="/tool_support">Tool Support</a></li>
-                                                                <li class="page_item"><a href="/validate">NML Validator</a></li>
+                                                                <li class="page_item"><a href="/validate_relationships">NML Validator</a></li>
                                                                 <li class="page_item"><a href="/neuron_tools">Neuron Tools</a></li>
                                                                 <li class="page_item"><a href="/pynn">PyNN</a></li>
                                                                 <li class="page_item"><a href="/x3dtools">X3D Tools</a></li>

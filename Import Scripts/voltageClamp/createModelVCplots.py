@@ -142,7 +142,7 @@ def cleanupMod():
 cleanup()
 
 print("Validating channel NML " + channelPath)
-printAndRun("jnml -validate '" + channelPath + "'")
+printAndRun("jnml -validate_relationships '" + channelPath + "'")
 
 print("Generating LEMS files for " + channelPath)
 printAndRun('rm -f ' + channelDir + '/LEMS*.nml')

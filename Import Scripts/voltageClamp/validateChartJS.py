@@ -1,9 +1,9 @@
 # Will check the channel folder ChartJS files for common problems
 #
 # Usage:
-#    validateChartJS.py "path/to/NeuroMLmodels" to validate all models
+#    validateChartJS.py "path/to/NeuroMLmodels" to validate_relationships all models
 # OR
-#    validateChartJS.py "path/to/NMLCH....XXX" to validate a single model
+#    validateChartJS.py "path/to/NMLCH....XXX" to validate_relationships a single model
 
 import numpy as np
 from matplotlib import pyplot as plt

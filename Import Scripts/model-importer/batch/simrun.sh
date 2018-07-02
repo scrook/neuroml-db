@@ -1,14 +1,5 @@
-python manage.py save_model_properties NMLCH000108 wave_stats
-python manage.py save_model_properties NMLCH000109 wave_stats
-python manage.py save_model_properties NMLCH000110 wave_stats
-python manage.py save_model_properties NMLCH000111 wave_stats
-python manage.py save_model_properties NMLCH000112 wave_stats
-python manage.py save_model_properties NMLCH000162 wave_stats
-python manage.py save_model_properties NMLCH000163 wave_stats
-python manage.py save_model_properties NMLCH000164 wave_stats
-python manage.py save_model_properties NMLCH000165 wave_stats
-python manage.py save_model_properties NMLCH001618 wave_stats
-python manage.py save_model_properties NMLCH001622 wave_stats
-python manage.py save_model_properties NMLCH001623 wave_stats
-python manage.py save_model_properties NMLCH001625 wave_stats
+python manage.py save_model_properties NMLCL000684 SHORT_SQUARE_TRIPPLE
+python manage.py save_model_properties NMLCL000639 SHORT_SQUARE_TRIPPLE
+python manage.py save_model_properties NMLCL000645 SHORT_SQUARE_TRIPPLE
+python manage.py save_model_properties NMLCL000903 SHORT_SQUARE_TRIPPLE
 

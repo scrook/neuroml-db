@@ -25,7 +25,7 @@ class MemberRole < ActiveRecord::Base
   after_destroy :remove_inherited_roles
 
   validates_presence_of :role
-  validate :validate_role_member
+  validate_relationships :validate_role_member
 
   def validate_role_member
     errors.add :role_id, :invalid if role && !role.member?

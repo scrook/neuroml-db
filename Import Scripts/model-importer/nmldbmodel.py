@@ -27,7 +27,7 @@ from tables import *
 class NMLDB_Model(object):
     __metaclass__ = ABCMeta
 
-    def __init__(self, model="", server=None):
+    def __init__(self, model="", server=None, skip_model_record = False):
         if server is None:
             self.server = NMLDB()
             self.server_passed_in = False
@@ -46,8 +46,11 @@ class NMLDB_Model(object):
         # Otherwise, retrieve a fresh copy
         else:
             self.path = model
+
             self.server.connect()
-            self.model_record = Models.get(Models.Model_ID == self.get_model_nml_id())
+
+            if not skip_model_record:
+                self.model_record = Models.get(Models.Model_ID == self.get_model_nml_id())
 
         sys.setrecursionlimit(10000)
 
@@ -859,22 +862,24 @@ class NMLDB_Model(object):
 
         waves = Model_Waveforms \
             .select(Model_Waveforms.Model, Model_Waveforms.ID, Model_Waveforms.Protocol) \
-            .where(
-                (Model_Waveforms.Model == self.get_model_nml_id())
-            )
+            .where((Model_Waveforms.Model == self.get_model_nml_id()))
 
         for wave in waves:
             print("Getting stats for wave " + str(wave.ID) + "...")
 
-            file = os.path.join(self.get_waveforms_dir(), str(wave.ID) + ".csv")
+            file = self.get_waveform_path(wave.ID)
 
-            if os.path.exists(file):
-                with open(file) as f:
-                    lines = f.readlines()
+            with open(file) as f:
+                lines = f.readlines()
 
-                    # times = lines[0]
-                    values = np.fromstring(lines[1], dtype=float, sep=',')
+                # times = lines[0]
+                values = np.fromstring(lines[1], dtype=float, sep=',')
 
-                    self.set_wave_metrics(wave, values)
+                self.set_wave_metrics(wave, values)
 
-                    wave.save()
+                wave.save()
+
+    def get_waveform_path(self, wave_id):
+        return os.path.join(self.get_waveforms_dir(), str(wave_id) + ".csv")
+
+

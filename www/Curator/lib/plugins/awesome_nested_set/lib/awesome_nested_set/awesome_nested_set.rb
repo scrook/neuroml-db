@@ -182,7 +182,7 @@ module CollectiveIdea #:nodoc:
               where(["#{quoted_parent_column_name} = ? #{scope.call(node)}", node]).order(acts_as_nested_set_options[:order]).each{|n| set_left_and_rights.call(n) }
               # set right
               node[right_column_name] = indices[scope.call(node)] += 1
-              node.save!(:validate => validate_nodes)
+              node.save!(:validate_relationships => validate_nodes)
             end
 
             # Find root node(s)

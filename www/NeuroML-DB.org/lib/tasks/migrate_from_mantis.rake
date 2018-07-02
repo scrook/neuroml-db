@@ -330,7 +330,7 @@ task :migrate_from_mantis => :environment do
         # Redmine checks that the assignee is a project member
         if (bug.handler_id && users_map[bug.handler_id])
           i.assigned_to = User.find_by_id(users_map[bug.handler_id])
-          i.save(:validate => false)
+          i.save(:validate_relationships => false)
         end
 
         # Bug notes

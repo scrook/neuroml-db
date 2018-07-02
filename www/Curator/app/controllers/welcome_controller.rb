@@ -1904,7 +1904,7 @@ class WelcomeController < ApplicationController
   end
   def tool_support
   end
-  def validate
+  def validate_relationships
   end
   def neuron_tools
   end

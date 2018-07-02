@@ -26,7 +26,7 @@ class AuthSourceLdap < AuthSource
   validates_length_of :attr_login, :attr_firstname, :attr_lastname, :attr_mail, :maximum => 30, :allow_nil => true
   validates_numericality_of :port, :only_integer => true
   validates_numericality_of :timeout, :only_integer => true, :allow_blank => true
-  validate :validate_filter
+  validate_relationships :validate_filter
 
   before_validation :strip_ldap_attributes
 

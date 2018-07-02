@@ -30,7 +30,7 @@ RedmineApp::Application.routes.draw do
   match 'render_xml_file', :to => 'xml#render_xml_file', :as => 'render_xml_file'
   match 'render_xml_as_html', :to => 'xml#render_xml_as_html', :as => 'render_xml_as_html'
   match 'tool_support', :to => 'welcome#tool_support', :as => 'tool_support'
-  match 'validate', :to => 'welcome#validate', :as => 'validate'
+  match 'validate_relationships', :to => 'welcome#validate_relationships', :as => 'validate_relationships'
   match 'neuron_tools', :to => 'welcome#neuron_tools', :as => 'neuron_tools'
   match 'pynn', :to => 'welcome#pynn', :as => 'pynn'
   match 'x3dtools', :to => 'welcome#x3dtools', :as => 'x3dtools'

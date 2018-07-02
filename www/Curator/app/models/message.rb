@@ -40,7 +40,7 @@ class Message < ActiveRecord::Base
 
   validates_presence_of :board, :subject, :content
   validates_length_of :subject, :maximum => 255
-  validate :cannot_reply_to_locked_topic, :on => :create
+  validate_relationships :cannot_reply_to_locked_topic, :on => :create
 
   after_create :add_author_as_watcher, :reset_counters!
   after_update :update_messages_board

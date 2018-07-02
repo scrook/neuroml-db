@@ -138,7 +138,7 @@ class UserTest < ActiveSupport::TestCase
 
     u2 = User.new(:firstname => "new", :lastname => "user", :mail => "newuser2@somenet.foo")
     u2.login = 'newuser1'
-    assert u2.save(:validate => false)
+    assert u2.save(:validate_relationships => false)
 
     user = User.find(u2.id)
     user.firstname = "firstname"
@@ -698,7 +698,7 @@ class UserTest < ActiveSupport::TestCase
   def test_default_admin_account_changed_should_return_false_if_account_was_not_changed
     user = User.find_by_login("admin")
     user.password = "admin"
-    assert user.save(:validate => false)
+    assert user.save(:validate_relationships => false)
 
     assert_equal false, User.default_admin_account_changed?
   end
@@ -715,7 +715,7 @@ class UserTest < ActiveSupport::TestCase
     user = User.find_by_login("admin")
     user.password = "admin"
     user.status = User::STATUS_LOCKED
-    assert user.save(:validate => false)
+    assert user.save(:validate_relationships => false)
 
     assert_equal true, User.default_admin_account_changed?
   end

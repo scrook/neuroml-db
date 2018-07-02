@@ -19,9 +19,9 @@ def to_db():
         mm.csv_to_db(csv_file=params[0])
 
 
-def validate():
+def validate_relationships():
     with ModelManager() as mm:
-        mm.validate_db_model(dirs=params)
+        mm.validate_model_relationships(dirs=params)
 
 
 def save_model_properties():
@@ -30,6 +30,9 @@ def save_model_properties():
         properties = params[1].split(',')
         mm.save_model_properties(models, properties)
 
+def find_waveforms_without_files():
+    with ModelManager() as mm:
+        mm.find_waveforms_without_files()
 
 def process_batch():
     # check queue for tasks,

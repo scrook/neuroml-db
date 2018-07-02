@@ -55,7 +55,7 @@ There is a handy method in this plugin called 'normalize_url' that will help wit
 
 The above will return a standardized version of the OpenID URL - the above called with 'example.com' will return 'http://example.com/'
 It will also raise an InvalidOpenId exception if the URL is determined to not be valid.
-Use the above code in your User model and validate OpenID URLs before saving them.
+Use the above code in your User model and validate_relationships OpenID URLs before saving them.
 
 config/routes.rb
 
