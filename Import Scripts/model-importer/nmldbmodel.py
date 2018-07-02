@@ -584,6 +584,10 @@ class NMLDB_Model(object):
             else:
                 threshold = 0
 
+        # Glif models reset on spike
+        if hasattr(self, "cell_record") and self.cell_record.Is_GLIF:
+            return np.size(np.where(np.diff(voltage) < -threshold*0.95))
+
         if np.max(voltage) < threshold:
             return 0
         else:

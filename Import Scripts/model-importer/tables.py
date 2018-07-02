@@ -128,6 +128,7 @@ class Cells(BaseModel):
     Bias_Current = FloatField()
     CVODE_Active = BooleanField()
     Threshold = FloatField()
+    Is_GLIF = BooleanField()
 
 
 class Morphometrics(BaseModel):
