@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="IT">
+
+    <notes>NeuroML file containing a single Channel description</notes>
+
+    <ionChannel id="IT" conductance="0 pS" type="ionChannelHH" species="ca">
+
+        <notes>Low threshold calcium current
+            
+Comment from original mod file:
+Ca++ current responsible for low threshold spikes (LTS)
+THALAMOCORTICAL CELLS
+Differential equations
+
+Model based on the data of Huguenard and McCormick, J Neurophysiol
+68: 1373-1383, 1992 and Huguenard and Prince, J Neurosci.
+12: 3804-3817, 1992.
+
+Features:
+
+	- kinetics described by Nernst equations using a m2h format
+	- activation considered at steady-state
+	- inactivation fit to Huguenard's data using a bi-exp function
+	- shift for screening charge, q10 of inactivation of 3
+
+
+Written by Alain Destexhe, Salk Institute, 1993; modified 1995</notes>
+                
+        <annotation>
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                <rdf:Description rdf:about="IT">
+                    
+                    <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>Minimal Hodgkin-Huxley type models for different classes of cortical and thalamic neurons</rdf:li>
+                            <rdf:li rdf:resource="19011929"/>
+                        </rdf:Bag>
+                    </bqmodel:isDescribedBy>
+
+                
+                    <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>K channels</rdf:li>
+                            <rdf:li rdf:resource="http://senselab.med.yale.edu/NeuronDB/channelGene2.aspx#table1"/>
+                        </rdf:Bag>
+                    </bqbiol:isVersionOf>
+
+                </rdf:Description>
+            </rdf:RDF>
+        </annotation>
+
+        <gate id="s" type="IT_s_gate" instances="2">
+            <steadyState type="IT_s_inf_inf"/>
+            <timeCourse type="fixedTimeCourse" tau="0ms"/>
+        </gate>
+
+        <gate id="u" type="gateHHtauInf" instances="1">
+            <q10Settings type="q10ExpTemp" q10Factor="3" experimentalTemp="24 degC"/>
+            <timeCourse type="IT_u_tau_tau"/>
+            <steadyState type="IT_u_inf_inf"/>
+        </gate>
+
+    </ionChannel>
+    
+    
+    <ComponentType name="IT_s_gate" extends="gateHHtauInf">
+        
+        <Exposure name="tau" dimension="time"/>
+        <Exposure name="inf" dimension="none" />
+        
+        <Dynamics>
+            <DerivedVariable name="inf" dimension="none" exposure="inf" select="steadyState/x" />
+            <DerivedVariable name="fcond" exposure="fcond" dimension="none" value="inf^instances" />
+            
+            <DerivedVariable name="q" exposure="q" dimension="none" value="inf" />
+            <DerivedVariable name="tau" exposure="tau" dimension="none" value="0" />
+            <DerivedVariable name="rateScale" exposure="rateScale" dimension="none" value="1" />
+        </Dynamics>
+        
+    </ComponentType>
+    
+    <ComponentType name="IT_s_inf_inf" extends="baseVoltageDepVariable">
+        
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        
+        <Dynamics>
+            <DerivedVariable name="Vm" dimension="none" value="(v / VOLT_SCALE)"/>
+            <DerivedVariable name="x" exposure="x" dimension="none" value="1.0 / ( 1 + exp(-(Vm + 2 +57)/6.2) )" />
+        </Dynamics>
+        
+    </ComponentType>
+
+    <ComponentType name="IT_u_tau_tau" extends="baseVoltageDepTime">
+
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+
+        <Dynamics>
+            <DerivedVariable name="Vm" dimension="none" value="(v / VOLT_SCALE)+2"/>
+            <DerivedVariable name="t" exposure="t" dimension="time"
+                value="(30.8 + (211.4 + exp((Vm+113.2)/5)) / (1 + exp((Vm+84)/3.2))) * TIME_SCALE"/>
+        </Dynamics>
+
+    </ComponentType>
+
+    <ComponentType name="IT_u_inf_inf" extends="baseVoltageDepVariable">
+        
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+
+        <Dynamics>
+            <DerivedVariable name="Vm" dimension="none" value="(v / VOLT_SCALE)"/>
+            <DerivedVariable name="x" exposure="x" dimension="none" value="1.0 / ( 1 + exp((Vm + 2  + 81)/4.0) )" />
+        </Dynamics>
+        
+    </ComponentType>
+    
+
+</neuroml>

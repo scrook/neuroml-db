@@ -158,7 +158,7 @@ def check_install_dependencies():
     # Extract noise stimulation files
     for file in ["noise1.pickle", "noise2.pickle", "noisyRamp.pickle"]:
         if not os.path.exists(file):
-            os.system("tar -xzf noisyStims.tar.gz")
+            os.system("tar -xzf files/noisyStims.tar.gz")
             break
 
 

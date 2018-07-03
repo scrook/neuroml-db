@@ -1073,6 +1073,16 @@ class CellModel(NMLDB_Model):
     def compute_waveform_error(self, lowest_error_v, lowest_error_range, v):
         return np.average(np.abs(v - lowest_error_v) / lowest_error_range * 100.0)
 
+
+    def interpolate_time_signal(self, t, signal, new_interval):
+        from scipy.interpolate import interp1d
+        signal_function = interp1d(t, signal, kind="cubic", fill_value='extrapolate')
+
+        new_t = np.arange(min(t),max(t),step=new_interval).tolist()
+        new_signal = signal_function(new_t).tolist()
+
+        return new_t, new_signal
+
     def save_noise_response_set(self,
                                 protocol,
                                 delay,
@@ -1087,7 +1097,13 @@ class CellModel(NMLDB_Model):
         # Cache the files - they're slow to load
         if noise_pickle_file not in self.pickle_file_cache:
             with open(os.path.join("..", "..", noise_pickle_file), "r") as f:
-                self.pickle_file_cache[noise_pickle_file] = cPickle.load(f)
+                print('Reading noise .pickle file...')
+                signal_orig =  cPickle.load(f)
+                t_int, i_int = self.interpolate_time_signal(signal_orig['t'], signal_orig['i'], self.config.dt)
+                self.pickle_file_cache[noise_pickle_file] = { 't':t_int, 'i': i_int }
+                signal_orig = None
+                print('DONE')
+
 
         def get_current_ti():
             noise = self.pickle_file_cache[noise_pickle_file]
@@ -1602,7 +1618,7 @@ class CellModel(NMLDB_Model):
         if (self.cell_record.CVODE_Active is None or self.cell_record.CVODE_Active == 0) and self.model_record.Optimal_DT is not None:
             print("Using optimal DT " + str(self.model_record.Optimal_DT))
             self.config.cvode_active = 0
-            self.dt = self.model_record.Optimal_DT
+            self.config.dt = self.model_record.Optimal_DT
 
 
 
