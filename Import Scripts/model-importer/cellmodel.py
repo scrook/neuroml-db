@@ -1603,3 +1603,6 @@ class CellModel(NMLDB_Model):
             print("Using optimal DT " + str(self.model_record.Optimal_DT))
             self.config.cvode_active = 0
             self.dt = self.model_record.Optimal_DT
+
+
+

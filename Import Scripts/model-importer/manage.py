@@ -34,6 +34,10 @@ def find_waveforms_without_files():
     with ModelManager() as mm:
         mm.find_waveforms_without_files()
 
+def find_multicomp_cells_without_gifs():
+    with ModelManager() as mm:
+        mm.find_multicomp_cells_without_gifs()
+
 def process_batch():
     # check queue for tasks,
     # if got one, process it, in a separate process

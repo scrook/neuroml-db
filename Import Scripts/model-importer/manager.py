@@ -975,10 +975,6 @@ class ModelManager(object):
         print('Getting records...')
 
         from nmldbmodel import NMLDB_Model
-        import logging, peewee
-        logger = logging.getLogger('peewee')
-        logger.addHandler(logging.StreamHandler())
-        logger.setLevel(logging.DEBUG)
 
         waves = Model_Waveforms\
             .select(Model_Waveforms.ID, Model_Waveforms.Model)
@@ -1008,6 +1004,36 @@ class ModelManager(object):
         else:
             print("SELECT * FROM model_waveforms mw WHERE mw.ID IN (")
             print(string.join([str(w) for w in missing], ','))
+            print(")")
+
+    def find_multicomp_cells_without_gifs(self):
+        """
+        Finds multicomp (>1 section) cells that do not have morphology gifs
+        """
+        self.server.connect()
+        print('Getting records...')
+
+        from nmldbmodel import NMLDB_Model
+
+        models = Cells.select(Cells.Model_ID).where(Cells.Sections > 1)
+
+        missing = []
+        for model in models:
+            print("Checking " + model.Model_ID)
+            with NMLDB_Model(model.Model_ID, server=self.server, skip_model_record=True) as m:
+                file = m.get_gif_path()
+
+                if not os.path.exists(file):
+                    missing.append(model.Model_ID)
+
+        print('The following multi-comp cells do not have morphology cell.gif files:')
+
+        if len(missing) == 0:
+            print("NONE -- all multi-comp cells have morphology gifs")
+
+        else:
+            print("SELECT * FROM models m WHERE m.Model_ID IN (")
+            print(string.join([str(m) for m in missing], ','))
             print(")")
 
 

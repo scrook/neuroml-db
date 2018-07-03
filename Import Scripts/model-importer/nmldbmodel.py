@@ -906,4 +906,7 @@ class NMLDB_Model(object):
     def get_waveform_path(self, wave_id):
         return os.path.join(self.get_waveforms_dir(), str(wave_id) + ".csv")
 
+    def get_gif_path(self):
+        return os.path.join(self.get_morphology_dir(), "cell.gif")
+
 
