@@ -555,10 +555,14 @@ class ModelManager(object):
         if existing is not None:
             return existing
         else:
-            resource = Resources \
-                .select() \
-                .where(ref_url.contains(Resources.Identifying_URL_Snippet)) \
-                .first()
+            resources = Resources \
+                .select()
+
+            resource = None
+            for r in resources:
+                if r.Identifying_URL_Snippet.lower() in ref_url.lower():
+                    resource = r
+                    break
 
             if resource is None:
                 raise Exception("Could not find a matching record in Resources table for reference URL:" + ref_url)
