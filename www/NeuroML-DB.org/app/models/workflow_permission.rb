@@ -17,7 +17,7 @@
 
 class WorkflowPermission < WorkflowRule
   validates_inclusion_of :rule, :in => %w(readonly required)
-  validate_relationships :validate_field_name
+  validate :validate_field_name
 
   # Replaces the workflow permissions for the given tracker and role
   #

@@ -42,7 +42,7 @@ class TimeEntry < ActiveRecord::Base
   validates_length_of :comments, :maximum => 255, :allow_nil => true
   validates :spent_on, :date => true
   before_validation :set_project_if_nil
-  validate_relationships :validate_time_entry
+  validate :validate_time_entry
 
   scope :visible, lambda {|*args|
     includes(:project).where(Project.allowed_to_condition(args.shift || User.current, :view_time_entries, *args))

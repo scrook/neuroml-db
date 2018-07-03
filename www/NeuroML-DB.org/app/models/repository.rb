@@ -44,7 +44,7 @@ class Repository < ActiveRecord::Base
   # donwcase letters, digits, dashes, underscores but not digits only
   validates_format_of :identifier, :with => /\A(?!\d+$)[a-z0-9\-_]*\z/, :allow_blank => true
   # Checks if the SCM is enabled when creating a repository
-  validate_relationships :repo_create_validation, :on => :create
+  validate :repo_create_validation, :on => :create
 
   safe_attributes 'identifier',
     'login',

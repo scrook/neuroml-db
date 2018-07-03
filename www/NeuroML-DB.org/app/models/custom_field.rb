@@ -27,7 +27,7 @@ class CustomField < ActiveRecord::Base
   validates_length_of :name, :maximum => 30
   validates_inclusion_of :field_format, :in => Redmine::CustomFieldFormat.available_formats
 
-  validate_relationships :validate_custom_field
+  validate :validate_custom_field
   before_validation :set_searchable
   after_save :handle_multiplicity_change
 

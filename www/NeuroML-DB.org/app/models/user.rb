@@ -100,7 +100,7 @@ class User < Principal
   validates_length_of :mail, :maximum => MAIL_LENGTH_LIMIT, :allow_nil => true
   validates_confirmation_of :password, :allow_nil => true
   validates_inclusion_of :mail_notification, :in => MAIL_NOTIFICATION_OPTIONS.collect(&:first), :allow_blank => true
-  validate_relationships :validate_password_length
+  validate :validate_password_length
 
   before_create :set_mail_notification
   before_save   :update_hashed_password
@@ -669,7 +669,7 @@ class User < Principal
 end
 
 class AnonymousUser < User
-  validate_relationships :validate_anonymous_uniqueness, :on => :create
+  validate :validate_anonymous_uniqueness, :on => :create
 
   def validate_anonymous_uniqueness
     # There should be only one AnonymousUser in the database

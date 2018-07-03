@@ -126,7 +126,7 @@ class Query < ActiveRecord::Base
 
   validates_presence_of :name
   validates_length_of :name, :maximum => 255
-  validate_relationships :validate_query_filters
+  validate :validate_query_filters
 
   class_attribute :operators
   self.operators = {

@@ -19,7 +19,7 @@ def to_db():
         mm.csv_to_db(csv_file=params[0])
 
 
-def validate_relationships():
+def validate_model_relationships():
     with ModelManager() as mm:
         mm.validate_model_relationships(dirs=params)
 

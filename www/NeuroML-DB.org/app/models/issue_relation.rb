@@ -68,7 +68,7 @@ class IssueRelation < ActiveRecord::Base
   validates_inclusion_of :relation_type, :in => TYPES.keys
   validates_numericality_of :delay, :allow_nil => true
   validates_uniqueness_of :issue_to_id, :scope => :issue_from_id
-  validate_relationships :validate_issue_relation
+  validate :validate_issue_relation
 
   attr_protected :issue_from_id, :issue_to_id
   before_save :handle_issue_order

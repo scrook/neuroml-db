@@ -28,7 +28,7 @@ class Board < ActiveRecord::Base
   validates_presence_of :name, :description
   validates_length_of :name, :maximum => 30
   validates_length_of :description, :maximum => 255
-  validate_relationships :validate_board
+  validate :validate_board
 
   scope :visible, lambda {|*args|
     includes(:project).where(Project.allowed_to_condition(args.shift || User.current, :view_messages, *args))

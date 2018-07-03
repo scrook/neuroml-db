@@ -84,7 +84,7 @@ module OpenIdAuthentication
     # if an XRI has a prefix, strip it.
     identifier.gsub!(/xri:\/\//i, '')
 
-    # dodge XRIs -- TODO: validate_relationships, don't just skip.
+    # dodge XRIs -- TODO: validate, don't just skip.
     unless ['=', '@', '+', '$', '!', '('].include?(identifier.at(0))
       # does it begin with http?  if not, add it.
       identifier = "http://#{identifier}" unless identifier =~ /^http/i

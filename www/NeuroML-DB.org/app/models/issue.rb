@@ -70,7 +70,7 @@ class Issue < ActiveRecord::Base
   validates :estimated_hours, :numericality => {:greater_than_or_equal_to => 0, :allow_nil => true, :message => :invalid}
   validates :start_date, :date => true
   validates :due_date, :date => true
-  validate_relationships :validate_issue, :validate_required_fields
+  validate :validate_issue, :validate_required_fields
 
   scope :visible, lambda {|*args|
     includes(:project).where(Issue.visible_condition(args.shift || User.current, *args))
@@ -1259,7 +1259,7 @@ class Issue < ActiveRecord::Base
       p.estimated_hours = nil if p.estimated_hours == 0.0
 
       # ancestors will be recursively updated
-      p.save(:validate_relationships => false)
+      p.save(:validate => false)
     end
   end
 

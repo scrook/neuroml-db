@@ -31,10 +31,10 @@ module Redmine
                                    :include => :custom_field,
                                    :order => "#{CustomField.table_name}.position",
                                    :dependent => :delete_all,
-                                   :validate_relationships => false
+                                   :validate => false
 
           send :include, Redmine::Acts::Customizable::InstanceMethods
-          validate_relationships :validate_custom_field_values
+          validate :validate_custom_field_values
           after_save :save_custom_field_values
         end
       end
