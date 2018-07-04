@@ -1,11 +1,12 @@
 <style>
-  .morphology .image {  border-radius: 10px; }
-  .morphology .thumbnail { position: relative; border-radius: 10px; width: 200px; height: 200px; background-color: #002c39; float: left; margin-right: 15px !important; cursor:pointer; }
-  .morphology .thumbnail .image { width: 200px; height: 200px; }
+  #morphology-full-image-dialog { text-align: center; }
+  .morphology .image {  border-radius: 10px; height: 95%; }
+  .morphology .thumbnail { position: relative; border-radius: 10px; width: 300px; height: 300px; background-color: #002c39; float: left; margin-right: 15px !important; cursor:pointer; }
+  .morphology .thumbnail .image { width: 300px; height: 300px; }
   .morphology .thumbnail .enlarge { position: absolute; bottom: 10px; right: 10px; background-color: white; border: 1px solid #1376c4; border-radius: 5px; }
   #morphology-full-image-dialog { display:none; }
   .morphology-prop-name { text-align: right; padding-right: 15px; vertical-align: bottom; }
-  #morphology-morphometrics { height: 200px; overflow: auto; }
+  #morphology-morphometrics { height: 300px; overflow: auto; }
   #morphology-morphometrics table { width: 100%; }
   .morphology thead td { text-align: left; color: #1376c4; font-weight: bold; }
   .morphology thead td:first-child { text-align: right; padding-right: 15px;  }
@@ -16,8 +17,8 @@
         jQuery("#morphology-full-image-dialog").dialog({
             autoOpen: false,
             resizable: false,
-            width: 532,
-            maxHeight: 565
+            width: 950,
+            height: jQuery(window).height()*0.95
         });
 
         jQuery(".morphology .thumbnail").on("click", function () {

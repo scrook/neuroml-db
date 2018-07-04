@@ -211,6 +211,27 @@ class Model < ActiveRecord::Base
           WHERE mn.Model_ID = '#{idClean}'
         ")
 
+    dt_sensitivity = ActiveRecord::Base.connection.exec_query(
+        "
+          SELECT mw.dt_or_atol as DT, mw.Percent_Error as Error, mw.Steps as Steps
+          FROM neuromldb.model_waveforms mw
+          WHERE mw.Protocol_ID in ('DT_SENSITIVITY', 'OPTIMAL_DT_BENCHMARK') AND
+          mw.Steps is not null AND
+          mw.dt_or_atol is not null AND
+          mw.Variable_Name = 'Voltage' AND
+          mw.Model_ID = '#{idClean}'
+          ORDER BY DT
+        ")
+
+    cvode_spikes_vs_steps = ActiveRecord::Base.connection.exec_query(
+        "
+          SELECT Spikes, Steps FROM model_waveforms mw
+          WHERE mw.Protocol_ID  = 'CVODE_STEP_FREQUENCIES' AND
+          mw.Variable_Name = 'Voltage' AND
+          mw.Model_ID = '#{idClean}'
+          ORDER BY Spikes
+        ")
+
     return {
         model: model,
         publication: {
@@ -223,7 +244,11 @@ class Model < ActiveRecord::Base
         neurolex_ids: neurolexes,
         children: children,
         parents: parents,
-        waveform_list: waveform_list
+        waveform_list: waveform_list,
+        complexity: {
+            dt_sensitivity: dt_sensitivity,
+            cvode_spikes_vs_steps: cvode_spikes_vs_steps
+        }
     }
   end
 

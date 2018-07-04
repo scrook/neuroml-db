@@ -163,12 +163,13 @@
 
                   <td><div style="width:300px; overflow:hidden;"><%= File.basename(record["File"]) %></div></td>
 
-                  <td><a style="text-decoration: none" target="_blank"
-                         href="/render_xml_as_html?modelID=<%= record["ModelID"] %>">(&nbsp;view&nbsp;HTML&nbsp;)</a></td>
+                  <td>
+                    <!--<a style="text-decoration: none" target="_blank"-->
+                         <!--href="/render_xml_as_html?modelID=<%= record["ModelID"] %>">(&nbsp;view&nbsp;HTML&nbsp;)</a>-->
+                  </td>
 
                   <td><a style="text-decoration: none" target="_blank"
                          href="/render_xml_file?modelID=<%= record["ModelID"] %>">(&nbsp;view&nbsp;XML&nbsp;)</a></td>
-
                 </tr>
 
             <% end %>
@@ -323,4 +324,3 @@
 
 </div>
 <!-- ENDS content -->
-

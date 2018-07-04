@@ -69,6 +69,8 @@ class WelcomeController < ApplicationController
       end
     end
 
+    @complexity = details[:complexity]
+
     if params[:partial].to_s == "true"
       render :partial => "model_info"
     else
