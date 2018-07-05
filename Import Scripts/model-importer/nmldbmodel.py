@@ -58,6 +58,8 @@ class NMLDB_Model(object):
             'checksum'
         ]
 
+        self.importer_path = os.getcwd()
+
     def __enter__(self):
         return self
 
@@ -201,7 +203,14 @@ class NMLDB_Model(object):
         self.model_record.Runtime_Per_Step = result["runtime_per_step"]
         self.model_record.save()
 
-    def convert_to_NEURON(self, path=None):
+    def save_NEURON_conversion(self):
+        self.convert_to_NEURON(
+            target_path=os.path.join(self.get_permanent_model_directory(),"conversions","NEURON"),
+            compile=False,
+            removeNML=True
+        )
+
+    def convert_to_NEURON(self, path=None, target_path=None, compile=True, removeNML=False):
         """
         Converts the model to NEURON, storing files in config.temp_models_folder.
         :param path: NML ID or path to NeuroML file
@@ -233,7 +242,7 @@ class NMLDB_Model(object):
             raise Exception("The name of the parent folder of the model should be a NeuroML-DB id: " + nml_db_id)
 
         # Templates
-        with open("templates/LEMS_single_model_template.xml") as t:
+        with open(os.path.join(self.importer_path,"templates","LEMS_single_model_template.xml")) as t:
             template = t.read()
 
         include_file_template = '	<Include file="[File]"/>'
@@ -260,25 +269,28 @@ class NMLDB_Model(object):
             raise Exception("Database is missing children for the model. Run 'python manage.py validate_relationships " + nml_db_id + "' for details.")
 
         # Set the location where the NEURON files will be stored
-        temp_model_folder = os.path.join(os.path.abspath(self.config.temp_models_folder), nml_db_id)
+        if target_path is None:
+            destination_folder = os.path.join(os.path.abspath(self.config.temp_models_folder), nml_db_id)
+        else:
+            destination_folder = target_path
 
         # Clear it if exists or create it
-        if os.path.exists(temp_model_folder):
-            shutil.rmtree(temp_model_folder)
+        if os.path.exists(destination_folder):
+            shutil.rmtree(destination_folder)
 
-        os.makedirs(temp_model_folder)
+        os.makedirs(destination_folder)
 
-        # Copy the model to the temp folder
-        shutil.copy2(os.path.join(model_dir_name, model_file_name), temp_model_folder)
+        # Copy the model to the destination folder
+        shutil.copy2(os.path.join(model_dir_name, model_file_name), destination_folder)
 
         # Create file includes for each child model
         child_includes = ''
 
-        child_includes = self.copy_submodels_to_temp(child_includes,
+        child_includes = self.copy_submodels_to_path(child_includes,
                                                      children_in_db,
                                                      include_file_template,
                                                      model_dir_name,
-                                                     temp_model_folder)
+                                                     destination_folder)
 
         replacements = {
             "[ParentInclude]": include_file_template.replace("[File]", model_file_name),
@@ -289,26 +301,31 @@ class NMLDB_Model(object):
         for r in replacements:
             template = template.replace(r, str(replacements[r]))
 
-        out_file = temp_model_folder + "/LEMS_" + model_file_name
+        out_file = destination_folder + "/LEMS_" + model_file_name
 
         with open(out_file, "w") as outF:
             outF.write(template)
 
         # Convert LEMS to NEURON with JNML
-        os.chdir(temp_model_folder)
+        os.chdir(destination_folder)
 
         self.run_command("jnml LEMS_" + model_file_name + " -neuron")
 
-        self.temp_model_path = temp_model_folder
+        if target_path is None:
+            self.temp_model_path = destination_folder
+
+        if removeNML:
+            self.run_command("rm *.nml")
 
         self.on_before_mod_compile()
 
         # Compile mod files
-        self.run_command("nrnivmodl")
+        if compile:
+            self.run_command("nrnivmodl")
 
-        return temp_model_folder
+        return destination_folder
 
-    def copy_submodels_to_temp(self, child_includes, sub_models, include_file_template, model_dir_name,
+    def copy_submodels_to_path(self, child_includes, sub_models, include_file_template, model_dir_name,
                                temp_model_folder):
         for sub_model in sub_models:
             id = sub_model["Model_ID"]
@@ -323,7 +340,7 @@ class NMLDB_Model(object):
             sub_models = self.get_model_children_from_DB(sub_model["Model_ID"])
 
             if len(sub_models) > 0:
-                child_includes = self.copy_submodels_to_temp(child_includes,
+                child_includes = self.copy_submodels_to_path(child_includes,
                                                              sub_models,
                                                              include_file_template,
                                                              model_dir_name,

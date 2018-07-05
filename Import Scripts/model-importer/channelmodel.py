@@ -17,6 +17,7 @@ class ChannelModel(NMLDB_Model):
         super(ChannelModel, self).__init__(*args, **kwargs)
 
         self.all_properties.extend([
+            'NEURON_conversion',
             'equation_count',
             'runtime_per_step',
             'tolerances',

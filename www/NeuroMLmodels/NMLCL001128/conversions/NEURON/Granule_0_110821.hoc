@@ -1,0 +1,390 @@
+// Cell: Granule_0_110821
+/*
+{
+  "id" : "Granule_0_110821",
+  "sections" : [ {
+    "name" : "neck_group",
+    "id" : "neck_group",
+    "points3d" : [ "218.5944, -151.3346, 302.6691, 0.2", "219.6796, -152.0859, 304.1717, 0.2" ],
+    "parent" : "priden2_0",
+    "fractionAlong" : 0.5173215424040399
+  }, {
+    "name" : "head_group",
+    "id" : "head_group",
+    "points3d" : [ "219.6796, -152.0859, 304.1717, 1.0", "220.2222, -152.4615, 304.923, 1.0" ],
+    "parent" : "neck_group",
+    "fractionAlong" : 1.0
+  }, {
+    "name" : "soma",
+    "id" : "soma",
+    "points3d" : [ "0.0, 0.0, 0.0, 8.0", "4.340876, -3.005222, 6.010444, 8.0" ]
+  }, {
+    "name" : "priden",
+    "id" : "priden",
+    "points3d" : [ "4.340876, -3.005222, 6.010444, 0.5", "82.94199, -57.42138, 114.8428, 0.5", "102.5923, -71.02542, 142.0508, 0.5" ],
+    "parent" : "soma",
+    "fractionAlong" : 1.0,
+    "numberInternalDivisions" : 13
+  }, {
+    "name" : "priden2_0",
+    "id" : "priden2_0",
+    "points3d" : [ "82.94199, -57.42138, 114.8428, 0.4", "153.1179, -106.0047, 212.0094, 0.4", "218.5944, -151.3346, 302.6691, 0.4" ],
+    "parent" : "priden",
+    "fractionAlong" : 0.8000002190778881,
+    "numberInternalDivisions" : 26
+  } ],
+  "groups" : [ {
+    "name" : "spine_group",
+    "groups" : [ ],
+    "sections" : [ "neck_group", "head_group" ]
+  }, {
+    "name" : "OneSecGrp_SectionRef_1",
+    "groups" : [ ],
+    "sections" : [ "soma" ]
+  }, {
+    "name" : "soma_group",
+    "groups" : [ ],
+    "sections" : [ "soma" ]
+  }, {
+    "name" : "dendrite_group",
+    "groups" : [ "spine_group" ],
+    "sections" : [ "priden", "priden2_0" ]
+  }, {
+    "name" : "axon_group"
+  }, {
+    "name" : "all",
+    "sections" : [ "soma", "priden", "priden2_0", "neck_group", "head_group", "priden", "priden2_0" ]
+  } ],
+  "specificCapacitance" : [ {
+    "group" : "soma_group",
+    "value" : "4.0"
+  }, {
+    "group" : "dendrite_group",
+    "value" : "4.0"
+  }, {
+    "group" : "spine_group",
+    "value" : "1.0"
+  } ],
+  "initMembPotential" : [ {
+    "group" : "all",
+    "value" : "-65.0"
+  } ],
+  "resistivity" : [ {
+    "group" : "all",
+    "value" : "80.0"
+  } ],
+  "channelDensity" : [ {
+    "id" : "passive_dendritic",
+    "ionChannel" : "pas_nml2",
+    "ion" : "non_specific",
+    "group" : "dendrite_group",
+    "condDens" : "1.3333333E-4",
+    "erev" : "-65.0"
+  }, {
+    "id" : "nax_dendritic",
+    "ionChannel" : "nax__sh15",
+    "ion" : "na",
+    "group" : "dendrite_group",
+    "condDens" : "0.02",
+    "erev" : "60.0"
+  }, {
+    "id" : "kamt_dendritic",
+    "ionChannel" : "kamt",
+    "ion" : "k",
+    "group" : "dendrite_group",
+    "condDens" : "0.007999999",
+    "erev" : "-90.0"
+  }, {
+    "id" : "passive_somatic",
+    "ionChannel" : "pas_nml2",
+    "ion" : "non_specific",
+    "group" : "soma_group",
+    "condDens" : "1.3333333E-4",
+    "erev" : "-65.0"
+  }, {
+    "id" : "nax_somatic",
+    "ionChannel" : "nax__sh15",
+    "ion" : "na",
+    "group" : "soma_group",
+    "condDens" : "0.04",
+    "erev" : "60.0"
+  }, {
+    "id" : "kdrmt_somatic",
+    "ionChannel" : "kdrmt",
+    "ion" : "k",
+    "group" : "soma_group",
+    "condDens" : "0.006",
+    "erev" : "-90.0"
+  }, {
+    "id" : "kamt_somatic",
+    "ionChannel" : "kamt",
+    "ion" : "k",
+    "group" : "soma_group",
+    "condDens" : "0.0039999997",
+    "erev" : "-90.0"
+  }, {
+    "id" : "passive_spine",
+    "ionChannel" : "pas_nml2",
+    "ion" : "non_specific",
+    "group" : "spine_group",
+    "condDens" : "3.3333334E-5",
+    "erev" : "-65.0"
+  }, {
+    "id" : "kamt_spine",
+    "ionChannel" : "kamt",
+    "ion" : "k",
+    "group" : "spine_group",
+    "condDens" : "0.007999999",
+    "erev" : "-90.0"
+  }, {
+    "id" : "nax_spine",
+    "ionChannel" : "nax__sh15",
+    "ion" : "na",
+    "group" : "spine_group",
+    "condDens" : "0.02",
+    "erev" : "60.0"
+  } ],
+  "species" : [ ]
+}
+*/
+
+load_file("subiter.hoc")
+
+begintemplate Granule_0_110821
+
+public init, topol, basic_shape, subsets, geom, memb
+public x, y, z, position
+
+
+//  Some methods for referencing the cells
+
+public toString, netInfo, set_initial_v, set_initial_ion_properties, synlist
+
+
+// Section: neck_group, id: neck_group, parent: priden2_0
+create neck_group
+public neck_group
+// Section: head_group, id: head_group, parent: neck_group
+create head_group
+public head_group
+// Section: soma, id: soma, parent: $s.parent
+create soma
+public soma
+// Section: priden, id: priden, parent: soma
+create priden
+public priden
+// Section: priden2_0, id: priden2_0, parent: priden
+create priden2_0
+public priden2_0
+
+// Group: {name=spine_group, groups=[], sections=[neck_group, head_group]}
+objref spine_group
+// Group: {name=OneSecGrp_SectionRef_1, groups=[], sections=[soma]}
+objref OneSecGrp_SectionRef_1
+// Group: {name=soma_group, groups=[], sections=[soma]}
+objref soma_group
+// Group: {name=dendrite_group, groups=[spine_group], sections=[priden, priden2_0]}
+objref dendrite_group
+// Group: {name=axon_group}
+objref axon_group
+// Group: {name=all, sections=[soma, priden, priden2_0, neck_group, head_group, priden, priden2_0]}
+objref all
+
+objref synlist
+
+proc init() {
+    topol()
+    geom_nseg()
+    subsets()
+    subsets_inhomogeneous()
+    biophys()
+    biophys_inhomogeneous()
+    synlist = new List()
+    x = y = z = 0
+
+}
+
+proc set_initial_v() {
+    // Taken from the initMembPotential value
+    forsec all v = -65.0  // units: mV
+}
+
+
+proc set_initial_ion_properties() {
+    // From species
+}
+
+
+proc topol() {
+    basic_shape()
+    connect neck_group(0), priden2_0(0.5173215424040399)
+    connect head_group(0), neck_group(1.0)
+    connect priden(0), soma(1.0)
+    connect priden2_0(0), priden(0.8000002190778881)
+
+}
+
+
+proc basic_shape() {
+
+    // Section: neck_group, id: neck_group, parent: priden2_0 (entry count 0/100)
+    neck_group { pt3dclear() }
+    neck_group { pt3dadd( 218.5944, -151.3346, 302.6691, 0.2 ) }
+    neck_group { pt3dadd( 219.6796, -152.0859, 304.1717, 0.2 ) }
+    // Section: head_group, id: head_group, parent: neck_group (entry count 2/100)
+    head_group { pt3dclear() }
+    head_group { pt3dadd( 219.6796, -152.0859, 304.1717, 1.0 ) }
+    head_group { pt3dadd( 220.2222, -152.4615, 304.923, 1.0 ) }
+    // Section: soma, id: soma, parent: $s.parent (entry count 4/100)
+    soma { pt3dclear() }
+    soma { pt3dadd( 0.0, 0.0, 0.0, 8.0 ) }
+    soma { pt3dadd( 4.340876, -3.005222, 6.010444, 8.0 ) }
+    // Section: priden, id: priden, parent: soma (entry count 6/100)
+    priden { pt3dclear() }
+    priden { pt3dadd( 4.340876, -3.005222, 6.010444, 0.5 ) }
+    priden { pt3dadd( 82.94199, -57.42138, 114.8428, 0.5 ) }
+    priden { pt3dadd( 102.5923, -71.02542, 142.0508, 0.5 ) }
+    // Section: priden2_0, id: priden2_0, parent: priden (entry count 9/100)
+    priden2_0 { pt3dclear() }
+    priden2_0 { pt3dadd( 82.94199, -57.42138, 114.8428, 0.4 ) }
+    priden2_0 { pt3dadd( 153.1179, -106.0047, 212.0094, 0.4 ) }
+    priden2_0 { pt3dadd( 218.5944, -151.3346, 302.6691, 0.4 ) }
+
+}
+
+
+proc subsets() { local i
+
+    // Group: {name=spine_group, groups=[], sections=[neck_group, head_group]}
+    spine_group = new SectionList()
+    neck_group spine_group.append()
+    head_group spine_group.append()
+
+    // Group: {name=OneSecGrp_SectionRef_1, groups=[], sections=[soma]}
+    OneSecGrp_SectionRef_1 = new SectionList()
+    soma OneSecGrp_SectionRef_1.append()
+
+    // Group: {name=soma_group, groups=[], sections=[soma]}
+    soma_group = new SectionList()
+    soma soma_group.append()
+
+    // Group: {name=dendrite_group, groups=[spine_group], sections=[priden, priden2_0]}
+    dendrite_group = new SectionList()
+    priden dendrite_group.append()
+    priden2_0 dendrite_group.append()
+    forsec spine_group dendrite_group.append()
+
+    // Group: {name=axon_group}
+    axon_group = new SectionList()
+
+    // Group: {name=all, sections=[soma, priden, priden2_0, neck_group, head_group, priden, priden2_0]}
+    all = new SectionList()
+    soma all.append()
+    priden all.append()
+    priden2_0 all.append()
+    neck_group all.append()
+    head_group all.append()
+    priden all.append()
+    priden2_0 all.append()
+
+}
+
+
+proc subsets_inhomogeneous() {
+}
+
+proc biophys() {
+
+    // Specific capacitance
+    forsec soma_group cm = 4.0  // units: uF/cm2
+    forsec dendrite_group cm = 4.0  // units: uF/cm2
+    forsec spine_group cm = 1.0  // units: uF/cm2
+
+    // Specific axial resistance/resistivity
+    forsec all Ra = 80.0  // units: ohm cm
+
+    // Channel densities
+    forsec dendrite_group {
+        insert pas_nml2
+        gmax_pas_nml2 = 1.3333333E-4  // units: S cm-2
+        e_pas_nml2 = -65.0  // units: mV
+    }
+    forsec dendrite_group {
+        insert nax__sh15
+        gmax_nax__sh15 = 0.02  // units: S cm-2
+        ena = 60.0  // units: mV
+    }
+    forsec dendrite_group {
+        insert kamt
+        gmax_kamt = 0.007999999  // units: S cm-2
+        ek = -90.0  // units: mV
+    }
+    forsec soma_group {
+        insert pas_nml2
+        gmax_pas_nml2 = 1.3333333E-4  // units: S cm-2
+        e_pas_nml2 = -65.0  // units: mV
+    }
+    forsec soma_group {
+        insert nax__sh15
+        gmax_nax__sh15 = 0.04  // units: S cm-2
+        ena = 60.0  // units: mV
+    }
+    forsec soma_group {
+        insert kdrmt
+        gmax_kdrmt = 0.006  // units: S cm-2
+        ek = -90.0  // units: mV
+    }
+    forsec soma_group {
+        insert kamt
+        gmax_kamt = 0.0039999997  // units: S cm-2
+        ek = -90.0  // units: mV
+    }
+    forsec spine_group {
+        insert pas_nml2
+        gmax_pas_nml2 = 3.3333334E-5  // units: S cm-2
+        e_pas_nml2 = -65.0  // units: mV
+    }
+    forsec spine_group {
+        insert kamt
+        gmax_kamt = 0.007999999  // units: S cm-2
+        ek = -90.0  // units: mV
+    }
+    forsec spine_group {
+        insert nax__sh15
+        gmax_nax__sh15 = 0.02  // units: S cm-2
+        ena = 60.0  // units: mV
+    }
+
+    // Concentration models for species
+
+}
+
+func H() { // Heaviside function
+    if ($1>=0) return 1
+    if ($1==0) return 0.5
+    return 0
+}
+
+proc biophys_inhomogeneous() {
+}
+
+proc geom_nseg() {
+    // All sections not mentioned here have nseg = 1
+    priden nseg = 13
+    priden2_0 nseg = 26
+}
+
+
+proc position() { local i
+    forsec all {
+        for i = 0, n3d()-1 {
+            pt3dchange(i, $1+x3d(i), $2+y3d(i), $3+z3d(i), diam3d(i))
+        }
+    }
+    x = $1  y = $2  z = $3
+}
+
+
+endtemplate Granule_0_110821
+
+

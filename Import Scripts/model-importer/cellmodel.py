@@ -42,6 +42,7 @@ class CellModel(NMLDB_Model):
         self.pickle_file_cache = {}
 
         self.all_properties.extend([
+            'NEURON_conversion',
             'equation_count',
             'runtime_per_step',
             'structural_metrics',
