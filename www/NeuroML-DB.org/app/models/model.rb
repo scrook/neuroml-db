@@ -245,8 +245,11 @@ class Model < ActiveRecord::Base
           ORDER BY Spikes
         ")
 
+    versions = GetModelVersions(idClean)
+
     return {
         model: model,
+        versions: versions,
         publication: {
             short: GetModelShortPub(idClean),
             record: pub,
@@ -465,17 +468,39 @@ class Model < ActiveRecord::Base
 
   end
 
-  # Recursivelly get the files associated with a model and its children
-  def self.GetFiles(modelID)
-    result = Array.new
+  def self.GetModelVersions(modelID)
+    result = []
+    subfolders = Dir['/var/www/NeuroMLmodels/' + modelID + '/conversions/*']
 
-    GetModelFiles(modelID, result)
+    subfolders.each do |folder|
+      result.push(File.basename(folder))
+    end
 
-    return result.uniq
+    return result
   end
 
   # Recursivelly get the files associated with a model and its children
-  def self.GetModelFiles(modelID, result)
+  def self.GetFiles(modelID, version)
+    result = Array.new
+
+    if version == 'NeuroML'
+      GetModelFiles(modelID, version, result)
+      return result.uniq
+    else
+      files = Dir[Model.find_by_Model_ID(modelID).Directory_Path + "/conversions/" + version + "/*"]
+
+      records = []
+      files.each do |file|
+        records.push({ "File" => file })
+      end
+
+      return records
+
+    end
+  end
+
+  # Recursivelly get the files associated with a model and its children
+  def self.GetModelFiles(modelID, version, result)
 
     # Result will keep a list of all files
     if result == NIL
@@ -487,19 +512,26 @@ class Model < ActiveRecord::Base
 
     # Look for model child models
     ModelModelAssociation.where(:Parent_ID => modelID).each do |childRecord|
-      GetModelFiles(childRecord.Child_ID, result)
+      GetModelFiles(childRecord.Child_ID, version, result)
     end
 
   end
 
-  def self.GetModelZipFilePath(modelID)
+  def self.GetModelZipFilePath(modelID, version)
 
     _zipFileName = modelID + '.zip'
-    _zipFilePath = '/var/www/NeuroMLmodels/' + modelID + '/' + _zipFileName
+
+    if version == "NeuroML"
+      _zipFilePath = '/var/www/NeuroMLmodels/' + modelID + '/' + _zipFileName
+
+    else
+      _zipFilePath = '/var/www/NeuroMLmodels/' + modelID + '/conversions/' + version + '/' + _zipFileName
+
+    end
 
     if not File.exist?(_zipFilePath) or File.mtime(_zipFilePath) < 1.month.ago
 
-      filesToZip = GetFiles(modelID)
+      filesToZip = GetFiles(modelID, version)
 
       begin
 

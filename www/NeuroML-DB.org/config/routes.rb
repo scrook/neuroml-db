@@ -20,8 +20,8 @@ RedmineApp::Application.routes.draw do
   match 'render_xml_file', :to => 'xml#render_xml_file', :as => 'render_xml_file'
   match 'render_xml_as_html', :to => 'xml#render_xml_as_html', :as => 'render_xml_as_html'
 
+  match 'GetModelVersions', :to => 'models#GetModelVersions', :as => 'GetModelVersions'
   match 'GetModelZip', :to => 'models#GetModelZip', :as => 'GetModelZip'
-  match 'GetChannelLEMSZip', :to => 'models#GetChannelLEMSZip', :as => 'GetChannelLEMSZip'
 
   match '/api', :to => 'welcome#api'
   match '/api/models', :to => 'models#all'

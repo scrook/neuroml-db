@@ -16,6 +16,7 @@ class WelcomeController < ApplicationController
     #model =Model.find_by_Model_ID(@model_id)
     details = Model.GetModelDetails(@model_id)
     model = details[:model]
+    @versions = details[:versions]
 
     @name=model["Name"]
     @type=model["Type"]

@@ -76,12 +76,31 @@ class ModelsController < ApplicationController
   end
 
 
+  def GetModelVersions
+
+    modelID =params[:modelID].to_s
+    model = Model.find_by_Model_ID(modelID)
+
+    if !model.nil?
+      return Model.GetModelVersions(modelID)
+    else
+      raise "Model not found"
+    end
+
+  end
 
   def GetModelZip
 
     modelID =params[:modelID].to_s
+    version =params[:version].to_s
 
-    send_data(File.read(Model.GetModelZipFilePath(modelID)), :type => 'application/zip', :filename => modelID + '.zip')
+    model = Model.find_by_Model_ID(modelID)
+
+    if !model.nil? && (['NeuroML', 'NEURON'].include? version)
+      send_data(File.read(Model.GetModelZipFilePath(modelID, version)), :type => 'application/zip', :filename => modelID + '.zip')
+    else
+      raise "Model not found"
+    end
 
   end
 
