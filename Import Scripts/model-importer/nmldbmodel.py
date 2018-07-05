@@ -831,9 +831,9 @@ class NMLDB_Model(object):
             # Total cost = normalized time cost + normalized error cost (here weighed equally)
             # Time cost is in the 1/dt form
             # Error cost is in slope*dt+constant form
-            # Total cost = a/x+(b*x+c)
+            # Total cost = a/dt+(b*dt+c)
             # dt of minimum total cost is where total cost derivative = 0
-            # Total cost derivative is b-a/x^2
+            # Total cost derivative is b-a/dt^2
             # The positive root of which is at sqrt(a/b) when a,b > 0
             a = time_params[0]
             b = error_params[0]

@@ -213,13 +213,26 @@ class Model < ActiveRecord::Base
 
     dt_sensitivity = ActiveRecord::Base.connection.exec_query(
         "
-          SELECT mw.dt_or_atol as DT, mw.Percent_Error as Error, mw.Steps as Steps
-          FROM neuromldb.model_waveforms mw
-          WHERE mw.Protocol_ID in ('DT_SENSITIVITY', 'OPTIMAL_DT_BENCHMARK') AND
-          mw.Steps is not null AND
-          mw.dt_or_atol is not null AND
-          mw.Variable_Name = 'Voltage' AND
-          mw.Model_ID = '#{idClean}'
+          SELECT * FROM (
+            SELECT mw.dt_or_atol as DT, mw.Percent_Error as Error, mw.Steps as Steps
+            FROM neuromldb.model_waveforms mw
+            WHERE mw.Protocol_ID in ('DT_SENSITIVITY') AND
+            mw.Steps is not null AND
+            mw.dt_or_atol is not null AND
+            mw.Variable_Name = 'Voltage' AND
+            mw.Model_ID = '#{idClean}'
+
+            UNION
+
+            SELECT mw.dt_or_atol as DT, m.Optimal_DT_Error as Error, mw.Steps as Steps
+            FROM neuromldb.model_waveforms mw
+            JOIN models m ON m.Model_ID = mw.Model_ID
+            WHERE mw.Protocol_ID in ('OPTIMAL_DT_BENCHMARK') AND
+            mw.Steps is not null AND
+            mw.dt_or_atol is not null AND
+            mw.Variable_Name = 'Voltage' AND
+            mw.Model_ID = '#{idClean}'
+          ) as tmp
           ORDER BY DT
         ")
 
