@@ -1,0 +1,267 @@
+// Cell: AB_PD
+/*
+{
+  "id" : "AB_PD",
+  "sections" : [ {
+    "name" : "Soma",
+    "id" : "Soma",
+    "points3d" : [ "0.0, 0.0, 0.0, 141.3855", "0.0, 141.3855, 0.0, 141.3855" ],
+    "comments" : "Section in NeuroML is spherical, so using cylindrical section along Y axis for NEURON\n"
+  } ],
+  "groups" : [ {
+    "name" : "soma_group",
+    "groups" : [ ],
+    "sections" : [ "Soma" ]
+  }, {
+    "name" : "all",
+    "sections" : [ "Soma" ]
+  } ],
+  "specificCapacitance" : [ {
+    "group" : "all",
+    "value" : "1.0"
+  } ],
+  "initMembPotential" : [ {
+    "group" : "all",
+    "value" : "-50.0"
+  } ],
+  "resistivity" : [ {
+    "group" : "all",
+    "value" : "30.000002"
+  } ],
+  "channelDensity" : [ {
+    "id" : "H_STG_all",
+    "ionChannel" : "H_STG",
+    "ion" : "h",
+    "group" : "all",
+    "condDens" : "1.0E-5",
+    "erev" : "-20.0"
+  }, {
+    "id" : "KA_STG_all",
+    "ionChannel" : "KA_STG",
+    "ion" : "k",
+    "group" : "all",
+    "condDens" : "0.049999997",
+    "erev" : "-80.0"
+  }, {
+    "id" : "KCa_STG_all",
+    "ionChannel" : "KCa_STG",
+    "ion" : "k",
+    "group" : "all",
+    "condDens" : "0.01",
+    "erev" : "-80.0"
+  }, {
+    "id" : "Kd_STG_all",
+    "ionChannel" : "Kd_STG",
+    "ion" : "k",
+    "group" : "all",
+    "condDens" : "0.099999994",
+    "erev" : "-80.0"
+  }, {
+    "id" : "LeakConductance_all",
+    "ionChannel" : "LeakConductance",
+    "ion" : "non_specific",
+    "group" : "all",
+    "condDens" : "0.0",
+    "erev" : "-50.0"
+  }, {
+    "id" : "Na_STG_all",
+    "ionChannel" : "Na_STG",
+    "ion" : "na",
+    "group" : "all",
+    "condDens" : "0.39999998",
+    "erev" : "50.0"
+  }, {
+    "id" : "CaS_STG_all",
+    "ionChannel" : "CaS_STG",
+    "ion" : "ca",
+    "group" : "all",
+    "condDens" : "0.006",
+    "erev" : "calculated_by_Nernst_equation"
+  }, {
+    "id" : "CaT_STG_all",
+    "ionChannel" : "CaT_STG",
+    "ion" : "ca",
+    "group" : "all",
+    "condDens" : "0.0025",
+    "erev" : "calculated_by_Nernst_equation"
+  } ],
+  "species" : [ {
+    "id" : "ca",
+    "ion" : "ca",
+    "concentrationModel" : "CaPool_STG",
+    "group" : "all",
+    "initialConcentration" : "5.0E-5",
+    "initialExtConcentration" : "3.0"
+  } ]
+}
+*/
+
+load_file("subiter.hoc")
+
+begintemplate AB_PD
+
+public init, topol, basic_shape, subsets, geom, memb
+public x, y, z, position
+
+
+//  Some methods for referencing the cells
+
+public toString, netInfo, set_initial_v, set_initial_ion_properties, synlist
+
+
+// Section: Soma, id: Soma, parent: $s.parent
+create Soma
+public Soma
+
+// Group: {name=soma_group, groups=[], sections=[Soma]}
+objref soma_group
+// Group: {name=all, sections=[Soma]}
+objref all
+
+objref synlist
+
+proc init() {
+    topol()
+    geom_nseg()
+    subsets()
+    subsets_inhomogeneous()
+    biophys()
+    biophys_inhomogeneous()
+    synlist = new List()
+    x = y = z = 0
+
+}
+
+proc set_initial_v() {
+    // Taken from the initMembPotential value
+    forsec all v = -50.0  // units: mV
+}
+
+
+proc set_initial_ion_properties() {
+    // From species
+    // Ion: ca on group: all, with concentration model: CaPool_STG
+    forsec all {
+        cai = 5.0E-5  // units: mM
+        cao = 3.0  // units: mM
+    }
+}
+
+
+proc topol() {
+    basic_shape()
+
+}
+
+
+proc basic_shape() {
+
+    // Section: Soma, id: Soma, parent: $s.parent (entry count 0/100)
+    Soma { pt3dclear() }
+    Soma { pt3dadd( 0.0, 0.0, 0.0, 141.3855 ) }
+    Soma { pt3dadd( 0.0, 141.3855, 0.0, 141.3855 ) }
+
+}
+
+
+proc subsets() { local i
+
+    // Group: {name=soma_group, groups=[], sections=[Soma]}
+    soma_group = new SectionList()
+    Soma soma_group.append()
+
+    // Group: {name=all, sections=[Soma]}
+    all = new SectionList()
+    Soma all.append()
+
+}
+
+
+proc subsets_inhomogeneous() {
+}
+
+proc biophys() {
+
+    // Specific capacitance
+    forsec all cm = 1.0  // units: uF/cm2
+
+    // Specific axial resistance/resistivity
+    forsec all Ra = 30.000002  // units: ohm cm
+
+    // Channel densities
+    forsec all {
+        insert H_STG
+        gmax_H_STG = 1.0E-5  // units: S cm-2
+        eh = -20.0  // units: mV
+    }
+    forsec all {
+        insert KA_STG
+        gmax_KA_STG = 0.049999997  // units: S cm-2
+        ek = -80.0  // units: mV
+    }
+    forsec all {
+        insert KCa_STG
+        gmax_KCa_STG = 0.01  // units: S cm-2
+        ek = -80.0  // units: mV
+    }
+    forsec all {
+        insert Kd_STG
+        gmax_Kd_STG = 0.099999994  // units: S cm-2
+        ek = -80.0  // units: mV
+    }
+    forsec all {
+        insert LeakConductance
+        gmax_LeakConductance = 0.0  // units: S cm-2
+        e_LeakConductance = -50.0  // units: mV
+    }
+    forsec all {
+        insert Na_STG
+        gmax_Na_STG = 0.39999998  // units: S cm-2
+        ena = 50.0  // units: mV
+    }
+    forsec all {
+        insert CaS_STG
+        gmax_CaS_STG = 0.006  // units: S cm-2
+        // erev is calculated by Nernst equation
+    }
+    forsec all {
+        insert CaT_STG
+        gmax_CaT_STG = 0.0025  // units: S cm-2
+        // erev is calculated by Nernst equation
+    }
+
+    // Concentration models for species
+    // Ion: ca on group: all, with concentration model: CaPool_STG
+    forsec all {
+        insert CaPool_STG
+    }
+
+}
+
+func H() { // Heaviside function
+    if ($1>=0) return 1
+    if ($1==0) return 0.5
+    return 0
+}
+
+proc biophys_inhomogeneous() {
+}
+
+proc geom_nseg() {
+    // All sections not mentioned here have nseg = 1
+}
+
+
+proc position() { local i
+    forsec all {
+        for i = 0, n3d()-1 {
+            pt3dchange(i, $1+x3d(i), $2+y3d(i), $3+z3d(i), diam3d(i))
+        }
+    }
+    x = $1  y = $2  z = $3
+}
+
+
+endtemplate AB_PD
+
+

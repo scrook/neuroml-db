@@ -1,0 +1,457 @@
+// Cell: Golgi
+/*
+{
+  "id" : "Golgi",
+  "sections" : [ {
+    "name" : "Soma",
+    "id" : "Soma",
+    "points3d" : [ "0.0, 0.0, 0.0, 27.0", "0.0, 27.0, 0.0, 27.0" ],
+    "comments" : "Section in NeuroML is spherical, so using cylindrical section along Y axis for NEURON\n"
+  }, {
+    "name" : "Section_1",
+    "id" : "Section_1",
+    "points3d" : [ "0.0, 0.0, 0.0, 3.0", "113.0, 0.0, 0.0, 3.0" ],
+    "parent" : "Soma",
+    "fractionAlong" : 1.0,
+    "numberInternalDivisions" : 10
+  }, {
+    "name" : "dend_1",
+    "id" : "dend_1",
+    "points3d" : [ "0.0, 0.0, 0.0, 3.0", "72.0, 87.0, 4.0, 3.0" ],
+    "parent" : "Soma",
+    "fractionAlong" : 1.0,
+    "numberInternalDivisions" : 10
+  }, {
+    "name" : "Section_3",
+    "id" : "Section_3",
+    "points3d" : [ "0.0, 0.0, 0.0, 3.0", "72.0, -87.0, 4.0, 3.0" ],
+    "parent" : "Soma",
+    "fractionAlong" : 1.0,
+    "numberInternalDivisions" : 10
+  }, {
+    "name" : "Section_axon",
+    "id" : "Section_axon",
+    "points3d" : [ "0.0, 0.0, 0.0, 2.4", "-1200.0, 0.0, 0.0, 2.4" ],
+    "parent" : "Soma",
+    "fractionAlong" : 0.0,
+    "numberInternalDivisions" : 100
+  } ],
+  "groups" : [ {
+    "name" : "soma_group",
+    "groups" : [ ],
+    "sections" : [ "Soma" ]
+  }, {
+    "name" : "dendrite_group",
+    "groups" : [ ],
+    "sections" : [ "Section_1", "dend_1", "Section_3" ]
+  }, {
+    "name" : "axon_group",
+    "groups" : [ ],
+    "sections" : [ "Section_axon" ]
+  }, {
+    "name" : "all",
+    "sections" : [ "Soma", "Section_1", "dend_1", "Section_3", "Section_axon" ]
+  } ],
+  "specificCapacitance" : [ {
+    "group" : "all",
+    "value" : "1.0"
+  } ],
+  "initMembPotential" : [ {
+    "group" : "all",
+    "value" : "-60.0"
+  } ],
+  "resistivity" : [ {
+    "group" : "all",
+    "value" : "100.0"
+  } ],
+  "channelDensity" : [ {
+    "id" : "Golgi_hcn1f_soma_group",
+    "ionChannel" : "Golgi_hcn1f",
+    "ion" : "h",
+    "group" : "soma_group",
+    "condDens" : "5.0E-5",
+    "erev" : "-20.0"
+  }, {
+    "id" : "Golgi_hcn1s_soma_group",
+    "ionChannel" : "Golgi_hcn1s",
+    "ion" : "h",
+    "group" : "soma_group",
+    "condDens" : "5.0E-5",
+    "erev" : "-20.0"
+  }, {
+    "id" : "Golgi_hcn2f_soma_group",
+    "ionChannel" : "Golgi_hcn2f",
+    "ion" : "h",
+    "group" : "soma_group",
+    "condDens" : "8.0E-5",
+    "erev" : "-20.0"
+  }, {
+    "id" : "Golgi_hcn2s_soma_group",
+    "ionChannel" : "Golgi_hcn2s",
+    "ion" : "h",
+    "group" : "soma_group",
+    "condDens" : "8.0E-5",
+    "erev" : "-20.0"
+  }, {
+    "id" : "Golgi_KA_soma_group",
+    "ionChannel" : "Golgi_KA",
+    "ion" : "k",
+    "group" : "soma_group",
+    "condDens" : "0.007999999",
+    "erev" : "-84.689995"
+  }, {
+    "id" : "Golgi_KAHP_soma_group",
+    "ionChannel" : "Golgi_KAHP",
+    "ion" : "k",
+    "group" : "soma_group",
+    "condDens" : "0.038",
+    "erev" : "-84.689995"
+  }, {
+    "id" : "Golgi_KC_soma_group",
+    "ionChannel" : "Golgi_KC",
+    "ion" : "k",
+    "group" : "soma_group",
+    "condDens" : "0.003",
+    "erev" : "-84.689995"
+  }, {
+    "id" : "Golgi_Kslow_soma_group",
+    "ionChannel" : "Golgi_Kslow",
+    "ion" : "k",
+    "group" : "soma_group",
+    "condDens" : "9.999999E-4",
+    "erev" : "-84.689995"
+  }, {
+    "id" : "Golgi_KV_soma_group",
+    "ionChannel" : "Golgi_KV",
+    "ion" : "k",
+    "group" : "soma_group",
+    "condDens" : "0.031999998",
+    "erev" : "-84.689995"
+  }, {
+    "id" : "LeakCond_all",
+    "ionChannel" : "LeakCond",
+    "ion" : "non_specific",
+    "group" : "all",
+    "condDens" : "2.0999998E-5",
+    "erev" : "-55.0"
+  }, {
+    "id" : "Golgi_NaP_soma_group",
+    "ionChannel" : "Golgi_NaP",
+    "ion" : "na",
+    "group" : "soma_group",
+    "condDens" : "1.8999999E-4",
+    "erev" : "87.39"
+  }, {
+    "id" : "Golgi_NaR_soma_group",
+    "ionChannel" : "Golgi_NaR",
+    "ion" : "na",
+    "group" : "soma_group",
+    "condDens" : "0.0016999999",
+    "erev" : "87.39"
+  }, {
+    "id" : "Golgi_NaT_soma_group",
+    "ionChannel" : "Golgi_NaT",
+    "ion" : "na",
+    "group" : "soma_group",
+    "condDens" : "0.048",
+    "erev" : "87.39"
+  }, {
+    "id" : "Golgi_Ca_HVA_soma_group",
+    "ionChannel" : "Golgi_Ca_HVA",
+    "ion" : "ca",
+    "group" : "soma_group",
+    "condDens" : "4.5999998E-4",
+    "erev" : "calculated_by_Nernst_equation"
+  }, {
+    "id" : "Ca_LVA_soma_group",
+    "ionChannel" : "Golgi_Ca_LVA",
+    "ion" : "ca",
+    "group" : "soma_group",
+    "condDens" : "2.4999998E-4",
+    "erev" : "calculated_by_Nernst_equation"
+  } ],
+  "species" : [ {
+    "id" : "ca",
+    "ion" : "ca",
+    "concentrationModel" : "Golgi_CALC",
+    "group" : "soma_group",
+    "initialConcentration" : "5.0E-5",
+    "initialExtConcentration" : "2.0"
+  }, {
+    "id" : "ca2",
+    "ion" : "ca2",
+    "concentrationModel" : "Golgi_CALC_ca2",
+    "group" : "soma_group",
+    "initialConcentration" : "5.0E-5",
+    "initialExtConcentration" : "2.0"
+  } ]
+}
+*/
+
+load_file("subiter.hoc")
+
+begintemplate Golgi
+
+public init, topol, basic_shape, subsets, geom, memb
+public x, y, z, position
+
+
+//  Some methods for referencing the cells
+
+public toString, netInfo, set_initial_v, set_initial_ion_properties, synlist
+
+
+// Section: Soma, id: Soma, parent: $s.parent
+create Soma
+public Soma
+// Section: Section_1, id: Section_1, parent: Soma
+create Section_1
+public Section_1
+// Section: dend_1, id: dend_1, parent: Soma
+create dend_1
+public dend_1
+// Section: Section_3, id: Section_3, parent: Soma
+create Section_3
+public Section_3
+// Section: Section_axon, id: Section_axon, parent: Soma
+create Section_axon
+public Section_axon
+
+// Group: {name=soma_group, groups=[], sections=[Soma]}
+objref soma_group
+// Group: {name=dendrite_group, groups=[], sections=[Section_1, dend_1, Section_3]}
+objref dendrite_group
+// Group: {name=axon_group, groups=[], sections=[Section_axon]}
+objref axon_group
+// Group: {name=all, sections=[Soma, Section_1, dend_1, Section_3, Section_axon]}
+objref all
+
+objref synlist
+
+proc init() {
+    topol()
+    geom_nseg()
+    subsets()
+    subsets_inhomogeneous()
+    biophys()
+    biophys_inhomogeneous()
+    synlist = new List()
+    x = y = z = 0
+
+}
+
+proc set_initial_v() {
+    // Taken from the initMembPotential value
+    forsec all v = -60.0  // units: mV
+}
+
+
+proc set_initial_ion_properties() {
+    // From species
+    // Ion: ca on group: soma_group, with concentration model: Golgi_CALC
+    forsec soma_group {
+        cai = 5.0E-5  // units: mM
+        cao = 2.0  // units: mM
+    }
+    // Ion: ca2 on group: soma_group, with concentration model: Golgi_CALC_ca2
+    forsec soma_group {
+        ca2i = 5.0E-5  // units: mM
+        ca2o = 2.0  // units: mM
+    }
+}
+
+
+proc topol() {
+    basic_shape()
+    connect Section_1(0), Soma(1.0)
+    connect dend_1(0), Soma(1.0)
+    connect Section_3(0), Soma(1.0)
+    connect Section_axon(0), Soma(0.0)
+
+}
+
+
+proc basic_shape() {
+
+    // Section: Soma, id: Soma, parent: $s.parent (entry count 0/100)
+    Soma { pt3dclear() }
+    Soma { pt3dadd( 0.0, 0.0, 0.0, 27.0 ) }
+    Soma { pt3dadd( 0.0, 27.0, 0.0, 27.0 ) }
+    // Section: Section_1, id: Section_1, parent: Soma (entry count 2/100)
+    Section_1 { pt3dclear() }
+    Section_1 { pt3dadd( 0.0, 0.0, 0.0, 3.0 ) }
+    Section_1 { pt3dadd( 113.0, 0.0, 0.0, 3.0 ) }
+    // Section: dend_1, id: dend_1, parent: Soma (entry count 4/100)
+    dend_1 { pt3dclear() }
+    dend_1 { pt3dadd( 0.0, 0.0, 0.0, 3.0 ) }
+    dend_1 { pt3dadd( 72.0, 87.0, 4.0, 3.0 ) }
+    // Section: Section_3, id: Section_3, parent: Soma (entry count 6/100)
+    Section_3 { pt3dclear() }
+    Section_3 { pt3dadd( 0.0, 0.0, 0.0, 3.0 ) }
+    Section_3 { pt3dadd( 72.0, -87.0, 4.0, 3.0 ) }
+    // Section: Section_axon, id: Section_axon, parent: Soma (entry count 8/100)
+    Section_axon { pt3dclear() }
+    Section_axon { pt3dadd( 0.0, 0.0, 0.0, 2.4 ) }
+    Section_axon { pt3dadd( -1200.0, 0.0, 0.0, 2.4 ) }
+
+}
+
+
+proc subsets() { local i
+
+    // Group: {name=soma_group, groups=[], sections=[Soma]}
+    soma_group = new SectionList()
+    Soma soma_group.append()
+
+    // Group: {name=dendrite_group, groups=[], sections=[Section_1, dend_1, Section_3]}
+    dendrite_group = new SectionList()
+    Section_1 dendrite_group.append()
+    dend_1 dendrite_group.append()
+    Section_3 dendrite_group.append()
+
+    // Group: {name=axon_group, groups=[], sections=[Section_axon]}
+    axon_group = new SectionList()
+    Section_axon axon_group.append()
+
+    // Group: {name=all, sections=[Soma, Section_1, dend_1, Section_3, Section_axon]}
+    all = new SectionList()
+    Soma all.append()
+    Section_1 all.append()
+    dend_1 all.append()
+    Section_3 all.append()
+    Section_axon all.append()
+
+}
+
+
+proc subsets_inhomogeneous() {
+}
+
+proc biophys() {
+
+    // Specific capacitance
+    forsec all cm = 1.0  // units: uF/cm2
+
+    // Specific axial resistance/resistivity
+    forsec all Ra = 100.0  // units: ohm cm
+
+    // Channel densities
+    forsec soma_group {
+        insert Golgi_hcn1f
+        gmax_Golgi_hcn1f = 5.0E-5  // units: S cm-2
+        eh = -20.0  // units: mV
+    }
+    forsec soma_group {
+        insert Golgi_hcn1s
+        gmax_Golgi_hcn1s = 5.0E-5  // units: S cm-2
+        eh = -20.0  // units: mV
+    }
+    forsec soma_group {
+        insert Golgi_hcn2f
+        gmax_Golgi_hcn2f = 8.0E-5  // units: S cm-2
+        eh = -20.0  // units: mV
+    }
+    forsec soma_group {
+        insert Golgi_hcn2s
+        gmax_Golgi_hcn2s = 8.0E-5  // units: S cm-2
+        eh = -20.0  // units: mV
+    }
+    forsec soma_group {
+        insert Golgi_KA
+        gmax_Golgi_KA = 0.007999999  // units: S cm-2
+        ek = -84.689995  // units: mV
+    }
+    forsec soma_group {
+        insert Golgi_KAHP
+        gmax_Golgi_KAHP = 0.038  // units: S cm-2
+        ek = -84.689995  // units: mV
+    }
+    forsec soma_group {
+        insert Golgi_KC
+        gmax_Golgi_KC = 0.003  // units: S cm-2
+        ek = -84.689995  // units: mV
+    }
+    forsec soma_group {
+        insert Golgi_Kslow
+        gmax_Golgi_Kslow = 9.999999E-4  // units: S cm-2
+        ek = -84.689995  // units: mV
+    }
+    forsec soma_group {
+        insert Golgi_KV
+        gmax_Golgi_KV = 0.031999998  // units: S cm-2
+        ek = -84.689995  // units: mV
+    }
+    forsec all {
+        insert LeakCond
+        gmax_LeakCond = 2.0999998E-5  // units: S cm-2
+        e_LeakCond = -55.0  // units: mV
+    }
+    forsec soma_group {
+        insert Golgi_NaP
+        gmax_Golgi_NaP = 1.8999999E-4  // units: S cm-2
+        ena = 87.39  // units: mV
+    }
+    forsec soma_group {
+        insert Golgi_NaR
+        gmax_Golgi_NaR = 0.0016999999  // units: S cm-2
+        ena = 87.39  // units: mV
+    }
+    forsec soma_group {
+        insert Golgi_NaT
+        gmax_Golgi_NaT = 0.048  // units: S cm-2
+        ena = 87.39  // units: mV
+    }
+    forsec soma_group {
+        insert Golgi_Ca_HVA
+        gmax_Golgi_Ca_HVA = 4.5999998E-4  // units: S cm-2
+        // erev is calculated by Nernst equation
+    }
+    forsec soma_group {
+        insert Golgi_Ca_LVA
+        gmax_Golgi_Ca_LVA = 2.4999998E-4  // units: S cm-2
+        // erev is calculated by Nernst equation
+    }
+
+    // Concentration models for species
+    // Ion: ca on group: soma_group, with concentration model: Golgi_CALC
+    forsec soma_group {
+        insert Golgi_CALC
+    }
+    // Ion: ca2 on group: soma_group, with concentration model: Golgi_CALC_ca2
+    forsec soma_group {
+        insert Golgi_CALC_ca2
+    }
+
+}
+
+func H() { // Heaviside function
+    if ($1>=0) return 1
+    if ($1==0) return 0.5
+    return 0
+}
+
+proc biophys_inhomogeneous() {
+}
+
+proc geom_nseg() {
+    // All sections not mentioned here have nseg = 1
+    Section_1 nseg = 10
+    dend_1 nseg = 10
+    Section_3 nseg = 10
+    Section_axon nseg = 100
+}
+
+
+proc position() { local i
+    forsec all {
+        for i = 0, n3d()-1 {
+            pt3dchange(i, $1+x3d(i), $2+y3d(i), $3+z3d(i), diam3d(i))
+        }
+    }
+    x = $1  y = $2  z = $3
+}
+
+
+endtemplate Golgi
+
+
