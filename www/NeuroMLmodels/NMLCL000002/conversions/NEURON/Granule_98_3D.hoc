@@ -1,0 +1,323 @@
+// Cell: Granule_98_3D
+/*
+{
+  "id" : "Granule_98_3D",
+  "sections" : [ {
+    "name" : "Soma",
+    "id" : "Soma",
+    "points3d" : [ "0.0, 0.0, 0.0, 10.0", "0.0, 10.0, 0.0, 10.0" ],
+    "comments" : "Section in NeuroML is spherical, so using cylindrical section along Y axis for NEURON\n"
+  }, {
+    "name" : "AscendingSeg",
+    "id" : "AscendingSeg",
+    "points3d" : [ "0.0, 0.0, 0.0, 2.0", "0.0, 200.0, 0.0, 2.0" ],
+    "parent" : "Soma",
+    "fractionAlong" : 0.0
+  }, {
+    "name" : "LeftParallelFiber",
+    "id" : "LeftParallelFiber",
+    "points3d" : [ "0.0, 200.0, 0.0, 2.0", "-400.0, 200.0, 0.0, 2.0" ],
+    "parent" : "AscendingSeg",
+    "fractionAlong" : 1.0
+  }, {
+    "name" : "RightParallelFiber",
+    "id" : "RightParallelFiber",
+    "points3d" : [ "0.0, 200.0, 0.0, 2.0", "400.0, 200.0, 0.0, 2.0" ],
+    "parent" : "AscendingSeg",
+    "fractionAlong" : 1.0
+  } ],
+  "groups" : [ {
+    "name" : "soma_group",
+    "groups" : [ ],
+    "sections" : [ "Soma" ]
+  }, {
+    "name" : "axon_group",
+    "groups" : [ ],
+    "sections" : [ "AscendingSeg", "LeftParallelFiber", "RightParallelFiber" ]
+  }, {
+    "name" : "parallel_fibers",
+    "groups" : [ ],
+    "sections" : [ "LeftParallelFiber", "RightParallelFiber" ]
+  }, {
+    "name" : "all",
+    "sections" : [ "Soma", "AscendingSeg", "LeftParallelFiber", "RightParallelFiber" ]
+  } ],
+  "specificCapacitance" : [ {
+    "group" : "all",
+    "value" : "1.0"
+  } ],
+  "initMembPotential" : [ {
+    "group" : "all",
+    "value" : "-65.0"
+  } ],
+  "resistivity" : [ {
+    "group" : "all",
+    "value" : "100.0"
+  } ],
+  "channelDensity" : [ {
+    "id" : "Gran_CaHVA_98_soma_group",
+    "ionChannel" : "Gran_CaHVA_98",
+    "ion" : "ca",
+    "group" : "soma_group",
+    "condDens" : "9.084216E-4",
+    "erev" : "80.0"
+  }, {
+    "id" : "Gran_H_98_soma_group",
+    "ionChannel" : "Gran_H_98",
+    "ion" : "h",
+    "group" : "soma_group",
+    "condDens" : "3.090506E-5",
+    "erev" : "-42.0"
+  }, {
+    "id" : "Gran_KA_98_soma_group",
+    "ionChannel" : "Gran_KA_98",
+    "ion" : "k",
+    "group" : "soma_group",
+    "condDens" : "0.00114567",
+    "erev" : "-90.0"
+  }, {
+    "id" : "Gran_KCa_98_soma_group",
+    "ionChannel" : "Gran_KCa_98",
+    "ion" : "k",
+    "group" : "soma_group",
+    "condDens" : "0.0179811",
+    "erev" : "-90.0"
+  }, {
+    "id" : "Gran_KDr_98_soma_group",
+    "ionChannel" : "Gran_KDr_98",
+    "ion" : "k",
+    "group" : "soma_group",
+    "condDens" : "0.00889691",
+    "erev" : "-90.0"
+  }, {
+    "id" : "Gran_NaF_98_soma_group",
+    "ionChannel" : "Gran_NaF_98",
+    "ion" : "na",
+    "group" : "soma_group",
+    "condDens" : "0.0557227",
+    "erev" : "55.0"
+  }, {
+    "id" : "GranPassiveCond_soma_group",
+    "ionChannel" : "GranPassiveCond",
+    "ion" : "non_specific",
+    "group" : "soma_group",
+    "condDens" : "3.30033E-5",
+    "erev" : "-65.0"
+  } ],
+  "species" : [ {
+    "id" : "ca",
+    "ion" : "ca",
+    "concentrationModel" : "Gran_CaPool_98",
+    "group" : "soma_group",
+    "initialConcentration" : "7.55E-5",
+    "initialExtConcentration" : "2.4"
+  } ]
+}
+*/
+
+load_file("subiter.hoc")
+
+begintemplate Granule_98_3D
+
+public init, topol, basic_shape, subsets, geom, memb
+public x, y, z, position
+
+
+//  Some methods for referencing the cells
+
+public toString, netInfo, set_initial_v, set_initial_ion_properties, synlist
+
+
+// Section: Soma, id: Soma, parent: $s.parent
+create Soma
+public Soma
+// Section: AscendingSeg, id: AscendingSeg, parent: Soma
+create AscendingSeg
+public AscendingSeg
+// Section: LeftParallelFiber, id: LeftParallelFiber, parent: AscendingSeg
+create LeftParallelFiber
+public LeftParallelFiber
+// Section: RightParallelFiber, id: RightParallelFiber, parent: AscendingSeg
+create RightParallelFiber
+public RightParallelFiber
+
+// Group: {name=soma_group, groups=[], sections=[Soma]}
+objref soma_group
+// Group: {name=axon_group, groups=[], sections=[AscendingSeg, LeftParallelFiber, RightParallelFiber]}
+objref axon_group
+// Group: {name=parallel_fibers, groups=[], sections=[LeftParallelFiber, RightParallelFiber]}
+objref parallel_fibers
+// Group: {name=all, sections=[Soma, AscendingSeg, LeftParallelFiber, RightParallelFiber]}
+objref all
+
+objref synlist
+
+proc init() {
+    topol()
+    geom_nseg()
+    subsets()
+    subsets_inhomogeneous()
+    biophys()
+    biophys_inhomogeneous()
+    synlist = new List()
+    x = y = z = 0
+
+}
+
+proc set_initial_v() {
+    // Taken from the initMembPotential value
+    forsec all v = -65.0  // units: mV
+}
+
+
+proc set_initial_ion_properties() {
+    // From species
+    // Ion: ca on group: soma_group, with concentration model: Gran_CaPool_98
+    forsec soma_group {
+        cai = 7.55E-5  // units: mM
+        cao = 2.4  // units: mM
+    }
+}
+
+
+proc topol() {
+    basic_shape()
+    connect AscendingSeg(0), Soma(0.0)
+    connect LeftParallelFiber(0), AscendingSeg(1.0)
+    connect RightParallelFiber(0), AscendingSeg(1.0)
+
+}
+
+
+proc basic_shape() {
+
+    // Section: Soma, id: Soma, parent: $s.parent (entry count 0/100)
+    Soma { pt3dclear() }
+    Soma { pt3dadd( 0.0, 0.0, 0.0, 10.0 ) }
+    Soma { pt3dadd( 0.0, 10.0, 0.0, 10.0 ) }
+    // Section: AscendingSeg, id: AscendingSeg, parent: Soma (entry count 2/100)
+    AscendingSeg { pt3dclear() }
+    AscendingSeg { pt3dadd( 0.0, 0.0, 0.0, 2.0 ) }
+    AscendingSeg { pt3dadd( 0.0, 200.0, 0.0, 2.0 ) }
+    // Section: LeftParallelFiber, id: LeftParallelFiber, parent: AscendingSeg (entry count 4/100)
+    LeftParallelFiber { pt3dclear() }
+    LeftParallelFiber { pt3dadd( 0.0, 200.0, 0.0, 2.0 ) }
+    LeftParallelFiber { pt3dadd( -400.0, 200.0, 0.0, 2.0 ) }
+    // Section: RightParallelFiber, id: RightParallelFiber, parent: AscendingSeg (entry count 6/100)
+    RightParallelFiber { pt3dclear() }
+    RightParallelFiber { pt3dadd( 0.0, 200.0, 0.0, 2.0 ) }
+    RightParallelFiber { pt3dadd( 400.0, 200.0, 0.0, 2.0 ) }
+
+}
+
+
+proc subsets() { local i
+
+    // Group: {name=soma_group, groups=[], sections=[Soma]}
+    soma_group = new SectionList()
+    Soma soma_group.append()
+
+    // Group: {name=axon_group, groups=[], sections=[AscendingSeg, LeftParallelFiber, RightParallelFiber]}
+    axon_group = new SectionList()
+    AscendingSeg axon_group.append()
+    LeftParallelFiber axon_group.append()
+    RightParallelFiber axon_group.append()
+
+    // Group: {name=parallel_fibers, groups=[], sections=[LeftParallelFiber, RightParallelFiber]}
+    parallel_fibers = new SectionList()
+    LeftParallelFiber parallel_fibers.append()
+    RightParallelFiber parallel_fibers.append()
+
+    // Group: {name=all, sections=[Soma, AscendingSeg, LeftParallelFiber, RightParallelFiber]}
+    all = new SectionList()
+    Soma all.append()
+    AscendingSeg all.append()
+    LeftParallelFiber all.append()
+    RightParallelFiber all.append()
+
+}
+
+
+proc subsets_inhomogeneous() {
+}
+
+proc biophys() {
+
+    // Specific capacitance
+    forsec all cm = 1.0  // units: uF/cm2
+
+    // Specific axial resistance/resistivity
+    forsec all Ra = 100.0  // units: ohm cm
+
+    // Channel densities
+    forsec soma_group {
+        insert Gran_CaHVA_98
+        gmax_Gran_CaHVA_98 = 9.084216E-4  // units: S cm-2
+        eca = 80.0  // units: mV
+    }
+    forsec soma_group {
+        insert Gran_H_98
+        gmax_Gran_H_98 = 3.090506E-5  // units: S cm-2
+        eh = -42.0  // units: mV
+    }
+    forsec soma_group {
+        insert Gran_KA_98
+        gmax_Gran_KA_98 = 0.00114567  // units: S cm-2
+        ek = -90.0  // units: mV
+    }
+    forsec soma_group {
+        insert Gran_KCa_98
+        gmax_Gran_KCa_98 = 0.0179811  // units: S cm-2
+        ek = -90.0  // units: mV
+    }
+    forsec soma_group {
+        insert Gran_KDr_98
+        gmax_Gran_KDr_98 = 0.00889691  // units: S cm-2
+        ek = -90.0  // units: mV
+    }
+    forsec soma_group {
+        insert Gran_NaF_98
+        gmax_Gran_NaF_98 = 0.0557227  // units: S cm-2
+        ena = 55.0  // units: mV
+    }
+    forsec soma_group {
+        insert GranPassiveCond
+        gmax_GranPassiveCond = 3.30033E-5  // units: S cm-2
+        e_GranPassiveCond = -65.0  // units: mV
+    }
+
+    // Concentration models for species
+    // Ion: ca on group: soma_group, with concentration model: Gran_CaPool_98
+    forsec soma_group {
+        insert Gran_CaPool_98
+    }
+
+}
+
+func H() { // Heaviside function
+    if ($1>=0) return 1
+    if ($1==0) return 0.5
+    return 0
+}
+
+proc biophys_inhomogeneous() {
+}
+
+proc geom_nseg() {
+    // All sections not mentioned here have nseg = 1
+}
+
+
+proc position() { local i
+    forsec all {
+        for i = 0, n3d()-1 {
+            pt3dchange(i, $1+x3d(i), $2+y3d(i), $3+z3d(i), diam3d(i))
+        }
+    }
+    x = $1  y = $2  z = $3
+}
+
+
+endtemplate Granule_98_3D
+
+

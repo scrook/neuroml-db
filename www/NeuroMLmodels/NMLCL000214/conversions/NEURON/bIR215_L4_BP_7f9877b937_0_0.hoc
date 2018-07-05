@@ -1,0 +1,1719 @@
+// Cell: bIR215_L4_BP_7f9877b937_0_0
+/*
+{
+  "id" : "bIR215_L4_BP_7f9877b937_0_0",
+  "sections" : [ {
+    "name" : "soma_0",
+    "id" : "soma_0",
+    "points3d" : [ "-3.08452, 6.27464, 0.312461, 1.46623", "-2.79927, 5.64032, 0.287115, 2.64844", "-2.51401, 5.00599, 0.26177, 4.10361", "-2.22875, 4.37167, 0.236425, 4.91598", "-1.94349, 3.73735, 0.21108, 5.72835", "-1.65823, 3.10303, 0.185734, 6.53421", "-1.37297, 2.46871, 0.160389, 7.31212", "-1.08771, 1.83438, 0.135044, 8.08989", "-0.802456, 1.20006, 0.109699, 8.85679", "-0.517198, 0.56574, 0.0843534, 8.93483", "-0.23194, -0.0685822, 0.0590082, 8.92633", "0.0533189, -0.702904, 0.033663, 8.91784", "0.338577, -1.33723, 0.00831775, 8.90934", "0.623836, -1.97155, -0.0170275, 8.90084", "0.909094, -2.60587, -0.0423727, 8.82493", "1.19435, -3.24019, -0.067718, 7.82232", "1.47961, -3.87451, -0.0930632, 6.5965", "1.76487, -4.50884, -0.118408, 5.37067", "2.05013, -5.14316, -0.143754, 4.14485", "2.33539, -5.77748, -0.169099, 2.91903", "2.62064, -6.4118, -0.194444, 1.76337" ]
+  }, {
+    "name" : "dend_0",
+    "id" : "dend_0",
+    "points3d" : [ "1.61629, -6.20209, -1.26548, 1.33", "2.77592, -11.4937, -2.19528, 1.33", "4.69856, -20.2671, -3.73686, 0.66", "6.18713, -27.0597, -4.9304, 0.66", "7.77332, -34.2979, -6.20222, 1.33" ],
+    "parent" : "soma_0",
+    "fractionAlong" : 0.4500001318721313
+  }, {
+    "name" : "axon_0",
+    "id" : "axon_0",
+    "points3d" : [ "2.62064, -6.4118, -0.194444, 0.33", "8.77276, -20.0921, -0.194444, 0.33", "14.9249, -33.7725, -0.194444, 0.33" ],
+    "parent" : "soma_0",
+    "fractionAlong" : 1.0
+  }, {
+    "name" : "dend_2",
+    "id" : "dend_2",
+    "points3d" : [ "7.77332, -34.2979, -6.20222, 0.66", "9.88527, -48.5073, -2.3639, 0.66", "13.0092, -69.6124, 3.36747, 0.66", "16.8616, -95.3637, 10.5532, 0.66", "19.9196, -115.232, 16.1023, 0.66", "21.7057, -126.761, 19.31, 0.66", "22.2836, -130.588, 20.3708, 0.66", "23.0931, -135.777, 21.8406, 0.66", "23.7809, -140.631, 23.2671, 0.66", "24.5482, -146.238, 24.8183, 0.66", "24.8871, -149.289, 25.3031, 0.66", "25.1893, -153.12, 25.5991, 0.66", "25.5366, -158.934, 25.4272, 0.66", "25.8668, -166.599, 24.8794, 0.66", "26.0633, -169.938, 24.5999, 0.66", "27.0646, -185.614, 23.1291, 0.66", "27.3681, -189.314, 22.7068, 0.66", "28.4318, -200.749, 21.0978, 0.66", "28.9201, -205.577, 20.3696, 0.66", "29.9836, -214.433, 19.1014, 0.66", "30.6768, -219.488, 18.6755, 0.66", "31.473, -224.377, 18.7115, 0.66", "32.2825, -229.085, 18.8994, 0.66", "32.9051, -233.632, 19.131, 0.66", "33.4531, -238.46, 19.2207, 0.66", "34.0339, -245.938, 19.32, 0.66", "34.4774, -250.47, 19.5639, 0.66", "34.9626, -255.964, 19.9492, 0.66", "35.5887, -263.406, 20.4434, 0.66", "35.8972, -268.171, 20.5673, 0.66", "36.2857, -274.596, 20.4675, 0.66", "36.814, -280.644, 20.2808, 0.66" ],
+    "parent" : "dend_0",
+    "fractionAlong" : 1.0,
+    "numberInternalDivisions" : 13
+  }, {
+    "name" : "dend_1",
+    "id" : "dend_1",
+    "points3d" : [ "7.77332, -34.2979, -6.20222, 0.66", "9.10551, -35.6184, -5.93129, 0.66", "12.1681, -38.6541, -5.30843, 0.33", "19.1785, -45.6031, -3.88268, 0.33", "19.443, -45.8653, -3.82888, 0.66", "22.272, -48.6695, -3.25353, 0.33" ],
+    "parent" : "dend_0",
+    "fractionAlong" : 1.0
+  }, {
+    "name" : "axon_1",
+    "id" : "axon_1",
+    "points3d" : [ "14.9249, -33.7725, -0.194444, 0.33", "21.077, -47.4528, -0.194444, 0.33", "27.2291, -61.1331, -0.194444, 0.33" ],
+    "parent" : "axon_0",
+    "fractionAlong" : 1.0
+  }, {
+    "name" : "dend_12",
+    "id" : "dend_12",
+    "points3d" : [ "36.814, -280.644, 20.2808, 0.66", "38.7883, -282.546, 20.607, 0.66", "39.9145, -283.62, 20.9624, 0.66", "41.7562, -285.244, 22.0058, 0.66", "42.9295, -286.202, 22.7783, 0.66", "45.1777, -287.946, 24.4023, 0.66", "46.9, -289.207, 25.6392, 0.66", "48.573, -290.34, 26.9605, 0.66", "52.1747, -292.493, 29.7574, 0.66", "54.2275, -293.6, 31.3242, 0.66", "56.6278, -294.876, 33.192, 0.33", "57.5924, -295.377, 33.8964, 0.33", "57.9327, -295.533, 34.1195, 0.66", "59.9768, -296.338, 35.3042, 0.33", "60.4102, -296.492, 35.4339, 0.66" ],
+    "parent" : "dend_2",
+    "fractionAlong" : 1.0
+  }, {
+    "name" : "dend_3",
+    "id" : "dend_3",
+    "points3d" : [ "36.814, -280.644, 20.2808, 0.66", "38.3241, -285.463, 21.6515, 0.66", "40.2808, -291.689, 23.4546, 0.66", "44.2761, -304.152, 26.8223, 0.66", "45.9443, -309.59, 28.2603, 0.66", "48.0883, -316.202, 30.0083, 0.66", "50.127, -322.938, 31.6448, 0.66", "51.2119, -326.735, 32.4647, 0.66", "52.4612, -332.013, 33.496, 0.66", "54.6162, -342.199, 35.1966, 0.66", "55.7179, -348.01, 35.9409, 0.66", "56.9103, -354.838, 36.749, 0.66", "57.6292, -360.652, 37.1983, 0.66", "57.9338, -363.808, 37.4509, 0.66", "58.7333, -374.432, 38.252, 0.66", "59.0511, -379.945, 38.5389, 0.66", "59.3523, -387.593, 38.943, 0.66", "59.8295, -393.696, 39.3984, 0.66", "60.0282, -396.408, 39.5755, 0.66" ],
+    "parent" : "dend_2",
+    "fractionAlong" : 1.0,
+    "numberInternalDivisions" : 7
+  }, {
+    "name" : "dend_5",
+    "id" : "dend_5",
+    "points3d" : [ "60.0282, -396.408, 39.5755, 0.66", "60.5725, -398.915, 39.7965, 0.66", "61.4052, -402.967, 40.5914, 0.66", "62.2784, -407.283, 41.5819, 0.66", "62.7906, -410.118, 42.2726, 0.66", "63.4493, -414.043, 43.1563, 0.66", "64.4503, -421.007, 44.5574, 0.66", "64.9955, -425.784, 45.4778, 0.66", "65.3289, -429.061, 46.1586, 0.66", "65.6777, -432.493, 46.7828, 0.66", "66.0866, -436.345, 47.4353, 0.66", "66.385, -438.981, 47.8471, 0.66", "66.8499, -442.602, 48.2949, 0.66", "67.3373, -445.931, 48.6666, 0.66", "68.5508, -453.744, 49.6989, 0.66", "69.0995, -456.843, 50.1393, 0.66", "70.3874, -464.632, 51.2168, 0.66", "70.8454, -467.781, 51.5619, 0.66", "71.2118, -470.826, 51.8092, 0.66", "71.4852, -473.574, 51.939, 0.66", "71.861, -478.081, 52.1202, 0.66", "72.1208, -481.943, 52.2551, 0.66", "72.5016, -489.386, 52.2983, 0.66", "72.7714, -493.141, 52.3024, 0.66", "73.003, -496.062, 52.3142, 0.66", "73.3577, -499.988, 52.3418, 0.66", "74.7038, -514.761, 52.4096, 0.66", "75.2378, -520.191, 52.3297, 0.66", "76.6376, -534.456, 51.9281, 0.66", "77.1639, -539.851, 51.7099, 0.66", "77.7161, -545.155, 51.5229, 0.66", "78.1365, -548.84, 51.4048, 0.66", "78.7569, -553.883, 51.2014, 0.66", "79.3554, -559.498, 51.0253, 0.66", "79.8941, -565.636, 50.6497, 0.66", "80.1767, -569.066, 50.4526, 0.66", "80.3976, -571.453, 50.3768, 0.66", "81.3813, -580.676, 50.5494, 0.66", "81.6878, -583.551, 50.6114, 0.66", "82.0807, -588.285, 50.5443, 0.66", "82.461, -593.022, 50.4075, 0.66", "82.8225, -596.688, 50.3133, 0.66", "83.8897, -605.634, 50.3803, 0.66", "85.3089, -615.883, 50.6557, 0.66", "86.3076, -622.86, 50.799, 0.66", "86.7822, -626.371, 50.8141, 0.66", "88.4728, -639.234, 50.64, 0.66", "89.3639, -647.513, 50.2812, 0.66", "89.6109, -649.935, 50.1319, 0.66", "90.0009, -653.866, 49.8039, 0.66", "90.5217, -659.64, 49.1679, 0.66", "90.6723, -662.142, 48.827, 0.66", "90.896, -668.866, 47.6955, 0.66", "91.3575, -682.9, 45.1177, 0.66", "91.7054, -690.124, 43.9781, 0.66", "91.8936, -692.814, 43.6272, 0.33", "92.0633, -694.605, 43.444, 1.33", "92.6577, -698.831, 43.1997, 0.66", "93.6626, -703.899, 43.1242, 0.66", "94.4892, -707.485, 43.1477, 0.66", "95.4096, -711.106, 43.259, 0.66", "96.2251, -714.065, 43.3148, 0.66", "99.7196, -726.202, 43.8196, 0.66", "100.216, -727.911, 43.9342, 0.33", "100.879, -730.357, 44.1074, 1.33", "101.511, -732.788, 44.2332, 0.66", "101.981, -734.7, 44.3328, 0.33", "103.234, -739.981, 44.6515, 0.66", "103.767, -742.703, 45.1251, 0.66", "104.445, -746.293, 45.9343, 0.33" ],
+    "parent" : "dend_3",
+    "fractionAlong" : 1.0,
+    "numberInternalDivisions" : 17
+  }, {
+    "name" : "dend_4",
+    "id" : "dend_4",
+    "points3d" : [ "60.0282, -396.408, 39.5755, 0.66", "58.0058, -405.565, 42.2786, 0.66", "56.2942, -413.349, 44.4471, 0.66", "55.3762, -419.162, 46.2428, 0.33", "54.3294, -427.313, 48.9502, 0.33", "54.1992, -428.638, 49.442, 0.66", "53.9023, -432.929, 51.0672, 0.33", "53.8517, -436.043, 52.3422, 0.66", "53.7793, -443.444, 55.0613, 0.33", "53.806, -444.612, 55.5027, 0.66", "53.9634, -452.52, 58.4805, 0.33", "54.2757, -456.607, 60.0127, 0.33", "54.8322, -461.041, 61.6372, 0.66", "55.6859, -466.339, 63.6055, 0.33", "56.1842, -469.207, 64.572, 0.33", "56.5934, -470.809, 65.1103, 0.66", "59.353, -477.454, 67.7469, 0.33", "59.8471, -478.41, 68.2238, 0.66", "61.3268, -480.795, 69.5431, 0.33", "62.0865, -482.017, 70.256, 0.33", "62.7675, -483.326, 70.9356, 0.66", "64.7967, -488.283, 73.2342, 0.33", "65.5328, -491.364, 74.4171, 0.33", "65.7722, -492.537, 74.7955, 0.66", "66.1556, -494.834, 75.3475, 0.33", "66.2967, -496.059, 75.588, 0.66", "66.4102, -497.626, 75.8338, 0.33", "66.4459, -499.259, 76.0118, 0.66", "66.4973, -501.648, 76.3283, 0.33", "66.515, -502.517, 76.4674, 0.66", "66.6805, -509.699, 77.8135, 0.33", "66.6851, -510.158, 77.9074, 0.66", "66.6679, -511.806, 78.2876, 0.33", "66.6442, -512.664, 78.5035, 0.66", "66.7789, -514.98, 79.2108, 0.33", "66.91, -516.034, 79.5649, 0.66", "67.2548, -517.911, 80.2165, 0.33", "67.5268, -519.239, 80.6769, 0.66", "67.8984, -520.757, 81.2036, 0.33", "69.867, -527.798, 83.7448, 0.33", "70.5407, -529.844, 84.5333, 0.66" ],
+    "parent" : "dend_3",
+    "fractionAlong" : 1.0,
+    "numberInternalDivisions" : 7
+  }, {
+    "name" : "dend_7",
+    "id" : "dend_7",
+    "points3d" : [ "104.445, -746.293, 45.9343, 0.66", "104.994, -750.236, 45.1842, 0.66", "105.486, -752.248, 45.195, 1.33", "105.949, -753.967, 45.3425, 0.66", "106.467, -756.136, 45.4957, 0.66", "107.664, -760.795, 46.0227, 0.33", "109.211, -766.419, 46.7651, 0.66", "111.387, -773.651, 48.1259, 0.66", "112.575, -777.24, 48.8989, 0.66", "113.936, -781.242, 49.6418, 0.33", "115.628, -786.374, 50.3957, 0.33", "116.047, -787.833, 50.525, 0.66", "116.352, -789.053, 50.4137, 0.33", "116.544, -790.121, 50.1767, 0.66", "117.592, -796.361, 48.5312, 0.33", "118.056, -798.966, 47.8298, 0.66", "118.435, -801.442, 47.099, 0.33", "119.505, -808.464, 45.3459, 0.33", "120.209, -812.566, 44.4586, 0.66", "121.604, -819.978, 43.0994, 0.33", "122.306, -823.465, 42.6279, 0.66", "123.037, -826.901, 42.2322, 1.33", "124.821, -834.725, 41.6065, 0.33", "125.75, -838.587, 41.5327, 0.33", "126.124, -840.104, 41.5399, 0.66", "127.053, -843.922, 41.7119, 0.33", "128.272, -849.044, 42.0468, 0.33", "128.75, -850.909, 42.2164, 1.33", "130.098, -856.271, 42.7127, 0.33", "130.502, -858.131, 42.9339, 0.66" ],
+    "parent" : "dend_5",
+    "fractionAlong" : 1.0,
+    "numberInternalDivisions" : 5
+  }, {
+    "name" : "dend_6",
+    "id" : "dend_6",
+    "points3d" : [ "104.445, -746.293, 45.9343, 0.66", "102.572, -748.506, 44.9228, 0.66" ],
+    "parent" : "dend_5",
+    "fractionAlong" : 1.0
+  }, {
+    "name" : "dend_11",
+    "id" : "dend_11",
+    "points3d" : [ "130.502, -858.131, 42.9339, 0.66", "128.544, -857.906, 43.6169, 0.66" ],
+    "parent" : "dend_7",
+    "fractionAlong" : 1.0
+  }, {
+    "name" : "dend_8",
+    "id" : "dend_8",
+    "points3d" : [ "130.502, -858.131, 42.9339, 0.66", "130.78, -859.58, 42.7862, 0.66", "132.018, -866.033, 42.1282, 0.33", "132.412, -868.086, 41.919, 1.33" ],
+    "parent" : "dend_7",
+    "fractionAlong" : 1.0
+  }, {
+    "name" : "dend_10",
+    "id" : "dend_10",
+    "points3d" : [ "132.412, -868.086, 41.919, 0.33", "141.404, -879.634, 47.8039, 0.33", "142.248, -880.763, 48.2957, 1.33", "144.597, -883.931, 49.4824, 0.33", "145.07, -884.594, 49.6443, 0.66", "147.296, -887.77, 50.092, 0.33", "147.972, -888.734, 50.2279, 0.66", "148.436, -889.64, 49.9666, 0.33", "149.071, -890.77, 49.568, 0.66", "151.347, -894.293, 47.8897, 0.33", "152.234, -895.568, 47.1674, 1.33" ],
+    "parent" : "dend_8",
+    "fractionAlong" : 1.0
+  }, {
+    "name" : "dend_9",
+    "id" : "dend_9",
+    "points3d" : [ "132.412, -868.086, 41.919, 0.33", "132.91, -884.48, 46.776, 0.33", "133.182, -893.42, 49.4249, 0.33", "133.225, -894.825, 49.8412, 0.66", "133.506, -904.054, 52.5752, 0.33", "133.543, -905.283, 52.9396, 0.66" ],
+    "parent" : "dend_8",
+    "fractionAlong" : 1.0
+  } ],
+  "groups" : [ {
+    "name" : "ModelViewParmSubset_1",
+    "groups" : [ ],
+    "sections" : [ "soma_0", "axon_0", "axon_1" ]
+  }, {
+    "name" : "ModelViewParmSubset_2",
+    "groups" : [ ],
+    "sections" : [ "dend_0", "dend_2", "dend_1", "dend_12", "dend_3", "dend_5", "dend_4", "dend_7", "dend_6", "dend_11", "dend_8", "dend_10", "dend_9" ]
+  }, {
+    "name" : "ModelViewParmSubset_3",
+    "groups" : [ ],
+    "sections" : [ "axon_0", "axon_1" ]
+  }, {
+    "name" : "ModelViewParmSubset_4",
+    "groups" : [ ],
+    "sections" : [ "soma_0", "dend_0", "dend_2", "dend_1", "dend_12", "dend_3", "dend_5", "dend_4", "dend_7", "dend_6", "dend_11", "dend_8", "dend_10", "dend_9" ]
+  }, {
+    "name" : "OneSecGrp_SectionRef_1",
+    "groups" : [ ],
+    "sections" : [ "soma_0" ]
+  }, {
+    "name" : "OneSecGrp_SectionRef_4",
+    "groups" : [ ],
+    "sections" : [ "dend_2" ]
+  }, {
+    "name" : "OneSecGrp_SectionRef_8",
+    "groups" : [ ],
+    "sections" : [ "dend_3" ]
+  }, {
+    "name" : "OneSecGrp_SectionRef_9",
+    "groups" : [ ],
+    "sections" : [ "dend_5" ]
+  }, {
+    "name" : "OneSecGrp_SectionRef_10",
+    "groups" : [ ],
+    "sections" : [ "dend_4" ]
+  }, {
+    "name" : "OneSecGrp_SectionRef_11",
+    "groups" : [ ],
+    "sections" : [ "dend_7" ]
+  }, {
+    "name" : "OneSecGrp_SectionRef_2",
+    "groups" : [ ],
+    "sections" : [ "dend_0" ]
+  }, {
+    "name" : "OneSecGrp_SectionRef_5",
+    "groups" : [ ],
+    "sections" : [ "dend_1" ]
+  }, {
+    "name" : "OneSecGrp_SectionRef_7",
+    "groups" : [ ],
+    "sections" : [ "dend_12" ]
+  }, {
+    "name" : "OneSecGrp_SectionRef_12",
+    "groups" : [ ],
+    "sections" : [ "dend_6" ]
+  }, {
+    "name" : "OneSecGrp_SectionRef_13",
+    "groups" : [ ],
+    "sections" : [ "dend_11" ]
+  }, {
+    "name" : "OneSecGrp_SectionRef_14",
+    "groups" : [ ],
+    "sections" : [ "dend_8" ]
+  }, {
+    "name" : "OneSecGrp_SectionRef_15",
+    "groups" : [ ],
+    "sections" : [ "dend_10" ]
+  }, {
+    "name" : "OneSecGrp_SectionRef_16",
+    "groups" : [ ],
+    "sections" : [ "dend_9" ]
+  }, {
+    "name" : "basal",
+    "groups" : [ ],
+    "sections" : [ "dend_0", "dend_1", "dend_2", "dend_3", "dend_4", "dend_5", "dend_6", "dend_7", "dend_8", "dend_9", "dend_10", "dend_11", "dend_12" ],
+    "inhomogeneousParameters" : [ {
+      "id" : "PathLengthOver_basal",
+      "variable" : "p",
+      "metric" : "Path Length from root",
+      "proximalTranslationStart" : "0.0"
+    } ]
+  }, {
+    "name" : "apical",
+    "inhomogeneousParameters" : [ {
+      "id" : "PathLengthOver_apical",
+      "variable" : "p",
+      "metric" : "Path Length from root",
+      "proximalTranslationStart" : "0.0"
+    } ]
+  }, {
+    "name" : "axonal",
+    "groups" : [ ],
+    "sections" : [ "axon_0", "axon_1" ]
+  }, {
+    "name" : "somatic",
+    "groups" : [ ],
+    "sections" : [ "soma_0" ]
+  }, {
+    "name" : "all",
+    "sections" : [ "soma_0", "soma_0", "soma_0", "soma_0", "soma_0", "soma_0", "soma_0", "soma_0", "soma_0", "soma_0", "soma_0", "soma_0", "soma_0", "soma_0", "soma_0", "soma_0", "soma_0", "soma_0", "soma_0", "soma_0", "dend_0", "dend_0", "dend_0", "dend_0", "axon_0", "axon_0", "dend_2", "dend_2", "dend_2", "dend_2", "dend_2", "dend_2", "dend_2", "dend_2", "dend_2", "dend_2", "dend_2", "dend_2", "dend_2", "dend_2", "dend_2", "dend_2", "dend_2", "dend_2", "dend_2", "dend_2", "dend_2", "dend_2", "dend_2", "dend_2", "dend_2", "dend_2", "dend_2", "dend_2", "dend_2", "dend_2", "dend_2", "dend_1", "dend_1", "dend_1", "dend_1", "dend_1", "axon_1", "axon_1", "dend_12", "dend_12", "dend_12", "dend_12", "dend_12", "dend_12", "dend_12", "dend_12", "dend_12", "dend_12", "dend_12", "dend_12", "dend_12", "dend_12", "dend_3", "dend_3", "dend_3", "dend_3", "dend_3", "dend_3", "dend_3", "dend_3", "dend_3", "dend_3", "dend_3", "dend_3", "dend_3", "dend_3", "dend_3", "dend_3", "dend_3", "dend_3", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_5", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_4", "dend_7", "dend_7", "dend_7", "dend_7", "dend_7", "dend_7", "dend_7", "dend_7", "dend_7", "dend_7", "dend_7", "dend_7", "dend_7", "dend_7", "dend_7", "dend_7", "dend_7", "dend_7", "dend_7", "dend_7", "dend_7", "dend_7", "dend_7", "dend_7", "dend_7", "dend_7", "dend_7", "dend_7", "dend_7", "dend_6", "dend_11", "dend_8", "dend_8", "dend_8", "dend_10", "dend_10", "dend_10", "dend_10", "dend_10", "dend_10", "dend_10", "dend_10", "dend_10", "dend_10", "dend_9", "dend_9", "dend_9", "dend_9", "dend_9" ]
+  } ],
+  "specificCapacitance" : [ {
+    "group" : "basal",
+    "value" : "1.0"
+  }, {
+    "group" : "apical",
+    "value" : "1.0"
+  }, {
+    "group" : "axonal",
+    "value" : "1.0"
+  }, {
+    "group" : "somatic",
+    "value" : "1.0"
+  } ],
+  "initMembPotential" : [ {
+    "group" : "all",
+    "value" : "-80.0"
+  } ],
+  "resistivity" : [ {
+    "group" : "all",
+    "value" : "100.0"
+  } ],
+  "channelDensity" : [ {
+    "id" : "basal_gSKv3_1bar_SKv3_1",
+    "ionChannel" : "SKv3_1",
+    "ion" : "k",
+    "group" : "basal",
+    "condDens" : "0.00545",
+    "erev" : "-85.0"
+  }, {
+    "id" : "basal_gkbar_StochKv",
+    "ionChannel" : "StochKv_deterministic",
+    "ion" : "k",
+    "group" : "basal",
+    "condDens" : "2.90744E-5",
+    "erev" : "-85.0"
+  }, {
+    "id" : "basal_gNap_Et2bar_Nap_Et2",
+    "ionChannel" : "Nap_Et2",
+    "ion" : "na",
+    "group" : "basal",
+    "condDens" : "1.0E-6",
+    "erev" : "50.0"
+  }, {
+    "id" : "basal_gNaTs2_tbar_NaTs2_t",
+    "ionChannel" : "NaTs2_t",
+    "ion" : "na",
+    "group" : "basal",
+    "condDens" : "0.004119",
+    "erev" : "50.0"
+  }, {
+    "id" : "basal_g_pas",
+    "ionChannel" : "pas_nml2",
+    "ion" : "non_specific",
+    "group" : "basal",
+    "condDens" : "5.9999998E-6",
+    "erev" : "-60.065872"
+  }, {
+    "id" : "apical_gSKv3_1bar_SKv3_1",
+    "ionChannel" : "SKv3_1",
+    "ion" : "k",
+    "group" : "apical",
+    "condDens" : "0.00545",
+    "erev" : "-85.0"
+  }, {
+    "id" : "apical_gkbar_StochKv",
+    "ionChannel" : "StochKv_deterministic",
+    "ion" : "k",
+    "group" : "apical",
+    "condDens" : "2.90744E-5",
+    "erev" : "-85.0"
+  }, {
+    "id" : "apical_gNap_Et2bar_Nap_Et2",
+    "ionChannel" : "Nap_Et2",
+    "ion" : "na",
+    "group" : "apical",
+    "condDens" : "1.0E-6",
+    "erev" : "50.0"
+  }, {
+    "id" : "apical_gNaTs2_tbar_NaTs2_t",
+    "ionChannel" : "NaTs2_t",
+    "ion" : "na",
+    "group" : "apical",
+    "condDens" : "0.004119",
+    "erev" : "50.0"
+  }, {
+    "id" : "apical_g_pas",
+    "ionChannel" : "pas_nml2",
+    "ion" : "non_specific",
+    "group" : "apical",
+    "condDens" : "5.9999998E-6",
+    "erev" : "-60.065872"
+  }, {
+    "id" : "axonal_gNaTa_tbar_NaTa_t",
+    "ionChannel" : "NaTa_t",
+    "ion" : "na",
+    "group" : "axonal",
+    "condDens" : "3.418459",
+    "erev" : "50.0"
+  }, {
+    "id" : "axonal_gK_Tstbar_K_Tst",
+    "ionChannel" : "K_Tst",
+    "ion" : "k",
+    "group" : "axonal",
+    "condDens" : "0.026008999",
+    "erev" : "-85.0"
+  }, {
+    "id" : "axonal_gNap_Et2bar_Nap_Et2",
+    "ionChannel" : "Nap_Et2",
+    "ion" : "na",
+    "group" : "axonal",
+    "condDens" : "1.0E-6",
+    "erev" : "50.0"
+  }, {
+    "id" : "axonal_gSK_E2bar_SK_E2",
+    "ionChannel" : "SK_E2",
+    "ion" : "k",
+    "group" : "axonal",
+    "condDens" : "9.0E-6",
+    "erev" : "-85.0"
+  }, {
+    "id" : "axonal_gK_Pstbar_K_Pst",
+    "ionChannel" : "K_Pst",
+    "ion" : "k",
+    "group" : "axonal",
+    "condDens" : "0.025854",
+    "erev" : "-85.0"
+  }, {
+    "id" : "axonal_gSKv3_1bar_SKv3_1",
+    "ionChannel" : "SKv3_1",
+    "ion" : "k",
+    "group" : "axonal",
+    "condDens" : "0.19695699",
+    "erev" : "-85.0"
+  }, {
+    "id" : "axonal_g_pas",
+    "ionChannel" : "pas_nml2",
+    "ion" : "non_specific",
+    "group" : "axonal",
+    "condDens" : "2.0E-6",
+    "erev" : "-60.2509"
+  }, {
+    "id" : "axonal_gImbar_Im",
+    "ionChannel" : "Im",
+    "ion" : "k",
+    "group" : "axonal",
+    "condDens" : "5.9899996E-4",
+    "erev" : "-85.0"
+  }, {
+    "id" : "somatic_gK_Tstbar_K_Tst",
+    "ionChannel" : "K_Tst",
+    "ion" : "k",
+    "group" : "somatic",
+    "condDens" : "0.008343",
+    "erev" : "-85.0"
+  }, {
+    "id" : "somatic_gkbar_StochKv",
+    "ionChannel" : "StochKv_deterministic",
+    "ion" : "k",
+    "group" : "somatic",
+    "condDens" : "6.58298E-5",
+    "erev" : "-85.0"
+  }, {
+    "id" : "somatic_gNap_Et2bar_Nap_Et2",
+    "ionChannel" : "Nap_Et2",
+    "ion" : "na",
+    "group" : "somatic",
+    "condDens" : "1.0E-6",
+    "erev" : "50.0"
+  }, {
+    "id" : "somatic_gSK_E2bar_SK_E2",
+    "ionChannel" : "SK_E2",
+    "ion" : "k",
+    "group" : "somatic",
+    "condDens" : "0.026899999",
+    "erev" : "-85.0"
+  }, {
+    "id" : "somatic_gK_Pstbar_K_Pst",
+    "ionChannel" : "K_Pst",
+    "ion" : "k",
+    "group" : "somatic",
+    "condDens" : "0.502333",
+    "erev" : "-85.0"
+  }, {
+    "id" : "somatic_gSKv3_1bar_SKv3_1",
+    "ionChannel" : "SKv3_1",
+    "ion" : "k",
+    "group" : "somatic",
+    "condDens" : "0.653374",
+    "erev" : "-85.0"
+  }, {
+    "id" : "somatic_g_pas",
+    "ionChannel" : "pas_nml2",
+    "ion" : "non_specific",
+    "group" : "somatic",
+    "condDens" : "5.6999997E-5",
+    "erev" : "-76.49812"
+  }, {
+    "id" : "somatic_gImbar_Im",
+    "ionChannel" : "Im",
+    "ion" : "k",
+    "group" : "somatic",
+    "condDens" : "7.84E-4",
+    "erev" : "-85.0"
+  }, {
+    "id" : "somatic_gNaTs2_tbar_NaTs2_t",
+    "ionChannel" : "NaTs2_t",
+    "ion" : "na",
+    "group" : "somatic",
+    "condDens" : "0.30005398",
+    "erev" : "50.0"
+  }, {
+    "id" : "basal_gK_Tstbar_K_Tst",
+    "ionChannel" : "K_Tst",
+    "group" : "basal",
+    "inhomogeneousParameter" : "PathLengthOver_basal",
+    "parameterName" : "gmax",
+    "variable" : "p",
+    "inhomogeneousValue" : "1.0E-4 * (1e4 * ((-0.869600 + 2.087000*exp((p--1000.000000)*-0.003000))*0.002940))",
+    "comment" : "Conversion factor of:  (1.0E-4 * ) added",
+    "ion" : "k",
+    "erev" : "-85.0"
+  }, {
+    "id" : "basal_gIhbar_Ih",
+    "ionChannel" : "Ih",
+    "group" : "basal",
+    "inhomogeneousParameter" : "PathLengthOver_basal",
+    "parameterName" : "gmax",
+    "variable" : "p",
+    "inhomogeneousValue" : "1.0E-4 * (1e4 * ((-0.869600 + 2.087000*exp((p-0.000000)*0.003000))*0.000051))",
+    "comment" : "Conversion factor of:  (1.0E-4 * ) added",
+    "ion" : "hcn",
+    "erev" : "-45.0"
+  }, {
+    "id" : "basal_gImbar_Im",
+    "ionChannel" : "Im",
+    "group" : "basal",
+    "inhomogeneousParameter" : "PathLengthOver_basal",
+    "parameterName" : "gmax",
+    "variable" : "p",
+    "inhomogeneousValue" : "1.0E-4 * (1e4 * ((-0.869600 + 2.087000*exp((p--1000.000000)*-0.003000))*0.000371))",
+    "comment" : "Conversion factor of:  (1.0E-4 * ) added",
+    "ion" : "k",
+    "erev" : "-85.0"
+  }, {
+    "id" : "apical_gK_Tstbar_K_Tst",
+    "ionChannel" : "K_Tst",
+    "group" : "apical",
+    "inhomogeneousParameter" : "PathLengthOver_apical",
+    "parameterName" : "gmax",
+    "variable" : "p",
+    "inhomogeneousValue" : "1.0E-4 * (1e4 * ((-0.869600 + 2.087000*exp((p--1000.000000)*-0.003000))*0.002940))",
+    "comment" : "Conversion factor of:  (1.0E-4 * ) added",
+    "ion" : "k",
+    "erev" : "-85.0"
+  }, {
+    "id" : "apical_gIhbar_Ih",
+    "ionChannel" : "Ih",
+    "group" : "apical",
+    "inhomogeneousParameter" : "PathLengthOver_apical",
+    "parameterName" : "gmax",
+    "variable" : "p",
+    "inhomogeneousValue" : "1.0E-4 * (1e4 * ((-0.869600 + 2.087000*exp((p-0.000000)*0.003000))*0.000051))",
+    "comment" : "Conversion factor of:  (1.0E-4 * ) added",
+    "ion" : "hcn",
+    "erev" : "-45.0"
+  }, {
+    "id" : "apical_gImbar_Im",
+    "ionChannel" : "Im",
+    "group" : "apical",
+    "inhomogeneousParameter" : "PathLengthOver_apical",
+    "parameterName" : "gmax",
+    "variable" : "p",
+    "inhomogeneousValue" : "1.0E-4 * (1e4 * ((-0.869600 + 2.087000*exp((p--1000.000000)*-0.003000))*0.000371))",
+    "comment" : "Conversion factor of:  (1.0E-4 * ) added",
+    "ion" : "k",
+    "erev" : "-85.0"
+  }, {
+    "id" : "axonal_gCa_LVAstbar_Ca_LVAst",
+    "ionChannel" : "Ca_LVAst",
+    "ion" : "ca",
+    "group" : "axonal",
+    "condDens" : "0.002256",
+    "erev" : "calculated_by_Nernst_equation"
+  }, {
+    "id" : "axonal_gCabar_Ca",
+    "ionChannel" : "Ca",
+    "ion" : "ca",
+    "group" : "axonal",
+    "condDens" : "1.38E-4",
+    "erev" : "calculated_by_Nernst_equation"
+  }, {
+    "id" : "somatic_gCa_LVAstbar_Ca_LVAst",
+    "ionChannel" : "Ca_LVAst",
+    "ion" : "ca",
+    "group" : "somatic",
+    "condDens" : "0.005574",
+    "erev" : "calculated_by_Nernst_equation"
+  }, {
+    "id" : "somatic_gCabar_Ca",
+    "ionChannel" : "Ca",
+    "ion" : "ca",
+    "group" : "somatic",
+    "condDens" : "7.92E-4",
+    "erev" : "calculated_by_Nernst_equation"
+  } ],
+  "species" : [ {
+    "id" : "ca",
+    "ion" : "ca",
+    "concentrationModel" : "CaDynamics_E2_NML2__bIR_1_axonal",
+    "group" : "axonal",
+    "initialConcentration" : "5.0E-5",
+    "initialExtConcentration" : "2.0"
+  }, {
+    "id" : "ca",
+    "ion" : "ca",
+    "concentrationModel" : "CaDynamics_E2_NML2__bIR_1_somatic",
+    "group" : "somatic",
+    "initialConcentration" : "5.0E-5",
+    "initialExtConcentration" : "2.0"
+  } ]
+}
+*/
+
+load_file("subiter.hoc")
+
+begintemplate bIR215_L4_BP_7f9877b937_0_0
+
+public init, topol, basic_shape, subsets, geom, memb
+public x, y, z, position
+
+
+//  Some methods for referencing the cells
+
+public toString, netInfo, set_initial_v, set_initial_ion_properties, synlist
+
+
+// Section: soma_0, id: soma_0, parent: $s.parent
+create soma_0
+public soma_0
+// Section: dend_0, id: dend_0, parent: soma_0
+create dend_0
+public dend_0
+// Section: axon_0, id: axon_0, parent: soma_0
+create axon_0
+public axon_0
+// Section: dend_2, id: dend_2, parent: dend_0
+create dend_2
+public dend_2
+// Section: dend_1, id: dend_1, parent: dend_0
+create dend_1
+public dend_1
+// Section: axon_1, id: axon_1, parent: axon_0
+create axon_1
+public axon_1
+// Section: dend_12, id: dend_12, parent: dend_2
+create dend_12
+public dend_12
+// Section: dend_3, id: dend_3, parent: dend_2
+create dend_3
+public dend_3
+// Section: dend_5, id: dend_5, parent: dend_3
+create dend_5
+public dend_5
+// Section: dend_4, id: dend_4, parent: dend_3
+create dend_4
+public dend_4
+// Section: dend_7, id: dend_7, parent: dend_5
+create dend_7
+public dend_7
+// Section: dend_6, id: dend_6, parent: dend_5
+create dend_6
+public dend_6
+// Section: dend_11, id: dend_11, parent: dend_7
+create dend_11
+public dend_11
+// Section: dend_8, id: dend_8, parent: dend_7
+create dend_8
+public dend_8
+// Section: dend_10, id: dend_10, parent: dend_8
+create dend_10
+public dend_10
+// Section: dend_9, id: dend_9, parent: dend_8
+create dend_9
+public dend_9
+
+// Group: {name=ModelViewParmSubset_1, groups=[], sections=[soma_0, axon_0, axon_1]}
+objref ModelViewParmSubset_1
+// Group: {name=ModelViewParmSubset_2, groups=[], sections=[dend_0, dend_2, dend_1, dend_12, dend_3, dend_5, dend_4, dend_7, dend_6, dend_11, dend_8, dend_10, dend_9]}
+objref ModelViewParmSubset_2
+// Group: {name=ModelViewParmSubset_3, groups=[], sections=[axon_0, axon_1]}
+objref ModelViewParmSubset_3
+// Group: {name=ModelViewParmSubset_4, groups=[], sections=[soma_0, dend_0, dend_2, dend_1, dend_12, dend_3, dend_5, dend_4, dend_7, dend_6, dend_11, dend_8, dend_10, dend_9]}
+objref ModelViewParmSubset_4
+// Group: {name=OneSecGrp_SectionRef_1, groups=[], sections=[soma_0]}
+objref OneSecGrp_SectionRef_1
+// Group: {name=OneSecGrp_SectionRef_4, groups=[], sections=[dend_2]}
+objref OneSecGrp_SectionRef_4
+// Group: {name=OneSecGrp_SectionRef_8, groups=[], sections=[dend_3]}
+objref OneSecGrp_SectionRef_8
+// Group: {name=OneSecGrp_SectionRef_9, groups=[], sections=[dend_5]}
+objref OneSecGrp_SectionRef_9
+// Group: {name=OneSecGrp_SectionRef_10, groups=[], sections=[dend_4]}
+objref OneSecGrp_SectionRef_10
+// Group: {name=OneSecGrp_SectionRef_11, groups=[], sections=[dend_7]}
+objref OneSecGrp_SectionRef_11
+// Group: {name=OneSecGrp_SectionRef_2, groups=[], sections=[dend_0]}
+objref OneSecGrp_SectionRef_2
+// Group: {name=OneSecGrp_SectionRef_5, groups=[], sections=[dend_1]}
+objref OneSecGrp_SectionRef_5
+// Group: {name=OneSecGrp_SectionRef_7, groups=[], sections=[dend_12]}
+objref OneSecGrp_SectionRef_7
+// Group: {name=OneSecGrp_SectionRef_12, groups=[], sections=[dend_6]}
+objref OneSecGrp_SectionRef_12
+// Group: {name=OneSecGrp_SectionRef_13, groups=[], sections=[dend_11]}
+objref OneSecGrp_SectionRef_13
+// Group: {name=OneSecGrp_SectionRef_14, groups=[], sections=[dend_8]}
+objref OneSecGrp_SectionRef_14
+// Group: {name=OneSecGrp_SectionRef_15, groups=[], sections=[dend_10]}
+objref OneSecGrp_SectionRef_15
+// Group: {name=OneSecGrp_SectionRef_16, groups=[], sections=[dend_9]}
+objref OneSecGrp_SectionRef_16
+// Group: {name=basal, groups=[], sections=[dend_0, dend_1, dend_2, dend_3, dend_4, dend_5, dend_6, dend_7, dend_8, dend_9, dend_10, dend_11, dend_12], inhomogeneousParameters=[{id=PathLengthOver_basal, variable=p, metric=Path Length from root, proximalTranslationStart=0.0}]}
+objref basal
+// Group: {name=apical, inhomogeneousParameters=[{id=PathLengthOver_apical, variable=p, metric=Path Length from root, proximalTranslationStart=0.0}]}
+objref apical
+// Group: {name=axonal, groups=[], sections=[axon_0, axon_1]}
+objref axonal
+// Group: {name=somatic, groups=[], sections=[soma_0]}
+objref somatic
+// Group: {name=all, sections=[soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, dend_0, dend_0, dend_0, dend_0, axon_0, axon_0, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_1, dend_1, dend_1, dend_1, dend_1, axon_1, axon_1, dend_12, dend_12, dend_12, dend_12, dend_12, dend_12, dend_12, dend_12, dend_12, dend_12, dend_12, dend_12, dend_12, dend_12, dend_3, dend_3, dend_3, dend_3, dend_3, dend_3, dend_3, dend_3, dend_3, dend_3, dend_3, dend_3, dend_3, dend_3, dend_3, dend_3, dend_3, dend_3, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_6, dend_11, dend_8, dend_8, dend_8, dend_10, dend_10, dend_10, dend_10, dend_10, dend_10, dend_10, dend_10, dend_10, dend_10, dend_9, dend_9, dend_9, dend_9, dend_9]}
+objref all
+
+objref synlist
+
+proc init() {
+    topol()
+    geom_nseg()
+    subsets()
+    subsets_inhomogeneous()
+    biophys()
+    biophys_inhomogeneous()
+    synlist = new List()
+    x = y = z = 0
+
+}
+
+proc set_initial_v() {
+    // Taken from the initMembPotential value
+    forsec all v = -80.0  // units: mV
+}
+
+
+proc set_initial_ion_properties() {
+    // From species
+    // Ion: ca on group: axonal, with concentration model: CaDynamics_E2_NML2__bIR_1_axonal
+    forsec axonal {
+        cai = 5.0E-5  // units: mM
+        cao = 2.0  // units: mM
+    }
+    // Ion: ca on group: somatic, with concentration model: CaDynamics_E2_NML2__bIR_1_somatic
+    forsec somatic {
+        cai = 5.0E-5  // units: mM
+        cao = 2.0  // units: mM
+    }
+}
+
+
+proc topol() {
+    basic_shape()
+    connect dend_0(0), soma_0(0.4500001318721313)
+    connect axon_0(0), soma_0(1.0)
+    connect dend_2(0), dend_0(1.0)
+    connect dend_1(0), dend_0(1.0)
+    connect axon_1(0), axon_0(1.0)
+    connect dend_12(0), dend_2(1.0)
+    connect dend_3(0), dend_2(1.0)
+    connect dend_5(0), dend_3(1.0)
+    connect dend_4(0), dend_3(1.0)
+    connect dend_7(0), dend_5(1.0)
+    connect dend_6(0), dend_5(1.0)
+    connect dend_11(0), dend_7(1.0)
+    connect dend_8(0), dend_7(1.0)
+    connect dend_10(0), dend_8(1.0)
+    connect dend_9(0), dend_8(1.0)
+
+}
+
+
+proc basic_shape() {
+
+    // Section: soma_0, id: soma_0, parent: $s.parent (entry count 0/100)
+    soma_0 { pt3dclear() }
+    soma_0 { pt3dadd( -3.08452, 6.27464, 0.312461, 1.46623 ) }
+    soma_0 { pt3dadd( -2.79927, 5.64032, 0.287115, 2.64844 ) }
+    soma_0 { pt3dadd( -2.51401, 5.00599, 0.26177, 4.10361 ) }
+    soma_0 { pt3dadd( -2.22875, 4.37167, 0.236425, 4.91598 ) }
+    soma_0 { pt3dadd( -1.94349, 3.73735, 0.21108, 5.72835 ) }
+    soma_0 { pt3dadd( -1.65823, 3.10303, 0.185734, 6.53421 ) }
+    soma_0 { pt3dadd( -1.37297, 2.46871, 0.160389, 7.31212 ) }
+    soma_0 { pt3dadd( -1.08771, 1.83438, 0.135044, 8.08989 ) }
+    soma_0 { pt3dadd( -0.802456, 1.20006, 0.109699, 8.85679 ) }
+    soma_0 { pt3dadd( -0.517198, 0.56574, 0.0843534, 8.93483 ) }
+    soma_0 { pt3dadd( -0.23194, -0.0685822, 0.0590082, 8.92633 ) }
+    soma_0 { pt3dadd( 0.0533189, -0.702904, 0.033663, 8.91784 ) }
+    soma_0 { pt3dadd( 0.338577, -1.33723, 0.00831775, 8.90934 ) }
+    soma_0 { pt3dadd( 0.623836, -1.97155, -0.0170275, 8.90084 ) }
+    soma_0 { pt3dadd( 0.909094, -2.60587, -0.0423727, 8.82493 ) }
+    soma_0 { pt3dadd( 1.19435, -3.24019, -0.067718, 7.82232 ) }
+    soma_0 { pt3dadd( 1.47961, -3.87451, -0.0930632, 6.5965 ) }
+    soma_0 { pt3dadd( 1.76487, -4.50884, -0.118408, 5.37067 ) }
+    soma_0 { pt3dadd( 2.05013, -5.14316, -0.143754, 4.14485 ) }
+    soma_0 { pt3dadd( 2.33539, -5.77748, -0.169099, 2.91903 ) }
+    soma_0 { pt3dadd( 2.62064, -6.4118, -0.194444, 1.76337 ) }
+    // Section: dend_0, id: dend_0, parent: soma_0 (entry count 21/100)
+    dend_0 { pt3dclear() }
+    dend_0 { pt3dadd( 1.61629, -6.20209, -1.26548, 1.33 ) }
+    dend_0 { pt3dadd( 2.77592, -11.4937, -2.19528, 1.33 ) }
+    dend_0 { pt3dadd( 4.69856, -20.2671, -3.73686, 0.66 ) }
+    dend_0 { pt3dadd( 6.18713, -27.0597, -4.9304, 0.66 ) }
+    dend_0 { pt3dadd( 7.77332, -34.2979, -6.20222, 1.33 ) }
+    // Section: axon_0, id: axon_0, parent: soma_0 (entry count 26/100)
+    axon_0 { pt3dclear() }
+    axon_0 { pt3dadd( 2.62064, -6.4118, -0.194444, 0.33 ) }
+    axon_0 { pt3dadd( 8.77276, -20.0921, -0.194444, 0.33 ) }
+    axon_0 { pt3dadd( 14.9249, -33.7725, -0.194444, 0.33 ) }
+    // Section: dend_2, id: dend_2, parent: dend_0 (entry count 29/100)
+    dend_2 { pt3dclear() }
+    dend_2 { pt3dadd( 7.77332, -34.2979, -6.20222, 0.66 ) }
+    dend_2 { pt3dadd( 9.88527, -48.5073, -2.3639, 0.66 ) }
+    dend_2 { pt3dadd( 13.0092, -69.6124, 3.36747, 0.66 ) }
+    dend_2 { pt3dadd( 16.8616, -95.3637, 10.5532, 0.66 ) }
+    dend_2 { pt3dadd( 19.9196, -115.232, 16.1023, 0.66 ) }
+    dend_2 { pt3dadd( 21.7057, -126.761, 19.31, 0.66 ) }
+    dend_2 { pt3dadd( 22.2836, -130.588, 20.3708, 0.66 ) }
+    dend_2 { pt3dadd( 23.0931, -135.777, 21.8406, 0.66 ) }
+    dend_2 { pt3dadd( 23.7809, -140.631, 23.2671, 0.66 ) }
+    dend_2 { pt3dadd( 24.5482, -146.238, 24.8183, 0.66 ) }
+    dend_2 { pt3dadd( 24.8871, -149.289, 25.3031, 0.66 ) }
+    dend_2 { pt3dadd( 25.1893, -153.12, 25.5991, 0.66 ) }
+    dend_2 { pt3dadd( 25.5366, -158.934, 25.4272, 0.66 ) }
+    dend_2 { pt3dadd( 25.8668, -166.599, 24.8794, 0.66 ) }
+    dend_2 { pt3dadd( 26.0633, -169.938, 24.5999, 0.66 ) }
+    dend_2 { pt3dadd( 27.0646, -185.614, 23.1291, 0.66 ) }
+    dend_2 { pt3dadd( 27.3681, -189.314, 22.7068, 0.66 ) }
+    dend_2 { pt3dadd( 28.4318, -200.749, 21.0978, 0.66 ) }
+    dend_2 { pt3dadd( 28.9201, -205.577, 20.3696, 0.66 ) }
+    dend_2 { pt3dadd( 29.9836, -214.433, 19.1014, 0.66 ) }
+    dend_2 { pt3dadd( 30.6768, -219.488, 18.6755, 0.66 ) }
+    dend_2 { pt3dadd( 31.473, -224.377, 18.7115, 0.66 ) }
+    dend_2 { pt3dadd( 32.2825, -229.085, 18.8994, 0.66 ) }
+    dend_2 { pt3dadd( 32.9051, -233.632, 19.131, 0.66 ) }
+    dend_2 { pt3dadd( 33.4531, -238.46, 19.2207, 0.66 ) }
+    dend_2 { pt3dadd( 34.0339, -245.938, 19.32, 0.66 ) }
+    dend_2 { pt3dadd( 34.4774, -250.47, 19.5639, 0.66 ) }
+    dend_2 { pt3dadd( 34.9626, -255.964, 19.9492, 0.66 ) }
+    dend_2 { pt3dadd( 35.5887, -263.406, 20.4434, 0.66 ) }
+    dend_2 { pt3dadd( 35.8972, -268.171, 20.5673, 0.66 ) }
+    dend_2 { pt3dadd( 36.2857, -274.596, 20.4675, 0.66 ) }
+    dend_2 { pt3dadd( 36.814, -280.644, 20.2808, 0.66 ) }
+    // Section: dend_1, id: dend_1, parent: dend_0 (entry count 61/100)
+    dend_1 { pt3dclear() }
+    dend_1 { pt3dadd( 7.77332, -34.2979, -6.20222, 0.66 ) }
+    dend_1 { pt3dadd( 9.10551, -35.6184, -5.93129, 0.66 ) }
+    dend_1 { pt3dadd( 12.1681, -38.6541, -5.30843, 0.33 ) }
+    dend_1 { pt3dadd( 19.1785, -45.6031, -3.88268, 0.33 ) }
+    dend_1 { pt3dadd( 19.443, -45.8653, -3.82888, 0.66 ) }
+    dend_1 { pt3dadd( 22.272, -48.6695, -3.25353, 0.33 ) }
+    // Section: axon_1, id: axon_1, parent: axon_0 (entry count 67/100)
+    axon_1 { pt3dclear() }
+    axon_1 { pt3dadd( 14.9249, -33.7725, -0.194444, 0.33 ) }
+    axon_1 { pt3dadd( 21.077, -47.4528, -0.194444, 0.33 ) }
+    axon_1 { pt3dadd( 27.2291, -61.1331, -0.194444, 0.33 ) }
+    // Section: dend_12, id: dend_12, parent: dend_2 (entry count 70/100)
+    dend_12 { pt3dclear() }
+    dend_12 { pt3dadd( 36.814, -280.644, 20.2808, 0.66 ) }
+    dend_12 { pt3dadd( 38.7883, -282.546, 20.607, 0.66 ) }
+    dend_12 { pt3dadd( 39.9145, -283.62, 20.9624, 0.66 ) }
+    dend_12 { pt3dadd( 41.7562, -285.244, 22.0058, 0.66 ) }
+    dend_12 { pt3dadd( 42.9295, -286.202, 22.7783, 0.66 ) }
+    dend_12 { pt3dadd( 45.1777, -287.946, 24.4023, 0.66 ) }
+    dend_12 { pt3dadd( 46.9, -289.207, 25.6392, 0.66 ) }
+    dend_12 { pt3dadd( 48.573, -290.34, 26.9605, 0.66 ) }
+    dend_12 { pt3dadd( 52.1747, -292.493, 29.7574, 0.66 ) }
+    dend_12 { pt3dadd( 54.2275, -293.6, 31.3242, 0.66 ) }
+    dend_12 { pt3dadd( 56.6278, -294.876, 33.192, 0.33 ) }
+    dend_12 { pt3dadd( 57.5924, -295.377, 33.8964, 0.33 ) }
+    dend_12 { pt3dadd( 57.9327, -295.533, 34.1195, 0.66 ) }
+    dend_12 { pt3dadd( 59.9768, -296.338, 35.3042, 0.33 ) }
+    dend_12 { pt3dadd( 60.4102, -296.492, 35.4339, 0.66 ) }
+    // Section: dend_3, id: dend_3, parent: dend_2 (entry count 85/100)
+    dend_3 { pt3dclear() }
+    dend_3 { pt3dadd( 36.814, -280.644, 20.2808, 0.66 ) }
+    dend_3 { pt3dadd( 38.3241, -285.463, 21.6515, 0.66 ) }
+    dend_3 { pt3dadd( 40.2808, -291.689, 23.4546, 0.66 ) }
+    dend_3 { pt3dadd( 44.2761, -304.152, 26.8223, 0.66 ) }
+    dend_3 { pt3dadd( 45.9443, -309.59, 28.2603, 0.66 ) }
+    dend_3 { pt3dadd( 48.0883, -316.202, 30.0083, 0.66 ) }
+    dend_3 { pt3dadd( 50.127, -322.938, 31.6448, 0.66 ) }
+    dend_3 { pt3dadd( 51.2119, -326.735, 32.4647, 0.66 ) }
+    dend_3 { pt3dadd( 52.4612, -332.013, 33.496, 0.66 ) }
+    dend_3 { pt3dadd( 54.6162, -342.199, 35.1966, 0.66 ) }
+    dend_3 { pt3dadd( 55.7179, -348.01, 35.9409, 0.66 ) }
+    dend_3 { pt3dadd( 56.9103, -354.838, 36.749, 0.66 ) }
+    dend_3 { pt3dadd( 57.6292, -360.652, 37.1983, 0.66 ) }
+    dend_3 { pt3dadd( 57.9338, -363.808, 37.4509, 0.66 ) }
+    dend_3 { pt3dadd( 58.7333, -374.432, 38.252, 0.66 ) }
+
+    // Procedure too big; splitting & calling another procedure...
+    basic_shape_0()
+}
+
+proc basic_shape_0() {
+    dend_3 { pt3dadd( 59.0511, -379.945, 38.5389, 0.66 ) }
+    dend_3 { pt3dadd( 59.3523, -387.593, 38.943, 0.66 ) }
+    dend_3 { pt3dadd( 59.8295, -393.696, 39.3984, 0.66 ) }
+    dend_3 { pt3dadd( 60.0282, -396.408, 39.5755, 0.66 ) }
+    // Section: dend_5, id: dend_5, parent: dend_3 (entry count 4/100)
+    dend_5 { pt3dclear() }
+    dend_5 { pt3dadd( 60.0282, -396.408, 39.5755, 0.66 ) }
+    dend_5 { pt3dadd( 60.5725, -398.915, 39.7965, 0.66 ) }
+    dend_5 { pt3dadd( 61.4052, -402.967, 40.5914, 0.66 ) }
+    dend_5 { pt3dadd( 62.2784, -407.283, 41.5819, 0.66 ) }
+    dend_5 { pt3dadd( 62.7906, -410.118, 42.2726, 0.66 ) }
+    dend_5 { pt3dadd( 63.4493, -414.043, 43.1563, 0.66 ) }
+    dend_5 { pt3dadd( 64.4503, -421.007, 44.5574, 0.66 ) }
+    dend_5 { pt3dadd( 64.9955, -425.784, 45.4778, 0.66 ) }
+    dend_5 { pt3dadd( 65.3289, -429.061, 46.1586, 0.66 ) }
+    dend_5 { pt3dadd( 65.6777, -432.493, 46.7828, 0.66 ) }
+    dend_5 { pt3dadd( 66.0866, -436.345, 47.4353, 0.66 ) }
+    dend_5 { pt3dadd( 66.385, -438.981, 47.8471, 0.66 ) }
+    dend_5 { pt3dadd( 66.8499, -442.602, 48.2949, 0.66 ) }
+    dend_5 { pt3dadd( 67.3373, -445.931, 48.6666, 0.66 ) }
+    dend_5 { pt3dadd( 68.5508, -453.744, 49.6989, 0.66 ) }
+    dend_5 { pt3dadd( 69.0995, -456.843, 50.1393, 0.66 ) }
+    dend_5 { pt3dadd( 70.3874, -464.632, 51.2168, 0.66 ) }
+    dend_5 { pt3dadd( 70.8454, -467.781, 51.5619, 0.66 ) }
+    dend_5 { pt3dadd( 71.2118, -470.826, 51.8092, 0.66 ) }
+    dend_5 { pt3dadd( 71.4852, -473.574, 51.939, 0.66 ) }
+    dend_5 { pt3dadd( 71.861, -478.081, 52.1202, 0.66 ) }
+    dend_5 { pt3dadd( 72.1208, -481.943, 52.2551, 0.66 ) }
+    dend_5 { pt3dadd( 72.5016, -489.386, 52.2983, 0.66 ) }
+    dend_5 { pt3dadd( 72.7714, -493.141, 52.3024, 0.66 ) }
+    dend_5 { pt3dadd( 73.003, -496.062, 52.3142, 0.66 ) }
+    dend_5 { pt3dadd( 73.3577, -499.988, 52.3418, 0.66 ) }
+    dend_5 { pt3dadd( 74.7038, -514.761, 52.4096, 0.66 ) }
+    dend_5 { pt3dadd( 75.2378, -520.191, 52.3297, 0.66 ) }
+    dend_5 { pt3dadd( 76.6376, -534.456, 51.9281, 0.66 ) }
+    dend_5 { pt3dadd( 77.1639, -539.851, 51.7099, 0.66 ) }
+    dend_5 { pt3dadd( 77.7161, -545.155, 51.5229, 0.66 ) }
+    dend_5 { pt3dadd( 78.1365, -548.84, 51.4048, 0.66 ) }
+    dend_5 { pt3dadd( 78.7569, -553.883, 51.2014, 0.66 ) }
+    dend_5 { pt3dadd( 79.3554, -559.498, 51.0253, 0.66 ) }
+    dend_5 { pt3dadd( 79.8941, -565.636, 50.6497, 0.66 ) }
+    dend_5 { pt3dadd( 80.1767, -569.066, 50.4526, 0.66 ) }
+    dend_5 { pt3dadd( 80.3976, -571.453, 50.3768, 0.66 ) }
+    dend_5 { pt3dadd( 81.3813, -580.676, 50.5494, 0.66 ) }
+    dend_5 { pt3dadd( 81.6878, -583.551, 50.6114, 0.66 ) }
+    dend_5 { pt3dadd( 82.0807, -588.285, 50.5443, 0.66 ) }
+    dend_5 { pt3dadd( 82.461, -593.022, 50.4075, 0.66 ) }
+    dend_5 { pt3dadd( 82.8225, -596.688, 50.3133, 0.66 ) }
+    dend_5 { pt3dadd( 83.8897, -605.634, 50.3803, 0.66 ) }
+    dend_5 { pt3dadd( 85.3089, -615.883, 50.6557, 0.66 ) }
+    dend_5 { pt3dadd( 86.3076, -622.86, 50.799, 0.66 ) }
+    dend_5 { pt3dadd( 86.7822, -626.371, 50.8141, 0.66 ) }
+    dend_5 { pt3dadd( 88.4728, -639.234, 50.64, 0.66 ) }
+    dend_5 { pt3dadd( 89.3639, -647.513, 50.2812, 0.66 ) }
+    dend_5 { pt3dadd( 89.6109, -649.935, 50.1319, 0.66 ) }
+    dend_5 { pt3dadd( 90.0009, -653.866, 49.8039, 0.66 ) }
+    dend_5 { pt3dadd( 90.5217, -659.64, 49.1679, 0.66 ) }
+    dend_5 { pt3dadd( 90.6723, -662.142, 48.827, 0.66 ) }
+    dend_5 { pt3dadd( 90.896, -668.866, 47.6955, 0.66 ) }
+    dend_5 { pt3dadd( 91.3575, -682.9, 45.1177, 0.66 ) }
+    dend_5 { pt3dadd( 91.7054, -690.124, 43.9781, 0.66 ) }
+    dend_5 { pt3dadd( 91.8936, -692.814, 43.6272, 0.33 ) }
+    dend_5 { pt3dadd( 92.0633, -694.605, 43.444, 1.33 ) }
+    dend_5 { pt3dadd( 92.6577, -698.831, 43.1997, 0.66 ) }
+    dend_5 { pt3dadd( 93.6626, -703.899, 43.1242, 0.66 ) }
+    dend_5 { pt3dadd( 94.4892, -707.485, 43.1477, 0.66 ) }
+    dend_5 { pt3dadd( 95.4096, -711.106, 43.259, 0.66 ) }
+    dend_5 { pt3dadd( 96.2251, -714.065, 43.3148, 0.66 ) }
+    dend_5 { pt3dadd( 99.7196, -726.202, 43.8196, 0.66 ) }
+    dend_5 { pt3dadd( 100.216, -727.911, 43.9342, 0.33 ) }
+    dend_5 { pt3dadd( 100.879, -730.357, 44.1074, 1.33 ) }
+    dend_5 { pt3dadd( 101.511, -732.788, 44.2332, 0.66 ) }
+    dend_5 { pt3dadd( 101.981, -734.7, 44.3328, 0.33 ) }
+    dend_5 { pt3dadd( 103.234, -739.981, 44.6515, 0.66 ) }
+    dend_5 { pt3dadd( 103.767, -742.703, 45.1251, 0.66 ) }
+    dend_5 { pt3dadd( 104.445, -746.293, 45.9343, 0.33 ) }
+    // Section: dend_4, id: dend_4, parent: dend_3 (entry count 74/100)
+    dend_4 { pt3dclear() }
+    dend_4 { pt3dadd( 60.0282, -396.408, 39.5755, 0.66 ) }
+    dend_4 { pt3dadd( 58.0058, -405.565, 42.2786, 0.66 ) }
+    dend_4 { pt3dadd( 56.2942, -413.349, 44.4471, 0.66 ) }
+    dend_4 { pt3dadd( 55.3762, -419.162, 46.2428, 0.33 ) }
+    dend_4 { pt3dadd( 54.3294, -427.313, 48.9502, 0.33 ) }
+    dend_4 { pt3dadd( 54.1992, -428.638, 49.442, 0.66 ) }
+    dend_4 { pt3dadd( 53.9023, -432.929, 51.0672, 0.33 ) }
+    dend_4 { pt3dadd( 53.8517, -436.043, 52.3422, 0.66 ) }
+    dend_4 { pt3dadd( 53.7793, -443.444, 55.0613, 0.33 ) }
+    dend_4 { pt3dadd( 53.806, -444.612, 55.5027, 0.66 ) }
+    dend_4 { pt3dadd( 53.9634, -452.52, 58.4805, 0.33 ) }
+    dend_4 { pt3dadd( 54.2757, -456.607, 60.0127, 0.33 ) }
+    dend_4 { pt3dadd( 54.8322, -461.041, 61.6372, 0.66 ) }
+    dend_4 { pt3dadd( 55.6859, -466.339, 63.6055, 0.33 ) }
+    dend_4 { pt3dadd( 56.1842, -469.207, 64.572, 0.33 ) }
+    dend_4 { pt3dadd( 56.5934, -470.809, 65.1103, 0.66 ) }
+    dend_4 { pt3dadd( 59.353, -477.454, 67.7469, 0.33 ) }
+    dend_4 { pt3dadd( 59.8471, -478.41, 68.2238, 0.66 ) }
+    dend_4 { pt3dadd( 61.3268, -480.795, 69.5431, 0.33 ) }
+    dend_4 { pt3dadd( 62.0865, -482.017, 70.256, 0.33 ) }
+    dend_4 { pt3dadd( 62.7675, -483.326, 70.9356, 0.66 ) }
+    dend_4 { pt3dadd( 64.7967, -488.283, 73.2342, 0.33 ) }
+    dend_4 { pt3dadd( 65.5328, -491.364, 74.4171, 0.33 ) }
+    dend_4 { pt3dadd( 65.7722, -492.537, 74.7955, 0.66 ) }
+    dend_4 { pt3dadd( 66.1556, -494.834, 75.3475, 0.33 ) }
+    dend_4 { pt3dadd( 66.2967, -496.059, 75.588, 0.66 ) }
+
+    // Procedure too big; splitting & calling another procedure...
+    basic_shape_1()
+}
+
+proc basic_shape_1() {
+    dend_4 { pt3dadd( 66.4102, -497.626, 75.8338, 0.33 ) }
+    dend_4 { pt3dadd( 66.4459, -499.259, 76.0118, 0.66 ) }
+    dend_4 { pt3dadd( 66.4973, -501.648, 76.3283, 0.33 ) }
+    dend_4 { pt3dadd( 66.515, -502.517, 76.4674, 0.66 ) }
+    dend_4 { pt3dadd( 66.6805, -509.699, 77.8135, 0.33 ) }
+    dend_4 { pt3dadd( 66.6851, -510.158, 77.9074, 0.66 ) }
+    dend_4 { pt3dadd( 66.6679, -511.806, 78.2876, 0.33 ) }
+    dend_4 { pt3dadd( 66.6442, -512.664, 78.5035, 0.66 ) }
+    dend_4 { pt3dadd( 66.7789, -514.98, 79.2108, 0.33 ) }
+    dend_4 { pt3dadd( 66.91, -516.034, 79.5649, 0.66 ) }
+    dend_4 { pt3dadd( 67.2548, -517.911, 80.2165, 0.33 ) }
+    dend_4 { pt3dadd( 67.5268, -519.239, 80.6769, 0.66 ) }
+    dend_4 { pt3dadd( 67.8984, -520.757, 81.2036, 0.33 ) }
+    dend_4 { pt3dadd( 69.867, -527.798, 83.7448, 0.33 ) }
+    dend_4 { pt3dadd( 70.5407, -529.844, 84.5333, 0.66 ) }
+    // Section: dend_7, id: dend_7, parent: dend_5 (entry count 15/100)
+    dend_7 { pt3dclear() }
+    dend_7 { pt3dadd( 104.445, -746.293, 45.9343, 0.66 ) }
+    dend_7 { pt3dadd( 104.994, -750.236, 45.1842, 0.66 ) }
+    dend_7 { pt3dadd( 105.486, -752.248, 45.195, 1.33 ) }
+    dend_7 { pt3dadd( 105.949, -753.967, 45.3425, 0.66 ) }
+    dend_7 { pt3dadd( 106.467, -756.136, 45.4957, 0.66 ) }
+    dend_7 { pt3dadd( 107.664, -760.795, 46.0227, 0.33 ) }
+    dend_7 { pt3dadd( 109.211, -766.419, 46.7651, 0.66 ) }
+    dend_7 { pt3dadd( 111.387, -773.651, 48.1259, 0.66 ) }
+    dend_7 { pt3dadd( 112.575, -777.24, 48.8989, 0.66 ) }
+    dend_7 { pt3dadd( 113.936, -781.242, 49.6418, 0.33 ) }
+    dend_7 { pt3dadd( 115.628, -786.374, 50.3957, 0.33 ) }
+    dend_7 { pt3dadd( 116.047, -787.833, 50.525, 0.66 ) }
+    dend_7 { pt3dadd( 116.352, -789.053, 50.4137, 0.33 ) }
+    dend_7 { pt3dadd( 116.544, -790.121, 50.1767, 0.66 ) }
+    dend_7 { pt3dadd( 117.592, -796.361, 48.5312, 0.33 ) }
+    dend_7 { pt3dadd( 118.056, -798.966, 47.8298, 0.66 ) }
+    dend_7 { pt3dadd( 118.435, -801.442, 47.099, 0.33 ) }
+    dend_7 { pt3dadd( 119.505, -808.464, 45.3459, 0.33 ) }
+    dend_7 { pt3dadd( 120.209, -812.566, 44.4586, 0.66 ) }
+    dend_7 { pt3dadd( 121.604, -819.978, 43.0994, 0.33 ) }
+    dend_7 { pt3dadd( 122.306, -823.465, 42.6279, 0.66 ) }
+    dend_7 { pt3dadd( 123.037, -826.901, 42.2322, 1.33 ) }
+    dend_7 { pt3dadd( 124.821, -834.725, 41.6065, 0.33 ) }
+    dend_7 { pt3dadd( 125.75, -838.587, 41.5327, 0.33 ) }
+    dend_7 { pt3dadd( 126.124, -840.104, 41.5399, 0.66 ) }
+    dend_7 { pt3dadd( 127.053, -843.922, 41.7119, 0.33 ) }
+    dend_7 { pt3dadd( 128.272, -849.044, 42.0468, 0.33 ) }
+    dend_7 { pt3dadd( 128.75, -850.909, 42.2164, 1.33 ) }
+    dend_7 { pt3dadd( 130.098, -856.271, 42.7127, 0.33 ) }
+    dend_7 { pt3dadd( 130.502, -858.131, 42.9339, 0.66 ) }
+    // Section: dend_6, id: dend_6, parent: dend_5 (entry count 45/100)
+    dend_6 { pt3dclear() }
+    dend_6 { pt3dadd( 104.445, -746.293, 45.9343, 0.66 ) }
+    dend_6 { pt3dadd( 102.572, -748.506, 44.9228, 0.66 ) }
+    // Section: dend_11, id: dend_11, parent: dend_7 (entry count 47/100)
+    dend_11 { pt3dclear() }
+    dend_11 { pt3dadd( 130.502, -858.131, 42.9339, 0.66 ) }
+    dend_11 { pt3dadd( 128.544, -857.906, 43.6169, 0.66 ) }
+    // Section: dend_8, id: dend_8, parent: dend_7 (entry count 49/100)
+    dend_8 { pt3dclear() }
+    dend_8 { pt3dadd( 130.502, -858.131, 42.9339, 0.66 ) }
+    dend_8 { pt3dadd( 130.78, -859.58, 42.7862, 0.66 ) }
+    dend_8 { pt3dadd( 132.018, -866.033, 42.1282, 0.33 ) }
+    dend_8 { pt3dadd( 132.412, -868.086, 41.919, 1.33 ) }
+    // Section: dend_10, id: dend_10, parent: dend_8 (entry count 53/100)
+    dend_10 { pt3dclear() }
+    dend_10 { pt3dadd( 132.412, -868.086, 41.919, 0.33 ) }
+    dend_10 { pt3dadd( 141.404, -879.634, 47.8039, 0.33 ) }
+    dend_10 { pt3dadd( 142.248, -880.763, 48.2957, 1.33 ) }
+    dend_10 { pt3dadd( 144.597, -883.931, 49.4824, 0.33 ) }
+    dend_10 { pt3dadd( 145.07, -884.594, 49.6443, 0.66 ) }
+    dend_10 { pt3dadd( 147.296, -887.77, 50.092, 0.33 ) }
+    dend_10 { pt3dadd( 147.972, -888.734, 50.2279, 0.66 ) }
+    dend_10 { pt3dadd( 148.436, -889.64, 49.9666, 0.33 ) }
+    dend_10 { pt3dadd( 149.071, -890.77, 49.568, 0.66 ) }
+    dend_10 { pt3dadd( 151.347, -894.293, 47.8897, 0.33 ) }
+    dend_10 { pt3dadd( 152.234, -895.568, 47.1674, 1.33 ) }
+    // Section: dend_9, id: dend_9, parent: dend_8 (entry count 64/100)
+    dend_9 { pt3dclear() }
+    dend_9 { pt3dadd( 132.412, -868.086, 41.919, 0.33 ) }
+    dend_9 { pt3dadd( 132.91, -884.48, 46.776, 0.33 ) }
+    dend_9 { pt3dadd( 133.182, -893.42, 49.4249, 0.33 ) }
+    dend_9 { pt3dadd( 133.225, -894.825, 49.8412, 0.66 ) }
+    dend_9 { pt3dadd( 133.506, -904.054, 52.5752, 0.33 ) }
+    dend_9 { pt3dadd( 133.543, -905.283, 52.9396, 0.66 ) }
+
+}
+
+
+proc subsets() { local i
+
+    // Group: {name=ModelViewParmSubset_1, groups=[], sections=[soma_0, axon_0, axon_1]}
+    ModelViewParmSubset_1 = new SectionList()
+    soma_0 ModelViewParmSubset_1.append()
+    axon_0 ModelViewParmSubset_1.append()
+    axon_1 ModelViewParmSubset_1.append()
+
+    // Group: {name=ModelViewParmSubset_2, groups=[], sections=[dend_0, dend_2, dend_1, dend_12, dend_3, dend_5, dend_4, dend_7, dend_6, dend_11, dend_8, dend_10, dend_9]}
+    ModelViewParmSubset_2 = new SectionList()
+    dend_0 ModelViewParmSubset_2.append()
+    dend_2 ModelViewParmSubset_2.append()
+    dend_1 ModelViewParmSubset_2.append()
+    dend_12 ModelViewParmSubset_2.append()
+    dend_3 ModelViewParmSubset_2.append()
+    dend_5 ModelViewParmSubset_2.append()
+    dend_4 ModelViewParmSubset_2.append()
+    dend_7 ModelViewParmSubset_2.append()
+    dend_6 ModelViewParmSubset_2.append()
+    dend_11 ModelViewParmSubset_2.append()
+    dend_8 ModelViewParmSubset_2.append()
+    dend_10 ModelViewParmSubset_2.append()
+    dend_9 ModelViewParmSubset_2.append()
+
+    // Group: {name=ModelViewParmSubset_3, groups=[], sections=[axon_0, axon_1]}
+    ModelViewParmSubset_3 = new SectionList()
+    axon_0 ModelViewParmSubset_3.append()
+    axon_1 ModelViewParmSubset_3.append()
+
+    // Group: {name=ModelViewParmSubset_4, groups=[], sections=[soma_0, dend_0, dend_2, dend_1, dend_12, dend_3, dend_5, dend_4, dend_7, dend_6, dend_11, dend_8, dend_10, dend_9]}
+    ModelViewParmSubset_4 = new SectionList()
+    soma_0 ModelViewParmSubset_4.append()
+    dend_0 ModelViewParmSubset_4.append()
+    dend_2 ModelViewParmSubset_4.append()
+    dend_1 ModelViewParmSubset_4.append()
+    dend_12 ModelViewParmSubset_4.append()
+    dend_3 ModelViewParmSubset_4.append()
+    dend_5 ModelViewParmSubset_4.append()
+    dend_4 ModelViewParmSubset_4.append()
+    dend_7 ModelViewParmSubset_4.append()
+    dend_6 ModelViewParmSubset_4.append()
+    dend_11 ModelViewParmSubset_4.append()
+    dend_8 ModelViewParmSubset_4.append()
+    dend_10 ModelViewParmSubset_4.append()
+    dend_9 ModelViewParmSubset_4.append()
+
+    // Group: {name=OneSecGrp_SectionRef_1, groups=[], sections=[soma_0]}
+    OneSecGrp_SectionRef_1 = new SectionList()
+    soma_0 OneSecGrp_SectionRef_1.append()
+
+    // Group: {name=OneSecGrp_SectionRef_4, groups=[], sections=[dend_2]}
+    OneSecGrp_SectionRef_4 = new SectionList()
+    dend_2 OneSecGrp_SectionRef_4.append()
+
+    // Group: {name=OneSecGrp_SectionRef_8, groups=[], sections=[dend_3]}
+    OneSecGrp_SectionRef_8 = new SectionList()
+    dend_3 OneSecGrp_SectionRef_8.append()
+
+    // Group: {name=OneSecGrp_SectionRef_9, groups=[], sections=[dend_5]}
+    OneSecGrp_SectionRef_9 = new SectionList()
+    dend_5 OneSecGrp_SectionRef_9.append()
+
+    // Group: {name=OneSecGrp_SectionRef_10, groups=[], sections=[dend_4]}
+    OneSecGrp_SectionRef_10 = new SectionList()
+    dend_4 OneSecGrp_SectionRef_10.append()
+
+    // Group: {name=OneSecGrp_SectionRef_11, groups=[], sections=[dend_7]}
+    OneSecGrp_SectionRef_11 = new SectionList()
+    dend_7 OneSecGrp_SectionRef_11.append()
+
+    // Group: {name=OneSecGrp_SectionRef_2, groups=[], sections=[dend_0]}
+    OneSecGrp_SectionRef_2 = new SectionList()
+    dend_0 OneSecGrp_SectionRef_2.append()
+
+    // Group: {name=OneSecGrp_SectionRef_5, groups=[], sections=[dend_1]}
+    OneSecGrp_SectionRef_5 = new SectionList()
+    dend_1 OneSecGrp_SectionRef_5.append()
+
+    // Group: {name=OneSecGrp_SectionRef_7, groups=[], sections=[dend_12]}
+    OneSecGrp_SectionRef_7 = new SectionList()
+    dend_12 OneSecGrp_SectionRef_7.append()
+
+    // Group: {name=OneSecGrp_SectionRef_12, groups=[], sections=[dend_6]}
+    OneSecGrp_SectionRef_12 = new SectionList()
+    dend_6 OneSecGrp_SectionRef_12.append()
+
+    // Group: {name=OneSecGrp_SectionRef_13, groups=[], sections=[dend_11]}
+    OneSecGrp_SectionRef_13 = new SectionList()
+    dend_11 OneSecGrp_SectionRef_13.append()
+
+    // Group: {name=OneSecGrp_SectionRef_14, groups=[], sections=[dend_8]}
+    OneSecGrp_SectionRef_14 = new SectionList()
+    dend_8 OneSecGrp_SectionRef_14.append()
+
+    // Group: {name=OneSecGrp_SectionRef_15, groups=[], sections=[dend_10]}
+    OneSecGrp_SectionRef_15 = new SectionList()
+    dend_10 OneSecGrp_SectionRef_15.append()
+
+    // Group: {name=OneSecGrp_SectionRef_16, groups=[], sections=[dend_9]}
+    OneSecGrp_SectionRef_16 = new SectionList()
+    dend_9 OneSecGrp_SectionRef_16.append()
+
+    // Group: {name=basal, groups=[], sections=[dend_0, dend_1, dend_2, dend_3, dend_4, dend_5, dend_6, dend_7, dend_8, dend_9, dend_10, dend_11, dend_12], inhomogeneousParameters=[{id=PathLengthOver_basal, variable=p, metric=Path Length from root, proximalTranslationStart=0.0}]}
+    basal = new SectionList()
+    dend_0 basal.append()
+    dend_1 basal.append()
+    dend_2 basal.append()
+    dend_3 basal.append()
+    dend_4 basal.append()
+    dend_5 basal.append()
+    dend_6 basal.append()
+    dend_7 basal.append()
+    dend_8 basal.append()
+    dend_9 basal.append()
+    dend_10 basal.append()
+    dend_11 basal.append()
+    dend_12 basal.append()
+
+    // Group: {name=apical, inhomogeneousParameters=[{id=PathLengthOver_apical, variable=p, metric=Path Length from root, proximalTranslationStart=0.0}]}
+    apical = new SectionList()
+
+    // Group: {name=axonal, groups=[], sections=[axon_0, axon_1]}
+    axonal = new SectionList()
+    axon_0 axonal.append()
+    axon_1 axonal.append()
+
+    // Group: {name=somatic, groups=[], sections=[soma_0]}
+    somatic = new SectionList()
+    soma_0 somatic.append()
+
+    // Group: {name=all, sections=[soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, soma_0, dend_0, dend_0, dend_0, dend_0, axon_0, axon_0, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_2, dend_1, dend_1, dend_1, dend_1, dend_1, axon_1, axon_1, dend_12, dend_12, dend_12, dend_12, dend_12, dend_12, dend_12, dend_12, dend_12, dend_12, dend_12, dend_12, dend_12, dend_12, dend_3, dend_3, dend_3, dend_3, dend_3, dend_3, dend_3, dend_3, dend_3, dend_3, dend_3, dend_3, dend_3, dend_3, dend_3, dend_3, dend_3, dend_3, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_5, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_4, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_7, dend_6, dend_11, dend_8, dend_8, dend_8, dend_10, dend_10, dend_10, dend_10, dend_10, dend_10, dend_10, dend_10, dend_10, dend_10, dend_9, dend_9, dend_9, dend_9, dend_9]}
+    all = new SectionList()
+    soma_0 all.append()
+    soma_0 all.append()
+    soma_0 all.append()
+    soma_0 all.append()
+    soma_0 all.append()
+    soma_0 all.append()
+    soma_0 all.append()
+    soma_0 all.append()
+    soma_0 all.append()
+    soma_0 all.append()
+    soma_0 all.append()
+    soma_0 all.append()
+    soma_0 all.append()
+    soma_0 all.append()
+    soma_0 all.append()
+    soma_0 all.append()
+    soma_0 all.append()
+    soma_0 all.append()
+    soma_0 all.append()
+    soma_0 all.append()
+    dend_0 all.append()
+    dend_0 all.append()
+    dend_0 all.append()
+    dend_0 all.append()
+    axon_0 all.append()
+    axon_0 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+
+    // Procedure too big; splitting & calling another procedure...
+    subsets_0()
+}
+
+proc subsets_0() {
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_1 all.append()
+    dend_1 all.append()
+    dend_1 all.append()
+    dend_1 all.append()
+    dend_1 all.append()
+    axon_1 all.append()
+    axon_1 all.append()
+    dend_12 all.append()
+    dend_12 all.append()
+    dend_12 all.append()
+    dend_12 all.append()
+    dend_12 all.append()
+    dend_12 all.append()
+    dend_12 all.append()
+    dend_12 all.append()
+    dend_12 all.append()
+    dend_12 all.append()
+    dend_12 all.append()
+    dend_12 all.append()
+    dend_12 all.append()
+    dend_12 all.append()
+    dend_3 all.append()
+    dend_3 all.append()
+    dend_3 all.append()
+    dend_3 all.append()
+    dend_3 all.append()
+    dend_3 all.append()
+    dend_3 all.append()
+    dend_3 all.append()
+    dend_3 all.append()
+    dend_3 all.append()
+    dend_3 all.append()
+    dend_3 all.append()
+    dend_3 all.append()
+    dend_3 all.append()
+    dend_3 all.append()
+    dend_3 all.append()
+    dend_3 all.append()
+    dend_3 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+
+    // Procedure too big; splitting & calling another procedure...
+    subsets_1()
+}
+
+proc subsets_1() {
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_6 all.append()
+    dend_11 all.append()
+    dend_8 all.append()
+    dend_8 all.append()
+
+    // Procedure too big; splitting & calling another procedure...
+    subsets_2()
+}
+
+proc subsets_2() {
+    dend_8 all.append()
+    dend_10 all.append()
+    dend_10 all.append()
+    dend_10 all.append()
+    dend_10 all.append()
+    dend_10 all.append()
+    dend_10 all.append()
+    dend_10 all.append()
+    dend_10 all.append()
+    dend_10 all.append()
+    dend_10 all.append()
+    dend_9 all.append()
+    dend_9 all.append()
+    dend_9 all.append()
+    dend_9 all.append()
+    dend_9 all.append()
+
+}
+
+objref PathLengthOver_basal // inhomogeneous parameter over basal
+objref PathLengthOver_apical // inhomogeneous parameter over apical
+
+proc subsets_inhomogeneous() {
+    metric = 0
+    proximal_style =  1 
+    distal_style = 0
+    PathLengthOver_basal = new SubsetDomainIterator(basal, metric, proximal_style, distal_style)
+    metric = 0
+    proximal_style =  1 
+    distal_style = 0
+    PathLengthOver_apical = new SubsetDomainIterator(apical, metric, proximal_style, distal_style)
+}
+
+proc biophys() {
+
+    // Specific capacitance
+    forsec basal cm = 1.0  // units: uF/cm2
+    forsec apical cm = 1.0  // units: uF/cm2
+    forsec axonal cm = 1.0  // units: uF/cm2
+    forsec somatic cm = 1.0  // units: uF/cm2
+
+    // Specific axial resistance/resistivity
+    forsec all Ra = 100.0  // units: ohm cm
+
+    // Channel densities
+    forsec basal {
+        insert SKv3_1
+        gmax_SKv3_1 = 0.00545  // units: S cm-2
+        ek = -85.0  // units: mV
+    }
+    forsec basal {
+        insert StochKv_deterministic
+        gmax_StochKv_deterministic = 2.90744E-5  // units: S cm-2
+        ek = -85.0  // units: mV
+    }
+    forsec basal {
+        insert Nap_Et2
+        gmax_Nap_Et2 = 1.0E-6  // units: S cm-2
+        ena = 50.0  // units: mV
+    }
+    forsec basal {
+        insert NaTs2_t
+        gmax_NaTs2_t = 0.004119  // units: S cm-2
+        ena = 50.0  // units: mV
+    }
+    forsec basal {
+        insert pas_nml2
+        gmax_pas_nml2 = 5.9999998E-6  // units: S cm-2
+        e_pas_nml2 = -60.065872  // units: mV
+    }
+    forsec apical {
+        insert SKv3_1
+        gmax_SKv3_1 = 0.00545  // units: S cm-2
+        ek = -85.0  // units: mV
+    }
+    forsec apical {
+        insert StochKv_deterministic
+        gmax_StochKv_deterministic = 2.90744E-5  // units: S cm-2
+        ek = -85.0  // units: mV
+    }
+    forsec apical {
+        insert Nap_Et2
+        gmax_Nap_Et2 = 1.0E-6  // units: S cm-2
+        ena = 50.0  // units: mV
+    }
+    forsec apical {
+        insert NaTs2_t
+        gmax_NaTs2_t = 0.004119  // units: S cm-2
+        ena = 50.0  // units: mV
+    }
+    forsec apical {
+        insert pas_nml2
+        gmax_pas_nml2 = 5.9999998E-6  // units: S cm-2
+        e_pas_nml2 = -60.065872  // units: mV
+    }
+    forsec axonal {
+        insert NaTa_t
+        gmax_NaTa_t = 3.418459  // units: S cm-2
+        ena = 50.0  // units: mV
+    }
+    forsec axonal {
+        insert K_Tst
+        gmax_K_Tst = 0.026008999  // units: S cm-2
+        ek = -85.0  // units: mV
+    }
+    forsec axonal {
+        insert Nap_Et2
+        gmax_Nap_Et2 = 1.0E-6  // units: S cm-2
+        ena = 50.0  // units: mV
+    }
+    forsec axonal {
+        insert SK_E2
+        gmax_SK_E2 = 9.0E-6  // units: S cm-2
+        ek = -85.0  // units: mV
+    }
+    forsec axonal {
+        insert K_Pst
+        gmax_K_Pst = 0.025854  // units: S cm-2
+        ek = -85.0  // units: mV
+    }
+    forsec axonal {
+        insert SKv3_1
+        gmax_SKv3_1 = 0.19695699  // units: S cm-2
+        ek = -85.0  // units: mV
+    }
+    forsec axonal {
+        insert pas_nml2
+        gmax_pas_nml2 = 2.0E-6  // units: S cm-2
+        e_pas_nml2 = -60.2509  // units: mV
+    }
+    forsec axonal {
+        insert Im
+        gmax_Im = 5.9899996E-4  // units: S cm-2
+        ek = -85.0  // units: mV
+    }
+    forsec somatic {
+        insert K_Tst
+        gmax_K_Tst = 0.008343  // units: S cm-2
+        ek = -85.0  // units: mV
+    }
+    forsec somatic {
+        insert StochKv_deterministic
+        gmax_StochKv_deterministic = 6.58298E-5  // units: S cm-2
+        ek = -85.0  // units: mV
+    }
+    forsec somatic {
+        insert Nap_Et2
+        gmax_Nap_Et2 = 1.0E-6  // units: S cm-2
+        ena = 50.0  // units: mV
+    }
+    forsec somatic {
+        insert SK_E2
+        gmax_SK_E2 = 0.026899999  // units: S cm-2
+        ek = -85.0  // units: mV
+    }
+    forsec somatic {
+        insert K_Pst
+        gmax_K_Pst = 0.502333  // units: S cm-2
+        ek = -85.0  // units: mV
+    }
+    forsec somatic {
+        insert SKv3_1
+        gmax_SKv3_1 = 0.653374  // units: S cm-2
+        ek = -85.0  // units: mV
+    }
+    forsec somatic {
+        insert pas_nml2
+        gmax_pas_nml2 = 5.6999997E-5  // units: S cm-2
+        e_pas_nml2 = -76.49812  // units: mV
+    }
+    forsec somatic {
+        insert Im
+        gmax_Im = 7.84E-4  // units: S cm-2
+        ek = -85.0  // units: mV
+    }
+    forsec somatic {
+        insert NaTs2_t
+        gmax_NaTs2_t = 0.30005398  // units: S cm-2
+        ena = 50.0  // units: mV
+    }
+    forsec basal {
+        insert K_Tst
+        // gmax_K_Tst will be set later...
+        ek = -85.0  // units: mV
+    }
+    forsec basal {
+        insert Ih
+        // gmax_Ih will be set later...
+        ehcn = -45.0  // units: mV
+    }
+    forsec basal {
+        insert Im
+        // gmax_Im will be set later...
+        ek = -85.0  // units: mV
+    }
+    forsec apical {
+        insert K_Tst
+        // gmax_K_Tst will be set later...
+        ek = -85.0  // units: mV
+    }
+    forsec apical {
+        insert Ih
+        // gmax_Ih will be set later...
+        ehcn = -45.0  // units: mV
+    }
+    forsec apical {
+        insert Im
+        // gmax_Im will be set later...
+        ek = -85.0  // units: mV
+    }
+    forsec axonal {
+        insert Ca_LVAst
+        gmax_Ca_LVAst = 0.002256  // units: S cm-2
+        // erev is calculated by Nernst equation
+    }
+    forsec axonal {
+        insert Ca
+        gmax_Ca = 1.38E-4  // units: S cm-2
+        // erev is calculated by Nernst equation
+    }
+    forsec somatic {
+        insert Ca_LVAst
+        gmax_Ca_LVAst = 0.005574  // units: S cm-2
+        // erev is calculated by Nernst equation
+    }
+    forsec somatic {
+        insert Ca
+        gmax_Ca = 7.92E-4  // units: S cm-2
+        // erev is calculated by Nernst equation
+    }
+
+    // Concentration models for species
+    // Ion: ca on group: axonal, with concentration model: CaDynamics_E2_NML2__bIR_1_axonal
+    forsec axonal {
+        insert CaDynamics_E2_NML2__bIR_1_axonal
+    }
+    // Ion: ca on group: somatic, with concentration model: CaDynamics_E2_NML2__bIR_1_somatic
+    forsec somatic {
+        insert CaDynamics_E2_NML2__bIR_1_somatic
+    }
+
+}
+
+func H() { // Heaviside function
+    if ($1>=0) return 1
+    if ($1==0) return 0.5
+    return 0
+}
+
+proc biophys_inhomogeneous() {
+
+    PathLengthOver_basal.update()
+    for PathLengthOver_basal.loop() {
+        x = PathLengthOver_basal.x
+        p = PathLengthOver_basal.p
+        gmax_K_Tst(x) = 1.0E-4 * (1e4 * ((-0.869600 + 2.087000*exp((p--1000.000000)*-0.003000))*0.002940))
+    }
+
+    PathLengthOver_basal.update()
+    for PathLengthOver_basal.loop() {
+        x = PathLengthOver_basal.x
+        p = PathLengthOver_basal.p
+        gmax_Ih(x) = 1.0E-4 * (1e4 * ((-0.869600 + 2.087000*exp((p-0.000000)*0.003000))*0.000051))
+    }
+
+    PathLengthOver_basal.update()
+    for PathLengthOver_basal.loop() {
+        x = PathLengthOver_basal.x
+        p = PathLengthOver_basal.p
+        gmax_Im(x) = 1.0E-4 * (1e4 * ((-0.869600 + 2.087000*exp((p--1000.000000)*-0.003000))*0.000371))
+    }
+
+    PathLengthOver_apical.update()
+    for PathLengthOver_apical.loop() {
+        x = PathLengthOver_apical.x
+        p = PathLengthOver_apical.p
+        gmax_K_Tst(x) = 1.0E-4 * (1e4 * ((-0.869600 + 2.087000*exp((p--1000.000000)*-0.003000))*0.002940))
+    }
+
+    PathLengthOver_apical.update()
+    for PathLengthOver_apical.loop() {
+        x = PathLengthOver_apical.x
+        p = PathLengthOver_apical.p
+        gmax_Ih(x) = 1.0E-4 * (1e4 * ((-0.869600 + 2.087000*exp((p-0.000000)*0.003000))*0.000051))
+    }
+
+    PathLengthOver_apical.update()
+    for PathLengthOver_apical.loop() {
+        x = PathLengthOver_apical.x
+        p = PathLengthOver_apical.p
+        gmax_Im(x) = 1.0E-4 * (1e4 * ((-0.869600 + 2.087000*exp((p--1000.000000)*-0.003000))*0.000371))
+    }
+}
+
+proc geom_nseg() {
+    // All sections not mentioned here have nseg = 1
+    dend_2 nseg = 13
+    dend_3 nseg = 7
+    dend_5 nseg = 17
+    dend_4 nseg = 7
+    dend_7 nseg = 5
+}
+
+
+proc position() { local i
+    forsec all {
+        for i = 0, n3d()-1 {
+            pt3dchange(i, $1+x3d(i), $2+y3d(i), $3+z3d(i), diam3d(i))
+        }
+    }
+    x = $1  y = $2  z = $3
+}
+
+
+endtemplate bIR215_L4_BP_7f9877b937_0_0
+
+
