@@ -402,15 +402,15 @@ class NMLDB_Model(object):
         result = os.path.abspath(os.path.join(self.config.permanent_models_dir, self.get_model_nml_id(), "waveforms"))
 
         if not os.path.exists(result):
-            os.mkdir(result)
+            os.makedirs(result)
 
         return result
 
-    def get_morphology_dir(self):
-        result = os.path.abspath(os.path.join(self.config.permanent_models_dir, self.get_model_nml_id(), "morphology"))
+    def get_conversion_dir(self, version):
+        result = os.path.abspath(os.path.join(self.config.permanent_models_dir, self.get_model_nml_id(), "conversions", version))
 
         if not os.path.exists(result):
-            os.mkdir(result)
+            os.makedirs(result)
 
         return result
 
@@ -924,6 +924,6 @@ class NMLDB_Model(object):
         return os.path.join(self.get_waveforms_dir(), str(wave_id) + ".csv")
 
     def get_gif_path(self):
-        return os.path.join(self.get_morphology_dir(), "cell.gif")
+        return os.path.join(self.get_conversion_dir("gif"), "cell.gif")
 
 

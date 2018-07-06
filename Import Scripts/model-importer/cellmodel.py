@@ -326,12 +326,7 @@ class CellModel(NMLDB_Model):
 
             swc_points.append(swc_point)
 
-        try:
-            os.makedirs("morphology")
-        except:
-            pass
-
-        swc_file_path = "morphology/cell.swc"
+        swc_file_path = os.path.join(self.get_conversion_dir("swc"),"cell.swc")
 
         with open(swc_file_path, "w") as file:
             for point in swc_points:
@@ -343,13 +338,6 @@ class CellModel(NMLDB_Model):
                     point["z"] + " " +
                     point["radius"] + " " +
                     point["parent"] + "\n")
-
-        try:
-            os.makedirs(self.get_morphology_dir())
-        except:
-            pass
-
-        shutil.copy2(swc_file_path, self.get_morphology_dir())
 
         return os.path.abspath(swc_file_path)
 
@@ -449,10 +437,10 @@ class CellModel(NMLDB_Model):
         print("RENDERING... Check progress in Blender command line window...")
 
         # Wait till prev tasks and rendering is finished
-        bl.run_method('render_animation', destination_path=self.get_morphology_dir())
+        bl.run_method('render_animation', destination_path=self.get_conversion_dir("gif"))
 
         print("Creating GIF from rendered frames...")
-        self.make_gif_from_frames(self.get_morphology_dir())
+        self.make_gif_from_frames(self.get_conversion_dir("gif"))
 
     def save_morphometrics(self, h):
         swc = self.save_to_SWC(h)

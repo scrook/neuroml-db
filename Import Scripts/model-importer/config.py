@@ -3,7 +3,7 @@ import os, socket
 
 class Config(object):
     def __init__(self):
-        self.debug = 'NONE'  # One of 'NONE', 'MANAGER', 'RUNNER'
+        self.debug = 'MANAGER'  # One of 'NONE', 'MANAGER', 'RUNNER'
         self.cleanup_temp = True # use False to leave the files in temp folder (e.g. for debugging)
 
         self.cvode_active = 1
