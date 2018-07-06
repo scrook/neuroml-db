@@ -416,6 +416,11 @@ class CellModel(NMLDB_Model):
                 self.current.dur = 100
                 self.current.amp = self.cell_record.Rheobase_High * 1.5
 
+            self.use_optimal_dt_if_available()
+            h.steps_per_ms = 10
+            h.cvode_active(self.config.cvode_active)
+            h.dt = self.config.dt
+
             # No additional stim for intrinsic spikers
             print("Simulating current injection...")
             h.tstop = 100.0
@@ -434,12 +439,16 @@ class CellModel(NMLDB_Model):
         bl.enqueue_method('color_by_unique_materials')
         bl.enqueue_method('orbit_camera_around_model')
 
+        # Remove previous blend file
+        os.system("rm " + os.path.join(self.get_conversion_dir("Blender"), "*.blend"))
+
         bl.run_method('save_scene',os.path.join(self.get_conversion_dir("Blender"),"cell.blend"))
+
 
         print("RENDERING... Check progress in Blender command line window...")
 
         # Wait till prev tasks and rendering is finished
-        bl.run_method('render_animation', destination_file_path=self.get_conversion_dir("gif"))
+        bl.run_method('render_animation', self.get_conversion_dir("gif"))
 
         print("Creating GIF from rendered frames...")
         self.make_gif_from_frames(self.get_conversion_dir("gif"))
