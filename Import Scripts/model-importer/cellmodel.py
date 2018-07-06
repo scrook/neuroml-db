@@ -414,7 +414,7 @@ class CellModel(NMLDB_Model):
             if not self.cell_record.Is_Intrinsically_Spiking:
                 self.current.delay = 0
                 self.current.dur = 100
-                self.current.amp = self.cell_record.Threshold_Current_High
+                self.current.amp = self.cell_record.Rheobase_High * 1.5
 
             # No additional stim for intrinsic spikers
             print("Simulating current injection...")
@@ -432,12 +432,14 @@ class CellModel(NMLDB_Model):
         bl.enqueue_method('link_objects')
         bl.enqueue_method('show_full_scene')
         bl.enqueue_method('color_by_unique_materials')
-        bl.run_method('orbit_camera_around_model')
+        bl.enqueue_method('orbit_camera_around_model')
+
+        bl.run_method('save_scene',os.path.join(self.get_conversion_dir("Blender"),"cell.blend"))
 
         print("RENDERING... Check progress in Blender command line window...")
 
         # Wait till prev tasks and rendering is finished
-        bl.run_method('render_animation', destination_path=self.get_conversion_dir("gif"))
+        bl.run_method('render_animation', destination_file_path=self.get_conversion_dir("gif"))
 
         print("Creating GIF from rendered frames...")
         self.make_gif_from_frames(self.get_conversion_dir("gif"))
