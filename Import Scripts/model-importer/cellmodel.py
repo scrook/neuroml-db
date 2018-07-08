@@ -410,8 +410,8 @@ class CellModel(NMLDB_Model):
 
         # Skip simulation if no basic properties are present
         if self.cell_record.Is_Intrinsically_Spiking is not None:
-            # Inject continuous threshold current into non-intrinsic-spikers
-            if not self.cell_record.Is_Intrinsically_Spiking:
+            # Inject continuous above rheobase current
+            if self.cell_record.Rheobase_High is not None:
                 self.current.delay = 0
                 self.current.dur = 100
                 self.current.amp = self.cell_record.Rheobase_High * 1.5
