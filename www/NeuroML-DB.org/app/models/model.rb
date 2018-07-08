@@ -371,7 +371,7 @@ class Model < ActiveRecord::Base
     if records.rows.length > 0
       model_id = records.first()["Model_ID"]
 
-      file = "/var/www/NeuroMLmodels/"+model_id+"/morphology/cell.gif"
+      file = "/var/www/NeuroMLmodels/"+model_id+"/conversions/gif/cell.gif"
       if File.exist?(file)
         return file
       else
@@ -469,7 +469,7 @@ class Model < ActiveRecord::Base
   end
 
   def self.GetModelVersions(modelID)
-    result = []
+    result = ['NeuroML']
     subfolders = Dir['/var/www/NeuroMLmodels/' + modelID + '/conversions/*']
 
     subfolders.each do |folder|

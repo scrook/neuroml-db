@@ -141,13 +141,6 @@
       <td class="description">
 
         <div id="download-buttons">
-          <a id="downloadButtonA" href="/GetModelZip?modelID=<%= @model_id %>&version=NeuroML">
-            <div id="downloadButton">
-              <div class="enlarge ui-icon ui-icon-arrowthickstop-1-s" title="Download"></div>
-              Download NeuroML Version
-            </div>
-          </a>
-
           <% @versions.each do |version| %>
           <a id="downloadButtonB" href="/GetModelZip?modelID=<%= @model_id %>&version=<%= version %>">
             <div id="downloadButton">

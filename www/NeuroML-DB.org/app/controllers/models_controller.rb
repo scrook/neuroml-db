@@ -94,31 +94,27 @@ class ModelsController < ApplicationController
     modelID =params[:modelID].to_s
     version =params[:version].to_s
 
+    modelID = sanitize(modelID)
+    version = sanitize(version)
+
     model = Model.find_by_Model_ID(modelID)
 
-    if !model.nil? && (['NeuroML', 'NEURON'].include? version)
-      send_data(File.read(Model.GetModelZipFilePath(modelID, version)), :type => 'application/zip', :filename => modelID + '.zip')
+    if !model.nil? && (Model.GetModelVersions(modelID).include? version)
+      send_data(File.read(Model.GetModelZipFilePath(modelID, version)), :type => 'application/zip', :filename => modelID + '-' + version + '.zip')
     else
       raise "Model not found"
     end
 
   end
 
-  def GetModelGif
-
-    modelID = params[:modelID].to_s
-    gifPath = '/var/www/NeuroMLmodels/' + modelID + '/morphology/model.gif'
-
-    send_data(File.read(gifPath), :type => 'image/gif')
-
-  end
-
-  def GetChannelLEMSZip
-
-    modelID =params[:modelID].to_s
-
-    send_data(File.read(Model.GetChannelLEMSZipFilePath(modelID)), :type => 'application/zip', :filename => modelID + '.zip')
-
+  def sanitize(filename)
+    # Bad as defined by wikipedia: https://en.wikipedia.org/wiki/Filename#Reserved_characters_and_words
+    # Also have to escape the backslash
+    bad_chars = [ '/', '\\', '?', '%', '*', ':', '|', '"', '<', '>', '.', ' ' ]
+    bad_chars.each do |bad_char|
+      filename.gsub!(bad_char, '_')
+    end
+    filename
   end
 
 
