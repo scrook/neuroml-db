@@ -1,0 +1,38 @@
+<style>
+  .properties { }
+  #model-properties-container { position: relative; }
+  #property-table .property-name { text-align: right; padding-right: 15px; vertical-align: bottom; }
+  #property-table thead td { text-align: left; color: #1376c4; font-weight: bold; }
+  #property-table thead td:first-child { text-align: right; padding-right: 15px;  }
+
+</style>
+<tr class="properties">
+  <td class="keyword" style="vertical-align: top;">Channel Properties:</td>
+  <td class="description">
+    <div id="model-properties-container">
+      <div id="property-table">
+        <table>
+          <thead>
+          <tr>
+            <td>Property</td>
+            <td>Value</td>
+          </tr>
+          </thead>
+          <tbody>
+            <td class="property-name">Testing Temperature</td>
+            <td class="property-value">36 &#176;C</td>
+          </tr>
+          <tr>
+            <td class="property-name">State Equations</td>
+            <td class="property-value"><%= display_field(@model, "Equations", "%d", "N/A") %></td>
+          </tr>
+          <tr>
+            <td class="property-name">Stability Interval</td>
+            <td class="property-value">[<%= display_field(@model, "Stability_Range_Low_Corr", "%s", "N/A") %>, <%= display_field(@model, "Stability_Range_High_Corr", "%s", "N/A") %>] <%= @type == "Cell" ? "nA" : "mV" %></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </td>
+</tr>

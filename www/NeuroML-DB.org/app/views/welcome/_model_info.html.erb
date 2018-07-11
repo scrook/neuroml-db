@@ -177,7 +177,7 @@
                   </td>
 
                   <td><a style="text-decoration: none" target="_blank"
-                         href="/render_xml_file?modelID=<%= record["ModelID"] %>">(&nbsp;view&nbsp;XML&nbsp;)</a></td>
+                         href="/render_xml_file?modelID=<%= record["ModelID"] %>">(&nbsp;view&nbsp;NeuroML&nbsp;)</a></td>
                 </tr>
 
             <% end %>
@@ -209,7 +209,7 @@
 
         <%= render 'model_morphology' %>
 
-        <%= render 'model_properties' %>
+        <%= render 'cell_properties' %>
 
         <tr>
           <td class="keyword">
@@ -245,7 +245,7 @@
 
         <%= render 'model_plot' %>
 
-        <%= render 'model_properties' %>
+        <%= render 'channel_properties' %>
 
         <tr>
           <td class="keyword">
