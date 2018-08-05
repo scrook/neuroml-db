@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2  https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta3.xsd" id="network_PyloricPacemakerNetwork">
+
+    <notes>
+
+Network structure (NeuroML 2beta3) for project: PyloricPacemakerNetwork saved with neuroConstruct v1.7.1 on: 14:00:32, 17-Mar-14
+
+Cell Group: AB_PD contains 1 cells
+Cell Group: PY contains 1 cells
+Cell Group: LP contains 1 cells
+
+Network connection: PD_LP contains 1 individual synaptic connections
+Network connection: PY_LP contains 1 individual synaptic connections
+Network connection: AB_PY contains 1 individual synaptic connections
+Network connection: AB_LP contains 1 individual synaptic connections
+Network connection: LP_PY contains 1 individual synaptic connections
+Network connection: LP_ABPD contains 1 individual synaptic connections
+Network connection: PD_PY contains 1 individual synaptic connections
+
+
+    </notes>
+
+
+    <include href="CaPool_STG.nml"/>
+    <include href="CaS_STG.channel.nml"/>
+    <include href="CaT_STG.channel.nml"/>
+    <include href="H_STG.channel.nml"/>
+    <include href="KA_STG.channel.nml"/>
+    <include href="KCa_STG.channel.nml"/>
+    <include href="Kd_STG.channel.nml"/>
+    <include href="LeakConductance.channel.nml"/>
+    <include href="Na_STG.channel.nml"/>
+    
+    <include href="AB_PD_2.cell.nml"/>
+    <include href="LP_3.cell.nml"/>
+    <include href="PY_1.cell.nml"/>
+    
+    <include href="Synapses.nml"/>
+    
+    <network id="network_PyloricPacemakerNetwork" type="networkWithTemperature" temperature="10.0 degC">
+
+        
+        <population id="AB_PD" component="AB_PD" size="1" />
+        <population id="PY" component="PY" size="1"/>
+        <population id="LP" component="LP" size="1"/>
+
+
+        <continuousProjection id ="proj1" presynapticPopulation="AB_PD" postsynapticPopulation="LP">
+            <continuousConnection id="0" preCell="0" postCell="0" preComponent="silent" postComponent="Glu_10nS"/>
+        </continuousProjection>
+        
+        <continuousProjection id ="proj2" presynapticPopulation="AB_PD" postsynapticPopulation="LP">
+            <continuousConnection id="0" preCell="0" postCell="0" preComponent="silent" postComponent="Ach_100nS"/>
+        </continuousProjection>
+
+        <continuousProjection id ="proj3" presynapticPopulation="LP" postsynapticPopulation="AB_PD">
+            <continuousConnection id="0" preCell="0" postCell="0" preComponent="silent" postComponent="Glu_30nS"/>
+        </continuousProjection>
+
+        <continuousProjection id ="proj4" presynapticPopulation="AB_PD" postsynapticPopulation="PY">
+            <continuousConnection id="0" preCell="0" postCell="0" preComponent="silent" postComponent="Glu_10nS"/>
+        </continuousProjection>
+        
+        <continuousProjection id ="proj5" presynapticPopulation="AB_PD" postsynapticPopulation="PY">
+            <continuousConnection id="0" preCell="0" postCell="0" preComponent="silent" postComponent="Ach_3nS"/>
+        </continuousProjection>
+        
+        <continuousProjection id ="proj6" presynapticPopulation="LP" postsynapticPopulation="PY">
+            <continuousConnection id="0" preCell="0" postCell="0" preComponent="silent" postComponent="Glu_1nS"/>
+        </continuousProjection>
+        
+        <continuousProjection id ="proj7" presynapticPopulation="PY" postsynapticPopulation="LP">
+            <continuousConnection id="0" preCell="0" postCell="0" preComponent="silent" postComponent="Glu_1nS"/>
+        </continuousProjection>
+
+    </network>
+
+</neuroml>

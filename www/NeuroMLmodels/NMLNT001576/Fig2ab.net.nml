@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2  https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta3.xsd" id="network_PyloricPacemakerNetwork">
+
+    <notes>
+Figure 2
+    </notes>
+
+
+    <include href="CaPool_STG.nml"/>
+    <include href="CaS_STG.channel.nml"/>
+    <include href="CaT_STG.channel.nml"/>
+    <include href="H_STG.channel.nml"/>
+    <include href="KA_STG.channel.nml"/>
+    <include href="KCa_STG.channel.nml"/>
+    <include href="Kd_STG.channel.nml"/>
+    <include href="LeakConductance.channel.nml"/>
+    <include href="Na_STG.channel.nml"/>
+    
+    <include href="Synapses.nml"/>
+    
+    <pulseGenerator id="pulseGen0" delay="0s" duration="0.1s" amplitude="-0.2nA"/>
+    <pulseGenerator id="pulseGen1" delay="0s" duration="1s" amplitude="-0.03nA"/>
+    <pulseGenerator id="pulseGen2" delay="4s" duration="1s" amplitude="-0.2nA"/>
+    
+    <network id="network_PyloricPacemakerNetwork" type="networkWithTemperature" temperature="10.0 degC">
+
+        <population id="AB_PD" component="AB_PD" size="1" />
+        <population id="LP" component="LP" size="5" />
+
+        <continuousProjection id ="proj1" presynapticPopulation="AB_PD" postsynapticPopulation="LP">
+            <continuousConnection id="0" preCell="0" postCell="0" preComponent="silent" postComponent="Glu_0nS"/>
+        </continuousProjection>
+        <continuousProjection id ="proj2" presynapticPopulation="AB_PD" postsynapticPopulation="LP">
+            <continuousConnection id="0" preCell="0" postCell="1" preComponent="silent" postComponent="Glu_3nS"/>
+        </continuousProjection>
+        <continuousProjection id ="proj3" presynapticPopulation="AB_PD" postsynapticPopulation="LP">
+            <continuousConnection id="0" preCell="0" postCell="2" preComponent="silent" postComponent="Glu_10nS"/>
+        </continuousProjection>
+        <continuousProjection id ="proj4" presynapticPopulation="AB_PD" postsynapticPopulation="LP">
+            <continuousConnection id="0" preCell="0" postCell="3" preComponent="silent" postComponent="Glu_30nS"/>
+        </continuousProjection>
+        <continuousProjection id ="proj5" presynapticPopulation="AB_PD" postsynapticPopulation="LP">
+            <continuousConnection id="0" preCell="0" postCell="4" preComponent="silent" postComponent="Glu_100nS"/>
+        </continuousProjection>
+
+        <explicitInput target="AB_PD[0]" input="pulseGen0"/>
+        <explicitInput target="AB_PD[0]" input="pulseGen1"/>
+        <explicitInput target="AB_PD[0]" input="pulseGen2"/>
+
+    </network>
+
+</neuroml>
