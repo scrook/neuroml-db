@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2  http://neuroml.svn.sourceforge.net/viewvc/neuroml/NeuroML2/Schemas/NeuroML2/NeuroML_v2alpha.xsd"
+    id="izIntegrator">
+
+    <generalizedIzhikevichCell id="izIntegrator" v0 = "-60mV" thresh = "30mV" a ="0.02" b = "-0.1" c = "-55.0" d = "6.0" X="0.04" Y="4.1" Z="108"/>
+
+    <ComponentType name="generalizedIzhikevichCell"
+        extends="baseCellMembPot"
+        description="Defines a 'generalized' izhikevichCell model, to cope for slightly altered definition of model in G and L here: http://izhikevich.org/publications/figure1.m">
+
+        <Parameter name="v0" dimension="voltage"/>
+        <Parameter name="a" dimension="none"/>
+        <Parameter name="b" dimension="none"/>
+        <Parameter name="c" dimension="none"/>
+        <Parameter name="d" dimension="none"/>
+
+        <Parameter name="X" dimension="none"/>     <!-- New parameter!! -->
+        <Parameter name="Y" dimension="none"/>     <!-- New parameter!! -->
+        <Parameter name="Z" dimension="none"/>     <!-- New parameter!! -->
+
+        <Parameter name="thresh" dimension="voltage"/>
+
+        <!-- These are needed to ensure a, b, c, d, U & I remain dimensionless... -->
+        <Constant name="MSEC" dimension="time" value="1ms"/>
+        <Constant name="MVOLT" dimension="voltage" value="1mV"/>
+
+        <Attachments name="synapses" type="basePointCurrentDL"/>
+
+        <Exposure name="U" dimension="none"/>
+
+        <Dynamics>
+
+            <StateVariable name="v" dimension="voltage" exposure="v"/>
+            <StateVariable name="U" dimension="none" exposure="U"/>
+
+            <DerivedVariable name="ISyn" dimension="none" select="synapses[*]/I" reduce="add" />
+
+            <TimeDerivative variable="v" value="(X * v^2 / MVOLT + Y * v + (Z - U + ISyn) * MVOLT)/MSEC"/>
+            <TimeDerivative variable="U" value="a * (b * v / MVOLT - U) / MSEC"/>
+
+
+            <OnStart>
+                <StateAssignment variable="v" value="v0"/>
+                <StateAssignment variable="U" value="v0 * b / MVOLT"/>
+            </OnStart>
+
+            <OnCondition test="v .gt. thresh">
+                <StateAssignment variable="v" value="c * MVOLT"/>
+                <StateAssignment variable="U" value="U + d"/>
+                <EventOut port="spike"/>
+            </OnCondition>
+
+        </Dynamics>
+
+    </ComponentType>
+
+</neuroml>

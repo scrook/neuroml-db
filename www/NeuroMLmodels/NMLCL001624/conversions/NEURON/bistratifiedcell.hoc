@@ -1,0 +1,530 @@
+// Cell: bistratifiedcell
+/*
+{
+  "id" : "bistratifiedcell",
+  "sections" : [ {
+    "name" : "soma_0",
+    "id" : "soma_0",
+    "points3d" : [ "0.0, 0.0, 0.0, 10.0", "0.0, 10.0, 0.0, 10.0", "0.0, 20.0, 0.0, 10.0" ]
+  }, {
+    "name" : "dend_13",
+    "id" : "dend_13",
+    "points3d" : [ "0.0, 0.0, 0.0, 2.0", "19.4709, -46.053, 0.0, 2.0", "38.9419, -92.1061, 0.0, 2.0" ],
+    "parent" : "soma_0",
+    "fractionAlong" : 0.0,
+    "numberInternalDivisions" : 3
+  }, {
+    "name" : "dend_10",
+    "id" : "dend_10",
+    "points3d" : [ "0.0, 0.0, 0.0, 2.0", "-19.4709, -46.0531, 0.0, 2.0", "-38.9418, -92.1061, 0.0, 2.0" ],
+    "parent" : "soma_0",
+    "fractionAlong" : 0.0,
+    "numberInternalDivisions" : 3
+  }, {
+    "name" : "dend_5",
+    "id" : "dend_5",
+    "points3d" : [ "0.0, 20.0, 0.0, 4.0", "-19.4709, 66.053, 0.0, 4.0", "-38.9418, 112.106, 0.0, 4.0" ],
+    "parent" : "soma_0",
+    "fractionAlong" : 1.0
+  }, {
+    "name" : "dend_0",
+    "id" : "dend_0",
+    "points3d" : [ "0.0, 20.0, 0.0, 4.0", "19.4709, 66.053, 0.0, 4.0", "38.9418, 112.106, 0.0, 4.0" ],
+    "parent" : "soma_0",
+    "fractionAlong" : 1.0
+  }, {
+    "name" : "dend_14",
+    "id" : "dend_14",
+    "points3d" : [ "38.9419, -92.1061, 0.0, 1.5", "58.4128, -138.159, 0.0, 1.5", "77.8837, -184.212, 0.0, 1.5" ],
+    "parent" : "dend_13",
+    "fractionAlong" : 1.0,
+    "numberInternalDivisions" : 3
+  }, {
+    "name" : "dend_11",
+    "id" : "dend_11",
+    "points3d" : [ "-38.9418, -92.1061, 0.0, 1.5", "-58.4128, -138.159, 0.0, 1.5", "-77.8837, -184.212, 0.0, 1.5" ],
+    "parent" : "dend_10",
+    "fractionAlong" : 1.0,
+    "numberInternalDivisions" : 3
+  }, {
+    "name" : "dend_6",
+    "id" : "dend_6",
+    "points3d" : [ "-38.9418, 112.106, 0.0, 3.0", "-58.4128, 158.159, 0.0, 3.0", "-77.8837, 204.212, 0.0, 3.0" ],
+    "parent" : "dend_5",
+    "fractionAlong" : 1.0,
+    "numberInternalDivisions" : 3
+  }, {
+    "name" : "dend_1",
+    "id" : "dend_1",
+    "points3d" : [ "38.9418, 112.106, 0.0, 3.0", "58.4128, 158.159, 0.0, 3.0", "77.8837, 204.212, 0.0, 3.0" ],
+    "parent" : "dend_0",
+    "fractionAlong" : 1.0,
+    "numberInternalDivisions" : 3
+  }, {
+    "name" : "dend_15",
+    "id" : "dend_15",
+    "points3d" : [ "77.8837, -184.212, 0.0, 1.0", "97.3546, -230.265, 0.0, 1.0", "116.826, -276.318, 0.0, 1.0" ],
+    "parent" : "dend_14",
+    "fractionAlong" : 1.0,
+    "numberInternalDivisions" : 3
+  }, {
+    "name" : "dend_12",
+    "id" : "dend_12",
+    "points3d" : [ "-77.8837, -184.212, 0.0, 1.0", "-97.3546, -230.265, 0.0, 1.0", "-116.826, -276.318, 0.0, 1.0" ],
+    "parent" : "dend_11",
+    "fractionAlong" : 1.0,
+    "numberInternalDivisions" : 3
+  }, {
+    "name" : "dend_7",
+    "id" : "dend_7",
+    "points3d" : [ "-77.8837, 204.212, 0.0, 2.0", "-116.826, 296.318, 0.0, 2.0", "-155.767, 388.424, 0.0, 2.0" ],
+    "parent" : "dend_6",
+    "fractionAlong" : 1.0,
+    "numberInternalDivisions" : 3
+  }, {
+    "name" : "dend_2",
+    "id" : "dend_2",
+    "points3d" : [ "77.8837, 204.212, 0.0, 2.0", "116.826, 296.318, 0.0, 2.0", "155.767, 388.424, 0.0, 2.0" ],
+    "parent" : "dend_1",
+    "fractionAlong" : 1.0,
+    "numberInternalDivisions" : 3
+  }, {
+    "name" : "dend_8",
+    "id" : "dend_8",
+    "points3d" : [ "-155.767, 388.424, 0.0, 1.5", "-175.238, 434.477, 0.0, 1.5", "-194.709, 480.531, 0.0, 1.5" ],
+    "parent" : "dend_7",
+    "fractionAlong" : 1.0,
+    "numberInternalDivisions" : 3
+  }, {
+    "name" : "dend_3",
+    "id" : "dend_3",
+    "points3d" : [ "155.767, 388.424, 0.0, 1.5", "175.238, 434.477, 0.0, 1.5", "194.709, 480.531, 0.0, 1.5" ],
+    "parent" : "dend_2",
+    "fractionAlong" : 1.0,
+    "numberInternalDivisions" : 3
+  }, {
+    "name" : "dend_9",
+    "id" : "dend_9",
+    "points3d" : [ "-194.709, 480.531, 0.0, 1.0", "-214.18, 526.584, 0.0, 1.0", "-233.651, 572.637, 0.0, 1.0" ],
+    "parent" : "dend_8",
+    "fractionAlong" : 1.0,
+    "numberInternalDivisions" : 3
+  }, {
+    "name" : "dend_4",
+    "id" : "dend_4",
+    "points3d" : [ "194.709, 480.531, 0.0, 1.0", "214.18, 526.584, 0.0, 1.0", "233.651, 572.637, 0.0, 1.0" ],
+    "parent" : "dend_3",
+    "fractionAlong" : 1.0,
+    "numberInternalDivisions" : 3
+  } ],
+  "groups" : [ {
+    "name" : "all",
+    "sections" : [ "soma_0", "soma_0", "dend_13", "dend_13", "dend_10", "dend_10", "dend_5", "dend_5", "dend_0", "dend_0", "dend_14", "dend_14", "dend_11", "dend_11", "dend_6", "dend_6", "dend_1", "dend_1", "dend_15", "dend_15", "dend_12", "dend_12", "dend_7", "dend_7", "dend_2", "dend_2", "dend_8", "dend_8", "dend_3", "dend_3", "dend_9", "dend_9", "dend_4", "dend_4" ]
+  } ],
+  "specificCapacitance" : [ {
+    "group" : "all",
+    "value" : "1.4000001"
+  } ],
+  "initMembPotential" : [ {
+    "group" : "all",
+    "value" : "-67.0"
+  } ],
+  "resistivity" : [ {
+    "group" : "all",
+    "value" : "100.0"
+  } ],
+  "channelDensity" : [ {
+    "id" : "KCaS_all",
+    "ionChannel" : "KCaS",
+    "ion" : "k",
+    "group" : "all",
+    "condDens" : "7.0E-7",
+    "erev" : "-90.0"
+  }, {
+    "id" : "Kdrfast_all",
+    "ionChannel" : "Kdrfast",
+    "ion" : "k",
+    "group" : "all",
+    "condDens" : "0.015999999",
+    "erev" : "-90.0"
+  }, {
+    "id" : "KvA_all",
+    "ionChannel" : "KvA",
+    "ion" : "k",
+    "group" : "all",
+    "condDens" : "5.0E-5",
+    "erev" : "-90.0"
+  }, {
+    "id" : "KvCaB_all",
+    "ionChannel" : "KvCaB",
+    "ion" : "k",
+    "group" : "all",
+    "condDens" : "7.0E-8",
+    "erev" : "-90.0"
+  }, {
+    "id" : "Navbis_all",
+    "ionChannel" : "Navbis",
+    "ion" : "na",
+    "group" : "all",
+    "condDens" : "0.07",
+    "erev" : "55.0"
+  }, {
+    "id" : "leak_all",
+    "ionChannel" : "leak_chan",
+    "ion" : "non_specific",
+    "group" : "all",
+    "condDens" : "9.0008994E-5",
+    "erev" : "-67.0"
+  }, {
+    "id" : "CavN_all",
+    "ionChannel" : "CavN",
+    "ion" : "ca",
+    "group" : "all",
+    "condDens" : "4.0E-4",
+    "erev" : "170.69"
+  } ],
+  "species" : [ ]
+}
+*/
+
+load_file("subiter.hoc")
+
+begintemplate bistratifiedcell
+
+public init, topol, basic_shape, subsets, geom, memb
+public x, y, z, position
+
+
+//  Some methods for referencing the cells
+
+public toString, netInfo, set_initial_v, set_initial_ion_properties, synlist
+
+
+// Section: soma_0, id: soma_0, parent: $s.parent
+create soma_0
+public soma_0
+// Section: dend_13, id: dend_13, parent: soma_0
+create dend_13
+public dend_13
+// Section: dend_10, id: dend_10, parent: soma_0
+create dend_10
+public dend_10
+// Section: dend_5, id: dend_5, parent: soma_0
+create dend_5
+public dend_5
+// Section: dend_0, id: dend_0, parent: soma_0
+create dend_0
+public dend_0
+// Section: dend_14, id: dend_14, parent: dend_13
+create dend_14
+public dend_14
+// Section: dend_11, id: dend_11, parent: dend_10
+create dend_11
+public dend_11
+// Section: dend_6, id: dend_6, parent: dend_5
+create dend_6
+public dend_6
+// Section: dend_1, id: dend_1, parent: dend_0
+create dend_1
+public dend_1
+// Section: dend_15, id: dend_15, parent: dend_14
+create dend_15
+public dend_15
+// Section: dend_12, id: dend_12, parent: dend_11
+create dend_12
+public dend_12
+// Section: dend_7, id: dend_7, parent: dend_6
+create dend_7
+public dend_7
+// Section: dend_2, id: dend_2, parent: dend_1
+create dend_2
+public dend_2
+// Section: dend_8, id: dend_8, parent: dend_7
+create dend_8
+public dend_8
+// Section: dend_3, id: dend_3, parent: dend_2
+create dend_3
+public dend_3
+// Section: dend_9, id: dend_9, parent: dend_8
+create dend_9
+public dend_9
+// Section: dend_4, id: dend_4, parent: dend_3
+create dend_4
+public dend_4
+
+// Group: {name=all, sections=[soma_0, soma_0, dend_13, dend_13, dend_10, dend_10, dend_5, dend_5, dend_0, dend_0, dend_14, dend_14, dend_11, dend_11, dend_6, dend_6, dend_1, dend_1, dend_15, dend_15, dend_12, dend_12, dend_7, dend_7, dend_2, dend_2, dend_8, dend_8, dend_3, dend_3, dend_9, dend_9, dend_4, dend_4]}
+objref all
+
+objref synlist
+
+proc init() {
+    topol()
+    geom_nseg()
+    subsets()
+    subsets_inhomogeneous()
+    biophys()
+    biophys_inhomogeneous()
+    synlist = new List()
+    x = y = z = 0
+
+}
+
+proc set_initial_v() {
+    // Taken from the initMembPotential value
+    forsec all v = -67.0  // units: mV
+}
+
+
+proc set_initial_ion_properties() {
+    // From species
+}
+
+
+proc topol() {
+    basic_shape()
+    connect dend_13(0), soma_0(0.0)
+    connect dend_10(0), soma_0(0.0)
+    connect dend_5(0), soma_0(1.0)
+    connect dend_0(0), soma_0(1.0)
+    connect dend_14(0), dend_13(1.0)
+    connect dend_11(0), dend_10(1.0)
+    connect dend_6(0), dend_5(1.0)
+    connect dend_1(0), dend_0(1.0)
+    connect dend_15(0), dend_14(1.0)
+    connect dend_12(0), dend_11(1.0)
+    connect dend_7(0), dend_6(1.0)
+    connect dend_2(0), dend_1(1.0)
+    connect dend_8(0), dend_7(1.0)
+    connect dend_3(0), dend_2(1.0)
+    connect dend_9(0), dend_8(1.0)
+    connect dend_4(0), dend_3(1.0)
+
+}
+
+
+proc basic_shape() {
+
+    // Section: soma_0, id: soma_0, parent: $s.parent (entry count 0/100)
+    soma_0 { pt3dclear() }
+    soma_0 { pt3dadd( 0.0, 0.0, 0.0, 10.0 ) }
+    soma_0 { pt3dadd( 0.0, 10.0, 0.0, 10.0 ) }
+    soma_0 { pt3dadd( 0.0, 20.0, 0.0, 10.0 ) }
+    // Section: dend_13, id: dend_13, parent: soma_0 (entry count 3/100)
+    dend_13 { pt3dclear() }
+    dend_13 { pt3dadd( 0.0, 0.0, 0.0, 2.0 ) }
+    dend_13 { pt3dadd( 19.4709, -46.053, 0.0, 2.0 ) }
+    dend_13 { pt3dadd( 38.9419, -92.1061, 0.0, 2.0 ) }
+    // Section: dend_10, id: dend_10, parent: soma_0 (entry count 6/100)
+    dend_10 { pt3dclear() }
+    dend_10 { pt3dadd( 0.0, 0.0, 0.0, 2.0 ) }
+    dend_10 { pt3dadd( -19.4709, -46.0531, 0.0, 2.0 ) }
+    dend_10 { pt3dadd( -38.9418, -92.1061, 0.0, 2.0 ) }
+    // Section: dend_5, id: dend_5, parent: soma_0 (entry count 9/100)
+    dend_5 { pt3dclear() }
+    dend_5 { pt3dadd( 0.0, 20.0, 0.0, 4.0 ) }
+    dend_5 { pt3dadd( -19.4709, 66.053, 0.0, 4.0 ) }
+    dend_5 { pt3dadd( -38.9418, 112.106, 0.0, 4.0 ) }
+    // Section: dend_0, id: dend_0, parent: soma_0 (entry count 12/100)
+    dend_0 { pt3dclear() }
+    dend_0 { pt3dadd( 0.0, 20.0, 0.0, 4.0 ) }
+    dend_0 { pt3dadd( 19.4709, 66.053, 0.0, 4.0 ) }
+    dend_0 { pt3dadd( 38.9418, 112.106, 0.0, 4.0 ) }
+    // Section: dend_14, id: dend_14, parent: dend_13 (entry count 15/100)
+    dend_14 { pt3dclear() }
+    dend_14 { pt3dadd( 38.9419, -92.1061, 0.0, 1.5 ) }
+    dend_14 { pt3dadd( 58.4128, -138.159, 0.0, 1.5 ) }
+    dend_14 { pt3dadd( 77.8837, -184.212, 0.0, 1.5 ) }
+    // Section: dend_11, id: dend_11, parent: dend_10 (entry count 18/100)
+    dend_11 { pt3dclear() }
+    dend_11 { pt3dadd( -38.9418, -92.1061, 0.0, 1.5 ) }
+    dend_11 { pt3dadd( -58.4128, -138.159, 0.0, 1.5 ) }
+    dend_11 { pt3dadd( -77.8837, -184.212, 0.0, 1.5 ) }
+    // Section: dend_6, id: dend_6, parent: dend_5 (entry count 21/100)
+    dend_6 { pt3dclear() }
+    dend_6 { pt3dadd( -38.9418, 112.106, 0.0, 3.0 ) }
+    dend_6 { pt3dadd( -58.4128, 158.159, 0.0, 3.0 ) }
+    dend_6 { pt3dadd( -77.8837, 204.212, 0.0, 3.0 ) }
+    // Section: dend_1, id: dend_1, parent: dend_0 (entry count 24/100)
+    dend_1 { pt3dclear() }
+    dend_1 { pt3dadd( 38.9418, 112.106, 0.0, 3.0 ) }
+    dend_1 { pt3dadd( 58.4128, 158.159, 0.0, 3.0 ) }
+    dend_1 { pt3dadd( 77.8837, 204.212, 0.0, 3.0 ) }
+    // Section: dend_15, id: dend_15, parent: dend_14 (entry count 27/100)
+    dend_15 { pt3dclear() }
+    dend_15 { pt3dadd( 77.8837, -184.212, 0.0, 1.0 ) }
+    dend_15 { pt3dadd( 97.3546, -230.265, 0.0, 1.0 ) }
+    dend_15 { pt3dadd( 116.826, -276.318, 0.0, 1.0 ) }
+    // Section: dend_12, id: dend_12, parent: dend_11 (entry count 30/100)
+    dend_12 { pt3dclear() }
+    dend_12 { pt3dadd( -77.8837, -184.212, 0.0, 1.0 ) }
+    dend_12 { pt3dadd( -97.3546, -230.265, 0.0, 1.0 ) }
+    dend_12 { pt3dadd( -116.826, -276.318, 0.0, 1.0 ) }
+    // Section: dend_7, id: dend_7, parent: dend_6 (entry count 33/100)
+    dend_7 { pt3dclear() }
+    dend_7 { pt3dadd( -77.8837, 204.212, 0.0, 2.0 ) }
+    dend_7 { pt3dadd( -116.826, 296.318, 0.0, 2.0 ) }
+    dend_7 { pt3dadd( -155.767, 388.424, 0.0, 2.0 ) }
+    // Section: dend_2, id: dend_2, parent: dend_1 (entry count 36/100)
+    dend_2 { pt3dclear() }
+    dend_2 { pt3dadd( 77.8837, 204.212, 0.0, 2.0 ) }
+    dend_2 { pt3dadd( 116.826, 296.318, 0.0, 2.0 ) }
+    dend_2 { pt3dadd( 155.767, 388.424, 0.0, 2.0 ) }
+    // Section: dend_8, id: dend_8, parent: dend_7 (entry count 39/100)
+    dend_8 { pt3dclear() }
+    dend_8 { pt3dadd( -155.767, 388.424, 0.0, 1.5 ) }
+    dend_8 { pt3dadd( -175.238, 434.477, 0.0, 1.5 ) }
+    dend_8 { pt3dadd( -194.709, 480.531, 0.0, 1.5 ) }
+    // Section: dend_3, id: dend_3, parent: dend_2 (entry count 42/100)
+    dend_3 { pt3dclear() }
+    dend_3 { pt3dadd( 155.767, 388.424, 0.0, 1.5 ) }
+    dend_3 { pt3dadd( 175.238, 434.477, 0.0, 1.5 ) }
+    dend_3 { pt3dadd( 194.709, 480.531, 0.0, 1.5 ) }
+    // Section: dend_9, id: dend_9, parent: dend_8 (entry count 45/100)
+    dend_9 { pt3dclear() }
+    dend_9 { pt3dadd( -194.709, 480.531, 0.0, 1.0 ) }
+    dend_9 { pt3dadd( -214.18, 526.584, 0.0, 1.0 ) }
+    dend_9 { pt3dadd( -233.651, 572.637, 0.0, 1.0 ) }
+    // Section: dend_4, id: dend_4, parent: dend_3 (entry count 48/100)
+    dend_4 { pt3dclear() }
+    dend_4 { pt3dadd( 194.709, 480.531, 0.0, 1.0 ) }
+    dend_4 { pt3dadd( 214.18, 526.584, 0.0, 1.0 ) }
+    dend_4 { pt3dadd( 233.651, 572.637, 0.0, 1.0 ) }
+
+}
+
+
+proc subsets() { local i
+
+    // Group: {name=all, sections=[soma_0, soma_0, dend_13, dend_13, dend_10, dend_10, dend_5, dend_5, dend_0, dend_0, dend_14, dend_14, dend_11, dend_11, dend_6, dend_6, dend_1, dend_1, dend_15, dend_15, dend_12, dend_12, dend_7, dend_7, dend_2, dend_2, dend_8, dend_8, dend_3, dend_3, dend_9, dend_9, dend_4, dend_4]}
+    all = new SectionList()
+    soma_0 all.append()
+    soma_0 all.append()
+    dend_13 all.append()
+    dend_13 all.append()
+    dend_10 all.append()
+    dend_10 all.append()
+    dend_5 all.append()
+    dend_5 all.append()
+    dend_0 all.append()
+    dend_0 all.append()
+    dend_14 all.append()
+    dend_14 all.append()
+    dend_11 all.append()
+    dend_11 all.append()
+    dend_6 all.append()
+    dend_6 all.append()
+    dend_1 all.append()
+    dend_1 all.append()
+    dend_15 all.append()
+    dend_15 all.append()
+    dend_12 all.append()
+    dend_12 all.append()
+    dend_7 all.append()
+    dend_7 all.append()
+    dend_2 all.append()
+    dend_2 all.append()
+    dend_8 all.append()
+    dend_8 all.append()
+    dend_3 all.append()
+    dend_3 all.append()
+    dend_9 all.append()
+    dend_9 all.append()
+    dend_4 all.append()
+    dend_4 all.append()
+
+}
+
+
+proc subsets_inhomogeneous() {
+}
+
+proc biophys() {
+
+    // Specific capacitance
+    forsec all cm = 1.4000001  // units: uF/cm2
+
+    // Specific axial resistance/resistivity
+    forsec all Ra = 100.0  // units: ohm cm
+
+    // Channel densities
+    forsec all {
+        insert KCaS
+        gmax_KCaS = 7.0E-7  // units: S cm-2
+        ek = -90.0  // units: mV
+    }
+    forsec all {
+        insert Kdrfast
+        gmax_Kdrfast = 0.015999999  // units: S cm-2
+        ek = -90.0  // units: mV
+    }
+    forsec all {
+        insert KvA
+        gmax_KvA = 5.0E-5  // units: S cm-2
+        ek = -90.0  // units: mV
+    }
+    forsec all {
+        insert KvCaB
+        gmax_KvCaB = 7.0E-8  // units: S cm-2
+        ek = -90.0  // units: mV
+    }
+    forsec all {
+        insert Navbis
+        gmax_Navbis = 0.07  // units: S cm-2
+        ena = 55.0  // units: mV
+    }
+    forsec all {
+        insert leak_chan
+        gmax_leak_chan = 9.0008994E-5  // units: S cm-2
+        e_leak_chan = -67.0  // units: mV
+    }
+    forsec all {
+        insert CavN
+        gmax_CavN = 4.0E-4  // units: S cm-2
+        eca = 170.69  // units: mV
+    }
+
+    // Concentration models for species
+
+}
+
+func H() { // Heaviside function
+    if ($1>=0) return 1
+    if ($1==0) return 0.5
+    return 0
+}
+
+proc biophys_inhomogeneous() {
+}
+
+proc geom_nseg() {
+    // All sections not mentioned here have nseg = 1
+    dend_13 nseg = 3
+    dend_10 nseg = 3
+    dend_14 nseg = 3
+    dend_11 nseg = 3
+    dend_6 nseg = 3
+    dend_1 nseg = 3
+    dend_15 nseg = 3
+    dend_12 nseg = 3
+    dend_7 nseg = 3
+    dend_2 nseg = 3
+    dend_8 nseg = 3
+    dend_3 nseg = 3
+    dend_9 nseg = 3
+    dend_4 nseg = 3
+}
+
+
+proc position() { local i
+    forsec all {
+        for i = 0, n3d()-1 {
+            pt3dchange(i, $1+x3d(i), $2+y3d(i), $3+z3d(i), diam3d(i))
+        }
+    }
+    x = $1  y = $2  z = $3
+}
+
+
+endtemplate bistratifiedcell
+
+
