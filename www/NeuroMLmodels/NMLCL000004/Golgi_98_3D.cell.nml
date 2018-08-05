@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2  https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta3.xsd" id="Golgi_98_3D">
+
+    <include href="Golgi_CaHVA_CML.channel.nml"/>
+
+    <include href="Golgi_CaPool_CML.nml"/>
+
+    <include href="Golgi_H_CML.channel.nml"/>
+
+    <include href="Golgi_KA_CML.channel.nml"/>
+
+    <include href="Golgi_KCa_CML.channel.nml"/>
+
+    <include href="Golgi_KDr_CML.channel.nml"/>
+
+    <include href="Golgi_NaF_CML.channel.nml"/>
+
+    <include href="GolgiPassiveCond.channel.nml"/>
+
+    <cell id="Golgi_98_3D" neuroLexId="sao1415726815">
+
+        <notes>An extension in 3D using ChannelML of the Granule cell model from:
+
+Maex, R and De Schutter, E. Synchronization of Golgi and Granule Cell Firing in a Detailed Network Model of the Cerebellar Granule Cell Layer, 1998</notes>
+
+        <morphology id="morphology_Golgi_98_3D">
+
+            <segment id="0" name="Soma">
+                <proximal x="0.0" y="0.0" z="0.0" diameter="30.0"/>
+                <distal x="0.0" y="0.0" z="0.0" diameter="30.0"/>
+            </segment>
+
+            <segment id="1" name="DendSegment">
+                <parent segment="0" fractionAlong="0.0"/>
+                <proximal x="0.0" y="0.0" z="0.0" diameter="1.0"/>
+                <distal x="0.0" y="75.0" z="0.0" diameter="1.0"/>
+            </segment>
+
+            <segment id="2" name="DendSegment2">
+                <parent segment="1"/>
+                <proximal x="0.0" y="75.0" z="0.0" diameter="1.0"/>
+                <distal x="0.0" y="150.0" z="0.0" diameter="1.0"/>
+            </segment>
+
+            <segment id="3" name="DendSegment3">
+                <parent segment="2"/>
+                <proximal x="0.0" y="150.0" z="0.0" diameter="1.0"/>
+                <distal x="0.0" y="200.0" z="0.0" diameter="1.0"/>
+            </segment>
+
+            <segmentGroup id="Soma" neuroLexId="sao864921383">    <!--
+This group contains an unbranched set of segments, and all of the segmentGroups marked with
+neuroLexId = sao864921383 form a non-overlapping set of all of the segments. 
+These segmentGroups correspond to the 'cables' of NeuroML v1.8.1-->
+
+                <member segment="0"/>
+            </segmentGroup>
+
+            <segmentGroup id="DendSection" neuroLexId="sao864921383">    <!--
+This group contains an unbranched set of segments, and all of the segmentGroups marked with
+neuroLexId = sao864921383 form a non-overlapping set of all of the segments. 
+These segmentGroups correspond to the 'cables' of NeuroML v1.8.1-->
+
+                <member segment="1"/>
+            </segmentGroup>
+
+            <segmentGroup id="DendSection2" neuroLexId="sao864921383">    <!--
+This group contains an unbranched set of segments, and all of the segmentGroups marked with
+neuroLexId = sao864921383 form a non-overlapping set of all of the segments. 
+These segmentGroups correspond to the 'cables' of NeuroML v1.8.1-->
+
+                <member segment="2"/>
+            </segmentGroup>
+
+            <segmentGroup id="DendSection3" neuroLexId="sao864921383">    <!--
+This group contains an unbranched set of segments, and all of the segmentGroups marked with
+neuroLexId = sao864921383 form a non-overlapping set of all of the segments. 
+These segmentGroups correspond to the 'cables' of NeuroML v1.8.1-->
+
+                <member segment="3"/>
+            </segmentGroup>
+
+            <segmentGroup id="all">
+                <include segmentGroup="Soma"/>
+                <include segmentGroup="DendSection"/>
+                <include segmentGroup="DendSection2"/>
+                <include segmentGroup="DendSection3"/>
+            </segmentGroup>
+
+            <segmentGroup id="soma_group" neuroLexId="GO:0043025">    <!--Soma group-->
+
+                <include segmentGroup="Soma"/>
+            </segmentGroup>
+
+            <segmentGroup id="dendrite_group" neuroLexId="GO:0030425">    <!--Dendrite group-->
+
+                <include segmentGroup="DendSection"/>
+                <include segmentGroup="DendSection2"/>
+                <include segmentGroup="DendSection3"/>
+            </segmentGroup>
+
+            <segmentGroup id="GranSynapses">
+                <include segmentGroup="DendSection3"/>
+            </segmentGroup>
+
+            
+        </morphology>
+
+            <!--Adding the biophysical parameters-->
+
+        <biophysicalProperties id="biophys">
+
+            <membraneProperties>
+
+                <channelDensity condDensity="0.171496 mS_per_cm2" id="Golgi_H_CML_soma_group" ionChannel="Golgi_H_CML" segmentGroup="soma_group" ion="h" erev="-42.0 mV"/>
+
+                <channelDensity condDensity="0.524928 mS_per_cm2" id="Golgi_KA_CML_soma_group" ionChannel="Golgi_KA_CML" segmentGroup="soma_group" ion="k" erev="-90.0 mV"/>
+
+                <channelDensity condDensity="0.571654 mS_per_cm2" id="Golgi_KCa_CML_soma_group" ionChannel="Golgi_KCa_CML" segmentGroup="soma_group" ion="k" erev="-90.0 mV"/>
+
+                <channelDensity condDensity="6.78839 mS_per_cm2" id="Golgi_KDr_CML_all" ionChannel="Golgi_KDr_CML" ion="k" erev="-90.0 mV"/>
+
+                <channelDensity condDensity="40.0158 mS_per_cm2" id="Golgi_NaF_CML_all" ionChannel="Golgi_NaF_CML" ion="na" erev="55.0 mV"/>
+
+                <channelDensity condDensity="0.033 mS_per_cm2" id="GolgiPassiveCond_all" ionChannel="GolgiPassiveCond" ion="non_specific" erev="-55.0 mV"/>
+
+                    <!--Reversal potential for ca in Golgi_CaHVA_CML will be calculated by Nernst equation from internal & external calcium-->
+
+
+                <channelDensityNernst condDensity="0.831757 mS_per_cm2" id="Golgi_CaHVA_CML_soma_group" ionChannel="Golgi_CaHVA_CML" segmentGroup="soma_group" ion="ca"/>
+
+                
+
+                <spikeThresh value="0 mV"/>
+
+                <specificCapacitance value="1.0 uF_per_cm2"/>
+
+                <initMembPotential value="-70.0 mV"/>
+
+            </membraneProperties>
+
+            <intracellularProperties>
+
+                <species segmentGroup="soma_group" id="ca" ion="ca" concentrationModel="Golgi_CaPool_CML" initialConcentration="7.55E-11 mol_per_cm3" initialExtConcentration="2.4E-6 mol_per_cm3"/>
+
+                <resistivity value="0.1 kohm_cm"/>
+
+            </intracellularProperties>
+
+        </biophysicalProperties>
+
+    </cell>
+    
+</neuroml>
