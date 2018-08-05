@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="TEST_syn">
+
+    <notes>Ampa/Nmda synapse with spike-timing plasticity. Implemented from Migliore et. al. 2014</notes>
+
+    <ComponentType name="AmpaNmdaSynapse"
+        extends="baseSynapse">
+
+        <Parameter name="LTPlimit" dimension="time" description="The upper time limit for LTP. E.g. 30 ms."/>
+        <Parameter name="LTDlimit" dimension="time" description="The upper time limit for LTD. The LTP window will be between LTPlimit and LTDlimit. E.g. 200 ms."/>
+        <Parameter name="sigHalf" dimension="none" description="The halfway point for the plasticity function. E.g. 50."/>
+        <Parameter name="sigSlope" dimension="none" description="The steepnes of the plasticity function. E.g. 10."/>
+        
+        <Parameter name="Alpha" dimension="per_time"/>
+        <Parameter name="Beta" dimension="per_time"/>
+        
+        <Parameter name="gMax" dimension="conductance"/>
+        <Parameter name="gAmpafactor" dimension="none"/>
+        <Parameter name="Nmdafactor" dimension="none"/>
+        
+        <Parameter name="Ampatau" dimension="time"/>
+        <Parameter name="Cdur" dimension="time"/>
+        <Parameter name="E" dimension="voltage"/>
+        <Parameter name="mg" dimension="concentration"/>
+        
+        <Constant name="mV" dimension="voltage" value="1 mV" />
+        <Constant name="mM" dimension="concentration" value="1 mM" />
+        <Constant name="ms" dimension="time" value="1 ms" />
+        
+        <Dynamics>
+            <StateVariable name="Rinf" dimension="none"/>
+            <StateVariable name="Rtau" dimension="time"/>
+            <StateVariable name="Ron" dimension="none"/>
+            <StateVariable name="Roff" dimension="none"/>
+            <StateVariable name="gAmpa" dimension="conductance"/>
+            <StateVariable name="synon" dimension="none"/>
+            <StateVariable name="r0" dimension="none"/>
+            <StateVariable name="t0" dimension="time"/>
+            
+            <StateVariable name="pstep" dimension="none"/>
+            <StateVariable name="plasticity" dimension="none"/>
+            
+            <StateVariable name="isSpiking" dimension="none"/>
+            <StateVariable name="lastSpike" dimension="time"/>
+            <StateVariable name="timeSinceSpike" dimension="time" />
+            
+            
+            <StateVariable name="isAfterSpikeScheduled" dimension="none"/>
+            <StateVariable name="lastAfterSpike" dimension="time"/>
+            <StateVariable name="timeSinceAfterspike" dimension="time" />
+            <StateVariable name="afterSpikeData" dimension="none" />
+            
+            <StateVariable name="timeSinceAnySpike" dimension="time" />
+            
+            <OnStart>
+                <StateAssignment variable="synon" value="0" />
+                <StateAssignment variable="gAmpa" value="0" />
+                <StateAssignment variable="r0" value="0" />
+                <StateAssignment variable="t0" value="0" />
+                <StateAssignment variable="lastSpike" value="-1e9" />
+                <StateAssignment variable="lastAfterSpike" value="-1e9" />
+                <StateAssignment variable="pstep" value="0" />
+                <StateAssignment variable="isSpiking" value="0" />
+                <StateAssignment variable="Rinf" value="Alpha / (Alpha + Beta)" />
+                <StateAssignment variable="Rtau" value="1 / (Alpha + Beta)" />
+            </OnStart>
+            
+            <!--NET RECEIVE-->
+            <OnEvent port="in">
+                <StateAssignment variable="isSpiking" value="1" />
+            </OnEvent>
+            
+            <!-- Keep track of how long it's been since previous spike(s)-->
+            <OnCondition test="1 .eq. 1">
+                <StateAssignment variable="timeSinceSpike" value="t - lastSpike" />
+                <StateAssignment variable="timeSinceAfterspike" value="t - lastAfterSpike" />
+            </OnCondition>
+            
+            <OnCondition test="timeSinceSpike .lt. timeSinceAfterspike">
+                <StateAssignment variable="timeSinceAnySpike" value="timeSinceSpike" />
+            </OnCondition>
+            
+            <OnCondition test="timeSinceSpike .geq. timeSinceAfterspike">
+                <StateAssignment variable="timeSinceAnySpike" value="timeSinceAfterspike" />
+            </OnCondition>
+            
+            <!-- Inc/decrement the step variable based on timing-->
+            <OnCondition test="isSpiking .eq. 1 .and. timeSinceSpike .lt. LTPlimit">
+                <StateAssignment variable="pstep" value="pstep + 1"/>
+            </OnCondition>
+            <OnCondition test="isSpiking .eq. 1 .and. timeSinceSpike .geq. LTPlimit .and. timeSinceSpike .leq. LTDlimit">
+                <StateAssignment variable="pstep" value="pstep - 1"/>
+            </OnCondition>
+            
+            <!--Ensure the step is within range-->
+            <OnCondition test="isSpiking .eq. 1 .and. pstep .lt. 0">
+                <StateAssignment variable="pstep" value="0"/>
+            </OnCondition>
+            <OnCondition test="isSpiking .eq. 1 .and. pstep .gt. 2*sigHalf">
+                <StateAssignment variable="pstep" value="2*sigHalf"/>
+            </OnCondition>
+            
+            <OnCondition test="isSpiking .eq. 1">
+                <StateAssignment variable="plasticity" value="1 - 1/(1 + exp((pstep - sigHalf)/sigSlope))" />
+                <StateAssignment variable="gAmpa" value="gAmpa + plasticity*gMax*gAmpafactor" />
+                <StateAssignment variable="r0" value="r0*exp(-Beta*timeSinceAnySpike)" />
+                <StateAssignment variable="synon" value="synon + plasticity" />
+                <StateAssignment variable="Ron" value="Ron + r0" />
+                <StateAssignment variable="Roff" value="Roff - r0" />
+
+                <!--Record most recent spike time-->
+                <StateAssignment variable="lastSpike" value="t" />
+                <StateAssignment variable="timeSinceSpike" value="t - lastSpike" />
+                <StateAssignment variable="isSpiking" value="0" />
+                
+                <!--Schedule an afterSpike-->
+                <StateAssignment variable="isAfterSpikeScheduled" value="1" />
+                <StateAssignment variable="afterSpikeData" value="plasticity"/>
+            </OnCondition>
+            
+            <OnCondition test="isAfterSpikeScheduled .eq. 1 .and. timeSinceSpike .geq. Cdur">
+                <StateAssignment variable="r0" value="afterSpikeData*Rinf + (r0 - afterSpikeData*Rinf)*exp(-timeSinceAnySpike/Rtau)"/>
+                <StateAssignment variable="synon" value="synon - afterSpikeData"/>
+                <StateAssignment variable="Ron" value="Ron - r0"/>
+                <StateAssignment variable="Roff" value="Roff + r0"/>
+                
+                <StateAssignment variable="lastAfterSpike" value="t" />
+                <StateAssignment variable="isAfterSpikeScheduled" value="0" />
+            </OnCondition>
+            
+            <!-- BREAKPOINT -->
+            <DerivedVariable name="mgblock" dimension="none" value="1 / (1 + exp(0.062 * -(v/mV)) * ((mg/mM) / 3.57))" />
+            <DerivedVariable name="gNmda" dimension="conductance" value="mgblock*(Ron + Roff)*gMax*Nmdafactor" />
+            <DerivedVariable name="iNmda" dimension="current" value="gNmda*(v - E)" />
+            <DerivedVariable name="iAmpa" dimension="current" value="gAmpa*(v - E)" />
+            <DerivedVariable name="i" exposure="i" dimension="current" value="-(iAmpa + iNmda)" />
+            
+            
+            <!--DERIVATIVE-->
+            <TimeDerivative variable="Ron" value="(synon*Rinf - Ron)/Rtau" />
+            <TimeDerivative variable="Roff" value="-Beta*Roff" />
+            <TimeDerivative variable="gAmpa" value="-gAmpa/Ampatau" />
+            
+        </Dynamics>
+        
+    </ComponentType>
+    
+    
+    <AmpaNmdaSynapse id="AmpaNmdaSynapse" Cdur="1 ms" Alpha="0.35 per_ms" Beta="0.035 per_ms" E="0.0 mV" mg="1 mM"
+        gMax="0.1 uS" gAmpafactor="0.001" Nmdafactor="0.0035" LTPlimit="33.33 ms" LTDlimit="250 ms" sigHalf="50"
+        sigSlope="10" Ampatau="3 ms"/>
+
+</neuroml>

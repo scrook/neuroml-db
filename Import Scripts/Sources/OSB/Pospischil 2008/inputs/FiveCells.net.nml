@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2  https://raw.githubusercontent.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="FiveCells">
+
+    <include href="Kd.channel.nml"/>
+    <include href="IM.channel.nml"/>
+    <include href="Leak.channel.nml"/>
+    <include href="Na.channel.nml"/>
+    <include href="Ca.nml"/>
+    <include href="IL.channel.nml"/>
+    <include href="IT.channel.nml"/>
+    
+    <include href="RS.cell.nml"/>
+    <include href="FS.cell.nml"/>
+    <include href="LTS.cell.nml"/>
+    <include href="IB.cell.nml"/>
+    <include href="IBR.cell.nml"/>
+
+    <pulseGenerator id="Input_1" delay="0.3s" duration="0.41s" amplitude="5.0E-10A"/>
+
+    
+    <network id="FiveCells" type="networkWithTemperature" temperature="36.0 degC">
+
+        
+
+        <population id="CG_RS" component="RS" type="populationList" size="1">
+           <annotation>
+                <property tag="color" value="1 0 0"/>
+            </annotation>
+            <instance id="0">
+                <location x="0" y="0" z="0"/>
+            </instance>
+        </population>
+        
+        <population id="CG_FS" component="FS" type="populationList" size="1">
+           <annotation>
+                <property tag="color" value="0 1 0"/>
+            </annotation>
+            <instance id="0">
+                <location x="200" y="0" z="0"/>
+            </instance>
+        </population>
+        
+        <population id="CG_LTS" component="LTS" type="populationList" size="1">
+           <annotation>
+                <property tag="color" value="0 0 1"/>
+            </annotation>
+            <instance id="0">
+                <location x="400" y="0" z="0"/>
+            </instance>
+        </population>
+        
+        <population id="CG_IB" component="IB" type="populationList" size="1">
+           <annotation>
+                <property tag="color" value="1 0 1"/>
+            </annotation>
+            <instance id="0">
+                <location x="600" y="0" z="0"/>
+            </instance>
+        </population>
+        
+        <population id="CG_IBR" component="IBR" type="populationList" size="1">
+           <annotation>
+                <property tag="color" value="1 1 0"/>
+            </annotation>
+            <instance id="0">
+                <location x="800" y="0" z="0"/>
+            </instance>
+        </population>
+
+
+
+    </network>
+
+</neuroml>

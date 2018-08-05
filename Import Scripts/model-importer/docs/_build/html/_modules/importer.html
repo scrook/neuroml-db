@@ -1,0 +1,729 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>importer &#8212; doc-tester  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for importer</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="kn">import</span> <span class="nn">xml.etree.ElementTree</span> <span class="k">as</span> <span class="nn">ET</span>
+
+<span class="kn">from</span> <span class="nn">playhouse.db_url</span> <span class="k">import</span> <span class="n">connect</span>
+<span class="kn">from</span> <span class="nn">sshtunnel</span> <span class="k">import</span> <span class="n">SSHTunnelForwarder</span>
+
+<span class="kn">from</span> <span class="nn">tables</span> <span class="k">import</span> <span class="o">*</span>
+
+
+<div class="viewcode-block" id="ModelImporter"><a class="viewcode-back" href="../importer.html#importer.ModelImporter">[docs]</a><span class="k">class</span> <span class="nc">ModelImporter</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_csv_file</span> <span class="o">=</span> <span class="s1">&#39;models.csv&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_directories</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_existing</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree_nodes</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">roots</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root_ids</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_directory_parent</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">valid_actions</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s1">&#39;ignore&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;UPDATE&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;ADD&#39;</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="ModelImporter.parse_csv"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.parse_csv">[docs]</a>    <span class="k">def</span> <span class="nf">parse_csv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">csv_path</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">rows</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+            <span class="n">row</span><span class="p">[</span><span class="s1">&#39;parents&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tree_nodes</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;file_name&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">row</span>
+
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_nodes</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">node</span><span class="p">[</span><span class="s2">&quot;action&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">valid_actions</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                    <span class="s2">&quot;Invalid action: &#39;&quot;</span> <span class="o">+</span> <span class="n">node</span><span class="p">[</span><span class="s2">&quot;action&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;&#39;. Allowed actions are: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">valid_actions</span><span class="p">))</span>
+
+            <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="k">if</span> <span class="s2">&quot;DB:&quot;</span> <span class="ow">in</span> <span class="n">val</span> <span class="ow">or</span> <span class="s2">&quot;|NML:&quot;</span> <span class="ow">in</span> <span class="n">val</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Unresolved conflict in CSV file: &#39;&quot;</span> <span class="o">+</span> <span class="n">val</span> <span class="o">+</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">parse_multi_value_field</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s2">&quot;translators&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parse_multi_value_field</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s2">&quot;references&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parse_multi_value_field</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s2">&quot;neurolex_terms&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parse_multi_value_field</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s2">&quot;keywords&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parse_multi_value_field</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s2">&quot;children&quot;</span><span class="p">)</span>
+
+            <span class="n">node</span><span class="p">[</span><span class="s2">&quot;pubmed_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="s2">&quot;pubmed_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+            <span class="n">node</span><span class="p">[</span><span class="s2">&quot;translators&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[{</span>
+                <span class="s1">&#39;last_name&#39;</span><span class="p">:</span> <span class="n">string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="s2">&quot;,&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="n">string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="s2">&quot;,&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="p">}</span>
+                <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">node</span><span class="p">[</span><span class="s2">&quot;translators&quot;</span><span class="p">]]</span>
+
+            <span class="n">node</span><span class="p">[</span><span class="s1">&#39;children&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;file_name&#39;</span><span class="p">:</span> <span class="n">c</span><span class="p">}</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;children&#39;</span><span class="p">]]</span>
+
+            <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;children&#39;</span><span class="p">]:</span>
+                <span class="n">child_file</span> <span class="o">=</span> <span class="n">child</span><span class="p">[</span><span class="s1">&#39;file_name&#39;</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">tree_nodes</span><span class="p">[</span><span class="n">child_file</span><span class="p">][</span><span class="s1">&#39;parents&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s1">&#39;file_name&#39;</span><span class="p">])</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_roots</span><span class="p">()</span>
+
+<div class="viewcode-block" id="ModelImporter.to_csv"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.to_csv">[docs]</a>    <span class="k">def</span> <span class="nf">to_csv</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">out_csv_file</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write_header</span><span class="p">(</span><span class="n">writer</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">root</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">roots</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">write_node</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">root</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_nodes</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">roots</span><span class="p">:</span></div>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">write_node</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ModelImporter.parse_db_stored"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.parse_db_stored">[docs]</a>    <span class="k">def</span> <span class="nf">parse_db_stored</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connect_to_db</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree_nodes</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">root_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">root_ids</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fetch_model_tree</span><span class="p">(</span><span class="n">root_id</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_roots</span><span class="p">()</span>
+
+<div class="viewcode-block" id="ModelImporter.to_db_stored"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.to_db_stored">[docs]</a>    <span class="k">def</span> <span class="nf">to_db_stored</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">db</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connect_to_db</span><span class="p">()</span>
+
+        <span class="k">with</span> <span class="n">db</span><span class="o">.</span><span class="n">atomic</span><span class="p">()</span> <span class="k">as</span> <span class="n">transation</span><span class="p">:</span>
+            <span class="c1"># ADDS - update or link may depend on record existing</span>
+            <span class="n">adds</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_nodes</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">n</span><span class="p">[</span><span class="s2">&quot;action&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;ADD&quot;</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">adds</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">add_model</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">adds</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">add_links</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+            <span class="c1"># UPDATES - may add or remove a link</span>
+            <span class="n">updates</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_nodes</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">n</span><span class="p">[</span><span class="s2">&quot;action&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;UPDATE&quot;</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">updates</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">update_model</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">updates</span><span class="p">:</span></div>
+                <span class="bp">self</span><span class="o">.</span><span class="n">add_links</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+                <span class="c1"># # DEBUG</span>
+                <span class="c1"># self.parse_directories([&#39;/home/justas/Repositories/neuroml-db/www/NeuroMLmodels/NMLCL000400/&#39;])</span>
+                <span class="c1"># raise NotImplementedError()</span>
+
+<div class="viewcode-block" id="ModelImporter.parse_simulation"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.parse_simulation">[docs]</a>    <span class="k">def</span> <span class="nf">parse_simulation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Start with NML Files directly in the directory</span>
+        <span class="n">root_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">file</span>
+                      <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_directories</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                      <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_nml2_file</span><span class="p">(</span><span class="n">file</span><span class="p">)]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree_nodes</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">root_file</span> <span class="ow">in</span> <span class="n">root_files</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parse_file_tree</span><span class="p">(</span><span class="n">root_file</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_roots</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_nodes</span><span class="o">.</span><span class="n">values</span><span class="p">():</span></div>
+            <span class="n">node</span><span class="p">[</span><span class="s1">&#39;model_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_type</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ModelImporter.to_simulation"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.to_simulation">[docs]</a>    <span class="k">def</span> <span class="nf">to_simulation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sim_path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param sim_path:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        </span>
+<span class="sd">        :param sim_path: </span>
+<span class="sd">        :return: </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">sim_path</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_nodes</span><span class="o">.</span><span class="n">values</span><span class="p">():</span></div>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">copy2</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">],</span> <span class="n">sim_path</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ModelImporter.compare_to"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.compare_to">[docs]</a>    <span class="k">def</span> <span class="nf">compare_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other_importer</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :type other_importer: ModelImporter</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">my_tree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_nodes</span></div>
+        <span class="n">other_tree</span> <span class="o">=</span> <span class="n">other_importer</span><span class="o">.</span><span class="n">tree_nodes</span>
+        
+
+<div class="viewcode-block" id="ModelImporter.parse_multi_value_field"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.parse_multi_value_field">[docs]</a>    <span class="k">def</span> <span class="nf">parse_multi_value_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="n">field</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">value</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="n">node</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s2">&quot;|&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span></div>
+            <span class="n">node</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+<div class="viewcode-block" id="ModelImporter.parse_directories"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.parse_directories">[docs]</a>    <span class="k">def</span> <span class="nf">parse_directories</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_directories</span><span class="p">):</span>
+
+        <span class="k">for</span> <span class="nb">dir</span> <span class="ow">in</span> <span class="n">model_directories</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model_directories</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="nb">dir</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_existing</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_existing_model</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_existing</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">root_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_root_model_ids</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model_directory_parent</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;(.*)/NML&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_directories</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">groups</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_existing</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parse_db_stored</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parse_simulation</span><span class="p">()</span>
+
+<div class="viewcode-block" id="ModelImporter.get_roots"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.get_roots">[docs]</a>    <span class="k">def</span> <span class="nf">get_roots</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Roots are nodes without parents</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">roots</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_nodes</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;parents&#39;</span><span class="p">]]</span>
+
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">roots</span><span class="p">:</span></div>
+            <span class="n">node</span><span class="p">[</span><span class="s2">&quot;is_root&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+<div class="viewcode-block" id="ModelImporter.update_model"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.update_model">[docs]</a>    <span class="k">def</span> <span class="nf">update_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">node</span><span class="p">[</span><span class="s2">&quot;model_id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;When UPDATE&#39;ing, model ID must not be blank: &quot;</span> <span class="o">+</span> <span class="n">node</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">])</span>
+
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Models</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">Models</span><span class="o">.</span><span class="n">Model_ID</span> <span class="o">==</span> <span class="n">node</span><span class="p">[</span><span class="s2">&quot;model_id&quot;</span><span class="p">])</span>
+
+        <span class="c1"># Type and ID cannot be changed</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">Name</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="s2">&quot;model_name&quot;</span><span class="p">]</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">File_Name</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">Notes</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="s2">&quot;notes&quot;</span><span class="p">]</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">Publication</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_or_create_publication</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s2">&quot;pubmed_id&quot;</span><span class="p">])</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+        <span class="c1"># Translators, references, neurolexes, keywords</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_metadata</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+
+        <span class="c1"># channel protocol</span>
+        <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">Type_id</span> <span class="o">==</span> <span class="s2">&quot;CH&quot;</span><span class="p">:</span>
+            <span class="n">channel</span> <span class="o">=</span> <span class="n">Channels</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">Channels</span><span class="o">.</span><span class="n">Model</span> <span class="o">==</span> <span class="n">model</span><span class="p">)</span>
+
+            <span class="c1"># ok to change - though simulation has to be rerun - need a way to mark simulations to be rerun in general - perhaps at model table level</span>
+            <span class="n">channel</span><span class="o">.</span><span class="n">Channel_Type</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="s2">&quot;channel_protocol&quot;</span><span class="p">]</span></div>
+            <span class="n">channel</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<div class="viewcode-block" id="ModelImporter.add_model"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.add_model">[docs]</a>    <span class="k">def</span> <span class="nf">add_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">node</span><span class="p">[</span><span class="s2">&quot;model_id&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;When ADD&#39;ing, model ID should be blank: &quot;</span> <span class="o">+</span> <span class="n">node</span><span class="p">[</span><span class="s2">&quot;model_id&quot;</span><span class="p">])</span>
+
+        <span class="n">type_id</span> <span class="o">=</span> <span class="n">Model_Types</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">Model_Types</span><span class="o">.</span><span class="n">Name</span> <span class="o">==</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;model_type&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">ID</span>
+
+        <span class="n">new_model_id</span> <span class="o">=</span> <span class="s1">&#39;NML&#39;</span> <span class="o">+</span> <span class="n">type_id</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">Models</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">peewee</span><span class="o">.</span><span class="n">fn</span><span class="o">.</span><span class="n">MAX</span><span class="p">(</span><span class="n">Models</span><span class="o">.</span><span class="n">ID_Helper</span><span class="p">))</span><span class="o">.</span><span class="n">scalar</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Models</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">Model_ID</span><span class="o">=</span><span class="n">new_model_id</span><span class="p">,</span>
+            <span class="n">Name</span><span class="o">=</span><span class="n">node</span><span class="p">[</span><span class="s2">&quot;model_name&quot;</span><span class="p">],</span>
+            <span class="n">File_Name</span><span class="o">=</span><span class="n">node</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">],</span>
+            <span class="n">Notes</span><span class="o">=</span><span class="n">node</span><span class="p">[</span><span class="s2">&quot;notes&quot;</span><span class="p">],</span>
+            <span class="n">Publication</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_or_create_publication</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s2">&quot;pubmed_id&quot;</span><span class="p">])</span>
+        <span class="p">)</span>
+
+        <span class="n">node</span><span class="p">[</span><span class="s2">&quot;model_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_model_id</span>
+
+        <span class="c1"># Translators, references, neurolexes, keywords</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_metadata</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+
+        <span class="c1"># channel protocol</span>
+        <span class="k">if</span> <span class="n">type_id</span> <span class="o">==</span> <span class="s2">&quot;CH&quot;</span><span class="p">:</span>
+            <span class="n">Channels</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">Model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+                <span class="n">Type</span><span class="o">=</span><span class="n">node</span><span class="p">[</span><span class="s2">&quot;channel_protocol&quot;</span><span class="p">]</span></div>
+            <span class="p">)</span>
+
+<div class="viewcode-block" id="ModelImporter.add_links"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.add_links">[docs]</a>    <span class="k">def</span> <span class="nf">add_links</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent_node</span><span class="p">):</span>
+
+        <span class="c1"># Clear the existing child list first</span>
+        <span class="n">Model_Model_Associations</span> \
+            <span class="o">.</span><span class="n">delete</span><span class="p">()</span> \
+            <span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Model_Model_Associations</span><span class="o">.</span><span class="n">Parent</span> <span class="o">==</span> <span class="n">parent_node</span><span class="p">[</span><span class="s2">&quot;model_id&quot;</span><span class="p">])</span> \
+            <span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+
+        <span class="c1"># (Re)add children links</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">parent_node</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">]:</span>
+            <span class="n">child_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_nodes</span><span class="p">[</span><span class="n">child</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]]</span>
+
+            <span class="k">if</span> <span class="n">child_node</span><span class="p">[</span><span class="s2">&quot;model_id&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;All child files must have an NML-DB ID: &quot;</span> <span class="o">+</span> <span class="n">child</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">])</span>
+
+            <span class="n">Model_Model_Associations</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">Parent</span><span class="o">=</span><span class="n">parent_node</span><span class="p">[</span><span class="s2">&quot;model_id&quot;</span><span class="p">],</span>
+                <span class="n">Child</span><span class="o">=</span><span class="n">child_node</span><span class="p">[</span><span class="s2">&quot;model_id&quot;</span><span class="p">]</span></div>
+            <span class="p">)</span>
+
+<div class="viewcode-block" id="ModelImporter.add_metadata"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.add_metadata">[docs]</a>    <span class="k">def</span> <span class="nf">add_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+        <span class="c1"># Nodes contain the complete sets of these, clear the links before adding to avoid dups</span>
+        <span class="n">Model_Translators</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Model_Translators</span><span class="o">.</span><span class="n">Model</span> <span class="o">==</span> <span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+        <span class="n">Model_References</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Model_References</span><span class="o">.</span><span class="n">Model</span> <span class="o">==</span> <span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+        <span class="n">Model_Neurolexes</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Model_Neurolexes</span><span class="o">.</span><span class="n">Model</span> <span class="o">==</span> <span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+        <span class="n">Model_Other_Keywords</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Model_Other_Keywords</span><span class="o">.</span><span class="n">Model</span> <span class="o">==</span> <span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+
+        <span class="c1"># Translators</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">translator</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s2">&quot;translators&quot;</span><span class="p">]):</span>
+            <span class="n">Model_Translators</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">Translator</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_or_create_author</span><span class="p">(</span><span class="n">translator</span><span class="p">[</span><span class="s2">&quot;first_name&quot;</span><span class="p">],</span> <span class="n">translator</span><span class="p">[</span><span class="s2">&quot;last_name&quot;</span><span class="p">]),</span>
+                <span class="n">Model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+                <span class="n">Translator_Sequence</span><span class="o">=</span><span class="n">i</span>
+            <span class="p">)</span>
+
+        <span class="c1"># references</span>
+        <span class="k">for</span> <span class="n">node_ref</span> <span class="ow">in</span> <span class="n">node</span><span class="p">[</span><span class="s2">&quot;references&quot;</span><span class="p">]:</span>
+            <span class="n">Model_References</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">Model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+                <span class="n">Reference</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_or_create_reference</span><span class="p">(</span><span class="n">node_ref</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="c1"># neurolexes -</span>
+        <span class="k">for</span> <span class="n">node_nlx</span> <span class="ow">in</span> <span class="n">node</span><span class="p">[</span><span class="s2">&quot;neurolex_terms&quot;</span><span class="p">]:</span>
+            <span class="n">Model_Neurolexes</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">Model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+                <span class="n">Neurolex</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_neurolex</span><span class="p">(</span><span class="n">node_nlx</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="c1"># keywords - create new if cant find exact match</span>
+        <span class="k">for</span> <span class="n">kwd</span> <span class="ow">in</span> <span class="n">node</span><span class="p">[</span><span class="s2">&quot;keywords&quot;</span><span class="p">]:</span>
+            <span class="n">Model_Other_Keywords</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">Model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+                <span class="n">Other_Keyword</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_or_create_keyword</span><span class="p">(</span><span class="n">kwd</span><span class="p">)</span></div>
+            <span class="p">)</span>
+
+<div class="viewcode-block" id="ModelImporter.get_or_create_keyword"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.get_or_create_keyword">[docs]</a>    <span class="k">def</span> <span class="nf">get_or_create_keyword</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyword_string</span><span class="p">):</span>
+        <span class="n">keyword</span><span class="p">,</span> <span class="n">created</span> <span class="o">=</span> <span class="n">Other_Keywords</span><span class="o">.</span><span class="n">get_or_create</span><span class="p">(</span><span class="n">Other_Keyword_Term</span><span class="o">=</span><span class="n">keyword_string</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">keyword</span>
+
+<div class="viewcode-block" id="ModelImporter.get_neurolex"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.get_neurolex">[docs]</a>    <span class="k">def</span> <span class="nf">get_neurolex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term_string</span><span class="p">):</span>
+        <span class="c1"># use existing nlx - raise error if cannot match exactly</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Neurolexes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">Neurolexes</span><span class="o">.</span><span class="n">NeuroLex_Term</span> <span class="o">==</span> <span class="n">term_string</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span></div>
+                <span class="s2">&quot;Neurolexes must exist and match exactly the value of NeuroLex_Term field: &#39;&quot;</span> <span class="o">+</span> <span class="n">term_string</span> <span class="o">+</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ModelImporter.get_or_create_reference"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.get_or_create_reference">[docs]</a>    <span class="k">def</span> <span class="nf">get_or_create_reference</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ref_url</span><span class="p">):</span>
+        <span class="c1"># Create if dont exist, detect from url which resource to use - show error if can&#39;t find one</span>
+        <span class="n">existing</span> <span class="o">=</span> <span class="n">Refers</span><span class="o">.</span><span class="n">get_or_none</span><span class="p">(</span><span class="n">Refers</span><span class="o">.</span><span class="n">Reference_URI</span> <span class="o">==</span> <span class="n">ref_url</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">existing</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">existing</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">resource</span> <span class="o">=</span> <span class="n">Resources</span> \
+                    <span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">Resources</span><span class="p">,</span> <span class="n">Refers</span><span class="p">)</span> \
+                    <span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">Refers</span><span class="p">)</span> \
+                    <span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">peewee</span><span class="o">.</span><span class="n">fn</span><span class="o">.</span><span class="n">LEFT</span><span class="p">(</span><span class="n">peewee</span><span class="o">.</span><span class="n">fn</span><span class="o">.</span><span class="n">LOWER</span><span class="p">(</span><span class="n">Refers</span><span class="o">.</span><span class="n">Reference_URI</span><span class="p">),</span> <span class="mi">40</span><span class="p">)</span> <span class="o">==</span> <span class="n">peewee</span><span class="o">.</span><span class="n">fn</span><span class="o">.</span><span class="n">LEFT</span><span class="p">(</span>
+                    <span class="n">peewee</span><span class="o">.</span><span class="n">fn</span><span class="o">.</span><span class="n">LOWER</span><span class="p">(</span><span class="n">ref_url</span><span class="p">),</span> <span class="mi">40</span><span class="p">))</span> \
+                    <span class="o">.</span><span class="n">first</span><span class="p">()</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Could not find a matching resource for reference URL:&quot;</span> <span class="o">+</span> <span class="n">ref_url</span><span class="p">)</span>
+
+            <span class="n">ref</span> <span class="o">=</span> <span class="n">Refers</span><span class="p">()</span>
+            <span class="n">ref</span><span class="o">.</span><span class="n">Reference_URI</span> <span class="o">=</span> <span class="n">ref_url</span>
+            <span class="n">ref</span><span class="o">.</span><span class="n">Resource</span> <span class="o">=</span> <span class="n">resource</span>
+            <span class="n">ref</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</div>
+            <span class="k">return</span> <span class="n">ref</span>
+
+<div class="viewcode-block" id="ModelImporter.get_or_create_publication"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.get_or_create_publication">[docs]</a>    <span class="k">def</span> <span class="nf">get_or_create_publication</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pubmed_ref</span><span class="p">):</span>
+        <span class="n">existing</span> <span class="o">=</span> <span class="n">Publications</span><span class="o">.</span><span class="n">get_or_none</span><span class="p">(</span><span class="n">Publications</span><span class="o">.</span><span class="n">Pubmed_Ref</span> <span class="o">==</span> <span class="n">pubmed_ref</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">existing</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">existing</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">title</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">authors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_pub_info_from_nih</span><span class="p">(</span><span class="n">pubmed_ref</span><span class="p">)</span>
+
+            <span class="n">pub</span> <span class="o">=</span> <span class="n">Publications</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">Pubmed_Ref</span><span class="o">=</span><span class="n">pubmed_ref</span><span class="p">,</span>
+                <span class="n">Full_Title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+                <span class="n">Year</span><span class="o">=</span><span class="n">year</span>
+            <span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">author</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">authors</span><span class="p">):</span>
+                <span class="n">db_author</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_or_create_author</span><span class="p">(</span><span class="n">author</span><span class="p">[</span><span class="s2">&quot;first_name&quot;</span><span class="p">],</span> <span class="n">author</span><span class="p">[</span><span class="s2">&quot;last_name&quot;</span><span class="p">])</span>
+
+                <span class="n">Publication_Authors</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                    <span class="n">Publication</span><span class="o">=</span><span class="n">pub</span><span class="p">,</span>
+                    <span class="n">Author</span><span class="o">=</span><span class="n">db_author</span><span class="p">,</span>
+                    <span class="n">Author_Sequence</span><span class="o">=</span><span class="n">i</span>
+                <span class="p">)</span>
+</div>
+            <span class="k">return</span> <span class="n">pub</span>
+
+<div class="viewcode-block" id="ModelImporter.get_or_create_author"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.get_or_create_author">[docs]</a>    <span class="k">def</span> <span class="nf">get_or_create_author</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span><span class="p">):</span>
+        <span class="n">author</span><span class="p">,</span> <span class="n">created</span> <span class="o">=</span> <span class="n">People</span><span class="o">.</span><span class="n">get_or_create</span><span class="p">(</span><span class="n">Person_Last_Name</span><span class="o">=</span><span class="n">lname</span><span class="p">,</span> <span class="n">Person_First_Name</span><span class="o">=</span><span class="n">fname</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">author</span>
+
+<div class="viewcode-block" id="ModelImporter.get_pub_info_from_nih"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.get_pub_info_from_nih">[docs]</a>    <span class="k">def</span> <span class="nf">get_pub_info_from_nih</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pubmed_ref</span><span class="p">):</span>
+        <span class="n">pmid</span> <span class="o">=</span> <span class="n">pubmed_ref</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;pubmed/&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>  <span class="c1"># Comes in as e.g. &quot;pubmed/16293591&quot;</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&amp;retmode=xml&amp;id=&#39;</span> <span class="o">+</span> <span class="n">pmid</span>
+        <span class="n">pm_Tree</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">ElementTree</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">))</span>
+
+        <span class="n">title</span> <span class="o">=</span> <span class="n">pm_Tree</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;.//ArticleTitle&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
+
+        <span class="n">author_list</span> <span class="o">=</span> <span class="n">pm_Tree</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;.//Author&#39;</span><span class="p">)</span>
+        <span class="n">authors</span> <span class="o">=</span> <span class="p">[{</span>
+            <span class="s2">&quot;last_name&quot;</span><span class="p">:</span> <span class="n">author</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;LastName&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">,</span>
+            <span class="s2">&quot;first_name&quot;</span><span class="p">:</span> <span class="n">author</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;ForeName&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">}</span>
+            <span class="k">for</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">author_list</span><span class="p">]</span>
+
+        <span class="n">year</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">pm_Tree</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;.//PubDate&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</div>
+        <span class="k">return</span> <span class="n">title</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">authors</span>
+
+<div class="viewcode-block" id="ModelImporter.fetch_model_tree"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.fetch_model_tree">[docs]</a>    <span class="k">def</span> <span class="nf">fetch_model_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fetching &quot;</span> <span class="o">+</span> <span class="nb">id</span> <span class="o">+</span> <span class="s2">&quot;...&quot;</span><span class="p">)</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fetch_model_record</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">File_Name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_nodes</span><span class="p">:</span>
+
+            <span class="c1"># Add only parent info, if any</span>
+            <span class="k">if</span> <span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">tree_nodes</span><span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">File_Name</span><span class="p">][</span><span class="s1">&#39;parents&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+
+            <span class="c1"># Skip otherwise</span>
+            <span class="k">return</span>
+
+        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_blank_node</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree_nodes</span><span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">File_Name</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span>
+
+        <span class="n">node</span><span class="p">[</span><span class="s2">&quot;model_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">Model_ID</span>
+        <span class="n">node</span><span class="p">[</span><span class="s2">&quot;model_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">Name</span>
+        <span class="n">node</span><span class="p">[</span><span class="s2">&quot;model_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">Type</span><span class="o">.</span><span class="n">Name</span>
+        <span class="n">node</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">File_Name</span>
+        <span class="n">node</span><span class="p">[</span><span class="s2">&quot;pubmed_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">Publication</span><span class="o">.</span><span class="n">Pubmed_Ref</span>
+
+        <span class="n">node</span><span class="p">[</span><span class="s2">&quot;translators&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">{</span><span class="s2">&quot;last_name&quot;</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Person_Last_Name</span><span class="p">,</span>
+             <span class="s2">&quot;first_name&quot;</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Person_First_Name</span><span class="p">}</span>
+            <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">Translators</span><span class="p">]</span>
+
+        <span class="n">node</span><span class="p">[</span><span class="s2">&quot;references&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="o">.</span><span class="n">Reference_URI</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">References</span><span class="p">]</span>
+        <span class="n">node</span><span class="p">[</span><span class="s2">&quot;neurolex_terms&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="o">.</span><span class="n">NeuroLex_Term</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">Neurolexes</span><span class="p">]</span>
+        <span class="n">node</span><span class="p">[</span><span class="s2">&quot;keywords&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="o">.</span><span class="n">Other_Keyword_Term</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">Keywords</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">Type</span><span class="o">.</span><span class="n">Name</span> <span class="o">==</span> <span class="s2">&quot;Channel&quot;</span><span class="p">:</span>
+            <span class="n">node</span><span class="p">[</span><span class="s2">&quot;channel_protocol&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">Channel</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">Channel_Type</span>
+
+        <span class="n">node</span><span class="p">[</span><span class="s2">&quot;notes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">Notes</span>
+        <span class="n">node</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">server_path_to_local_path</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">File</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">node</span><span class="p">[</span><span class="s2">&quot;parents&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+
+        <span class="n">node</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[{</span>
+            <span class="s1">&#39;file_name&#39;</span><span class="p">:</span> <span class="n">c</span><span class="o">.</span><span class="n">File_Name</span><span class="p">,</span>
+            <span class="s1">&#39;nml_id&#39;</span><span class="p">:</span> <span class="n">c</span><span class="o">.</span><span class="n">Model_ID</span><span class="p">,</span>
+            <span class="s1">&#39;server_path&#39;</span><span class="p">:</span> <span class="n">c</span><span class="o">.</span><span class="n">File</span><span class="p">,</span>
+            <span class="s1">&#39;local_path&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">server_path_to_local_path</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">File</span><span class="p">)</span>
+        <span class="p">}</span>
+            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">Children</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">node</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">]:</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fetch_model_tree</span><span class="p">(</span><span class="n">child</span><span class="p">[</span><span class="s1">&#39;nml_id&#39;</span><span class="p">],</span> <span class="n">parent</span><span class="o">=</span><span class="n">node</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">])</span>
+
+<div class="viewcode-block" id="ModelImporter.fetch_model_record"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.fetch_model_record">[docs]</a>    <span class="k">def</span> <span class="nf">fetch_model_record</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">Models</span> \
+            <span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">Models</span><span class="p">,</span> <span class="n">Model_Types</span><span class="p">,</span> <span class="n">Publications</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">Model_Types</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">switch</span><span class="p">(</span><span class="n">Models</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">Publications</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Models</span><span class="o">.</span><span class="n">Model_ID</span> <span class="o">==</span> <span class="nb">id</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">first</span><span class="p">()</span>
+
+        <span class="n">result</span><span class="o">.</span><span class="n">Translators</span> <span class="o">=</span> <span class="n">People</span><span class="o">.</span><span class="n">select</span><span class="p">()</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">Model_Translators</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Model_Translators</span><span class="o">.</span><span class="n">Model</span> <span class="o">==</span> <span class="nb">id</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">References</span> <span class="o">=</span> <span class="n">Refers</span><span class="o">.</span><span class="n">select</span><span class="p">()</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">Model_References</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Model_References</span><span class="o">.</span><span class="n">Model</span> <span class="o">==</span> <span class="nb">id</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">Neurolexes</span> <span class="o">=</span> <span class="n">Neurolexes</span><span class="o">.</span><span class="n">select</span><span class="p">()</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">Model_Neurolexes</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Model_Neurolexes</span><span class="o">.</span><span class="n">Model</span> <span class="o">==</span> <span class="nb">id</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">Keywords</span> <span class="o">=</span> <span class="n">Other_Keywords</span><span class="o">.</span><span class="n">select</span><span class="p">()</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">Model_Other_Keywords</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Model_Other_Keywords</span><span class="o">.</span><span class="n">Model</span> <span class="o">==</span> <span class="nb">id</span><span class="p">)</span>
+
+        <span class="n">result</span><span class="o">.</span><span class="n">Children</span> <span class="o">=</span> <span class="n">Models</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">Models</span><span class="o">.</span><span class="n">Model_ID</span><span class="p">,</span> <span class="n">Models</span><span class="o">.</span><span class="n">File</span><span class="p">,</span> <span class="n">Models</span><span class="o">.</span><span class="n">File_Name</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">Model_Model_Associations</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">(</span><span class="n">Model_Model_Associations</span><span class="o">.</span><span class="n">Child</span> <span class="o">==</span> <span class="n">Models</span><span class="o">.</span><span class="n">Model_ID</span><span class="p">))</span> \
+            <span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Model_Model_Associations</span><span class="o">.</span><span class="n">Parent</span> <span class="o">==</span> <span class="nb">id</span><span class="p">)</span>
+</div>
+        <span class="k">return</span> <span class="n">result</span>
+
+<div class="viewcode-block" id="ModelImporter.server_path_to_local_path"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.server_path_to_local_path">[docs]</a>    <span class="k">def</span> <span class="nf">server_path_to_local_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">server_path</span><span class="p">):</span></div>
+        <span class="k">return</span> <span class="n">server_path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/var/www/NeuroMLmodels&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_directory_parent</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ModelImporter.local_path_to_server_path"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.local_path_to_server_path">[docs]</a>    <span class="k">def</span> <span class="nf">local_path_to_server_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">local_path</span><span class="p">):</span></div>
+        <span class="k">return</span> <span class="n">local_path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_directory_parent</span><span class="p">,</span> <span class="s1">&#39;/var/www/NeuroMLmodels&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ModelImporter.get_type"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.get_type">[docs]</a>    <span class="k">def</span> <span class="nf">get_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.cell.nml&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s2">&quot;Cell&quot;</span>
+
+        <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.channel.nml&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s2">&quot;Channel&quot;</span>
+
+        <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.synapse.nml&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s2">&quot;Synapse&quot;</span>
+
+        <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.net.nml&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s2">&quot;Network&quot;</span>
+
+        <span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_xml_root</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">root</span><span class="p">:</span>
+            <span class="n">tag</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="s1">&#39;concentration&#39;</span> <span class="ow">in</span> <span class="n">tag</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s2">&quot;Concentration&quot;</span>
+
+            <span class="k">if</span> <span class="s1">&#39;gapjunction&#39;</span> <span class="ow">in</span> <span class="n">tag</span> <span class="ow">or</span> <span class="s1">&#39;synapse&#39;</span> <span class="ow">in</span> <span class="n">tag</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s2">&quot;Synapse&quot;</span>
+</div>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Could not determine the type of:&quot;</span> <span class="o">+</span> <span class="n">path</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ModelImporter.get_blank_node"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.get_blank_node">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_blank_node</span><span class="p">():</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="s1">&#39;ignore&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;model_id&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;model_name&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;model_type&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;file_name&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;dir&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;children&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;parents&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;pubmed_id&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;translators&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;references&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;neurolex_terms&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;keywords&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;channel_protocol&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;notes&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;is_root&#39;</span><span class="p">:</span> <span class="kc">False</span></div>
+        <span class="p">}</span>
+
+<div class="viewcode-block" id="ModelImporter.write_header"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.write_header">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">write_header</span><span class="p">(</span><span class="n">writer</span><span class="p">):</span>
+        <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span>
+            <span class="s1">&#39;action&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;is_root&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;model_id&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;model_name&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;model_type&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;file_name&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;pubmed_id&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;translators&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;references&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;neurolex_terms&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;keywords&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;channel_protocol&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;notes&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;path&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;children&#39;</span><span class="p">,</span></div>
+        <span class="p">])</span>
+
+<div class="viewcode-block" id="ModelImporter.write_node"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.write_node">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">write_node</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+        <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span>
+            <span class="n">node</span><span class="p">[</span><span class="s1">&#39;action&#39;</span><span class="p">],</span>
+            <span class="n">node</span><span class="p">[</span><span class="s1">&#39;is_root&#39;</span><span class="p">],</span>
+            <span class="n">node</span><span class="p">[</span><span class="s1">&#39;model_id&#39;</span><span class="p">],</span>
+            <span class="n">node</span><span class="p">[</span><span class="s1">&#39;model_name&#39;</span><span class="p">],</span>
+            <span class="n">node</span><span class="p">[</span><span class="s1">&#39;model_type&#39;</span><span class="p">],</span>
+            <span class="n">node</span><span class="p">[</span><span class="s1">&#39;file_name&#39;</span><span class="p">],</span>
+            <span class="n">node</span><span class="p">[</span><span class="s1">&#39;pubmed_id&#39;</span><span class="p">],</span>
+            <span class="n">string</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="s2">&quot;last_name&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="n">t</span><span class="p">[</span><span class="s2">&quot;first_name&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;translators&#39;</span><span class="p">]],</span> <span class="s1">&#39;|&#39;</span><span class="p">),</span>
+            <span class="n">string</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s1">&#39;references&#39;</span><span class="p">],</span> <span class="s1">&#39;|&#39;</span><span class="p">),</span>
+            <span class="n">string</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s1">&#39;neurolex_terms&#39;</span><span class="p">],</span> <span class="s1">&#39;|&#39;</span><span class="p">),</span>
+            <span class="n">string</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s1">&#39;keywords&#39;</span><span class="p">],</span> <span class="s1">&#39;|&#39;</span><span class="p">),</span>
+            <span class="n">node</span><span class="p">[</span><span class="s1">&#39;channel_protocol&#39;</span><span class="p">],</span>
+            <span class="n">node</span><span class="p">[</span><span class="s1">&#39;notes&#39;</span><span class="p">],</span>
+            <span class="n">node</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">],</span>
+            <span class="n">string</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;file_name&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;children&#39;</span><span class="p">]],</span> <span class="s1">&#39;|&#39;</span><span class="p">),</span></div>
+        <span class="p">])</span>
+
+<div class="viewcode-block" id="ModelImporter.file_exists"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.file_exists">[docs]</a>    <span class="k">def</span> <span class="nf">file_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span></div>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ModelImporter.is_nml2_file"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.is_nml2_file">[docs]</a>    <span class="k">def</span> <span class="nf">is_nml2_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">):</span></div>
+        <span class="k">return</span> <span class="n">file_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.nml&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ModelImporter.is_existing_model"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.is_existing_model">[docs]</a>    <span class="k">def</span> <span class="nf">is_existing_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_root_model_ids</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+<div class="viewcode-block" id="ModelImporter.get_root_model_ids"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.get_root_model_ids">[docs]</a>    <span class="k">def</span> <span class="nf">get_root_model_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="nb">dir</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_directories</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">root_dir</span> <span class="o">=</span> <span class="nb">dir</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+
+                <span class="c1"># Check if parent dir is named as an NML-DB ID</span>
+                <span class="k">if</span> <span class="n">root_dir</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;NML&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">root_dir</span><span class="p">)</span> <span class="o">==</span> <span class="mi">11</span><span class="p">:</span>
+                    <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">root_dir</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">pass</span>
+</div>
+        <span class="k">return</span> <span class="n">result</span>
+
+<div class="viewcode-block" id="ModelImporter.parse_file_tree"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.parse_file_tree">[docs]</a>    <span class="k">def</span> <span class="nf">parse_file_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># If file already parsed</span>
+        <span class="k">if</span> <span class="n">file</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_nodes</span><span class="p">:</span>
+
+            <span class="c1"># Add only parent info, if any</span>
+            <span class="k">if</span> <span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">tree_nodes</span><span class="p">[</span><span class="n">file</span><span class="p">][</span><span class="s1">&#39;parents&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+
+            <span class="c1"># Skip otherwise</span>
+            <span class="k">return</span>
+
+        <span class="c1"># Create node</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_blank_node</span><span class="p">()</span>
+
+        <span class="n">node</span><span class="p">[</span><span class="s1">&#39;file_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">file</span>
+        <span class="n">node</span><span class="p">[</span><span class="s1">&#39;dir&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_directories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">node</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_directories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">file</span>
+
+        <span class="k">if</span> <span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">node</span><span class="p">[</span><span class="s1">&#39;parents&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+
+        <span class="c1"># Add it to the tree</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree_nodes</span><span class="p">[</span><span class="n">file</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span>
+
+        <span class="c1"># Read xml</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_xml_root</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">])</span>
+
+        <span class="c1"># Get list of node children</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">root</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">child</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;{http://www.neuroml.org/schema/neuroml2}include&quot;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">child</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]:</span>
+                    <span class="n">child_rel_path</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>
+                    <span class="n">child_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">child_rel_path</span><span class="p">)</span>
+                    <span class="n">node</span><span class="p">[</span><span class="s1">&#39;children&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;file_name&#39;</span><span class="p">:</span> <span class="n">child_file</span><span class="p">})</span>
+
+        <span class="c1"># Repeat for each child</span>
+        <span class="k">for</span> <span class="n">child_file</span> <span class="ow">in</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;children&#39;</span><span class="p">]:</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parse_file_tree</span><span class="p">(</span><span class="n">child_file</span><span class="p">[</span><span class="s1">&#39;file_name&#39;</span><span class="p">],</span> <span class="n">parent</span><span class="o">=</span><span class="n">node</span><span class="p">[</span><span class="s1">&#39;file_name&#39;</span><span class="p">])</span>
+
+<div class="viewcode-block" id="ModelImporter.get_xml_root"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.get_xml_root">[docs]</a>    <span class="k">def</span> <span class="nf">get_xml_root</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
+        <span class="n">tree</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">getroot</span><span class="p">()</span></div>
+        <span class="k">return</span> <span class="n">root</span>
+
+<div class="viewcode-block" id="ModelImporter.connect_to_db"><a class="viewcode-back" href="../importer.html#importer.ModelImporter.connect_to_db">[docs]</a>    <span class="k">def</span> <span class="nf">connect_to_db</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;db&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">db</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">db</span>
+
+        <span class="n">pwd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;NMLDBPWD&quot;</span><span class="p">]</span>  <span class="c1"># This needs to be set to the password</span>
+
+        <span class="k">if</span> <span class="n">pwd</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;The environment variable &#39;NMLDBPWD&#39; needs to contain the password to the NML database&quot;</span><span class="p">)</span>
+
+        <span class="n">server</span> <span class="o">=</span> <span class="n">SSHTunnelForwarder</span><span class="p">(</span>
+            <span class="p">(</span><span class="s1">&#39;149.169.30.15&#39;</span><span class="p">,</span> <span class="mi">2200</span><span class="p">),</span>  <span class="c1"># &#39;149.169.30.15&#39; - spike.asu.edu - testing server</span>
+            <span class="n">ssh_username</span><span class="o">=</span><span class="s1">&#39;neuromine&#39;</span><span class="p">,</span>
+            <span class="n">ssh_password</span><span class="o">=</span><span class="n">pwd</span><span class="p">,</span>
+            <span class="n">remote_bind_address</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="mi">3306</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Connecting to server...&quot;</span><span class="p">)</span>
+        <span class="n">server</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Connecting to MySQL database...&quot;</span><span class="p">)</span>
+        <span class="n">db</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span><span class="s1">&#39;mysql://neuromldb2:&#39;</span> <span class="o">+</span> <span class="n">pwd</span> <span class="o">+</span> <span class="s1">&#39;@127.0.0.1:&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">server</span><span class="o">.</span><span class="n">local_bind_port</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/neuromldb&#39;</span><span class="p">)</span>
+
+        <span class="n">db_proxy</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="n">server</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">db</span> <span class="o">=</span> <span class="n">db</span>
+</div>
+        <span class="k">return</span> <span class="n">db</span>
+
+    <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;server&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;db&quot;</span><span class="p">):</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Ju Bi.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
