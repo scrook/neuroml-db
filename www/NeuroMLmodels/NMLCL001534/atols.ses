@@ -1,0 +1,56 @@
+objectvar save_window_, rvp_
+objectvar scene_vector_[2]
+objectvar ocbox_, ocbox_list_, scene_, scene_list_
+{ocbox_list_ = new List()  scene_list_ = new List()}
+{pwman_place(0,0,0)}
+
+//Begin VariableTimeStep
+{
+ocbox_ = NumericalMethodPanel[0]
+}
+{object_push(ocbox_)}
+{
+atol_ = 0.001  CVode[0].atol(atol_)
+restore(301, 2)
+ atoltool_ = new AtolTool()
+    ats("v", 10)
+    ats("concentration_CaDynamics_478513411", 0.0001)
+    ats("m_q_Ca_HVA", 0.001)
+    ats("h_q_Ca_HVA", 0.1)
+    ats("m_q_Ca_LVA", 0.01)
+    ats("h_q_Ca_LVA", 0.01)
+    ats("m_q_Ih", 0.01)
+    ats("m_q_Im_v2", 0.01)
+    ats("m_q_K_T", 0.1)
+    ats("h_q_K_T", 0.1)
+    ats("m_q_Kd", 0.01)
+    ats("h_q_Kd", 0.1)
+    ats("m_q_Kv2like", 0.01)
+    ats("h_h1_q_Kv2like", 0.1)
+    ats("h_h2_q_Kv2like", 0.1)
+    ats("m_q_Kv3_1", 0.0001)
+    ats("n_C1_occupancy_NaV", 0.1)
+    ats("n_C2_occupancy_NaV", 0.1)
+    ats("n_C3_occupancy_NaV", 0.01)
+    ats("n_C4_occupancy_NaV", 0.001)
+    ats("n_C5_occupancy_NaV", 0.0001)
+    ats("n_I1_occupancy_NaV", 0.0001)
+    ats("n_I2_occupancy_NaV", 0.001)
+    ats("n_I3_occupancy_NaV", 0.001)
+    ats("n_I4_occupancy_NaV", 0.001)
+    ats("n_I5_occupancy_NaV", 0.001)
+    ats("n_I6_occupancy_NaV", 0.01)
+    ats("n_O_occupancy_NaV", 0.0001)
+    ats("z_q_SK", 0.0001)
+    ats("Vector", -1)
+ atoltool_.scales()
+}
+{object_pop()}
+{
+ocbox_.map("VariableTimeStep", 797, 52, 264.96, 113.28)
+}
+objref ocbox_
+//End VariableTimeStep
+
+objectvar scene_vector_[1]
+{doNotify()}

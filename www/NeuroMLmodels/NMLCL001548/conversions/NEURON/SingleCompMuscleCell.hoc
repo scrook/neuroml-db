@@ -1,0 +1,208 @@
+// Cell: SingleCompMuscleCell
+/*
+{
+  "id" : "SingleCompMuscleCell",
+  "sections" : [ {
+    "name" : "soma",
+    "id" : "0",
+    "points3d" : [ "0.0, 0.0, 230.3459, 10.0", "0.0, 0.0, 0.0, 10.0" ]
+  } ],
+  "groups" : [ {
+    "name" : "all",
+    "sections" : [ "soma" ]
+  } ],
+  "specificCapacitance" : [ {
+    "group" : "all",
+    "value" : "1.0"
+  } ],
+  "initMembPotential" : [ {
+    "group" : "all",
+    "value" : "-75.0"
+  } ],
+  "resistivity" : [ {
+    "group" : "all",
+    "value" : "100.0"
+  } ],
+  "channelDensity" : [ {
+    "id" : "Leak_all",
+    "ionChannel" : "Leak",
+    "ion" : "non_specific",
+    "group" : "all",
+    "condDens" : "1.9318099E-5",
+    "erev" : "10.0"
+  }, {
+    "id" : "k_slow_all",
+    "ionChannel" : "k_slow",
+    "ion" : "k",
+    "group" : "all",
+    "condDens" : "4.3584E-4",
+    "erev" : "-64.3461"
+  }, {
+    "id" : "k_fast_all",
+    "ionChannel" : "k_fast",
+    "ion" : "k",
+    "group" : "all",
+    "condDens" : "3.99994E-4",
+    "erev" : "-54.999798"
+  }, {
+    "id" : "ca_boyle_all",
+    "ionChannel" : "ca_boyle",
+    "ion" : "ca",
+    "group" : "all",
+    "condDens" : "2.20209E-4",
+    "erev" : "49.11"
+  } ],
+  "species" : [ {
+    "id" : "ca",
+    "ion" : "ca",
+    "concentrationModel" : "CaPool",
+    "group" : "all",
+    "initialConcentration" : "0.0",
+    "initialExtConcentration" : "2.0"
+  } ]
+}
+*/
+
+load_file("subiter.hoc")
+
+begintemplate SingleCompMuscleCell
+
+public init, topol, basic_shape, subsets, geom, memb
+public x, y, z, position
+
+
+//  Some methods for referencing the cells
+
+public toString, netInfo, set_initial_v, set_initial_ion_properties, synlist
+
+
+// Section: soma, id: 0, parent: $s.parent
+create soma
+public soma
+
+// Group: {name=all, sections=[soma]}
+objref all
+
+objref synlist
+
+proc init() {
+    topol()
+    geom_nseg()
+    subsets()
+    subsets_inhomogeneous()
+    biophys()
+    biophys_inhomogeneous()
+    synlist = new List()
+    x = y = z = 0
+
+}
+
+proc set_initial_v() {
+    // Taken from the initMembPotential value
+    forsec all v = -75.0  // units: mV
+}
+
+
+proc set_initial_ion_properties() {
+    // From species
+    // Ion: ca on group: all, with concentration model: CaPool
+    forsec all {
+        cai = 0.0  // units: mM
+        cao = 2.0  // units: mM
+    }
+}
+
+
+proc topol() {
+    basic_shape()
+
+}
+
+
+proc basic_shape() {
+
+    // Section: soma, id: 0, parent: $s.parent (entry count 0/100)
+    soma { pt3dclear() }
+    soma { pt3dadd( 0.0, 0.0, 230.3459, 10.0 ) }
+    soma { pt3dadd( 0.0, 0.0, 0.0, 10.0 ) }
+
+}
+
+
+proc subsets() { local i
+
+    // Group: {name=all, sections=[soma]}
+    all = new SectionList()
+    soma all.append()
+
+}
+
+
+proc subsets_inhomogeneous() {
+}
+
+proc biophys() {
+
+    // Specific capacitance
+    forsec all cm = 1.0  // units: uF/cm2
+
+    // Specific axial resistance/resistivity
+    forsec all Ra = 100.0  // units: ohm cm
+
+    // Channel densities
+    forsec all {
+        insert Leak
+        gmax_Leak = 1.9318099E-5  // units: S cm-2
+        e_Leak = 10.0  // units: mV
+    }
+    forsec all {
+        insert k_slow
+        gmax_k_slow = 4.3584E-4  // units: S cm-2
+        ek = -64.3461  // units: mV
+    }
+    forsec all {
+        insert k_fast
+        gmax_k_fast = 3.99994E-4  // units: S cm-2
+        ek = -54.999798  // units: mV
+    }
+    forsec all {
+        insert ca_boyle
+        gmax_ca_boyle = 2.20209E-4  // units: S cm-2
+        eca = 49.11  // units: mV
+    }
+
+    // Concentration models for species
+    // Ion: ca on group: all, with concentration model: CaPool
+    forsec all {
+        insert CaPool
+    }
+
+}
+
+func H() { // Heaviside function
+    if ($1>=0) return 1
+    if ($1==0) return 0.5
+    return 0
+}
+
+proc biophys_inhomogeneous() {
+}
+
+proc geom_nseg() {
+    // All sections not mentioned here have nseg = 1
+}
+
+
+proc position() { local i
+    forsec all {
+        for i = 0, n3d()-1 {
+            pt3dchange(i, $1+x3d(i), $2+y3d(i), $3+z3d(i), diam3d(i))
+        }
+    }
+    x = $1  y = $2  z = $3
+}
+
+
+endtemplate SingleCompMuscleCell
+
+
