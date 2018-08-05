@@ -1,0 +1,2718 @@
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="NeuroML2_file_exported_from_NEURON">
+    <include href="K_Tst.channel.nml"></include>
+    <include href="SKv3_1.channel.nml"></include>
+    <include href="Nap_Et2.channel.nml"></include>
+    <include href="NaTs2_t.channel.nml"></include>
+    <include href="Ih.channel.nml"></include>
+    <include href="pas.channel.nml"></include>
+    <include href="Im.channel.nml"></include>
+    <include href="NaTa_t.channel.nml"></include>
+    <include href="Ca_LVAst.channel.nml"></include>
+    <include href="SK_E2.channel.nml"></include>
+    <include href="K_Pst.channel.nml"></include>
+    <include href="CaDynamics_E2_NML2.nml"></include>
+    <include href="Ca.channel.nml"></include>
+    <cell id="bNAC219_L1_NGCDA_095997ce92_0_0">
+        <notes>
+
+Export of a cell model obtained from the BBP Neocortical Microcircuit Collaboration Portal into NeuroML2
+
+******************************************************
+*  This export to NeuroML2 has not yet been fully validated!!
+*  Use with caution!!
+******************************************************
+
+For more information on this cell model see: https://bbp.epfl.ch/nmc-portal/microcircuit#/metype/L1_NGC-DA_bNAC/details
+
+</notes>
+        <morphology id="morphology">
+            <segment id="0" name="Seg0_soma_0">
+                <proximal y="-8.653980e+00" x="5.883330e-01" z="7.908850e-03" diameter="2.648630e+00"/>
+                <distal y="-7.878840e+00" x="5.501690e-01" z="7.374180e-03" diameter="4.866090e+00"/>
+            </segment>
+            <segment id="2" name="Seg1_soma_0">
+                <parent fractionAlong="1" segment="0"/>
+                <distal y="-7.103690e+00" x="5.120050e-01" z="6.839500e-03" diameter="6.449380e+00"/>
+            </segment>
+            <segment id="3" name="Seg2_soma_0">
+                <parent fractionAlong="1" segment="2"/>
+                <distal y="-6.328540e+00" x="4.738410e-01" z="6.304830e-03" diameter="7.233660e+00"/>
+            </segment>
+            <segment id="4" name="Seg3_soma_0">
+                <parent fractionAlong="1" segment="3"/>
+                <distal y="-5.553400e+00" x="4.356770e-01" z="5.770150e-03" diameter="8.015960e+00"/>
+            </segment>
+            <segment id="5" name="Seg4_soma_0">
+                <parent fractionAlong="1" segment="4"/>
+                <distal y="-4.778250e+00" x="3.975130e-01" z="5.235480e-03" diameter="8.592860e+00"/>
+            </segment>
+            <segment id="6" name="Seg5_soma_0">
+                <parent fractionAlong="1" segment="5"/>
+                <distal y="-4.003100e+00" x="3.593490e-01" z="4.700800e-03" diameter="9.092030e+00"/>
+            </segment>
+            <segment id="7" name="Seg6_soma_0">
+                <parent fractionAlong="1" segment="6"/>
+                <distal y="-3.227960e+00" x="3.211860e-01" z="4.166130e-03" diameter="9.591200e+00"/>
+            </segment>
+            <segment id="8" name="Seg7_soma_0">
+                <parent fractionAlong="1" segment="7"/>
+                <distal y="-2.452810e+00" x="2.830220e-01" z="3.631460e-03" diameter="1.007120e+01"/>
+            </segment>
+            <segment id="9" name="Seg8_soma_0">
+                <parent fractionAlong="1" segment="8"/>
+                <distal y="-1.677670e+00" x="2.448580e-01" z="3.096780e-03" diameter="1.018470e+01"/>
+            </segment>
+            <segment id="10" name="Seg9_soma_0">
+                <parent fractionAlong="1" segment="9"/>
+                <distal y="-9.025190e-01" x="2.066940e-01" z="2.562110e-03" diameter="1.028220e+01"/>
+            </segment>
+            <segment id="11" name="Seg10_soma_0">
+                <parent fractionAlong="1" segment="10"/>
+                <distal y="-1.273730e-01" x="1.685300e-01" z="2.027430e-03" diameter="1.037970e+01"/>
+            </segment>
+            <segment id="12" name="Seg11_soma_0">
+                <parent fractionAlong="1" segment="11"/>
+                <distal y="6.477730e-01" x="1.303660e-01" z="1.492760e-03" diameter="1.043750e+01"/>
+            </segment>
+            <segment id="13" name="Seg12_soma_0">
+                <parent fractionAlong="1" segment="12"/>
+                <distal y="1.422920e+00" x="9.220250e-02" z="9.580840e-04" diameter="9.879140e+00"/>
+            </segment>
+            <segment id="14" name="Seg13_soma_0">
+                <parent fractionAlong="1" segment="13"/>
+                <distal y="2.198070e+00" x="5.403860e-02" z="4.234100e-04" diameter="8.966430e+00"/>
+            </segment>
+            <segment id="15" name="Seg14_soma_0">
+                <parent fractionAlong="1" segment="14"/>
+                <distal y="2.973210e+00" x="1.587470e-02" z="-1.112650e-04" diameter="7.651000e+00"/>
+            </segment>
+            <segment id="16" name="Seg15_soma_0">
+                <parent fractionAlong="1" segment="15"/>
+                <distal y="3.748360e+00" x="-2.228910e-02" z="-6.459390e-04" diameter="6.204590e+00"/>
+            </segment>
+            <segment id="17" name="Seg16_soma_0">
+                <parent fractionAlong="1" segment="16"/>
+                <distal y="4.523500e+00" x="-6.045300e-02" z="-1.180610e-03" diameter="5.030590e+00"/>
+            </segment>
+            <segment id="18" name="Seg17_soma_0">
+                <parent fractionAlong="1" segment="17"/>
+                <distal y="5.298650e+00" x="-9.861680e-02" z="-1.715290e-03" diameter="4.230970e+00"/>
+            </segment>
+            <segment id="19" name="Seg18_soma_0">
+                <parent fractionAlong="1" segment="18"/>
+                <distal y="6.073800e+00" x="-1.367810e-01" z="-2.249960e-03" diameter="3.503760e+00"/>
+            </segment>
+            <segment id="20" name="Seg19_soma_0">
+                <parent fractionAlong="1" segment="19"/>
+                <distal y="6.848940e+00" x="-1.749450e-01" z="-2.784640e-03" diameter="2.081030e+00"/>
+            </segment>
+            <segment id="352" name="Seg0_dend_56">
+                <parent fractionAlong="1" segment="9"/>
+                <proximal y="-7.396720e+00" x="-1.048180e+00" z="-5.535100e+00" diameter="4.900000e-01"/>
+                <distal y="-1.418140e+01" x="-4.358640e-01" z="-5.876940e+00" diameter="4.900000e-01"/>
+            </segment>
+            <segment id="353" name="Seg1_dend_56">
+                <parent fractionAlong="1" segment="352"/>
+                <distal y="-2.018220e+01" x="-9.469480e-01" z="-6.544730e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="354" name="Seg2_dend_56">
+                <parent fractionAlong="1" segment="353"/>
+                <distal y="-2.676120e+01" x="-2.721540e+00" z="-7.361050e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="355" name="Seg3_dend_56">
+                <parent fractionAlong="1" segment="354"/>
+                <distal y="-2.977840e+01" x="-4.237460e+00" z="-7.384070e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="356" name="Seg4_dend_56">
+                <parent fractionAlong="1" segment="355"/>
+                <distal y="-3.317660e+01" x="-5.944810e+00" z="-7.410000e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="357" name="Seg5_dend_56">
+                <parent fractionAlong="1" segment="356"/>
+                <distal y="-3.590280e+01" x="-7.314560e+00" z="-7.430790e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="358" name="Seg6_dend_56">
+                <parent fractionAlong="1" segment="357"/>
+                <distal y="-4.072890e+01" x="-1.104210e+01" z="-7.710100e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="359" name="Seg7_dend_56">
+                <parent fractionAlong="1" segment="358"/>
+                <distal y="-4.376570e+01" x="-1.443620e+01" z="-7.627150e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="360" name="Seg8_dend_56">
+                <parent fractionAlong="1" segment="359"/>
+                <distal y="-4.875530e+01" x="-2.125170e+01" z="-6.428240e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="250" name="Seg0_dend_41">
+                <parent fractionAlong="1" segment="9"/>
+                <proximal y="-4.470720e+00" x="-3.938180e+00" z="-6.995100e+00" diameter="3.700000e-01"/>
+                <distal y="-6.283290e+00" x="-7.434220e+00" z="-1.037760e+01" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="251" name="Seg1_dend_41">
+                <parent fractionAlong="1" segment="250"/>
+                <distal y="-7.120400e+00" x="-9.048820e+00" z="-1.193970e+01" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="252" name="Seg2_dend_41">
+                <parent fractionAlong="1" segment="251"/>
+                <distal y="-7.916590e+00" x="-1.058450e+01" z="-1.342550e+01" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="253" name="Seg3_dend_41">
+                <parent fractionAlong="1" segment="252"/>
+                <distal y="-8.575280e+00" x="-1.185500e+01" z="-1.465470e+01" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="172" name="Seg0_dend_23">
+                <parent fractionAlong="1" segment="9"/>
+                <proximal y="5.684780e+00" x="-7.081840e-01" z="-8.651050e-01" diameter="3.700000e-01"/>
+                <distal y="1.072190e+01" x="-1.635670e+00" z="-8.650680e-01" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="173" name="Seg1_dend_23">
+                <parent fractionAlong="1" segment="172"/>
+                <distal y="1.574540e+01" x="-2.560650e+00" z="-8.650310e-01" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="80" name="Seg0_dend_10">
+                <parent fractionAlong="1" segment="9"/>
+                <proximal y="6.672780e+00" x="1.681820e+00" z="-1.195100e+00" diameter="9.800000e-01"/>
+                <distal y="9.333940e+00" x="2.851860e+00" z="-1.186650e+00" diameter="9.800000e-01"/>
+            </segment>
+            <segment id="81" name="Seg1_dend_10">
+                <parent fractionAlong="1" segment="80"/>
+                <distal y="1.117320e+01" x="3.660540e+00" z="-1.180800e+00" diameter="9.800000e-01"/>
+            </segment>
+            <segment id="82" name="Seg2_dend_10">
+                <parent fractionAlong="1" segment="81"/>
+                <distal y="1.321250e+01" x="4.557160e+00" z="-1.174330e+00" diameter="8.600000e-01"/>
+            </segment>
+            <segment id="83" name="Seg3_dend_10">
+                <parent fractionAlong="1" segment="82"/>
+                <distal y="1.549760e+01" x="5.561880e+00" z="-1.167070e+00" diameter="8.600000e-01"/>
+            </segment>
+            <segment id="84" name="Seg4_dend_10">
+                <parent fractionAlong="1" segment="83"/>
+                <distal y="1.739420e+01" x="6.395730e+00" z="-1.161040e+00" diameter="8.600000e-01"/>
+            </segment>
+            <segment id="85" name="Seg5_dend_10">
+                <parent fractionAlong="1" segment="84"/>
+                <distal y="2.112670e+01" x="8.036850e+00" z="-1.149190e+00" diameter="8.600000e-01"/>
+            </segment>
+            <segment id="21" name="Seg0_dend_0">
+                <parent fractionAlong="1" segment="9"/>
+                <proximal y="-9.121820e-02" x="-5.818180e+00" z="2.048950e-01" diameter="6.100000e-01"/>
+                <distal y="2.145670e+00" x="-6.933190e+00" z="1.202190e-01" diameter="6.100000e-01"/>
+            </segment>
+            <segment id="22" name="Seg1_dend_0">
+                <parent fractionAlong="1" segment="21"/>
+                <distal y="3.447480e+00" x="-7.582090e+00" z="7.094070e-02" diameter="6.100000e-01"/>
+            </segment>
+            <segment id="23" name="Seg2_dend_0">
+                <parent fractionAlong="1" segment="22"/>
+                <distal y="4.485760e+00" x="-8.099640e+00" z="3.163750e-02" diameter="6.100000e-01"/>
+            </segment>
+            <segment id="24" name="Seg3_dend_0">
+                <parent fractionAlong="1" segment="23"/>
+                <distal y="5.503630e+00" x="-8.607010e+00" z="-6.893170e-03" diameter="6.100000e-01"/>
+            </segment>
+            <segment id="25" name="Seg4_dend_0">
+                <parent fractionAlong="1" segment="24"/>
+                <distal y="7.719810e+00" x="-9.711690e+00" z="-9.078500e-02" diameter="6.100000e-01"/>
+            </segment>
+            <segment id="361" name="Seg0_axon_0">
+                <parent fractionAlong="1" segment="20"/>
+                <proximal y="6.848940e+00" x="-1.749450e-01" z="-2.784640e-03" diameter="1.720000e+00"/>
+                <distal y="2.183080e+01" x="-9.125680e-01" z="-2.784640e-03" diameter="1.720000e+00"/>
+            </segment>
+            <segment id="362" name="Seg1_axon_0">
+                <parent fractionAlong="1" segment="361"/>
+                <distal y="3.681260e+01" x="-1.650190e+00" z="-2.784640e-03" diameter="1.720000e+00"/>
+            </segment>
+            <segment id="267" name="Seg0_dend_45">
+                <parent fractionAlong="1" segment="253"/>
+                <proximal y="-8.575280e+00" x="-1.185500e+01" z="-1.465470e+01" diameter="2.500000e-01"/>
+                <distal y="-1.163080e+01" x="-1.437890e+01" z="-1.565320e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="268" name="Seg1_dend_45">
+                <parent fractionAlong="1" segment="267"/>
+                <distal y="-1.357400e+01" x="-1.582000e+01" z="-1.626130e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="269" name="Seg2_dend_45">
+                <parent fractionAlong="1" segment="268"/>
+                <distal y="-1.540930e+01" x="-1.718100e+01" z="-1.683550e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="270" name="Seg3_dend_45">
+                <parent fractionAlong="1" segment="269"/>
+                <distal y="-1.687400e+01" x="-1.826720e+01" z="-1.729380e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="271" name="Seg4_dend_45">
+                <parent fractionAlong="1" segment="270"/>
+                <distal y="-1.802230e+01" x="-1.911880e+01" z="-1.765320e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="272" name="Seg5_dend_45">
+                <parent fractionAlong="1" segment="271"/>
+                <distal y="-2.036620e+01" x="-2.085700e+01" z="-1.838660e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="273" name="Seg6_dend_45">
+                <parent fractionAlong="1" segment="272"/>
+                <distal y="-2.187750e+01" x="-2.186050e+01" z="-1.869060e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="254" name="Seg0_dend_42">
+                <parent fractionAlong="1" segment="253"/>
+                <proximal y="-8.575280e+00" x="-1.185500e+01" z="-1.465470e+01" diameter="3.700000e-01"/>
+                <distal y="-6.363220e+00" x="-1.484880e+01" z="-1.973640e+01" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="249" name="Seg0_dend_40">
+                <parent fractionAlong="1" segment="173"/>
+                <proximal y="1.574540e+01" x="-2.560650e+00" z="-8.650310e-01" diameter="2.500000e-01"/>
+                <distal y="2.006660e+01" x="-2.837140e+00" z="-1.385870e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="174" name="Seg0_dend_24">
+                <parent fractionAlong="1" segment="173"/>
+                <proximal y="1.574540e+01" x="-2.560650e+00" z="-8.650310e-01" diameter="3.700000e-01"/>
+                <distal y="1.767320e+01" x="-1.422130e+00" z="-1.275550e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="175" name="Seg1_dend_24">
+                <parent fractionAlong="1" segment="174"/>
+                <distal y="1.950250e+01" x="-3.417580e-01" z="-1.665110e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="176" name="Seg2_dend_24">
+                <parent fractionAlong="1" segment="175"/>
+                <distal y="2.093080e+01" x="5.017340e-01" z="-1.969250e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="144" name="Seg0_dend_18">
+                <parent fractionAlong="1" segment="85"/>
+                <proximal y="2.112670e+01" x="8.036850e+00" z="-1.149190e+00" diameter="2.500000e-01"/>
+                <distal y="2.599430e+01" x="4.883800e+00" z="-4.280330e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="145" name="Seg1_dend_18">
+                <parent fractionAlong="1" segment="144"/>
+                <distal y="2.760360e+01" x="3.903640e+00" z="-5.138820e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="146" name="Seg2_dend_18">
+                <parent fractionAlong="1" segment="145"/>
+                <distal y="3.027050e+01" x="2.407750e+00" z="-6.493610e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="147" name="Seg3_dend_18">
+                <parent fractionAlong="1" segment="146"/>
+                <distal y="3.333710e+01" x="7.294280e-01" z="-7.999200e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="148" name="Seg4_dend_18">
+                <parent fractionAlong="1" segment="147"/>
+                <distal y="3.395980e+01" x="3.805250e-01" z="-8.300130e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="149" name="Seg5_dend_18">
+                <parent fractionAlong="1" segment="148"/>
+                <distal y="3.563780e+01" x="-5.456600e-01" z="-9.178300e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="150" name="Seg6_dend_18">
+                <parent fractionAlong="1" segment="149"/>
+                <distal y="3.754350e+01" x="-1.607340e+00" z="-9.989210e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="151" name="Seg7_dend_18">
+                <parent fractionAlong="1" segment="150"/>
+                <distal y="4.011750e+01" x="-2.952820e+00" z="-1.115020e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="152" name="Seg8_dend_18">
+                <parent fractionAlong="1" segment="151"/>
+                <distal y="4.125820e+01" x="-3.541000e+00" z="-1.170510e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="153" name="Seg9_dend_18">
+                <parent fractionAlong="1" segment="152"/>
+                <distal y="4.297640e+01" x="-4.282530e+00" z="-1.263120e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="154" name="Seg10_dend_18">
+                <parent fractionAlong="1" segment="153"/>
+                <distal y="4.655840e+01" x="-6.002440e+00" z="-1.479980e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="86" name="Seg0_dend_11">
+                <parent fractionAlong="1" segment="85"/>
+                <proximal y="2.112670e+01" x="8.036850e+00" z="-1.149190e+00" diameter="7.400000e-01"/>
+                <distal y="2.342600e+01" x="1.165760e+01" z="-7.198840e+00" diameter="7.400000e-01"/>
+            </segment>
+            <segment id="87" name="Seg1_dend_11">
+                <parent fractionAlong="1" segment="86"/>
+                <distal y="2.409570e+01" x="1.271210e+01" z="-8.960870e+00" diameter="7.400000e-01"/>
+            </segment>
+            <segment id="88" name="Seg2_dend_11">
+                <parent fractionAlong="1" segment="87"/>
+                <distal y="2.475360e+01" x="1.374810e+01" z="-1.069170e+01" diameter="7.400000e-01"/>
+            </segment>
+            <segment id="56" name="Seg0_dend_5">
+                <parent fractionAlong="1" segment="25"/>
+                <proximal y="7.719810e+00" x="-9.711690e+00" z="-9.078500e-02" diameter="3.700000e-01"/>
+                <distal y="8.081420e+00" x="-1.263380e+01" z="1.184750e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="57" name="Seg1_dend_5">
+                <parent fractionAlong="1" segment="56"/>
+                <distal y="8.356240e+00" x="-1.485460e+01" z="2.154170e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="26" name="Seg0_dend_1">
+                <parent fractionAlong="1" segment="25"/>
+                <proximal y="7.719810e+00" x="-9.711690e+00" z="-9.078500e-02" diameter="4.900000e-01"/>
+                <distal y="1.029530e+01" x="-1.073200e+01" z="9.798610e-02" diameter="4.900000e-01"/>
+            </segment>
+            <segment id="27" name="Seg1_dend_1">
+                <parent fractionAlong="1" segment="26"/>
+                <distal y="1.101490e+01" x="-1.100580e+01" z="8.696480e-02" diameter="4.900000e-01"/>
+            </segment>
+            <segment id="28" name="Seg2_dend_1">
+                <parent fractionAlong="1" segment="27"/>
+                <distal y="1.330830e+01" x="-1.172150e+01" z="-6.716500e-02" diameter="4.900000e-01"/>
+            </segment>
+            <segment id="29" name="Seg3_dend_1">
+                <parent fractionAlong="1" segment="28"/>
+                <distal y="1.596320e+01" x="-1.246140e+01" z="-1.718730e-01" diameter="4.900000e-01"/>
+            </segment>
+            <segment id="30" name="Seg4_dend_1">
+                <parent fractionAlong="1" segment="29"/>
+                <distal y="1.750340e+01" x="-1.289070e+01" z="-2.326220e-01" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="31" name="Seg5_dend_1">
+                <parent fractionAlong="1" segment="30"/>
+                <distal y="1.959610e+01" x="-1.347390e+01" z="-3.151550e-01" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="32" name="Seg6_dend_1">
+                <parent fractionAlong="1" segment="31"/>
+                <distal y="2.257400e+01" x="-1.428880e+01" z="-5.240620e-01" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="33" name="Seg7_dend_1">
+                <parent fractionAlong="1" segment="32"/>
+                <distal y="2.550650e+01" x="-1.502710e+01" z="-7.722280e-01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="34" name="Seg8_dend_1">
+                <parent fractionAlong="1" segment="33"/>
+                <distal y="2.839800e+01" x="-1.563690e+01" z="-1.091050e+00" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="363" name="Seg0_axon_1">
+                <parent fractionAlong="1" segment="362"/>
+                <proximal y="3.681260e+01" x="-1.650190e+00" z="-2.784640e-03" diameter="3.700000e-01"/>
+                <distal y="5.179450e+01" x="-2.387820e+00" z="-2.784640e-03" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="364" name="Seg1_axon_1">
+                <parent fractionAlong="1" segment="363"/>
+                <distal y="6.677640e+01" x="-3.125440e+00" z="-2.784640e-03" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="301" name="Seg0_dend_53">
+                <parent fractionAlong="1" segment="273"/>
+                <proximal y="-2.187750e+01" x="-2.186050e+01" z="-1.869060e+01" diameter="2.500000e-01"/>
+                <distal y="-2.474040e+01" x="-1.809010e+01" z="-1.650390e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="302" name="Seg1_dend_53">
+                <parent fractionAlong="1" segment="301"/>
+                <distal y="-2.602720e+01" x="-1.639540e+01" z="-1.552100e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="274" name="Seg0_dend_46">
+                <parent fractionAlong="1" segment="273"/>
+                <proximal y="-2.187750e+01" x="-2.186050e+01" z="-1.869060e+01" diameter="2.500000e-01"/>
+                <distal y="-2.272400e+01" x="-2.351610e+01" z="-1.876540e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="275" name="Seg1_dend_46">
+                <parent fractionAlong="1" segment="274"/>
+                <distal y="-2.340940e+01" x="-2.485640e+01" z="-1.882600e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="276" name="Seg2_dend_46">
+                <parent fractionAlong="1" segment="275"/>
+                <distal y="-2.437030e+01" x="-2.673580e+01" z="-1.891090e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="277" name="Seg3_dend_46">
+                <parent fractionAlong="1" segment="276"/>
+                <distal y="-2.550790e+01" x="-2.896060e+01" z="-1.901140e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="264" name="Seg0_dend_44">
+                <parent fractionAlong="1" segment="254"/>
+                <proximal y="-6.363220e+00" x="-1.484880e+01" z="-1.973640e+01" diameter="2.500000e-01"/>
+                <distal y="-5.097440e+00" x="-1.328640e+01" z="-2.167600e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="265" name="Seg1_dend_44">
+                <parent fractionAlong="1" segment="264"/>
+                <distal y="-3.741490e+00" x="-1.161280e+01" z="-2.375380e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="266" name="Seg2_dend_44">
+                <parent fractionAlong="1" segment="265"/>
+                <distal y="-2.579000e+00" x="-1.017790e+01" z="-2.553510e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="255" name="Seg0_dend_43">
+                <parent fractionAlong="1" segment="254"/>
+                <proximal y="-6.363220e+00" x="-1.484880e+01" z="-1.973640e+01" diameter="2.500000e-01"/>
+                <distal y="-6.503390e+00" x="-1.916400e+01" z="-2.212920e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="256" name="Seg1_dend_43">
+                <parent fractionAlong="1" segment="255"/>
+                <distal y="-6.855520e+00" x="-2.193180e+01" z="-2.338260e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="257" name="Seg2_dend_43">
+                <parent fractionAlong="1" segment="256"/>
+                <distal y="-7.152340e+00" x="-2.355240e+01" z="-2.405470e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="258" name="Seg3_dend_43">
+                <parent fractionAlong="1" segment="257"/>
+                <distal y="-7.415950e+00" x="-2.494830e+01" z="-2.460560e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="259" name="Seg4_dend_43">
+                <parent fractionAlong="1" segment="258"/>
+                <distal y="-7.763760e+00" x="-2.679010e+01" z="-2.533250e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="260" name="Seg5_dend_43">
+                <parent fractionAlong="1" segment="259"/>
+                <distal y="-8.363930e+00" x="-2.996820e+01" z="-2.658670e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="261" name="Seg6_dend_43">
+                <parent fractionAlong="1" segment="260"/>
+                <distal y="-9.092540e+00" x="-3.291130e+01" z="-2.746070e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="262" name="Seg7_dend_43">
+                <parent fractionAlong="1" segment="261"/>
+                <distal y="-9.892190e+00" x="-3.556250e+01" z="-2.823930e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="263" name="Seg8_dend_43">
+                <parent fractionAlong="1" segment="262"/>
+                <distal y="-1.028580e+01" x="-3.673670e+01" z="-2.858090e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="189" name="Seg0_dend_26">
+                <parent fractionAlong="1" segment="176"/>
+                <proximal y="2.093080e+01" x="5.017340e-01" z="-1.969250e+00" diameter="2.500000e-01"/>
+                <distal y="2.268440e+01" x="3.830110e+00" z="-1.366430e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="190" name="Seg1_dend_26">
+                <parent fractionAlong="1" segment="189"/>
+                <distal y="2.427860e+01" x="6.855700e+00" z="-8.184540e-01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="191" name="Seg2_dend_26">
+                <parent fractionAlong="1" segment="190"/>
+                <distal y="2.443310e+01" x="7.149000e+00" z="-7.653320e-01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="177" name="Seg0_dend_25">
+                <parent fractionAlong="1" segment="176"/>
+                <proximal y="2.093080e+01" x="5.017340e-01" z="-1.969250e+00" diameter="2.500000e-01"/>
+                <distal y="2.297900e+01" x="-1.922450e+00" z="-2.075560e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="178" name="Seg1_dend_25">
+                <parent fractionAlong="1" segment="177"/>
+                <distal y="2.521620e+01" x="-4.174360e+00" z="-2.225970e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="179" name="Seg2_dend_25">
+                <parent fractionAlong="1" segment="178"/>
+                <distal y="2.898720e+01" x="-7.621800e+00" z="-2.135590e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="180" name="Seg3_dend_25">
+                <parent fractionAlong="1" segment="179"/>
+                <distal y="3.068840e+01" x="-9.119390e+00" z="-1.988790e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="181" name="Seg4_dend_25">
+                <parent fractionAlong="1" segment="180"/>
+                <distal y="3.311590e+01" x="-1.116220e+01" z="-1.668100e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="182" name="Seg5_dend_25">
+                <parent fractionAlong="1" segment="181"/>
+                <distal y="3.540600e+01" x="-1.299350e+01" z="-1.304440e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="183" name="Seg6_dend_25">
+                <parent fractionAlong="1" segment="182"/>
+                <distal y="3.799320e+01" x="-1.472550e+01" z="-7.763350e-01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="184" name="Seg7_dend_25">
+                <parent fractionAlong="1" segment="183"/>
+                <distal y="4.124930e+01" x="-1.667330e+01" z="-9.062060e-03" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="185" name="Seg8_dend_25">
+                <parent fractionAlong="1" segment="184"/>
+                <distal y="4.378570e+01" x="-1.805180e+01" z="7.162020e-01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="186" name="Seg9_dend_25">
+                <parent fractionAlong="1" segment="185"/>
+                <distal y="4.635650e+01" x="-1.933480e+01" z="1.544640e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="187" name="Seg10_dend_25">
+                <parent fractionAlong="1" segment="186"/>
+                <distal y="4.773500e+01" x="-1.999940e+01" z="2.060810e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="188" name="Seg11_dend_25">
+                <parent fractionAlong="1" segment="187"/>
+                <distal y="5.104680e+01" x="-2.174870e+01" z="3.475980e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="157" name="Seg0_dend_20">
+                <parent fractionAlong="1" segment="154"/>
+                <proximal y="4.655840e+01" x="-6.002440e+00" z="-1.479980e+01" diameter="2.500000e-01"/>
+                <distal y="4.749980e+01" x="-6.868540e+00" z="-1.629080e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="158" name="Seg1_dend_20">
+                <parent fractionAlong="1" segment="157"/>
+                <distal y="4.945920e+01" x="-8.671290e+00" z="-1.939430e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="159" name="Seg2_dend_20">
+                <parent fractionAlong="1" segment="158"/>
+                <distal y="5.135810e+01" x="-1.041840e+01" z="-2.240200e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="160" name="Seg3_dend_20">
+                <parent fractionAlong="1" segment="159"/>
+                <distal y="5.380490e+01" x="-1.266960e+01" z="-2.627740e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="155" name="Seg0_dend_19">
+                <parent fractionAlong="1" segment="154"/>
+                <proximal y="4.655840e+01" x="-6.002440e+00" z="-1.479980e+01" diameter="2.500000e-01"/>
+                <distal y="4.820590e+01" x="-5.490510e+00" z="-1.615630e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="156" name="Seg1_dend_19">
+                <parent fractionAlong="1" segment="155"/>
+                <distal y="5.081360e+01" x="-4.680200e+00" z="-1.830350e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="113" name="Seg0_dend_15">
+                <parent fractionAlong="1" segment="88"/>
+                <proximal y="2.475360e+01" x="1.374810e+01" z="-1.069170e+01" diameter="2.500000e-01"/>
+                <distal y="2.727030e+01" x="1.584530e+01" z="-9.999420e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="114" name="Seg1_dend_15">
+                <parent fractionAlong="1" segment="113"/>
+                <distal y="2.980200e+01" x="1.795490e+01" z="-9.302990e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="89" name="Seg0_dend_12">
+                <parent fractionAlong="1" segment="88"/>
+                <proximal y="2.475360e+01" x="1.374810e+01" z="-1.069170e+01" diameter="3.700000e-01"/>
+                <distal y="2.806230e+01" x="1.604750e+01" z="-1.903340e+01" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="90" name="Seg1_dend_12">
+                <parent fractionAlong="1" segment="89"/>
+                <distal y="2.965930e+01" x="1.715730e+01" z="-2.305950e+01" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="72" name="Seg0_dend_9">
+                <parent fractionAlong="1" segment="57"/>
+                <proximal y="8.356240e+00" x="-1.485460e+01" z="2.154170e+00" diameter="3.700000e-01"/>
+                <distal y="7.244410e+00" x="-1.663290e+01" z="2.039170e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="73" name="Seg1_dend_9">
+                <parent fractionAlong="1" segment="72"/>
+                <distal y="6.519960e+00" x="-1.789040e+01" z="1.986560e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="74" name="Seg2_dend_9">
+                <parent fractionAlong="1" segment="73"/>
+                <distal y="5.999250e+00" x="-1.899790e+01" z="2.029560e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="75" name="Seg3_dend_9">
+                <parent fractionAlong="1" segment="74"/>
+                <distal y="5.550510e+00" x="-1.995230e+01" z="2.066610e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="76" name="Seg4_dend_9">
+                <parent fractionAlong="1" segment="75"/>
+                <distal y="4.920000e+00" x="-2.129320e+01" z="2.118680e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="77" name="Seg5_dend_9">
+                <parent fractionAlong="1" segment="76"/>
+                <distal y="4.074510e+00" x="-2.309150e+01" z="2.188490e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="78" name="Seg6_dend_9">
+                <parent fractionAlong="1" segment="77"/>
+                <distal y="3.479820e+00" x="-2.452260e+01" z="2.292170e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="79" name="Seg7_dend_9">
+                <parent fractionAlong="1" segment="78"/>
+                <distal y="2.363890e+00" x="-2.723090e+01" z="2.585270e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="58" name="Seg0_dend_6">
+                <parent fractionAlong="1" segment="57"/>
+                <proximal y="8.356240e+00" x="-1.485460e+01" z="2.154170e+00" diameter="3.700000e-01"/>
+                <distal y="8.105000e+00" x="-1.711540e+01" z="2.044020e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="59" name="Seg1_dend_6">
+                <parent fractionAlong="1" segment="58"/>
+                <distal y="7.678330e+00" x="-2.015930e+01" z="1.887980e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="60" name="Seg2_dend_6">
+                <parent fractionAlong="1" segment="59"/>
+                <distal y="7.189000e+00" x="-2.365030e+01" z="1.709030e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="61" name="Seg3_dend_6">
+                <parent fractionAlong="1" segment="60"/>
+                <distal y="6.963730e+00" x="-2.525740e+01" z="1.626650e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="62" name="Seg4_dend_6">
+                <parent fractionAlong="1" segment="61"/>
+                <distal y="6.669230e+00" x="-2.735840e+01" z="1.518940e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="63" name="Seg5_dend_6">
+                <parent fractionAlong="1" segment="62"/>
+                <distal y="6.526410e+00" x="-2.837730e+01" z="1.466710e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="64" name="Seg6_dend_6">
+                <parent fractionAlong="1" segment="63"/>
+                <distal y="6.463070e+00" x="-2.863920e+01" z="1.447570e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="51" name="Seg0_dend_4">
+                <parent fractionAlong="1" segment="34"/>
+                <proximal y="2.839800e+01" x="-1.563690e+01" z="-1.091050e+00" diameter="2.500000e-01"/>
+                <distal y="2.995250e+01" x="-1.657350e+01" z="-1.808320e-01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="52" name="Seg1_dend_4">
+                <parent fractionAlong="1" segment="51"/>
+                <distal y="3.202430e+01" x="-1.782180e+01" z="1.032270e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="53" name="Seg2_dend_4">
+                <parent fractionAlong="1" segment="52"/>
+                <distal y="3.361600e+01" x="-1.878080e+01" z="1.964240e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="54" name="Seg3_dend_4">
+                <parent fractionAlong="1" segment="53"/>
+                <distal y="3.495760e+01" x="-1.958910e+01" z="2.749810e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="55" name="Seg4_dend_4">
+                <parent fractionAlong="1" segment="54"/>
+                <distal y="3.683650e+01" x="-2.072110e+01" z="3.849920e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="38" name="Seg0_dend_3">
+                <parent fractionAlong="1" segment="34"/>
+                <proximal y="2.839800e+01" x="-1.563690e+01" z="-1.091050e+00" diameter="1.200000e-01"/>
+                <distal y="2.884370e+01" x="-1.706460e+01" z="-1.245680e+00" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="39" name="Seg1_dend_3">
+                <parent fractionAlong="1" segment="38"/>
+                <distal y="2.937720e+01" x="-1.867520e+01" z="-1.287950e+00" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="40" name="Seg2_dend_3">
+                <parent fractionAlong="1" segment="39"/>
+                <distal y="2.997920e+01" x="-2.045040e+01" z="-1.276710e+00" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="41" name="Seg3_dend_3">
+                <parent fractionAlong="1" segment="40"/>
+                <distal y="3.117460e+01" x="-2.409010e+01" z="-1.258500e+00" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="42" name="Seg4_dend_3">
+                <parent fractionAlong="1" segment="41"/>
+                <distal y="3.161080e+01" x="-2.548380e+01" z="-1.253200e+00" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="43" name="Seg5_dend_3">
+                <parent fractionAlong="1" segment="42"/>
+                <distal y="3.263800e+01" x="-2.895710e+01" z="-1.224820e+00" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="44" name="Seg6_dend_3">
+                <parent fractionAlong="1" segment="43"/>
+                <distal y="3.339550e+01" x="-3.178020e+01" z="-1.262920e+00" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="45" name="Seg7_dend_3">
+                <parent fractionAlong="1" segment="44"/>
+                <distal y="3.377320e+01" x="-3.334660e+01" z="-1.380130e+00" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="46" name="Seg8_dend_3">
+                <parent fractionAlong="1" segment="45"/>
+                <distal y="3.448710e+01" x="-3.649300e+01" z="-1.635240e+00" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="47" name="Seg9_dend_3">
+                <parent fractionAlong="1" segment="46"/>
+                <distal y="3.476660e+01" x="-3.788660e+01" z="-1.779210e+00" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="48" name="Seg10_dend_3">
+                <parent fractionAlong="1" segment="47"/>
+                <distal y="3.522230e+01" x="-4.056010e+01" z="-2.202760e+00" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="49" name="Seg11_dend_3">
+                <parent fractionAlong="1" segment="48"/>
+                <distal y="3.560860e+01" x="-4.333790e+01" z="-2.993970e+00" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="50" name="Seg12_dend_3">
+                <parent fractionAlong="1" segment="49"/>
+                <distal y="3.585920e+01" x="-4.653130e+01" z="-4.268770e+00" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="35" name="Seg0_dend_2">
+                <parent fractionAlong="1" segment="34"/>
+                <proximal y="2.839800e+01" x="-1.563690e+01" z="-1.091050e+00" diameter="1.200000e-01"/>
+                <distal y="3.075940e+01" x="-1.543960e+01" z="-4.347490e-02" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="36" name="Seg1_dend_2">
+                <parent fractionAlong="1" segment="35"/>
+                <distal y="3.235100e+01" x="-1.530660e+01" z="6.626340e-01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="37" name="Seg2_dend_2">
+                <parent fractionAlong="1" segment="36"/>
+                <distal y="3.513120e+01" x="-1.507430e+01" z="1.895980e+00" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="328" name="Seg0_dend_55">
+                <parent fractionAlong="1" segment="302"/>
+                <proximal y="-2.602720e+01" x="-1.639540e+01" z="-1.552100e+01" diameter="1.200000e-01"/>
+                <distal y="-2.332540e+01" x="-2.084390e+01" z="-1.939880e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="329" name="Seg1_dend_55">
+                <parent fractionAlong="1" segment="328"/>
+                <distal y="-1.953420e+01" x="-2.644120e+01" z="-2.430810e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="330" name="Seg2_dend_55">
+                <parent fractionAlong="1" segment="329"/>
+                <distal y="-1.749560e+01" x="-2.900540e+01" z="-2.664060e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="331" name="Seg3_dend_55">
+                <parent fractionAlong="1" segment="330"/>
+                <distal y="-1.559670e+01" x="-3.113630e+01" z="-2.848000e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="332" name="Seg4_dend_55">
+                <parent fractionAlong="1" segment="331"/>
+                <distal y="-1.253070e+01" x="-3.432740e+01" z="-3.093620e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="333" name="Seg5_dend_55">
+                <parent fractionAlong="1" segment="332"/>
+                <distal y="-9.866390e+00" x="-3.691810e+01" z="-3.268680e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="334" name="Seg6_dend_55">
+                <parent fractionAlong="1" segment="333"/>
+                <distal y="-6.609790e+00" x="-3.949840e+01" z="-3.384810e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="335" name="Seg7_dend_55">
+                <parent fractionAlong="1" segment="334"/>
+                <distal y="-2.840290e+00" x="-4.199160e+01" z="-3.415070e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="336" name="Seg8_dend_55">
+                <parent fractionAlong="1" segment="335"/>
+                <distal y="6.293840e-01" x="-4.417890e+01" z="-3.372560e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="337" name="Seg9_dend_55">
+                <parent fractionAlong="1" segment="336"/>
+                <distal y="4.405820e+00" x="-4.658790e+01" z="-3.232340e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="338" name="Seg10_dend_55">
+                <parent fractionAlong="1" segment="337"/>
+                <distal y="6.409070e+00" x="-4.799140e+01" z="-3.098650e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="339" name="Seg11_dend_55">
+                <parent fractionAlong="1" segment="338"/>
+                <distal y="8.979960e+00" x="-5.008670e+01" z="-2.866280e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="340" name="Seg12_dend_55">
+                <parent fractionAlong="1" segment="339"/>
+                <distal y="1.145880e+01" x="-5.276200e+01" z="-2.544950e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="341" name="Seg13_dend_55">
+                <parent fractionAlong="1" segment="340"/>
+                <distal y="1.247270e+01" x="-5.433450e+01" z="-2.366360e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="342" name="Seg14_dend_55">
+                <parent fractionAlong="1" segment="341"/>
+                <distal y="1.319090e+01" x="-5.597420e+01" z="-2.203260e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="343" name="Seg15_dend_55">
+                <parent fractionAlong="1" segment="342"/>
+                <distal y="1.404210e+01" x="-5.929350e+01" z="-1.900800e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="344" name="Seg16_dend_55">
+                <parent fractionAlong="1" segment="343"/>
+                <distal y="1.419300e+01" x="-6.127540e+01" z="-1.724050e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="345" name="Seg17_dend_55">
+                <parent fractionAlong="1" segment="344"/>
+                <distal y="1.387910e+01" x="-6.488140e+01" z="-1.414170e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="346" name="Seg18_dend_55">
+                <parent fractionAlong="1" segment="345"/>
+                <distal y="1.341940e+01" x="-6.712090e+01" z="-1.237000e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="347" name="Seg19_dend_55">
+                <parent fractionAlong="1" segment="346"/>
+                <distal y="1.291200e+01" x="-6.889750e+01" z="-1.095230e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="348" name="Seg20_dend_55">
+                <parent fractionAlong="1" segment="347"/>
+                <distal y="1.212640e+01" x="-7.099670e+01" z="-9.293910e+00" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="349" name="Seg21_dend_55">
+                <parent fractionAlong="1" segment="348"/>
+                <distal y="1.070110e+01" x="-7.394880e+01" z="-7.010150e+00" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="350" name="Seg22_dend_55">
+                <parent fractionAlong="1" segment="349"/>
+                <distal y="9.619350e+00" x="-7.595310e+01" z="-5.492440e+00" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="351" name="Seg23_dend_55">
+                <parent fractionAlong="1" segment="350"/>
+                <distal y="8.362450e+00" x="-7.830350e+01" z="-3.953700e+00" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="303" name="Seg0_dend_54">
+                <parent fractionAlong="1" segment="302"/>
+                <proximal y="-2.602720e+01" x="-1.639540e+01" z="-1.552100e+01" diameter="2.500000e-01"/>
+                <distal y="-2.847970e+01" x="-1.439670e+01" z="-1.695150e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="304" name="Seg1_dend_54">
+                <parent fractionAlong="1" segment="303"/>
+                <distal y="-3.088120e+01" x="-1.240960e+01" z="-1.799100e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="305" name="Seg2_dend_54">
+                <parent fractionAlong="1" segment="304"/>
+                <distal y="-3.327110e+01" x="-1.044230e+01" z="-1.851070e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="306" name="Seg3_dend_54">
+                <parent fractionAlong="1" segment="305"/>
+                <distal y="-3.688020e+01" x="-7.520970e+00" z="-1.894600e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="307" name="Seg4_dend_54">
+                <parent fractionAlong="1" segment="306"/>
+                <distal y="-4.045990e+01" x="-4.990210e+00" z="-1.901040e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="308" name="Seg5_dend_54">
+                <parent fractionAlong="1" segment="307"/>
+                <distal y="-4.392780e+01" x="-2.806510e+00" z="-1.886420e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="309" name="Seg6_dend_54">
+                <parent fractionAlong="1" segment="308"/>
+                <distal y="-4.905180e+01" x="-2.890840e-01" z="-1.795260e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="310" name="Seg7_dend_54">
+                <parent fractionAlong="1" segment="309"/>
+                <distal y="-5.506190e+01" x="1.981360e+00" z="-1.579400e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="311" name="Seg8_dend_54">
+                <parent fractionAlong="1" segment="310"/>
+                <distal y="-5.797450e+01" x="2.545780e+00" z="-1.411510e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="312" name="Seg9_dend_54">
+                <parent fractionAlong="1" segment="311"/>
+                <distal y="-6.391560e+01" x="2.532260e+00" z="-9.134020e+00" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="313" name="Seg10_dend_54">
+                <parent fractionAlong="1" segment="312"/>
+                <distal y="-6.681280e+01" x="1.970490e+00" z="-5.970620e+00" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="314" name="Seg11_dend_54">
+                <parent fractionAlong="1" segment="313"/>
+                <distal y="-7.206300e+01" x="-1.535690e-01" z="7.700450e-01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="315" name="Seg12_dend_54">
+                <parent fractionAlong="1" segment="314"/>
+                <distal y="-7.631790e+01" x="-3.010160e+00" z="7.003010e+00" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="316" name="Seg13_dend_54">
+                <parent fractionAlong="1" segment="315"/>
+                <distal y="-8.097330e+01" x="-7.284420e+00" z="1.455380e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="317" name="Seg14_dend_54">
+                <parent fractionAlong="1" segment="316"/>
+                <distal y="-8.415470e+01" x="-1.075300e+01" z="1.999790e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="318" name="Seg15_dend_54">
+                <parent fractionAlong="1" segment="317"/>
+                <distal y="-8.663330e+01" x="-1.394010e+01" z="2.447880e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="319" name="Seg16_dend_54">
+                <parent fractionAlong="1" segment="318"/>
+                <distal y="-8.837180e+01" x="-1.637920e+01" z="2.755930e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="320" name="Seg17_dend_54">
+                <parent fractionAlong="1" segment="319"/>
+                <distal y="-9.050050e+01" x="-1.955270e+01" z="3.098180e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="321" name="Seg18_dend_54">
+                <parent fractionAlong="1" segment="320"/>
+                <distal y="-9.197740e+01" x="-2.101090e+01" z="3.204100e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="322" name="Seg19_dend_54">
+                <parent fractionAlong="1" segment="321"/>
+                <distal y="-9.844340e+01" x="-2.077500e+01" z="2.835440e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="323" name="Seg20_dend_54">
+                <parent fractionAlong="1" segment="322"/>
+                <distal y="-1.007300e+02" x="-2.041650e+01" z="2.671300e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="324" name="Seg21_dend_54">
+                <parent fractionAlong="1" segment="323"/>
+                <distal y="-1.031610e+02" x="-1.970590e+01" z="2.470400e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="325" name="Seg22_dend_54">
+                <parent fractionAlong="1" segment="324"/>
+                <distal y="-1.072000e+02" x="-1.786060e+01" z="2.121580e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="326" name="Seg23_dend_54">
+                <parent fractionAlong="1" segment="325"/>
+                <distal y="-1.111680e+02" x="-1.545570e+01" z="1.765970e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="327" name="Seg24_dend_54">
+                <parent fractionAlong="1" segment="326"/>
+                <distal y="-1.141740e+02" x="-1.336970e+01" z="1.505430e+01" diameter="1.200000e-01"/>
+            </segment>
+            <segment id="300" name="Seg0_dend_52">
+                <parent fractionAlong="1" segment="277"/>
+                <proximal y="-2.550790e+01" x="-2.896060e+01" z="-1.901140e+01" diameter="2.500000e-01"/>
+                <distal y="-2.331080e+01" x="-3.070120e+01" z="-2.023520e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="278" name="Seg0_dend_47">
+                <parent fractionAlong="1" segment="277"/>
+                <proximal y="-2.550790e+01" x="-2.896060e+01" z="-1.901140e+01" diameter="2.500000e-01"/>
+                <distal y="-2.626910e+01" x="-2.988580e+01" z="-1.923300e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="279" name="Seg1_dend_47">
+                <parent fractionAlong="1" segment="278"/>
+                <distal y="-2.706180e+01" x="-3.084940e+01" z="-1.946390e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="280" name="Seg2_dend_47">
+                <parent fractionAlong="1" segment="279"/>
+                <distal y="-2.843020e+01" x="-3.251290e+01" z="-1.986240e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="281" name="Seg3_dend_47">
+                <parent fractionAlong="1" segment="280"/>
+                <distal y="-2.920880e+01" x="-3.345940e+01" z="-2.008910e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="282" name="Seg4_dend_47">
+                <parent fractionAlong="1" segment="281"/>
+                <distal y="-3.040490e+01" x="-3.491330e+01" z="-2.043740e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="214" name="Seg0_dend_32">
+                <parent fractionAlong="1" segment="191"/>
+                <proximal y="2.443310e+01" x="7.149000e+00" z="-7.653320e-01" diameter="2.500000e-01"/>
+                <distal y="2.341660e+01" x="1.089720e+01" z="3.497620e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="215" name="Seg1_dend_32">
+                <parent fractionAlong="1" segment="214"/>
+                <distal y="2.306900e+01" x="1.217910e+01" z="4.955490e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="216" name="Seg2_dend_32">
+                <parent fractionAlong="1" segment="215"/>
+                <distal y="2.254270e+01" x="1.412000e+01" z="7.162890e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="192" name="Seg0_dend_27">
+                <parent fractionAlong="1" segment="191"/>
+                <proximal y="2.443310e+01" x="7.149000e+00" z="-7.653320e-01" diameter="2.500000e-01"/>
+                <distal y="2.740840e+01" x="7.343990e+00" z="-7.649430e-01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="163" name="Seg0_dend_22">
+                <parent fractionAlong="1" segment="160"/>
+                <proximal y="5.380490e+01" x="-1.266960e+01" z="-2.627740e+01" diameter="2.500000e-01"/>
+                <distal y="5.371550e+01" x="-1.326100e+01" z="-2.701500e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="164" name="Seg1_dend_22">
+                <parent fractionAlong="1" segment="163"/>
+                <distal y="5.351590e+01" x="-1.425610e+01" z="-2.831170e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="165" name="Seg2_dend_22">
+                <parent fractionAlong="1" segment="164"/>
+                <distal y="5.311950e+01" x="-1.623410e+01" z="-3.094730e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="166" name="Seg3_dend_22">
+                <parent fractionAlong="1" segment="165"/>
+                <distal y="5.301130e+01" x="-1.674840e+01" z="-3.162250e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="167" name="Seg4_dend_22">
+                <parent fractionAlong="1" segment="166"/>
+                <distal y="5.271260e+01" x="-1.816850e+01" z="-3.348640e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="168" name="Seg5_dend_22">
+                <parent fractionAlong="1" segment="167"/>
+                <distal y="5.245220e+01" x="-1.940630e+01" z="-3.511100e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="169" name="Seg6_dend_22">
+                <parent fractionAlong="1" segment="168"/>
+                <distal y="5.229310e+01" x="-2.007650e+01" z="-3.605850e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="170" name="Seg7_dend_22">
+                <parent fractionAlong="1" segment="169"/>
+                <distal y="5.197370e+01" x="-2.131590e+01" z="-3.795050e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="171" name="Seg8_dend_22">
+                <parent fractionAlong="1" segment="170"/>
+                <distal y="5.164510e+01" x="-2.267050e+01" z="-3.983440e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="161" name="Seg0_dend_21">
+                <parent fractionAlong="1" segment="160"/>
+                <proximal y="5.380490e+01" x="-1.266960e+01" z="-2.627740e+01" diameter="2.500000e-01"/>
+                <distal y="5.640810e+01" x="-1.182300e+01" z="-2.572400e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="162" name="Seg1_dend_21">
+                <parent fractionAlong="1" segment="161"/>
+                <distal y="5.920770e+01" x="-1.091260e+01" z="-2.512890e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="130" name="Seg0_dend_17">
+                <parent fractionAlong="1" segment="114"/>
+                <proximal y="2.980200e+01" x="1.795490e+01" z="-9.302990e+00" diameter="2.500000e-01"/>
+                <distal y="3.217400e+01" x="1.630070e+01" z="-1.052420e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="131" name="Seg1_dend_17">
+                <parent fractionAlong="1" segment="130"/>
+                <distal y="3.588690e+01" x="1.325610e+01" z="-1.256110e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="132" name="Seg2_dend_17">
+                <parent fractionAlong="1" segment="131"/>
+                <distal y="3.711240e+01" x="1.216060e+01" z="-1.320240e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="133" name="Seg3_dend_17">
+                <parent fractionAlong="1" segment="132"/>
+                <distal y="4.076340e+01" x="8.689760e+00" z="-1.499790e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="134" name="Seg4_dend_17">
+                <parent fractionAlong="1" segment="133"/>
+                <distal y="4.246990e+01" x="6.944000e+00" z="-1.587220e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="135" name="Seg5_dend_17">
+                <parent fractionAlong="1" segment="134"/>
+                <distal y="4.377840e+01" x="5.569210e+00" z="-1.659080e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="136" name="Seg6_dend_17">
+                <parent fractionAlong="1" segment="135"/>
+                <distal y="4.585620e+01" x="3.196940e+00" z="-1.794080e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="137" name="Seg7_dend_17">
+                <parent fractionAlong="1" segment="136"/>
+                <distal y="4.790350e+01" x="6.327910e-01" z="-1.936520e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="138" name="Seg8_dend_17">
+                <parent fractionAlong="1" segment="137"/>
+                <distal y="4.891720e+01" x="-6.689800e-01" z="-2.009280e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="139" name="Seg9_dend_17">
+                <parent fractionAlong="1" segment="138"/>
+                <distal y="5.099940e+01" x="-3.333980e+00" z="-2.156780e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="140" name="Seg10_dend_17">
+                <parent fractionAlong="1" segment="139"/>
+                <distal y="5.270080e+01" x="-5.448850e+00" z="-2.288500e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="141" name="Seg11_dend_17">
+                <parent fractionAlong="1" segment="140"/>
+                <distal y="5.486130e+01" x="-8.001110e+00" z="-2.463500e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="142" name="Seg12_dend_17">
+                <parent fractionAlong="1" segment="141"/>
+                <distal y="5.598290e+01" x="-9.309130e+00" z="-2.558560e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="143" name="Seg13_dend_17">
+                <parent fractionAlong="1" segment="142"/>
+                <distal y="5.796930e+01" x="-1.167170e+01" z="-2.756530e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="115" name="Seg0_dend_16">
+                <parent fractionAlong="1" segment="114"/>
+                <proximal y="2.980200e+01" x="1.795490e+01" z="-9.302990e+00" diameter="2.500000e-01"/>
+                <distal y="3.074400e+01" x="1.973660e+01" z="-9.659360e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="116" name="Seg1_dend_16">
+                <parent fractionAlong="1" segment="115"/>
+                <distal y="3.177770e+01" x="2.155190e+01" z="-1.003730e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="117" name="Seg2_dend_16">
+                <parent fractionAlong="1" segment="116"/>
+                <distal y="3.277510e+01" x="2.322100e+01" z="-1.035960e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="118" name="Seg3_dend_16">
+                <parent fractionAlong="1" segment="117"/>
+                <distal y="3.459900e+01" x="2.599510e+01" z="-1.110570e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="119" name="Seg4_dend_16">
+                <parent fractionAlong="1" segment="118"/>
+                <distal y="3.684030e+01" x="2.935300e+01" z="-1.211760e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="120" name="Seg5_dend_16">
+                <parent fractionAlong="1" segment="119"/>
+                <distal y="3.779140e+01" x="3.087210e+01" z="-1.259180e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="121" name="Seg6_dend_16">
+                <parent fractionAlong="1" segment="120"/>
+                <distal y="3.850990e+01" x="3.204100e+01" z="-1.298420e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="122" name="Seg7_dend_16">
+                <parent fractionAlong="1" segment="121"/>
+                <distal y="3.997540e+01" x="3.438630e+01" z="-1.381920e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="123" name="Seg8_dend_16">
+                <parent fractionAlong="1" segment="122"/>
+                <distal y="4.258800e+01" x="3.839830e+01" z="-1.527280e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="124" name="Seg9_dend_16">
+                <parent fractionAlong="1" segment="123"/>
+                <distal y="4.460080e+01" x="4.131830e+01" z="-1.632550e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="125" name="Seg10_dend_16">
+                <parent fractionAlong="1" segment="124"/>
+                <distal y="4.651870e+01" x="4.414440e+01" z="-1.729630e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="126" name="Seg11_dend_16">
+                <parent fractionAlong="1" segment="125"/>
+                <distal y="4.781290e+01" x="4.603250e+01" z="-1.796770e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="127" name="Seg12_dend_16">
+                <parent fractionAlong="1" segment="126"/>
+                <distal y="4.904690e+01" x="4.781530e+01" z="-1.860870e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="128" name="Seg13_dend_16">
+                <parent fractionAlong="1" segment="127"/>
+                <distal y="5.232440e+01" x="5.240840e+01" z="-2.022910e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="129" name="Seg14_dend_16">
+                <parent fractionAlong="1" segment="128"/>
+                <distal y="5.499920e+01" x="5.594700e+01" z="-2.123630e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="93" name="Seg0_dend_14">
+                <parent fractionAlong="1" segment="90"/>
+                <proximal y="2.965930e+01" x="1.715730e+01" z="-2.305950e+01" diameter="2.500000e-01"/>
+                <distal y="2.950010e+01" x="1.915610e+01" z="-2.530920e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="94" name="Seg1_dend_14">
+                <parent fractionAlong="1" segment="93"/>
+                <distal y="2.915070e+01" x="2.184980e+01" z="-2.825270e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="95" name="Seg2_dend_14">
+                <parent fractionAlong="1" segment="94"/>
+                <distal y="2.900910e+01" x="2.276110e+01" z="-2.927520e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="96" name="Seg3_dend_14">
+                <parent fractionAlong="1" segment="95"/>
+                <distal y="2.864520e+01" x="2.475690e+01" z="-3.155400e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="97" name="Seg4_dend_14">
+                <parent fractionAlong="1" segment="96"/>
+                <distal y="2.806880e+01" x="2.765170e+01" z="-3.481210e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="98" name="Seg5_dend_14">
+                <parent fractionAlong="1" segment="97"/>
+                <distal y="2.754000e+01" x="3.022960e+01" z="-3.767810e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="99" name="Seg6_dend_14">
+                <parent fractionAlong="1" segment="98"/>
+                <distal y="2.719480e+01" x="3.173320e+01" z="-3.935980e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="100" name="Seg7_dend_14">
+                <parent fractionAlong="1" segment="99"/>
+                <distal y="2.636250e+01" x="3.489270e+01" z="-4.275370e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="101" name="Seg8_dend_14">
+                <parent fractionAlong="1" segment="100"/>
+                <distal y="2.575430e+01" x="3.702550e+01" z="-4.496950e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="102" name="Seg9_dend_14">
+                <parent fractionAlong="1" segment="101"/>
+                <distal y="2.516740e+01" x="3.895370e+01" z="-4.676100e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="103" name="Seg10_dend_14">
+                <parent fractionAlong="1" segment="102"/>
+                <distal y="2.452480e+01" x="4.080910e+01" z="-4.829450e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="104" name="Seg11_dend_14">
+                <parent fractionAlong="1" segment="103"/>
+                <distal y="2.399370e+01" x="4.224320e+01" z="-4.938890e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="105" name="Seg12_dend_14">
+                <parent fractionAlong="1" segment="104"/>
+                <distal y="2.314450e+01" x="4.442850e+01" z="-5.099600e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="106" name="Seg13_dend_14">
+                <parent fractionAlong="1" segment="105"/>
+                <distal y="2.245360e+01" x="4.603130e+01" z="-5.214710e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="107" name="Seg14_dend_14">
+                <parent fractionAlong="1" segment="106"/>
+                <distal y="2.133960e+01" x="4.848280e+01" z="-5.405910e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="108" name="Seg15_dend_14">
+                <parent fractionAlong="1" segment="107"/>
+                <distal y="1.989690e+01" x="5.153190e+01" z="-5.649070e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="109" name="Seg16_dend_14">
+                <parent fractionAlong="1" segment="108"/>
+                <distal y="1.842110e+01" x="5.455040e+01" z="-5.894840e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="110" name="Seg17_dend_14">
+                <parent fractionAlong="1" segment="109"/>
+                <distal y="1.729200e+01" x="5.684050e+01" z="-6.090010e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="111" name="Seg18_dend_14">
+                <parent fractionAlong="1" segment="110"/>
+                <distal y="1.645500e+01" x="5.840840e+01" z="-6.235820e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="112" name="Seg19_dend_14">
+                <parent fractionAlong="1" segment="111"/>
+                <distal y="1.500100e+01" x="6.109580e+01" z="-6.518420e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="91" name="Seg0_dend_13">
+                <parent fractionAlong="1" segment="90"/>
+                <proximal y="2.965930e+01" x="1.715730e+01" z="-2.305950e+01" diameter="2.500000e-01"/>
+                <distal y="3.211340e+01" x="1.927570e+01" z="-2.175540e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="92" name="Seg1_dend_13">
+                <parent fractionAlong="1" segment="91"/>
+                <distal y="3.457210e+01" x="2.139790e+01" z="-2.044900e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="67" name="Seg0_dend_8">
+                <parent fractionAlong="1" segment="64"/>
+                <proximal y="6.463070e+00" x="-2.863920e+01" z="1.447570e+00" diameter="3.700000e-01"/>
+                <distal y="5.603280e+00" x="-3.004360e+01" z="2.781290e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="68" name="Seg1_dend_8">
+                <parent fractionAlong="1" segment="67"/>
+                <distal y="4.308690e+00" x="-3.215820e+01" z="4.789480e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="69" name="Seg2_dend_8">
+                <parent fractionAlong="1" segment="68"/>
+                <distal y="2.606500e+00" x="-3.493850e+01" z="7.429970e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="70" name="Seg3_dend_8">
+                <parent fractionAlong="1" segment="69"/>
+                <distal y="8.454290e-01" x="-3.781500e+01" z="1.016180e+01" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="71" name="Seg4_dend_8">
+                <parent fractionAlong="1" segment="70"/>
+                <distal y="-7.323160e-01" x="-4.039200e+01" z="1.260920e+01" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="65" name="Seg0_dend_7">
+                <parent fractionAlong="1" segment="64"/>
+                <proximal y="6.463070e+00" x="-2.863920e+01" z="1.447570e+00" diameter="3.700000e-01"/>
+                <distal y="5.083180e+00" x="-2.905080e+01" z="2.191910e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="66" name="Seg1_dend_7">
+                <parent fractionAlong="1" segment="65"/>
+                <distal y="3.091340e+00" x="-2.964480e+01" z="3.266360e+00" diameter="3.700000e-01"/>
+            </segment>
+            <segment id="284" name="Seg0_dend_49">
+                <parent fractionAlong="1" segment="282"/>
+                <proximal y="-3.040490e+01" x="-3.491330e+01" z="-2.043740e+01" diameter="2.500000e-01"/>
+                <distal y="-3.139700e+01" x="-3.615320e+01" z="-2.066290e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="283" name="Seg0_dend_48">
+                <parent fractionAlong="1" segment="282"/>
+                <proximal y="-3.040490e+01" x="-3.491330e+01" z="-2.043740e+01" diameter="2.500000e-01"/>
+                <distal y="-2.760210e+01" x="-3.782310e+01" z="-2.587520e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="246" name="Seg0_dend_39">
+                <parent fractionAlong="1" segment="216"/>
+                <proximal y="2.254270e+01" x="1.412000e+01" z="7.162890e+00" diameter="2.500000e-01"/>
+                <distal y="1.849080e+01" x="1.166460e+01" z="8.245020e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="247" name="Seg1_dend_39">
+                <parent fractionAlong="1" segment="246"/>
+                <distal y="1.289800e+01" x="8.275580e+00" z="9.738680e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="248" name="Seg2_dend_39">
+                <parent fractionAlong="1" segment="247"/>
+                <distal y="9.351430e+00" x="6.126410e+00" z="1.068590e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="230" name="Seg0_dend_36">
+                <parent fractionAlong="1" segment="216"/>
+                <proximal y="2.254270e+01" x="1.412000e+01" z="7.162890e+00" diameter="2.500000e-01"/>
+                <distal y="2.189160e+01" x="1.739280e+01" z="1.169180e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="231" name="Seg1_dend_36">
+                <parent fractionAlong="1" segment="230"/>
+                <distal y="2.154870e+01" x="1.891420e+01" z="1.355120e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="232" name="Seg2_dend_36">
+                <parent fractionAlong="1" segment="231"/>
+                <distal y="2.086270e+01" x="2.174610e+01" z="1.673700e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="233" name="Seg3_dend_36">
+                <parent fractionAlong="1" segment="232"/>
+                <distal y="2.034020e+01" x="2.390300e+01" z="1.916350e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="234" name="Seg4_dend_36">
+                <parent fractionAlong="1" segment="233"/>
+                <distal y="1.969100e+01" x="2.658270e+01" z="2.217820e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="235" name="Seg5_dend_36">
+                <parent fractionAlong="1" segment="234"/>
+                <distal y="1.930580e+01" x="2.817280e+01" z="2.396700e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="236" name="Seg6_dend_36">
+                <parent fractionAlong="1" segment="235"/>
+                <distal y="1.886610e+01" x="3.048020e+01" z="2.623990e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="237" name="Seg7_dend_36">
+                <parent fractionAlong="1" segment="236"/>
+                <distal y="1.842120e+01" x="3.262490e+01" z="2.831560e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="217" name="Seg0_dend_33">
+                <parent fractionAlong="1" segment="216"/>
+                <proximal y="2.254270e+01" x="1.412000e+01" z="7.162890e+00" diameter="2.500000e-01"/>
+                <distal y="2.550740e+01" x="1.702710e+01" z="1.320520e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="218" name="Seg1_dend_33">
+                <parent fractionAlong="1" segment="217"/>
+                <distal y="2.696250e+01" x="1.845390e+01" z="1.617080e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="219" name="Seg2_dend_33">
+                <parent fractionAlong="1" segment="218"/>
+                <distal y="2.777400e+01" x="1.924960e+01" z="1.782470e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="208" name="Seg0_dend_31">
+                <parent fractionAlong="1" segment="192"/>
+                <proximal y="2.740840e+01" x="7.343990e+00" z="-7.649430e-01" diameter="2.500000e-01"/>
+                <distal y="2.954980e+01" x="8.742350e+00" z="-1.233620e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="209" name="Seg1_dend_31">
+                <parent fractionAlong="1" segment="208"/>
+                <distal y="3.160440e+01" x="1.008390e+01" z="-1.683290e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="210" name="Seg2_dend_31">
+                <parent fractionAlong="1" segment="209"/>
+                <distal y="3.231480e+01" x="1.054790e+01" z="-1.838780e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="211" name="Seg3_dend_31">
+                <parent fractionAlong="1" segment="210"/>
+                <distal y="3.598110e+01" x="1.294200e+01" z="-2.641220e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="212" name="Seg4_dend_31">
+                <parent fractionAlong="1" segment="211"/>
+                <distal y="3.895830e+01" x="1.488610e+01" z="-3.292820e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="213" name="Seg5_dend_31">
+                <parent fractionAlong="1" segment="212"/>
+                <distal y="4.223940e+01" x="1.702860e+01" z="-4.010920e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="193" name="Seg0_dend_28">
+                <parent fractionAlong="1" segment="192"/>
+                <proximal y="2.740840e+01" x="7.343990e+00" z="-7.649430e-01" diameter="2.500000e-01"/>
+                <distal y="2.767340e+01" x="7.671780e+00" z="-1.939250e-01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="194" name="Seg1_dend_28">
+                <parent fractionAlong="1" segment="193"/>
+                <distal y="2.832540e+01" x="8.478170e+00" z="1.210830e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="195" name="Seg2_dend_28">
+                <parent fractionAlong="1" segment="194"/>
+                <distal y="2.873950e+01" x="8.990350e+00" z="2.103060e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="299" name="Seg0_dend_51">
+                <parent fractionAlong="1" segment="284"/>
+                <proximal y="-3.139700e+01" x="-3.615320e+01" z="-2.066290e+01" diameter="2.500000e-01"/>
+                <distal y="-3.550770e+01" x="-3.578540e+01" z="-1.656270e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="285" name="Seg0_dend_50">
+                <parent fractionAlong="1" segment="284"/>
+                <proximal y="-3.139700e+01" x="-3.615320e+01" z="-2.066290e+01" diameter="2.500000e-01"/>
+                <distal y="-3.092270e+01" x="-4.005340e+01" z="-2.254500e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="286" name="Seg1_dend_50">
+                <parent fractionAlong="1" segment="285"/>
+                <distal y="-3.058430e+01" x="-4.312730e+01" z="-2.382280e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="287" name="Seg2_dend_50">
+                <parent fractionAlong="1" segment="286"/>
+                <distal y="-3.039150e+01" x="-4.567200e+01" z="-2.470520e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="288" name="Seg3_dend_50">
+                <parent fractionAlong="1" segment="287"/>
+                <distal y="-3.024800e+01" x="-4.934090e+01" z="-2.576370e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="289" name="Seg4_dend_50">
+                <parent fractionAlong="1" segment="288"/>
+                <distal y="-3.018980e+01" x="-5.380020e+01" z="-2.682840e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="290" name="Seg5_dend_50">
+                <parent fractionAlong="1" segment="289"/>
+                <distal y="-3.023010e+01" x="-5.658110e+01" z="-2.737330e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="291" name="Seg6_dend_50">
+                <parent fractionAlong="1" segment="290"/>
+                <distal y="-3.035390e+01" x="-5.879270e+01" z="-2.762840e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="292" name="Seg7_dend_50">
+                <parent fractionAlong="1" segment="291"/>
+                <distal y="-3.072140e+01" x="-6.229400e+01" z="-2.783410e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="293" name="Seg8_dend_50">
+                <parent fractionAlong="1" segment="292"/>
+                <distal y="-3.127220e+01" x="-6.566590e+01" z="-2.794730e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="294" name="Seg9_dend_50">
+                <parent fractionAlong="1" segment="293"/>
+                <distal y="-3.184020e+01" x="-6.871910e+01" z="-2.790400e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="295" name="Seg10_dend_50">
+                <parent fractionAlong="1" segment="294"/>
+                <distal y="-3.259880e+01" x="-7.216900e+01" z="-2.782910e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="296" name="Seg11_dend_50">
+                <parent fractionAlong="1" segment="295"/>
+                <distal y="-3.330210e+01" x="-7.493180e+01" z="-2.778490e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="297" name="Seg12_dend_50">
+                <parent fractionAlong="1" segment="296"/>
+                <distal y="-3.376790e+01" x="-7.668450e+01" z="-2.776780e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="298" name="Seg13_dend_50">
+                <parent fractionAlong="1" segment="297"/>
+                <distal y="-3.469340e+01" x="-7.998400e+01" z="-2.776670e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="242" name="Seg0_dend_38">
+                <parent fractionAlong="1" segment="237"/>
+                <proximal y="1.842120e+01" x="3.262490e+01" z="2.831560e+01" diameter="2.500000e-01"/>
+                <distal y="2.107780e+01" x="3.356410e+01" z="2.820680e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="243" name="Seg1_dend_38">
+                <parent fractionAlong="1" segment="242"/>
+                <distal y="2.378410e+01" x="3.452080e+01" z="2.809600e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="244" name="Seg2_dend_38">
+                <parent fractionAlong="1" segment="243"/>
+                <distal y="2.537040e+01" x="3.508160e+01" z="2.803100e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="245" name="Seg3_dend_38">
+                <parent fractionAlong="1" segment="244"/>
+                <distal y="2.697790e+01" x="3.564990e+01" z="2.796520e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="238" name="Seg0_dend_37">
+                <parent fractionAlong="1" segment="237"/>
+                <proximal y="1.842120e+01" x="3.262490e+01" z="2.831560e+01" diameter="2.500000e-01"/>
+                <distal y="1.779250e+01" x="3.521300e+01" z="2.983360e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="239" name="Seg1_dend_37">
+                <parent fractionAlong="1" segment="238"/>
+                <distal y="1.717950e+01" x="3.773680e+01" z="3.131380e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="240" name="Seg2_dend_37">
+                <parent fractionAlong="1" segment="239"/>
+                <distal y="1.667960e+01" x="3.979470e+01" z="3.252080e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="241" name="Seg3_dend_37">
+                <parent fractionAlong="1" segment="240"/>
+                <distal y="1.621110e+01" x="4.172300e+01" z="3.365180e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="228" name="Seg0_dend_35">
+                <parent fractionAlong="1" segment="219"/>
+                <proximal y="2.777400e+01" x="1.924960e+01" z="1.782470e+01" diameter="2.500000e-01"/>
+                <distal y="3.022530e+01" x="1.830110e+01" z="1.738750e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="229" name="Seg1_dend_35">
+                <parent fractionAlong="1" segment="228"/>
+                <distal y="3.206650e+01" x="1.758860e+01" z="1.705900e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="220" name="Seg0_dend_34">
+                <parent fractionAlong="1" segment="219"/>
+                <proximal y="2.777400e+01" x="1.924960e+01" z="1.782470e+01" diameter="2.500000e-01"/>
+                <distal y="3.028440e+01" x="2.103570e+01" z="1.831790e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="221" name="Seg1_dend_34">
+                <parent fractionAlong="1" segment="220"/>
+                <distal y="3.265220e+01" x="2.246230e+01" z="1.890700e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="222" name="Seg2_dend_34">
+                <parent fractionAlong="1" segment="221"/>
+                <distal y="3.492090e+01" x="2.373970e+01" z="1.961850e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="223" name="Seg3_dend_34">
+                <parent fractionAlong="1" segment="222"/>
+                <distal y="3.739680e+01" x="2.513390e+01" z="2.039510e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="224" name="Seg4_dend_34">
+                <parent fractionAlong="1" segment="223"/>
+                <distal y="3.973010e+01" x="2.644770e+01" z="2.112690e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="225" name="Seg5_dend_34">
+                <parent fractionAlong="1" segment="224"/>
+                <distal y="4.136890e+01" x="2.737050e+01" z="2.164090e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="226" name="Seg6_dend_34">
+                <parent fractionAlong="1" segment="225"/>
+                <distal y="4.397890e+01" x="2.852190e+01" z="2.251210e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="227" name="Seg7_dend_34">
+                <parent fractionAlong="1" segment="226"/>
+                <distal y="4.633070e+01" x="2.939100e+01" z="2.324100e+01" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="203" name="Seg0_dend_30">
+                <parent fractionAlong="1" segment="195"/>
+                <proximal y="2.873950e+01" x="8.990350e+00" z="2.103060e+00" diameter="2.500000e-01"/>
+                <distal y="3.071640e+01" x="1.176780e+01" z="2.780630e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="204" name="Seg1_dend_30">
+                <parent fractionAlong="1" segment="203"/>
+                <distal y="3.207660e+01" x="1.367880e+01" z="3.246840e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="205" name="Seg2_dend_30">
+                <parent fractionAlong="1" segment="204"/>
+                <distal y="3.459100e+01" x="1.721140e+01" z="4.108610e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="206" name="Seg3_dend_30">
+                <parent fractionAlong="1" segment="205"/>
+                <distal y="3.670330e+01" x="2.017910e+01" z="4.832590e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="207" name="Seg4_dend_30">
+                <parent fractionAlong="1" segment="206"/>
+                <distal y="3.837760e+01" x="2.253140e+01" z="5.406450e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="196" name="Seg0_dend_29">
+                <parent fractionAlong="1" segment="195"/>
+                <proximal y="2.873950e+01" x="8.990350e+00" z="2.103060e+00" diameter="2.500000e-01"/>
+                <distal y="2.987150e+01" x="7.391020e+00" z="2.742880e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="197" name="Seg1_dend_29">
+                <parent fractionAlong="1" segment="196"/>
+                <distal y="3.177580e+01" x="4.666530e+00" z="3.860200e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="198" name="Seg2_dend_29">
+                <parent fractionAlong="1" segment="197"/>
+                <distal y="3.394300e+01" x="1.565800e+00" z="5.131810e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="199" name="Seg3_dend_29">
+                <parent fractionAlong="1" segment="198"/>
+                <distal y="3.540590e+01" x="-5.271000e-01" z="5.990110e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="200" name="Seg4_dend_29">
+                <parent fractionAlong="1" segment="199"/>
+                <distal y="3.696530e+01" x="-2.758140e+00" z="6.905060e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="201" name="Seg5_dend_29">
+                <parent fractionAlong="1" segment="200"/>
+                <distal y="3.858270e+01" x="-5.072200e+00" z="7.854060e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segment id="202" name="Seg6_dend_29">
+                <parent fractionAlong="1" segment="201"/>
+                <distal y="4.016940e+01" x="-7.467630e+00" z="8.855670e+00" diameter="2.500000e-01"/>
+            </segment>
+            <segmentGroup neuroLexId="sao864921383" id="soma_0">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="0"/>
+                <member segment="2"/>
+                <member segment="3"/>
+                <member segment="4"/>
+                <member segment="5"/>
+                <member segment="6"/>
+                <member segment="7"/>
+                <member segment="8"/>
+                <member segment="9"/>
+                <member segment="10"/>
+                <member segment="11"/>
+                <member segment="12"/>
+                <member segment="13"/>
+                <member segment="14"/>
+                <member segment="15"/>
+                <member segment="16"/>
+                <member segment="17"/>
+                <member segment="18"/>
+                <member segment="19"/>
+                <member segment="20"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_56">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <property tag="numberInternalDivisions" value="3"/>
+                <annotation/>
+                <member segment="352"/>
+                <member segment="353"/>
+                <member segment="354"/>
+                <member segment="355"/>
+                <member segment="356"/>
+                <member segment="357"/>
+                <member segment="358"/>
+                <member segment="359"/>
+                <member segment="360"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_41">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="250"/>
+                <member segment="251"/>
+                <member segment="252"/>
+                <member segment="253"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_23">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="172"/>
+                <member segment="173"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_10">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="80"/>
+                <member segment="81"/>
+                <member segment="82"/>
+                <member segment="83"/>
+                <member segment="84"/>
+                <member segment="85"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_0">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="21"/>
+                <member segment="22"/>
+                <member segment="23"/>
+                <member segment="24"/>
+                <member segment="25"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="axon_0">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="361"/>
+                <member segment="362"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_45">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="267"/>
+                <member segment="268"/>
+                <member segment="269"/>
+                <member segment="270"/>
+                <member segment="271"/>
+                <member segment="272"/>
+                <member segment="273"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_42">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="254"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_40">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="249"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_24">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="174"/>
+                <member segment="175"/>
+                <member segment="176"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_18">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="144"/>
+                <member segment="145"/>
+                <member segment="146"/>
+                <member segment="147"/>
+                <member segment="148"/>
+                <member segment="149"/>
+                <member segment="150"/>
+                <member segment="151"/>
+                <member segment="152"/>
+                <member segment="153"/>
+                <member segment="154"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_11">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="86"/>
+                <member segment="87"/>
+                <member segment="88"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_5">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="56"/>
+                <member segment="57"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_1">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="26"/>
+                <member segment="27"/>
+                <member segment="28"/>
+                <member segment="29"/>
+                <member segment="30"/>
+                <member segment="31"/>
+                <member segment="32"/>
+                <member segment="33"/>
+                <member segment="34"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="axon_1">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="363"/>
+                <member segment="364"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_53">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="301"/>
+                <member segment="302"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_46">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="274"/>
+                <member segment="275"/>
+                <member segment="276"/>
+                <member segment="277"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_44">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="264"/>
+                <member segment="265"/>
+                <member segment="266"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_43">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="255"/>
+                <member segment="256"/>
+                <member segment="257"/>
+                <member segment="258"/>
+                <member segment="259"/>
+                <member segment="260"/>
+                <member segment="261"/>
+                <member segment="262"/>
+                <member segment="263"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_26">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="189"/>
+                <member segment="190"/>
+                <member segment="191"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_25">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="177"/>
+                <member segment="178"/>
+                <member segment="179"/>
+                <member segment="180"/>
+                <member segment="181"/>
+                <member segment="182"/>
+                <member segment="183"/>
+                <member segment="184"/>
+                <member segment="185"/>
+                <member segment="186"/>
+                <member segment="187"/>
+                <member segment="188"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_20">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="157"/>
+                <member segment="158"/>
+                <member segment="159"/>
+                <member segment="160"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_19">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="155"/>
+                <member segment="156"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_15">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="113"/>
+                <member segment="114"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_12">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="89"/>
+                <member segment="90"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_9">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="72"/>
+                <member segment="73"/>
+                <member segment="74"/>
+                <member segment="75"/>
+                <member segment="76"/>
+                <member segment="77"/>
+                <member segment="78"/>
+                <member segment="79"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_6">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="58"/>
+                <member segment="59"/>
+                <member segment="60"/>
+                <member segment="61"/>
+                <member segment="62"/>
+                <member segment="63"/>
+                <member segment="64"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_4">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="51"/>
+                <member segment="52"/>
+                <member segment="53"/>
+                <member segment="54"/>
+                <member segment="55"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_3">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="38"/>
+                <member segment="39"/>
+                <member segment="40"/>
+                <member segment="41"/>
+                <member segment="42"/>
+                <member segment="43"/>
+                <member segment="44"/>
+                <member segment="45"/>
+                <member segment="46"/>
+                <member segment="47"/>
+                <member segment="48"/>
+                <member segment="49"/>
+                <member segment="50"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_2">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="35"/>
+                <member segment="36"/>
+                <member segment="37"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_55">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <property tag="numberInternalDivisions" value="5"/>
+                <annotation/>
+                <member segment="328"/>
+                <member segment="329"/>
+                <member segment="330"/>
+                <member segment="331"/>
+                <member segment="332"/>
+                <member segment="333"/>
+                <member segment="334"/>
+                <member segment="335"/>
+                <member segment="336"/>
+                <member segment="337"/>
+                <member segment="338"/>
+                <member segment="339"/>
+                <member segment="340"/>
+                <member segment="341"/>
+                <member segment="342"/>
+                <member segment="343"/>
+                <member segment="344"/>
+                <member segment="345"/>
+                <member segment="346"/>
+                <member segment="347"/>
+                <member segment="348"/>
+                <member segment="349"/>
+                <member segment="350"/>
+                <member segment="351"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_54">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <property tag="numberInternalDivisions" value="7"/>
+                <annotation/>
+                <member segment="303"/>
+                <member segment="304"/>
+                <member segment="305"/>
+                <member segment="306"/>
+                <member segment="307"/>
+                <member segment="308"/>
+                <member segment="309"/>
+                <member segment="310"/>
+                <member segment="311"/>
+                <member segment="312"/>
+                <member segment="313"/>
+                <member segment="314"/>
+                <member segment="315"/>
+                <member segment="316"/>
+                <member segment="317"/>
+                <member segment="318"/>
+                <member segment="319"/>
+                <member segment="320"/>
+                <member segment="321"/>
+                <member segment="322"/>
+                <member segment="323"/>
+                <member segment="324"/>
+                <member segment="325"/>
+                <member segment="326"/>
+                <member segment="327"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_52">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="300"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_47">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="278"/>
+                <member segment="279"/>
+                <member segment="280"/>
+                <member segment="281"/>
+                <member segment="282"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_32">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="214"/>
+                <member segment="215"/>
+                <member segment="216"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_27">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="192"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_22">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="163"/>
+                <member segment="164"/>
+                <member segment="165"/>
+                <member segment="166"/>
+                <member segment="167"/>
+                <member segment="168"/>
+                <member segment="169"/>
+                <member segment="170"/>
+                <member segment="171"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_21">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="161"/>
+                <member segment="162"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_17">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <property tag="numberInternalDivisions" value="3"/>
+                <annotation/>
+                <member segment="130"/>
+                <member segment="131"/>
+                <member segment="132"/>
+                <member segment="133"/>
+                <member segment="134"/>
+                <member segment="135"/>
+                <member segment="136"/>
+                <member segment="137"/>
+                <member segment="138"/>
+                <member segment="139"/>
+                <member segment="140"/>
+                <member segment="141"/>
+                <member segment="142"/>
+                <member segment="143"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_16">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <property tag="numberInternalDivisions" value="3"/>
+                <annotation/>
+                <member segment="115"/>
+                <member segment="116"/>
+                <member segment="117"/>
+                <member segment="118"/>
+                <member segment="119"/>
+                <member segment="120"/>
+                <member segment="121"/>
+                <member segment="122"/>
+                <member segment="123"/>
+                <member segment="124"/>
+                <member segment="125"/>
+                <member segment="126"/>
+                <member segment="127"/>
+                <member segment="128"/>
+                <member segment="129"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_14">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <property tag="numberInternalDivisions" value="3"/>
+                <annotation/>
+                <member segment="93"/>
+                <member segment="94"/>
+                <member segment="95"/>
+                <member segment="96"/>
+                <member segment="97"/>
+                <member segment="98"/>
+                <member segment="99"/>
+                <member segment="100"/>
+                <member segment="101"/>
+                <member segment="102"/>
+                <member segment="103"/>
+                <member segment="104"/>
+                <member segment="105"/>
+                <member segment="106"/>
+                <member segment="107"/>
+                <member segment="108"/>
+                <member segment="109"/>
+                <member segment="110"/>
+                <member segment="111"/>
+                <member segment="112"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_13">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="91"/>
+                <member segment="92"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_8">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="67"/>
+                <member segment="68"/>
+                <member segment="69"/>
+                <member segment="70"/>
+                <member segment="71"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_7">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="65"/>
+                <member segment="66"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_49">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="284"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_48">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="283"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_39">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="246"/>
+                <member segment="247"/>
+                <member segment="248"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_36">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="230"/>
+                <member segment="231"/>
+                <member segment="232"/>
+                <member segment="233"/>
+                <member segment="234"/>
+                <member segment="235"/>
+                <member segment="236"/>
+                <member segment="237"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_33">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="217"/>
+                <member segment="218"/>
+                <member segment="219"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_31">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="208"/>
+                <member segment="209"/>
+                <member segment="210"/>
+                <member segment="211"/>
+                <member segment="212"/>
+                <member segment="213"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_28">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="193"/>
+                <member segment="194"/>
+                <member segment="195"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_51">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="299"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_50">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <property tag="numberInternalDivisions" value="3"/>
+                <annotation/>
+                <member segment="285"/>
+                <member segment="286"/>
+                <member segment="287"/>
+                <member segment="288"/>
+                <member segment="289"/>
+                <member segment="290"/>
+                <member segment="291"/>
+                <member segment="292"/>
+                <member segment="293"/>
+                <member segment="294"/>
+                <member segment="295"/>
+                <member segment="296"/>
+                <member segment="297"/>
+                <member segment="298"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_38">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="242"/>
+                <member segment="243"/>
+                <member segment="244"/>
+                <member segment="245"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_37">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="238"/>
+                <member segment="239"/>
+                <member segment="240"/>
+                <member segment="241"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_35">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="228"/>
+                <member segment="229"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_34">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="220"/>
+                <member segment="221"/>
+                <member segment="222"/>
+                <member segment="223"/>
+                <member segment="224"/>
+                <member segment="225"/>
+                <member segment="226"/>
+                <member segment="227"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_30">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="203"/>
+                <member segment="204"/>
+                <member segment="205"/>
+                <member segment="206"/>
+                <member segment="207"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="dend_29">
+                <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+                <member segment="196"/>
+                <member segment="197"/>
+                <member segment="198"/>
+                <member segment="199"/>
+                <member segment="200"/>
+                <member segment="201"/>
+                <member segment="202"/>
+            </segmentGroup>
+            <segmentGroup id="all">
+                <include segmentGroup="soma_0"/>
+                <include segmentGroup="dend_56"/>
+                <include segmentGroup="dend_41"/>
+                <include segmentGroup="dend_23"/>
+                <include segmentGroup="dend_10"/>
+                <include segmentGroup="dend_0"/>
+                <include segmentGroup="axon_0"/>
+                <include segmentGroup="dend_45"/>
+                <include segmentGroup="dend_42"/>
+                <include segmentGroup="dend_40"/>
+                <include segmentGroup="dend_24"/>
+                <include segmentGroup="dend_18"/>
+                <include segmentGroup="dend_11"/>
+                <include segmentGroup="dend_5"/>
+                <include segmentGroup="dend_1"/>
+                <include segmentGroup="axon_1"/>
+                <include segmentGroup="dend_53"/>
+                <include segmentGroup="dend_46"/>
+                <include segmentGroup="dend_44"/>
+                <include segmentGroup="dend_43"/>
+                <include segmentGroup="dend_26"/>
+                <include segmentGroup="dend_25"/>
+                <include segmentGroup="dend_20"/>
+                <include segmentGroup="dend_19"/>
+                <include segmentGroup="dend_15"/>
+                <include segmentGroup="dend_12"/>
+                <include segmentGroup="dend_9"/>
+                <include segmentGroup="dend_6"/>
+                <include segmentGroup="dend_4"/>
+                <include segmentGroup="dend_3"/>
+                <include segmentGroup="dend_2"/>
+                <include segmentGroup="dend_55"/>
+                <include segmentGroup="dend_54"/>
+                <include segmentGroup="dend_52"/>
+                <include segmentGroup="dend_47"/>
+                <include segmentGroup="dend_32"/>
+                <include segmentGroup="dend_27"/>
+                <include segmentGroup="dend_22"/>
+                <include segmentGroup="dend_21"/>
+                <include segmentGroup="dend_17"/>
+                <include segmentGroup="dend_16"/>
+                <include segmentGroup="dend_14"/>
+                <include segmentGroup="dend_13"/>
+                <include segmentGroup="dend_8"/>
+                <include segmentGroup="dend_7"/>
+                <include segmentGroup="dend_49"/>
+                <include segmentGroup="dend_48"/>
+                <include segmentGroup="dend_39"/>
+                <include segmentGroup="dend_36"/>
+                <include segmentGroup="dend_33"/>
+                <include segmentGroup="dend_31"/>
+                <include segmentGroup="dend_28"/>
+                <include segmentGroup="dend_51"/>
+                <include segmentGroup="dend_50"/>
+                <include segmentGroup="dend_38"/>
+                <include segmentGroup="dend_37"/>
+                <include segmentGroup="dend_35"/>
+                <include segmentGroup="dend_34"/>
+                <include segmentGroup="dend_30"/>
+                <include segmentGroup="dend_29"/>
+            </segmentGroup>
+            <segmentGroup id="ModelViewParmSubset_1">
+                <include segmentGroup="soma_0"/>
+                <include segmentGroup="axon_0"/>
+                <include segmentGroup="axon_1"/>
+            </segmentGroup>
+            <segmentGroup id="ModelViewParmSubset_2">
+                <include segmentGroup="dend_56"/>
+                <include segmentGroup="dend_41"/>
+                <include segmentGroup="dend_23"/>
+                <include segmentGroup="dend_10"/>
+                <include segmentGroup="dend_0"/>
+                <include segmentGroup="dend_45"/>
+                <include segmentGroup="dend_42"/>
+                <include segmentGroup="dend_40"/>
+                <include segmentGroup="dend_24"/>
+                <include segmentGroup="dend_18"/>
+                <include segmentGroup="dend_11"/>
+                <include segmentGroup="dend_5"/>
+                <include segmentGroup="dend_1"/>
+                <include segmentGroup="dend_53"/>
+                <include segmentGroup="dend_46"/>
+                <include segmentGroup="dend_44"/>
+                <include segmentGroup="dend_43"/>
+                <include segmentGroup="dend_26"/>
+                <include segmentGroup="dend_25"/>
+                <include segmentGroup="dend_20"/>
+                <include segmentGroup="dend_19"/>
+                <include segmentGroup="dend_15"/>
+                <include segmentGroup="dend_12"/>
+                <include segmentGroup="dend_9"/>
+                <include segmentGroup="dend_6"/>
+                <include segmentGroup="dend_4"/>
+                <include segmentGroup="dend_3"/>
+                <include segmentGroup="dend_2"/>
+                <include segmentGroup="dend_55"/>
+                <include segmentGroup="dend_54"/>
+                <include segmentGroup="dend_52"/>
+                <include segmentGroup="dend_47"/>
+                <include segmentGroup="dend_32"/>
+                <include segmentGroup="dend_27"/>
+                <include segmentGroup="dend_22"/>
+                <include segmentGroup="dend_21"/>
+                <include segmentGroup="dend_17"/>
+                <include segmentGroup="dend_16"/>
+                <include segmentGroup="dend_14"/>
+                <include segmentGroup="dend_13"/>
+                <include segmentGroup="dend_8"/>
+                <include segmentGroup="dend_7"/>
+                <include segmentGroup="dend_49"/>
+                <include segmentGroup="dend_48"/>
+                <include segmentGroup="dend_39"/>
+                <include segmentGroup="dend_36"/>
+                <include segmentGroup="dend_33"/>
+                <include segmentGroup="dend_31"/>
+                <include segmentGroup="dend_28"/>
+                <include segmentGroup="dend_51"/>
+                <include segmentGroup="dend_50"/>
+                <include segmentGroup="dend_38"/>
+                <include segmentGroup="dend_37"/>
+                <include segmentGroup="dend_35"/>
+                <include segmentGroup="dend_34"/>
+                <include segmentGroup="dend_30"/>
+                <include segmentGroup="dend_29"/>
+            </segmentGroup>
+            <segmentGroup id="ModelViewParmSubset_3">
+                <include segmentGroup="axon_0"/>
+                <include segmentGroup="axon_1"/>
+            </segmentGroup>
+            <segmentGroup id="ModelViewParmSubset_4">
+                <include segmentGroup="soma_0"/>
+                <include segmentGroup="dend_56"/>
+                <include segmentGroup="dend_41"/>
+                <include segmentGroup="dend_23"/>
+                <include segmentGroup="dend_10"/>
+                <include segmentGroup="dend_0"/>
+                <include segmentGroup="dend_45"/>
+                <include segmentGroup="dend_42"/>
+                <include segmentGroup="dend_40"/>
+                <include segmentGroup="dend_24"/>
+                <include segmentGroup="dend_18"/>
+                <include segmentGroup="dend_11"/>
+                <include segmentGroup="dend_5"/>
+                <include segmentGroup="dend_1"/>
+                <include segmentGroup="dend_53"/>
+                <include segmentGroup="dend_46"/>
+                <include segmentGroup="dend_44"/>
+                <include segmentGroup="dend_43"/>
+                <include segmentGroup="dend_26"/>
+                <include segmentGroup="dend_25"/>
+                <include segmentGroup="dend_20"/>
+                <include segmentGroup="dend_19"/>
+                <include segmentGroup="dend_15"/>
+                <include segmentGroup="dend_12"/>
+                <include segmentGroup="dend_9"/>
+                <include segmentGroup="dend_6"/>
+                <include segmentGroup="dend_4"/>
+                <include segmentGroup="dend_3"/>
+                <include segmentGroup="dend_2"/>
+                <include segmentGroup="dend_55"/>
+                <include segmentGroup="dend_54"/>
+                <include segmentGroup="dend_52"/>
+                <include segmentGroup="dend_47"/>
+                <include segmentGroup="dend_32"/>
+                <include segmentGroup="dend_27"/>
+                <include segmentGroup="dend_22"/>
+                <include segmentGroup="dend_21"/>
+                <include segmentGroup="dend_17"/>
+                <include segmentGroup="dend_16"/>
+                <include segmentGroup="dend_14"/>
+                <include segmentGroup="dend_13"/>
+                <include segmentGroup="dend_8"/>
+                <include segmentGroup="dend_7"/>
+                <include segmentGroup="dend_49"/>
+                <include segmentGroup="dend_48"/>
+                <include segmentGroup="dend_39"/>
+                <include segmentGroup="dend_36"/>
+                <include segmentGroup="dend_33"/>
+                <include segmentGroup="dend_31"/>
+                <include segmentGroup="dend_28"/>
+                <include segmentGroup="dend_51"/>
+                <include segmentGroup="dend_50"/>
+                <include segmentGroup="dend_38"/>
+                <include segmentGroup="dend_37"/>
+                <include segmentGroup="dend_35"/>
+                <include segmentGroup="dend_34"/>
+                <include segmentGroup="dend_30"/>
+                <include segmentGroup="dend_29"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_1">
+                <include segmentGroup="soma_0"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_2">
+                <include segmentGroup="dend_56"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_32">
+                <include segmentGroup="dend_55"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_33">
+                <include segmentGroup="dend_54"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_40">
+                <include segmentGroup="dend_17"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_41">
+                <include segmentGroup="dend_16"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_42">
+                <include segmentGroup="dend_14"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_54">
+                <include segmentGroup="dend_50"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_6">
+                <include segmentGroup="dend_0"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_4">
+                <include segmentGroup="dend_23"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_3">
+                <include segmentGroup="dend_41"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_14">
+                <include segmentGroup="dend_5"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_10">
+                <include segmentGroup="dend_40"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_5">
+                <include segmentGroup="dend_10"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_11">
+                <include segmentGroup="dend_24"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_9">
+                <include segmentGroup="dend_42"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_21">
+                <include segmentGroup="dend_26"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_19">
+                <include segmentGroup="dend_44"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_37">
+                <include segmentGroup="dend_27"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_13">
+                <include segmentGroup="dend_11"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_27">
+                <include segmentGroup="dend_9"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_28">
+                <include segmentGroup="dend_6"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_8">
+                <include segmentGroup="dend_45"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_15">
+                <include segmentGroup="dend_1"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_52">
+                <include segmentGroup="dend_28"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_45">
+                <include segmentGroup="dend_7"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_25">
+                <include segmentGroup="dend_15"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_36">
+                <include segmentGroup="dend_32"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_17">
+                <include segmentGroup="dend_53"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_18">
+                <include segmentGroup="dend_46"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_31">
+                <include segmentGroup="dend_2"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_34">
+                <include segmentGroup="dend_52"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_26">
+                <include segmentGroup="dend_12"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_29">
+                <include segmentGroup="dend_4"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_20">
+                <include segmentGroup="dend_43"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_35">
+                <include segmentGroup="dend_47"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_51">
+                <include segmentGroup="dend_31"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_44">
+                <include segmentGroup="dend_8"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_46">
+                <include segmentGroup="dend_49"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_59">
+                <include segmentGroup="dend_30"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_50">
+                <include segmentGroup="dend_33"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_12">
+                <include segmentGroup="dend_18"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_43">
+                <include segmentGroup="dend_13"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_48">
+                <include segmentGroup="dend_39"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_47">
+                <include segmentGroup="dend_48"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_60">
+                <include segmentGroup="dend_29"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_53">
+                <include segmentGroup="dend_51"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_57">
+                <include segmentGroup="dend_35"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_24">
+                <include segmentGroup="dend_19"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_22">
+                <include segmentGroup="dend_25"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_30">
+                <include segmentGroup="dend_3"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_23">
+                <include segmentGroup="dend_20"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_49">
+                <include segmentGroup="dend_36"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_39">
+                <include segmentGroup="dend_21"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_58">
+                <include segmentGroup="dend_34"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_55">
+                <include segmentGroup="dend_38"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_56">
+                <include segmentGroup="dend_37"/>
+            </segmentGroup>
+            <segmentGroup id="OneSecGrp_SectionRef_38">
+                <include segmentGroup="dend_22"/>
+            </segmentGroup>
+            <segmentGroup id="basal">
+                <include segmentGroup="dend_0"/>
+                <include segmentGroup="dend_1"/>
+                <include segmentGroup="dend_2"/>
+                <include segmentGroup="dend_3"/>
+                <include segmentGroup="dend_4"/>
+                <include segmentGroup="dend_5"/>
+                <include segmentGroup="dend_6"/>
+                <include segmentGroup="dend_7"/>
+                <include segmentGroup="dend_8"/>
+                <include segmentGroup="dend_9"/>
+                <include segmentGroup="dend_10"/>
+                <include segmentGroup="dend_11"/>
+                <include segmentGroup="dend_12"/>
+                <include segmentGroup="dend_13"/>
+                <include segmentGroup="dend_14"/>
+                <include segmentGroup="dend_15"/>
+                <include segmentGroup="dend_16"/>
+                <include segmentGroup="dend_17"/>
+                <include segmentGroup="dend_18"/>
+                <include segmentGroup="dend_19"/>
+                <include segmentGroup="dend_20"/>
+                <include segmentGroup="dend_21"/>
+                <include segmentGroup="dend_22"/>
+                <include segmentGroup="dend_23"/>
+                <include segmentGroup="dend_24"/>
+                <include segmentGroup="dend_25"/>
+                <include segmentGroup="dend_26"/>
+                <include segmentGroup="dend_27"/>
+                <include segmentGroup="dend_28"/>
+                <include segmentGroup="dend_29"/>
+                <include segmentGroup="dend_30"/>
+                <include segmentGroup="dend_31"/>
+                <include segmentGroup="dend_32"/>
+                <include segmentGroup="dend_33"/>
+                <include segmentGroup="dend_34"/>
+                <include segmentGroup="dend_35"/>
+                <include segmentGroup="dend_36"/>
+                <include segmentGroup="dend_37"/>
+                <include segmentGroup="dend_38"/>
+                <include segmentGroup="dend_39"/>
+                <include segmentGroup="dend_40"/>
+                <include segmentGroup="dend_41"/>
+                <include segmentGroup="dend_42"/>
+                <include segmentGroup="dend_43"/>
+                <include segmentGroup="dend_44"/>
+                <include segmentGroup="dend_45"/>
+                <include segmentGroup="dend_46"/>
+                <include segmentGroup="dend_47"/>
+                <include segmentGroup="dend_48"/>
+                <include segmentGroup="dend_49"/>
+                <include segmentGroup="dend_50"/>
+                <include segmentGroup="dend_51"/>
+                <include segmentGroup="dend_52"/>
+                <include segmentGroup="dend_53"/>
+                <include segmentGroup="dend_54"/>
+                <include segmentGroup="dend_55"/>
+                <include segmentGroup="dend_56"/>
+                <inhomogeneousParameter id="PathLengthOver_basal" variable="p" metric="Path Length from root">
+                    <proximal translationStart="0.000000e+00"/>
+                </inhomogeneousParameter>
+            </segmentGroup>
+            <segmentGroup id="apical">
+                <inhomogeneousParameter id="PathLengthOver_apical" variable="p" metric="Path Length from root">
+                    <proximal translationStart="0.000000e+00"/>
+                </inhomogeneousParameter>
+            </segmentGroup>
+            <segmentGroup id="axonal">
+                <include segmentGroup="axon_0"/>
+                <include segmentGroup="axon_1"/>
+            </segmentGroup>
+            <segmentGroup id="somatic">
+                <include segmentGroup="soma_0"/>
+            </segmentGroup>
+        </morphology>
+        <biophysicalProperties id="biophys">
+            <membraneProperties>
+                <channelDensity id="basal_gK_Tstbar_K_Tst" segmentGroup="basal" ion="k" ionChannel="K_Tst" erev="-85.0 mV" condDensity="0.001511 S_per_cm2"/>
+                <channelDensity id="basal_gSKv3_1bar_SKv3_1" segmentGroup="basal" ion="k" ionChannel="SKv3_1" erev="-85.0 mV" condDensity="8.3e-05 S_per_cm2"/>
+                <channelDensity id="basal_gNap_Et2bar_Nap_Et2" segmentGroup="basal" ion="na" ionChannel="Nap_Et2" erev="50.0 mV" condDensity="0.0 S_per_cm2"/>
+                <channelDensity id="basal_gNaTs2_tbar_NaTs2_t" segmentGroup="basal" ion="na" ionChannel="NaTs2_t" erev="50.0 mV" condDensity="0.000229 S_per_cm2"/>
+                <channelDensity id="basal_g_pas" segmentGroup="basal" ion="non_specific" ionChannel="pas" erev="-60.295916 mV" condDensity="1e-06 S_per_cm2"/>
+                <channelDensity id="basal_gImbar_Im" segmentGroup="basal" ion="k" ionChannel="Im" erev="-85.0 mV" condDensity="2.2e-05 S_per_cm2"/>
+                <channelDensity id="apical_gK_Tstbar_K_Tst" segmentGroup="apical" ion="k" ionChannel="K_Tst" erev="-85.0 mV" condDensity="0.001511 S_per_cm2"/>
+                <channelDensity id="apical_gSKv3_1bar_SKv3_1" segmentGroup="apical" ion="k" ionChannel="SKv3_1" erev="-85.0 mV" condDensity="8.3e-05 S_per_cm2"/>
+                <channelDensity id="apical_gNap_Et2bar_Nap_Et2" segmentGroup="apical" ion="na" ionChannel="Nap_Et2" erev="50.0 mV" condDensity="0.0 S_per_cm2"/>
+                <channelDensity id="apical_gNaTs2_tbar_NaTs2_t" segmentGroup="apical" ion="na" ionChannel="NaTs2_t" erev="50.0 mV" condDensity="0.000229 S_per_cm2"/>
+                <channelDensity id="apical_g_pas" segmentGroup="apical" ion="non_specific" ionChannel="pas" erev="-60.295916 mV" condDensity="1e-06 S_per_cm2"/>
+                <channelDensity id="apical_gImbar_Im" segmentGroup="apical" ion="k" ionChannel="Im" erev="-85.0 mV" condDensity="2.2e-05 S_per_cm2"/>
+                <channelDensity id="axonal_gNaTa_tbar_NaTa_t" segmentGroup="axonal" ion="na" ionChannel="NaTa_t" erev="50.0 mV" condDensity="3.999855 S_per_cm2"/>
+                <channelDensity id="axonal_gK_Tstbar_K_Tst" segmentGroup="axonal" ion="k" ionChannel="K_Tst" erev="-85.0 mV" condDensity="0.042115 S_per_cm2"/>
+                <channelDensity id="axonal_gNap_Et2bar_Nap_Et2" segmentGroup="axonal" ion="na" ionChannel="Nap_Et2" erev="50.0 mV" condDensity="1e-06 S_per_cm2"/>
+                <channelDensity id="axonal_gSK_E2bar_SK_E2" segmentGroup="axonal" ion="k" ionChannel="SK_E2" erev="-85.0 mV" condDensity="0.001224 S_per_cm2"/>
+                <channelDensity id="axonal_gK_Pstbar_K_Pst" segmentGroup="axonal" ion="k" ionChannel="K_Pst" erev="-85.0 mV" condDensity="0.001693 S_per_cm2"/>
+                <channelDensity id="axonal_gSKv3_1bar_SKv3_1" segmentGroup="axonal" ion="k" ionChannel="SKv3_1" erev="-85.0 mV" condDensity="0.386953 S_per_cm2"/>
+                <channelDensity id="axonal_g_pas" segmentGroup="axonal" ion="non_specific" ionChannel="pas" erev="-63.854018 mV" condDensity="8e-06 S_per_cm2"/>
+                <channelDensity id="axonal_gImbar_Im" segmentGroup="axonal" ion="k" ionChannel="Im" erev="-85.0 mV" condDensity="0.000554 S_per_cm2"/>
+                <channelDensity id="somatic_gK_Tstbar_K_Tst" segmentGroup="somatic" ion="k" ionChannel="K_Tst" erev="-85.0 mV" condDensity="0.039863 S_per_cm2"/>
+                <channelDensity id="somatic_gNap_Et2bar_Nap_Et2" segmentGroup="somatic" ion="na" ionChannel="Nap_Et2" erev="50.0 mV" condDensity="1e-06 S_per_cm2"/>
+                <channelDensity id="somatic_gSK_E2bar_SK_E2" segmentGroup="somatic" ion="k" ionChannel="SK_E2" erev="-85.0 mV" condDensity="0.000523 S_per_cm2"/>
+                <channelDensity id="somatic_gK_Pstbar_K_Pst" segmentGroup="somatic" ion="k" ionChannel="K_Pst" erev="-85.0 mV" condDensity="0.005446 S_per_cm2"/>
+                <channelDensity id="somatic_gSKv3_1bar_SKv3_1" segmentGroup="somatic" ion="k" ionChannel="SKv3_1" erev="-85.0 mV" condDensity="0.503893 S_per_cm2"/>
+                <channelDensity id="somatic_g_pas" segmentGroup="somatic" ion="non_specific" ionChannel="pas" erev="-67.128897 mV" condDensity="0.0001 S_per_cm2"/>
+                <channelDensity id="somatic_gImbar_Im" segmentGroup="somatic" ion="k" ionChannel="Im" erev="-85.0 mV" condDensity="0.000478 S_per_cm2"/>
+                <channelDensity id="somatic_gNaTs2_tbar_NaTs2_t" segmentGroup="somatic" ion="na" ionChannel="NaTs2_t" erev="50.0 mV" condDensity="0.150747 S_per_cm2"/>
+                <channelDensityNernst id="axonal_gCa_LVAstbar_Ca_LVAst" ionChannel="Ca_LVAst" condDensity="0.009017 S_per_cm2" segmentGroup="axonal" ion="ca"/>
+                <channelDensityNernst id="axonal_gCabar_Ca" ionChannel="Ca" condDensity="0.0004 S_per_cm2" segmentGroup="axonal" ion="ca"/>
+                <channelDensityNernst id="somatic_gCa_LVAstbar_Ca_LVAst" ionChannel="Ca_LVAst" condDensity="0.003242 S_per_cm2" segmentGroup="somatic" ion="ca"/>
+                <channelDensityNernst id="somatic_gCabar_Ca" ionChannel="Ca" condDensity="0.000174 S_per_cm2" segmentGroup="somatic" ion="ca"/>
+                <channelDensityNonUniform id="basal_gIhbar_Ih" ionChannel="Ih" erev="-45.0 mV" ion="hcn">
+                    <variableParameter segmentGroup="basal" parameter="condDensity">
+                        <inhomogeneousValue value="1e4 * ((-0.869600 + 2.087000*exp((p-0.000000)*0.003000))*0.000049)" inhomogeneousParameter="PathLengthOver_basal"/>
+                    </variableParameter>
+                </channelDensityNonUniform>
+                <channelDensityNonUniform id="apical_gIhbar_Ih" ionChannel="Ih" erev="-45.0 mV" ion="hcn">
+                    <variableParameter segmentGroup="apical" parameter="condDensity">
+                        <inhomogeneousValue value="1e4 * ((-0.869600 + 2.087000*exp((p-0.000000)*0.003000))*0.000049)" inhomogeneousParameter="PathLengthOver_apical"/>
+                    </variableParameter>
+                </channelDensityNonUniform>
+                <specificCapacitance segmentGroup="basal" value="1.0 uF_per_cm2"/>
+                <specificCapacitance segmentGroup="apical" value="1.0 uF_per_cm2"/>
+                <specificCapacitance segmentGroup="axonal" value="1.0 uF_per_cm2"/>
+                <specificCapacitance segmentGroup="somatic" value="1.0 uF_per_cm2"/>
+                <initMembPotential segmentGroup="all" value="-80 mV"/>
+            </membraneProperties>
+            <intracellularProperties>
+                <species segmentGroup="axonal" ion="ca" initialExtConcentration="2.0E-6 mol_per_cm3" concentrationModel="CaDynamics_E2_NML2__bNAC_1_axonal" id="ca" initialConcentration="5.0E-11 mol_per_cm3"/>
+                <species segmentGroup="somatic" ion="ca" initialExtConcentration="2.0E-6 mol_per_cm3" concentrationModel="CaDynamics_E2_NML2__bNAC_1_somatic" id="ca" initialConcentration="5.0E-11 mol_per_cm3"/>
+                <resistivity segmentGroup="all" value="100 ohm_cm"/>
+            </intracellularProperties>
+        </biophysicalProperties>
+    </cell>
+</neuroml>
