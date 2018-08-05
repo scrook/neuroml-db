@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<neuroml xmlns:org.4suite.4xslt.ns0="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.neuroml.org/schema/neuroml2" org.4suite.4xslt.ns0:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="pas">
+
+    <notes>ChannelML file containing a single Channel description</notes>
+
+    <ionChannel conductance="10pS" type="ionChannelPassive" id="pas">
+
+        <notes>Simple example of a leak/passive conductance. Note: for GENESIS cells with a single leak conductance,
+        it is better to use the Rm and Em variables for a passive current.</notes>
+                            
+    </ionChannel>
+
+</neuroml>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<neuroml xmlns:org.4suite.4xslt.ns0="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.neuroml.org/schema/neuroml2" org.4suite.4xslt.ns0:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="na3">
+
+    <notes>ChannelML file containing a single Channel description</notes>
+
+    <ionChannel conductance="10pS" type="ionChannelHH" id="na3" species="na">
+
+        <notes>Na channel. Comment from original mod: Na current, modified from Jeff Magee. M.Migliore may97,
+        added sh to account for higher threshold M.Migliore, Apr.2002</notes>
+                
+        <annotation>
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                <rdf:Description rdf:about="na3">
+                    
+                    <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>Migliore M, Ferrante M, Ascoli GA (2005) Signal propagation in oblique dendrites of CA1 pyramidal cells. J Neurophysiol 94:4145-4155</rdf:li>
+                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/pubmed/16293591"/>
+                        </rdf:Bag>
+                    </bqmodel:isDescribedBy>
+
+                
+                    <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>Na channels</rdf:li>
+                            <rdf:li rdf:resource="http://senselab.med.yale.edu/senselab/NeuronDB/channelGene2.htm#table2"/>
+                        </rdf:Bag>
+                    </bqbiol:isVersionOf>
+
+                </rdf:Description>
+            </rdf:RDF>
+        </annotation>
+
+        <gate instances="3" type="gateHHratesTau" id="m">
+            <q10Settings experimentalTemp="24 degC" type="q10ExpTemp" q10Factor="2"/>
+            <forwardRate midpoint="-30mV" rate="2.88per_ms" scale="7.2mV" type="HHExpLinearRate"/>
+            <reverseRate midpoint="-30mV" rate="0.8928per_ms" scale="-7.2mV" type="HHExpLinearRate"/>
+            <timeCourse type="na3_m_tau_tau"/>
+        </gate>
+
+        <gate instances="1" type="gateHHratesTauInf" id="h">
+            <q10Settings experimentalTemp="24 degC" type="q10ExpTemp" q10Factor="2"/>
+            <forwardRate midpoint="-45mV" rate="0.045per_ms" scale="1.5mV" type="HHExpLinearRate"/>
+            <reverseRate midpoint="-45mV" rate="0.015per_ms" scale="-1.5mV" type="HHExpLinearRate"/>
+            <timeCourse type="na3_h_tau_tau"/>
+            <steadyState type="na3_h_inf_inf"/>
+        </gate>
+                            
+    </ionChannel>
+
+    <ComponentType extends="baseVoltageDepTime" name="na3_m_tau_tau">
+        <Constant name="TIME_SCALE" value="1 ms" dimension="time"/>
+        <Constant name="VOLT_SCALE" value="1 mV" dimension="voltage"/>
+        <!--Note: this parameter (ar) should ideally be defined only once within the ionChannel! Work in progress...-->
+        <Constant name="ar" value="1" dimension="none"/>
+        <Requirement name="alpha" dimension="per_time"/>
+        <Requirement name="beta" dimension="per_time"/>
+        <Requirement name="rateScale" dimension="none"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" value="v / VOLT_SCALE" dimension="none"/>
+            <DerivedVariable name="ALPHA" value="alpha * TIME_SCALE" dimension="none"/>
+            <DerivedVariable name="BETA" value="beta * TIME_SCALE" dimension="none"/>
+            <ConditionalDerivedVariable dimension="time" name="t" exposure="t">
+                <Case value="( 0 ) * TIME_SCALE" condition="(ALPHA + BETA) .eq. 0"/>
+                <Case value="( (0.02 * rateScale) ) * TIME_SCALE" condition="1/( (ALPHA + BETA) * rateScale )  .lt. ( 0.02 )"/>
+                <Case value="( 1/(ALPHA + BETA) ) * TIME_SCALE"/>
+            </ConditionalDerivedVariable>
+        </Dynamics>
+
+    </ComponentType>
+
+    <ComponentType extends="baseVoltageDepTime" name="na3_h_tau_tau">
+        <Constant name="TIME_SCALE" value="1 ms" dimension="time"/>
+        <Constant name="VOLT_SCALE" value="1 mV" dimension="voltage"/>
+        <!--Note: this parameter (ar) should ideally be defined only once within the ionChannel! Work in progress...-->
+        <Constant name="ar" value="1" dimension="none"/>
+        <Requirement name="alpha" dimension="per_time"/>
+        <Requirement name="beta" dimension="per_time"/>
+        <Requirement name="rateScale" dimension="none"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" value="v / VOLT_SCALE" dimension="none"/>
+            <DerivedVariable name="ALPHA" value="alpha * TIME_SCALE" dimension="none"/>
+            <DerivedVariable name="BETA" value="beta * TIME_SCALE" dimension="none"/>
+            <ConditionalDerivedVariable dimension="time" name="t" exposure="t">
+                <Case value="( 0 ) * TIME_SCALE" condition="(ALPHA + BETA) .eq. 0"/>
+                <Case value="( (0.5 * rateScale) ) * TIME_SCALE" condition="1/( (ALPHA + BETA) * rateScale )  .lt. ( 0.5 )"/>
+                <Case value="( 1/(ALPHA + BETA) ) * TIME_SCALE"/>
+            </ConditionalDerivedVariable>
+        </Dynamics>
+
+    </ComponentType>
+
+    <ComponentType extends="baseVoltageDepVariable" name="na3_h_inf_inf">
+        <Constant name="TIME_SCALE" value="1 ms" dimension="time"/>
+        <Constant name="VOLT_SCALE" value="1 mV" dimension="voltage"/>
+        <!--Note: this parameter (ar) should ideally be defined only once within the ionChannel! Work in progress...-->
+        <Constant name="ar" value="1" dimension="none"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" value="v / VOLT_SCALE" dimension="none"/>
+            <DerivedVariable dimension="none" name="x" value="1/(1 + (exp ((V-(-50))/4 )) )" exposure="x"/>
+        </Dynamics>
+
+    </ComponentType>
+
+</neuroml>

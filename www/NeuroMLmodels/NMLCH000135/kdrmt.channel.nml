@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="kdrmt">
+
+    <notes>ChannelML file containing a single Channel description</notes>
+
+    <ionChannel id="kdrmt" conductance="10pS" type="ionChannelHH" species="k">
+
+        <notes>Delayed rectifier K conductance from Mitral cell model. Comment from original mod file implementation:
+        K-DR current for Mitral Cells from Wang et al (1996)
+        M.Migliore Jan. 2002</notes>
+                
+        <annotation>
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                <rdf:Description rdf:about="kdrmt">
+                    
+                    <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>Migliore M, Shepherd GM (2008) Dendritic action potentials connect distributed dendrodendritic microcircuits J Comp Neurosci 24(2):207-221</rdf:li>
+                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/pubmed/17674173"/>
+                        </rdf:Bag>
+                    </bqmodel:isDescribedBy>
+
+                
+                    <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>Migliore, M., Hines, M.L., Shepherd, G.M. The Role of Distal Dendritic Gap Junctions in Synchronization of Mitral Cell Axonal Output J.Comput. Neurosci. 18, 151-161, 2005</rdf:li>
+                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/pubmed/15714267"/>
+                        </rdf:Bag>
+                    </bqmodel:isDescribedBy>
+
+                
+                    <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>K channels</rdf:li>
+                            <rdf:li rdf:resource="http://senselab.med.yale.edu/senselab/NeuronDB/channelGene2.htm#table3"/>
+                        </rdf:Bag>
+                    </bqbiol:isVersionOf>
+
+                </rdf:Description>
+            </rdf:RDF>
+        </annotation>
+
+        <gate id="m" type="gateHHratesTauInf" instances="1">
+            <q10Settings type="q10ExpTemp" q10Factor="3" experimentalTemp="24 degC"/>
+            <forwardRate type="kdrmt_m_alpha_rate"/>
+            <reverseRate type="kdrmt_m_beta_rate"/>
+            <timeCourse type="kdrmt_m_tau_tau"/>
+            <steadyState type="kdrmt_m_inf_inf"/>
+        </gate>
+                            
+    </ionChannel>
+
+    <ComponentType name="kdrmt_m_alpha_rate" extends="baseVoltageDepRate">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <!--Note: this parameter (zetam) should ideally be defined only once within the ionChannel! Work in progress...--><Constant name="zetam" dimension="none" value="0.055"/>
+        <!--Note: this parameter (vhalfm) should ideally be defined only once within the ionChannel! Work in progress...--><Constant name="vhalfm" dimension="none" value="-50"/>
+        <!--Note: this parameter (gmm) should ideally be defined only once within the ionChannel! Work in progress...--><Constant name="gmm" dimension="none" value="0.5"/>
+        <!--Note: this parameter (a0m) should ideally be defined only once within the ionChannel! Work in progress...--><Constant name="a0m" dimension="none" value="0.0035"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="Vhalfm" dimension="none" value="vhalfm"/>
+            <DerivedVariable name="r" exposure="r" dimension="per_time" value="((exp ( zetam * (V - Vhalfm)) )) / TIME_SCALE"/>
+        </Dynamics>
+
+    </ComponentType>
+
+    <ComponentType name="kdrmt_m_beta_rate" extends="baseVoltageDepRate">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <!--Note: this parameter (zetam) should ideally be defined only once within the ionChannel! Work in progress...--><Constant name="zetam" dimension="none" value="0.055"/>
+        <!--Note: this parameter (vhalfm) should ideally be defined only once within the ionChannel! Work in progress...--><Constant name="vhalfm" dimension="none" value="-50"/>
+        <!--Note: this parameter (gmm) should ideally be defined only once within the ionChannel! Work in progress...--><Constant name="gmm" dimension="none" value="0.5"/>
+        <!--Note: this parameter (a0m) should ideally be defined only once within the ionChannel! Work in progress...--><Constant name="a0m" dimension="none" value="0.0035"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="Vhalfm" dimension="none" value="vhalfm"/>
+            <DerivedVariable name="r" exposure="r" dimension="per_time" value="((exp ( zetam * gmm * (V - Vhalfm)) )) / TIME_SCALE"/>
+        </Dynamics>
+
+    </ComponentType>
+
+    <ComponentType name="kdrmt_m_tau_tau" extends="baseVoltageDepTime">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <!--Note: this parameter (zetam) should ideally be defined only once within the ionChannel! Work in progress...--><Constant name="zetam" dimension="none" value="0.055"/>
+        <!--Note: this parameter (vhalfm) should ideally be defined only once within the ionChannel! Work in progress...--><Constant name="vhalfm" dimension="none" value="-50"/>
+        <!--Note: this parameter (gmm) should ideally be defined only once within the ionChannel! Work in progress...--><Constant name="gmm" dimension="none" value="0.5"/>
+        <!--Note: this parameter (a0m) should ideally be defined only once within the ionChannel! Work in progress...--><Constant name="a0m" dimension="none" value="0.0035"/>
+        <Requirement name="alpha" dimension="per_time"/>
+        <Requirement name="beta" dimension="per_time"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="Vhalfm" dimension="none" value="vhalfm"/>
+            <DerivedVariable name="ALPHA" dimension="none" value="alpha * TIME_SCALE"/>
+            <DerivedVariable name="BETA" dimension="none" value="beta * TIME_SCALE"/>
+            <DerivedVariable name="t" exposure="t" dimension="time" value="(BETA / ( a0m * (1 + ALPHA))) * TIME_SCALE"/>
+        </Dynamics>
+
+    </ComponentType>
+
+    <ComponentType name="kdrmt_m_inf_inf" extends="baseVoltageDepVariable">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <!--Note: this parameter (zetam) should ideally be defined only once within the ionChannel! Work in progress...--><Constant name="zetam" dimension="none" value="0.055"/>
+        <!--Note: this parameter (vhalfm) should ideally be defined only once within the ionChannel! Work in progress...--><Constant name="vhalfm" dimension="none" value="-50"/>
+        <!--Note: this parameter (gmm) should ideally be defined only once within the ionChannel! Work in progress...--><Constant name="gmm" dimension="none" value="0.5"/>
+        <!--Note: this parameter (a0m) should ideally be defined only once within the ionChannel! Work in progress...--><Constant name="a0m" dimension="none" value="0.0035"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="Vhalfm" dimension="none" value="vhalfm"/>
+            <DerivedVariable name="x" exposure="x" dimension="none" value="1/(1 + (exp ( (V - 21) /(-10) )))"/>
+        </Dynamics>
+
+    </ComponentType>
+
+</neuroml>

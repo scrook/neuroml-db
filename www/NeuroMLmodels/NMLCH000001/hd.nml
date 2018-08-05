@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<neuroml xmlns:org.4suite.4xslt.ns0="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.neuroml.org/schema/neuroml2" org.4suite.4xslt.ns0:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="hd">
+
+    <notes>ChannelML file containing a single Channel description</notes>
+
+    <ionChannel conductance="10pS" type="ionChannelHH" id="hd" species="h">
+
+        <notes>H current. Comment from original mod: I-h channel from Magee 1998 for distal dendrites</notes>
+                
+        <annotation>
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                <rdf:Description rdf:about="hd">
+                    
+                    <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>Migliore M, Ferrante M, Ascoli GA (2005) Signal propagation in oblique dendrites of CA1 pyramidal cells. J Neurophysiol 94:4145-4155</rdf:li>
+                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/pubmed/16293591"/>
+                        </rdf:Bag>
+                    </bqmodel:isDescribedBy>
+
+                </rdf:Description>
+            </rdf:RDF>
+        </annotation>
+
+        <gate instances="1" type="gateHHtauInf" id="l">
+            <q10Settings experimentalTemp="33 degC" type="q10ExpTemp" q10Factor="4.5"/>
+            <timeCourse type="hd_l_tau_tau"/>
+            <steadyState type="hd_l_inf_inf"/>
+        </gate>
+                            
+    </ionChannel>
+
+    <ComponentType extends="baseVoltageDepTime" name="hd_l_tau_tau">
+        <Constant name="TIME_SCALE" value="1 ms" dimension="time"/>
+        <Constant name="VOLT_SCALE" value="1 mV" dimension="voltage"/>
+        <!--Note: this parameter (vhalfl) should ideally be defined only once within the ionChannel! Work in progress...-->
+        <Constant name="vhalfl" value="-81" dimension="none"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" value="v / VOLT_SCALE" dimension="none"/>
+            <DerivedVariable name="Vhalfl" value="vhalfl" dimension="none"/>
+            <DerivedVariable dimension="time" name="t" value="((exp (0.033264 * (V - (-75))))/(0.011 * (1 + (exp (0.08316 * (V - (-75)))))) ) * TIME_SCALE" exposure="t"/>
+        </Dynamics>
+
+    </ComponentType>
+
+    <ComponentType extends="baseVoltageDepVariable" name="hd_l_inf_inf">
+        <Constant name="TIME_SCALE" value="1 ms" dimension="time"/>
+        <Constant name="VOLT_SCALE" value="1 mV" dimension="voltage"/>
+        <!--Note: this parameter (vhalfl) should ideally be defined only once within the ionChannel! Work in progress...-->
+        <Constant name="vhalfl" value="-81" dimension="none"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" value="v / VOLT_SCALE" dimension="none"/>
+            <DerivedVariable name="Vhalfl" value="vhalfl" dimension="none"/>
+            <DerivedVariable dimension="none" name="x" value="1/(1 + (exp (- (V-(Vhalfl))/ (-8) )) )" exposure="x"/>
+        </Dynamics>
+
+    </ComponentType>
+
+</neuroml>
