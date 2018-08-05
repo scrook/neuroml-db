@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 ../Schemas/NeuroML2/NeuroML_v2beta4.xsd"
+    id="Synapses">
+    
+    
+    <silentSynapse id="silent"/>
+    
+    <!--Based on synapse in Methods of http://www.nature.com/neuro/journal/v7/n12/abs/nn1352.html-->
+    
+    <gradedSynapse id="Glu_0nS"    conductance="0nS" delta="5mV" Vth="-35mV" k="0.025per_ms" erev="-70mV"/>
+    <gradedSynapse id="Glu_1nS"    conductance="1nS" delta="5mV" Vth="-35mV" k="0.025per_ms" erev="-70mV"/>
+    <gradedSynapse id="Glu_3nS"    conductance="3nS" delta="5mV" Vth="-35mV" k="0.025per_ms" erev="-70mV"/>
+    <gradedSynapse id="Glu_10nS"   conductance="10nS" delta="5mV" Vth="-35mV" k="0.025per_ms" erev="-70mV"/>
+    <gradedSynapse id="Glu_30nS"   conductance="30nS" delta="5mV" Vth="-35mV" k="0.025per_ms" erev="-70mV"/>
+    <gradedSynapse id="Glu_100nS"  conductance="100nS" delta="5mV" Vth="-35mV" k="0.025per_ms" erev="-70mV"/>
+    
+    
+    <gradedSynapse id="Ach_1nS"  conductance="1nS" delta="5mV" Vth="-35mV" k="0.01per_ms" erev="-80mV"/>
+    <gradedSynapse id="Ach_3nS"  conductance="3nS" delta="5mV" Vth="-35mV" k="0.01per_ms" erev="-80mV"/>
+    <gradedSynapse id="Ach_10nS"  conductance="10nS" delta="5mV" Vth="-35mV" k="0.01per_ms" erev="-80mV"/>
+    <gradedSynapse id="Ach_30nS"  conductance="30nS" delta="5mV" Vth="-35mV" k="0.01per_ms" erev="-80mV"/>
+    <gradedSynapse id="Ach_100nS"  conductance="100nS" delta="5mV" Vth="-35mV" k="0.01per_ms" erev="-80mV"/>
+    
+    <!-- For testing
+    <linearGradedSynapse id="gs1" conductance="10nS"/>-->
+
+</neuroml>
