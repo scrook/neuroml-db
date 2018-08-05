@@ -1,0 +1,3 @@
+<% @modelsources.each do |source| %>
+    <label><input type="radio" name="modelSourceID" value="<%= source[:ID] %>"><%=h(source[:Name]) %></label>
+<% end %>

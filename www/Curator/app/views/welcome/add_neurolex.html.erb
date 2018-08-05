@@ -1,0 +1,35 @@
+<h3 style="text-align:center;">Add New Neurolex IDs</h3>
+<%= form_for @nlx,:url => {:action => 'new_neurolex'},:html => {:id => "anID"}  do |fnlx| %>
+  <p>
+<table
+<tr>
+   <td><%= fnlx.hidden_field(:NeuroLex_ID,:readonly => true) %></td>
+  <tr>
+
+<tr>
+   <th><%= fnlx.label(:NeuroLex_URI,"NeuroLex URI") %></th>
+   <td><%= fnlx.text_field(:NeuroLex_URI) %></td>
+  <tr>
+<tr>
+<tr>
+   <th><%= fnlx.label(:NeuroLex_Term,"NeuroLex Terms") %></th>
+   <td><%= fnlx.text_field(:NeuroLex_Term) %></td>
+  <tr>
+<tr>
+
+
+   <th><%= fnlx.label(:Comments,"Comments") %></th>
+   <td><%= fnlx.text_field(:Comments) %></td>
+  <tr>
+  </p>
+</table>
+<%= fields_for @model_id do |fassoc1| %>
+<%= fassoc1.hidden_field(:Model_ID,:readonly => true) %></td>
+  <% end %>
+
+  <p>
+    <%= fnlx.submit "Add Neurolex Terms"%>
+	<%= button_tag "Reset", type: :reset %>
+  </p>
+<% end %>
+

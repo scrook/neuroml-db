@@ -1,0 +1,390 @@
+<div id="newAuthorTemplate" style="display: none;">
+  <div id="author[index]">
+    <div class="newModelHeader">Model Author <span id="authorIndex">[index]</span>:</div>
+    <div class="newModelControls">
+      <div id="existingAuthorFields[index]">
+          <%= render 'dropdown/authors' %>
+          <div class="addNewControls" style="display: none;" id="addNewAuthor"><input type="button" value="[+] Or, create a new author" onclick="$('#existingAuthorFields[index]').hide(); $('#newAuthorFields[index]').show();" /></div>
+      </div>
+      <table id="newAuthorFields[index]" class="news_table" style="margin-bottom: 0; display:none;">
+        <tr>
+          <td style="width: 30%;"> First Name* :</td>
+          <td>
+            <div id="fname_addn">
+              <input maxlength="100" name="fname[index]" size="30" type="text" class="poshytip" title="Enter your first name" />
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td> Middle Name :
+          </td><td>
+          <div id="mname_addn">
+            <input maxlength="120" name="mname[index]" size="30" type="text" class="poshytip" title="Enter your middle name" />
+          </div>
+        </td></tr>
+        <tr>
+          <td>Last Name* :
+          </td><td> <div id="lname_addn">
+          <input maxlength="120" name="lname[index]" size="30" type="text" class="poshytip" title="Enter your last name" />
+        </div>
+        </td></tr>
+
+        <tr>
+          <td> Email Address* :
+          </td><td>
+          <div id="email_addn">
+            <input maxlength="50" name="email[index]" size="30" type="email" class="poshytip" title="Enter your email id" />
+          </div>
+        </td></tr>
+
+        <tr>
+          <td> Institution :
+          </td><td>
+          <div id="inst_addn">
+            <input maxlength="300" name="instname[index]" size="30" type="text" class="poshytip" title="Enter name of the institution" />
+          </div>
+        </td></tr>
+        </table>
+        <table class="news_table" style="margin-bottom: 0;">
+        <tr>
+          <td style="width: 30%;"> Type of Contribution to the Model :
+          </td><td>
+          <div id="contFields">
+            <label><input type="radio" name="cont_select[index]" value="0" checked="checked">Author</label>
+            <label><input type="radio" name="cont_select[index]" value="1">Translator</label>
+            <label><input type="radio" name="cont_select[index]" value="2">Author and Translator</label>
+          </div>
+        </td>
+        </tr>
+      </table>
+      <div class="addNewControls" style="display: none;" id="addNewAuthor"><input type="button" value="[+] Add another author to the new author list" onclick="$(this).hide(); addAuthor();" /></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- MAIN -->
+<div id="main">
+  <!-- wrapper-main -->
+  <div class="wrapper">
+
+    <!-- content -->
+    <div id="content">
+
+      <!-- title -->
+      <div id="page-title">
+        <span class="title">Submit a Model</span>
+      </div>
+      <!-- ENDS title -->
+      <%= form_tag("add_model",:id => "anID", :multipart => "true" , :method => "post") do %>
+          <style>
+            .authors { }
+            .newModelHeader { font-weight: bold; padding: 10px; color: white; background: rgb(81, 86, 91) none repeat scroll 0px 0px; border: 1px solid rgb(81, 86, 91); border-top-left-radius: 10px; border-top-right-radius: 10px; }
+            .newModelControls { margin-bottom: 10px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; padding: 10px; border: 1px solid rgb(81, 86, 91); }
+            .addNewControls { text-align: right; margin-top: 10px; }
+            .addNewControls input { font-size: 15px; }
+            input.custom-combobox-input  { width: 832px }
+            table { margin-bottom: 0; }
+            .submodels .submodelID { width: 135px; }
+            .submodels .submodelName { width: 230px; }
+            .submodels .submodelList { overflow: auto; height: 200px; border: 1px solid; }
+          </style>
+        <%= stylesheet_link_tag 'combobox' %>
+        <div id="modelDetails">
+            <div class="newModelHeader">Model Details</div>
+            <div class="newModelControls">
+              <table class="news_table">
+                <tr>
+                  <td> Model Name* :
+                  </td><td> <input maxlength="120" name="model" size="30" type="text" class="poshytip" title="Enter model name" />
+                </td></tr>
+
+                <tr>
+                  <td> Model Type:
+                  </td>
+                  <td>
+                    <label><input type="radio" name="mtype_select" value="C" checked="checked">Cell</label>
+                    <label><input type="radio" name="mtype_select" value="S">Synapse</label>
+                    <label><input type="radio" name="mtype_select" value="Ch">Channel</label>
+                    <label><input type="radio" name="mtype_select" value="N">Network</label>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td> A Brief Description of the Model :
+                  </td><td> <textarea cols="60" name="model_desc" rows="10" class="poshytip" title="Enter discription about the model"  ></textarea>
+                </td></tr>
+
+                <tr>
+                  <td> Upload you Model file(s) here :
+                  </td>
+                  <div id="fileFields">
+                    <td><%= file_field_tag "file",:class=>'poshytip', :title => 'upload your model files here' %>
+                      <input type="button" value="+" onclick="addFields('fileFields');" />
+                  </div>
+                  </td></tr>
+
+
+                <tr>
+                  <td> Enter Other Keyword(s):
+                  </td><td>
+                  <input maxlength="300" name="keywords_model" size="30" type="text" class="poshytip" title="Enter the keywords" />
+                </td></tr>
+
+
+                <tr>
+                  <td> Note(s) or Comment(s):
+                  </td><td> <textarea cols="60" name="notes" rows="10" class="poshytip" title="Enter the comments"></textarea>
+                </td></tr>
+
+                <tr id="addNetworks">
+                  <td>Associated Networks:
+                  </td><td>
+                  <input type="button" value="[+] Associate Networks" onclick="jQuery('#newNetworks').show(); jQuery('#addNetworks').hide();" />
+                </td>
+                </tr>
+
+                <tr id="newNetworks" class="submodels" style="display: none;">
+                  <td colspan="2" style="width: 100%;">
+                    <div>Associated Networks:</div>
+                    <div class="submodelList">
+                      <table>
+                        <thead>
+                        <tr><th class="submodelID">Network ID</th><th class="submodelName">Name</th><th>Publication</th></tr>
+                        </thead>
+                        <tbody>
+                        <% @networks.each do |network| %>
+                            <tr>
+                              <td><label><input type="checkbox" name="assoc_nw[]" value="<%= h(network[:ID].to_s) %>"><%= h(network[:ID].to_s) %></label></td>
+                              <td><%= h(network[:Name]) %></td>
+                              <td><%= h(network[:PubTitle]) %></td>
+                            </tr>
+                        <% end %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr id="addCells">
+                  <td>Associated Cells:
+                  </td><td>
+                  <input type="button" value="[+] Associate Cells" onclick="jQuery('#newCells').show(); jQuery('#addCells').hide();" />
+                </td>
+                </tr>
+
+                <tr id="newCells" class="submodels" style="display: none;">
+                  <td colspan="2" style="width: 100%;">
+                    <div>Associated Cells:</div>
+                    <div class="submodelList">
+                      <table>
+                        <thead>
+                        <tr><th class="submodelID">Cell ID</th><th class="submodelName">Name</th><th>Publication</th></tr>
+                        </thead>
+                        <tbody>
+                        <% @cells.each do |cell| %>
+                            <tr>
+                              <td><label><input type="checkbox" name="assoc_cell[]" value="<%= h(cell[:ID].to_s) %>"><%= h(cell[:ID].to_s) %></label></td>
+                              <td><%= h(cell[:Name]) %></td>
+                              <td><%= h(cell[:PubTitle]) %></td>
+                            </tr>
+                        <% end %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </td>
+                </tr>
+
+
+
+                <tr id="addChannels">
+                  <td>Associated Channels:
+                  </td><td>
+                  <input type="button" value="[+] Associate Channels" onclick="jQuery('#newChannels').show(); jQuery('#addChannels').hide();" />
+                </td>
+                </tr>
+
+                <tr id="newChannels" class="submodels" style="display: none;">
+                  <td colspan="2" style="width: 100%;">
+                    <div>Associated Channels:</div>
+                    <div class="submodelList">
+                      <table>
+                        <thead>
+                        <tr><th class="submodelID">Channel ID</th><th class="submodelName">Name</th><th>Publication</th></tr>
+                        </thead>
+                        <tbody>
+                        <% @channels.each do |channel| %>
+                            <tr>
+                              <td><label><input type="checkbox" name="assoc_chnl[]" value="<%= h(channel[:ID].to_s) %>"><%= h(channel[:ID].to_s) %></label></td>
+                              <td><%= h(channel[:Name]) %></td>
+                              <td><%= h(channel[:PubTitle]) %></td>
+                            </tr>
+                        <% end %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr id="addSynapses">
+                  <td>Associated Synapses:
+                  </td><td>
+                  <input type="button" value="[+] Associate Synapses" onclick="jQuery('#newSynapses').show(); jQuery('#addSynapses').hide();" />
+                </td>
+                </tr>
+
+                <tr id="newSynapses" class="submodels" style="display: none;">
+                  <td colspan="2" style="width: 100%;">
+                    <div>Associated Synapses:</div>
+                    <div class="submodelList">
+                      <table>
+                        <thead>
+                        <tr><th class="submodelID">Synapse ID</th><th class="submodelName">Name</th><th>Publication</th></tr>
+                        </thead>
+                        <tbody>
+                        <% @synapses.each do |synapse| %>
+                            <tr>
+                              <td><label><input type="checkbox" name="assoc_syn[]" value="<%= h(synapse[:ID].to_s) %>"><%= h(synapse[:ID].to_s) %></label></td>
+                              <td><%= h(synapse[:Name]) %></td>
+                              <td><%= h(synapse[:PubTitle]) %></td>
+                            </tr>
+                        <% end %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </td>
+                </tr>
+
+              </table>
+            </div>
+        </div>
+        <div id="authorList">
+          <div class="newModelHeader">Model Author List</div>
+          <div class="newModelControls">
+            <div>
+                <div>
+                  <%= render 'dropdown/author_lists' %>
+                </div>
+            </div>
+            <div class="addNewControls">
+              <div class="addNewControls"><input type="button" value="[+] Or, Create a new author list" onclick="jQuery('#authors, #addNewAuthor').show(); jQuery('#authorList').hide(); $('#author_lists_dropdown').val("0"); addAuthor();" /></div>
+            </div>
+          </div>
+        </div>
+        <div id="authors"></div>
+        <div id="publication">
+          <div class="newModelHeader">Publication</div>
+          <div class="newModelControls">
+            <div id="existingPublicationFields">
+                <%= render 'dropdown/publications' %>
+                <div class="addNewControls">
+                    <div class="addNewControls"><input type="button" value="[+] Or, Create a new publication" onclick="jQuery('#newPublicationFields').show(); jQuery('#existingPublicationFields').hide();" /></div>
+                </div>
+            </div>
+            <div id="newPublicationFields" style="display: none;">
+              <table class="news_table">
+                  <tr>
+                    <td> Publication(s) Title :
+                    </td><td><div id="pubFields"> <input maxlength="300" name="pubmed_title" size="30" type="text" class="poshytip" title="Enter publication title" />
+                  </div>
+                  </td>
+                  </tr>
+
+                  <tr>
+                    <td> PubMed RefID (i.e.: pubmed/20696381):
+                    </td><td><div id="pubFields"> <input maxlength="300" name="pubmed_id" size="30" type="text" class="poshytip" title="Enter pubmed ID" />
+                  </div>
+                  </td>
+                  </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+          <div id="reference">
+            <div class="newModelHeader">Reference</div>
+            <div class="newModelControls">
+              <div id="existingReferenceFields">
+                <%= render 'dropdown/references' %>
+                <div class="addNewControls">
+                  <div class="addNewControls"><input type="button" value="[+] Or, Create a new source reference" onclick="jQuery('#newReferenceFields').show(); jQuery('#existingReferenceFields').hide();" /></div>
+                </div>
+              </div>
+              <div id="newReferenceFields" style="display: none;">
+                <table class="news_table">
+                  <tr>
+                    <td>Model Source :</td>
+                    <td><%= render 'dropdown/modelsources' %></td>
+                  </tr>
+
+                  <tr>
+                    <td> Source URI:</td>
+                    <td>
+                    <div id="refFields"> <input maxlength="250" name="ref_uri" size="30" type="url" class="poshytip" title="Enter references URI to the model" />
+                    </div>
+                  </td></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div id="neurolexterm">
+            <div class="newModelHeader">NeuroLex Term</div>
+            <div class="newModelControls">
+              <div id="existingNeurolexTermFields">
+                <%= render 'dropdown/neurolexterms' %>
+                <div class="addNewControls">
+                  <div class="addNewControls"><input type="button" value="[+] Or, Create a new NeuroLex term" onclick="jQuery('#newNeurolexTermFields').show(); jQuery('#existingNeurolexTermFields').hide();" /></div>
+                </div>
+              </div>
+              <div id="newNeurolexTermFields" style="display: none;">
+                <table class="news_table">
+                  <tr>
+                    <td> NeuroLex URI:
+                    </td><td>
+                    <div id="refFields"> <input maxlength="250" name="nlx_uri" size="30" type="text" class="poshytip" title="Enter NeuroLex URI of the model" />
+                    </div>
+                  </td></tr>
+
+                  <tr>
+                    <td> NeuroLex Term:
+                    </td><td>
+                    <div id="refFields"> <input maxlength="250" name="nlx_trm" size="30" type="text" class="poshytip" title="Enter Neurolex Terms" />
+                    </div>
+                  </td></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        <div class="addNewControls" >
+          <input name="save" type="button" value="Save" />&nbsp;&nbsp; <input name="Submit" type="submit" value="Submit Model" />
+        </div>
+      <% end%>
+      <div class="clear"></div>
+      <!-- ENDS project column (right) -->
+
+
+      </div>
+      <!-- ENDS content -->
+
+      </div>
+      <!-- ENDS wrapper-main -->
+      </div>
+
+<script>
+    var authorIndex = 1;
+    function addAuthor()
+    {
+
+        newAuthorHtml = $('#newAuthorTemplate')[0]
+                .innerHTML
+                .replace(/\[index\]/g,authorIndex);
+
+        $('#authors').append(newAuthorHtml);
+
+        //Make the dropdown searchable
+        $('#authors').children().last().find(".authors_dropdown").combobox();
+
+        authorIndex++;
+    }
+</script>
+<%= javascript_include_tag 'combobox' %>

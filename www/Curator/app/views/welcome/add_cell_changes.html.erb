@@ -1,0 +1,137 @@
+<script type="text/javascript">
+var $j = jQuery.noConflict();
+$j(document).ready(function(){
+$j('input[type="checkbox"]').click(function(){
+var selected_checkbox=$j(this).val();
+if(selected_checkbox == "Channels")
+{
+ if($j(this).is(':checked'))
+ $j("#channels_count").css("visibility","visible");
+ else
+ $j("#channels_count").css("visibility","hidden");
+}
+if(selected_checkbox == "Synapses")
+{
+if($j(this).is(':checked'))
+ $j("#synapses_count").css("visibility","visible");
+ else
+ $j("#synapses_count").css("visibility","hidden");
+}
+if(selected_checkbox == "Cells")
+{
+if($j(this).is(':checked'))
+ $j("#cells_count").css("visibility","visible");
+ else
+ $j("#cells_count").css("visibility","hidden");
+}
+if(selected_checkbox == "Networks")
+{
+if($j(this).is(':checked'))
+ $j("#networks_count").css("visibility","visible");
+ else
+ $j("#networks_count").css("visibility","hidden");
+
+}
+
+
+
+
+
+});
+});
+</script>
+
+<div id="main">
+                                <!-- wrapper-main -->
+                                <div class="wrapper">
+
+                                        <!-- content -->
+                                        <div id="content">
+
+                                                <!-- title -->
+                                                <div id="page-title">
+                                                        <span class="title">Submit a Model</span>
+                                                </div>
+                                                <!-- ENDS title -->
+<p>
+                        * Indicates required field</p>
+
+
+<input type="checkbox" id="channels_checkbox" name="channels_checkbox" value="Channels" />
+<label for="channels_checkbox">Channels</label>
+&nbsp;&nbsp;
+<select id="channels_count" name="channels_count" style="visibility:hidden;">
+<option value="Count" selected>Count</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+<option value="10">10</option>
+
+</select>
+
+<br />
+<input type="checkbox" id="synapses_checkbox" name="synapses_checkbox" value="Synapses" />
+<label for="synapses_checkbox">Synapses</label>
+&nbsp;&nbsp;
+<select id="synapses_count" name="synapses_count" style="visibility:hidden;">
+<option value="Count" selected>Count</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+<option value="10">10</option>
+
+</select>
+<br />
+<input type="checkbox" id="cells_checkbox" name="cells_checkbox" value="Cells" />
+<label for="cells_checkbox">Cells</label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<select id="cells_count" name="cells_count" style="visibility:hidden;">
+<option value="Count" selected>Count</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+<option value="10">10</option>
+
+</select>
+<br />
+<input type="checkbox" id="networks_checkbox" name="networks_checkbox" value="Networks" />
+<label for="networks_checkbox">Networks</label>
+&nbsp;&nbsp;
+<select id="networks_count" name="networks_count" style="visibility:hidden;">
+<option value="Count" selected>Count</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+<option value="10">10</option>
+
+</select>
+<br />
+
+
+</div>
+</div>
+</div>

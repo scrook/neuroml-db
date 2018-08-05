@@ -1,0 +1,34 @@
+<h3 style="text-align:center;">Add New References</h3>
+<%= form_for @reference ,:url => {:action => 'new_reference'},:html => {:id => "anID"}  do |f2| %>
+  <p>
+ <table>
+<tr>
+   <td><%= f2.hidden_field(:Reference_ID,:readonly => true) %></td>
+  </tr>
+<tr>
+   <th><%= f2.label(:Reference_Resource,"Reference Resource") %></th>
+   <td><%= f2.text_field(:Reference_Resource) %></td>
+  <tr>
+<tr>
+<tr>
+   <th><%= f2.label(:Reference_URI,"Reference URI") %></th>
+   <td><%= f2.text_field(:Reference_URI) %></td>
+  <tr>
+<tr>
+
+   <th><%= f2.label(:Comments,"Comments") %></th>
+   <td><%= f2.text_field(:Comments) %></td>
+  <tr>
+ </table>
+  </p>
+<%= fields_for @model_id do |fassoc1| %>
+<%= fassoc1.hidden_field(:Model_ID,:readonly => true) %></td>
+  <% end %>
+
+
+  <p>
+    <%= f2.submit "Add Reference" %>
+	<%= button_tag "Reset", type: :reset %>
+  </p>
+<% end %>
+

@@ -1,0 +1,156 @@
+<!DOCTYPE  html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>NeuroML</title>
+
+<%= csrf_meta_tag %>
+<%= favicon %>
+<%= javascript_heads %>
+<%= heads_for_theme %>
+<%= call_hook :view_layouts_base_html_head %>
+
+<!-- CSS -->
+<link rel="stylesheet" href="/javascripts/fancybox/jquery.fancybox.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<%= stylesheet_link_tag 'style', :media => 'screen' %>
+<%= stylesheet_link_tag 'social-icons', :media => 'screen' %>
+<!--[if IE 8]>
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/ie8-hacks.css" />-->
+<%= stylesheet_link_tag 'ie8-hacks', :media => 'screen' %>
+<![endif]-->
+<!-- ENDS CSS -->
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<%= javascript_include_tag 'fancybox/jquery.fancybox.pack.js' %>
+<%= javascript_include_tag 'js/custom' %>
+</head>
+	
+	<body class="home">
+
+			<!-- HEADER -->
+			<div id="header">
+				<!-- wrapper-header --><!-- <a class="various fancybox" href="/model_info?model_id=NMLCL000005">Ajax</a>-->
+				<div class="wrapper">
+					<a href="/home">
+<%= image_tag "neuro_1.png", :id=> 'logo', :alt => 'NeuroML', :width => '380px', :height => '115px' %>
+</a>
+<div id="caption-text">
+<span>Curation Tool for NeuroML Models</span>
+</div>
+<div id="account">
+<%= content_tag('div', "#{l(:label_logged_as)} #{link_to_user(User.current, :format => :username)}".html_safe, :id => 'loggedas') if User.current.logged? %>
+        <%= render_menu :account_menu -%>
+    </div>
+  
+					<div class="top-search">
+<!--======== Search ===== -->
+<% if User.current.logged? || !Setting.login_required? %>
+<!--    
+<div id="searchform">
+        <%= form_tag({:controller => 'search', :action => 'index', :id => @project}, :method => :get ) do %>
+        <%= hidden_field_tag(controller.default_search_scope, 1, :id => nil) if controller.default_search_scope %>
+       
+        <%= text_field_tag 'q', @question, :size => 20, :value => 'Enter the search text ...', :class => 'small',:id=>'s', :accesskey => accesskey(:quick_search) ,:onfocus => 'defaultInput(this)', :onblur =>'clearInput(this)' %>
+        <% end %>
+        
+    </div>
+-->
+    <% end %>
+
+
+
+<!--===== End of Search ====== -->
+
+						
+					</div>
+					<!-- ENDS search -->
+				</div>
+				<!-- ENDS wrapper-header -->					
+			</div>
+			<!-- ENDS HEADER -->
+			
+			
+			<!-- Menu -->
+			<div id="menu">
+			<%
+active_class="not_active"
+if controller.action_name == "index"
+index=1
+active_class="current-menu-item"
+elsif controller.action_name == "browse_models"
+browse=1
+active_class="current-menu-item"
+elsif controller.action_name == "model_submit" 
+documents=1
+active_class="current-menu-item"
+elsif controller.action_name == "search_result"
+tools=1
+active_class="current-menu-item"
+elsif controller.action_name == "add_cell"
+models=1
+active_class="current-menu-item"
+elsif controller.action_name == "curate_model"
+community=1
+active_class="current-menu-item"
+elsif controller.action_name == "edit_model"
+development=1
+active_class="current-menu-item"
+end
+
+
+
+
+                         %>
+			
+			
+				<!-- ENDS menu-holder -->
+				<div id="menu-holder">
+					<!-- wrapper-menu -->
+					<div class="wrapper">
+						<!-- Navigation -->
+<% if User.current.logged? %>
+						<ul id="nav" class="sf-menu">
+							<% if index != 1 %>
+							<li <% if browse == 1 %>class="<%= active_class %>" <% end %> ><a href="/list_models?select_models=1">View and Edit Models</a></li>
+							 <li <% if models == 1 %>class="<%= active_class %>" <% end %>><a href="/add_cell">Add Models</a></li>
+							<li <% if community == 1 %>class="<%= active_class %>" <% end %>><a href="/curate_model">Curate Submitted Models</a></li>
+							<% end %>
+<%#= render_menu :top_menu if User.current.logged? || !Setting.login_required? -%>
+						</ul>
+			<% end %>			<!-- Navigation -->
+					</div>
+					<!-- wrapper-menu -->
+				</div>
+				<!-- ENDS menu-holder -->
+			</div>
+			<!-- ENDS Menu -->
+			
+		<%= yield %>	
+			
+	<div id="twitter">
+                                <div class="wrapper">
+
+                                </div>
+                        </div>
+	
+			<!-- Bottom -->
+			<div id="bottom">
+				<!-- wrapper-bottom -->
+				<div class="wrapper">
+					<div id="bottom-text">Website & images Copyright NeuroML &copy; 2013.<br /> All rights reserved. </div>
+				<div id="bottom-middle-text">
+        <ul>
+                                                                <li>Contact us through the NeuroML Mailing List</li>
+                                                                <li><a href="https://lists.sourceforge.net/lists/listinfo/neuroml-technology"><b>neuroml.info@gmail.com</b></a></li>
+                                                                
+                                                                
+                                                        </ul>
+           
+ </div>	
+			</div>
+			<!-- ENDS Bottom -->
+	
+	</body>
+</html>

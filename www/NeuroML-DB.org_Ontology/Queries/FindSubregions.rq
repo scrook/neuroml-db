@@ -1,0 +1,19 @@
+PREFIX property:<http://neurolex.org/wiki/Property-3A>
+PREFIX name:<http://neurolex.org/wiki/Category-3A>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT DISTINCT ?id ?subregion
+WHERE
+{
+  VALUES ?ids
+  {
+    [NeuroLexUris]
+  }
+
+  ?region property:Id ?ids .
+
+	?subregion property:Is_part_of+ ?region . # The '+' is to recursively look for subregions
+
+	?subregion property:Id ?id .
+}
+ORDER BY ?id

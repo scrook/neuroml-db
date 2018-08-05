@@ -1,0 +1,6 @@
+<select id="neurolexterms_dropdown" name="neurolexTermID" class="neurolexterms_dropdown" style="width: 100%;">
+  <option value="0">Select an existing *NeuroLex term* by typing...</option>
+  <% @neurolexterms.each do |term| %>
+      <option value="<%= term[:ID] %>"><%=h(term[:ID].to_s + ': ' + term[:URI] + ', ' + term[:Term]) %></option>
+  <% end %>
+</select>

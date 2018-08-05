@@ -1,0 +1,33 @@
+<!-- MAIN -->
+<div id="main">
+  <!-- wrapper-main -->
+  <div class="wrapper">
+
+    <!-- content -->
+    <div id="content">
+
+      <!-- title -->
+      <div id="page-title">
+        <span class="title">Select Models to Curate</span>
+      </div>
+      <!-- ENDS title -->
+      <p>
+      <p>
+        <%= form_tag("edit_curate_model",:id => "anID", :multipart => "true" , :method => "post") do%>
+            <%=select("modelupload_list", "model_id", Modelupload.all.collect {|p| [ p.ModelName,p.SubmissionID ]}, {include_blank: 'Select Model'}, {prompt: 'Select Model'}) %>
+          <p>
+          </p>
+          <p>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input name="reset" type="reset"/>&nbsp;&nbsp; &nbsp;&nbsp; <input name="Go" type="submit" value="Curate Model" /></p>
+      <% end%>
+      <div class="clear"></div>
+
+    </div>
+    <!-- ENDS content -->
+
+  </div>
+  <!-- ENDS wrapper-main -->
+</div>
+

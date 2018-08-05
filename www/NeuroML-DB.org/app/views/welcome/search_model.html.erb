@@ -1,0 +1,161 @@
+<div id="main">
+  <!-- wrapper-main -->
+  <div class="wrapper">
+
+    <!-- content -->
+    <div id="content">
+
+      <!-- title -->
+      <div id="page-title">
+        <h2 class="title">Search NeuroML Database</h2>
+      </div>
+      <!-- ENDS title -->
+      <a class="various fancybox"></a>
+      <div id="searchbox">
+        <form id="myForm" onsubmit="return retrieve_results()">
+
+          <input type="text" id="keyword_search_box" onclick="clearWatermark(this);" class="keyword_search_box poshytip" title="Search results will be displayed below" size="60" value="Enter search keywords here (e.g. cerebellum)" />
+          <input type="submit" value="Search" />
+          <input type="button" value="Advanced Search" onclick="togglesearch();" style="display:none;""/>
+
+          <div id="advanced_search" style="display:none;">
+            <fieldset>
+              <legend>Advanced Search</legend>
+              <label for="all_of_these">All of these words: &nbsp;&nbsp;&nbsp;</label>
+              <input type="text" id="all_of_these"  name="all_of_these" size="30" />
+
+              <br />
+              <label for="this_exact_phrase">This exact phrase: &nbsp;&nbsp;&nbsp;</label>
+              <input type="text" id="this_exact_phrase"  name="this_exact_phrase" size="30" />
+
+              <br />
+              <label for="any_of_these_words">Any of these words: &nbsp;</label>
+              <input type="text" id="any_of_these_words" name="any_of_these_words" size="30" />
+
+              <br />
+              <label for="none_of_these_words">None of these words:</label>
+              <input  type="text" id="none_of_these_words" name="none_of_these_words" size="30" />
+            </fieldset>
+          </div>
+        </form>
+        <div id="search-hint">Hint: Use quotes for exact matches (e.g. "layer 2/3" bipolar cell irregular burst)</div>
+      </div>
+
+      <div id="search_container" style="display: none;">
+        <div id="keyword_search_results">
+          <div id="keyword_header">
+            <h2>Keyword Search Results</h2>
+          </div>
+          <div id="keyword_results">
+          </div>
+        </div>
+        <div id="ontology_search_results">
+          <div id="ontology_header">
+            <h2>Ontology Based Recommendations</h2>
+          </div>
+          <div id="ontology_results">
+          </div>
+        </div>
+        <div id="ontology_search_results_error_template" style="display: none;">
+          <!--Defines template for ontology results errors-->
+          <p>Sorry, there was a problem getting the results.</p>
+          <p><b>[statusText]</b> while calling:</p>
+          <p><a href="[url]" target="_blank">[url]</a></p>
+        </div>
+        <div id="loadingView" style="display:none;">
+          <image src="../images/loading.gif" style="height: 25px; width: 25px; margin-top: 50px; margin-bottom: 50px;" />
+        </div>
+        <div style="clear:both"></div>
+      </div>
+
+
+
+      <div id="keyword_model"></div>
+
+
+      <div class="clear"></div>
+      <!-- ENDS project column (right) -->
+
+
+    </div>
+    <!-- ENDS content -->
+
+  </div>
+  <!-- ENDS wrapper-main -->
+</div>
+<script>jQuery.noConflict();</script>
+
+<script type="text/javascript">
+    function clearWatermark(e)
+    {
+        if(e.value == "Enter search keywords here (e.g. cerebellum)")
+            e.value = "";
+    }
+
+    function retrieve_results() {
+        jQuery("#search_container").show();
+
+        var input_text = jQuery('#keyword_search_box').val();
+        var all = jQuery('#all_of_these').val();
+        var exact = jQuery('#this_exact_phrase').val();
+        var any = jQuery('#any_of_these_words').val();
+        var none = jQuery('#none_of_these_words').val();
+
+        var browserUrl = "/search_model?q="+input_text;
+        try { window.history.pushState({href:browserUrl},'',browserUrl); } catch(e) {}
+        document.title = "'" + input_text + "' Search - NeuroML Database"
+
+        jQuery.ajax(
+                "search_process" + "?q=" + input_text + "&all=" + all + "&exact=" + exact + "&any=" + any + "&none=" + none,
+                {
+                    success: function (result) {
+                        jQuery('#keyword_results').html(result);
+                    },
+                    beforeSend: function () {
+                        jQuery('#keyword_results').html(jQuery("#loadingView").html());
+                    }
+                }
+        );
+
+        jQuery.ajax(
+                "search_python" + "?q=" + input_text,
+                {
+                    success: function (result) {
+                        jQuery('#ontology_results').html(result);
+                    },
+                    error: function (xhr, status, e) {
+                        //Get template text from a hidden div element
+                        //Replace template tokens with values
+                        var errorHtml = jQuery('#ontology_search_results_error_template')
+                                .html()
+                                .replace("[statusText]", e)
+                                .split("[url]").join(this.url); //replace all in JS is annoying
+
+                        //Show in the ontology results column
+                        jQuery('#ontology_results').html(errorHtml);
+                    },
+                    beforeSend: function () {
+                        jQuery('#ontology_results').html(jQuery("#loadingView").html());
+                    }
+                }
+        );
+
+        return false;
+
+    }
+    jQuery.urlParam = function(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        return results ? results[1] : "";
+    }
+
+    if(jQuery.urlParam('q') != "") {
+        jQuery("#keyword_search_box").val(unescape(jQuery.urlParam('q')));
+        retrieve_results();
+    }
+
+</script>
+             
+
+
+
+

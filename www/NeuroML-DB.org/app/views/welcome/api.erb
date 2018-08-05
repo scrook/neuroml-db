@@ -1,0 +1,95 @@
+<div id="main">
+  <!-- wrapper-main -->
+  <div class="wrapper">
+
+    <!-- content -->
+    <div id="content">
+
+      <!-- title -->
+      <div id="page-title">
+        <h2 class="title">NeuroML-DB Application Programming Interface (API)</h2>
+      </div>
+      <!-- ENDS title -->
+
+      <div class="text-page">
+
+        <p>NeuroML Database provides the following <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">RESTful</a> API. HTTP requests can be made to the following URLs and will return results in <a href="https://en.wikipedia.org/wiki/JSON">JSON</a> format.</p>
+        <style>
+          table td { vertical-align: top; }
+          .method-desc {  }
+          .method-call { width: 230px; }
+          .method-params {  }
+        </style>
+        <table>
+          <tr>
+            <td><h4>Search/List Models</h4></td>
+          </tr>
+          <tr>
+            <td class="method-desc">Search models by keywords</td>
+            <td class="method-call"><a href="/api/search?q=traub">/api/search?q=[query]</a></td>
+            <td class="method-params">q: keyword search string</td>
+          </tr>
+          <tr>
+            <td>Get all models in the database</td>
+            <td><a href="/api/models">/api/models</a></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><h4>Get Model Details</h4></td>
+          </tr>
+          <tr>
+            <td>Get the details of a model</td>
+            <td><a href="/api/model?id=NMLCL001129">/api/model?id=[NMLID]</a></td>
+            <td>id: Model ID from <a href="/api/models">/api/models</a></td>
+          </tr>
+          <tr>
+            <td>Get a waveform of a model</td>
+            <td><a href="/api/waveform?id=122452">/api/waveform?id=[id]</a></td>
+            <td>id: Waveform ID from <a href="/api/model?id=NMLCL001129">/api/model?id=[NMLID]</a></td>
+          </tr>
+          <tr>
+            <td>Get cell morphology GIF</td>
+            <td><a href="/api/gif?id=NMLCL000001">/api/gif?id=[NMLID]</a></td>
+            <td>id: Model ID from <a href="/api/models">/api/models</a></td>
+          </tr>
+          <tr>
+            <td>Get <a href="http://cng.gmu.edu:8080/Lm/">cell morphometrics</a></td>
+            <td><a href="/api/morphometrics?id=NMLCL000001">/api/morphometrics?id=[NMLID]</a></td>
+            <td>id: Model ID from <a href="/api/models">/api/models</a></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><h4>Other</h4></td>
+          </tr>
+          <tr>
+            <td>Get all models grouped by their ModelDB ID</td>
+            <td><a href="/api/models_for_modeldb">/api/models_for_modeldb</a></td>
+            <td>Note: This web service is used for NeuroML-DB and <a href="https://senselab.med.yale.edu/ModelDB/">ModelDB</a> integration.</td>
+          </tr>
+        </table>
+
+        <p>Browser extensions like <a href="https://chrome.google.com/webstore/detail/json-viewer/gbmdgpbipfallnflgajpaliibnhdgobh?hl=en-US">JSON Viewer</a> are useful for visualizing JSON results.</p>
+
+        <p>See the following examples for consuming JSON objects using <a href="https://stackoverflow.com/questions/12965203/how-to-get-json-from-webpage-into-python-script#12965254">Python</a>, <a href="https://www.mathworks.com/matlabcentral/fileexchange/20565-json-parser">MATLAB</a>, or <a href="https://stackoverflow.com/a/27090046/407108">R</a>.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

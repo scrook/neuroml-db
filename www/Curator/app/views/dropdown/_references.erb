@@ -1,0 +1,6 @@
+<select id="references_dropdown" name="sourceReferenceID" class="references_dropdown" style="width: 100%;">
+  <option value="0">Select an existing *source reference* by typing...</option>
+  <% @references.each do |reference| %>
+      <option value="<%= reference[:ID] %>"><%=h(reference[:ID].to_s + ': ' + reference[:Source] + ', ' + reference[:URL]) %></option>
+  <% end %>
+</select>

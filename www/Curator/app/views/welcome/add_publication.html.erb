@@ -1,0 +1,32 @@
+<h3 style="text-align:center;">Add New Publication</h3>
+<%= form_for @publication,:url => {:action => 'new_publication'},:html => {:id => "anID"}   do |f1| %>
+  <p>
+ <table>
+<tr>
+   <td><%= f1.hidden_field(:Publication_ID,:readonly => true) %></td>
+</tr>
+<tr>
+   <th><%= f1.label(:Full_Title,"Publication Full Title") %></th>
+   <td><%= f1.text_field(:Full_Title) %></td>
+</tr>
+<tr>
+   <th><%= f1.label(:Pubmed_Ref,"Pub reference") %></th>
+   <td><%= f1.text_field(:Pubmed_Ref) %></td>
+  <tr>
+<tr>
+   <th><%= f1.label(:Comments,"Comments") %></th>
+   <td><%= f1.text_field(:Comments) %></td>
+  <tr>
+ </table>
+  </p>
+<%= fields_for @model_id do |fassoc1| %>
+<%= fassoc1.hidden_field(:Model_ID,:readonly => true) %></td>
+  <% end %>
+
+
+  <p>
+  <%= f1.submit "Add Publication details"%>
+	<%= button_tag "Reset", type: :reset %>
+
+  </p>
+<% end %>

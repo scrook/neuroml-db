@@ -1,0 +1,218 @@
+<script type="text/javascript" charset="utf-8">
+
+counterpub = 0;
+counterref=0;
+countercont=0;
+        function addFields(id) {
+            // Get the main Div in which all the other divs will be added
+            var mainContainer = document.getElementById(id);
+            // Create a new div for holding text and button input elements
+            var newDiv = document.createElement('div');
+            // Create a new text input
+            var newText = document.createElement('input');
+	    var newdropd = document.createElement('select');
+            newText.type = "input"; 
+            newText.maxlength = "300"; 
+            newText.maxlimit = "300"; 
+            newText.size = "30"; 
+	    newText.value = "";
+            if(id == "pubFields")
+            newText.value = counterpub;
+            else if(id == "contFields"){
+            newText.value = countercont;
+            	//newdropd.size = "1";
+            	//newdropd.setAttribute('id', 'dropdownelement');
+		//newDiv.appendChild(newdropd);
+            	//newdropd = document.getElementById('dropdownelement');
+                //add first value to the dropdown
+		 var _opt = document.createElement('option');
+                _opt.text = "Select Role";
+                _opt.value = "";
+                newdropd.add(_opt); 
+                var _opt = document.createElement('option');
+                _opt.text = "Author";
+                _opt.value = "1";
+                newdropd.add(_opt); 
+		var _opt = document.createElement('option');
+                _opt.text = 'Translator';
+                _opt.value = '2';
+                newdropd.add(_opt);
+		var _opt = document.createElement('option');
+                _opt.text = 'Both';
+                _opt.value = '3';
+                newdropd.add(_opt);
+}
+
+            else
+            newText.value=counterref;
+		newText.value = "";
+            // Create a new button input
+            var newDelButton = document.createElement('input');
+            newDelButton.type = "button";
+            newDelButton.value = "-";
+
+            // Append new text input to the newDiv
+            newDiv.appendChild(newText);
+		if(id == "contFields")	newDiv.appendChild(newdropd);
+            // Append new button input to the newDiv
+            newDiv.appendChild(newDelButton);
+            // Append newDiv input to the mainContainer div
+            mainContainer.appendChild(newDiv);
+            if(id == "pubFields")
+            counterpub++;
+            else if(id == "contFields")
+            countercont++;
+            else
+            counterref++;
+            // Add a handler to button for deleting the newDiv from the mainContainer
+            newDelButton.onclick = function() {
+                    mainContainer.removeChild(newDiv);
+            }
+        }
+</script>
+
+
+<!-- MAIN -->
+                        <div id="main">
+                                <!-- wrapper-main -->
+                                <div class="wrapper">
+
+                                        <!-- content -->
+                                        <div id="content">
+
+                                                <!-- title -->
+                                                <div id="page-title">
+                                                        <span class="title">Submit a Model</span>
+                                                </div>
+                                                <!-- ENDS title -->
+<p>
+                        * Indicates required field</p>
+                <p>
+<%= form_tag("submission",:id => "anID", :multipart => "true" , :method => "post") do %>
+
+<table class="news_table">
+<!-- <table class="collapsible alt-row-colors sm-padding" width="100%"> -->
+<tr>
+<td> First Name* :
+</td><td> <input maxlength="120" name="fname" size="30" type="text" class="poshytip" title="Enter your first name" />
+</td></tr>
+
+<tr>
+<td> Middle Name :
+</td><td> <input maxlength="120" name="mname" size="30" type="text" class="poshytip" title="Enter your middle name" />
+</td></tr>
+
+<tr>
+<td>Last Name* :
+</td><td> <input maxlength="120" name="lname" size="30" type="text" class="poshytip" title="Enter your last name" />
+</td></tr>
+
+<tr>
+<td> Email Address* :
+</td><td> <input maxlength="50" name="email" size="30" type="email" class="poshytip" title="Enter your email id" />
+</td></tr>
+
+<tr>
+<td> Institution :
+</td><td> <input maxlength="300" name="instname" size="30" type="text" class="poshytip" title="Enter name of the institution" />
+</td></tr>
+
+<tr>
+<td> Model Name* :
+</td><td> <input maxlength="120" name="model" size="30" type="text" class="poshytip" title="Enter model name" />
+</td></tr>
+
+<tr>
+<td> Implementor(s) of the Model :
+</td><td> 
+<div id="contFields"> 
+<input maxlength="120" name="model_contributor" size="30" type="text" class="poshytip" title="Enter the Implementor(s) of the model" /> 
+<select name="cont_select">
+  <option value="" Selected="selected">Select a Role</option>
+  <option value="1">Author</option>
+  <option value="2">Translator</option>
+  <option value="3">Both</option>
+</select>
+<input type="button" value="+" onclick="addFields('contFields');" />
+</div>
+</td>
+</tr>
+
+<!--<div id="pubFields">-->
+<tr>
+<td> Model Publication(s) :
+</td><td><div id="pubFields"> <input maxlength="300" name="pubmed" size="30" type="text" class="poshytip" title="Enter model publication(s) or citations" />
+<input type="button" value="+" onclick="addFields('pubFields');" />
+
+</div>
+</td> 
+
+</tr>
+<!--</div>-->
+
+<tr>
+<td> References to the Model :
+</td><td>
+
+<div id="refFields"> <input maxlength="250" name="refrences" size="30" type="url" class="poshytip" title="Enter references to the model" />
+<input type="button" value="+" onclick="addFields('refFields');" />
+
+</div>
+
+
+</td></tr>
+
+<tr>
+<td> A Brief Description about the Model :
+</td><td> <textarea cols="60" name="model_desc" rows="10" class="poshytip" title="Enter discription about the model"  ></textarea>
+</td></tr>
+
+
+<tr>
+<td> Upload you Model file(s) here :
+</td>
+<td><%= file_field_tag "file",:class=>'poshytip', :title => 'upload your model files here' %>
+</td></tr>
+
+<td> Select the keywords from NeuroLex for the Model :
+</td><td>
+<%= select_tag "access", options_from_collection_for_select(@cells, "ModelName", "ModelName"), :multiple => true%>
+<!-- collection_select(:id,:MName,@cells,:SubmissionID,:ModelName, options ={:prompt => "-Select a category"}, :class =>"category")  -->
+<select name="key_category">
+  <option value="" Selected="selected">Select a Keyword Category</option>
+  <option value="1">Modelling Terms</option>
+  <option value="2">Biological Terms</option>
+  <option value="3">Simulation Software Related</option>
+</select>
+</td>
+<td>
+<input type="button" onclick="addInput()" name="add" value="Add Keywords" />
+</td>
+</tr>
+
+<tr>
+<td> Enter Other Keyword(s):
+</td><td>
+<input maxlength="300" name="keywords_model" size="30" type="text" class="poshytip" title="Enter the keywords" />
+</td></tr>
+
+
+<tr>
+<td> Note(s) or Comment(s):
+</td><td> <textarea cols="60" name="notes" rows="10" class="poshytip" title="Enter the comments"></textarea>
+</td></tr></table>
+
+		<p>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input name="reset" type="reset"/>&nbsp;&nbsp; <input name="save" type="button" value="Save" />&nbsp;&nbsp; <input name="Submit" type="submit" value="Submit Model" /></p>
+<% end%>
+<div class="clear"></div>
+                                                <!-- ENDS project column (right) -->
+
+
+                                        </div>
+                                        <!-- ENDS content -->
+
+                                </div>
+                                <!-- ENDS wrapper-main -->
+                        </div>
+

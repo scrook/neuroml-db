@@ -1,0 +1,15 @@
+PREFIX property:<http://neurolex.org/wiki/Property-3A>
+PREFIX name:<http://neurolex.org/wiki/Category-3A>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT DISTINCT ?end1 ?end1id ?relationship1fwd ?relationship1back ?gapObject ?gapObjectId ?relationship2fwd ?relationship2back ?end2 ?end2id
+WHERE
+{
+
+	[GapRelations]
+
+	?end1 property:Id ?end1id.
+	?end2 property:Id ?end2id.
+	?gapObject property:Id ?gapObjectId
+}
+ORDER BY ?gapObject

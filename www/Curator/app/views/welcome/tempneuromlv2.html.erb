@@ -1,0 +1,59 @@
+<div class="overflowcontent">
+<div id='cssmenu'>
+<ul>
+   <li class='active '><a><span>NML Alpha Schema</span></a></li>
+   <li><a href='/lems_dev'><span>LEMS Mapping</span></a></li>
+   <li><a href='/libnml'><span>libNeuroML</span></a></li>
+   <li><a href='/compatibility'><span>Compatibility with Other Simulators</span></a></li>
+   <li><a href='/specifications'><span>NML Specifications</span></a></li>
+   <li><a href='/examples'><span>Examples</span></a></li>
+</ul>
+</div>
+<div class="lems_content">
+ <h1>NeuroML version 2.0</h1>
+
+    <p>Developments towards NeuroML version 2.0 are well under way, but <a href="specifications.php">version 1.8.x</a> should be considered the stable version for now,
+        especially for application/model developers who want maximum compatibility with <a href="tool_support">other tools</a>.</p>
+
+    <p>For details of the meetings which have taken place to date where NeuroML v2.0 has been discussed see <a href="meetings.php">here</a>.</p>
+
+    <h2>NeuroML v2alpha Schema</h2>
+
+    <p>A draft specification for <b>NeuroML v2alpha</b> has been created. The working structure of NeuroML v2alpha is defined by a single <a href="http://www.w3schools.com/schema/default.asp">XML Schema</a> file:
+        <a href="http://sourceforge.net/apps/trac/neuroml/browser/NeuroML2/Schemas/NeuroML2/NeuroML_v2alpha.xsd">NeuroML_v2alpha.xsd</a>. </p>
+    <p>Most of the work listed below
+        aims to handle XML files valid according to this schema. This should be the target structure for anyone wishing to implement NeuroML 2 support at this stage.</p>
+
+
+
+    <p align="center"><img alt="NeuroML v2alpha structure" src="images/neuroml2_inkscape.png"/></p>
+    <p align="center"><i>This image shows some of the elements currently defined in NeuroML v2alpha. The overall structure is similar to NeuroML version 1.x Level 3 (see figures 4-6
+            <a href="http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1000815">here</a>). Note that there are a greater range of cell models supported
+            (e.g. <a href="http:///NeuroML2CoreTypes/Cells.html#izhikevichCell">Izhikevich spiking cell</a>,
+            <a href="http:///NeuroML2CoreTypes/Cells.html#adExIaFCell">adaptive exponential integrate & fire</a>) in addition to the multicompartmental conductance based models which were a focus of version 1.x.</i></p>
+
+    <p>Examples of NeuroML 2 files using this schema are available here:</p>
+    <ul>
+        <li>A <a href="http://sourceforge.net/apps/trac/neuroml/browser/NeuroML2/examples/NML2_SimpleMorphology.nml">simple cell</a> with morphology & segment groups</li>
+        <li>A cell with <a href="http://sourceforge.net/apps/trac/neuroml/browser/NeuroML2/examples/NML2_FullCell.nml">biophysical properties</a> (channel densities, passive electrical properties, etc.)</li>
+        <li>A simple <a href="http://sourceforge.net/apps/trac/neuroml/browser/NeuroML2/examples/NML2_SimpleIonChannel.nml">HH Na<sup>+</sup> channel</a></li>
+        <li>Some of the <a href="http://sourceforge.net/apps/trac/neuroml/browser/NeuroML2/examples/NML2_AbstractCells.nml">simplified spiking neuron models</a> which are supported</li>
+        <li>Some <a href="http://sourceforge.net/apps/trac/neuroml/browser/NeuroML2/examples/NML2_SynapseTypes.nml">synapse models</a> (single/double exponential conductances, NMDA-R synapse)</li>
+        <li>A <a href="http://sourceforge.net/apps/trac/neuroml/browser/NeuroML2/examples/NML2_NestedNetworks.nml">network of populations of cells</a> in 3D</li>
+        <li>A <a href="http://sourceforge.net/apps/trac/neuroml/browser/NeuroML2/examples/NML2_FullNeuroML.nml">full NeuroML v2alpha network model description</a> with cells, channels, populations and networks</li>
+    </ul>
+
+    <br/>
+    <table id="highlighted" align="center" >
+        <tr><td>NeuroML v2.0 is being developed <a href="http://sourceforge.net/apps/trac/neuroml/browser/NeuroML2">here</a>. To obtain the
+                latest Schema document, all of the examples, Component definitions and <a href="libnml">libNeuroML</a> check out the latest code from the
+                <a href="http://subversion.tigris.org/">Subversion</a> repository with:<br/><br/>
+                <span style="color:#883333">svn co https://neuroml.svn.sourceforge.net/svnroot/neuroml/NeuroML2</span></td></tr></table>
+
+<br>
+<br>
+
+
+
+</div>
+</div>

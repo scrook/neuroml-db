@@ -1,0 +1,6 @@
+<select id="publications_dropdown" name="publicationID" class="publications_dropdown" style="width: 100%;">
+  <option value="0">Select an existing *publication* by typing a title...</option>
+  <% @publications.each do |publication| %>
+      <option value="<%= publication[:ID] %>"><%=h(publication[:ID].to_s + ': ' + publication[:Pubmed] + ', ' + publication[:Title]) %></option>
+  <% end %>
+</select>

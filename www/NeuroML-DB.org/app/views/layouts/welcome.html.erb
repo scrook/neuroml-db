@@ -1,0 +1,117 @@
+<!DOCTYPE  html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>NeuroML Database</title>
+  <%= csrf_meta_tag %>
+
+  <%= favicon %>
+
+
+
+  <%= javascript_heads %>
+
+  <%= heads_for_theme %>
+
+  <%= call_hook :view_layouts_base_html_head %>
+
+  <%= stylesheet_link_tag 'style', :media => 'screen' %>
+  <%= stylesheet_link_tag 'jquery-ui.min', :media => 'screen' %>
+  <%= stylesheet_link_tag 'jquery-ui.structure.min', :media => 'screen' %>
+  <%= stylesheet_link_tag 'jquery-ui.theme.min', :media => 'screen' %>
+
+  <%= javascript_include_tag 'jquery-ui.min' %>
+  <%= javascript_include_tag 'custom' %>
+  <%= javascript_include_tag 'Chart.bundle' %>
+  <%= javascript_include_tag 'hammer.min' %>
+  <%= javascript_include_tag 'chartjs-plugin-zoom.min' %>
+  <%= javascript_include_tag 'linq.min' %>
+  <%= javascript_include_tag 'palette' %>
+  <%= javascript_include_tag 'rdp2' %>
+  <%= javascript_include_tag 'jquery.ui.touch-punch.min' %>
+  <%= javascript_include_tag 'jquery.mousewheel.min' %>
+
+
+
+  <script>
+      (function (i, s, o, g, r, a, m) {
+          i['GoogleAnalyticsObject'] = r;
+          i[r] = i[r] || function () {
+                  (i[r].q = i[r].q || []).push(arguments)
+              }, i[r].l = 1 * new Date();
+          a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+          a.async = 1;
+          a.src = g;
+          m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-49421307-1', 'neuroml-db.org');
+      ga('send', 'pageview');
+
+  </script>
+</head>
+
+<body class="home">
+
+
+<div id="header">
+  <div class="wrapper">
+    <div class="logo">
+      <a href="/"><img alt="NeuroML" height="115px" id="logo" src="/images/neuro_1.png" width="380px"></a>
+      <div id="alpha">Database</div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+
+<!-- Menu -->
+<div id="menu">
+  <!-- ENDS menu-holder -->
+  <div id="menu-holder">
+    <!-- wrapper-menu -->
+    <div class="wrapper">
+      <!-- Navigation -->
+      <ul id="nav" class="sf-menu">
+        <li class="<%= if controller.action_name == "search_model" then "current-menu-item" end %>" ><a href="/search_model">Search NeuroML Models</a></li>
+        <li class="<%= if controller.action_name == "model_submit" then "current-menu-item" end %>" ><a href="/model_submit">Submit NeuroML Models</a></li>
+        <li class="<%= if controller.action_name == "home_db" then "current-menu-item" end %>" ><a href="/home_db">About NeuroML-DB</a></li>
+        <li class="<%= if controller.action_name == "api" then "current-menu-item" end %>" ><a href="/api">API</a></li>
+        <li class="<%= if controller.action_name == "documentation" then "current-menu-item" end %>" ><a href="/documentation">Documentation</a></li>
+        <li><a href="http://neuroml.org/" target="_blank">NeuroML Home</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<%= yield %>
+
+
+
+
+<div class="wrapper">
+  <div id="bottom">
+    <div id="bottom-container">
+      <div id="bottom-text">Website & Images Copyright NeuroML &copy; <%= Time.now.year %><br/> All rights reserved</div>
+      <div id="bottom-middle-text">
+        <ul>
+          <li>For questions about the NeuroML Database</li>
+          <li>Contact: <a href="mailto:neuroml.info@gmail.com"><b>neuroml.info@gmail.com</b></a></li>
+        </ul>
+      </div>
+      <div id="bottom-middle-text">
+        <ul>
+          <li>Links:</li>
+          <li><a href="/search_test">Search Test</a>&nbsp;|&nbsp;<a href="/modeldb_model_list">ModelDB WS</a> </li>
+        </ul>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

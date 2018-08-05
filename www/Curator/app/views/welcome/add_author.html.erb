@@ -1,0 +1,60 @@
+<h3 style="text-align:center;">Add New Author</h3>
+<%= form_for @author,:url => {:action => 'new_author'},:html => {:id => "anID"}  do |fperson| %>
+  <p>
+<table>
+<tr>
+   <td><%= fperson.hidden_field(:Person_ID,:readonly => true) %></td>
+  <tr>
+<tr>
+<tr>
+   <th><%= fperson.label(:Person_First_Name,"First Name") %></th>
+   <td><%= fperson.text_field(:Person_First_Name) %></td>
+  <tr>
+<tr>
+<tr>
+   <th><%= fperson.label(:Person_Last_Name,"Last Name") %></th>
+   <td><%= fperson.text_field(:Person_Last_Name) %></td>
+  <tr>
+<tr>
+
+<tr>
+   <th><%= fperson.label(:Person_Middle_Name,"Middle Name") %></th>
+   <td><%= fperson.text_field(:Person_Middle_Name) %></td>
+  <tr>
+<tr>
+
+<tr>
+   <th><%= fperson.label(:Instituition,"Instituition") %></th>
+   <td><%= fperson.text_field(:Instituition) %></td>
+  <tr>
+<tr>
+
+<tr>
+   <th><%= fperson.label(:Email,"Authors Email ID") %></th>
+   <td><%= fperson.text_field(:Email) %></td>
+  <tr>
+<tr>
+
+<tr>
+   <th><%= fperson.label(:Comments,"Comments") %></th>
+   <td><%= fperson.text_field(:Comments) %></td>
+  <tr>
+<tr>
+<select name="cont_select">
+  <option value="0" Selected="selected">Select a Role</option>
+  <option value="0">Author</option>
+  <option value="1">Translator</option>
+  <option value="2">Both</option>
+</select>
+</tr>
+<%= fields_for @model_id do |fassoc1| %>
+<%= fassoc1.hidden_field(:Model_ID,:readonly => true) %></td>
+  <% end %>
+
+</table>
+  <p>
+    <%= fperson.submit "Add Author Details" %>
+	<%= button_tag "Reset", type: :reset %>
+  </p>
+<% end %>
+

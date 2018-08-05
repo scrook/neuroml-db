@@ -1,0 +1,76 @@
+<!-- MAIN -->
+                        <div id="main">
+                                <!-- wrapper-main -->
+                                <div class="wrapper">
+
+                                        <!-- content -->
+                                        <div id="content">
+
+                                                <!-- title -->
+<div id="page-title">
+                                                        <span class="title">Select Network models to edit</span>
+                                                </div>
+
+
+<%= form_tag("edit_networks_info",:id => "anID", :multipart => "true" , :method => "post") do%>
+<%=select("models_list", "model_id", Network.all.collect {|p| [ p.Network_Name+" --- "+p.Network_ID , p.Network_ID]}, {include_blank: 'Select Network Model'}, {prompt: 'Select Model'}) %>
+                <p>
+</p>
+<p>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input name="reset" type="reset"/>&nbsp;&nbsp; &nbsp;&nbsp; <input name="Go" type="submit" value="Edit Network" /></p>
+<% end%>
+
+                                                <div id="page-title">
+                                                        <span class="title">Select Cell models to edit</span>
+                                                </div>
+                                                <!-- ENDS title -->
+<p>
+                <p>
+<%= form_tag("edit_cells_info",:id => "anID", :multipart => "true" , :method => "post") do%> 
+<%=select("models_list", "model_id", Cell.all.collect {|p| [ p.Cell_Name+" --- "+p.Cell_ID,p.Cell_ID ]}, {include_blank: 'Select Cell Model'}, {prompt: 'Select Model'}) %>
+		<p>
+</p>
+<p>
+
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input name="reset" type="reset"/>&nbsp;&nbsp; &nbsp;&nbsp; <input name="Go" type="submit" value="Edit Cell" /></p>
+<% end%>
+<div class="clear"></div>
+ <div id="page-title">
+                                                        <span class="title">Select Channel models to edit</span>
+                                                </div>
+
+<%= form_tag("edit_channels_info",:id => "anID", :multipart => "true" , :method => "post") do%>
+<%=select("models_list", "model_id", Channel.all.collect {|p| [ p.Channel_Name+" --- "+p.Channel_ID,p.Channel_ID ]}, {include_blank: 'Select Channel Model'}, {prompt: 'Select Model'}) %>
+                <p>
+</p>
+<p>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input name="reset" type="reset"/>&nbsp;&nbsp; &nbsp;&nbsp; <input name="Go" type="submit" value="Edit Channel" /></p>
+<% end%>
+
+<div class="clear"></div>
+ <div id="page-title">
+                                                        <span class="title">Select Synapse models to edit</span>
+                                                </div>
+
+<%= form_tag("edit_synapses_info",:id => "anID", :multipart => "true" , :method => "post") do%>
+<%=select("models_list", "model_id", Synapse.all.collect {|p| [ p.Synapse_Name+" --- "+p.Synapse_ID,p.Synapse_ID ]}, {include_blank: 'Select Synapse Model'}, {prompt: 'Select Model'}) %>
+                <p>
+</p>
+<p>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input name="reset" type="reset"/>&nbsp;&nbsp; &nbsp;&nbsp; <input name="Go" type="submit" value="Edit Synapse" /></p>
+<% end%>
+
+
+                                                <!-- ENDS project column (right) -->
+
+
+                                        </div>
+                                        <!-- ENDS content -->
+
+                                </div>
+                                <!-- ENDS wrapper-main -->
+                        </div>
+
