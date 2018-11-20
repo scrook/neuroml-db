@@ -65,7 +65,8 @@ class CellModel(NMLDB_Model):
             'LONG_SQUARE',
             'SHORT_SQUARE_HOLD',
             'SHORT_SQUARE_TRIPPLE',
-            'SQUARE_SUBTHRESHOLD'
+            'SQUARE_SUBTHRESHOLD',
+            'DRUCKMANN_PROPERTIES'
             # 'NOISE',
             # 'NOISE_RAMP',
             # 'morphology_data'
@@ -596,10 +597,19 @@ class CellModel(NMLDB_Model):
 
         self.use_optimal_dt_if_available()
 
+        # Up to Druckmann 2013 150% of RB - "standard stimulus"
         self.save_square_current_set(protocol="LONG_SQUARE",
                                          square_low=self.cell_record.Rheobase_High,
                                          square_high=self.cell_record.Rheobase_High * 1.5,
                                          square_steps=3,
+                                         delay=self.steady_state_delay,
+                                         duration=2000)
+
+        # Up to Druckmann 2013 300% of RB - "strong stimulus"
+        self.save_square_current_set(protocol="LONG_SQUARE",
+                                         square_low=self.cell_record.Rheobase_High * 3.0,
+                                         square_high=self.cell_record.Rheobase_High * 3.0,
+                                         square_steps=1,
                                          delay=self.steady_state_delay,
                                          duration=2000)
 
@@ -796,6 +806,82 @@ class CellModel(NMLDB_Model):
                                          rheobase=self.cell_record.Rheobase_High)
 
         self.save_cvode_runtime_complexity_metrics()
+
+    def save_DRUCKMANN_PROPERTIES(self):
+        """
+        Tests of features described in Druckmann et. al. 2013
+        (https://academic.oup.com/cercor/article/23/12/2994/470476)
+
+        These tests use SQUARE and LONG_SQUARE waveforms obtained from the NMLDB Web API
+        The waveforms should be uploaded to production server (dendrite) before running these
+        tests.
+        :return: None
+        """
+
+        if self.is_nosim():
+            return
+
+        if self.cell_record.Is_Intrinsically_Spiking or self.cell_record.Is_Passive or self.cell_record.Is_GLIF:
+            return
+
+        import sciunit, neuronunit, quantities
+        from neuronunit.tests.druckmann2013 import *
+        from neuronunit.neuromldb import NeuroMLDBStaticModel
+
+        model = NeuroMLDBStaticModel(self.get_model_nml_id())
+
+        standard = model.nmldb_model.get_druckmann2013_standard_current()
+        strong = model.nmldb_model.get_druckmann2013_strong_current()
+        ir_currents = model.nmldb_model.get_druckmann2013_input_resistance_currents()
+
+        tests = [
+            AP12AmplitudeDropTest(standard),
+            AP1SSAmplitudeChangeTest(standard),
+            AP1AmplitudeTest(standard),
+            AP1WidthHalfHeightTest(standard),
+            AP1WidthPeakToTroughTest(standard),
+            AP1RateOfChangePeakToTroughTest(standard),
+            AP1AHPDepthTest(standard),
+            AP2AmplitudeTest(standard),
+            AP2WidthHalfHeightTest(standard),
+            AP2WidthPeakToTroughTest(standard),
+            AP2RateOfChangePeakToTroughTest(standard),
+            AP2AHPDepthTest(standard),
+            AP12AmplitudeChangePercentTest(standard),
+            AP12HalfWidthChangePercentTest(standard),
+            AP12RateOfChangePeakToTroughPercentChangeTest(standard),
+            AP12AHPDepthPercentChangeTest(standard),
+            InputResistanceTest(injection_currents=ir_currents),
+            AP1DelayMeanTest(standard),
+            AP1DelaySDTest(standard),
+            AP2DelayMeanTest(standard),
+            AP2DelaySDTest(standard),
+            Burst1ISIMeanTest(standard),
+            Burst1ISISDTest(standard),
+            InitialAccommodationMeanTest(standard),
+            SSAccommodationMeanTest(standard),
+            AccommodationRateToSSTest(standard),
+            AccommodationAtSSMeanTest(standard),
+            AccommodationRateMeanAtSSTest(standard),
+            ISICVTest(standard),
+            ISIMedianTest(standard),
+            ISIBurstMeanChangeTest(standard),
+            SpikeRateStrongStimTest(strong),
+            AP1DelayMeanStrongStimTest(strong),
+            AP1DelaySDStrongStimTest(strong),
+            AP2DelayMeanStrongStimTest(strong),
+            AP2DelaySDStrongStimTest(strong),
+            Burst1ISIMeanStrongStimTest(strong),
+            Burst1ISISDStrongStimTest(strong),
+        ]
+
+        for i, test in enumerate(tests):
+            mean = test.generate_prediction(model)['mean']
+            field = test.__class__.__name__[:-4]
+            setattr(self.cell_record, field, mean)
+            print('Test ' + str(i+1).rjust(2,' ') + ' ' + field.rjust(50, ' ') + ": " + str(mean))
+
+        self.cell_record.save()
 
 
     def save_square_tuple_set(self, delay, threshold_current,

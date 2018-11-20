@@ -52,7 +52,7 @@ class NMLDB_Model(object):
             if not skip_model_record:
                 self.model_record = Models.get(Models.Model_ID == self.get_model_nml_id())
 
-        sys.setrecursionlimit(10000)
+        sys.setrecursionlimit(100000)
 
         self.all_properties = [
             'checksum'

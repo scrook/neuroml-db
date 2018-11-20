@@ -941,7 +941,11 @@ class ModelManager(object):
 
             if model_id.startswith("NMLCL"):
                 from cellmodel import CellModel as TargetModel
-                skip_NEURON = False
+
+                if len(properties) == 1 and properties[0] == 'DRUCKMANN_PROPERTIES':
+                    skip_NEURON = True
+                else:
+                    skip_NEURON = False
 
             elif model_id.startswith("NMLCH"):
                 from channelmodel import ChannelModel as TargetModel

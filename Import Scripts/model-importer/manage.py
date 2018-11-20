@@ -202,3 +202,5 @@ if __name__ == "__main__":
     eval(command + "()")
 
     print("EXITING...")
+
+    sys.exit(0)
