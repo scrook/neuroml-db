@@ -1,0 +1,366 @@
+<style>
+  #model-properties-container {  }
+
+  .property-table .property-name { text-align: right; padding-right: 15px; vertical-align: bottom; }
+  .property-table thead td { text-align: left; color: #1376c4; font-weight: bold; }
+  .property-table thead td:first-child { text-align: right; }
+
+  #summary-table { display: inline-block; width: 50%; margin-top: 15px; }
+  #summary-table .property-value { width: 25% }
+
+  #size-table { display: inline-block; width: 49%; }
+  #size-table .property-name { width: 50% }
+
+  #complexity-plots { display: <%= @model["Rheobase_High"] == nil ? "none" : "block" %>; }
+
+  #fixed-header { color: #1376c4; font-weight: bold; text-align:center; margin-top: 30px;}
+  #fixed-table { display: inline-block; height: 300px; margin-top: 30px; }
+  #complexity-plot-fixed { display: inline-block; margin-left: 95px;  }
+
+  #cvode-header { color: #1376c4; font-weight: bold; text-align:center; margin-top: 30px;}
+  #cvode-table { display: inline-block;  height: 300px; margin-top: 30px; margin-left: 130px; }
+  #complexity-plot-cvode { display: inline-block;  }
+
+  .complexity-help-btn { cursor:pointer; }
+
+</style>
+<div id="model-properties-container">
+  <div id="summary-table" class="property-table">
+    <table>
+      <thead>
+      <tr>
+        <td>Complexity</td>
+        <td>Summary</td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="property-name">State Equations <span data-scroll="desc-state-eq" class="ui-icon ui-icon-info complexity-help-btn"></span></td>
+        <td class="property-value"><%= display_field(@model, "Equations", "%d", "N/A") %></td>
+      </tr>
+      <tr>
+        <td class="property-name">Optimal Time-Step <span data-scroll="desc-optimal-dt" class="ui-icon ui-icon-info complexity-help-btn"></span></td>
+        <td class="property-value"><%= display_field(@model, "Optimal_DT", "%.5f", "N/A") %> ms</td>
+      </tr>
+      <tr>
+        <td class="property-name">Benchmark Performance <span data-scroll="desc-bench-perf" class="ui-icon ui-icon-info complexity-help-btn"></span></td>
+        <td class="property-value"><%= display_field(@model, "Optimal_DT_Benchmark_RunTime_HH", "%.2f", "N/A") %> HH</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="size-table" class="property-table">
+    <table>
+      <thead>
+      <tr>
+        <td>Model</td>
+        <td>Size</td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="property-name">Sections <span data-scroll="desc-sections" class="ui-icon ui-icon-info complexity-help-btn"></span></td>
+        <td class="property-value"><%= display_field(@model, "Sections", "%d", "N/A") %></td>
+      </tr>
+      <tr>
+        <td class="property-name">Compartments <span data-scroll="desc-compartments" class="ui-icon ui-icon-info complexity-help-btn"></span></td>
+        <td class="property-value"><%= display_field(@model, "Compartments", "%d", "N/A") %></td>
+      </tr>
+      <tr>
+        <td class="property-name">State Equations <span data-scroll="desc-state-eq" class="ui-icon ui-icon-info complexity-help-btn"></span></td>
+        <td class="property-value"><%= display_field(@model, "Equations", "%d", "N/A") %></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="fixed-header">Fixed Time-Step Run Time vs.	Voltage Potential Error</div>
+  <div id="complexity-plot-fixed"><canvas id="chart-fixed-dt" width="300" height="300"></canvas></div>
+  <div id="fixed-table" class="property-table">
+    <table>
+      <tbody>
+      <tr>
+        <td class="property-name">Run Time-vs-Error Optimal Time-Step <span data-scroll="desc-optimal-dt" class="ui-icon ui-icon-info complexity-help-btn"></span></td>
+        <td class="property-value"><%= display_field(@model, "Optimal_DT", "%.5f", "N/A") %> ms</td>
+      </tr>
+      <tr>
+        <td class="property-name">Optimal Time-Step Error <span data-scroll="desc-optimaldt-error" class="ui-icon ui-icon-info complexity-help-btn"></span></td>
+        <td class="property-value"><%= display_field(@model, "Optimal_DT_Error", "%.2f", "N/A") %> %</td>
+      </tr>
+      <tr>
+        <td class="property-name">Optimal Time-Step Benchmark Run Time <span data-scroll="desc-bench-perf" class="ui-icon ui-icon-info complexity-help-btn"></span></td>
+        <td class="property-value"><%= display_field(@model, "Optimal_DT_Benchmark_RunTime_HH", "%.2f", "N/A") %> HH</td>
+      </tr>
+      <tr>
+        <td class="property-name"></td>
+        <td class="property-value">&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="property-name">Maximum Stable Time-Step <span data-scroll="desc-max-dt" class="ui-icon ui-icon-info complexity-help-btn"></span></td>
+        <td class="property-value"><%= display_field(@model, "Max_Stable_DT", "%s", "N/A") %> ms</td>
+      </tr>
+      <tr>
+        <td class="property-name">Maximum Stable Time-Step Error <span data-scroll="desc-max-dt-error" class="ui-icon ui-icon-info complexity-help-btn"></span></td>
+        <td class="property-value"><%= display_field(@model, "Max_Stable_DT_Error", '%.2f', "N/A") %> %</td>
+      </tr>
+      <tr>
+        <td class="property-name">Max. Stable Time-Step Benchmark Run Time <span data-scroll="desc-max-dt-runtime" class="ui-icon ui-icon-info complexity-help-btn"></span></td>
+        <td class="property-value"><%= display_field(@model, "Max_Stable_DT_Benchmark_RunTime_HH", "%.2f", "N/A") %> HH</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="fixed-header">Variable Time-Step Complexity</div>
+  <div id="cvode-table" class="property-table">
+    <table>
+      <tbody>
+      <tr>
+        <td class="property-name">CVODE Steady State Step Frequency <span data-scroll="desc-cvode-freq" class="ui-icon ui-icon-info complexity-help-btn"></span></td>
+        <td class="property-value"><%= display_field(@model, "CVODE_baseline_step_frequency", "%d", "N/A") %> Hz</td>
+      </tr>
+      <tr>
+        <td class="property-name">CVODE Steps Per AP <span data-scroll="desc-cvode-freq-ap" class="ui-icon ui-icon-info complexity-help-btn"></span></td>
+        <td class="property-value"><%= display_field(@model, "CVODE_steps_per_spike", "%d", "N/A") %></td>
+      </tr>
+      <tr>
+        <td class="property-name">CVODE Benchmark Run Time <span data-scroll="desc-cvode-runtime" class="ui-icon ui-icon-info complexity-help-btn"></span></td>
+        <td class="property-value"><%= display_field(@model, "CVODE_Benchmark_RunTime_HH", "%.2f", "N/A") %> HH</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="complexity-plot-cvode"><canvas id="chart-cvode" width="300" height="300"></canvas></div>
+</div>
+
+
+<div id="complexity-help-contents" title="[title]">
+  [description]
+</div>
+
+<div id="property-descriptions" style="display:none">
+  <div id="desc-state-eq">
+    <div class="title">State Equations</div>
+    <div class="desc">The total number of state variables used in this model, as reported by NEURON.</div>
+  </div>
+  <div id="desc-optimal-dt">
+    <div class="title">Optimal Time-Step</div>
+    <div class="desc">
+      <h3>Summary</h3>
+      <p>The fixed time-step that provides the best tradeoff between model error and run time.</p>
+      <h3>Details</h3>
+      <p>Models were subjected to a benchmark current injection protocol (see Electrophysiology tab, Time Step Sensitivity protocol) using
+        various fixed time step sizes.</p>
+      <p>The resulting membrane potential was compared, at 1 ms intervals, to the membrane potential obtained using
+        the smallest time step (1/1024 ms). For each time-step size, mean percent error difference and run time were measured.</p>
+      <p>The error and run time were normalized and their sums computed for each time step size. The time-step size where the sum was the lowest
+        was chosen as the optimal time-step.</p>
+    </div>
+  </div>
+  <div id="desc-bench-perf">
+    <div class="title">Benchmark Performance</div>
+    <div class="desc">
+      <p>This model's runtime using its optimal time-step as a fraction of Hodgkin-Huxley model's run time using its optimal time-step.</p>
+      <p>For example, 50 HH would mean that this model ran 50 times slower than the Hodgkin-Huxley model. While, 0.25 HH would mean the model ran 4 times faster.</p>
+    </div>
+  </div>
+  <div id="desc-sections">
+    <div class="title">Sections</div>
+    <div class="desc">The total number of NEURON sections used in this model.</div>
+  </div>
+  <div id="desc-compartments">
+    <div class="title">Compartments</div>
+    <div class="desc">The total number of compartments used in this model, as reported by NEURON.</div>
+  </div>
+  <div id="desc-optimaldt-error">
+    <div class="title">Optimal Time-Step Error</div>
+    <div class="desc">The percent error, relative to the smallest fixed time-step, that results when using the optimal time-step.</div>
+  </div>
+  <div id="desc-max-dt">
+    <div class="title">Maximum Stable Time-Step</div>
+    <div class="desc">The largest time-step (up to 1.0 ms) that did not result in numerical instabilities during the current injection benchmark protocol.</div>
+  </div>
+  <div id="desc-max-dt-error">
+    <div class="title">Maximum Stable Time-Step Error</div>
+    <div class="desc">The percent error, relative to the smallest fixed time-step, that results when using the maximum stable time-step.</div>
+  </div>
+  <div id="desc-max-dt-runtime">
+    <div class="title">Max. Stable Time-Step Benchmark Run Time</div>
+    <div class="desc">
+      <p>This model's runtime using its maximum stable time-step as a fraction of Hodgkin-Huxley model's run time using its maximum stable time-step.</p>
+    </div>
+  </div>
+  <div id="desc-cvode-freq">
+    <div class="title">CVODE Steady State Step Frequency</div>
+    <div class="desc">The number of steps required to compute 1 sec of non-spiking model activity using NEURON's variable step CVODE integration method.</div>
+  </div>
+  <div id="desc-cvode-freq-ap">
+    <div class="title">CVODE Steps Per AP</div>
+    <div class="desc">The mean number of additional steps required to compute one action potential using NEURON's variable step CVODE integration method.</div>
+  </div>
+  <div id="desc-cvode-runtime">
+    <div class="title">CVODE Benchmark Run Time</div>
+    <div class="desc">
+      <p>This model's runtime to compute 10 action potentials per second using variable time-step method as a fraction of Hodgkin-Huxley model's run time.</p>
+    </div>
+  </div>
+</div>
+<% if @model["Rheobase_High"] != nil %>
+    <script>
+        function init_descriptions() {
+
+            jQuery( "#complexity-help-contents" ).dialog({
+                autoOpen: false,
+                resizable: false,
+                width: 500,
+                maxHeight:450
+            });
+
+            jQuery( ".complexity-help-btn" ).on( "click", function(event, ui) {
+                targetID= jQuery(event.target).data('scroll')
+
+                title = jQuery("#"+targetID+" .title").html()
+                html = jQuery("#"+targetID+" .desc").html()
+
+                jQuery( "#complexity-help-contents" )
+                    .html(html)
+                    .dialog("option", "title", title)
+                    .dialog("open");
+            });
+        }
+        function init_properties() {
+
+            var dt_error = [
+                <% @complexity[:dt_sensitivity].each do |row| %>
+                {x: <%=row["DT"]%>, y: <%= row["Error"]%>},
+                <% end %>
+            ];
+
+            var dt_cost_a = <%= @model["Optimal_DT_a"] %>;
+            var dt_cost_b = <%= @model["Optimal_DT_b"] %>;
+            var dt_cost_c = <%= @model["Optimal_DT_c"] %>;
+
+            var dt_steps = [
+                <% @complexity[:dt_sensitivity].each do |row| %>
+                {x: <%=row["DT"]%>, y: <%= row["Steps"]%>},
+                <% end %>
+            ];
+
+            var cvode_spike_steps = [
+                <% @complexity[:cvode_spikes_vs_steps].each do |row| %>
+                {x: <%=row["Spikes"]%>, y: <%= row["Steps"]%>},
+                <% end %>
+            ];
+
+            var cvode_steps_base = <%= @model["CVODE_baseline_step_frequency"] %>;
+            var cvode_steps_per_spike = <%= @model["CVODE_steps_per_spike"] %>;
+
+            var optimal_dt = <%= @model["Optimal_DT"] %>;
+            var optimal_dt_error = [ { x: optimal_dt, y: dt_cost_a/optimal_dt+(dt_cost_b*optimal_dt+dt_cost_c) } ];
+
+            var error_min = Enumerable.from(dt_error).select(function(w) { return w["y"]}).min();
+            var error_max = Enumerable.from(dt_error).select(function(w) { return w["y"]}).max();
+
+            var steps_min = Enumerable.from(dt_steps).select(function(w) { return w["y"]}).min();
+            var steps_max = Enumerable.from(dt_steps).select(function(w) { return w["y"]}).max();
+
+            var dt_min = Enumerable.from(dt_steps).select(function(w) { return w["x"]}).min();
+            var dt_max = Enumerable.from(dt_steps).select(function(w) { return w["x"]}).max();
+            var dt_range = dt_max - dt_min;
+
+            var dt_error = Enumerable
+                .from(dt_error)
+                .select(function(w) { return {x: w["x"], y: (w["y"]-error_min)/(error_max-error_min) } })
+                .toArray()
+
+            var dt_steps = Enumerable
+                .from(dt_steps)
+                .select(function(w) { return {x: w["x"], y: (w["y"]-steps_min)/(steps_max-steps_min) } })
+                .toArray()
+
+            var dt_cost = [];
+            for(var dt = dt_min; dt < dt_max; dt += dt_range / 20.0) {
+                dt_cost.push({x:dt, y:dt_cost_a/dt+(dt_cost_b*dt+dt_cost_c)});
+            }
+            dt_cost.push({x:dt_max, y:dt_cost_a/dt_max+(dt_cost_b*dt_max+dt_cost_c)});
+
+
+            var spikes_max = Enumerable.from(cvode_spike_steps).select(function(i) { return i["x"] }).max()
+
+            var cvode_spike_steps_fitted = [];
+            for(var spikes = 0; spikes <= spikes_max; spikes++) {
+                cvode_spike_steps_fitted.push({x:spikes, y:cvode_steps_base+spikes*cvode_steps_per_spike});
+            }
+
+
+            var ctxFixed = document.getElementById("chart-fixed-dt").getContext('2d');
+            var ctxCVODE = document.getElementById("chart-cvode").getContext('2d');
+
+            window.chartFixed = new Chart(ctxFixed, {
+                type: 'line',
+                data: {
+                    datasets: [
+                        { label: "dt Error (normd.)", data: dt_error, pointBackgroundColor: 'rgba(255, 0, 0, 0.5)', fill: false, showLine: false},
+                        { label: "dt Run time (normd.)", data: dt_steps, pointBackgroundColor: 'rgba(0, 0, 255, 0.5)', fill: false, showLine: false},
+                        { label: "dt Total Cost", data: dt_cost, borderColor: 'rgba(255, 0, 255, 0.5)', fill: false, pointRadius: 0 },
+                        { label: "Optimal dt Error = " + (<%= @model["Optimal_DT_Error"] %>).toFixed(3) + " %", data: optimal_dt_error, borderColor: 'rgba(255, 0, 255, 0.5)', fill: false, pointRadius: 10 },
+                    ]
+                },
+                options: {
+                    animation: { duration: 0 },
+                    responsive: false,
+                    title: { display: false },
+                    hover: { mode: 'nearest', animationDuration: 0 },
+                    legend: { display: false, },
+                    scales: {
+                        xAxes: [{
+                            type: 'linear',
+                            position: 'bottom',
+                            scaleLabel: {
+                                display: true,
+                                labelString: "dt (ms)"
+                            },
+                            ticks: { maxRotation: 0, maxTicksLimit: 11  }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: "Error, Runtime (Normd.)"
+                            }
+                        }]
+                    }
+                }
+            });
+
+            window.chartCVODE = new Chart(ctxCVODE, {
+                type: 'line',
+                data: {
+                    datasets: [
+                        { label: 'APs vs Steps', data: cvode_spike_steps, pointBackgroundColor: 'rgba(255, 0, 0, 0.5)',showLine:false, fill:false, },
+                        { label: 'APs vs Steps (best fit)', data: cvode_spike_steps_fitted, borderColor: 'rgba(255, 0, 0, 0.5)',fill:false, pointRadius: 0 },
+                    ]
+                },
+                options: {
+                    animation: { duration: 0 },
+                    responsive: false,
+                    title: { display: false },
+                    hover: { mode: 'nearest', animationDuration: 0 },
+                    legend: { display: false, },
+                    scales: {
+                        xAxes: [{
+                            type: 'linear',
+                            position: 'bottom',
+                            scaleLabel: { display: true, labelString: "Number of APs"},
+                            ticks: { maxRotation: 0, maxTicksLimit: 11  }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {display: true, labelString: "CVODE Steps"}
+                        }]
+                    }
+                }
+            });
+        }
+
+        init_properties()
+        init_descriptions()
+    </script>
+<% end %>

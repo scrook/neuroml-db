@@ -1,5 +1,5 @@
-import json
-import os
+import json  
+import os  
 import urllib
 import urllib2
 import subprocess
@@ -21,7 +21,7 @@ class SPARQLDB:
             self.Start()
 
             secondsWaited = 0
-            while secondsWaited < 10:
+            while secondsWaited < 30:
                 time.sleep(1)
                 secondsWaited += 1
 
@@ -59,9 +59,13 @@ class SPARQLDB:
         os.putenv("FUSEKI_HOME", "/opt/fuseki")
 
         subprocess.Popen([
+            "nohup",
             "/opt/fuseki/fuseki-server",
             "--loc=/opt/fuseki/Data",
             "/NeuroMLOntology",
+            ">",
+            "/dev/null",
+            "2>&1&"
         ])
 
     def Query(self, query):

@@ -1,35 +1,14 @@
 <style>
-  #morphology-full-image-dialog { text-align: center; }
-  .morphology .image {  border-radius: 10px; height: 95%; }
-  .morphology .thumbnail { position: relative; border-radius: 10px; width: 300px; height: 300px; background-color: #002c39; float: right; margin-left: 15px !important; cursor:pointer; }
-  .morphology .thumbnail .image { width: 300px; height: 300px; }
-  .morphology .thumbnail .enlarge { position: absolute; bottom: 10px; right: 10px; background-color: white; border: 1px solid #1376c4; border-radius: 5px; }
-  #morphology-full-image-dialog { display:none; }
-  .morphology-prop-name { text-align: right; padding-right: 15px; vertical-align: bottom; }
-  #morphology-morphometrics { height: 300px; overflow: auto; }
-  #morphology-morphometrics table { width: 100%; }
+  .morphology .image {  border-radius: 10px; }
+  .morphology .thumbnail .image { width: 500px; height: 500px; margin-bottom: 20px !important; }
+  .morphology-prop-name { text-align: right; padding-right: 15px; vertical-align: bottom; width: 300px; }
+  .morphology-prop-value { width: 300px; }
+  #morphology-morphometrics table { width: inherit; margin: 0 auto;  }
+  .morphology table td {  }
   .morphology thead td { text-align: left; color: #1376c4; font-weight: bold; }
   .morphology thead td:first-child { text-align: right; padding-right: 15px;  }
-  .morphology table td {  }
 </style>
-<script>
-    function init_morphology() {
-        jQuery("#morphology-full-image-dialog").dialog({
-            autoOpen: false,
-            resizable: false,
-            width: 950,
-            height: jQuery(window).height()*0.95
-        });
-
-        jQuery(".morphology .thumbnail").on("click", function () {
-            jQuery("#morphology-full-image-dialog").dialog("open");
-        });
-    }
-</script>
 <tr class="morphology">
-  <td class="keyword" style="vertical-align: top;">
-    Morphology:
-  </td>
   <% if @compartments.present? and @compartments <= 1 %>
       <td class="description">
         Single compartment, abstract, or point cells do not have morphology data.
@@ -43,9 +22,7 @@
       <% if @gif_path != nil %>
         <div class="thumbnail">
           <img class="image " src="/api/gif?id=<%= @model_id %>">
-          <div class="enlarge ui-icon ui-icon-arrowthick-2-ne-sw" title="Enlarge Image"></div>
         </div>
-        <div id="morphology-full-image-dialog" class="morphology" title="<%= @type %> Morphology"><img class="image" src="/api/gif?id=<%= @model_id %>"></div>
       <% else %>
           <div class="image thumbnail" style="color: lightblue; line-height: 200px; cursor: default; text-align: center;">3D image not available</div>
       <% end %>
@@ -54,15 +31,16 @@
         <table>
           <thead>
             <tr>
-              <td>L-Measure Metric</td>
-              <td>Value</td>
+              <td><a href="http://cng.gmu.edu:8080/Lm/" target="_blank">L-Measure</a></td>
+              <td>Properties</td>
             </tr>
           </thead>
           <tbody>
           <% @morphometrics.each do |metric| %>
               <tr>
                 <td class="morphology-prop-name">
-                  <a target="_blank" href="http://cng.gmu.edu:8080/Lm/help/<%= metric["Metric_ID"] %>.htm"><%= metric["Description"] %></a>
+                  <%= metric["Description"] %>
+                  <a title="Read the description of this property on L-Measure website" target="_blank" href="http://cng.gmu.edu:8080/Lm/help/<%= metric["Metric_ID"] %>.htm"><span class="ui-icon ui-icon-info"></span></a>
                 </td>
                 <td class="morphology-prop-value">
                   <%= metric[metric["Shown_Statistic"]] %> <%= metric["Units"].html_safe %>
@@ -78,6 +56,3 @@
     </td>
   <% end %>
 </tr>
-<script>
-    init_morphology()
-</script>

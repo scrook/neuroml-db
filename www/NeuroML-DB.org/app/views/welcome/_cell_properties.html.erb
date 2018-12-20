@@ -2,9 +2,6 @@
   .properties { }
   #model-properties-container { position: relative; }
   #property-table { height: <%= @model["Rheobase_High"] == nil ? "232" : "620" %>px; overflow:auto; }
-  #complexity-plots { display: <%= @model["Rheobase_High"] == nil ? "none" : "block" %>; float: right; position:relative; width: 300px; height: 620px; margin-left: 15px; }
-  #complexity-plot-fixed { position: absolute; left: 0; top: 0; }
-  #complexity-plot-cvode { position: absolute; left: 0; top: 310px; }
 
   #property-table .property-name { text-align: right; padding-right: 15px; vertical-align: bottom; }
   #property-table thead td { text-align: left; color: #1376c4; font-weight: bold; }
@@ -12,21 +9,11 @@
 
 </style>
 <tr class="properties">
-  <td class="keyword" style="vertical-align: top;">Cell Properties:</td>
+  <td class="keyword" style="vertical-align: top;">Membrane Properties:</td>
   <td class="description">
     <div id="model-properties-container">
-      <div id="complexity-plots">
-        <div id="complexity-plot-fixed"><canvas id="chart-fixed-dt" width="300" height="300"></canvas></div>
-        <div id="complexity-plot-cvode"><canvas id="chart-cvode" width="300" height="300"></canvas></div>
-      </div>
       <div id="property-table">
         <table>
-          <thead>
-          <tr>
-            <td>Membrane</td>
-            <td>Properties</td>
-          </tr>
-          </thead>
           <tbody>
           <tr>
             <td class="property-name">Is Passive</td>
@@ -56,79 +43,9 @@
             <td class="property-name">Testing Temperature</td>
             <td class="property-value"><%= @publication["Temperature"] != nil ? @publication["Temperature"] : "36 (default)" %> &#176;C</td>
           </tr>
-          </tbody>
-        </table>
-        <table>
-          <thead>
-          <tr>
-            <td>Complexity</td>
-            <td>Properties</td>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td class="property-name">Sections</td>
-            <td class="property-value"><%= display_field(@model, "Sections", "%d", "N/A") %></td>
-          </tr>
-          <tr>
-            <td class="property-name">Compartments</td>
-            <td class="property-value"><%= display_field(@model, "Compartments", "%d", "N/A") %></td>
-          </tr>
-          <tr>
-            <td class="property-name">State Equations</td>
-            <td class="property-value"><%= display_field(@model, "Equations", "%d", "N/A") %></td>
-          </tr>
           <tr>
             <td class="property-name">Stability Interval</td>
             <td class="property-value">[<%= display_field(@model, "Stability_Range_Low_Corr", "%s", "N/A") %>, <%= display_field(@model, "Stability_Range_High_Corr", "%s", "N/A") %>] <%= @type == "Cell" ? "nA" : "mV" %></td>
-          </tr>
-          <tr>
-            <td class="property-name"></td>
-            <td class="property-value">&nbsp;</td>
-          </tr>
-          <tr>
-            <td class="property-name">Maximum Stable dt</td>
-            <td class="property-value"><%= display_field(@model, "Max_Stable_DT", "%s", "N/A") %> ms</td>
-          </tr>
-          <tr>
-            <td class="property-name">Maximum Stable dt Error</td>
-            <td class="property-value"><%= display_field(@model, "Max_Stable_DT_Error", '%.2f', "N/A") %> %</td>
-          </tr>
-          <tr>
-            <td class="property-name">Max. Stable dt Benchmark Run time</td>
-            <td class="property-value"><%= display_field(@model, "Max_Stable_DT_Benchmark_RunTime_HH", "%.2f", "N/A") %> HH</td>
-          </tr>
-          <tr>
-            <td class="property-name"></td>
-            <td class="property-value">&nbsp;</td>
-          </tr>
-          <tr>
-            <td class="property-name">Run time-vs-Error Optimal dt</td>
-            <td class="property-value"><%= display_field(@model, "Optimal_DT", "%.5f", "N/A") %> ms</td>
-          </tr>
-          <tr>
-            <td class="property-name">Optimal dt Error</td>
-            <td class="property-value"><%= display_field(@model, "Optimal_DT_Error", "%.2f", "N/A") %> %</td>
-          </tr>
-          <tr>
-            <td class="property-name">Optimal dt Benchmark Run time</td>
-            <td class="property-value"><%= display_field(@model, "Optimal_DT_Benchmark_RunTime_HH", "%.2f", "N/A") %> HH</td>
-          </tr>
-          <tr>
-            <td class="property-name"></td>
-            <td class="property-value">&nbsp;</td>
-          </tr>
-          <tr>
-            <td class="property-name">CVODE Steady State Step Frequency</td>
-            <td class="property-value"><%= display_field(@model, "CVODE_baseline_step_frequency", "%d", "N/A") %> Hz</td>
-          </tr>
-          <tr>
-            <td class="property-name">CVODE Steps Per AP</td>
-            <td class="property-value"><%= display_field(@model, "CVODE_steps_per_spike", "%d", "N/A") %></td>
-          </tr>
-          <tr>
-            <td class="property-name">CVODE Benchmark Run time</td>
-            <td class="property-value"><%= display_field(@model, "CVODE_Benchmark_RunTime_HH", "%.2f", "N/A") %> HH</td>
           </tr>
           </tbody>
         </table>
@@ -136,141 +53,3 @@
     </div>
   </td>
 </tr>
-<% if @model["Rheobase_High"] != nil %>
-    <script>
-        function init_properties() {
-
-            var dt_error = [
-                <% @complexity[:dt_sensitivity].each do |row| %>
-                {x: <%=row["DT"]%>, y: <%= row["Error"]%>},
-                <% end %>
-            ];
-
-            var dt_cost_a = <%= @model["Optimal_DT_a"] %>;
-            var dt_cost_b = <%= @model["Optimal_DT_b"] %>;
-            var dt_cost_c = <%= @model["Optimal_DT_c"] %>;
-
-            var dt_steps = [
-                <% @complexity[:dt_sensitivity].each do |row| %>
-                {x: <%=row["DT"]%>, y: <%= row["Steps"]%>},
-                <% end %>
-            ];
-
-            var cvode_spike_steps = [
-                <% @complexity[:cvode_spikes_vs_steps].each do |row| %>
-                {x: <%=row["Spikes"]%>, y: <%= row["Steps"]%>},
-                <% end %>
-            ];
-
-            var cvode_steps_base = <%= @model["CVODE_baseline_step_frequency"] %>;
-            var cvode_steps_per_spike = <%= @model["CVODE_steps_per_spike"] %>;
-
-            var optimal_dt = <%= @model["Optimal_DT"] %>;
-            var optimal_dt_error = [ { x: optimal_dt, y: dt_cost_a/optimal_dt+(dt_cost_b*optimal_dt+dt_cost_c) } ];
-
-            var error_min = Enumerable.from(dt_error).select(function(w) { return w["y"]}).min();
-            var error_max = Enumerable.from(dt_error).select(function(w) { return w["y"]}).max();
-
-            var steps_min = Enumerable.from(dt_steps).select(function(w) { return w["y"]}).min();
-            var steps_max = Enumerable.from(dt_steps).select(function(w) { return w["y"]}).max();
-
-            var dt_min = Enumerable.from(dt_steps).select(function(w) { return w["x"]}).min();
-            var dt_max = Enumerable.from(dt_steps).select(function(w) { return w["x"]}).max();
-            var dt_range = dt_max - dt_min;
-
-            var dt_error = Enumerable
-                .from(dt_error)
-                .select(function(w) { return {x: w["x"], y: (w["y"]-error_min)/(error_max-error_min) } })
-                .toArray()
-
-            var dt_steps = Enumerable
-                .from(dt_steps)
-                .select(function(w) { return {x: w["x"], y: (w["y"]-steps_min)/(steps_max-steps_min) } })
-                .toArray()
-
-            var dt_cost = [];
-            for(var dt = dt_min; dt < dt_max; dt += dt_range / 20.0) {
-                dt_cost.push({x:dt, y:dt_cost_a/dt+(dt_cost_b*dt+dt_cost_c)});
-            }
-            dt_cost.push({x:dt_max, y:dt_cost_a/dt_max+(dt_cost_b*dt_max+dt_cost_c)});
-
-
-            var spikes_max = Enumerable.from(cvode_spike_steps).select(function(i) { return i["x"] }).max()
-
-            var cvode_spike_steps_fitted = [];
-            for(var spikes = 0; spikes <= spikes_max; spikes++) {
-                cvode_spike_steps_fitted.push({x:spikes, y:cvode_steps_base+spikes*cvode_steps_per_spike});
-            }
-
-
-            var ctxFixed = document.getElementById("chart-fixed-dt").getContext('2d');
-            var ctxCVODE = document.getElementById("chart-cvode").getContext('2d');
-
-            window.chartFixed = new Chart(ctxFixed, {
-                type: 'line',
-                data: {
-                    datasets: [
-                        { label: "dt Error (normd.)", data: dt_error, pointBackgroundColor: 'rgba(255, 0, 0, 0.5)', fill: false, showLine: false},
-                        { label: "dt Run time (normd.)", data: dt_steps, pointBackgroundColor: 'rgba(0, 0, 255, 0.5)', fill: false, showLine: false},
-                        { label: "dt Total Cost", data: dt_cost, borderColor: 'rgba(255, 0, 255, 0.5)', fill: false, pointRadius: 0 },
-                        { label: "Optimal dt Error = " + (<%= @model["Optimal_DT_Error"] %>).toFixed(3) + " %", data: optimal_dt_error, borderColor: 'rgba(255, 0, 255, 0.5)', fill: false, pointRadius: 10 },
-                    ]
-                },
-                options: {
-                    animation: { duration: 0 },
-                    responsive: false,
-                    title: { display: false },
-                    hover: { mode: 'nearest', animationDuration: 0 },
-                    legend: { display: false, },
-                    scales: {
-                        xAxes: [{
-                            type: 'linear',
-                            position: 'bottom',
-                            scaleLabel: {
-                                display: true,
-                                labelString: "dt (ms)"
-                            },
-                            ticks: { maxRotation: 0, maxTicksLimit: 11  }
-                        }],
-                        yAxes: [{
-                            scaleLabel: {
-                                display: true,
-                                labelString: "Error, Runtime (Normd.)"
-                            }
-                        }]
-                    }
-                }
-            });
-
-            window.chartCVODE = new Chart(ctxCVODE, {
-                type: 'line',
-                data: {
-                    datasets: [
-                        { label: 'APs vs Steps', data: cvode_spike_steps, pointBackgroundColor: 'rgba(255, 0, 0, 0.5)',showLine:false, fill:false, },
-                        { label: 'APs vs Steps (best fit)', data: cvode_spike_steps_fitted, borderColor: 'rgba(255, 0, 0, 0.5)',fill:false, pointRadius: 0 },
-                    ]
-                },
-                options: {
-                    animation: { duration: 0 },
-                    responsive: false,
-                    title: { display: false },
-                    hover: { mode: 'nearest', animationDuration: 0 },
-                    legend: { display: false, },
-                    scales: {
-                        xAxes: [{
-                            type: 'linear',
-                            position: 'bottom',
-                            scaleLabel: { display: true, labelString: "Number of APs"},
-                            ticks: { maxRotation: 0, maxTicksLimit: 11  }
-                        }],
-                        yAxes: [{
-                            scaleLabel: {display: true, labelString: "CVODE Steps"}
-                        }]
-                    }
-                }
-            });
-        }
-
-        init_properties()
-    </script>
-<% end %>
