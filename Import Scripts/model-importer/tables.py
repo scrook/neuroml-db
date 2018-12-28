@@ -171,6 +171,23 @@ class Cells(BaseModel):
     Burst1ISIMeanStrongStim = FloatField()
     Burst1ISISDStrongStim = FloatField()
 
+    RampFirstSpike = FloatField()
+
+    FrequencyFilterType = TextField()
+    FrequencyPassAbove = FloatField()
+    FrequencyPassBelow = FloatField()
+
+    RootCluster = IntegerField()
+    MultiSpikeCluster = IntegerField()
+    MultiSpikeClusterSub0 = IntegerField()
+    MultiSpikeClusterSub1 = IntegerField()
+
+
+class Cells_Similar_Ephyz(BaseModel):
+    ID = PrimaryKeyField()
+    Parent_Cell = ForeignKeyField(Cells, field='Model_ID', column_name='Parent_Cell_ID')
+    Similar_Cell = ForeignKeyField(Cells, field='Model_ID', column_name='Similar_Cell_ID')
+    Similarity = FloatField()
 
 class Morphometrics(BaseModel):
     ID = CharField(primary_key=True)

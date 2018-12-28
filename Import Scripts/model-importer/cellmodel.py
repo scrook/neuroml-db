@@ -66,10 +66,12 @@ class CellModel(NMLDB_Model):
             'SHORT_SQUARE_HOLD',
             'SHORT_SQUARE_TRIPPLE',
             'SQUARE_SUBTHRESHOLD',
-            'DRUCKMANN_PROPERTIES'
+            'DRUCKMANN_PROPERTIES',
             # 'NOISE',
             # 'NOISE_RAMP',
             # 'morphology_data'
+            'frequency_filtering',
+            'ramp_ap_onset'
         ])
 
         self.init_cell_record()
@@ -487,6 +489,243 @@ class CellModel(NMLDB_Model):
                 diam = h.diam3d(i, sec=sec)
 
                 h.pt3dchange(i, x, y, z, diam, sec=sec)
+
+    def save_ramp_ap_onset(self):
+        """
+        Returns the time of first AP, after ramp current onset (ms)
+
+        This test uses RAMP waveform obtained from the NMLDB Web API
+        The waveform should be uploaded to production server (dendrite+db) before running these tests.
+        :return: None
+        """
+
+        if self.is_nosim():
+            return
+
+        if self.cell_record.Is_Intrinsically_Spiking or self.cell_record.Is_Passive:
+            return
+
+        import sciunit, neuronunit, quantities
+        from neuronunit.tests.druckmann2013 import RampFirstSpikeTest
+        from neuronunit.neuromldb import NeuroMLDBStaticModel
+
+        model = NeuroMLDBStaticModel(self.get_model_nml_id())
+        test = RampFirstSpikeTest(None)
+        pred = test.generate_prediction(model)['mean']
+
+        if pred is not None:
+            first_spike = float(pred)
+        else:
+            first_spike = 5000.0
+
+        self.cell_record.RampFirstSpike = first_spike
+
+        self.cell_record.save()
+
+    def save_frequency_filtering(self):
+        """
+        Returns the time of first AP, after ramp current onset (ms)
+
+        This test uses RAMP waveform obtained from the NMLDB Web API
+        The waveform should be uploaded to production server (dendrite+db) before running these tests.
+        :return: None
+        """
+
+        # import pydevd
+        # pydevd.settrace('192.168.0.34', port=4200, suspend=False)
+
+        if self.is_nosim():
+            return
+
+        if self.cell_record.Is_Intrinsically_Spiking or self.cell_record.Is_Passive:
+            return
+
+        def constant_func(f, height):
+            return f * 0 + height
+
+        def sig_func(f, height, loc, slope):
+            return height / (1 + np.exp(-slope * (f - loc)))
+
+        def hat_func(f, height, loc, width, start, incline):
+            return height * ( \
+                1.0 / (1 + np.exp(-incline * (f - loc + width / 2.0))) \
+                - 1.0 / (1 + np.exp(-incline * (f - loc - width / 2.0)))
+            ) + start
+
+        def get_best(models):
+            def err(name):
+                if models[name]['result'] is None:
+                    return 9999
+
+                return models[name]['result'].chisqr
+
+            def bic(name):
+                if models[name]['result'] is None:
+                    return -9999
+
+                return models[name]['result'].bic
+
+            if err('Constant') < 0.01:
+                return 'Constant'
+            else:
+                if err('Low-Pass') < 0.01 or err('High-Pass') < 0.01:
+                    if err('Low-Pass') < err('High-Pass'):
+                        return 'Low-Pass'
+                    else:
+                        return 'High-Pass'
+                else:
+                    if err('Band-Pass') < 0.01 or err('Band-Stop') < 0.01:
+                        if err('Band-Pass') < err('Band-Stop'):
+                            return 'Band-Pass'
+                        else:
+                            return 'Band-Stop'
+                    else:
+                        min_err = np.min([bic(name) for name in models.keys()])
+                        for name in models.keys():
+                            if min_err == bic(name):
+                                return name
+
+        from lmfit import Model
+        from pandas import DataFrame
+
+        models = {
+            'Constant': {
+                'model': Model(constant_func),
+                'params': None,
+                'result': None
+            },
+            'Low-Pass': {
+                'model': Model(sig_func),
+                'params': None,
+                'result': None
+            },
+            'High-Pass': {
+                'model': Model(sig_func),
+                'params': None,
+                'result': None
+            },
+            'Band-Pass': {
+                'model': Model(hat_func),
+                'params': None,
+                'result': None
+            },
+            'Band-Stop': {
+                'model': Model(hat_func),
+                'params': None,
+                'result': None
+            },
+        }
+
+        params = models['Constant']['model'].make_params(height=2.0)
+        params['height'].min, params['height'].max = (0, 3)
+        models['Constant']['params'] = params
+
+        params = models['High-Pass']['model'].make_params(height=2.0, loc=80.0, slope=1.0)
+        params['height'].min, params['height'].max = 0, 3
+        params['loc'].min, params['loc'].max = 0, 200
+        params['slope'].min, params['slope'].max = 0.01, 100
+        models['High-Pass']['params'] = params
+
+        params = models['Low-Pass']['model'].make_params(height=2.0, loc=80.0, slope=-1.0)
+        params['height'].min, params['height'].max = 0, 3
+        params['loc'].min, params['loc'].max = 0, 200
+        params['slope'].min, params['slope'].max = -100, -0.01
+        models['Low-Pass']['params'] = params
+
+        params = models['Band-Pass']['model'].make_params(height=2.0, loc=60.0, width=100.0, start=0, incline=10.0)
+        params['height'].min, params['height'].max = 1, 3
+        params['loc'].min, params['loc'].max = 32, 91
+        params['width'].min, params['width'].max = 1, 143.0 - 29.0
+        params['start'].vary = False
+        params['incline'].vary = False
+        models['Band-Pass']['params'] = params
+
+        params = models['Band-Stop']['model'].make_params(height=-2.0, loc=60.0, width=100.0, start=3, incline=10.0)
+        params['height'].min, params['height'].max = -3, -1
+        params['loc'].min, params['loc'].max = 32, 91
+        params['width'].min, params['width'].max = 1, 143 - 29
+        params['start'].min, params['start'].max = 1, 3
+        params['incline'].vary = False
+        models['Band-Stop']['params'] = params
+
+        freq_waves = list(Model_Waveforms \
+                              .select(Cells.Model_ID, Model_Waveforms.Spikes, Model_Waveforms.Waveform_Label) \
+                              .join(Cells, on=(Cells.Model_ID == Model_Waveforms.Model_id)) \
+                              .where((Model_Waveforms.Protocol == "SHORT_SQUARE_TRIPPLE") & (Model_Waveforms.Variable_Name == "Voltage") & (Model_Waveforms.Model == self.cell_record.Model_ID)) \
+                              .order_by(Cells.Model_ID, Model_Waveforms.ID) \
+                              .dicts()
+                          )
+
+        cell_rows = DataFrame(freq_waves)
+
+        freqs = np.array(cell_rows['Waveform_Label'].apply(lambda row: float(row.replace(' Hz', ''))))
+        spikes = np.array(cell_rows['Spikes'].apply(lambda row: int(row)))
+        spikes = spikes - spikes.min()
+
+        order = ['Constant', 'Low-Pass', 'High-Pass', 'Band-Pass', 'Band-Stop']
+
+        for name in order:
+            models[name]['result'] = None
+
+        for name in order:
+            model = models[name]['model']
+            params = models[name]['params']
+
+            # Global opt
+            result = model.fit(spikes, f=freqs, params=params, method='differential_evolution')
+
+            # Local opt
+            result = model.fit(spikes, f=freqs, params=result.params, method="powell")
+
+            models[name]['result'] = result
+
+            if result.chisqr < 0.01:
+                break
+
+        best = get_best(models)
+
+        # plt.plot(freqs, spikes, 'bo')
+        # plt.plot(freqs, models[best]['result'].best_fit, 'r-')
+        # plt.ylim(-1, 4)
+        # plt.title(best + ' ' + self.cell_record.Model_ID)
+        # plt.show()
+        #
+        # print('Best Model: ', best)
+        # print(models[best]['result'].fit_report())
+
+        best_result = models[best]['result']
+
+        cell = { 'best': best, 'err': best_result.chisqr, 'params': best_result.best_values.copy()}
+
+        if cell['best'] == 'Constant':
+            self.cell_record.FrequencyPassAbove = 29
+            self.cell_record.FrequencyPassBelow = 143
+
+        if cell['best'] == 'Low-Pass':
+            self.cell_record.FrequencyPassAbove = 29
+            self.cell_record.FrequencyPassBelow = cell['params']['loc']
+
+        if cell['best'] == 'High-Pass':
+            self.cell_record.FrequencyPassAbove = cell['params']['loc']
+            self.cell_record.FrequencyPassBelow = 143
+
+        if cell['best'] == 'Band-Pass':
+            loc = cell['params']['loc']
+            width = cell['params']['width']
+            self.cell_record.FrequencyPassAbove = loc - width / 2.0
+            self.cell_record.FrequencyPassBelow = loc + width / 2.0
+
+        if cell['best'] == 'Band-Stop':
+            loc = cell['params']['loc']
+            width = cell['params']['width']
+            self.cell_record.FrequencyPassAbove = loc + width / 2.0
+            self.cell_record.FrequencyPassBelow = loc - width / 2.0
+
+        self.cell_record.FrequencyPassAbove = min(143, max(29, self.cell_record.FrequencyPassAbove))
+        self.cell_record.FrequencyPassBelow = min(143, max(29, self.cell_record.FrequencyPassBelow))
+        self.cell_record.FrequencyFilterType = cell['best']
+
+        self.cell_record.save()
 
     def save_tolerances_with_stim(self):
         if self.is_nosim():
