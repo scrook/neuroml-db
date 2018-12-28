@@ -1,0 +1,128 @@
+<style>
+  .help-btn { cursor:pointer; }
+  #help-dialog { padding: 10px; overflow:auto;}
+  #help-dialog h3 { font-size: 16px; font-weight: bold; }
+  #help-dialog p { margin-bottom: 10px; }
+  .ui-dialog .ui-widget-header { cursor: move; }
+  .ui-icon-info { background-image: url(images/info.png) !important; background-position: 0 0; }
+</style>
+<div id="help-dialog" title="[title]" style="display:none">
+  [description]
+</div>
+<div id="help-item-descriptions" style="display:none">
+  <div id="desc-vc-clamps">
+    <div class="title">Voltage/Current Clamp Plots</div>
+    <div class="desc">
+      <h3>Protocols</h3>
+      <p>The dropdown contains the list of protocols to which the model was subjected. Select one from the drop down to see the model's response.</p>
+      <h3>Stimuli</h3>
+      <p>Some protocols have multiple stimuli (e.g. voltage levels held or current amplitudes injected). If so, a "Stimulus" slider will be visible when a protocol with multiple stimuli is selected.
+        When visible, drag the slider left/right to see the model's
+        response to a specific protocol stimulus. By default, the traces of all protocol stimuli are shown superimposed, each trace indicated by a different color.</p>
+      <h3>Meta-Protocols</h3>
+      <p>Some models will have additional meta-protocol parameters (e.g. different calcium concentration levels, random noise seeds). If available, use the second slider to see the
+        effect of changing the meta-protocol parameter on the model response. When both sliders are visible, their values can be changed independently.</p>
+      <h3>Trace detail</h3>
+      <p>Using the mouse, hover near a point on a trace to see a popup with the point details. Top value shows the time. The bottom left value shows the name of the protocol stimulus,
+        and the bottom right value shows the value of the plotted variable (e.g. voltage or current)</p>
+      <h3>Zoom</h3>
+      <p>The plots can be zoomed in/out to see plot details. On the right side of the plot, use the [+] and [-] buttons to zoom in/out on the center of the plot.</p>
+      <h3>Pan</h3>
+      <p>Once zoomed, the plots can be panned by dragging the mouse or swiping fingers sideways.</p>
+      <h3>Reset Plot</h3>
+      <p>Once a zoom/pan position is set, it will be maintained when the stimulus/meta-protocol parameter is changed. To reset the zoom/pan,
+        click the circular arrow button below the zoom out button. Plot zoom will also be reset when the protocol is changed.</p>
+    </div>
+  </div>
+  <div id="desc-state-eq">
+    <div class="title">State Equations</div>
+    <div class="desc">The total number of state variables used in this model, as reported by NEURON.</div>
+  </div>
+  <div id="desc-optimal-dt">
+    <div class="title">Optimal Time-Step</div>
+    <div class="desc">
+      <h3>Summary</h3>
+      <p>The fixed time-step that provides the best tradeoff between model error and run time.</p>
+      <h3>Details</h3>
+      <p>Models were subjected to a benchmark current injection protocol (see Electrophysiology tab, Time Step Sensitivity protocol) using
+        various fixed time step sizes.</p>
+      <p>The resulting membrane potential was compared, at 1 ms intervals, to the membrane potential obtained using
+        the smallest time step (1/1024 ms). For each time-step size, mean percent error difference and run time were measured.</p>
+      <p>The error and run time were normalized and their sums computed for each time step size. The time-step size where the sum was the lowest
+        was chosen as the optimal time-step.</p>
+    </div>
+  </div>
+  <div id="desc-bench-perf">
+    <div class="title">Optimal Time-Step Benchmark Run Time</div>
+    <div class="desc">
+      <p>This model's runtime using its optimal time-step as a fraction of Hodgkin-Huxley model's run time using its optimal time-step.</p>
+      <p>For example, 50 HH would mean that this model ran 50 times slower than the Hodgkin-Huxley model. While, 0.25 HH would mean the model ran 4 times faster.</p>
+    </div>
+  </div>
+  <div id="desc-sections">
+    <div class="title">Sections</div>
+    <div class="desc">The total number of NEURON sections used in this model.</div>
+  </div>
+  <div id="desc-compartments">
+    <div class="title">Compartments</div>
+    <div class="desc">The total number of compartments used in this model, as reported by NEURON.</div>
+  </div>
+  <div id="desc-optimaldt-error">
+    <div class="title">Optimal Time-Step Error</div>
+    <div class="desc">The percent error, relative to the smallest fixed time-step, that results when using the optimal time-step.</div>
+  </div>
+  <div id="desc-max-dt">
+    <div class="title">Maximum Stable Time-Step</div>
+    <div class="desc">The largest time-step (up to 1.0 ms) that did not result in numerical instabilities during the current injection benchmark protocol.</div>
+  </div>
+  <div id="desc-max-dt-error">
+    <div class="title">Maximum Stable Time-Step Error</div>
+    <div class="desc">The percent error, relative to the smallest fixed time-step, that results when using the maximum stable time-step.</div>
+  </div>
+  <div id="desc-max-dt-runtime">
+    <div class="title">Max. Stable Time-Step Benchmark Run Time</div>
+    <div class="desc">
+      <p>This model's runtime using its maximum stable time-step as a fraction of Hodgkin-Huxley model's run time using its maximum stable time-step.</p>
+    </div>
+  </div>
+  <div id="desc-cvode-freq">
+    <div class="title">CVODE Steady State Step Frequency</div>
+    <div class="desc">The number of steps required to compute 1 sec of non-spiking model activity using NEURON's variable step CVODE integration method.</div>
+  </div>
+  <div id="desc-cvode-freq-ap">
+    <div class="title">CVODE Steps Per AP</div>
+    <div class="desc">The mean number of additional steps required to compute one action potential using NEURON's variable step CVODE integration method.</div>
+  </div>
+  <div id="desc-cvode-runtime">
+    <div class="title">CVODE Benchmark Run Time</div>
+    <div class="desc">
+      <p>This model's runtime to compute 10 action potentials per second using variable time-step method as a fraction of Hodgkin-Huxley model's run time.</p>
+    </div>
+  </div>
+</div>
+<script>
+    function init_help() {
+
+        jQuery( "#help-dialog" ).dialog({
+            autoOpen: false,
+            resizable: false,
+            width: 500,
+            maxHeight:450
+        });
+
+        jQuery(document).on("click", ".help-btn", function(event, ui) {
+            targetID= jQuery(event.target).data('scroll')
+
+            title = jQuery("#"+targetID+" .title").html()
+            html = jQuery("#"+targetID+" .desc").html()
+
+            jQuery( "#help-dialog" )
+                .html(html)
+                .dialog("option", "title", title)
+                .dialog("open");
+        });
+    }
+
+    jQuery(init_help);
+
+</script>

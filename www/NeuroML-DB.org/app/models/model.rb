@@ -245,6 +245,32 @@ class Model < ActiveRecord::Base
           ORDER BY Spikes
         ")
 
+    similar_cells = ActiveRecord::Base.connection.exec_query(
+        "
+          SELECT m.Name as Similar_Cell_Name, e.* FROM neuromldb.cells_similar_ephyz e
+          JOIN models m ON m.Model_ID = e.Similar_cell_Id
+          where Parent_Cell_ID = '#{idClean}'
+          ORDER BY Similarity DESC
+        ")
+
+    ephyz_clusters = ActiveRecord::Base.connection.exec_query(
+        "
+          SELECT
+          cl.Name as Root_Cluster,
+          cl_ms.Name as MultiSpiker_Cluster,
+          cl_ms0.Name as MultiSpikerSub0_Cluster,
+          cl_ms1.Name as MultiSpikerSub1_Cluster,
+          CONCAT(COALESCE(cl.Differentiating_Features,''),
+                 COALESCE(cl_ms0.Differentiating_Features,''),
+                 COALESCE(cl_ms1.Differentiating_Features,'')) as Differentiating_Features
+          FROM cells c
+          LEFT JOIN cell_ephyz_clusters cl ON cl.Cluster_ID = c.RootCluster and cl.Parent_Branch_ID = 'Root'
+          LEFT JOIN cell_ephyz_clusters cl_ms ON cl_ms.Cluster_ID = c.MultiSpikeCluster and cl_ms.Parent_Branch_ID = 'Multi_Spikers'
+          LEFT JOIN cell_ephyz_clusters cl_ms0 ON cl_ms0.Cluster_ID = c.MultiSpikeClusterSub0 and cl_ms0.Parent_Branch_ID = 'Multi_Spikers_0'
+          LEFT JOIN cell_ephyz_clusters cl_ms1 ON cl_ms1.Cluster_ID = c.MultiSpikeClusterSub1 and cl_ms1.Parent_Branch_ID = 'Multi_Spikers_1'
+          where c.Model_ID = '#{idClean}'
+        ")
+
     versions = GetModelVersions(idClean)
 
     return {
@@ -264,7 +290,9 @@ class Model < ActiveRecord::Base
         complexity: {
             dt_sensitivity: dt_sensitivity,
             cvode_spikes_vs_steps: cvode_spikes_vs_steps
-        }
+        },
+        similar_cells: similar_cells,
+        ephyz_clusters: ephyz_clusters,
     }
   end
 

@@ -10,11 +10,382 @@
 
   /*.ui-widget-header {  }*/
   td.description { background-color: transparent; }
+
+  .property-table .property-name { text-align: right; padding-right: 15px; vertical-align: bottom; }
+  .property-table thead td { text-align: left; color: #1376c4; font-weight: bold; }
+  .property-table thead td:first-child { text-align: right; }
+
+  #section-header { color: #1376c4; font-weight: bold; text-align:center; margin-top: 20px;}
+
 </style>
 <div id="main">
     <div class="wrapper">
     <div id="content">
-      <%= render "model_info" %>
+      <div id="model_window">
+
+        <div id="page-title">
+          <% if @name.downcase.include? @type.downcase %>
+              <h4><%= @name %></h4>
+          <% else %>
+              <h4><%= @name %> <%= @type %></h4>
+          <% end %>
+        </div>
+
+        <div id="tabs">
+          <ul>
+            <li><a href="#tabs-overview">Overview</a></li>
+            <% if @type == "Cell" || @type == "Channel" %>
+                <li><a href="#tabs-ephyz">Electrophysiology</a></li>
+            <% end %>
+            <% if @type == "Cell" %>
+                <li><a href="#tabs-morphology">Morphology</a></li>
+            <% end %>
+            <% if @type == "Cell" || @type == "Channel" %>
+                <li><a href="#tabs-complexity">Computational Complexity</a></li>
+            <% end %>
+          </ul>
+
+          <div id="tabs-overview">
+            <table id="model_info">
+              <tr>
+                <td class="keyword">
+                  <div style="width:116px"></div>
+                  Model Type:
+                </td>
+
+                <td class="description">
+                  <%= @type %>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="keyword">
+                  Neurolex IDs:
+                </td>
+
+                <td class="description">
+                  <% if @nlx_list.any? %>
+                      <% @nlx_list.each do |key, value| %>
+                          <a target="_blank" href="http://neurolex.org/wiki/<%= key %>"><%= value %></a><br>
+                      <% end %>
+                  <% else %>
+                      None
+                  <% end %>
+
+                </td>
+              </tr>
+
+              <tr>
+                <td class="keyword">
+                  Keywords:
+                </td>
+
+                <td class="description">
+                  <% if @keywords_model.blank? %>
+                      None
+                  <% else %>
+                      <%= @keywords_model %>
+                  <% end %>
+                </td>
+              </tr>
+
+
+              <tr>
+                <td class="keyword">
+                  Publication:
+                </td>
+                <td class="description">
+                  <% if @pub_list.any? %>
+                      <% @pub_list.each do |key, value| %>
+                          <a target="_blank" href="http://www.ncbi.nlm.nih.gov/<%= key %>"><%= @shortPub %> <%= value %></a><br>
+                      <% end %>
+                  <% else %>
+                      None
+                  <% end %>
+
+                </td>
+              </tr>
+
+              <tr>
+                <td class="keyword">
+                  Authors:
+                </td>
+
+                <td class="description">
+                  <div class="scroll-list">
+                    <% if @auth_list.any? %>
+                        <% @auth_list.each do |author| %>
+                            <%= author %> &nbsp;
+                        <% end %>
+                    <% else %>
+                        None
+                    <% end %>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="keyword">
+                  Translators:
+                </td>
+
+                <td class="description">
+                  <% if @trans_list.any? %>
+                      <% @trans_list.each do |translator| %>
+                          <%= translator %> &nbsp;
+                      <% end %>
+                  <% else %>
+                      None
+                  <% end %>
+
+                </td>
+              </tr>
+
+              <tr>
+                <td class="keyword">
+                  Sources:
+                </td>
+
+                <td class="description">
+                  <div style="height: 93px; overflow: auto;">
+                    <% if @ref_list.any? %>
+                        <% @ref_list.each_with_index do |(key,value),index| %>
+                  <span style="display: inline-block;text-align:center;">
+                    <a href="<%= key %>" target="_blank" style="text-decoration: none;"><img src="<%=@resources[index]["LogoUrl"] %>" height="45" style="vertical-align:middle;" /></a>
+                    <a href="<%= key %>" style="display: block;font-size: 80%;text-align: center;" target="_blank" >View <%=@resources[index]["Name"] %> Model</a>
+                    <a href="https://scicrunch.org/resolver/RRID:<%=@resources[index]["SciCrunch_RRID"] %>" style="display: block;font-size: 80%;text-align: center;" target="_blank" >View  <%=@resources[index]["Name"] %> on SciCrunch</a>
+                  </span>
+                        <% end %>
+                    <% else %>
+                        None
+                    <% end %>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="keyword" style="vertical-align: top;">
+                  <% if @type == "Cell" %>
+                      <% path="MorphML" %>
+                  <% elsif @type == "Channel" %>
+                      <% path="ChannelML" %>
+                  <% elsif @type == "Network" %>
+                      <% path="NetworkML" %>
+                  <% else %>
+                  <% end %>
+                  Files:
+                </td>
+
+                <td class="description">
+
+                  <div id="download-buttons">
+                    <% @versions.each do |version| %>
+                        <a id="downloadButtonB" href="/GetModelZip?modelID=<%= @model_id %>&version=<%= version %>">
+                          <div id="downloadButton">
+                            <div class="enlarge ui-icon ui-icon-arrowthickstop-1-s" title="Download"></div>
+                            Download <%= version %> Version
+                          </div>
+                        </a>
+                    <% end %>
+
+                  </div>
+
+
+                  <div class="scroll-list">
+                    <table>
+                      <thead>
+                      <tr>
+                        <td>Model ID</td>
+                        <td>NeuroML File</td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      </thead>
+                      <% Model.GetFiles(@model_id,"NeuroML").each do |record| %>
+
+                          <tr>
+
+                            <td><a <%= model_atag_params(record["ModelID"]) %>><%= record["ModelID"] %></a></td>
+
+                            <td><div style="width:300px; overflow:hidden;"><%= File.basename(record["File"]) %></div></td>
+
+                            <td>
+                              <!--<a style="text-decoration: none" target="_blank"-->
+                              <!--href="/render_xml_as_html?modelID=<%= record["ModelID"] %>">(&nbsp;view&nbsp;HTML&nbsp;)</a>-->
+                            </td>
+
+                            <td><a style="text-decoration: none" target="_blank"
+                                   href="/render_xml_file?modelID=<%= record["ModelID"] %>">(&nbsp;view&nbsp;NeuroML&nbsp;)</a></td>
+                          </tr>
+
+                      <% end %>
+                    </table>
+                  </div>
+                </td>
+
+              </tr>
+
+              <tr>
+                <td class="keyword">
+                  Notes:
+                </td>
+
+                <td class="description">
+                  <% if @model_notes.blank? %>
+                      None
+                  <% else %>
+                      <%= @model_notes %>
+                  <% end %>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="keyword">
+                  Model Id:
+                </td>
+                <td class="description">
+                  <%= @model_id %>
+                </td>
+              </tr>
+
+
+              <%
+                def DisplayRelatedModels(modelList)
+                  if modelList.any? %>
+                  <div class="scroll-list">
+                    <% modelList.each do |model| %>
+                        <div><a <%= model_atag_params(model["Model_ID"]) %> ><%= model["Name"] %></a></div>
+                    <% end %>
+                  </div>
+              <% else %>
+                  None
+              <% end
+                 end
+              %>
+
+              <% if @type == "Cell" %>
+                  <tr>
+                    <td class="keyword">
+                      Associated Channels:
+                    </td>
+                    <td class="description">
+                      <% DisplayRelatedModels(@channel_list) %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="keyword">
+                      Associated Synapses:
+                    </td>
+                    <td class="description">
+                      <% DisplayRelatedModels(@syn_list) %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="keyword">
+                      Associated Networks:
+                    </td>
+                    <td class="description">
+                      <% DisplayRelatedModels(@network_list) %>
+                    </td>
+                  </tr>
+
+              <% elsif @type == "Channel" %>
+
+                  <tr>
+                    <td class="keyword">
+                      Associated Cells:
+                    </td>
+                    <td class="description">
+                      <% DisplayRelatedModels(@cell_list) %>
+                    </td>
+                  </tr>
+
+              <% elsif @type == "Network" %>
+
+                  <tr>
+                    <td class="keyword">
+                      Associated Cells:
+                    </td>
+                    <td class="description">
+                      <% DisplayRelatedModels(@cell_list) %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="keyword">
+                      Associated Synapses:
+                    </td>
+
+                    <td class="description">
+                      <% DisplayRelatedModels(@syn_list) %>
+                    </td>
+                  </tr>
+
+              <% else %>
+                  <tr>
+                    <td class="keyword">
+                      Associated Network:
+                    </td>
+
+                    <td class="description">
+                      <% DisplayRelatedModels(@network_list) %>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="keyword">
+                      Associated Cells:
+                    </td>
+
+                    <td class="description">
+                      <% DisplayRelatedModels(@cell_list) %>
+                    </td>
+                  </tr>
+              <% end %>
+
+            </table>
+          </div>
+
+          <div id="tabs-ephyz">
+            <% if @type == "Cell" %>
+
+                <%= render 'model_ephyz' %>
+
+                <%= render 'cell_properties' %>
+
+                <%= render 'cell_similar_ephyz' %>
+
+            <% elsif @type == "Channel" %>
+
+                <%
+                  @meta_protocol_type = "[Ca<sup>2+</sup>] level (mM)".html_safe
+                  @clamp_type = "Voltage"
+                %>
+
+                <%= render 'model_ephyz' %>
+
+                <%= render 'channel_properties' %>
+
+            <% end %>
+          </div>
+          <div id="tabs-morphology">
+            <table id="model_info">
+              <% if @type == "Cell" %>
+                  <%= render 'model_morphology' %>
+              <% end %>
+            </table>
+          </div>
+          <div id="tabs-complexity">
+            <% if @type == "Cell" %>
+                <%= render 'cell_complexity' %>
+            <% elsif @type == "Channel" %>
+                <%= render 'channel_complexity' %>
+            <% end %>
+          </div>
+        </div>
+
+        <script>jQuery("#tabs").tabs()</script>
+        <div class="clear"></div>
+      </div>
     </div>
   </div>
 </div>

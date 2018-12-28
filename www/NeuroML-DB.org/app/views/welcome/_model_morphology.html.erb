@@ -19,6 +19,7 @@
     </td>
   <% else %>
     <td class="description">
+      <div id="section-header">3D Structure and Propagation of Activity</div>
       <% if @gif_path != nil %>
         <div class="thumbnail">
           <img class="image " src="/api/gif?id=<%= @model_id %>">
@@ -40,10 +41,9 @@
               <tr>
                 <td class="morphology-prop-name">
                   <%= metric["Description"] %>
-                  <a title="Read the description of this property on L-Measure website" target="_blank" href="http://cng.gmu.edu:8080/Lm/help/<%= metric["Metric_ID"] %>.htm"><span class="ui-icon ui-icon-info"></span></a>
                 </td>
                 <td class="morphology-prop-value">
-                  <%= metric[metric["Shown_Statistic"]] %> <%= metric["Units"].html_safe %>
+                  <%= metric[metric["Shown_Statistic"]] %> <%= metric["Units"].html_safe %> <a title="Read the description of this property on L-Measure website" target="_blank" href="http://cng.gmu.edu:8080/Lm/help/<%= metric["Metric_ID"] %>.htm"><span class="ui-icon ui-icon-info"></span></a>
                 </td>
               </tr>
           <% end %>

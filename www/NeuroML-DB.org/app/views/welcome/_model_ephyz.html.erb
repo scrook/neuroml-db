@@ -26,16 +26,12 @@
   canvas { -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; }
   table { border: 0px; }
   #plot-selectors { margin-bottom: 15px; }
-  .selector { width: 261px; float:left; margin-left: 30px; font-size: 16px; }
+  .selector { width: 264px; float:left; margin-left: 30px; font-size: 16px; }
   .selector select { margin: 0; border: 1px solid #c5c5c5; font-size: 16px; width: 100%; margin-top: -11px; }
   .selector .caption { text-align: center; height: 28px; }
   .selector .slider {  }
   .selector .value { font-weight: bold; }
-  #chart-help-btn { float: right; color: #dc6219; cursor: pointer; }
-  #chart-help-contents { padding: 10px; overflow:auto;}
-  #chart-help-contents h3 { font-size: 16px; font-weight: bold; }
-  #chart-help-contents p { margin-bottom: 10px; }
-  .ui-widget-header { cursor: move; }
+  .vc-help { position:absolute; right: 27px; top: 10px; color: #dc6219; cursor: pointer; }
 </style>
 <script>
     var waveforms = <%= waveforms.to_json.html_safe  %>;
@@ -72,7 +68,7 @@
             jQuery('<div class="zoom-out ui-icon ui-icon-minus" title="Zoom OUT" data-id="'+canvasID+'"></div>').appendTo(container);
             jQuery('<div class="zoom-reset ui-icon ui-icon-arrowrefresh-1-n" title="Reset Zoom/Pan" data-id="'+canvasID+'"></div></div>').appendTo(container);
 
-            jQuery('<canvas id="'+canvasID+'" width="874" height="219"></canvas>').appendTo(container);
+            jQuery('<canvas id="'+canvasID+'" width="899" height="219"></canvas>').appendTo(container);
 
             setupChart(canvasID, title, { "datasets": []});
         });
@@ -153,16 +149,6 @@
         jQuery("#protocols select").on("change", onProtocolSelected)
         jQuery("#protocols select").change()
 
-        jQuery( "#chart-help-contents" ).dialog({
-            autoOpen: false,
-            resizable: false,
-            width: 500,
-            maxHeight:450
-        });
-
-        jQuery( "#chart-help-btn" ).on( "click", function() {
-            jQuery( "#chart-help-contents" ).dialog( "open" );
-        });
     }
 
     function to_chartjs_format(wave) {
@@ -428,71 +414,42 @@
     }
 
 </script>
-<tr>
-  <td class="keyword" style="vertical-align: top; text-align:left;" colspan="2">
-    <%=@clamp_type%> Clamp Response:
-    <% if waveforms != nil and waveforms.rows.length > 0 %>
-      <div id="chart-help-btn">Instructions<span class="ui-icon ui-icon-info"></span></div>
-    <% end %>
-  </td>
-</tr>
-<tr>
-  <td class="description conditions" colspan="2">
-    <div id="model-plots">
-      <% if waveforms != nil and waveforms.rows.length > 0 %>
-          <div id="plot-selectors">
+<div id="section-header" style="margin-bottom: 20px;"><%=@clamp_type%> Clamp Response
+  <% if waveforms != nil and waveforms.rows.length > 0 %>
+    <span data-scroll="desc-vc-clamps" class="help-btn ui-icon ui-icon-info"></span>
+  <% end %>
+</div>
+<div id="model-plots">
+  <% if waveforms != nil and waveforms.rows.length > 0 %>
+      <div id="plot-selectors">
 
-            <div id="protocols" class="selector">
-              <div class="caption">Protocol:</div>
-              <select></select>
-            </div>
+        <div id="protocols" class="selector">
+          <div class="caption">Protocol:</div>
+          <select></select>
+        </div>
 
-            <div id="meta-protocols" class="selector">
-              <div class="caption"><span><%= @meta_protocol_type %>:</span> <span class="value">-</span></div>
-              <div class="slider"></div>
-            </div>
+        <div id="meta-protocols" class="selector">
+          <div class="caption"><span><%= @meta_protocol_type %>:</span> <span class="value">-</span></div>
+          <div class="slider"></div>
+        </div>
 
-            <div id="labels" class="selector">
-              <div class="caption"><span>Stimulus:</span> <span class="value">-</span></div>
-              <div class="slider"></div>
-            </div>
+        <div id="labels" class="selector">
+          <div class="caption"><span>Stimulus:</span> <span class="value">-</span></div>
+          <div class="slider"></div>
+        </div>
 
-            <div style="clear:both;"></div>
-          </div>
+        <div style="clear:both;"></div>
+      </div>
 
-          <!--Render plots using chart.js library-->
-          <div id="canvases">
-          </div>
+      <!--Render plots using chart.js library-->
+      <div id="canvases">
+      </div>
 
-          <div id="chart-help-contents" title="<%= @clamp_type %> Clamp Plots">
-            <h3>Protocols</h3>
-            <p>The dropdown contains the list of protocols to which the model was subjected. Select one from the drop down to see the model's response.</p>
-            <h3>Stimuli</h3>
-            <p>Some protocols have multiple stimuli (e.g. voltage levels held or current amplitudes injected). If so, a "Stimulus" slider will be visible when a protocol with multiple stimuli is selected.
-              When visible, drag the slider left/right to see the model's
-              response to a specific protocol stimulus. By default, the traces of all protocol stimuli are shown superimposed, each trace indicated by a different color.</p>
-            <h3>Meta-Protocols</h3>
-            <p>Some models will have additional meta-protocol parameters (e.g. different calcium concentration levels, random noise seeds). If available, use the second slider to see the
-            effect of changing the meta-protocol parameter on the model response. When both sliders are visible, their values can be changed independently.</p>
-            <h3>Trace detail</h3>
-            <p>Using the mouse, hover near a point on a trace to see a popup with the point details. Top value shows the time. The bottom left value shows the name of the protocol stimulus,
-              and the bottom right value shows the value of the plotted variable (e.g. voltage or current)</p>
-            <h3>Zoom</h3>
-            <p>The plots can be zoomed in/out to see plot details. On the right side of the plot, use the [+] and [-] buttons to zoom in/out on the center of the plot.</p>
-            <h3>Pan</h3>
-            <p>Once zoomed, the plots can be panned by dragging the mouse or swiping fingers sideways.</p>
-            <h3>Reset Plot</h3>
-            <p>Once a zoom/pan position is set, it will be maintained when the stimulus/meta-protocol parameter is changed. To reset the zoom/pan,
-            click the circular arrow button below the zoom out button. Plot zoom will also be reset when the protocol is changed.</p>
-          </div>
+      <script>
+          plotsInit();
+      </script>
 
-          <script>
-              plotsInit();
-          </script>
-
-      <% else %>
-          <%= @clamp_type %> clamp data not available for this <%= @type.downcase %>.
-      <% end %>
-    </div>
-  </td>
-</tr>
+  <% else %>
+      <%= @clamp_type %> clamp data not available for this <%= @type.downcase %>.
+  <% end %>
+</div>

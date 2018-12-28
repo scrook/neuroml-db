@@ -17,6 +17,8 @@ class WelcomeController < ApplicationController
     details = Model.GetModelDetails(@model_id)
     model = details[:model]
     @versions = details[:versions]
+    @similar_cells = details[:similar_cells]
+    @ephyz_clusters = details[:ephyz_clusters]
 
     @name=model["Name"]
     @type=model["Type"]
