@@ -13,6 +13,12 @@ from database import NMLDB
 from tables import *
 from config import Config
 
+from tables import Cells, Model_Waveforms, Models, Cells_Similar_Ephyz
+from pandas import DataFrame
+import numpy as np
+import pandas
+from matplotlib import pyplot as plt
+
 
 class ModelManager(object):
     def __init__(self):
@@ -942,7 +948,7 @@ class ModelManager(object):
             if model_id.startswith("NMLCL"):
                 from cellmodel import CellModel as TargetModel
 
-                if len(properties) == 1 and properties[0] == 'DRUCKMANN_PROPERTIES':
+                if len(properties) == 1 and properties[0] in ('DRUCKMANN_PROPERTIES', 'ramp_ap_onset', 'frequency_filtering'):
                     skip_NEURON = True
                 else:
                     skip_NEURON = False
@@ -1039,6 +1045,386 @@ class ModelManager(object):
             print("SELECT * FROM models m WHERE m.Model_ID IN (")
             print(string.join([str(m) for m in missing], ','))
             print(")")
+
+
+    def get_pre_processed_cell_ephyz_props(self, cells):
+        # These will be used to perform clustering
+        prop_names = [
+            'AP1Amplitude',
+            'AP2Amplitude',
+            'AP12AmplitudeDrop',
+            'AP12AmplitudeChangePercent',
+            'AP1SSAmplitudeChange',
+
+            'AP1WidthHalfHeight',
+            'AP2WidthHalfHeight',
+            'AP12HalfWidthChangePercent',
+
+            'AP1WidthPeakToTrough',
+            'AP2WidthPeakToTrough',
+
+            'AP1RateOfChangePeakToTrough',
+            'AP2RateOfChangePeakToTrough',
+            'AP12RateOfChangePeakToTroughPercentChange',
+
+            'AP1AHPDepth',
+            'AP2AHPDepth',
+            'AP12AHPDepthPercentChange',
+
+            'AP1DelayMean',
+            'AP2DelayMean',
+
+            'AP1DelaySD',
+            'AP2DelaySD',
+
+            'AP1DelayMeanStrongStim',
+            'AP2DelayMeanStrongStim',
+
+            'AP1DelaySDStrongStim',
+            'AP2DelaySDStrongStim',
+
+            'Burst1ISIMean',
+            'Burst1ISIMeanStrongStim',
+
+            'Burst1ISISD',
+            'Burst1ISISDStrongStim',
+
+            'InitialAccommodationMean',
+            'SSAccommodationMean',
+            'AccommodationRateToSS',
+            'AccommodationAtSSMean',
+            'AccommodationRateMeanAtSS',
+
+            'ISIMedian',
+            'ISICV',
+            'ISIBurstMeanChange',
+
+            'SpikeRateStrongStim',
+
+            'InputResistance',
+
+            'SteadyStateAPs',
+
+            'FrequencyPassAbove',
+            'FrequencyPassBelow',
+
+            'RampFirstSpike',
+        ]
+
+        props = {}
+        for c, cell in enumerate(cells):
+            for p, prop in enumerate(prop_names):
+                if prop not in props:
+                    props[prop] = []
+
+                if prop == 'SteadyStateAPs':
+                    props[prop].append(cell.Spikes)
+
+                else:
+                    props[prop].append(getattr(cell, prop))
+
+        df = DataFrame(props, columns=prop_names)
+
+        df['AP1Amplitude'].fillna(0, inplace=True)
+        df['AP2Amplitude'].fillna(0, inplace=True)
+
+        df['AP1SSAmplitudeChange'].fillna(0, inplace=True)
+
+        df['AP1WidthHalfHeight'].fillna(0, inplace=True)
+        df['AP2WidthHalfHeight'].fillna(0, inplace=True)
+
+        df['AP1WidthPeakToTrough'].fillna(0, inplace=True)
+        df['AP2WidthPeakToTrough'].fillna(0, inplace=True)
+
+        df['AP1RateOfChangePeakToTrough'].fillna(0, inplace=True)
+        df['AP2RateOfChangePeakToTrough'].fillna(0, inplace=True)
+
+        df['AP1AHPDepth'].fillna(0, inplace=True)
+        df['AP2AHPDepth'].fillna(0, inplace=True)
+
+        df['AP1DelayMean'].fillna(2000, inplace=True)
+        df['AP2DelayMean'].fillna(2000, inplace=True)
+
+        df['AP1DelaySD'].fillna(0, inplace=True)
+        df['AP2DelaySD'].fillna(0, inplace=True)
+
+        df['AP1DelayMeanStrongStim'].fillna(2000, inplace=True)
+        df['AP2DelayMeanStrongStim'].fillna(2000, inplace=True)
+
+        df['AP1DelaySDStrongStim'].fillna(0, inplace=True)
+        df['AP2DelaySDStrongStim'].fillna(0, inplace=True)
+
+        df['Burst1ISIMean'].fillna(2000, inplace=True)
+        df['Burst1ISIMeanStrongStim'].fillna(2000, inplace=True)
+
+        df['Burst1ISISD'].fillna(0, inplace=True)
+        df['Burst1ISISDStrongStim'].fillna(0, inplace=True)
+
+        df['AccommodationRateMeanAtSS'].fillna(2000, inplace=True)
+
+        df['ISIMedian'].fillna(2000, inplace=True)
+
+        df['ISICV'].fillna(0, inplace=True)
+
+        df['ISIBurstMeanChange'].fillna(0, inplace=True)
+
+        df['SpikeRateStrongStim'].fillna(0, inplace=True)
+
+        df['InputResistance'].fillna(df['InputResistance'].mean(), inplace=True)
+
+        df['FrequencyPassAbove'].fillna(29, inplace=True)
+        df['FrequencyPassBelow'].fillna(143, inplace=True)
+
+        df['RampFirstSpike'].fillna(5000, inplace=True)
+
+        for index, row in df.iterrows():
+
+            # No APs
+            if (row['AP1Amplitude'] == 0 and row['AP2Amplitude'] == 0):
+                df.at[index, 'AP12AmplitudeDrop'] = 0
+                df.at[index, 'AP12AmplitudeChangePercent'] = 0
+                df.at[index, 'AP1SSAmplitudeChange'] = 0
+                df.at[index, 'AP12HalfWidthChangePercent'] = 0
+                df.at[index, 'AP12RateOfChangePeakToTroughPercentChange'] = 0
+                df.at[index, 'AP12AHPDepthPercentChange'] = 0
+                df.at[index, 'InitialAccommodationMean'] = 0
+                df.at[index, 'SSAccommodationMean'] = 0
+                df.at[index, 'AccommodationRateToSS'] = 0
+                df.at[index, 'AccommodationAtSSMean'] = 0
+
+            # Only 1 AP
+            if (row['AP1Amplitude'] > 0 and row['AP2Amplitude'] == 0):
+                df.at[index, 'AP12AmplitudeDrop'] = row['AP1Amplitude']
+                df.at[index, 'AP12AmplitudeChangePercent'] = -100
+                df.at[index, 'AP12HalfWidthChangePercent'] = -100
+                df.at[index, 'AP12RateOfChangePeakToTroughPercentChange'] = -100
+                df.at[index, 'AP12AHPDepthPercentChange'] = -100
+                df.at[index, 'AccommodationRateToSS'] = -1
+                df.at[index, 'AccommodationAtSSMean'] = -100
+
+            # 1 AP and no SS APs
+            if row['AP1SSAmplitudeChange'] == 0 and row['AP1Amplitude'] > 0:
+                df.at[index, 'AP1SSAmplitudeChange'] = row['AP1Amplitude']
+
+            if np.isnan(row['AccommodationRateToSS']):
+                df.at[index, 'AccommodationRateToSS'] = -1
+
+            if np.isnan(row['AccommodationAtSSMean']):
+                df.at[index, 'AccommodationAtSSMean'] = -100
+
+        df['AP12AmplitudeDrop'] = df['AP12AmplitudeDrop'].apply(lambda x: np.log(10 + x))
+        df['AP12AmplitudeChangePercent'] = df['AP12AmplitudeChangePercent'].apply(
+            lambda x: np.log(-x + 10 + np.abs(np.max(df['AP12AmplitudeChangePercent']))))
+        df['AP1SSAmplitudeChange'] = df['AP1SSAmplitudeChange'].apply(
+            lambda x: np.log(x + 10 + np.abs(np.min(df['AP1SSAmplitudeChange']))))
+        df['AP1WidthHalfHeight'] = df['AP1WidthHalfHeight'].apply(
+            lambda x: np.log(x + 0.01 + np.abs(np.min(df['AP1WidthHalfHeight']))))
+        df['AP2WidthHalfHeight'] = df['AP2WidthHalfHeight'].apply(
+            lambda x: np.log(x + 0.01 + np.abs(np.min(df['AP2WidthHalfHeight']))))
+        df['AP1WidthPeakToTrough'] = df['AP1WidthPeakToTrough'].apply(
+            lambda x: np.log(x + 1 + np.abs(np.min(df['AP1WidthPeakToTrough']))))
+        df['AP2WidthPeakToTrough'] = df['AP2WidthPeakToTrough'].apply(
+            lambda x: np.log(x + 1 + np.abs(np.min(df['AP2WidthPeakToTrough']))))
+        df['AP1RateOfChangePeakToTrough'] = df['AP1RateOfChangePeakToTrough'].apply(
+            lambda x: np.log(-x + 1 + np.abs(np.max(df['AP1RateOfChangePeakToTrough']))))
+        df['AP2RateOfChangePeakToTrough'] = df['AP2RateOfChangePeakToTrough'].apply(
+            lambda x: np.log(-x + 1 + np.abs(np.max(df['AP2RateOfChangePeakToTrough']))))
+        df['AP12RateOfChangePeakToTroughPercentChange'] = df['AP12RateOfChangePeakToTroughPercentChange'].apply(
+            lambda x: np.log(x + 10 + np.abs(np.min(df['AP12RateOfChangePeakToTroughPercentChange']))))
+        df['AP12AHPDepthPercentChange'] = df['AP12AHPDepthPercentChange'].apply(
+            lambda x: np.log(x + 10 + np.abs(np.min(df['AP12AHPDepthPercentChange']))))
+        df['AP1DelayMean'] = df['AP1DelayMean'].apply(lambda x: np.log(x + 1 + np.abs(np.min(df['AP1DelayMean']))))
+        df['AP2DelayMean'] = df['AP2DelayMean'].apply(lambda x: np.log(x + 1 + np.abs(np.min(df['AP2DelayMean']))))
+        df['AP1DelayMeanStrongStim'] = df['AP1DelayMeanStrongStim'].apply(
+            lambda x: np.log(x + 1 + np.abs(np.min(df['AP1DelayMeanStrongStim']))))
+        df['AP2DelayMeanStrongStim'] = df['AP2DelayMeanStrongStim'].apply(
+            lambda x: np.log(x + 1 + np.abs(np.min(df['AP2DelayMeanStrongStim']))))
+        df['Burst1ISIMean'] = df['Burst1ISIMean'].apply(
+            lambda x: np.log(x + 1 + np.abs(np.min(df['Burst1ISIMean']))))
+        df['Burst1ISIMeanStrongStim'] = df['Burst1ISIMeanStrongStim'].apply(
+            lambda x: np.log(x + 1 + np.abs(np.min(df['Burst1ISIMeanStrongStim']))))
+        df['ISIMedian'] = df['ISIMedian'].apply(lambda x: np.log(x + 1 + np.abs(np.min(df['ISIMedian']))))
+        df['ISICV'] = df['ISICV'].apply(lambda x: np.log(x + 1 + np.abs(np.min(df['ISICV']))))
+        df['ISIBurstMeanChange'] = df['ISIBurstMeanChange'].apply(
+            lambda x: np.log(x + 100 + np.abs(np.min(df['ISIBurstMeanChange']))))
+        df['SpikeRateStrongStim'] = df['SpikeRateStrongStim'].apply(
+            lambda x: np.log(x + 1 + np.abs(np.min(df['SpikeRateStrongStim']))))
+        df['InputResistance'] = df['InputResistance'].apply(
+            lambda x: np.log(x + 10 + np.abs(np.min(df['InputResistance']))))
+        df['SteadyStateAPs'] = df['SteadyStateAPs'].apply(
+            lambda x: np.log(x + 1 + np.abs(np.min(df['SteadyStateAPs']))))
+        df['RampFirstSpike'] = df['RampFirstSpike'].apply(
+            lambda x: np.log(x + 1 + np.abs(np.min(df['RampFirstSpike']))))
+        df['FrequencyPassAbove'] = df['FrequencyPassAbove'].apply(
+            lambda x: np.log(x + 1 + np.abs(np.min(df['FrequencyPassAbove']))))
+        df['FrequencyPassBelow'] = df['FrequencyPassBelow'].apply(
+            lambda x: np.log(x + 1 + np.abs(np.min(df['FrequencyPassBelow']))))
+
+        return df, prop_names
+
+    def get_similar_ephyz_cells(self, cell_id):
+        self.server.connect()
+
+        all_cells = list(Cells \
+                         .select(Cells, Model_Waveforms.Spikes, Models.Name) \
+                         .join(Model_Waveforms, on=(Cells.Model_ID == Model_Waveforms.Model_id)) \
+                         .join(Models, on=(Cells.Model_ID == Models.Model_ID)) \
+                         .where((Model_Waveforms.Protocol == "STEADY_STATE") & (Model_Waveforms.Variable_Name == "Voltage")) \
+                         .order_by(Cells.Model_ID)
+                         .objects()
+                         )
+
+        df_all, prop_names = self.get_pre_processed_cell_ephyz_props(all_cells)
+
+        from sklearn.externals import joblib
+
+        scaler = joblib.load("ephyz_scaler.pkl")
+        x = scaler.transform(df.loc[:, prop_names].values)
+        x = DataFrame(x, columns=prop_names)
+
+        pca = joblib.load("ephyz_pca.pkl")
+        principalComponents = pca.transform(x)
+
+        principalDf = DataFrame(data=principalComponents)
+        X = principalDf
+
+    def cluster_cell_ephyz(self, plot=False):
+        """
+        Assigns all cells to clusters based on ephyz properties
+        """
+
+        # import pydevd
+        # pydevd.settrace('192.168.0.34', port=4200, suspend=False)
+
+        pandas.set_option('display.max_columns', None)
+        pandas.set_option('display.max_rows', 20)
+
+        self.server.connect()
+
+        all_cells = list(Cells \
+                     .select(Cells, Model_Waveforms.Spikes, Models.Name) \
+                     .join(Model_Waveforms, on=(Cells.Model_ID == Model_Waveforms.Model_id)) \
+                     .join(Models, on=(Cells.Model_ID == Models.Model_ID)) \
+                     .where((Model_Waveforms.Protocol == "STEADY_STATE") & (Model_Waveforms.Variable_Name == "Voltage")) \
+                     .order_by(Cells.Model_ID)
+                     .objects()
+                     )
+
+        df_all, prop_names = self.get_pre_processed_cell_ephyz_props(all_cells)
+
+        cluster_names = ["root", "multi_spikers", "multi_spikers_sub_0", "multi_spikers_sub_1"]
+
+        for cluster in cluster_names:
+            if cluster == 'root':
+                df = df_all # 1st pass
+                cluster_level = 'Root_Cluster'
+
+            elif cluster == 'multi_spikers':
+                df = df_all[df_all["Root_Cluster"] == 1] # 2nd pass
+                cluster_level = "Multi_Spike_Cluster"
+
+            elif cluster == 'multi_spikers_sub_0':
+                df = df_all[df_all["Multi_Spike_Cluster"] == 0] # Left of 2nd pass
+                cluster_level = "Multi_Spike_0_Cluster"
+
+            else: #multi_spikers_sub_1
+                df = df_all[df_all["Multi_Spike_Cluster"] == 1]  # Right of 2nd pass
+                cluster_level = "Multi_Spike_1_Cluster"
+
+            from sklearn.preprocessing import StandardScaler
+            scaler = StandardScaler()
+            x = scaler.fit_transform(df.loc[:, prop_names].values)
+
+            x = DataFrame(x, columns=prop_names)
+            print('start dims', len(prop_names))
+            from sklearn.decomposition import PCA
+            pca = PCA(svd_solver='full', n_components=0.95)
+            principalComponents = pca.fit_transform(x)
+
+            principalDf = DataFrame(data=principalComponents)
+            X = principalDf
+            print('post-pca dims', len(principalDf.columns))
+
+            if cluster == "root":
+                root_pcs = principalComponents
+
+
+            if plot:
+                from mpl_toolkits import mplot3d
+                plt.axes(projection='3d')
+                plt.plot(X[0], X[1], X[2], 'bo')
+
+                from scipy.cluster.hierarchy import dendrogram, linkage
+                from matplotlib import pyplot as plt
+
+                linked = linkage(X, 'ward', optimal_ordering=False)
+                plt.figure(figsize=(15, 7))
+                dendrogram(linked,
+                           orientation='top',
+                           distance_sort='acending',
+                           show_leaf_counts=True,
+                           truncate_mode='lastp',
+                           # p=5,
+                           show_contracted=True,
+                           )
+                plt.show()
+
+
+            from sklearn.cluster import AgglomerativeClustering
+
+            cluster = AgglomerativeClustering(n_clusters=2, affinity='euclidean', linkage='ward')
+            cluster.fit_predict(X)
+
+            if plot:
+                plt.scatter(X[0], X[1], c=cluster.labels_, cmap='rainbow')
+                plt.show()
+
+            # Set subset df cluster
+            df[cluster_level] = cluster.labels_
+
+            # Set main df cluster
+            df_all[cluster_level] = df[cluster_level]
+
+        def nan_to_none(value):
+            import math
+            return None if math.isnan(value) else value
+
+        import pydevd
+        pydevd.settrace('192.168.0.34', port=4200, suspend=False)
+
+        for index, cell in enumerate(all_cells):
+            print("Saving cell",cell.Model_ID,"cluster")
+            cell_record = Cells.get_or_none(Cells.Model_ID == cell.Model_ID)
+
+            cell_record.RootCluster = nan_to_none(df_all.at[index, 'Root_Cluster'])
+            cell_record.MultiSpikeCluster = nan_to_none(df_all.at[index, 'Multi_Spike_Cluster'])
+            cell_record.MultiSpikeClusterSub0 = nan_to_none(df_all.at[index, 'Multi_Spike_0_Cluster'])
+            cell_record.MultiSpikeClusterSub1 = nan_to_none(df_all.at[index, 'Multi_Spike_1_Cluster'])
+
+            cell_record.save()
+
+
+            from scipy.spatial.distance import euclidean
+            target = root_pcs[index]
+
+            df = DataFrame(root_pcs)
+            df["dist"] = np.apply_along_axis(euclidean, 1, root_pcs, target)
+            top_n = df.sort_values(by=['dist']).head(11).index[1:]
+
+            Cells_Similar_Ephyz.delete().where(Cells_Similar_Ephyz.Parent_Cell == cell.Model_ID).execute()
+
+            max_dist = df['dist'].max()
+
+            for similar_cell_loc in top_n:
+                similar_cell = all_cells[similar_cell_loc]
+
+                record = Cells_Similar_Ephyz(
+                    Parent_Cell=cell.Model_ID,
+                    Similar_Cell=similar_cell.Model_ID,
+                    Similarity = 1.0 - df.loc[similar_cell_loc]['dist']/max_dist
+                )
+
+                record.save()
 
 
     def replace_tokens(self, target, reps):

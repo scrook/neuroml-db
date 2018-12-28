@@ -38,6 +38,10 @@ def find_multicomp_cells_without_gifs():
     with ModelManager() as mm:
         mm.find_multicomp_cells_without_gifs()
 
+def cluster_cell_ephyz():
+    with ModelManager() as mm:
+        mm.cluster_cell_ephyz()
+
 def process_batch():
     # check queue for tasks,
     # if got one, process it, in a separate process
@@ -64,7 +68,7 @@ def process_batch():
         threads = int(params[0])
 
     print("Starting batch in " + str(threads) + " parallel processes...")
-    pool = Pool(processes=threads)
+    pool = Pool(processes=threads, maxtasksperchild=1)
     pool.map(single_cpu_job, range(threads))
 
 
@@ -77,32 +81,39 @@ def single_cpu_job(ignore):
     print("Checking for tasks...")
     time.sleep(randint(0, 15))
 
-    with ModelManager() as mm:
-        mm.server.connect()
+    def do_work():
+        with ModelManager() as mm:
+            mm.server.connect()
 
-        keep_working = True
-        while keep_working:
+            keep_working = True
+            while keep_working:
 
-            cursor = mm.server.db.cursor()
-            cursor.callproc("get_next_task")
-            tasks = cursor.fetchall()
+                cursor = mm.server.db.cursor()
+                cursor.callproc("get_next_task")
+                tasks = cursor.fetchall()
 
-            if len(tasks) > 0:
-                task_id, command = tasks[0]
-                print("Working on task: " + str(task_id) + " '" + command + "'")
+                if len(tasks) > 0:
+                    task_id, command = tasks[0]
+                    print("Working on task: " + str(task_id) + " '" + command + "'")
 
-                try:
-                    os.system(command)
-                finally:
-                    mm.server.db.execute_sql('call finish_task(%s)',(task_id))
-                    print("Task finished: " + str(task_id))
+                    try:
+                        os.system(command)
+                    finally:
+                        mm.server.db.execute_sql('call finish_task(%s)', (task_id))
+                        print("Task finished: " + str(task_id))
 
-                time.sleep(randint(0, 15))
+                    time.sleep(randint(0, 15))
 
-            else:
-                print('No more tasks, stopping worker process...')
+                else:
+                    print('No more tasks, stopping worker process...')
+                    return True
+
+    while True:
+        try:
+            if do_work():
                 return
-
+        except:
+            pass
 
 
 
