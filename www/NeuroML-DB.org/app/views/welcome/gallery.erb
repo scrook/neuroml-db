@@ -1,0 +1,38 @@
+<style>
+  .text-page { margin: 0; margin-top: -1px; }
+  .model, .model img, .img-bg { width: 227px; }
+  .img-bg { height: 227px; background-color: #002c3a; }
+  .model { display: inline-block; height: 266px; overflow:hidden; }
+  .model-name { text-align: center; font-size: 75%; }
+
+</style>
+<div id="main">
+  <!-- wrapper-main -->
+  <div class="wrapper">
+
+    <!-- content -->
+    <div id="content">
+
+      <!-- title -->
+      <div id="page-title">
+        <h2 class="title">Cell Models of the Day</h2>
+      </div>
+      <!-- ENDS title -->
+
+      <div class="text-page">
+        <% models = Model.GetGalleryList() %>
+
+        <% models.each do |model| %>
+          <a target="_blank" href="/model_info?model_id=<%= model["Model_ID"] %>"><div class="model">
+            <div class="img-bg">
+              <img src="/api/gif?id=<%= model["Model_ID"] %>"/>
+            </div>
+            <div class="model-name"><%= model["Name"] %></div>
+          </div></a>
+        <% end %>
+
+      </div>
+    </div>
+
+  </div>
+</div>

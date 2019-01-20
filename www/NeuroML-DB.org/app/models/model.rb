@@ -255,20 +255,15 @@ class Model < ActiveRecord::Base
 
     ephyz_clusters = ActiveRecord::Base.connection.exec_query(
         "
-          SELECT
-          cl.Name as Root_Cluster,
-          cl_ms.Name as MultiSpiker_Cluster,
-          cl_ms0.Name as MultiSpikerSub0_Cluster,
-          cl_ms1.Name as MultiSpikerSub1_Cluster,
-          CONCAT(COALESCE(cl.Differentiating_Features,''),
-                 COALESCE(cl_ms0.Differentiating_Features,''),
-                 COALESCE(cl_ms1.Differentiating_Features,'')) as Differentiating_Features
-          FROM cells c
-          LEFT JOIN cell_ephyz_clusters cl ON cl.Cluster_ID = c.RootCluster and cl.Parent_Branch_ID = 'Root'
-          LEFT JOIN cell_ephyz_clusters cl_ms ON cl_ms.Cluster_ID = c.MultiSpikeCluster and cl_ms.Parent_Branch_ID = 'Multi_Spikers'
-          LEFT JOIN cell_ephyz_clusters cl_ms0 ON cl_ms0.Cluster_ID = c.MultiSpikeClusterSub0 and cl_ms0.Parent_Branch_ID = 'Multi_Spikers_0'
-          LEFT JOIN cell_ephyz_clusters cl_ms1 ON cl_ms1.Cluster_ID = c.MultiSpikeClusterSub1 and cl_ms1.Parent_Branch_ID = 'Multi_Spikers_1'
-          where c.Model_ID = '#{idClean}'
+          SELECT ID, Name, Differentiating_Features
+          FROM
+          (
+              SELECT t.ID AS ID, t.Name, t.Differentiating_Features, @pv:=SUBSTRING(t.ID,1,char_length(t.ID)-2) AS parent
+              FROM (SELECT * FROM cell_ephyz_clusters ORDER BY ID DESC) t
+              JOIN (SELECT @pv:='#{model["ClusterPath"]}') tmp
+              WHERE t.ID=@pv
+            ) AS tree
+            ORDER BY tree.ID DESC
         ")
 
     versions = GetModelVersions(idClean)
@@ -410,6 +405,20 @@ class Model < ActiveRecord::Base
       return nil
     end
 
+  end
+
+  def self.GetGalleryList()
+    models = ActiveRecord::Base.connection.exec_query(
+    "
+        SELECT c.Model_ID, m.Name
+        FROM cells c
+        JOIN models m ON m.Model_ID = c.Model_ID
+        WHERE c.Compartments > 1
+        ORDER BY RAND(DAYOFMONTH(CURDATE()))
+        LIMIT 16
+    ")
+
+    return models
   end
 
   def self.GetMorphometrics(id)

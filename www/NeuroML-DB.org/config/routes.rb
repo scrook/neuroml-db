@@ -1,6 +1,8 @@
 RedmineApp::Application.routes.draw do
   root :to => 'welcome#search_model', :as => 'search_model'
   match 'home_db', :to => 'welcome#home_db', :as => 'home_db'
+  match 'about', :to => 'welcome#home_db', :as => 'home_db'
+  match 'gallery', :to => 'welcome#gallery', :as => 'gallery'
   match 'documentation', :to => 'welcome#documentation', :as => 'documentation'
   match 'tool_support', :to => 'welcome#tool_support', :as => 'tool_support'
   match 'search_model', :to => 'welcome#search_model', :as => 'search_model'

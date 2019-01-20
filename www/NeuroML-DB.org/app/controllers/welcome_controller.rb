@@ -434,5 +434,9 @@ class WelcomeController < ApplicationController
 
   end
 
+  def gallery
+
+  end
+
 # endregion
 end

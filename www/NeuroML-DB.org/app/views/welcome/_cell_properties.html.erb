@@ -11,9 +11,11 @@
   <div id="e-type">
     <div id="section-header">Electrophysiology Type <span data-scroll="desc-e-type" class="help-btn ui-icon ui-icon-info"></span></div>
     <div id="clusters">
-      <%= @ephyz_clusters.first["Root_Cluster"] %><br/>
-      &nbsp;&nbsp;&nbsp;&#8667;<%= @ephyz_clusters.first["MultiSpiker_Cluster"] %><br/>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8667;<%= @ephyz_clusters.first["MultiSpikerSub0_Cluster"] %><%= @ephyz_clusters.first["MultiSpikerSub1_Cluster"] %>
+      <% @spaces = "" %>
+      <% @ephyz_clusters.each do |record| %>
+          <%= raw(@spaces) %>&#8667;<%= record["Name"] %><br/>
+          <% @spaces += "&nbsp;&nbsp;&nbsp;" %>
+      <% end %>
     </div>
   </div>
   <div id="salient-features">
@@ -22,11 +24,13 @@
       <div id="membrane-props" class="property-table">
         <table>
           <tbody>
-          <% @ephyz_clusters.first["Differentiating_Features"].split(',').each do |record| %>
+          <% if @ephyz_clusters.first != nil && @ephyz_clusters.first["Differentiating_Features"] != nil
+            @ephyz_clusters.first["Differentiating_Features"].split(',').each do |record| %>
             <tr id="<%= record %>-diff">
             </tr>
             <script>jQuery(function() { jQuery('#<%= record %>-diff').html(jQuery('#<%= record %>').html()); })</script>
-          <% end %>
+          <% end
+           end %>
           </tbody>
         </table>
       </div>
@@ -51,206 +55,212 @@
       <tbody>
       <tr>
         <td class="property-name">Is Passive</td>
-        <td class="property-value"><%= @model["Is_Passive"] == 1 ? "Yes" : "No" %></td>
+        <td class="property-value"><%= @model["Is_Passive"] == 1 ? "Yes" : "No" %> <span data-scroll="desc-Is_Passive" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr>
         <td class="property-name">Is Intrinsically Spiking</td>
-        <td class="property-value"><%= @model["Is_Intrinsically_Spiking"] == 1 ? "Yes" : "No" %></td>
+        <td class="property-value"><%= @model["Is_Intrinsically_Spiking"] == 1 ? "Yes" : "No" %> <span data-scroll="desc-Is_Intrinsically_Spiking" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr>
         <td class="property-name">Resting Voltage</td>
-        <td class="property-value"><%= display_field(@model, "Resting_Voltage", "%.2f", "N/A") %> mV</td>
+        <td class="property-value"><%= display_field(@model, "Resting_Voltage", "%.2f", "N/A") %> mV <span data-scroll="desc-Resting_Voltage" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr>
         <td class="property-name">Rheobase Current Interval</td>
-        <td class="property-value">(<%= display_field(@model, "Rheobase_Low", "%.4f", "N/A") %>, <%= display_field(@model, "Rheobase_High", "%.4f", "N/A") %>] nA</td>
+        <td class="property-value">(<%= display_field(@model, "Rheobase_Low", "%.5f", "N/A") %>, <%= display_field(@model, "Rheobase_High", "%.5f", "N/A") %>] nA <span data-scroll="desc-Rheobase" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr>
         <td class="property-name">Threshold Current Interval</td>
-        <td class="property-value">(<%= display_field(@model, "Threshold_Current_Low", "%.4f", "N/A") %>, <%= display_field(@model, "Threshold_Current_High", "%.4f", "N/A") %>] nA</td>
+        <td class="property-value">(<%= display_field(@model, "Threshold_Current_Low", "%.5f", "N/A") %>, <%= display_field(@model, "Threshold_Current_High", "%.5f", "N/A") %>] nA <span data-scroll="desc-Threshold_Current" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr>
         <td class="property-name">Bias Current (to <%= display_field(@model, "Bias_Voltage", "%.2f", "N/A") %> mV)</td>
-        <td class="property-value"><%= display_field(@model, "Bias_Current", "%.4f", "N/A") %> nA</td>
+        <td class="property-value"><%= display_field(@model, "Bias_Current", "%.4f", "N/A") %> nA <span data-scroll="desc-Bias_Current" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr>
         <td class="property-name">Testing Temperature</td>
-        <td class="property-value"><%= @publication["Temperature"] != nil ? @publication["Temperature"] : "36 (default)" %> &#176;C</td>
+        <td class="property-value"><%= @publication["Temperature"] != nil ? @publication["Temperature"] : "36 (default)" %> &#176;C <span data-scroll="desc-Temperature" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr>
         <td class="property-name">Stability Interval</td>
-        <td class="property-value">[<%= display_field(@model, "Stability_Range_Low_Corr", "%s", "N/A") %>, <%= display_field(@model, "Stability_Range_High_Corr", "%s", "N/A") %>] <%= @type == "Cell" ? "nA" : "mV" %></td>
+        <td class="property-value">[<%= display_field(@model, "Stability_Range_Low_Corr", "%s", "N/A") %>, <%= display_field(@model, "Stability_Range_High_Corr", "%s", "N/A") %>] <%= @type == "Cell" ? "nA" : "mV" %> <span data-scroll="desc-Stability_Range" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
 
 
       <tr id="AP12AmplitudeDrop">
-        <td class="property-name">AP12AmplitudeDrop</td>
-        <td class="property-value"><%= display_field(@model, "AP12AmplitudeDrop", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">AP 1-2 Amplitude Drop</td>
+        <td class="property-value"><%= display_field(@model, "AP12AmplitudeDrop", "%.4f", "N/A") %> mV <span data-scroll="desc-AP12AmplitudeDrop" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="AP1SSAmplitudeChange">
-        <td class="property-name">AP1SSAmplitudeChange</td>
-        <td class="property-value"><%= display_field(@model, "AP1SSAmplitudeChange", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">AP 1 Steady State Amplitude Change</td>
+        <td class="property-value"><%= display_field(@model, "AP1SSAmplitudeChange", "%.4f", "N/A") %> mV <span data-scroll="desc-AP1SSAmplitudeChange" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="AP1Amplitude">
-        <td class="property-name">AP1Amplitude</td>
-        <td class="property-value"><%= display_field(@model, "AP1Amplitude", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">AP 1 Amplitude</td>
+        <td class="property-value"><%= display_field(@model, "AP1Amplitude", "%.4f", "N/A") %> mV <span data-scroll="desc-AP1Amplitude" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="AP1WidthHalfHeight">
-        <td class="property-name">AP1WidthHalfHeight</td>
-        <td class="property-value"><%= display_field(@model, "AP1WidthHalfHeight", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">AP 1 Width at Half Height</td>
+        <td class="property-value"><%= display_field(@model, "AP1WidthHalfHeight", "%.4f", "N/A") %> ms <span data-scroll="desc-AP1WidthHalfHeight" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="AP1WidthPeakToTrough">
-        <td class="property-name">AP1WidthPeakToTrough</td>
-        <td class="property-value"><%= display_field(@model, "AP1WidthPeakToTrough", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">AP 1 Width (Peak To Trough)</td>
+        <td class="property-value"><%= display_field(@model, "AP1WidthPeakToTrough", "%.4f", "N/A") %> ms <span data-scroll="desc-AP1WidthPeakToTrough" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="AP1RateOfChangePeakToTrough">
-        <td class="property-name">AP1RateOfChangePeakToTrough</td>
-        <td class="property-value"><%= display_field(@model, "AP1RateOfChangePeakToTrough", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">AP 1 Rate of Change Peak to Trough</td>
+        <td class="property-value"><%= display_field(@model, "AP1RateOfChangePeakToTrough", "%.4f", "N/A") %> mV/ms <span data-scroll="desc-AP1RateOfChangePeakToTrough" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="AP1AHPDepth">
-        <td class="property-name">AP1AHPDepth</td>
-        <td class="property-value"><%= display_field(@model, "AP1AHPDepth", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">AP 1 AHP Depth</td>
+        <td class="property-value"><%= display_field(@model, "AP1AHPDepth", "%.4f", "N/A") %> mV <span data-scroll="desc-AP1AHPDepth" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="AP2Amplitude">
-        <td class="property-name">AP2Amplitude</td>
-        <td class="property-value"><%= display_field(@model, "AP2Amplitude", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">AP2 Amplitude</td>
+        <td class="property-value"><%= display_field(@model, "AP2Amplitude", "%.4f", "N/A") %> mV <span data-scroll="desc-AP2Amplitude" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="AP2WidthHalfHeight">
-        <td class="property-name">AP2WidthHalfHeight</td>
-        <td class="property-value"><%= display_field(@model, "AP2WidthHalfHeight", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">AP2 Width at Half Height</td>
+        <td class="property-value"><%= display_field(@model, "AP2WidthHalfHeight", "%.4f", "N/A") %> ms <span data-scroll="desc-AP2WidthHalfHeight" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="AP2WidthPeakToTrough">
-        <td class="property-name">AP2WidthPeakToTrough</td>
-        <td class="property-value"><%= display_field(@model, "AP2WidthPeakToTrough", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">AP 2 Width (Peak to Trough)</td>
+        <td class="property-value"><%= display_field(@model, "AP2WidthPeakToTrough", "%.4f", "N/A") %> ms <span data-scroll="desc-AP2WidthPeakToTrough" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="AP2RateOfChangePeakToTrough">
-        <td class="property-name">AP2RateOfChangePeakToTrough</td>
-        <td class="property-value"><%= display_field(@model, "AP2RateOfChangePeakToTrough", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">AP 2 Rate of Change Peak to Trough</td>
+        <td class="property-value"><%= display_field(@model, "AP2RateOfChangePeakToTrough", "%.4f", "N/A") %> mV/ms <span data-scroll="desc-AP2RateOfChangePeakToTrough" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="AP2AHPDepth">
-        <td class="property-name">AP2AHPDepth</td>
-        <td class="property-value"><%= display_field(@model, "AP2AHPDepth", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">AP 2 AHP Depth</td>
+        <td class="property-value"><%= display_field(@model, "AP2AHPDepth", "%.4f", "N/A") %> mV <span data-scroll="desc-AP2AHPDepth" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="AP12AmplitudeChangePercent">
-        <td class="property-name">AP12AmplitudeChangePercent</td>
-        <td class="property-value"><%= display_field(@model, "AP12AmplitudeChangePercent", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">AP 1-2 Amplitude Change Percent</td>
+        <td class="property-value"><%= display_field(@model, "AP12AmplitudeChangePercent", "%.4f", "N/A") %> % <span data-scroll="desc-AP12AmplitudeChangePercent" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="AP12HalfWidthChangePercent">
-        <td class="property-name">AP12HalfWidthChangePercent</td>
-        <td class="property-value"><%= display_field(@model, "AP12HalfWidthChangePercent", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">AP 1-2 Half Width Change Percent</td>
+        <td class="property-value"><%= display_field(@model, "AP12HalfWidthChangePercent", "%.4f", "N/A") %> % <span data-scroll="desc-AP12HalfWidthChangePercent" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="AP12RateOfChangePeakToTroughPercentChange">
-        <td class="property-name">AP12RateOfChangePeakToTroughPercentChange</td>
-        <td class="property-value"><%= display_field(@model, "AP12RateOfChangePeakToTroughPercentChange", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">AP 1-2 Rate of Change Peak to Trough Percent Change</td>
+        <td class="property-value"><%= display_field(@model, "AP12RateOfChangePeakToTroughPercentChange", "%.4f", "N/A") %> % <span data-scroll="desc-AP12RateOfChangePeakToTroughPercentChange" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="AP12AHPDepthPercentChange">
-        <td class="property-name">AP12AHPDepthPercentChange</td>
-        <td class="property-value"><%= display_field(@model, "AP12AHPDepthPercentChange", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">AP 1-2 AHP Depth Percent Change</td>
+        <td class="property-value"><%= display_field(@model, "AP12AHPDepthPercentChange", "%.4f", "N/A") %> % <span data-scroll="desc-AP12AHPDepthPercentChange" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="InputResistance">
-        <td class="property-name">InputResistance</td>
-        <td class="property-value"><%= display_field(@model, "InputResistance", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">Input Resistance</td>
+        <td class="property-value"><%= display_field(@model, "InputResistance", "%.4f", "N/A") %> M&Omega; <span data-scroll="desc-InputResistance" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="AP1DelayMean">
-        <td class="property-name">AP1DelayMean</td>
-        <td class="property-value"><%= display_field(@model, "AP1DelayMean", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">AP 1 Delay Mean</td>
+        <td class="property-value"><%= display_field(@model, "AP1DelayMean", "%.4f", "N/A") %> ms <span data-scroll="desc-AP1DelayMean" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="AP1DelaySD">
-        <td class="property-name">AP1DelaySD</td>
-        <td class="property-value"><%= display_field(@model, "AP1DelaySD", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">AP 1 Delay SD</td>
+        <td class="property-value"><%= display_field(@model, "AP1DelaySD", "%.4f", "N/A") %> ms <span data-scroll="desc-AP1DelaySD" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="AP2DelayMean">
-        <td class="property-name">AP2DelayMean</td>
-        <td class="property-value"><%= display_field(@model, "AP2DelayMean", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">AP 2 Delay Mean</td>
+        <td class="property-value"><%= display_field(@model, "AP2DelayMean", "%.4f", "N/A") %> ms <span data-scroll="desc-AP2DelayMean" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="AP2DelaySD">
-        <td class="property-name">AP2DelaySD</td>
-        <td class="property-value"><%= display_field(@model, "AP2DelaySD", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">AP 2 Delay SD</td>
+        <td class="property-value"><%= display_field(@model, "AP2DelaySD", "%.4f", "N/A") %> ms <span data-scroll="desc-AP2DelaySD" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="Burst1ISIMean">
-        <td class="property-name">Burst1ISIMean</td>
-        <td class="property-value"><%= display_field(@model, "Burst1ISIMean", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">Burst 1 ISI Mean</td>
+        <td class="property-value"><%= display_field(@model, "Burst1ISIMean", "%.4f", "N/A") %> ms <span data-scroll="desc-Burst1ISIMean" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="Burst1ISISD">
-        <td class="property-name">Burst1ISISD</td>
-        <td class="property-value"><%= display_field(@model, "Burst1ISISD", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">Burst 1 ISI SD</td>
+        <td class="property-value"><%= display_field(@model, "Burst1ISISD", "%.4f", "N/A") %> ms <span data-scroll="desc-Burst1ISISD" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="InitialAccommodationMean">
-        <td class="property-name">InitialAccommodationMean</td>
-        <td class="property-value"><%= display_field(@model, "InitialAccommodationMean", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">Initial Accommodation Mean</td>
+        <td class="property-value"><%= display_field(@model, "InitialAccommodationMean", "%.4f", "N/A") %> % <span data-scroll="desc-InitialAccommodationMean" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="SSAccommodationMean">
-        <td class="property-name">SSAccommodationMean</td>
-        <td class="property-value"><%= display_field(@model, "SSAccommodationMean", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">Steady State Accommodation Mean</td>
+        <td class="property-value"><%= display_field(@model, "SSAccommodationMean", "%.4f", "N/A") %> % <span data-scroll="desc-SSAccommodationMean" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="AccommodationRateToSS">
-        <td class="property-name">AccommodationRateToSS</td>
-        <td class="property-value"><%= display_field(@model, "AccommodationRateToSS", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">Accommodation Rate to Steady State</td>
+        <td class="property-value"><%= display_field(@model, "AccommodationRateToSS", "%.4f", "N/A") %> %/ms <span data-scroll="desc-AccommodationRateToSS" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="AccommodationAtSSMean">
-        <td class="property-name">AccommodationAtSSMean</td>
-        <td class="property-value"><%= display_field(@model, "AccommodationAtSSMean", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">Accommodation at Steady State Mean</td>
+        <td class="property-value"><%= display_field(@model, "AccommodationAtSSMean", "%.4f", "N/A") %> % <span data-scroll="desc-AccommodationAtSSMean" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="AccommodationRateMeanAtSS">
-        <td class="property-name">AccommodationRateMeanAtSS</td>
-        <td class="property-value"><%= display_field(@model, "AccommodationRateMeanAtSS", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">Accommodation Rate Mean at Steady State</td>
+        <td class="property-value"><%= display_field(@model, "AccommodationRateMeanAtSS", "%.4f", "N/A") %> ms <span data-scroll="desc-AccommodationRateMeanAtSS" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="ISICV">
-        <td class="property-name">ISICV</td>
-        <td class="property-value"><%= display_field(@model, "ISICV", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">ISI CV</td>
+        <td class="property-value"><%= display_field(@model, "ISICV", "%.4f", "N/A") %> <span data-scroll="desc-ISICV" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="ISIMedian">
-        <td class="property-name">ISIMedian</td>
-        <td class="property-value"><%= display_field(@model, "ISIMedian", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">ISI Median</td>
+        <td class="property-value"><%= display_field(@model, "ISIMedian", "%.4f", "N/A") %> ms <span data-scroll="desc-ISIMedian" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="ISIBurstMeanChange">
-        <td class="property-name">ISIBurstMeanChange</td>
-        <td class="property-value"><%= display_field(@model, "ISIBurstMeanChange", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">ISI Burst Mean Change</td>
+        <td class="property-value"><%= display_field(@model, "ISIBurstMeanChange", "%.4f", "N/A") %> % <span data-scroll="desc-ISIBurstMeanChange" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="SpikeRateStrongStim">
-        <td class="property-name">SpikeRateStrongStim</td>
-        <td class="property-value"><%= display_field(@model, "SpikeRateStrongStim", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">Spike Rate (Strong Stimulation)</td>
+        <td class="property-value"><%= display_field(@model, "SpikeRateStrongStim", "%.4f", "N/A") %> Hz <span data-scroll="desc-SpikeRateStrongStim" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="AP1DelayMeanStrongStim">
-        <td class="property-name">AP1DelayMeanStrongStim</td>
-        <td class="property-value"><%= display_field(@model, "AP1DelayMeanStrongStim", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">AP 1 Delay Mean (Strong Stimulation)</td>
+        <td class="property-value"><%= display_field(@model, "AP1DelayMeanStrongStim", "%.4f", "N/A") %> ms <span data-scroll="desc-AP1DelayMeanStrongStim" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="AP1DelaySDStrongStim">
-        <td class="property-name">AP1DelaySDStrongStim</td>
-        <td class="property-value"><%= display_field(@model, "AP1DelaySDStrongStim", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">AP 1 Delay SD (Strong Stimulation)</td>
+        <td class="property-value"><%= display_field(@model, "AP1DelaySDStrongStim", "%.4f", "N/A") %> ms <span data-scroll="desc-AP1DelaySDStrongStim" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="AP2DelayMeanStrongStim">
-        <td class="property-name">AP2DelayMeanStrongStim</td>
-        <td class="property-value"><%= display_field(@model, "AP2DelayMeanStrongStim", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">AP 2 Delay Mean (Strong Stimulation)</td>
+        <td class="property-value"><%= display_field(@model, "AP2DelayMeanStrongStim", "%.4f", "N/A") %> ms <span data-scroll="desc-AP2DelayMeanStrongStim" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="AP2DelaySDStrongStim">
-        <td class="property-name">AP2DelaySDStrongStim</td>
-        <td class="property-value"><%= display_field(@model, "AP2DelaySDStrongStim", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">AP 2 Delay SD (Strong Stimulation)</td>
+        <td class="property-value"><%= display_field(@model, "AP2DelaySDStrongStim", "%.4f", "N/A") %> ms <span data-scroll="desc-AP2DelaySDStrongStim" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="Burst1ISIMeanStrongStim">
-        <td class="property-name">Burst1ISIMeanStrongStim</td>
-        <td class="property-value"><%= display_field(@model, "Burst1ISIMeanStrongStim", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">Burst 1 ISI Mean (Strong Stimulation)</td>
+        <td class="property-value"><%= display_field(@model, "Burst1ISIMeanStrongStim", "%.4f", "N/A") %> ms <span data-scroll="desc-Burst1ISIMeanStrongStim" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="Burst1ISISDStrongStim">
-        <td class="property-name">Burst1ISISDStrongStim</td>
-        <td class="property-value"><%= display_field(@model, "Burst1ISISDStrongStim", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">Burst 1 ISI SD (Strong Stimulation)</td>
+        <td class="property-value"><%= display_field(@model, "Burst1ISISDStrongStim", "%.4f", "N/A") %> ms <span data-scroll="desc-Burst1ISISDStrongStim" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="RampFirstSpike">
-        <td class="property-name">RampFirstSpike</td>
-        <td class="property-value"><%= display_field(@model, "RampFirstSpike", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">Ramp First Spike Time</td>
+        <td class="property-value"><%= display_field(@model, "RampFirstSpike", "%.4f", "N/A") %> ms <span data-scroll="desc-RampFirstSpike" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
       <tr id="FrequencyFilterType">
-        <td class="property-name">FrequencyFilterType</td>
-        <td class="property-value"><%= display_field(@model, "FrequencyFilterType", "%s", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
+        <td class="property-name">Frequency Filter Type</td>
+        <td class="property-value"><%= display_field(@model, "FrequencyFilterType", "%s", "N/A") %> <span data-scroll="desc-FrequencyFilterType" class="help-btn ui-icon ui-icon-info"></span></td>
       </tr>
-      <tr id="FrequencyPassAbove">
-        <td class="property-name">FrequencyPassAbove</td>
-        <td class="property-value"><%= display_field(@model, "FrequencyPassAbove", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
-      </tr>
-      <tr id="FrequencyPassBelow">
-        <td class="property-name">FrequencyPassBelow</td>
-        <td class="property-value"><%= display_field(@model, "FrequencyPassBelow", "%.4f", "N/A") %> UNITS <span data-scroll="desc-DESC" class="help-btn ui-icon ui-icon-info"></span></td>
-      </tr>
+      <% if @model["FrequencyFilterType"] != "Constant" %>
+        <% if @model["FrequencyFilterType"] != "Low-Pass" %>
+        <tr id="FrequencyPassAbove">
+          <td class="property-name">Frequency Filter Pass Above</td>
+          <td class="property-value"><%= display_field(@model, "FrequencyPassAbove", "%.4f", "N/A") %> Hz <span data-scroll="desc-FrequencyPassAbove" class="help-btn ui-icon ui-icon-info"></span></td>
+        </tr>
+        <% end %>
+        <% if @model["FrequencyFilterType"] != "High-Pass" %>
+        <tr id="FrequencyPassBelow">
+          <td class="property-name">Frequency Filter Pass Below</td>
+          <td class="property-value"><%= display_field(@model, "FrequencyPassBelow", "%.4f", "N/A") %> Hz <span data-scroll="desc-FrequencyPassBelow" class="help-btn ui-icon ui-icon-info"></span></td>
+        </tr>
+        <% end %>
+      <% end %>
       </tbody>
     </table>
   </div>

@@ -177,17 +177,22 @@ class Cells(BaseModel):
     FrequencyPassAbove = FloatField()
     FrequencyPassBelow = FloatField()
 
-    RootCluster = IntegerField()
-    MultiSpikeCluster = IntegerField()
-    MultiSpikeClusterSub0 = IntegerField()
-    MultiSpikeClusterSub1 = IntegerField()
-
+class Cell_Ephyz_Clusters(BaseModel):
+    ID = CharField(primary_key=True)
+    Name = TextField()
+    Differentiating_Features  = TextField()
 
 class Cells_Similar_Ephyz(BaseModel):
     ID = PrimaryKeyField()
     Parent_Cell = ForeignKeyField(Cells, field='Model_ID', column_name='Parent_Cell_ID')
     Similar_Cell = ForeignKeyField(Cells, field='Model_ID', column_name='Similar_Cell_ID')
     Similarity = FloatField()
+
+class Cell_Closest_Ephyz_Clusters(BaseModel):
+    ID = PrimaryKeyField()
+    Cell = ForeignKeyField(Cells, field='Model_ID', column_name='Cell_ID')
+    Cluster = ForeignKeyField(Cell_Ephyz_Clusters, field='ID', column_name='Cluster_ID')
+    Distance = FloatField()
 
 class Morphometrics(BaseModel):
     ID = CharField(primary_key=True)

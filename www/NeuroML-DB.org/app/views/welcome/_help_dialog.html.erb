@@ -99,6 +99,356 @@
       <p>This model's runtime to compute 10 action potentials per second using variable time-step method as a fraction of Hodgkin-Huxley model's run time.</p>
     </div>
   </div>
+
+  <div id="desc-e-type">
+    <div class="title">Electrophysiology Type</div>
+    <div class="desc">
+      <p>The electrophysiology cluster to which this cell is most closest.</p>
+    </div>
+  </div>
+
+  <div id="desc-diff-features">
+    <div class="title">Differentiating Features</div>
+    <div class="desc">
+      <p>The electrophysiology properties which distinguish this cell model cluster from other models.</p>
+    </div>
+  </div>
+
+  <div id="desc-similar-ephyz">
+    <div class="title">Models with Similar Electrophysiology Properties</div>
+    <div class="desc">
+      <p>The list of cell models that have similar values of electrophysiology properties. The models further down the list are less similar than those near the top.</p>
+    </div>
+  </div>
+
+  <div id="desc-Is_Passive">
+    <div class="title">Is Passive</div>
+    <div class="desc">
+      <p>Whether this cell model contains only a passive/leak channel.</p>
+    </div>
+  </div>
+  <div id="desc-Is_Intrinsically_Spiking">
+    <div class="title">Is Intrinsically Spiking</div>
+    <div class="desc">
+      <p>Whether this cell model produces spikes without stimulaion.</p>
+    </div>
+  </div>
+  <div id="desc-Resting_Voltage">
+    <div class="title">Resting Voltage</div>
+    <div class="desc">
+      <p>The resting voltage of this cell model.</p>
+    </div>
+  </div>
+  <div id="desc-Rheobase">
+    <div class="title">Rheobase Current Interval</div>
+    <div class="desc">
+      <p>The upper point of the interval is the lowest square current amplitude of 1 sec long that produces 1 or more spikes. The lower point is the largest current that does not result in spikes.</p>
+    </div>
+  </div>
+  <div id="desc-Threshold_Current">
+    <div class="title">Threshold Current Interval</div>
+    <div class="desc">
+      <p>The upper point of the interval is the lowest square current amplitude of 3 ms long that produces 1 or more spikes. The lower point is the largest current that does not result in spikes.</p>
+    </div>
+  </div>
+  <div id="desc-Bias_Current">
+    <div class="title">Bias Current</div>
+    <div class="desc">
+      <p>The amplitude of a square current 1 sec long that results in the specified steady state voltage.</p>
+    </div>
+  </div>
+  <div id="desc-Temperature">
+    <div class="title">Testing Temperature</div>
+    <div class="desc">
+      <p>The temperature at which the simulations were performed.</p>
+    </div>
+  </div>
+  <div id="desc-Stability_Range">
+    <div class="title">Stability Interval</div>
+    <div class="desc">
+      <p>The minimum and maximum 3 ms square voltages (for channels) or currents (for cells) that this model could tolerate as inputs without resulting in numerical instabilities ("blow-ups").</p>
+    </div>
+  </div>
+
+  <div id="desc-AP12AmplitudeDrop">
+    <div class="title">AP 1-2 Amplitude Drop</div>
+    <div class="desc">
+      <p>Difference in the voltage value between the amplitude of the first and second AP.</p>
+    </div>
+  </div>
+  <div id="desc-AP1SSAmplitudeChange">
+    <div class="title">AP 1 Steady State Amplitude Change</div>
+    <div class="desc">
+      <p>Steady state AP amplitude is calculated as the mean amplitude of the set of APs
+        that occurred during the latter third of the current step.</p>
+    </div>
+  </div>
+  <div id="desc-AP1Amplitude">
+    <div class="title">AP 1 Amplitude</div>
+    <div class="desc">
+      <p>Amplitude of the first AP.</p>
+    </div>
+  </div>
+  <div id="desc-AP1WidthHalfHeight">
+    <div class="title">AP 1 Width at Half Height</div>
+    <div class="desc">
+      <p>Amount of time in between the first crossing (in the upwards direction) of the
+        half-height voltage value and the second crossing (in the downwards direction) of
+        this value, for the first AP. Half-height voltage is the voltage at the beginning of
+        the AP plus half the AP amplitude.</p>
+    </div>
+  </div>
+  <div id="desc-AP1WidthPeakToTrough">
+    <div class="title">AP 1 Width (Peak To Trough)</div>
+    <div class="desc">
+      <p>Amount of time between the peak of the first AP and the trough, i.e., the minimum of the AHP</p>
+    </div>
+  </div>
+  <div id="desc-AP1RateOfChangePeakToTrough">
+    <div class="title">AP 1 Rate of Change Peak to Trough</div>
+    <div class="desc">
+      <p>Difference in voltage value between peak and trough over the amount of time in between the peak and trough.</p>
+    </div>
+  </div>
+  <div id="desc-AP1AHPDepth">
+    <div class="title">AP 1 AHP Depth</div>
+    <div class="desc">
+      <p>Difference between the minimum of voltage at the trough and the voltage value at
+        the beginning of the AP.</p>
+    </div>
+  </div>
+  <div id="desc-AP2Amplitude">
+    <div class="title">AP 2 Amplitude</div>
+    <div class="desc">
+      <p>Amplitude of the second  AP.</p>
+    </div>
+  </div>
+  <div id="desc-AP2WidthHalfHeight">
+    <div class="title">AP 2 Width at Half Height</div>
+    <div class="desc">
+      <p>Same as "AP 1 Width at Half Height" but for second AP.</p>
+    </div>
+  </div>
+  <div id="desc-AP2WidthPeakToTrough">
+    <div class="title">AP 2 Width (Peak to Trough)</div>
+    <div class="desc">
+      <p>Same as "AP 1 Width (Peak to Trough)" but for second AP.</p>
+    </div>
+  </div>
+  <div id="desc-AP2RateOfChangePeakToTrough">
+    <div class="title">AP 2 Rate of Change Peak to Trough</div>
+    <div class="desc">
+      <p>Same as "AP 1 Rate of Change Peak to Trough" but for second AP.</p>
+    </div>
+  </div>
+  <div id="desc-AP2AHPDepth">
+    <div class="title">AP 2 AHP Depth</div>
+    <div class="desc">
+      <p>Same as "AP 1 AHP Depth" but for second AP.</p>
+    </div>
+  </div>
+  <div id="desc-AP12AmplitudeChangePercent">
+    <div class="title">AP 1-2 Amplitude Change Percent</div>
+    <div class="desc">
+      <p>Difference in AP amplitude between first and second AP divided by the first AP
+        amplitude.</p>
+    </div>
+  </div>
+  <div id="desc-AP12HalfWidthChangePercent">
+    <div class="title">AP 1-2 Half Width Change Percent</div>
+    <div class="desc">
+      <p>Difference in AP width at half-height between first and second AP divided by the
+        first AP width at half-height.</p>
+    </div>
+  </div>
+  <div id="desc-AP12RateOfChangePeakToTroughPercentChange">
+    <div class="title">AP 1-2 Rate of Change Peak to Trough Percent Change</div>
+    <div class="desc">
+      <p>Difference in peak to trough rate of change between first and second AP divided
+        by the first AP peak to trough rate of change.</p>
+    </div>
+  </div>
+  <div id="desc-AP12AHPDepthPercentChange">
+    <div class="title">AP 1-2 AHP Depth Percent Change</div>
+    <div class="desc">
+      <p>Difference in depth of fast AHP between first and second AP divided by the first
+        AP depth of fast AHP.</p>
+    </div>
+  </div>
+  <div id="desc-InputResistance">
+    <div class="title">Input Resistance</div>
+    <div class="desc">
+      <p>Input resistance calculated by injecting weak subthreshold hyperpolarizing and
+        depolarizing step currents. Input resistance was taken as linear fit of current to
+        voltage difference.</p>
+    </div>
+  </div>
+  <div id="desc-AP1DelayMean">
+    <div class="title">AP 1 Delay Mean</div>
+    <div class="desc">
+      <p>Mean of the delay to beginning of first AP over experimental repetitions of step
+        currents.</p>
+    </div>
+  </div>
+  <div id="desc-AP1DelaySD">
+    <div class="title">AP 1 Delay SD</div>
+    <div class="desc">
+      <p>Standard deviation of the delay to beginning of first AP over experimental
+        repetitions of step currents.</p>
+    </div>
+  </div>
+  <div id="desc-AP2DelayMean">
+    <div class="title">AP 2 Delay Mean</div>
+    <div class="desc">
+      <p>Same as "AP 1 Delay Mean" but for second AP.</p>
+    </div>
+  </div>
+  <div id="desc-AP2DelaySD">
+    <div class="title">AP 2 Delay SD</div>
+    <div class="desc">
+      <p>Same as "AP 1 Delay SD" but for second AP.</p>
+    </div>
+  </div>
+  <div id="desc-Burst1ISIMean">
+    <div class="title">Burst 1 ISI Mean</div>
+    <div class="desc">
+      <p>Initial burst interval is defined as the average of the first two ISIs, i.e., the average
+        of the time differences between the first and second AP and the second and third
+        AP. This feature is the average the initial burst interval across experimental
+        repetitions.</p>
+    </div>
+  </div>
+  <div id="desc-Burst1ISISD">
+    <div class="title">Burst 1 ISI SD</div>
+    <div class="desc">
+      <p>The standard deviation of the initial burst interval across experimental repetitions.</p>
+    </div>
+  </div>
+  <div id="desc-InitialAccommodationMean">
+    <div class="title">Initial Accommodation Mean</div>
+    <div class="desc">
+      <p>Initial accommodation is defined as the percent difference between the spiking rate of the
+        *first* fifth of the step current and the *third* fifth of the step current.</p>
+    </div>
+  </div>
+  <div id="desc-SSAccommodationMean">
+    <div class="title">Steady State Accommodation Mean</div>
+    <div class="desc">
+      <p>Steady-state accommodation is defined as the percent difference between the spiking rate
+        of the *first* fifth of the step current and the *last* fifth of the step current.</p>
+    </div>
+  </div>
+  <div id="desc-AccommodationRateToSS">
+    <div class="title">Accommodation Rate to Steady State</div>
+    <div class="desc">
+      <p>The percent difference between the spiking rate of the *first* fifth of the step current and
+        *final* fifth of the step current divided by the time taken to first reach the rate of
+        steady state accommodation.</p>
+    </div>
+  </div>
+  <div id="desc-AccommodationAtSSMean">
+    <div class="title">Accommodation at Steady State Mean</div>
+    <div class="desc">
+      <p>Accommodation analysis based on a fit of the ISIs to an exponential function:
+        ISI = A+B*exp(-t/tau). This feature gives the relative size of the constant term (A) to
+        the term before the exponent (B).</p>
+    </div>
+  </div>
+  <div id="desc-AccommodationRateMeanAtSS">
+    <div class="title">Accommodation Rate Mean at Steady State</div>
+    <div class="desc">
+      <p>Accommodation analysis based on a fit of the ISIs to an exponential function.
+        This feature is the time constant (tau) of the exponent.</p>
+    </div>
+  </div>
+  <div id="desc-ISICV">
+    <div class="title">ISI CV</div>
+    <div class="desc">
+      <p>Coefficient of variation (mean divided by standard deviation) of the distribution
+        of ISIs.</p>
+    </div>
+  </div>
+  <div id="desc-ISIMedian">
+    <div class="title">ISI Median</div>
+    <div class="desc">
+      <p>Median of the distribution of ISIs.</p>
+    </div>
+  </div>
+  <div id="desc-ISIBurstMeanChange">
+    <div class="title">ISI Burst Mean Change</div>
+    <div class="desc">
+      <p>Difference between the first and second ISI divided by the value of the first ISI.</p>
+    </div>
+  </div>
+  <div id="desc-SpikeRateStrongStim">
+    <div class="title">Spike Rate (Strong Stimulation)</div>
+    <div class="desc">
+      <p>Firing rate of strong stimulus.</p>
+    </div>
+  </div>
+  <div id="desc-AP1DelayMeanStrongStim">
+    <div class="title">AP 1 Delay Mean (Strong Stimulation)</div>
+    <div class="desc">
+      <p>Same as "AP 1 Delay Mean" but under strong stimulation.</p>
+    </div>
+  </div>
+  <div id="desc-AP1DelaySDStrongStim">
+    <div class="title">AP 1 Delay SD (Strong Stimulation)</div>
+    <div class="desc">
+      <p>Same as "AP 1 Delay SD" but under strong stimulation.</p>
+    </div>
+  </div>
+  <div id="desc-AP2DelayMeanStrongStim">
+    <div class="title">AP 2 Delay Mean (Strong Stimulation)</div>
+    <div class="desc">
+      <p>Same as "AP 2 Delay Mean" but under strong stimulation.</p>
+    </div>
+  </div>
+  <div id="desc-AP2DelaySDStrongStim">
+    <div class="title">AP 2 Delay SD (Strong Stimulation)</div>
+    <div class="desc">
+      <p>Same as "AP 2 Delay SD" but under strong stimulation.</p>
+    </div>
+  </div>
+  <div id="desc-Burst1ISIMeanStrongStim">
+    <div class="title">Burst 1 ISI Mean (Strong Stimulation)</div>
+    <div class="desc">
+      <p>Same as "Burst 1 ISI Mean" but under strong stimulation.</p>
+    </div>
+  </div>
+  <div id="desc-Burst1ISISDStrongStim">
+    <div class="title">Burst 1 ISI SD (Strong Stimulation)</div>
+    <div class="desc">
+      <p>Same as "Burst 1 ISI SD" but under strong stimulation.</p>
+    </div>
+  </div>
+  <div id="desc-RampFirstSpike">
+    <div class="title">Ramp First Spike Time</div>
+    <div class="desc">
+      <p>The delay to first AP after the onset of 1 rheobase/sec ramp current.</p>
+    </div>
+  </div>
+  <div id="desc-FrequencyFilterType">
+    <div class="title">Frequency Filter Type</div>
+    <div class="desc">
+      <p>The type of input frequency filter of this cell in response to square current tripplet stimulation.
+        Either Constant (no filter), Low-Pass, High-Pass, Band-Pass, or Band-Stop.</p>
+    </div>
+  </div>
+  <div id="desc-FrequencyPassAbove">
+    <div class="title">Frequency Filter Pass Above</div>
+    <div class="desc">
+      <p>The input frequency above which this cell has an increased spiking response.</p>
+    </div>
+  </div>
+  <div id="desc-FrequencyPassBelow">
+    <div class="title">Frequency Filter Pass Below</div>
+    <div class="desc">
+      <p>The input frequency below which this cell has an increased spiking response.</p>
+    </div>
+  </div>
+
+
 </div>
 <script>
     function init_help() {

@@ -76,11 +76,11 @@
     <div class="wrapper">
       <!-- Navigation -->
       <ul id="nav" class="sf-menu">
-        <li class="<%= if controller.action_name == "search_model" then "current-menu-item" end %>" ><a href="/search_model">Search NeuroML Models</a></li>
-        <li class="<%= if controller.action_name == "model_submit" then "current-menu-item" end %>" ><a href="/model_submit">Submit NeuroML Models</a></li>
-        <li class="<%= if controller.action_name == "home_db" then "current-menu-item" end %>" ><a href="/home_db">About NeuroML-DB</a></li>
+        <li class="<%= if controller.action_name == "search_model" then "current-menu-item" end %>" ><a href="/search_model">Search</a></li>
+        <li class="<%= if controller.action_name == "gallery" then "current-menu-item" end %>" ><a href="/gallery">Gallery</a></li>
         <li class="<%= if controller.action_name == "api" then "current-menu-item" end %>" ><a href="/api">API</a></li>
         <li class="<%= if controller.action_name == "documentation" then "current-menu-item" end %>" ><a href="/documentation">Documentation</a></li>
+        <li class="<%= if controller.action_name == "home_db" then "current-menu-item" end %>" ><a href="/about">About</a></li>
         <li><a href="http://neuroml.org/" target="_blank">NeuroML Home</a></li>
       </ul>
     </div>
@@ -97,8 +97,7 @@
       <div id="bottom-text">Website & Images Copyright NeuroML &copy; <%= Time.now.year %><br/> All rights reserved</div>
       <div id="bottom-middle-text">
         <ul>
-          <li>For questions about the NeuroML Database</li>
-          <li>Contact: <a href="mailto:neuroml.info@gmail.com"><b>neuroml.info@gmail.com</b></a></li>
+          <li>For questions: <a href="/about#contact">Contact us</a></li>
         </ul>
       </div>
       <div id="bottom-middle-text">
