@@ -177,6 +177,8 @@ class Cells(BaseModel):
     FrequencyPassAbove = FloatField()
     FrequencyPassBelow = FloatField()
 
+    Ephyz_Cluster_ID = TextField()
+
 class Cell_Ephyz_Clusters(BaseModel):
     ID = CharField(primary_key=True)
     Name = TextField()
@@ -187,12 +189,6 @@ class Cells_Similar_Ephyz(BaseModel):
     Parent_Cell = ForeignKeyField(Cells, field='Model_ID', column_name='Parent_Cell_ID')
     Similar_Cell = ForeignKeyField(Cells, field='Model_ID', column_name='Similar_Cell_ID')
     Similarity = FloatField()
-
-class Cell_Closest_Ephyz_Clusters(BaseModel):
-    ID = PrimaryKeyField()
-    Cell = ForeignKeyField(Cells, field='Model_ID', column_name='Cell_ID')
-    Cluster = ForeignKeyField(Cell_Ephyz_Clusters, field='ID', column_name='Cluster_ID')
-    Distance = FloatField()
 
 class Morphometrics(BaseModel):
     ID = CharField(primary_key=True)
