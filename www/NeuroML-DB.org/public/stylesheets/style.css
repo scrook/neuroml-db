@@ -1389,65 +1389,36 @@ h6 {
 #bottom {
     position: relative;
     width: 100%;
-    font-size: 14px;
     line-height: 1.5em;
     line-height: 20px;
     color: #c4e5ff;
     background-color: #1376c4;
     width: 966px;
     margin: 0 auto;
-    height: 60px;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
     margin-bottom: 20px;
 }
-
-#bottom #bottom-text {
-    margin-top: 12px;
-    overflow: hidden;
-    float: left;
-    font-size: 14px;
-}
-
-#bottom #bottom-middle-text {
-
-    float: left;
-    margin: 0 auto;
-    margin-top: 12px;
-    margin-left: 25px;
-}
-
-#bottom-middle-text li, #bottom-middle-text a, #bottom-middle-text b {
-    font-size: 14px;
-}
-
 #bottom-container {
-    margin: 0 auto;
-    width: 885px;
+    text-align: center;
+    padding: 10px 0;
 }
-
-#bottom #bottom-middle-text ul li a {
+#bottom span {
+    margin: 0 10px;
+}
+#bottom span, #bottom a {
+    font-size: 14px;
+}
+#bottom a {
     text-decoration: underline;
+    color: #AFEAF9;
 }
 
-#bottom #bottom-middle-text ul li a:hover {
+#bottom a:hover {
     color: white;
 }
 
-#bottom a {
-    color: #AFEAF9;
-    text-decoration: none;
-}
 
-#bottom #to-top {
-    position: absolute;
-    right: 30px;
-    top: -22px;
-    width: 33px;
-    height: 33px;
-    background: url(../images/to-top.png) no-repeat;
-    cursor: pointer;
-}
 
 /* SOCIAL --------------------------------------------------------*/
 
@@ -4827,6 +4798,14 @@ h2 img {
 #searchbox input {
     font-size: 18px;
 }
+
+#searchbox input[type=submit]:hover {
+    background: #1376c4;
+    color: #fbfbfb;
+    border-color: #1376c4;
+    cursor:pointer;
+}
+
 #search-hint {
     color: #c1c1c1;
     font-size: 16px;

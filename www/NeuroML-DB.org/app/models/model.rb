@@ -260,10 +260,10 @@ class Model < ActiveRecord::Base
           (
               SELECT t.ID AS ID, t.Name, t.Differentiating_Features, @pv:=SUBSTRING(t.ID,1,char_length(t.ID)-2) AS parent
               FROM (SELECT * FROM cell_ephyz_clusters ORDER BY ID DESC) t
-              JOIN (SELECT @pv:='#{model["ClusterPath"]}') tmp
+              JOIN (SELECT @pv:='#{model["Ephyz_Cluster_ID"]}') tmp
               WHERE t.ID=@pv
             ) AS tree
-            ORDER BY tree.ID DESC
+            ORDER BY tree.ID ASC
         ")
 
     versions = GetModelVersions(idClean)

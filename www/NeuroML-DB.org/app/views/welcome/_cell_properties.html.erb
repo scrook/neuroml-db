@@ -1,15 +1,16 @@
 <style>
-  #membrane-props .property-name { width: 50%; }
+  #salient-features #membrane-props .property-name { width: 65%; }
+  #membrane-props .property-name { width: 51%; }
   #membrane-props .property-value { width: 49%; }
   #similar-ephyz { width: inherit }
   #similar-ephyz td { text-align: center; }
   #e-type { width: 50%; vertical-align: top; display: inline-block; }
   #salient-features { width: 49%; vertical-align: top; display: inline-block; }
-    #clusters { width: 200px; margin: 0 auto; }
+    #clusters { width: 370px; margin: 0 auto; margin-top: 10px; }
 </style>
 <div id="model-properties-container">
   <div id="e-type">
-    <div id="section-header">Electrophysiology Type <span data-scroll="desc-e-type" class="help-btn ui-icon ui-icon-info"></span></div>
+    <div id="section-header">Closest Electrophysiology Cluster<span data-scroll="desc-e-type" class="help-btn ui-icon ui-icon-info"></span></div>
     <div id="clusters">
       <% @spaces = "" %>
       <% @ephyz_clusters.each do |record| %>
@@ -24,8 +25,8 @@
       <div id="membrane-props" class="property-table">
         <table>
           <tbody>
-          <% if @ephyz_clusters.first != nil && @ephyz_clusters.first["Differentiating_Features"] != nil
-            @ephyz_clusters.first["Differentiating_Features"].split(',').each do |record| %>
+          <% if !@ephyz_clusters.rows.empty? && @ephyz_clusters.rows.last[2] != nil
+            @ephyz_clusters.rows.last[2].split(',').each do |record| %>
             <tr id="<%= record %>-diff">
             </tr>
             <script>jQuery(function() { jQuery('#<%= record %>-diff').html(jQuery('#<%= record %>').html()); })</script>
