@@ -48,24 +48,32 @@ class SPARQLDB:
 
     def Start(self):
 
+        # OLD WAY
         # Start fuseki server from command line as background process
-        # Command: fuseki-server --loc=Data /NeuroMLOntology
+        # Command: ./fuseki-server --loc=Data /NeuroMLOntology
         # Explanation:
         #   "FUSEKI_HOME=xyz" env variable needed by the server
         #   "fuseki-server" server executable
         #   "Data" ~/fuseki/Data is where db files are stored
         #   "/NeuroMLOntology" the name of the ontology DB
 
-        os.putenv("FUSEKI_HOME", "/opt/fuseki")
+        #os.putenv("FUSEKI_HOME", "/opt/fuseki")
 
+        # nohup /opt/fuseki/fuseki-server --loc=/opt/fuseki/Data /NeuroMLOntology > /dev/null 2>&1&
+        # subprocess.Popen([
+        #     "nohup",
+        #     "/opt/fuseki/fuseki-server",
+        #     "--loc=/opt/fuseki/Data",
+        #     "/NeuroMLOntology",
+        #     ">",
+        #     "/dev/null",
+        #     "2>&1&"
+        # ])
+
+        # NEW WAY
         subprocess.Popen([
-            "nohup",
-            "/opt/fuseki/fuseki-server",
-            "--loc=/opt/fuseki/Data",
-            "/NeuroMLOntology",
-            ">",
-            "/dev/null",
-            "2>&1&"
+            "/opt/fuseki/fuseki",
+            "start"
         ])
 
     def Query(self, query):

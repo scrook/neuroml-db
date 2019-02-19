@@ -107,9 +107,9 @@ class WelcomeController < ApplicationController
 
     @resultset =`/usr/bin/python /var/www/NeuroML-DB.org_Ontology/main.py #{search_text} 2>&1`
 
-    # if @resultset.index('{') == nil
-	   #  logger.warn("python search returned: '#{@resultset}'")
-    # end
+    if @resultset.index('{') == nil || @resultset.include? "Traceback"
+	    logger.warn("python search returned: '#{@resultset}'")
+    end
 
     if @resultset.to_s.length == 0
       render :partial => 'no_results' and return
