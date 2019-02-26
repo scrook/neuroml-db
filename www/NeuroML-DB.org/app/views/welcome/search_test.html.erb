@@ -105,6 +105,11 @@
               recomputeAverages();
 
               doneFunction();
+          },
+          error: function(xhr, error, ex)
+          {
+              posElement.html("<a href='"+url+"' target='_blank'>ERROR</a>")
+              timeElement.text("9999 ms")
           }
       });
   }

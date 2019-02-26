@@ -1,4 +1,4 @@
-require 'zip/zip'
+require 'zip'
 
 class Model < ActiveRecord::Base
   attr_accessible :Model_ID, :Type, :Name, :File, :Notes
@@ -576,7 +576,7 @@ class Model < ActiveRecord::Base
           File.delete(_zipFilePath)
         end
 
-        Zip::ZipFile.open(_zipFilePath, Zip::ZipFile::CREATE) do |zip|
+        Zip::File.open(_zipFilePath, Zip::File::CREATE) do |zip|
 
           filesToZip.each do |record|
             zip.add(File.basename(record["File"]), record["File"])
@@ -624,7 +624,7 @@ class Model < ActiveRecord::Base
           File.delete(_zipFilePath)
         end
 
-        Zip::ZipFile.open(_zipFilePath, Zip::ZipFile::CREATE) do |zip|
+        Zip::File.open(_zipFilePath, Zip::File::CREATE) do |zip|
 
           filesToZip.each do |record|
             zip.add(File.basename(record["File"]), record["File"])
