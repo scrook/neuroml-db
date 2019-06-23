@@ -1312,24 +1312,13 @@ class ModelManager(object):
 
         df_all, prop_names = self.get_pre_processed_cell_ephyz_props(all_cells)
 
-        cluster_names = ["root", "multi_spikers", "multi_spikers_sub_0", "multi_spikers_sub_1"]
+        df_all["ClusterPath"] = "/"
 
-        for cluster in cluster_names:
-            if cluster == 'root':
-                df = df_all # 1st pass
-                cluster_level = 'Root_Cluster'
+        parent_paths =    ["/", "/0/", "/0/0/", "/0/0/0/", "/0/0/1/", "/0/2/", "/0/2/1/"]
+        path_n_clusters = [3,       4,       4,         3,         2,       2,         3]
 
-            elif cluster == 'multi_spikers':
-                df = df_all[df_all["Root_Cluster"] == 1] # 2nd pass
-                cluster_level = "Multi_Spike_Cluster"
-
-            elif cluster == 'multi_spikers_sub_0':
-                df = df_all[df_all["Multi_Spike_Cluster"] == 0] # Left of 2nd pass
-                cluster_level = "Multi_Spike_0_Cluster"
-
-            else: #multi_spikers_sub_1
-                df = df_all[df_all["Multi_Spike_Cluster"] == 1]  # Right of 2nd pass
-                cluster_level = "Multi_Spike_1_Cluster"
+        for i, parent_path in enumerate(parent_paths):
+            df = df_all[df_all["ClusterPath"].str.startswith(parent_path)]
 
             from sklearn.preprocessing import StandardScaler
             scaler = StandardScaler()
@@ -1345,7 +1334,7 @@ class ModelManager(object):
             X = principalDf
             print('post-pca dims', len(principalDf.columns))
 
-            if cluster == "root":
+            if parent_path == "/":
                 root_pcs = principalComponents
 
 
@@ -1372,34 +1361,30 @@ class ModelManager(object):
 
             from sklearn.cluster import AgglomerativeClustering
 
-            cluster = AgglomerativeClustering(n_clusters=2, affinity='euclidean', linkage='ward')
+            cluster = AgglomerativeClustering(n_clusters=path_n_clusters[i], affinity='euclidean', linkage='ward')
             cluster.fit_predict(X)
 
             if plot:
                 plt.scatter(X[0], X[1], c=cluster.labels_, cmap='rainbow')
                 plt.show()
 
-            # Set subset df cluster
-            df[cluster_level] = cluster.labels_
+            # Assign cluster labels to df rows
+            df["Cluster"] = cluster.labels_
 
-            # Set main df cluster
-            df_all[cluster_level] = df[cluster_level]
+            # Make the path to the cluster
+            df["ClusterPath"] = df["ClusterPath"] + df["Cluster"].map(str) + "/"
 
-        def nan_to_none(value):
-            import math
-            return None if math.isnan(value) else value
+            # Set the path in the parent all-records df
+            for label in df.index:
+                df_all.at[label, "ClusterPath"] = df.at[label, "ClusterPath"]
+                df_all.at[label, "Cluster"] = df.at[label, "Cluster"]
 
-        import pydevd
-        pydevd.settrace('192.168.0.34', port=4200, suspend=False)
 
         for index, cell in enumerate(all_cells):
             print("Saving cell",cell.Model_ID,"cluster")
             cell_record = Cells.get_or_none(Cells.Model_ID == cell.Model_ID)
 
-            cell_record.RootCluster = nan_to_none(df_all.at[index, 'Root_Cluster'])
-            cell_record.MultiSpikeCluster = nan_to_none(df_all.at[index, 'Multi_Spike_Cluster'])
-            cell_record.MultiSpikeClusterSub0 = nan_to_none(df_all.at[index, 'Multi_Spike_0_Cluster'])
-            cell_record.MultiSpikeClusterSub1 = nan_to_none(df_all.at[index, 'Multi_Spike_1_Cluster'])
+            cell_record.ClusterPath = df_all.at[index, 'ClusterPath']
 
             cell_record.save()
 
