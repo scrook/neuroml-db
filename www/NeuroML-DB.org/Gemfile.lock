@@ -53,12 +53,13 @@ GEM
       treetop (~> 1.4.8)
     metaclass (0.0.1)
     mime-types (1.22)
+    mini_portile2 (2.4.0)
     mocha (0.13.3)
       metaclass (~> 0.0.1)
     multi_json (1.7.2)
-    mysql2 (0.3.21)
     net-ldap (0.3.1)
-    nokogiri (1.5.9)
+    nokogiri (1.10.4)
+      mini_portile2 (~> 2.4.0)
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)
@@ -122,14 +123,12 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-jdbc-adapter (= 1.2.5)
-  activerecord-jdbcmysql-adapter
   builder
   capybara (~> 2.0.0)
   coderay
   fastercsv
   i18n
   mocha
-  mysql2 (~> 0.3.17)
   net-ldap
   rack-openid
   rails
