@@ -16,7 +16,6 @@ class SPARQLDB:
         self.CheckIfUpAndStartIfNeeded()
 
     def CheckIfUpAndStartIfNeeded(self):
-
         if not self.IsUp():
             self.Start()
 
@@ -41,40 +40,21 @@ class SPARQLDB:
         try:
             response = urllib2.urlopen(request)
 
-        except urllib2.URLError:
+        except urllib2.URLError as ex:
             return False
 
-        return response.getcode() == 200
+        code = response.getcode()
+        return code == 200
 
     def Start(self):
-
-        # OLD WAY
         # Start fuseki server from command line as background process
-        # Command: ./fuseki-server --loc=Data /NeuroMLOntology
+        # Command: fuseki-server --loc=Data /NeuroMLOntology
         # Explanation:
         #   "FUSEKI_HOME=xyz" env variable needed by the server
         #   "fuseki-server" server executable
         #   "Data" ~/fuseki/Data is where db files are stored
         #   "/NeuroMLOntology" the name of the ontology DB
-
-        #os.putenv("FUSEKI_HOME", "/opt/fuseki")
-
-        # nohup /opt/fuseki/fuseki-server --loc=/opt/fuseki/Data /NeuroMLOntology > /dev/null 2>&1&
-        # subprocess.Popen([
-        #     "nohup",
-        #     "/opt/fuseki/fuseki-server",
-        #     "--loc=/opt/fuseki/Data",
-        #     "/NeuroMLOntology",
-        #     ">",
-        #     "/dev/null",
-        #     "2>&1&"
-        # ])
-
-        # NEW WAY
-        subprocess.Popen([
-            "/opt/fuseki/fuseki",
-            "start"
-        ])
+        subprocess.Popen(["/fuseki/fuseki", "start"])
 
     def Query(self, query):
 
@@ -95,6 +75,8 @@ class SPARQLDB:
 
         jsonResult = json.loads(responseText)
         bindings = jsonResult["results"]["bindings"]
+
+        #print('X'*30, query, responseText)
 
         return bindings
 

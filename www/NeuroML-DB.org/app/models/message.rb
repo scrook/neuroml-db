@@ -19,7 +19,7 @@ class Message < ActiveRecord::Base
   include Redmine::SafeAttributes
   belongs_to :board
   belongs_to :author, :class_name => 'User', :foreign_key => 'author_id'
-  acts_as_tree :counter_cache => :replies_count, :order => "#{Message.table_name}.created_on ASC"
+#   acts_as_tree :counter_cache => :replies_count, :order => "#{Message.table_name}.created_on ASC"
   acts_as_attachable
   belongs_to :last_reply, :class_name => 'Message', :foreign_key => 'last_reply_id'
 

@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  website:
+    image: neuromldb:latest
+    container_name: "neuromldb-deploy"
+    restart: on-failure
+    command: bash
+    stdin_open: true
+    tty: true
+    volumes:
+#      - ./apache2/sites-enabled:/etc/apache2/sites-enabled
+      - /var/www/:/var/www/
+#      - ./NeuroML-DB.org:/var/www/NeuroML-DB.org/
+#      - ./NeuroML-DB.org_Ontology:/var/www/NeuroML-DB.org_Ontology/
+#      - ./OntologyData:/OntologyData
+    ports:
+      # dendrite port: container port
+      - "8001:5000" # Apache
+      - "3032:3030" # Fuseki

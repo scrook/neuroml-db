@@ -18,4 +18,6 @@ RedmineApp::Application.configure do
   config.active_support.deprecation = :log
 
   config.log_level = :warn
+
+  config.eager_load = false
 end

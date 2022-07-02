@@ -18,18 +18,18 @@
 class Enumeration < ActiveRecord::Base
   include Redmine::SubclassFactory
 
-  default_scope :order => "#{Enumeration.table_name}.position ASC"
+#   default_scope :order => "#{Enumeration.table_name}.position ASC"
 
   belongs_to :project
 
   acts_as_list :scope => 'type = \'#{type}\''
-  acts_as_customizable
-  acts_as_tree :order => "#{Enumeration.table_name}.position ASC"
+#   acts_as_customizable
+#   acts_as_tree :order => "#{Enumeration.table_name}.position ASC"
 
   before_destroy :check_integrity
   before_save    :check_default
 
-  attr_protected :type
+#   attr_protected :type
 
   validates_presence_of :name
   validates_uniqueness_of :name, :scope => [:type, :project_id]

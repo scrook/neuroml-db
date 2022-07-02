@@ -105,11 +105,11 @@ class WelcomeController < ApplicationController
     search_text = params[:q].gsub('"','\"')
 
 
-    @resultset =`/usr/bin/python /var/www/NeuroML-DB.org_Ontology/main.py #{search_text} 2>&1`
+    @resultset =`/root/miniconda3/envs/p27/bin/python /var/www/NeuroML-DB.org_Ontology/main.py #{search_text} 2>&1`
 
-    if @resultset.index('{') == nil || @resultset.include? "Traceback"
-	    logger.warn("python search returned: '#{@resultset}'")
-    end
+#     if @resultset.index('{') == nil
+    logger.warn("python search returned: '#{@resultset}'")
+#     end
 
     if @resultset.to_s.length == 0
       render :partial => 'no_results' and return
@@ -134,6 +134,7 @@ class WelcomeController < ApplicationController
                         .gsub("u'","'")
                         .gsub("_"," ")
 
+      logger.warn("after cleaning: '#{cleanstring}'")
 
       @result_hash=eval(cleanstring)
 
@@ -143,7 +144,7 @@ class WelcomeController < ApplicationController
       @ont_types  =Array.new
       @ont_relations = []
 
-      #logger.warn(@result_hash)
+      logger.warn(@result_hash)
 
       modelNames = @result_hash["ModelNames"]
 

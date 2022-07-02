@@ -64,7 +64,7 @@ class RubyInterfacer():
 
     def GetNeuroMLids(self, pythonResult):
 
-        connection = MySQLdb.connect("localhost", database.connection['user'], database.connection['password'], database.connection['db'])
+        connection = MySQLdb.connect(database.connection['host'], database.connection['user'], database.connection['password'], database.connection['db'])
         connection.autocommit(True)
         cursor = connection.cursor()
 

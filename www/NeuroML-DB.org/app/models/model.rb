@@ -528,7 +528,9 @@ class Model < ActiveRecord::Base
 
       records = []
       files.each do |file|
-        records.push({ "File" => file })
+        if not file.end_with?(".zip")
+          records.push({ "File" => file })
+        end
       end
 
       return records
@@ -576,6 +578,7 @@ class Model < ActiveRecord::Base
           File.delete(_zipFilePath)
         end
 
+        logger.warn(filesToZip)
         Zip::File.open(_zipFilePath, Zip::File::CREATE) do |zip|
 
           filesToZip.each do |record|
@@ -587,6 +590,9 @@ class Model < ActiveRecord::Base
       rescue
 
         if File.exist?(_zipFilePath)
+          logger.warn('error zipping, deleteing zip file')
+          logger.warn(_zipFilePath)
+
           File.delete(_zipFilePath)
         end
 

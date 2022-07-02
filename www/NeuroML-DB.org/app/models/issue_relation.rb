@@ -70,7 +70,7 @@ class IssueRelation < ActiveRecord::Base
   validates_uniqueness_of :issue_to_id, :scope => :issue_from_id
   validate :validate_issue_relation
 
-  attr_protected :issue_from_id, :issue_to_id
+#   attr_protected :issue_from_id, :issue_to_id
   before_save :handle_issue_order
 
   def visible?(user=User.current)
