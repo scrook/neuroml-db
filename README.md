@@ -3,6 +3,14 @@ Source code and documentation for NeuroML-DB.org and NeuroML-DB Curator.
 
 # Steps to start website:
 
+## On dendrite
+
+ 1. `cd /var/www/NeuroML-DB.org_Docker/`
+ 2. `sudo -u www-data ./run.sh` This will (re-)build the docker image and start the website on port 8000
+ 3. `/etc/apache2/httpd-nml2.conf` file configures apache server on dendrite to route requests to neuroml-db.org to port 8000
+
+## Locally
+
 Ensure you have docker installed and are running Ubuntu.
 
  1. Clone repo with `git@github.com:scrook/neuroml-db.git`
