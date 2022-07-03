@@ -3,8 +3,8 @@ version: '3'
 services:
   website:
     image: neuromldb:latest
-    container_name: "neuromldb-deploy"
-    restart: on-failure
+    container_name: "neuromldb"
+    restart: always
     command: bash
     stdin_open: true
     tty: true
