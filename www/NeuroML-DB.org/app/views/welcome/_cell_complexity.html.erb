@@ -27,13 +27,13 @@
         <td class="property-name">State Equations</td>
         <td class="property-value"><%= display_field(@model, "Equations", "%d", "N/A") %> <span data-scroll="desc-state-eq" class="ui-icon ui-icon-info help-btn"></span></td>
       </tr>
-      <tr>
+      <tr style="visibility: hidden;">
         <td class="property-name">Optimal Time-Step</td>
         <td class="property-value"><%= display_field(@model, "Optimal_DT", "%.5f", "N/A") %> ms <span data-scroll="desc-optimal-dt" class="ui-icon ui-icon-info help-btn"></span></td>
       </tr>
       <tr>
         <td class="property-name">Relative Complexity</td>
-        <td class="property-value"><%= display_field(@model, "Optimal_DT_Benchmark_RunTime_HH", "%.2f", "N/A") %> HH <span data-scroll="desc-bench-perf" class="ui-icon ui-icon-info help-btn"></span></td>
+        <td class="property-value"><%= display_field(@model, "CVODE_Benchmark_RunTime_HH", "%.2f", "N/A") %> HH <span data-scroll="desc-cvode-runtime" class="ui-icon ui-icon-info help-btn"></span></td>
       </tr>
       </tbody>
     </table>
@@ -62,9 +62,9 @@
       </tbody>
     </table>
   </div>
-  <div id="section-header">Fixed Time-Step Run Time vs.	Voltage Potential Error</div>
-  <div id="complexity-plot-fixed"><canvas id="chart-fixed-dt" width="300" height="300"></canvas></div>
-  <div id="fixed-table" class="property-table">
+  <div id="section-header" style="display: none;">Fixed Time-Step Run Time vs.	Voltage Potential Error</div>
+  <div id="complexity-plot-fixed" style="display: none;"><canvas id="chart-fixed-dt" width="300" height="300"></canvas></div>
+  <div id="fixed-table" class="property-table" style="display: none;">
     <table>
       <tbody>
       <tr>
