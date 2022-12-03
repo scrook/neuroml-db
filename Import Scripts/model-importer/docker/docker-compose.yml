@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  website:
+    image: neuromldb-model-importer:latest
+    container_name: "neuromldb-model-importer"
+    command: bash
+    stdin_open: true
+    tty: true
+    volumes:
+      - /home/justas/Repositories/neuroml-db:/src/neuroml-db
+
+    ports:
+      # dendrite port: container port
+      - "5920:5920" # VNC
+      - "8888:8888" # Jupyter
