@@ -1,6 +1,7 @@
 FROM jbirgio/neuron:7.7
 
-#Expose port 5920 to view display using VNC Viewer
+#Expose port 5920 to view display using VNC Viewer -- VNC will only work when the container is run on a local machine
+# Will need to run `unset DISPLAY` before importing NEURON
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
 RUN apt-get install -y git x11vnc xvfb openbox menu
